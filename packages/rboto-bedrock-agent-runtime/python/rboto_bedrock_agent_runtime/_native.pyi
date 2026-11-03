@@ -11,38 +11,46 @@ from .types import AgenticRetrieveStreamOutput, InvokeAgentOutput, InvokeFlowOut
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class AgenticRetrieveStreamResponseOutputReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStreamResponseOutputReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.AgenticRetrieveStreamResponseOutput]: ...
     def __anext__(self) -> Awaitable[_types.AgenticRetrieveStreamResponseOutput]: ...
 @final
 class FlowResponseStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowResponseStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.FlowResponseStream]: ...
     def __anext__(self) -> Awaitable[_types.FlowResponseStream]: ...
 @final
 class InlineAgentResponseStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentResponseStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.InlineAgentResponseStream]: ...
     def __anext__(self) -> Awaitable[_types.InlineAgentResponseStream]: ...
 @final
 class OptimizedPromptStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPromptStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.OptimizedPromptStream]: ...
     def __anext__(self) -> Awaitable[_types.OptimizedPromptStream]: ...
 @final
 class ResponseStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ResponseStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.ResponseStream]: ...
     def __anext__(self) -> Awaitable[_types.ResponseStream]: ...
 @final
 class RetrieveAndGenerateStreamResponseOutputReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateStreamResponseOutputReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.RetrieveAndGenerateStreamResponseOutput]: ...
     def __anext__(self) -> Awaitable[_types.RetrieveAndGenerateStreamResponseOutput]: ...
 
 
 @final
 class AudioSegment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AudioSegmentOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     @property
@@ -51,6 +59,7 @@ class AudioSegment:
 
 @final
 class Citation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CitationOutput/)."""
     @property
     def generated_response_part(self) -> GeneratedResponsePart | None: ...
     @property
@@ -59,6 +68,7 @@ class Citation:
 
 @final
 class DocumentAcl:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DocumentAclOutput/)."""
     @property
     def allow_list(self) -> DocumentAclMembership | None: ...
     @property
@@ -67,6 +77,7 @@ class DocumentAcl:
 
 @final
 class DocumentAclCondition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DocumentAclConditionOutput/)."""
     @property
     def condition_operator(self) -> _types.DocumentAclMemberRelationOutput | None: ...
     @property
@@ -77,6 +88,7 @@ class DocumentAclCondition:
 
 @final
 class DocumentAclGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DocumentAclGroupOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -85,6 +97,7 @@ class DocumentAclGroup:
 
 @final
 class DocumentAclMembership:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DocumentAclMembershipOutput/)."""
     @property
     def member_relation(self) -> _types.DocumentAclMemberRelationOutput | None: ...
     @property
@@ -93,6 +106,7 @@ class DocumentAclMembership:
 
 @final
 class DocumentAclUser:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DocumentAclUserOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -101,6 +115,7 @@ class DocumentAclUser:
 
 @final
 class FlowExecutionError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionErrorOutput/)."""
     @property
     def node_name(self) -> str | None: ...
     @property
@@ -111,6 +126,7 @@ class FlowExecutionError:
 
 @final
 class FlowExecutionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionSummaryOutput/)."""
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -129,6 +145,7 @@ class FlowExecutionSummary:
 
 @final
 class GeneratedQuery:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GeneratedQueryOutput/)."""
     @property
     def type(self) -> _types.GeneratedQueryTypeOutput | None: ...
     @property
@@ -137,12 +154,14 @@ class GeneratedQuery:
 
 @final
 class GeneratedResponsePart:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GeneratedResponsePartOutput/)."""
     @property
     def text_response_part(self) -> TextResponsePart | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InvocationStep:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStepOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -157,6 +176,7 @@ class InvocationStep:
 
 @final
 class InvocationStepSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStepSummaryOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -169,6 +189,7 @@ class InvocationStepSummary:
 
 @final
 class InvocationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationSummaryOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -179,6 +200,7 @@ class InvocationSummary:
 
 @final
 class KnowledgeBaseRetrievalResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/KnowledgeBaseRetrievalResultOutput/)."""
     @property
     def content(self) -> RetrievalResultContent | None: ...
     @property
@@ -193,6 +215,7 @@ class KnowledgeBaseRetrievalResult:
 
 @final
 class RerankDocument:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankDocumentOutput/)."""
     @property
     def type(self) -> _types.RerankDocumentTypeOutput: ...
     @property
@@ -203,6 +226,7 @@ class RerankDocument:
 
 @final
 class RerankResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankResultOutput/)."""
     @property
     def index(self) -> int: ...
     @property
@@ -213,18 +237,21 @@ class RerankResult:
 
 @final
 class RerankTextDocument:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankTextDocumentOutput/)."""
     @property
     def text(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultConfluenceLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultConfluenceLocationOutput/)."""
     @property
     def url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultContentOutput/)."""
     @property
     def type(self) -> _types.RetrievalResultContentTypeOutput | None: ...
     @property
@@ -241,6 +268,7 @@ class RetrievalResultContent:
 
 @final
 class RetrievalResultContentColumn:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultContentColumnOutput/)."""
     @property
     def column_name(self) -> str | None: ...
     @property
@@ -251,24 +279,28 @@ class RetrievalResultContentColumn:
 
 @final
 class RetrievalResultCustomDocumentLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultCustomDocumentLocationOutput/)."""
     @property
     def id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultGoogleDriveLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultGoogleDriveLocationOutput/)."""
     @property
     def url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultKendraDocumentLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultKendraDocumentLocationOutput/)."""
     @property
     def uri(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultLocationOutput/)."""
     @property
     def type(self) -> _types.RetrievalResultLocationTypeOutput: ...
     @property
@@ -295,48 +327,56 @@ class RetrievalResultLocation:
 
 @final
 class RetrievalResultOneDriveLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultOneDriveLocationOutput/)."""
     @property
     def url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultS3Location:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultS3LocationOutput/)."""
     @property
     def uri(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultSalesforceLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultSalesforceLocationOutput/)."""
     @property
     def url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultSharePointLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultSharePointLocationOutput/)."""
     @property
     def url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultSqlLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultSqlLocationOutput/)."""
     @property
     def query(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievalResultWebLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalResultWebLocationOutput/)."""
     @property
     def url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrieveAndGenerateValueOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateValueOutput/)."""
     @property
     def text(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RetrievedReference:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievedReferenceOutput/)."""
     @property
     def content(self) -> RetrievalResultContent | None: ...
     @property
@@ -347,6 +387,7 @@ class RetrievedReference:
 
 @final
 class SessionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/SessionSummaryOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -361,6 +402,7 @@ class SessionSummary:
 
 @final
 class Span:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/SpanOutput/)."""
     @property
     def start(self) -> int | None: ...
     @property
@@ -369,6 +411,7 @@ class Span:
 
 @final
 class TextResponsePart:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TextResponsePartOutput/)."""
     @property
     def text(self) -> str | None: ...
     @property
@@ -377,6 +420,7 @@ class TextResponsePart:
 
 @final
 class VideoSegment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/VideoSegmentOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     @property
@@ -385,12 +429,14 @@ class VideoSegment:
 
 @final
 class CheckIngestedDocumentAclOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CheckIngestedDocumentAclOutput/)."""
     @property
     def has_access(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateInvocationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CreateInvocationOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -401,6 +447,7 @@ class CreateInvocationOutput:
 
 @final
 class CreateSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CreateSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -413,14 +460,17 @@ class CreateSessionOutput:
 
 @final
 class DeleteAgentMemoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DeleteAgentMemoryOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DeleteSessionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EndSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/EndSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -431,12 +481,14 @@ class EndSessionOutput:
 
 @final
 class GenerateQueryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GenerateQueryOutput/)."""
     @property
     def queries(self) -> list[GeneratedQuery] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAgentMemoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetAgentMemoryOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -445,6 +497,7 @@ class GetAgentMemoryOutput:
 
 @final
 class GetDocumentContentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetDocumentContentOutput/)."""
     @property
     def mime_type(self) -> str: ...
     @property
@@ -455,6 +508,7 @@ class GetDocumentContentOutput:
 
 @final
 class GetExecutionFlowSnapshotOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetExecutionFlowSnapshotOutput/)."""
     @property
     def flow_identifier(self) -> str: ...
     @property
@@ -471,6 +525,7 @@ class GetExecutionFlowSnapshotOutput:
 
 @final
 class GetFlowExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetFlowExecutionOutput/)."""
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -491,18 +546,21 @@ class GetFlowExecutionOutput:
 
 @final
 class GetIngestedDocumentAclOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetIngestedDocumentAclOutput/)."""
     @property
     def document_acl(self) -> DocumentAcl | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetInvocationStepOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetInvocationStepOutput/)."""
     @property
     def invocation_step(self) -> InvocationStep | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/GetSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -521,6 +579,7 @@ class GetSessionOutput:
 
 @final
 class ListFlowExecutionEventsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListFlowExecutionEventsOutput/)."""
     @property
     def flow_execution_events(self) -> list[_types.FlowExecutionEvent]: ...
     @property
@@ -529,6 +588,7 @@ class ListFlowExecutionEventsOutput:
 
 @final
 class ListFlowExecutionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListFlowExecutionsOutput/)."""
     @property
     def flow_execution_summaries(self) -> list[FlowExecutionSummary]: ...
     @property
@@ -537,6 +597,7 @@ class ListFlowExecutionsOutput:
 
 @final
 class ListInvocationStepsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListInvocationStepsOutput/)."""
     @property
     def invocation_step_summaries(self) -> list[InvocationStepSummary]: ...
     @property
@@ -545,6 +606,7 @@ class ListInvocationStepsOutput:
 
 @final
 class ListInvocationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListInvocationsOutput/)."""
     @property
     def invocation_summaries(self) -> list[InvocationSummary]: ...
     @property
@@ -553,6 +615,7 @@ class ListInvocationsOutput:
 
 @final
 class ListSessionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListSessionsOutput/)."""
     @property
     def session_summaries(self) -> list[SessionSummary]: ...
     @property
@@ -561,18 +624,21 @@ class ListSessionsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutInvocationStepOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PutInvocationStepOutput/)."""
     @property
     def invocation_step_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RerankOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankOutput/)."""
     @property
     def results(self) -> list[RerankResult]: ...
     @property
@@ -581,6 +647,7 @@ class RerankOutput:
 
 @final
 class RetrieveOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveOutput/)."""
     @property
     def retrieval_results(self) -> list[KnowledgeBaseRetrievalResult]: ...
     @property
@@ -591,6 +658,7 @@ class RetrieveOutput:
 
 @final
 class RetrieveAndGenerateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -603,12 +671,14 @@ class RetrieveAndGenerateOutput:
 
 @final
 class StartFlowExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/StartFlowExecutionOutput/)."""
     @property
     def execution_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopFlowExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/StopFlowExecutionOutput/)."""
     @property
     def execution_arn(self) -> str | None: ...
     @property
@@ -617,14 +687,17 @@ class StopFlowExecutionOutput:
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/UpdateSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property

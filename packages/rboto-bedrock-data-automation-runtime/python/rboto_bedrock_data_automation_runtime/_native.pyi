@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,12 +18,14 @@ class ByteStream:
 
 @final
 class OutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/OutputConfigurationOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OutputSegment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/OutputSegmentOutput/)."""
     @property
     def custom_output_status(self) -> _types.CustomOutputStatusOutput | None: ...
     @property
@@ -33,6 +36,7 @@ class OutputSegment:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -41,6 +45,7 @@ class Tag:
 
 @final
 class GetDataAutomationStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/GetDataAutomationStatusOutput/)."""
     @property
     def status(self) -> _types.AutomationJobStatusOutput | None: ...
     @property
@@ -59,6 +64,7 @@ class GetDataAutomationStatusOutput:
 
 @final
 class InvokeDataAutomationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationOutput/)."""
     @property
     def output_configuration(self) -> OutputConfiguration | None: ...
     @property
@@ -69,22 +75,26 @@ class InvokeDataAutomationOutput:
 
 @final
 class InvokeDataAutomationAsyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationAsyncOutput/)."""
     @property
     def invocation_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 

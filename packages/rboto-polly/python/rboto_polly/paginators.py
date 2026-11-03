@@ -36,7 +36,7 @@ class PollyClientPaginators:
         include_additional_language_codes: bool | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeVoicesOutput]:
-        """Yield each page from describe_voices; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/describe_voices/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if engine is not None:
@@ -62,7 +62,7 @@ class PollyClientPaginators:
         *,
         next_token: str | None = None,
     ) -> AsyncIterator[ListLexiconsOutput]:
-        """Yield each page from list_lexicons; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/list_lexicons/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -84,7 +84,7 @@ class PollyClientPaginators:
         next_token: str | None = None,
         status: TaskStatus | None = None,
     ) -> AsyncIterator[ListSpeechSynthesisTasksOutput]:
-        """Yield each page from list_speech_synthesis_tasks; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/list_speech_synthesis_tasks/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:

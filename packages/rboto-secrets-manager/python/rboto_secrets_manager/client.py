@@ -24,6 +24,8 @@ from .paginators import SecretsManagerClientPaginators as _Paginators
 
 
 class SecretsManagerClient:
+    """Async SecretsManagerClient. See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/)."""
+
     logger_name = "rboto.secrets-manager"
 
     def __init__(
@@ -67,6 +69,7 @@ class SecretsManagerClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> BatchGetSecretValueOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/batch_get_secret_value/)."""
         params: dict[str, object] = {
         }
         if secret_id_list is not None:
@@ -96,6 +99,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
     ) -> CancelRotateSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/cancel_rotate_secret/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -127,6 +131,7 @@ class SecretsManagerClient:
         force_overwrite_replica_secret: bool | None = None,
         type: str | None = None,
     ) -> CreateSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/create_secret/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -167,6 +172,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
     ) -> DeleteResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -191,6 +197,7 @@ class SecretsManagerClient:
         recovery_window_in_days: int | None = None,
         force_delete_without_recovery: bool | None = None,
     ) -> DeleteSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/delete_secret/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -217,6 +224,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
     ) -> DescribeSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/describe_secret/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -246,6 +254,7 @@ class SecretsManagerClient:
         include_space: bool | None = None,
         require_each_included_type: bool | None = None,
     ) -> GetRandomPasswordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/get_random_password/)."""
         params: dict[str, object] = {
         }
         if password_length is not None:
@@ -283,6 +292,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -307,6 +317,7 @@ class SecretsManagerClient:
         version_id: str | None = None,
         version_stage: str | None = None,
     ) -> GetSecretValueOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/get_secret_value/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -336,6 +347,7 @@ class SecretsManagerClient:
         next_token: str | None = None,
         include_deprecated: bool | None = None,
     ) -> ListSecretVersionIdsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/list_secret_version_ids/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -369,6 +381,7 @@ class SecretsManagerClient:
         sort_order: SortOrderType | None = None,
         sort_by: SortByType | None = None,
     ) -> ListSecretsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/list_secrets/)."""
         params: dict[str, object] = {
         }
         if include_planned_deletion is not None:
@@ -404,6 +417,7 @@ class SecretsManagerClient:
         resource_policy: str,
         block_public_policy: bool | None = None,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
             "resource_policy": resource_policy,
@@ -434,6 +448,7 @@ class SecretsManagerClient:
         version_stages: Sequence[str] | None = None,
         rotation_token: str | None = None,
     ) -> PutSecretValueOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/put_secret_value/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -467,6 +482,7 @@ class SecretsManagerClient:
         secret_id: str,
         remove_replica_regions: Sequence[str],
     ) -> RemoveRegionsFromReplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/remove_regions_from_replication/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
             "remove_replica_regions": remove_replica_regions,
@@ -492,6 +508,7 @@ class SecretsManagerClient:
         add_replica_regions: Sequence[ReplicaRegionType],
         force_overwrite_replica_secret: bool | None = None,
     ) -> ReplicateSecretToRegionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/replicate_secret_to_regions/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
             "add_replica_regions": add_replica_regions,
@@ -517,6 +534,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
     ) -> RestoreSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/restore_secret/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -545,6 +563,7 @@ class SecretsManagerClient:
         external_secret_rotation_role_arn: str | None = None,
         rotate_immediately: bool | None = None,
     ) -> RotateSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/rotate_secret/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -579,6 +598,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
     ) -> StopReplicationToReplicaOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/stop_replication_to_replica/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -602,6 +622,7 @@ class SecretsManagerClient:
         secret_id: str,
         tags: Sequence[Tag],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/tag_resource/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
             "tags": tags,
@@ -626,6 +647,7 @@ class SecretsManagerClient:
         secret_id: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/untag_resource/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
             "tag_keys": tag_keys,
@@ -655,6 +677,7 @@ class SecretsManagerClient:
         secret_string: str | None = None,
         type: str | None = None,
     ) -> UpdateSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/update_secret/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -692,6 +715,7 @@ class SecretsManagerClient:
         remove_from_version_id: str | None = None,
         move_to_version_id: str | None = None,
     ) -> UpdateSecretVersionStageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/update_secret_version_stage/)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
             "version_stage": version_stage,
@@ -720,6 +744,7 @@ class SecretsManagerClient:
         resource_policy: str,
         secret_id: str | None = None,
     ) -> ValidateResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/validate_resource_policy/)."""
         params: dict[str, object] = {
             "resource_policy": resource_policy,
         }

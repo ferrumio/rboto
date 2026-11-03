@@ -21,6 +21,8 @@ from .paginators import SNSClientPaginators as _Paginators
 
 
 class SNSClient:
+    """Async SNSClient. See [reference](https://ferrumio.github.io/rboto/reference/sns/)."""
+
     logger_name = "rboto.sns"
 
     def __init__(
@@ -64,6 +66,7 @@ class SNSClient:
         aws_account_id: Sequence[str],
         action_name: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/add_permission/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
             "label": label,
@@ -89,6 +92,7 @@ class SNSClient:
         *,
         phone_number: str,
     ) -> CheckIfPhoneNumberIsOptedOutOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/check_if_phone_number_is_opted_out/)."""
         params: dict[str, object] = {
             "phone_number": phone_number,
         }
@@ -113,6 +117,7 @@ class SNSClient:
         token: str,
         authenticate_on_unsubscribe: str | None = None,
     ) -> ConfirmSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/confirm_subscription/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
             "token": token,
@@ -140,6 +145,7 @@ class SNSClient:
         platform: str,
         attributes: dict[str, str],
     ) -> CreatePlatformApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/create_platform_application/)."""
         params: dict[str, object] = {
             "name": name,
             "platform": platform,
@@ -167,6 +173,7 @@ class SNSClient:
         custom_user_data: str | None = None,
         attributes: dict[str, str] | None = None,
     ) -> CreatePlatformEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/create_platform_endpoint/)."""
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
             "token": token,
@@ -195,6 +202,7 @@ class SNSClient:
         phone_number: str,
         language_code: LanguageCodeString | None = None,
     ) -> CreateSMSSandboxPhoneNumberOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/create_sms_sandbox_phone_number/)."""
         params: dict[str, object] = {
             "phone_number": phone_number,
         }
@@ -222,6 +230,7 @@ class SNSClient:
         tags: Sequence[Tag] | None = None,
         data_protection_policy: str | None = None,
     ) -> CreateTopicOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/create_topic/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -250,6 +259,7 @@ class SNSClient:
         *,
         endpoint_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/delete_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -272,6 +282,7 @@ class SNSClient:
         *,
         platform_application_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/delete_platform_application/)."""
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
         }
@@ -294,6 +305,7 @@ class SNSClient:
         *,
         phone_number: str,
     ) -> DeleteSMSSandboxPhoneNumberOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/delete_sms_sandbox_phone_number/)."""
         params: dict[str, object] = {
             "phone_number": phone_number,
         }
@@ -316,6 +328,7 @@ class SNSClient:
         *,
         topic_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/delete_topic/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
         }
@@ -338,6 +351,7 @@ class SNSClient:
         *,
         resource_arn: str,
     ) -> GetDataProtectionPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/get_data_protection_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -360,6 +374,7 @@ class SNSClient:
         *,
         endpoint_arn: str,
     ) -> GetEndpointAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/get_endpoint_attributes/)."""
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -382,6 +397,7 @@ class SNSClient:
         *,
         platform_application_arn: str,
     ) -> GetPlatformApplicationAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/get_platform_application_attributes/)."""
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
         }
@@ -404,6 +420,7 @@ class SNSClient:
         *,
         attributes: Sequence[str] | None = None,
     ) -> GetSMSAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/get_sms_attributes/)."""
         params: dict[str, object] = {
         }
         if attributes is not None:
@@ -425,6 +442,7 @@ class SNSClient:
     async def get_sms_sandbox_account_status(
         self,
     ) -> GetSMSSandboxAccountStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/get_sms_sandbox_account_status/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("sns", self._interceptors)
@@ -446,6 +464,7 @@ class SNSClient:
         *,
         subscription_arn: str,
     ) -> GetSubscriptionAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/get_subscription_attributes/)."""
         params: dict[str, object] = {
             "subscription_arn": subscription_arn,
         }
@@ -468,6 +487,7 @@ class SNSClient:
         *,
         topic_arn: str,
     ) -> GetTopicAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/get_topic_attributes/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
         }
@@ -491,6 +511,7 @@ class SNSClient:
         platform_application_arn: str,
         next_token: str | None = None,
     ) -> ListEndpointsByPlatformApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_endpoints_by_platform_application/)."""
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
         }
@@ -516,6 +537,7 @@ class SNSClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListOriginationNumbersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_origination_numbers/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -541,6 +563,7 @@ class SNSClient:
         *,
         next_token: str | None = None,
     ) -> ListPhoneNumbersOptedOutOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_phone_numbers_opted_out/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -564,6 +587,7 @@ class SNSClient:
         *,
         next_token: str | None = None,
     ) -> ListPlatformApplicationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_platform_applications/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -588,6 +612,7 @@ class SNSClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListSMSSandboxPhoneNumbersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_sms_sandbox_phone_numbers/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -613,6 +638,7 @@ class SNSClient:
         *,
         next_token: str | None = None,
     ) -> ListSubscriptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_subscriptions/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -637,6 +663,7 @@ class SNSClient:
         topic_arn: str,
         next_token: str | None = None,
     ) -> ListSubscriptionsByTopicOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_subscriptions_by_topic/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
         }
@@ -661,6 +688,7 @@ class SNSClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -683,6 +711,7 @@ class SNSClient:
         *,
         next_token: str | None = None,
     ) -> ListTopicsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_topics/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -706,6 +735,7 @@ class SNSClient:
         *,
         phone_number: str,
     ) -> OptInPhoneNumberOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/opt_in_phone_number/)."""
         params: dict[str, object] = {
             "phone_number": phone_number,
         }
@@ -736,6 +766,7 @@ class SNSClient:
         message_deduplication_id: str | None = None,
         message_group_id: str | None = None,
     ) -> PublishOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/publish/)."""
         params: dict[str, object] = {
             "message": message,
         }
@@ -775,6 +806,7 @@ class SNSClient:
         topic_arn: str,
         publish_batch_request_entries: Sequence[PublishBatchRequestEntry],
     ) -> PublishBatchOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/publish_batch/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
             "publish_batch_request_entries": publish_batch_request_entries,
@@ -799,6 +831,7 @@ class SNSClient:
         resource_arn: str,
         data_protection_policy: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/put_data_protection_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "data_protection_policy": data_protection_policy,
@@ -823,6 +856,7 @@ class SNSClient:
         topic_arn: str,
         label: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/remove_permission/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
             "label": label,
@@ -847,6 +881,7 @@ class SNSClient:
         endpoint_arn: str,
         attributes: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/set_endpoint_attributes/)."""
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
             "attributes": attributes,
@@ -871,6 +906,7 @@ class SNSClient:
         platform_application_arn: str,
         attributes: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/set_platform_application_attributes/)."""
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
             "attributes": attributes,
@@ -894,6 +930,7 @@ class SNSClient:
         *,
         attributes: dict[str, str],
     ) -> SetSMSAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/set_sms_attributes/)."""
         params: dict[str, object] = {
             "attributes": attributes,
         }
@@ -918,6 +955,7 @@ class SNSClient:
         attribute_name: str,
         attribute_value: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/set_subscription_attributes/)."""
         params: dict[str, object] = {
             "subscription_arn": subscription_arn,
             "attribute_name": attribute_name,
@@ -945,6 +983,7 @@ class SNSClient:
         attribute_name: str,
         attribute_value: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/set_topic_attributes/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
             "attribute_name": attribute_name,
@@ -974,6 +1013,7 @@ class SNSClient:
         attributes: dict[str, str] | None = None,
         return_subscription_arn: bool | None = None,
     ) -> SubscribeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/subscribe/)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
             "protocol": protocol,
@@ -1004,6 +1044,7 @@ class SNSClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -1027,6 +1068,7 @@ class SNSClient:
         *,
         subscription_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/unsubscribe/)."""
         params: dict[str, object] = {
             "subscription_arn": subscription_arn,
         }
@@ -1050,6 +1092,7 @@ class SNSClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -1074,6 +1117,7 @@ class SNSClient:
         phone_number: str,
         one_time_password: str,
     ) -> VerifySMSSandboxPhoneNumberOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/verify_sms_sandbox_phone_number/)."""
         params: dict[str, object] = {
             "phone_number": phone_number,
             "one_time_password": one_time_password,

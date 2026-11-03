@@ -56,6 +56,8 @@ from .paginators import GuardDutyClientPaginators as _Paginators
 
 
 class GuardDutyClient:
+    """Async GuardDutyClient. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/)."""
+
     logger_name = "rboto.guardduty"
 
     def __init__(
@@ -98,6 +100,7 @@ class GuardDutyClient:
         administrator_id: str,
         invitation_id: str,
     ) -> AcceptAdministratorInvitationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/accept_administrator_invitation/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "administrator_id": administrator_id,
@@ -124,6 +127,7 @@ class GuardDutyClient:
         master_id: str,
         invitation_id: str,
     ) -> AcceptInvitationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/accept_invitation/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "master_id": master_id,
@@ -149,6 +153,7 @@ class GuardDutyClient:
         detector_id: str,
         finding_ids: _Sequence[str],
     ) -> ArchiveFindingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/archive_findings/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -175,6 +180,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateCustomDetectionRuleAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_custom_detection_rule_association/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -206,6 +212,7 @@ class GuardDutyClient:
         exclude_account_ids: _Sequence[str] | None = None,
         client_token: str | None = None,
     ) -> CreateCustomDetectionRuleOrgConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_custom_detection_rule_org_configuration/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -240,6 +247,7 @@ class GuardDutyClient:
         tags: dict[str, str] | None = None,
         features: _Sequence[DetectorFeatureConfiguration] | None = None,
     ) -> CreateDetectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_detector/)."""
         params: dict[str, object] = {
             "enable": enable,
         }
@@ -279,6 +287,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateFilterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_filter/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -320,6 +329,7 @@ class GuardDutyClient:
         tags: dict[str, str] | None = None,
         expected_bucket_owner: str | None = None,
     ) -> CreateIPSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_ip_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -354,6 +364,7 @@ class GuardDutyClient:
         trigger_prompt: str,
         client_token: str | None = None,
     ) -> CreateInvestigationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_investigation/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trigger_prompt": trigger_prompt,
@@ -383,6 +394,7 @@ class GuardDutyClient:
         actions: MalwareProtectionPlanActions | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateMalwareProtectionPlanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_malware_protection_plan/)."""
         params: dict[str, object] = {
             "role": role,
             "protected_resource": protected_resource,
@@ -413,6 +425,7 @@ class GuardDutyClient:
         detector_id: str,
         account_details: _Sequence[AccountDetail],
     ) -> CreateMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_details": account_details,
@@ -440,6 +453,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreatePublishingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_publishing_destination/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_type": destination_type,
@@ -469,6 +483,7 @@ class GuardDutyClient:
         detector_id: str,
         finding_types: _Sequence[str] | None = None,
     ) -> CreateSampleFindingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_sample_findings/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -500,6 +515,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateThreatEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_threat_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -539,6 +555,7 @@ class GuardDutyClient:
         tags: dict[str, str] | None = None,
         expected_bucket_owner: str | None = None,
     ) -> CreateThreatIntelSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_threat_intel_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -578,6 +595,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateTrustedEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/create_trusted_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "name": name,
@@ -610,6 +628,7 @@ class GuardDutyClient:
         *,
         account_ids: _Sequence[str],
     ) -> DeclineInvitationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/decline_invitations/)."""
         params: dict[str, object] = {
             "account_ids": account_ids,
         }
@@ -633,6 +652,7 @@ class GuardDutyClient:
         rule_id: str,
         association_id: str,
     ) -> DeleteCustomDetectionRuleAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_custom_detection_rule_association/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "association_id": association_id,
@@ -657,6 +677,7 @@ class GuardDutyClient:
         rule_id: str,
         mode: AssociationMode,
     ) -> DeleteCustomDetectionRuleOrgConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_custom_detection_rule_org_configuration/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -680,6 +701,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
     ) -> DeleteDetectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_detector/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -703,6 +725,7 @@ class GuardDutyClient:
         detector_id: str,
         filter_name: str,
     ) -> DeleteFilterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_filter/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "filter_name": filter_name,
@@ -727,6 +750,7 @@ class GuardDutyClient:
         detector_id: str,
         ip_set_id: str,
     ) -> DeleteIPSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_ip_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
@@ -750,6 +774,7 @@ class GuardDutyClient:
         *,
         account_ids: _Sequence[str],
     ) -> DeleteInvitationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_invitations/)."""
         params: dict[str, object] = {
             "account_ids": account_ids,
         }
@@ -772,6 +797,7 @@ class GuardDutyClient:
         *,
         malware_protection_plan_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_malware_protection_plan/)."""
         params: dict[str, object] = {
             "malware_protection_plan_id": malware_protection_plan_id,
         }
@@ -795,6 +821,7 @@ class GuardDutyClient:
         detector_id: str,
         account_ids: _Sequence[str],
     ) -> DeleteMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -819,6 +846,7 @@ class GuardDutyClient:
         detector_id: str,
         destination_id: str,
     ) -> DeletePublishingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_publishing_destination/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_id": destination_id,
@@ -843,6 +871,7 @@ class GuardDutyClient:
         detector_id: str,
         threat_entity_set_id: str,
     ) -> DeleteThreatEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_threat_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
@@ -867,6 +896,7 @@ class GuardDutyClient:
         detector_id: str,
         threat_intel_set_id: str,
     ) -> DeleteThreatIntelSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_threat_intel_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
@@ -891,6 +921,7 @@ class GuardDutyClient:
         detector_id: str,
         trusted_entity_set_id: str,
     ) -> DeleteTrustedEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/delete_trusted_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,
@@ -918,6 +949,7 @@ class GuardDutyClient:
         filter_criteria: FilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
     ) -> DescribeMalwareScansOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/describe_malware_scans/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -950,6 +982,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeOrganizationConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/describe_organization_configuration/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -977,6 +1010,7 @@ class GuardDutyClient:
         detector_id: str,
         destination_id: str,
     ) -> DescribePublishingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/describe_publishing_destination/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_id": destination_id,
@@ -1000,6 +1034,7 @@ class GuardDutyClient:
         *,
         admin_account_id: str,
     ) -> DisableOrganizationAdminAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/disable_organization_admin_account/)."""
         params: dict[str, object] = {
             "admin_account_id": admin_account_id,
         }
@@ -1022,6 +1057,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
     ) -> DisassociateFromAdministratorAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/disassociate_from_administrator_account/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1044,6 +1080,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
     ) -> DisassociateFromMasterAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/disassociate_from_master_account/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1067,6 +1104,7 @@ class GuardDutyClient:
         detector_id: str,
         account_ids: _Sequence[str],
     ) -> DisassociateMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/disassociate_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1090,6 +1128,7 @@ class GuardDutyClient:
         *,
         admin_account_id: str,
     ) -> EnableOrganizationAdminAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/enable_organization_admin_account/)."""
         params: dict[str, object] = {
             "admin_account_id": admin_account_id,
         }
@@ -1112,6 +1151,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
     ) -> GetAdministratorAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_administrator_account/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1136,6 +1176,7 @@ class GuardDutyClient:
         statistics_type: _Sequence[CoverageStatisticsType],
         filter_criteria: CoverageFilterCriteria | None = None,
     ) -> GetCoverageStatisticsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_coverage_statistics/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "statistics_type": statistics_type,
@@ -1161,6 +1202,7 @@ class GuardDutyClient:
         *,
         rule_id: str,
     ) -> GetCustomDetectionRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_custom_detection_rule/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
         }
@@ -1184,6 +1226,7 @@ class GuardDutyClient:
         rule_id: str,
         association_id: str,
     ) -> GetCustomDetectionRuleAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_custom_detection_rule_association/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "association_id": association_id,
@@ -1208,6 +1251,7 @@ class GuardDutyClient:
         rule_id: str,
         mode: AssociationMode,
     ) -> GetCustomDetectionRuleOrgConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_custom_detection_rule_org_configuration/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -1231,6 +1275,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
     ) -> GetDetectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_detector/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1254,6 +1299,7 @@ class GuardDutyClient:
         detector_id: str,
         filter_name: str,
     ) -> GetFilterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_filter/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "filter_name": filter_name,
@@ -1279,6 +1325,7 @@ class GuardDutyClient:
         finding_ids: _Sequence[str],
         sort_criteria: SortCriteria | None = None,
     ) -> GetFindingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_findings/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -1309,6 +1356,7 @@ class GuardDutyClient:
         order_by: OrderBy | None = None,
         max_results: int | None = None,
     ) -> GetFindingsStatisticsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_findings_statistics/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1342,6 +1390,7 @@ class GuardDutyClient:
         detector_id: str,
         ip_set_id: str,
     ) -> GetIPSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_ip_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
@@ -1366,6 +1415,7 @@ class GuardDutyClient:
         detector_id: str,
         investigation_id: str,
     ) -> GetInvestigationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_investigation/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "investigation_id": investigation_id,
@@ -1387,6 +1437,7 @@ class GuardDutyClient:
     async def get_invitations_count(
         self,
     ) -> GetInvitationsCountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_invitations_count/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("guardduty", self._interceptors)
@@ -1408,6 +1459,7 @@ class GuardDutyClient:
         *,
         malware_protection_plan_id: str,
     ) -> GetMalwareProtectionPlanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_malware_protection_plan/)."""
         params: dict[str, object] = {
             "malware_protection_plan_id": malware_protection_plan_id,
         }
@@ -1430,6 +1482,7 @@ class GuardDutyClient:
         *,
         scan_id: str,
     ) -> GetMalwareScanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_malware_scan/)."""
         params: dict[str, object] = {
             "scan_id": scan_id,
         }
@@ -1452,6 +1505,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
     ) -> GetMalwareScanSettingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_malware_scan_settings/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1474,6 +1528,7 @@ class GuardDutyClient:
         *,
         detector_id: str,
     ) -> GetMasterAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_master_account/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1497,6 +1552,7 @@ class GuardDutyClient:
         detector_id: str,
         account_ids: _Sequence[str],
     ) -> GetMemberDetectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_member_detectors/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1521,6 +1577,7 @@ class GuardDutyClient:
         detector_id: str,
         account_ids: _Sequence[str],
     ) -> GetMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1542,6 +1599,7 @@ class GuardDutyClient:
     async def get_organization_statistics(
         self,
     ) -> GetOrganizationStatisticsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_organization_statistics/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("guardduty", self._interceptors)
@@ -1564,6 +1622,7 @@ class GuardDutyClient:
         detector_id: str,
         account_ids: _Sequence[str],
     ) -> GetRemainingFreeTrialDaysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_remaining_free_trial_days/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1588,6 +1647,7 @@ class GuardDutyClient:
         detector_id: str,
         threat_entity_set_id: str,
     ) -> GetThreatEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_threat_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
@@ -1612,6 +1672,7 @@ class GuardDutyClient:
         detector_id: str,
         threat_intel_set_id: str,
     ) -> GetThreatIntelSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_threat_intel_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
@@ -1636,6 +1697,7 @@ class GuardDutyClient:
         detector_id: str,
         trusted_entity_set_id: str,
     ) -> GetTrustedEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_trusted_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,
@@ -1664,6 +1726,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> GetUsageStatisticsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_usage_statistics/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "usage_statistic_type": usage_statistic_type,
@@ -1697,6 +1760,7 @@ class GuardDutyClient:
         disable_email_notification: bool | None = None,
         message: str | None = None,
     ) -> InviteMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/invite_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -1728,6 +1792,7 @@ class GuardDutyClient:
         filter_criteria: CoverageFilterCriteria | None = None,
         sort_criteria: CoverageSortCriteria | None = None,
     ) -> ListCoverageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_coverage/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1761,6 +1826,7 @@ class GuardDutyClient:
         rule_id: str | None = None,
         mode: AssociationMode | None = None,
     ) -> ListCustomDetectionRuleAssociationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_custom_detection_rule_associations/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1792,6 +1858,7 @@ class GuardDutyClient:
         next_token: str | None = None,
         status: DetectionRuleConfigurationStatus | None = None,
     ) -> ListCustomDetectionRuleOrgConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_custom_detection_rule_org_configurations/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1821,6 +1888,7 @@ class GuardDutyClient:
         next_token: str | None = None,
         filters: _Sequence[DetectionRuleFilter] | None = None,
     ) -> ListCustomDetectionRulesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_custom_detection_rules/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1849,6 +1917,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDetectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_detectors/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1876,6 +1945,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListFiltersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_filters/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1906,6 +1976,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListFindingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_findings/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1938,6 +2009,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListIPSetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_ip_sets/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1967,6 +2039,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListInvestigationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_investigations/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -1996,6 +2069,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListInvitationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_invitations/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2021,6 +2095,7 @@ class GuardDutyClient:
         *,
         next_token: str | None = None,
     ) -> ListMalwareProtectionPlansOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_malware_protection_plans/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -2047,6 +2122,7 @@ class GuardDutyClient:
         filter_criteria: ListMalwareScansFilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
     ) -> ListMalwareScansOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_malware_scans/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2079,6 +2155,7 @@ class GuardDutyClient:
         next_token: str | None = None,
         only_associated: str | None = None,
     ) -> ListMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2108,6 +2185,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListOrganizationAdminAccountsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_organization_admin_accounts/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2135,6 +2213,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListPublishingDestinationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_publishing_destinations/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2161,6 +2240,7 @@ class GuardDutyClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2185,6 +2265,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListThreatEntitySetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_threat_entity_sets/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2213,6 +2294,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListThreatIntelSetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_threat_intel_sets/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2241,6 +2323,7 @@ class GuardDutyClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListTrustedEntitySetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_trusted_entity_sets/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2267,6 +2350,7 @@ class GuardDutyClient:
         *,
         s3_object: S3ObjectForSendObjectMalwareScan | None = None,
     ) -> SendObjectMalwareScanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/send_object_malware_scan/)."""
         params: dict[str, object] = {
         }
         if s3_object is not None:
@@ -2292,6 +2376,7 @@ class GuardDutyClient:
         client_token: str | None = None,
         scan_configuration: StartMalwareScanConfiguration | None = None,
     ) -> StartMalwareScanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/start_malware_scan/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2319,6 +2404,7 @@ class GuardDutyClient:
         detector_id: str,
         account_ids: _Sequence[str],
     ) -> StartMonitoringMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/start_monitoring_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -2343,6 +2429,7 @@ class GuardDutyClient:
         detector_id: str,
         account_ids: _Sequence[str],
     ) -> StopMonitoringMembersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/stop_monitoring_members/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -2367,6 +2454,7 @@ class GuardDutyClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2391,6 +2479,7 @@ class GuardDutyClient:
         detector_id: str,
         finding_ids: _Sequence[str],
     ) -> UnarchiveFindingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/unarchive_findings/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -2415,6 +2504,7 @@ class GuardDutyClient:
         resource_arn: str,
         tag_keys: _Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2440,6 +2530,7 @@ class GuardDutyClient:
         association_id: str,
         mode: AssociationMode,
     ) -> UpdateCustomDetectionRuleAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_custom_detection_rule_association/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "association_id": association_id,
@@ -2467,6 +2558,7 @@ class GuardDutyClient:
         include_account_ids: _Sequence[str] | None = None,
         exclude_account_ids: _Sequence[str] | None = None,
     ) -> UpdateCustomDetectionRuleOrgConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_custom_detection_rule_org_configuration/)."""
         params: dict[str, object] = {
             "rule_id": rule_id,
             "mode": mode,
@@ -2498,6 +2590,7 @@ class GuardDutyClient:
         data_sources: DataSourceConfigurations | None = None,
         features: _Sequence[DetectorFeatureConfiguration] | None = None,
     ) -> UpdateDetectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_detector/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2533,6 +2626,7 @@ class GuardDutyClient:
         rank: int | None = None,
         finding_criteria: FindingCriteria | None = None,
     ) -> UpdateFilterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_filter/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "filter_name": filter_name,
@@ -2567,6 +2661,7 @@ class GuardDutyClient:
         feedback: Feedback,
         comments: str | None = None,
     ) -> UpdateFindingsFeedbackOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_findings_feedback/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "finding_ids": finding_ids,
@@ -2598,6 +2693,7 @@ class GuardDutyClient:
         activate: bool | None = None,
         expected_bucket_owner: str | None = None,
     ) -> UpdateIPSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_ip_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
@@ -2632,6 +2728,7 @@ class GuardDutyClient:
         actions: MalwareProtectionPlanActions | None = None,
         protected_resource: UpdateProtectedResource | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_malware_protection_plan/)."""
         params: dict[str, object] = {
             "malware_protection_plan_id": malware_protection_plan_id,
         }
@@ -2662,6 +2759,7 @@ class GuardDutyClient:
         scan_resource_criteria: ScanResourceCriteria | None = None,
         ebs_snapshot_preservation: EbsSnapshotPreservation | None = None,
     ) -> UpdateMalwareScanSettingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_malware_scan_settings/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2691,6 +2789,7 @@ class GuardDutyClient:
         data_sources: DataSourceConfigurations | None = None,
         features: _Sequence[MemberFeaturesConfiguration] | None = None,
     ) -> UpdateMemberDetectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_member_detectors/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "account_ids": account_ids,
@@ -2722,6 +2821,7 @@ class GuardDutyClient:
         features: _Sequence[OrganizationFeatureConfiguration] | None = None,
         auto_enable_organization_members: AutoEnableMembers | None = None,
     ) -> UpdateOrganizationConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_organization_configuration/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -2754,6 +2854,7 @@ class GuardDutyClient:
         destination_id: str,
         destination_properties: DestinationProperties | None = None,
     ) -> UpdatePublishingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_publishing_destination/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "destination_id": destination_id,
@@ -2784,6 +2885,7 @@ class GuardDutyClient:
         expected_bucket_owner: str | None = None,
         activate: bool | None = None,
     ) -> UpdateThreatEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_threat_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
@@ -2820,6 +2922,7 @@ class GuardDutyClient:
         activate: bool | None = None,
         expected_bucket_owner: str | None = None,
     ) -> UpdateThreatIntelSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_threat_intel_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
@@ -2856,6 +2959,7 @@ class GuardDutyClient:
         expected_bucket_owner: str | None = None,
         activate: bool | None = None,
     ) -> UpdateTrustedEntitySetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/update_trusted_entity_set/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,

@@ -9,142 +9,277 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ActivityFailedEventDetailsOutput: TypeAlias = _native.ActivityFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityFailedEventDetailsOutput/)."""
 ActivityListItemOutput: TypeAlias = _native.ActivityListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityListItemOutput/)."""
 ActivityScheduleFailedEventDetailsOutput: TypeAlias = _native.ActivityScheduleFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityScheduleFailedEventDetailsOutput/)."""
 ActivityScheduledEventDetailsOutput: TypeAlias = _native.ActivityScheduledEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityScheduledEventDetailsOutput/)."""
 ActivityStartedEventDetailsOutput: TypeAlias = _native.ActivityStartedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityStartedEventDetailsOutput/)."""
 ActivitySucceededEventDetailsOutput: TypeAlias = _native.ActivitySucceededEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivitySucceededEventDetailsOutput/)."""
 ActivityTimedOutEventDetailsOutput: TypeAlias = _native.ActivityTimedOutEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityTimedOutEventDetailsOutput/)."""
 AssignedVariablesDetailsOutput: TypeAlias = _native.AssignedVariablesDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/AssignedVariablesDetailsOutput/)."""
 BillingDetailsOutput: TypeAlias = _native.BillingDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/BillingDetailsOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ByteStream/)."""
 CloudWatchEventsExecutionDataDetailsOutput: TypeAlias = _native.CloudWatchEventsExecutionDataDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CloudWatchEventsExecutionDataDetailsOutput/)."""
 CloudWatchLogsLogGroupOutput: TypeAlias = _native.CloudWatchLogsLogGroup
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CloudWatchLogsLogGroupOutput/)."""
 CreateActivityOutput: TypeAlias = _native.CreateActivityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateActivityOutput/)."""
 CreateStateMachineAliasOutput: TypeAlias = _native.CreateStateMachineAliasOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineAliasOutput/)."""
 CreateStateMachineOutput: TypeAlias = _native.CreateStateMachineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineOutput/)."""
 DeleteActivityOutput: TypeAlias = _native.DeleteActivityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteActivityOutput/)."""
 DeleteStateMachineAliasOutput: TypeAlias = _native.DeleteStateMachineAliasOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineAliasOutput/)."""
 DeleteStateMachineOutput: TypeAlias = _native.DeleteStateMachineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineOutput/)."""
 DeleteStateMachineVersionOutput: TypeAlias = _native.DeleteStateMachineVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineVersionOutput/)."""
 DescribeActivityOutput: TypeAlias = _native.DescribeActivityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeActivityOutput/)."""
 DescribeExecutionOutput: TypeAlias = _native.DescribeExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeExecutionOutput/)."""
 DescribeMapRunOutput: TypeAlias = _native.DescribeMapRunOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeMapRunOutput/)."""
 DescribeStateMachineAliasOutput: TypeAlias = _native.DescribeStateMachineAliasOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineAliasOutput/)."""
 DescribeStateMachineForExecutionOutput: TypeAlias = _native.DescribeStateMachineForExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineForExecutionOutput/)."""
 DescribeStateMachineOutput: TypeAlias = _native.DescribeStateMachineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineOutput/)."""
 EncryptionConfigurationOutput: TypeAlias = _native.EncryptionConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EncryptionConfigurationOutput/)."""
 EvaluationFailedEventDetailsOutput: TypeAlias = _native.EvaluationFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EvaluationFailedEventDetailsOutput/)."""
 ExecutionAbortedEventDetailsOutput: TypeAlias = _native.ExecutionAbortedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionAbortedEventDetailsOutput/)."""
 ExecutionFailedEventDetailsOutput: TypeAlias = _native.ExecutionFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionFailedEventDetailsOutput/)."""
 ExecutionListItemOutput: TypeAlias = _native.ExecutionListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionListItemOutput/)."""
 ExecutionRedrivenEventDetailsOutput: TypeAlias = _native.ExecutionRedrivenEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionRedrivenEventDetailsOutput/)."""
 ExecutionStartedEventDetailsOutput: TypeAlias = _native.ExecutionStartedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionStartedEventDetailsOutput/)."""
 ExecutionSucceededEventDetailsOutput: TypeAlias = _native.ExecutionSucceededEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionSucceededEventDetailsOutput/)."""
 ExecutionTimedOutEventDetailsOutput: TypeAlias = _native.ExecutionTimedOutEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionTimedOutEventDetailsOutput/)."""
 GetActivityTaskOutput: TypeAlias = _native.GetActivityTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetActivityTaskOutput/)."""
 GetExecutionHistoryOutput: TypeAlias = _native.GetExecutionHistoryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetExecutionHistoryOutput/)."""
 HistoryEventOutput: TypeAlias = _native.HistoryEvent
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEventOutput/)."""
 HistoryEventExecutionDataDetailsOutput: TypeAlias = _native.HistoryEventExecutionDataDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEventExecutionDataDetailsOutput/)."""
 InspectionDataOutput: TypeAlias = _native.InspectionData
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataOutput/)."""
 InspectionDataRequestOutput: TypeAlias = _native.InspectionDataRequest
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataRequestOutput/)."""
 InspectionDataResponseOutput: TypeAlias = _native.InspectionDataResponse
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataResponseOutput/)."""
 InspectionErrorDetailsOutput: TypeAlias = _native.InspectionErrorDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionErrorDetailsOutput/)."""
 LambdaFunctionFailedEventDetailsOutput: TypeAlias = _native.LambdaFunctionFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionFailedEventDetailsOutput/)."""
 LambdaFunctionScheduleFailedEventDetailsOutput: TypeAlias = _native.LambdaFunctionScheduleFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionScheduleFailedEventDetailsOutput/)."""
 LambdaFunctionScheduledEventDetailsOutput: TypeAlias = _native.LambdaFunctionScheduledEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionScheduledEventDetailsOutput/)."""
 LambdaFunctionStartFailedEventDetailsOutput: TypeAlias = _native.LambdaFunctionStartFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionStartFailedEventDetailsOutput/)."""
 LambdaFunctionSucceededEventDetailsOutput: TypeAlias = _native.LambdaFunctionSucceededEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionSucceededEventDetailsOutput/)."""
 LambdaFunctionTimedOutEventDetailsOutput: TypeAlias = _native.LambdaFunctionTimedOutEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionTimedOutEventDetailsOutput/)."""
 ListActivitiesOutput: TypeAlias = _native.ListActivitiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListActivitiesOutput/)."""
 ListExecutionsOutput: TypeAlias = _native.ListExecutionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListExecutionsOutput/)."""
 ListMapRunsOutput: TypeAlias = _native.ListMapRunsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListMapRunsOutput/)."""
 ListStateMachineAliasesOutput: TypeAlias = _native.ListStateMachineAliasesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineAliasesOutput/)."""
 ListStateMachineVersionsOutput: TypeAlias = _native.ListStateMachineVersionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineVersionsOutput/)."""
 ListStateMachinesOutput: TypeAlias = _native.ListStateMachinesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachinesOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListTagsForResourceOutput/)."""
 LogDestinationOutput: TypeAlias = _native.LogDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LogDestinationOutput/)."""
 LoggingConfigurationOutput: TypeAlias = _native.LoggingConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LoggingConfigurationOutput/)."""
 MapIterationEventDetailsOutput: TypeAlias = _native.MapIterationEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapIterationEventDetailsOutput/)."""
 MapRunExecutionCountsOutput: TypeAlias = _native.MapRunExecutionCounts
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunExecutionCountsOutput/)."""
 MapRunFailedEventDetailsOutput: TypeAlias = _native.MapRunFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunFailedEventDetailsOutput/)."""
 MapRunItemCountsOutput: TypeAlias = _native.MapRunItemCounts
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunItemCountsOutput/)."""
 MapRunListItemOutput: TypeAlias = _native.MapRunListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunListItemOutput/)."""
 MapRunRedrivenEventDetailsOutput: TypeAlias = _native.MapRunRedrivenEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunRedrivenEventDetailsOutput/)."""
 MapRunStartedEventDetailsOutput: TypeAlias = _native.MapRunStartedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunStartedEventDetailsOutput/)."""
 MapStateStartedEventDetailsOutput: TypeAlias = _native.MapStateStartedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapStateStartedEventDetailsOutput/)."""
 PublishStateMachineVersionOutput: TypeAlias = _native.PublishStateMachineVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/PublishStateMachineVersionOutput/)."""
 RedriveExecutionOutput: TypeAlias = _native.RedriveExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RedriveExecutionOutput/)."""
 RoutingConfigurationListItemOutput: TypeAlias = _native.RoutingConfigurationListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RoutingConfigurationListItemOutput/)."""
 SendTaskFailureOutput: TypeAlias = _native.SendTaskFailureOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskFailureOutput/)."""
 SendTaskHeartbeatOutput: TypeAlias = _native.SendTaskHeartbeatOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskHeartbeatOutput/)."""
 SendTaskSuccessOutput: TypeAlias = _native.SendTaskSuccessOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskSuccessOutput/)."""
 StartExecutionOutput: TypeAlias = _native.StartExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartExecutionOutput/)."""
 StartSyncExecutionOutput: TypeAlias = _native.StartSyncExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartSyncExecutionOutput/)."""
 StateEnteredEventDetailsOutput: TypeAlias = _native.StateEnteredEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateEnteredEventDetailsOutput/)."""
 StateExitedEventDetailsOutput: TypeAlias = _native.StateExitedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateExitedEventDetailsOutput/)."""
 StateMachineAliasListItemOutput: TypeAlias = _native.StateMachineAliasListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineAliasListItemOutput/)."""
 StateMachineListItemOutput: TypeAlias = _native.StateMachineListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineListItemOutput/)."""
 StateMachineVersionListItemOutput: TypeAlias = _native.StateMachineVersionListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineVersionListItemOutput/)."""
 StopExecutionOutput: TypeAlias = _native.StopExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StopExecutionOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TagResourceOutput/)."""
 TaskCredentialsOutput: TypeAlias = _native.TaskCredentials
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskCredentialsOutput/)."""
 TaskFailedEventDetailsOutput: TypeAlias = _native.TaskFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskFailedEventDetailsOutput/)."""
 TaskScheduledEventDetailsOutput: TypeAlias = _native.TaskScheduledEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskScheduledEventDetailsOutput/)."""
 TaskStartFailedEventDetailsOutput: TypeAlias = _native.TaskStartFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskStartFailedEventDetailsOutput/)."""
 TaskStartedEventDetailsOutput: TypeAlias = _native.TaskStartedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskStartedEventDetailsOutput/)."""
 TaskSubmitFailedEventDetailsOutput: TypeAlias = _native.TaskSubmitFailedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSubmitFailedEventDetailsOutput/)."""
 TaskSubmittedEventDetailsOutput: TypeAlias = _native.TaskSubmittedEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSubmittedEventDetailsOutput/)."""
 TaskSucceededEventDetailsOutput: TypeAlias = _native.TaskSucceededEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSucceededEventDetailsOutput/)."""
 TaskTimedOutEventDetailsOutput: TypeAlias = _native.TaskTimedOutEventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskTimedOutEventDetailsOutput/)."""
 TestStateOutput: TypeAlias = _native.TestStateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestStateOutput/)."""
 TracingConfigurationOutput: TypeAlias = _native.TracingConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TracingConfigurationOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UntagResourceOutput/)."""
 UpdateMapRunOutput: TypeAlias = _native.UpdateMapRunOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateMapRunOutput/)."""
 UpdateStateMachineAliasOutput: TypeAlias = _native.UpdateStateMachineAliasOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineAliasOutput/)."""
 UpdateStateMachineOutput: TypeAlias = _native.UpdateStateMachineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineOutput/)."""
 ValidateStateMachineDefinitionDiagnosticOutput: TypeAlias = _native.ValidateStateMachineDefinitionDiagnostic
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionDiagnosticOutput/)."""
 ValidateStateMachineDefinitionOutput: TypeAlias = _native.ValidateStateMachineDefinitionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/JSONValue/)."""
 
 EncryptionType: TypeAlias = Literal['AWS_OWNED_KEY', 'CUSTOMER_MANAGED_KMS_KEY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EncryptionType/)."""
 EncryptionTypeOutput: TypeAlias = EncryptionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EncryptionTypeOutput/)."""
 ExecutionRedriveFilter: TypeAlias = Literal['REDRIVEN', 'NOT_REDRIVEN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionRedriveFilter/)."""
 ExecutionRedriveFilterOutput: TypeAlias = ExecutionRedriveFilter | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionRedriveFilterOutput/)."""
 ExecutionRedriveStatus: TypeAlias = Literal['REDRIVABLE', 'NOT_REDRIVABLE', 'REDRIVABLE_BY_MAP_RUN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionRedriveStatus/)."""
 ExecutionRedriveStatusOutput: TypeAlias = ExecutionRedriveStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionRedriveStatusOutput/)."""
 ExecutionStatus: TypeAlias = Literal['RUNNING', 'SUCCEEDED', 'FAILED', 'TIMED_OUT', 'ABORTED', 'PENDING_REDRIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionStatus/)."""
 ExecutionStatusOutput: TypeAlias = ExecutionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionStatusOutput/)."""
 HistoryEventType: TypeAlias = Literal['ActivityFailed', 'ActivityScheduled', 'ActivityScheduleFailed', 'ActivityStarted', 'ActivitySucceeded', 'ActivityTimedOut', 'ChoiceStateEntered', 'ChoiceStateExited', 'ExecutionAborted', 'ExecutionFailed', 'ExecutionStarted', 'ExecutionSucceeded', 'ExecutionTimedOut', 'FailStateEntered', 'LambdaFunctionFailed', 'LambdaFunctionScheduled', 'LambdaFunctionScheduleFailed', 'LambdaFunctionStarted', 'LambdaFunctionStartFailed', 'LambdaFunctionSucceeded', 'LambdaFunctionTimedOut', 'MapIterationAborted', 'MapIterationFailed', 'MapIterationStarted', 'MapIterationSucceeded', 'MapStateAborted', 'MapStateEntered', 'MapStateExited', 'MapStateFailed', 'MapStateStarted', 'MapStateSucceeded', 'ParallelStateAborted', 'ParallelStateEntered', 'ParallelStateExited', 'ParallelStateFailed', 'ParallelStateStarted', 'ParallelStateSucceeded', 'PassStateEntered', 'PassStateExited', 'SucceedStateEntered', 'SucceedStateExited', 'TaskFailed', 'TaskScheduled', 'TaskStarted', 'TaskStartFailed', 'TaskStateAborted', 'TaskStateEntered', 'TaskStateExited', 'TaskSubmitFailed', 'TaskSubmitted', 'TaskSucceeded', 'TaskTimedOut', 'WaitStateAborted', 'WaitStateEntered', 'WaitStateExited', 'MapRunAborted', 'MapRunFailed', 'MapRunStarted', 'MapRunSucceeded', 'ExecutionRedriven', 'MapRunRedriven', 'EvaluationFailed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEventType/)."""
 HistoryEventTypeOutput: TypeAlias = HistoryEventType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEventTypeOutput/)."""
 IncludedData: TypeAlias = Literal['ALL_DATA', 'METADATA_ONLY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/IncludedData/)."""
 IncludedDataOutput: TypeAlias = IncludedData | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/IncludedDataOutput/)."""
 InspectionLevel: TypeAlias = Literal['INFO', 'DEBUG', 'TRACE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionLevel/)."""
 InspectionLevelOutput: TypeAlias = InspectionLevel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionLevelOutput/)."""
 KmsKeyState: TypeAlias = Literal['DISABLED', 'PENDING_DELETION', 'PENDING_IMPORT', 'UNAVAILABLE', 'CREATING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/KmsKeyState/)."""
 KmsKeyStateOutput: TypeAlias = KmsKeyState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/KmsKeyStateOutput/)."""
 LogLevel: TypeAlias = Literal['ALL', 'ERROR', 'FATAL', 'OFF']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LogLevel/)."""
 LogLevelOutput: TypeAlias = LogLevel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LogLevelOutput/)."""
 MapRunStatus: TypeAlias = Literal['RUNNING', 'SUCCEEDED', 'FAILED', 'ABORTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunStatus/)."""
 MapRunStatusOutput: TypeAlias = MapRunStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunStatusOutput/)."""
 MockResponseValidationMode: TypeAlias = Literal['STRICT', 'PRESENT', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MockResponseValidationMode/)."""
 MockResponseValidationModeOutput: TypeAlias = MockResponseValidationMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MockResponseValidationModeOutput/)."""
 StateMachineStatus: TypeAlias = Literal['ACTIVE', 'DELETING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineStatus/)."""
 StateMachineStatusOutput: TypeAlias = StateMachineStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineStatusOutput/)."""
 StateMachineType: TypeAlias = Literal['STANDARD', 'EXPRESS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineType/)."""
 StateMachineTypeOutput: TypeAlias = StateMachineType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineTypeOutput/)."""
 SyncExecutionStatus: TypeAlias = Literal['SUCCEEDED', 'FAILED', 'TIMED_OUT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SyncExecutionStatus/)."""
 SyncExecutionStatusOutput: TypeAlias = SyncExecutionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SyncExecutionStatusOutput/)."""
 TestExecutionStatus: TypeAlias = Literal['SUCCEEDED', 'FAILED', 'RETRIABLE', 'CAUGHT_ERROR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestExecutionStatus/)."""
 TestExecutionStatusOutput: TypeAlias = TestExecutionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestExecutionStatusOutput/)."""
 ValidateStateMachineDefinitionResultCode: TypeAlias = Literal['OK', 'FAIL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionResultCode/)."""
 ValidateStateMachineDefinitionResultCodeOutput: TypeAlias = ValidateStateMachineDefinitionResultCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionResultCodeOutput/)."""
 ValidateStateMachineDefinitionSeverity: TypeAlias = Literal['ERROR', 'WARNING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionSeverity/)."""
 ValidateStateMachineDefinitionSeverityOutput: TypeAlias = ValidateStateMachineDefinitionSeverity | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionSeverityOutput/)."""
 ValidationExceptionReason: TypeAlias = Literal['API_DOES_NOT_SUPPORT_LABELED_ARNS', 'MISSING_REQUIRED_PARAMETER', 'CANNOT_UPDATE_COMPLETED_MAP_RUN', 'INVALID_ROUTING_CONFIGURATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidationExceptionReason/)."""
 ValidationExceptionReasonOutput: TypeAlias = ValidationExceptionReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidationExceptionReasonOutput/)."""
 
 ActivityFailedEventDetails = TypedDict(
     "ActivityFailedEventDetails",
@@ -153,6 +288,7 @@ ActivityFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityFailedEventDetails/)."""
 
 ActivityListItem = TypedDict(
     "ActivityListItem",
@@ -162,6 +298,7 @@ ActivityListItem = TypedDict(
     "creation_date": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityListItem/)."""
 
 ActivityScheduleFailedEventDetails = TypedDict(
     "ActivityScheduleFailedEventDetails",
@@ -170,6 +307,7 @@ ActivityScheduleFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityScheduleFailedEventDetails/)."""
 
 ActivityScheduledEventDetails = TypedDict(
     "ActivityScheduledEventDetails",
@@ -181,6 +319,7 @@ ActivityScheduledEventDetails = TypedDict(
     "heartbeat_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityScheduledEventDetails/)."""
 
 ActivityStartedEventDetails = TypedDict(
     "ActivityStartedEventDetails",
@@ -188,6 +327,7 @@ ActivityStartedEventDetails = TypedDict(
     "worker_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityStartedEventDetails/)."""
 
 ActivitySucceededEventDetails = TypedDict(
     "ActivitySucceededEventDetails",
@@ -196,6 +336,7 @@ ActivitySucceededEventDetails = TypedDict(
     "output_details": NotRequired["HistoryEventExecutionDataDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivitySucceededEventDetails/)."""
 
 ActivityTimedOutEventDetails = TypedDict(
     "ActivityTimedOutEventDetails",
@@ -204,6 +345,7 @@ ActivityTimedOutEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityTimedOutEventDetails/)."""
 
 AssignedVariablesDetails = TypedDict(
     "AssignedVariablesDetails",
@@ -211,6 +353,7 @@ AssignedVariablesDetails = TypedDict(
     "truncated": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/AssignedVariablesDetails/)."""
 
 BillingDetails = TypedDict(
     "BillingDetails",
@@ -219,6 +362,7 @@ BillingDetails = TypedDict(
     "billed_duration_in_milliseconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/BillingDetails/)."""
 
 CloudWatchEventsExecutionDataDetails = TypedDict(
     "CloudWatchEventsExecutionDataDetails",
@@ -226,6 +370,7 @@ CloudWatchEventsExecutionDataDetails = TypedDict(
     "included": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CloudWatchEventsExecutionDataDetails/)."""
 
 CloudWatchLogsLogGroup = TypedDict(
     "CloudWatchLogsLogGroup",
@@ -233,6 +378,7 @@ CloudWatchLogsLogGroup = TypedDict(
     "log_group_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CloudWatchLogsLogGroup/)."""
 
 CreateActivityInput = TypedDict(
     "CreateActivityInput",
@@ -242,6 +388,7 @@ CreateActivityInput = TypedDict(
     "encryption_configuration": NotRequired["EncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateActivityInput/)."""
 
 CreateStateMachineAliasInput = TypedDict(
     "CreateStateMachineAliasInput",
@@ -251,6 +398,7 @@ CreateStateMachineAliasInput = TypedDict(
     "routing_configuration": Required["Sequence[RoutingConfigurationListItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineAliasInput/)."""
 
 CreateStateMachineInput = TypedDict(
     "CreateStateMachineInput",
@@ -267,6 +415,7 @@ CreateStateMachineInput = TypedDict(
     "encryption_configuration": NotRequired["EncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineInput/)."""
 
 DeleteActivityInput = TypedDict(
     "DeleteActivityInput",
@@ -274,6 +423,7 @@ DeleteActivityInput = TypedDict(
     "activity_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteActivityInput/)."""
 
 DeleteStateMachineAliasInput = TypedDict(
     "DeleteStateMachineAliasInput",
@@ -281,6 +431,7 @@ DeleteStateMachineAliasInput = TypedDict(
     "state_machine_alias_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineAliasInput/)."""
 
 DeleteStateMachineInput = TypedDict(
     "DeleteStateMachineInput",
@@ -288,6 +439,7 @@ DeleteStateMachineInput = TypedDict(
     "state_machine_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineInput/)."""
 
 DeleteStateMachineVersionInput = TypedDict(
     "DeleteStateMachineVersionInput",
@@ -295,6 +447,7 @@ DeleteStateMachineVersionInput = TypedDict(
     "state_machine_version_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineVersionInput/)."""
 
 DescribeActivityInput = TypedDict(
     "DescribeActivityInput",
@@ -302,6 +455,7 @@ DescribeActivityInput = TypedDict(
     "activity_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeActivityInput/)."""
 
 DescribeExecutionInput = TypedDict(
     "DescribeExecutionInput",
@@ -310,6 +464,7 @@ DescribeExecutionInput = TypedDict(
     "included_data": NotRequired["IncludedData"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeExecutionInput/)."""
 
 DescribeMapRunInput = TypedDict(
     "DescribeMapRunInput",
@@ -317,6 +472,7 @@ DescribeMapRunInput = TypedDict(
     "map_run_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeMapRunInput/)."""
 
 DescribeStateMachineAliasInput = TypedDict(
     "DescribeStateMachineAliasInput",
@@ -324,6 +480,7 @@ DescribeStateMachineAliasInput = TypedDict(
     "state_machine_alias_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineAliasInput/)."""
 
 DescribeStateMachineForExecutionInput = TypedDict(
     "DescribeStateMachineForExecutionInput",
@@ -332,6 +489,7 @@ DescribeStateMachineForExecutionInput = TypedDict(
     "included_data": NotRequired["IncludedData"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineForExecutionInput/)."""
 
 DescribeStateMachineInput = TypedDict(
     "DescribeStateMachineInput",
@@ -340,6 +498,7 @@ DescribeStateMachineInput = TypedDict(
     "included_data": NotRequired["IncludedData"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineInput/)."""
 
 EncryptionConfiguration = TypedDict(
     "EncryptionConfiguration",
@@ -349,6 +508,7 @@ EncryptionConfiguration = TypedDict(
     "type": Required["EncryptionType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EncryptionConfiguration/)."""
 
 EvaluationFailedEventDetails = TypedDict(
     "EvaluationFailedEventDetails",
@@ -359,6 +519,7 @@ EvaluationFailedEventDetails = TypedDict(
     "state": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EvaluationFailedEventDetails/)."""
 
 ExecutionAbortedEventDetails = TypedDict(
     "ExecutionAbortedEventDetails",
@@ -367,6 +528,7 @@ ExecutionAbortedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionAbortedEventDetails/)."""
 
 ExecutionFailedEventDetails = TypedDict(
     "ExecutionFailedEventDetails",
@@ -375,6 +537,7 @@ ExecutionFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionFailedEventDetails/)."""
 
 ExecutionListItem = TypedDict(
     "ExecutionListItem",
@@ -393,6 +556,7 @@ ExecutionListItem = TypedDict(
     "redrive_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionListItem/)."""
 
 ExecutionRedrivenEventDetails = TypedDict(
     "ExecutionRedrivenEventDetails",
@@ -400,6 +564,7 @@ ExecutionRedrivenEventDetails = TypedDict(
     "redrive_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionRedrivenEventDetails/)."""
 
 ExecutionStartedEventDetails = TypedDict(
     "ExecutionStartedEventDetails",
@@ -411,6 +576,7 @@ ExecutionStartedEventDetails = TypedDict(
     "state_machine_version_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionStartedEventDetails/)."""
 
 ExecutionSucceededEventDetails = TypedDict(
     "ExecutionSucceededEventDetails",
@@ -419,6 +585,7 @@ ExecutionSucceededEventDetails = TypedDict(
     "output_details": NotRequired["HistoryEventExecutionDataDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionSucceededEventDetails/)."""
 
 ExecutionTimedOutEventDetails = TypedDict(
     "ExecutionTimedOutEventDetails",
@@ -427,6 +594,7 @@ ExecutionTimedOutEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionTimedOutEventDetails/)."""
 
 GetActivityTaskInput = TypedDict(
     "GetActivityTaskInput",
@@ -435,6 +603,7 @@ GetActivityTaskInput = TypedDict(
     "worker_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetActivityTaskInput/)."""
 
 GetExecutionHistoryInput = TypedDict(
     "GetExecutionHistoryInput",
@@ -446,6 +615,7 @@ GetExecutionHistoryInput = TypedDict(
     "include_execution_data": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetExecutionHistoryInput/)."""
 
 HistoryEvent = TypedDict(
     "HistoryEvent",
@@ -493,6 +663,7 @@ HistoryEvent = TypedDict(
     "evaluation_failed_event_details": NotRequired["EvaluationFailedEventDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEvent/)."""
 
 HistoryEventExecutionDataDetails = TypedDict(
     "HistoryEventExecutionDataDetails",
@@ -500,6 +671,7 @@ HistoryEventExecutionDataDetails = TypedDict(
     "truncated": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEventExecutionDataDetails/)."""
 
 InspectionData = TypedDict(
     "InspectionData",
@@ -524,6 +696,7 @@ InspectionData = TypedDict(
     "max_concurrency": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionData/)."""
 
 InspectionDataRequest = TypedDict(
     "InspectionDataRequest",
@@ -535,6 +708,7 @@ InspectionDataRequest = TypedDict(
     "body": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataRequest/)."""
 
 InspectionDataResponse = TypedDict(
     "InspectionDataResponse",
@@ -546,6 +720,7 @@ InspectionDataResponse = TypedDict(
     "body": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataResponse/)."""
 
 InspectionErrorDetails = TypedDict(
     "InspectionErrorDetails",
@@ -555,6 +730,7 @@ InspectionErrorDetails = TypedDict(
     "retry_backoff_interval_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionErrorDetails/)."""
 
 LambdaFunctionFailedEventDetails = TypedDict(
     "LambdaFunctionFailedEventDetails",
@@ -563,6 +739,7 @@ LambdaFunctionFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionFailedEventDetails/)."""
 
 LambdaFunctionScheduleFailedEventDetails = TypedDict(
     "LambdaFunctionScheduleFailedEventDetails",
@@ -571,6 +748,7 @@ LambdaFunctionScheduleFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionScheduleFailedEventDetails/)."""
 
 LambdaFunctionScheduledEventDetails = TypedDict(
     "LambdaFunctionScheduledEventDetails",
@@ -582,6 +760,7 @@ LambdaFunctionScheduledEventDetails = TypedDict(
     "task_credentials": NotRequired["TaskCredentials"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionScheduledEventDetails/)."""
 
 LambdaFunctionStartFailedEventDetails = TypedDict(
     "LambdaFunctionStartFailedEventDetails",
@@ -590,6 +769,7 @@ LambdaFunctionStartFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionStartFailedEventDetails/)."""
 
 LambdaFunctionSucceededEventDetails = TypedDict(
     "LambdaFunctionSucceededEventDetails",
@@ -598,6 +778,7 @@ LambdaFunctionSucceededEventDetails = TypedDict(
     "output_details": NotRequired["HistoryEventExecutionDataDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionSucceededEventDetails/)."""
 
 LambdaFunctionTimedOutEventDetails = TypedDict(
     "LambdaFunctionTimedOutEventDetails",
@@ -606,6 +787,7 @@ LambdaFunctionTimedOutEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionTimedOutEventDetails/)."""
 
 ListActivitiesInput = TypedDict(
     "ListActivitiesInput",
@@ -614,6 +796,7 @@ ListActivitiesInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListActivitiesInput/)."""
 
 ListExecutionsInput = TypedDict(
     "ListExecutionsInput",
@@ -626,6 +809,7 @@ ListExecutionsInput = TypedDict(
     "redrive_filter": NotRequired["ExecutionRedriveFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListExecutionsInput/)."""
 
 ListMapRunsInput = TypedDict(
     "ListMapRunsInput",
@@ -635,6 +819,7 @@ ListMapRunsInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListMapRunsInput/)."""
 
 ListStateMachineAliasesInput = TypedDict(
     "ListStateMachineAliasesInput",
@@ -644,6 +829,7 @@ ListStateMachineAliasesInput = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineAliasesInput/)."""
 
 ListStateMachineVersionsInput = TypedDict(
     "ListStateMachineVersionsInput",
@@ -653,6 +839,7 @@ ListStateMachineVersionsInput = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineVersionsInput/)."""
 
 ListStateMachinesInput = TypedDict(
     "ListStateMachinesInput",
@@ -661,6 +848,7 @@ ListStateMachinesInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachinesInput/)."""
 
 ListTagsForResourceInput = TypedDict(
     "ListTagsForResourceInput",
@@ -668,6 +856,7 @@ ListTagsForResourceInput = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListTagsForResourceInput/)."""
 
 LogDestination = TypedDict(
     "LogDestination",
@@ -675,6 +864,7 @@ LogDestination = TypedDict(
     "cloud_watch_logs_log_group": NotRequired["CloudWatchLogsLogGroup"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LogDestination/)."""
 
 LoggingConfiguration = TypedDict(
     "LoggingConfiguration",
@@ -684,6 +874,7 @@ LoggingConfiguration = TypedDict(
     "destinations": NotRequired["Sequence[LogDestination]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LoggingConfiguration/)."""
 
 MapIterationEventDetails = TypedDict(
     "MapIterationEventDetails",
@@ -692,6 +883,7 @@ MapIterationEventDetails = TypedDict(
     "index": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapIterationEventDetails/)."""
 
 MapRunExecutionCounts = TypedDict(
     "MapRunExecutionCounts",
@@ -708,6 +900,7 @@ MapRunExecutionCounts = TypedDict(
     "pending_redrive": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunExecutionCounts/)."""
 
 MapRunFailedEventDetails = TypedDict(
     "MapRunFailedEventDetails",
@@ -716,6 +909,7 @@ MapRunFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunFailedEventDetails/)."""
 
 MapRunItemCounts = TypedDict(
     "MapRunItemCounts",
@@ -732,6 +926,7 @@ MapRunItemCounts = TypedDict(
     "pending_redrive": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunItemCounts/)."""
 
 MapRunListItem = TypedDict(
     "MapRunListItem",
@@ -743,6 +938,7 @@ MapRunListItem = TypedDict(
     "stop_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunListItem/)."""
 
 MapRunRedrivenEventDetails = TypedDict(
     "MapRunRedrivenEventDetails",
@@ -751,6 +947,7 @@ MapRunRedrivenEventDetails = TypedDict(
     "redrive_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunRedrivenEventDetails/)."""
 
 MapRunStartedEventDetails = TypedDict(
     "MapRunStartedEventDetails",
@@ -758,6 +955,7 @@ MapRunStartedEventDetails = TypedDict(
     "map_run_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunStartedEventDetails/)."""
 
 MapStateStartedEventDetails = TypedDict(
     "MapStateStartedEventDetails",
@@ -765,6 +963,7 @@ MapStateStartedEventDetails = TypedDict(
     "length": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapStateStartedEventDetails/)."""
 
 MockErrorOutput = TypedDict(
     "MockErrorOutput",
@@ -773,6 +972,7 @@ MockErrorOutput = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MockErrorOutput/)."""
 
 MockInput = TypedDict(
     "MockInput",
@@ -782,6 +982,7 @@ MockInput = TypedDict(
     "field_validation_mode": NotRequired["MockResponseValidationMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MockInput/)."""
 
 PublishStateMachineVersionInput = TypedDict(
     "PublishStateMachineVersionInput",
@@ -791,6 +992,7 @@ PublishStateMachineVersionInput = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/PublishStateMachineVersionInput/)."""
 
 RedriveExecutionInput = TypedDict(
     "RedriveExecutionInput",
@@ -799,6 +1001,7 @@ RedriveExecutionInput = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RedriveExecutionInput/)."""
 
 RoutingConfigurationListItem = TypedDict(
     "RoutingConfigurationListItem",
@@ -807,6 +1010,7 @@ RoutingConfigurationListItem = TypedDict(
     "weight": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RoutingConfigurationListItem/)."""
 
 SendTaskFailureInput = TypedDict(
     "SendTaskFailureInput",
@@ -816,6 +1020,7 @@ SendTaskFailureInput = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskFailureInput/)."""
 
 SendTaskHeartbeatInput = TypedDict(
     "SendTaskHeartbeatInput",
@@ -823,6 +1028,7 @@ SendTaskHeartbeatInput = TypedDict(
     "task_token": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskHeartbeatInput/)."""
 
 SendTaskSuccessInput = TypedDict(
     "SendTaskSuccessInput",
@@ -831,6 +1037,7 @@ SendTaskSuccessInput = TypedDict(
     "output": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskSuccessInput/)."""
 
 StartExecutionInput = TypedDict(
     "StartExecutionInput",
@@ -841,6 +1048,7 @@ StartExecutionInput = TypedDict(
     "trace_header": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartExecutionInput/)."""
 
 StartSyncExecutionInput = TypedDict(
     "StartSyncExecutionInput",
@@ -852,6 +1060,7 @@ StartSyncExecutionInput = TypedDict(
     "included_data": NotRequired["IncludedData"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartSyncExecutionInput/)."""
 
 StateEnteredEventDetails = TypedDict(
     "StateEnteredEventDetails",
@@ -861,6 +1070,7 @@ StateEnteredEventDetails = TypedDict(
     "input_details": NotRequired["HistoryEventExecutionDataDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateEnteredEventDetails/)."""
 
 StateExitedEventDetails = TypedDict(
     "StateExitedEventDetails",
@@ -872,6 +1082,7 @@ StateExitedEventDetails = TypedDict(
     "assigned_variables_details": NotRequired["AssignedVariablesDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateExitedEventDetails/)."""
 
 StateMachineAliasListItem = TypedDict(
     "StateMachineAliasListItem",
@@ -880,6 +1091,7 @@ StateMachineAliasListItem = TypedDict(
     "creation_date": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineAliasListItem/)."""
 
 StateMachineListItem = TypedDict(
     "StateMachineListItem",
@@ -890,6 +1102,7 @@ StateMachineListItem = TypedDict(
     "creation_date": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineListItem/)."""
 
 StateMachineVersionListItem = TypedDict(
     "StateMachineVersionListItem",
@@ -898,6 +1111,7 @@ StateMachineVersionListItem = TypedDict(
     "creation_date": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineVersionListItem/)."""
 
 StopExecutionInput = TypedDict(
     "StopExecutionInput",
@@ -907,6 +1121,7 @@ StopExecutionInput = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StopExecutionInput/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -915,6 +1130,7 @@ Tag = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/Tag/)."""
 
 TagResourceInput = TypedDict(
     "TagResourceInput",
@@ -923,6 +1139,7 @@ TagResourceInput = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TagResourceInput/)."""
 
 TaskCredentials = TypedDict(
     "TaskCredentials",
@@ -930,6 +1147,7 @@ TaskCredentials = TypedDict(
     "role_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskCredentials/)."""
 
 TaskFailedEventDetails = TypedDict(
     "TaskFailedEventDetails",
@@ -940,6 +1158,7 @@ TaskFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskFailedEventDetails/)."""
 
 TaskScheduledEventDetails = TypedDict(
     "TaskScheduledEventDetails",
@@ -953,6 +1172,7 @@ TaskScheduledEventDetails = TypedDict(
     "task_credentials": NotRequired["TaskCredentials"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskScheduledEventDetails/)."""
 
 TaskStartFailedEventDetails = TypedDict(
     "TaskStartFailedEventDetails",
@@ -963,6 +1183,7 @@ TaskStartFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskStartFailedEventDetails/)."""
 
 TaskStartedEventDetails = TypedDict(
     "TaskStartedEventDetails",
@@ -971,6 +1192,7 @@ TaskStartedEventDetails = TypedDict(
     "resource": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskStartedEventDetails/)."""
 
 TaskSubmitFailedEventDetails = TypedDict(
     "TaskSubmitFailedEventDetails",
@@ -981,6 +1203,7 @@ TaskSubmitFailedEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSubmitFailedEventDetails/)."""
 
 TaskSubmittedEventDetails = TypedDict(
     "TaskSubmittedEventDetails",
@@ -991,6 +1214,7 @@ TaskSubmittedEventDetails = TypedDict(
     "output_details": NotRequired["HistoryEventExecutionDataDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSubmittedEventDetails/)."""
 
 TaskSucceededEventDetails = TypedDict(
     "TaskSucceededEventDetails",
@@ -1001,6 +1225,7 @@ TaskSucceededEventDetails = TypedDict(
     "output_details": NotRequired["HistoryEventExecutionDataDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSucceededEventDetails/)."""
 
 TaskTimedOutEventDetails = TypedDict(
     "TaskTimedOutEventDetails",
@@ -1011,6 +1236,7 @@ TaskTimedOutEventDetails = TypedDict(
     "cause": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskTimedOutEventDetails/)."""
 
 TestStateConfiguration = TypedDict(
     "TestStateConfiguration",
@@ -1021,6 +1247,7 @@ TestStateConfiguration = TypedDict(
     "map_item_reader_data": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestStateConfiguration/)."""
 
 TestStateInput = TypedDict(
     "TestStateInput",
@@ -1037,6 +1264,7 @@ TestStateInput = TypedDict(
     "state_configuration": NotRequired["TestStateConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestStateInput/)."""
 
 TracingConfiguration = TypedDict(
     "TracingConfiguration",
@@ -1044,6 +1272,7 @@ TracingConfiguration = TypedDict(
     "enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TracingConfiguration/)."""
 
 UntagResourceInput = TypedDict(
     "UntagResourceInput",
@@ -1052,6 +1281,7 @@ UntagResourceInput = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UntagResourceInput/)."""
 
 UpdateMapRunInput = TypedDict(
     "UpdateMapRunInput",
@@ -1062,6 +1292,7 @@ UpdateMapRunInput = TypedDict(
     "tolerated_failure_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateMapRunInput/)."""
 
 UpdateStateMachineAliasInput = TypedDict(
     "UpdateStateMachineAliasInput",
@@ -1071,6 +1302,7 @@ UpdateStateMachineAliasInput = TypedDict(
     "routing_configuration": NotRequired["Sequence[RoutingConfigurationListItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineAliasInput/)."""
 
 UpdateStateMachineInput = TypedDict(
     "UpdateStateMachineInput",
@@ -1085,6 +1317,7 @@ UpdateStateMachineInput = TypedDict(
     "encryption_configuration": NotRequired["EncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineInput/)."""
 
 ValidateStateMachineDefinitionDiagnostic = TypedDict(
     "ValidateStateMachineDefinitionDiagnostic",
@@ -1095,6 +1328,7 @@ ValidateStateMachineDefinitionDiagnostic = TypedDict(
     "location": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionDiagnostic/)."""
 
 ValidateStateMachineDefinitionInput = TypedDict(
     "ValidateStateMachineDefinitionInput",
@@ -1105,3 +1339,4 @@ ValidateStateMachineDefinitionInput = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionInput/)."""

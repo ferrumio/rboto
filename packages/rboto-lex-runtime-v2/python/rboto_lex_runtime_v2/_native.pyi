@@ -11,18 +11,21 @@ from .types import StartConversationOutput
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class StartConversationResponseEventStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.StartConversationResponseEventStream]: ...
     def __anext__(self) -> Awaitable[_types.StartConversationResponseEventStream]: ...
 
 
 @final
 class ActiveContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContextValueOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -33,6 +36,7 @@ class ActiveContext:
 
 @final
 class ActiveContextTimeToLive:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContextTimeToLiveValueOutput/)."""
     @property
     def time_to_live_in_seconds(self) -> int: ...
     @property
@@ -41,6 +45,7 @@ class ActiveContextTimeToLive:
 
 @final
 class Button:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ButtonValueOutput/)."""
     @property
     def text(self) -> str: ...
     @property
@@ -49,12 +54,14 @@ class Button:
 
 @final
 class ConfidenceScore:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConfidenceScoreOutput/)."""
     @property
     def score(self) -> float: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DialogAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DialogActionValueOutput/)."""
     @property
     def type(self) -> _types.DialogActionTypeOutput: ...
     @property
@@ -67,6 +74,7 @@ class DialogAction:
 
 @final
 class ElicitSubSlot:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ElicitSubSlotValueOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -75,6 +83,7 @@ class ElicitSubSlot:
 
 @final
 class ImageResponseCard:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ImageResponseCardValueOutput/)."""
     @property
     def title(self) -> str: ...
     @property
@@ -87,6 +96,7 @@ class ImageResponseCard:
 
 @final
 class Intent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/IntentValueOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -99,6 +109,7 @@ class Intent:
 
 @final
 class Interpretation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/InterpretationOutput/)."""
     @property
     def nlu_confidence(self) -> ConfidenceScore | None: ...
     @property
@@ -111,6 +122,7 @@ class Interpretation:
 
 @final
 class Message:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/MessageValueOutput/)."""
     @property
     def content(self) -> str | None: ...
     @property
@@ -121,6 +133,7 @@ class Message:
 
 @final
 class RecognizedBotMember:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizedBotMemberOutput/)."""
     @property
     def bot_id(self) -> str: ...
     @property
@@ -129,6 +142,7 @@ class RecognizedBotMember:
 
 @final
 class RuntimeHintDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintDetailsValueOutput/)."""
     @property
     def runtime_hint_values(self) -> list[RuntimeHintValue] | None: ...
     @property
@@ -137,18 +151,21 @@ class RuntimeHintDetails:
 
 @final
 class RuntimeHintValue:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintValueValueOutput/)."""
     @property
     def phrase(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RuntimeHints:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintsValueOutput/)."""
     @property
     def slot_hints(self) -> dict[str, dict[str, RuntimeHintDetails]] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SentimentResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentResponseOutput/)."""
     @property
     def sentiment(self) -> _types.SentimentTypeOutput | None: ...
     @property
@@ -157,6 +174,7 @@ class SentimentResponse:
 
 @final
 class SentimentScore:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentScoreOutput/)."""
     @property
     def positive(self) -> float: ...
     @property
@@ -169,6 +187,7 @@ class SentimentScore:
 
 @final
 class SessionState:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SessionStateValueOutput/)."""
     @property
     def dialog_action(self) -> DialogAction | None: ...
     @property
@@ -185,6 +204,7 @@ class SessionState:
 
 @final
 class Slot:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SlotValueOutput/)."""
     @property
     def value(self) -> Value | None: ...
     @property
@@ -197,6 +217,7 @@ class Slot:
 
 @final
 class Value:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ValueValueOutput/)."""
     @property
     def original_value(self) -> str | None: ...
     @property
@@ -207,6 +228,7 @@ class Value:
 
 @final
 class DeleteSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DeleteSessionOutput/)."""
     @property
     def bot_id(self) -> str | None: ...
     @property
@@ -219,6 +241,7 @@ class DeleteSessionOutput:
 
 @final
 class GetSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/GetSessionOutput/)."""
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -231,6 +254,7 @@ class GetSessionOutput:
 
 @final
 class PutSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PutSessionOutput/)."""
     @property
     def content_type(self) -> str | None: ...
     @property
@@ -247,6 +271,7 @@ class PutSessionOutput:
 
 @final
 class RecognizeTextOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeTextOutput/)."""
     @property
     def messages(self) -> list[Message] | None: ...
     @property
@@ -263,6 +288,7 @@ class RecognizeTextOutput:
 
 @final
 class RecognizeUtteranceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeUtteranceOutput/)."""
     @property
     def input_mode(self) -> str | None: ...
     @property

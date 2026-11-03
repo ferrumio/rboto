@@ -9,47 +9,87 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ApiErrorType: TypeAlias = _native.ApiErrorType
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ApiErrorType-1f10314cdd97/)."""
 BatchGetSecretValueOutput: TypeAlias = _native.BatchGetSecretValueOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/BatchGetSecretValueOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ByteStream/)."""
 CancelRotateSecretOutput: TypeAlias = _native.CancelRotateSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CancelRotateSecretOutput/)."""
 CreateSecretOutput: TypeAlias = _native.CreateSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CreateSecretOutput/)."""
 DeleteResourcePolicyOutput: TypeAlias = _native.DeleteResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteResourcePolicyOutput/)."""
 DeleteSecretOutput: TypeAlias = _native.DeleteSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteSecretOutput/)."""
 DescribeSecretOutput: TypeAlias = _native.DescribeSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DescribeSecretOutput/)."""
 ExternalSecretRotationMetadataItemOutput: TypeAlias = _native.ExternalSecretRotationMetadataItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ExternalSecretRotationMetadataItemOutput/)."""
 GetRandomPasswordOutput: TypeAlias = _native.GetRandomPasswordOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetRandomPasswordOutput/)."""
 GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetResourcePolicyOutput/)."""
 GetSecretValueOutput: TypeAlias = _native.GetSecretValueOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetSecretValueOutput/)."""
 ListSecretVersionIdsOutput: TypeAlias = _native.ListSecretVersionIdsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretVersionIdsOutput/)."""
 ListSecretsOutput: TypeAlias = _native.ListSecretsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretsOutput/)."""
 PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutResourcePolicyOutput/)."""
 PutSecretValueOutput: TypeAlias = _native.PutSecretValueOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutSecretValueOutput/)."""
 RemoveRegionsFromReplicationOutput: TypeAlias = _native.RemoveRegionsFromReplicationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RemoveRegionsFromReplicationOutput/)."""
 ReplicateSecretToRegionsOutput: TypeAlias = _native.ReplicateSecretToRegionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicateSecretToRegionsOutput/)."""
 ReplicationStatusTypeOutput: TypeAlias = _native.ReplicationStatusType
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicationStatusTypeOutput/)."""
 RestoreSecretOutput: TypeAlias = _native.RestoreSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RestoreSecretOutput/)."""
 RotateSecretOutput: TypeAlias = _native.RotateSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RotateSecretOutput/)."""
 RotationRulesTypeOutput: TypeAlias = _native.RotationRulesType
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RotationRulesTypeOutput/)."""
 SecretListEntryOutput: TypeAlias = _native.SecretListEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretListEntryOutput/)."""
 SecretValueEntryOutput: TypeAlias = _native.SecretValueEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretValueEntryOutput/)."""
 SecretVersionsListEntryOutput: TypeAlias = _native.SecretVersionsListEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretVersionsListEntryOutput/)."""
 StopReplicationToReplicaOutput: TypeAlias = _native.StopReplicationToReplicaOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StopReplicationToReplicaOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/TagOutput/)."""
 UpdateSecretOutput: TypeAlias = _native.UpdateSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretOutput/)."""
 UpdateSecretVersionStageOutput: TypeAlias = _native.UpdateSecretVersionStageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretVersionStageOutput/)."""
 ValidateResourcePolicyOutput: TypeAlias = _native.ValidateResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ValidateResourcePolicyOutput/)."""
 ValidationErrorsEntryOutput: TypeAlias = _native.ValidationErrorsEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ValidationErrorsEntryOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/JSONValue/)."""
 
 FilterNameStringType: TypeAlias = Literal['description', 'name', 'tag-key', 'tag-value', 'primary-region', 'owning-service', 'all']
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/FilterNameStringType/)."""
 FilterNameStringTypeOutput: TypeAlias = FilterNameStringType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/FilterNameStringTypeOutput/)."""
 SortByType: TypeAlias = Literal['created-date', 'last-accessed-date', 'last-changed-date', 'name']
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SortByType/)."""
 SortByTypeOutput: TypeAlias = SortByType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SortByTypeOutput/)."""
 SortOrderType: TypeAlias = Literal['asc', 'desc']
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SortOrderType/)."""
 SortOrderTypeOutput: TypeAlias = SortOrderType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SortOrderTypeOutput/)."""
 StatusType: TypeAlias = Literal['InSync', 'Failed', 'InProgress']
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StatusType/)."""
 StatusTypeOutput: TypeAlias = StatusType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StatusTypeOutput/)."""
 
 APIErrorType = TypedDict(
     "APIErrorType",
@@ -59,6 +99,7 @@ APIErrorType = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/APIErrorType-6a466cee1f13/)."""
 
 BatchGetSecretValueRequest = TypedDict(
     "BatchGetSecretValueRequest",
@@ -69,6 +110,7 @@ BatchGetSecretValueRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/BatchGetSecretValueRequest/)."""
 
 CancelRotateSecretRequest = TypedDict(
     "CancelRotateSecretRequest",
@@ -76,6 +118,7 @@ CancelRotateSecretRequest = TypedDict(
     "secret_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CancelRotateSecretRequest/)."""
 
 CreateSecretRequest = TypedDict(
     "CreateSecretRequest",
@@ -92,6 +135,7 @@ CreateSecretRequest = TypedDict(
     "type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CreateSecretRequest/)."""
 
 DeleteResourcePolicyRequest = TypedDict(
     "DeleteResourcePolicyRequest",
@@ -99,6 +143,7 @@ DeleteResourcePolicyRequest = TypedDict(
     "secret_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteResourcePolicyRequest/)."""
 
 DeleteSecretRequest = TypedDict(
     "DeleteSecretRequest",
@@ -108,6 +153,7 @@ DeleteSecretRequest = TypedDict(
     "force_delete_without_recovery": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteSecretRequest/)."""
 
 DescribeSecretRequest = TypedDict(
     "DescribeSecretRequest",
@@ -115,6 +161,7 @@ DescribeSecretRequest = TypedDict(
     "secret_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DescribeSecretRequest/)."""
 
 ExternalSecretRotationMetadataItem = TypedDict(
     "ExternalSecretRotationMetadataItem",
@@ -123,6 +170,7 @@ ExternalSecretRotationMetadataItem = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ExternalSecretRotationMetadataItem/)."""
 
 Filter = TypedDict(
     "Filter",
@@ -131,6 +179,7 @@ Filter = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/Filter/)."""
 
 GetRandomPasswordRequest = TypedDict(
     "GetRandomPasswordRequest",
@@ -145,6 +194,7 @@ GetRandomPasswordRequest = TypedDict(
     "require_each_included_type": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetRandomPasswordRequest/)."""
 
 GetResourcePolicyRequest = TypedDict(
     "GetResourcePolicyRequest",
@@ -152,6 +202,7 @@ GetResourcePolicyRequest = TypedDict(
     "secret_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetResourcePolicyRequest/)."""
 
 GetSecretValueRequest = TypedDict(
     "GetSecretValueRequest",
@@ -161,6 +212,7 @@ GetSecretValueRequest = TypedDict(
     "version_stage": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetSecretValueRequest/)."""
 
 ListSecretVersionIdsRequest = TypedDict(
     "ListSecretVersionIdsRequest",
@@ -171,6 +223,7 @@ ListSecretVersionIdsRequest = TypedDict(
     "include_deprecated": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretVersionIdsRequest/)."""
 
 ListSecretsRequest = TypedDict(
     "ListSecretsRequest",
@@ -183,6 +236,7 @@ ListSecretsRequest = TypedDict(
     "sort_by": NotRequired["SortByType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretsRequest/)."""
 
 PutResourcePolicyRequest = TypedDict(
     "PutResourcePolicyRequest",
@@ -192,6 +246,7 @@ PutResourcePolicyRequest = TypedDict(
     "block_public_policy": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutResourcePolicyRequest/)."""
 
 PutSecretValueRequest = TypedDict(
     "PutSecretValueRequest",
@@ -204,6 +259,7 @@ PutSecretValueRequest = TypedDict(
     "rotation_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutSecretValueRequest/)."""
 
 RemoveRegionsFromReplicationRequest = TypedDict(
     "RemoveRegionsFromReplicationRequest",
@@ -212,6 +268,7 @@ RemoveRegionsFromReplicationRequest = TypedDict(
     "remove_replica_regions": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RemoveRegionsFromReplicationRequest/)."""
 
 ReplicaRegionType = TypedDict(
     "ReplicaRegionType",
@@ -220,6 +277,7 @@ ReplicaRegionType = TypedDict(
     "kms_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicaRegionType/)."""
 
 ReplicateSecretToRegionsRequest = TypedDict(
     "ReplicateSecretToRegionsRequest",
@@ -229,6 +287,7 @@ ReplicateSecretToRegionsRequest = TypedDict(
     "force_overwrite_replica_secret": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicateSecretToRegionsRequest/)."""
 
 ReplicationStatusType = TypedDict(
     "ReplicationStatusType",
@@ -240,6 +299,7 @@ ReplicationStatusType = TypedDict(
     "last_accessed_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicationStatusType/)."""
 
 RestoreSecretRequest = TypedDict(
     "RestoreSecretRequest",
@@ -247,6 +307,7 @@ RestoreSecretRequest = TypedDict(
     "secret_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RestoreSecretRequest/)."""
 
 RotateSecretRequest = TypedDict(
     "RotateSecretRequest",
@@ -260,6 +321,7 @@ RotateSecretRequest = TypedDict(
     "rotate_immediately": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RotateSecretRequest/)."""
 
 RotationRulesType = TypedDict(
     "RotationRulesType",
@@ -269,6 +331,7 @@ RotationRulesType = TypedDict(
     "schedule_expression": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RotationRulesType/)."""
 
 SecretListEntry = TypedDict(
     "SecretListEntry",
@@ -295,6 +358,7 @@ SecretListEntry = TypedDict(
     "primary_region": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretListEntry/)."""
 
 SecretValueEntry = TypedDict(
     "SecretValueEntry",
@@ -308,6 +372,7 @@ SecretValueEntry = TypedDict(
     "created_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretValueEntry/)."""
 
 SecretVersionsListEntry = TypedDict(
     "SecretVersionsListEntry",
@@ -319,6 +384,7 @@ SecretVersionsListEntry = TypedDict(
     "kms_key_ids": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretVersionsListEntry/)."""
 
 StopReplicationToReplicaRequest = TypedDict(
     "StopReplicationToReplicaRequest",
@@ -326,6 +392,7 @@ StopReplicationToReplicaRequest = TypedDict(
     "secret_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StopReplicationToReplicaRequest/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -334,6 +401,7 @@ Tag = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -342,6 +410,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/TagResourceRequest/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -350,6 +419,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UntagResourceRequest/)."""
 
 UpdateSecretRequest = TypedDict(
     "UpdateSecretRequest",
@@ -363,6 +433,7 @@ UpdateSecretRequest = TypedDict(
     "type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretRequest/)."""
 
 UpdateSecretVersionStageRequest = TypedDict(
     "UpdateSecretVersionStageRequest",
@@ -373,6 +444,7 @@ UpdateSecretVersionStageRequest = TypedDict(
     "move_to_version_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretVersionStageRequest/)."""
 
 ValidateResourcePolicyRequest = TypedDict(
     "ValidateResourcePolicyRequest",
@@ -381,6 +453,7 @@ ValidateResourcePolicyRequest = TypedDict(
     "resource_policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ValidateResourcePolicyRequest/)."""
 
 ValidationErrorsEntry = TypedDict(
     "ValidationErrorsEntry",
@@ -389,3 +462,4 @@ ValidationErrorsEntry = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ValidationErrorsEntry/)."""

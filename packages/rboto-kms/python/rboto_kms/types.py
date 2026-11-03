@@ -9,122 +9,237 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AliasListEntryOutput: TypeAlias = _native.AliasListEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/AliasListEntryOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ByteStream/)."""
 CancelKeyDeletionOutput: TypeAlias = _native.CancelKeyDeletionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CancelKeyDeletionOutput/)."""
 ConnectCustomKeyStoreOutput: TypeAlias = _native.ConnectCustomKeyStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ConnectCustomKeyStoreOutput/)."""
 CreateCustomKeyStoreOutput: TypeAlias = _native.CreateCustomKeyStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateCustomKeyStoreOutput/)."""
 CreateGrantOutput: TypeAlias = _native.CreateGrantOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateGrantOutput/)."""
 CreateKeyOutput: TypeAlias = _native.CreateKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateKeyOutput/)."""
 CustomKeyStoresListEntryOutput: TypeAlias = _native.CustomKeyStoresListEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomKeyStoresListEntryOutput/)."""
 DecryptOutput: TypeAlias = _native.DecryptOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DecryptOutput/)."""
 DeleteCustomKeyStoreOutput: TypeAlias = _native.DeleteCustomKeyStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeleteCustomKeyStoreOutput/)."""
 DeleteImportedKeyMaterialOutput: TypeAlias = _native.DeleteImportedKeyMaterialOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeleteImportedKeyMaterialOutput/)."""
 DeriveSharedSecretOutput: TypeAlias = _native.DeriveSharedSecretOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeriveSharedSecretOutput/)."""
 DescribeCustomKeyStoresOutput: TypeAlias = _native.DescribeCustomKeyStoresOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DescribeCustomKeyStoresOutput/)."""
 DescribeKeyOutput: TypeAlias = _native.DescribeKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DescribeKeyOutput/)."""
 DisconnectCustomKeyStoreOutput: TypeAlias = _native.DisconnectCustomKeyStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DisconnectCustomKeyStoreOutput/)."""
 EncryptOutput: TypeAlias = _native.EncryptOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncryptOutput/)."""
 GenerateDataKeyOutput: TypeAlias = _native.GenerateDataKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyOutput/)."""
 GenerateDataKeyPairOutput: TypeAlias = _native.GenerateDataKeyPairOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyPairOutput/)."""
 GenerateDataKeyPairWithoutPlaintextOutput: TypeAlias = _native.GenerateDataKeyPairWithoutPlaintextOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyPairWithoutPlaintextOutput/)."""
 GenerateDataKeyWithoutPlaintextOutput: TypeAlias = _native.GenerateDataKeyWithoutPlaintextOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyWithoutPlaintextOutput/)."""
 GenerateMacOutput: TypeAlias = _native.GenerateMacOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateMacOutput/)."""
 GenerateRandomOutput: TypeAlias = _native.GenerateRandomOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateRandomOutput/)."""
 GetKeyLastUsageOutput: TypeAlias = _native.GetKeyLastUsageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyLastUsageOutput/)."""
 GetKeyPolicyOutput: TypeAlias = _native.GetKeyPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyPolicyOutput/)."""
 GetKeyRotationStatusOutput: TypeAlias = _native.GetKeyRotationStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyRotationStatusOutput/)."""
 GetParametersForImportOutput: TypeAlias = _native.GetParametersForImportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetParametersForImportOutput/)."""
 GetPublicKeyOutput: TypeAlias = _native.GetPublicKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetPublicKeyOutput/)."""
 GrantConstraintsOutput: TypeAlias = _native.GrantConstraints
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantConstraintsOutput/)."""
 GrantListEntryOutput: TypeAlias = _native.GrantListEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantListEntryOutput/)."""
 ImportKeyMaterialOutput: TypeAlias = _native.ImportKeyMaterialOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ImportKeyMaterialOutput/)."""
 KeyLastUsageDataOutput: TypeAlias = _native.KeyLastUsageData
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyLastUsageDataOutput/)."""
 KeyListEntryOutput: TypeAlias = _native.KeyListEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyListEntryOutput/)."""
 KeyMetadataOutput: TypeAlias = _native.KeyMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyMetadataOutput/)."""
 ListAliasesOutput: TypeAlias = _native.ListAliasesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListAliasesOutput/)."""
 ListGrantsOutput: TypeAlias = _native.ListGrantsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListGrantsOutput/)."""
 ListKeyPoliciesOutput: TypeAlias = _native.ListKeyPoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeyPoliciesOutput/)."""
 ListKeyRotationsOutput: TypeAlias = _native.ListKeyRotationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeyRotationsOutput/)."""
 ListKeysOutput: TypeAlias = _native.ListKeysOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeysOutput/)."""
 ListResourceTagsOutput: TypeAlias = _native.ListResourceTagsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListResourceTagsOutput/)."""
 ListRetirableGrantsOutput: TypeAlias = _native.ListRetirableGrantsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListRetirableGrantsOutput/)."""
 MultiRegionConfigurationOutput: TypeAlias = _native.MultiRegionConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionConfigurationOutput/)."""
 MultiRegionKeyOutput: TypeAlias = _native.MultiRegionKey
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionKeyOutput/)."""
 ReEncryptOutput: TypeAlias = _native.ReEncryptOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ReEncryptOutput/)."""
 ReplicateKeyOutput: TypeAlias = _native.ReplicateKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ReplicateKeyOutput/)."""
 RotateKeyOnDemandOutput: TypeAlias = _native.RotateKeyOnDemandOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotateKeyOnDemandOutput/)."""
 RotationsListEntryOutput: TypeAlias = _native.RotationsListEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotationsListEntryOutput/)."""
 ScheduleKeyDeletionOutput: TypeAlias = _native.ScheduleKeyDeletionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ScheduleKeyDeletionOutput/)."""
 SignOutput: TypeAlias = _native.SignOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/SignOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/TagOutput/)."""
 UpdateCustomKeyStoreOutput: TypeAlias = _native.UpdateCustomKeyStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/UpdateCustomKeyStoreOutput/)."""
 VerifyMacOutput: TypeAlias = _native.VerifyMacOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/VerifyMacOutput/)."""
 VerifyOutput: TypeAlias = _native.VerifyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/VerifyOutput/)."""
 XksKeyConfigurationTypeOutput: TypeAlias = _native.XksKeyConfigurationType
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksKeyConfigurationTypeOutput/)."""
 XksProxyConfigurationTypeOutput: TypeAlias = _native.XksProxyConfigurationType
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksProxyConfigurationTypeOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/JSONValue/)."""
 
 AlgorithmSpec: TypeAlias = Literal['RSAES_PKCS1_V1_5', 'RSAES_OAEP_SHA_1', 'RSAES_OAEP_SHA_256', 'RSA_AES_KEY_WRAP_SHA_1', 'RSA_AES_KEY_WRAP_SHA_256', 'SM2PKE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/AlgorithmSpec/)."""
 AlgorithmSpecOutput: TypeAlias = AlgorithmSpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/AlgorithmSpecOutput/)."""
 ConnectionErrorCodeType: TypeAlias = Literal['INVALID_CREDENTIALS', 'CLUSTER_NOT_FOUND', 'NETWORK_ERRORS', 'INTERNAL_ERROR', 'INSUFFICIENT_CLOUDHSM_HSMS', 'USER_LOCKED_OUT', 'USER_NOT_FOUND', 'USER_LOGGED_IN', 'SUBNET_NOT_FOUND', 'INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET', 'XKS_PROXY_ACCESS_DENIED', 'XKS_PROXY_NOT_REACHABLE', 'XKS_VPC_ENDPOINT_SERVICE_NOT_FOUND', 'XKS_PROXY_INVALID_RESPONSE', 'XKS_PROXY_INVALID_CONFIGURATION', 'XKS_VPC_ENDPOINT_SERVICE_INVALID_CONFIGURATION', 'XKS_PROXY_TIMED_OUT', 'XKS_PROXY_INVALID_TLS_CONFIGURATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ConnectionErrorCodeType/)."""
 ConnectionErrorCodeTypeOutput: TypeAlias = ConnectionErrorCodeType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ConnectionErrorCodeTypeOutput/)."""
 ConnectionStateType: TypeAlias = Literal['CONNECTED', 'CONNECTING', 'FAILED', 'DISCONNECTED', 'DISCONNECTING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ConnectionStateType/)."""
 ConnectionStateTypeOutput: TypeAlias = ConnectionStateType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ConnectionStateTypeOutput/)."""
 CustomKeyStoreType: TypeAlias = Literal['AWS_CLOUDHSM', 'EXTERNAL_KEY_STORE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomKeyStoreType/)."""
 CustomKeyStoreTypeOutput: TypeAlias = CustomKeyStoreType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomKeyStoreTypeOutput/)."""
 CustomerMasterKeySpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'ECC_NIST_P256', 'ECC_NIST_P384', 'ECC_NIST_P521', 'ECC_SECG_P256K1', 'SYMMETRIC_DEFAULT', 'HMAC_224', 'HMAC_256', 'HMAC_384', 'HMAC_512', 'SM2']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomerMasterKeySpec/)."""
 CustomerMasterKeySpecOutput: TypeAlias = CustomerMasterKeySpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomerMasterKeySpecOutput/)."""
 DataKeyPairSpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'ECC_NIST_P256', 'ECC_NIST_P384', 'ECC_NIST_P521', 'ECC_SECG_P256K1', 'SM2', 'ECC_NIST_EDWARDS25519']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DataKeyPairSpec/)."""
 DataKeyPairSpecOutput: TypeAlias = DataKeyPairSpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DataKeyPairSpecOutput/)."""
 DataKeySpec: TypeAlias = Literal['AES_256', 'AES_128']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DataKeySpec/)."""
 DataKeySpecOutput: TypeAlias = DataKeySpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DataKeySpecOutput/)."""
 DryRunModifierType: TypeAlias = Literal['IGNORE_CIPHERTEXT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DryRunModifierType/)."""
 DryRunModifierTypeOutput: TypeAlias = DryRunModifierType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DryRunModifierTypeOutput/)."""
 EncryptionAlgorithmSpec: TypeAlias = Literal['SYMMETRIC_DEFAULT', 'RSAES_OAEP_SHA_1', 'RSAES_OAEP_SHA_256', 'SM2PKE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncryptionAlgorithmSpec/)."""
 EncryptionAlgorithmSpecOutput: TypeAlias = EncryptionAlgorithmSpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncryptionAlgorithmSpecOutput/)."""
 ExpirationModelType: TypeAlias = Literal['KEY_MATERIAL_EXPIRES', 'KEY_MATERIAL_DOES_NOT_EXPIRE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ExpirationModelType/)."""
 ExpirationModelTypeOutput: TypeAlias = ExpirationModelType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ExpirationModelTypeOutput/)."""
 GrantOperation: TypeAlias = Literal['Decrypt', 'Encrypt', 'GenerateDataKey', 'GenerateDataKeyWithoutPlaintext', 'ReEncryptFrom', 'ReEncryptTo', 'Sign', 'Verify', 'GetPublicKey', 'CreateGrant', 'RetireGrant', 'DescribeKey', 'GenerateDataKeyPair', 'GenerateDataKeyPairWithoutPlaintext', 'GenerateMac', 'VerifyMac', 'DeriveSharedSecret']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantOperation/)."""
 GrantOperationOutput: TypeAlias = GrantOperation | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantOperationOutput/)."""
 ImportState: TypeAlias = Literal['IMPORTED', 'PENDING_IMPORT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ImportState/)."""
 ImportStateOutput: TypeAlias = ImportState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ImportStateOutput/)."""
 ImportType: TypeAlias = Literal['NEW_KEY_MATERIAL', 'EXISTING_KEY_MATERIAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ImportType/)."""
 ImportTypeOutput: TypeAlias = ImportType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ImportTypeOutput/)."""
 IncludeKeyMaterial: TypeAlias = Literal['ALL_KEY_MATERIAL', 'ROTATIONS_ONLY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/IncludeKeyMaterial/)."""
 IncludeKeyMaterialOutput: TypeAlias = IncludeKeyMaterial | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/IncludeKeyMaterialOutput/)."""
 KeyAgreementAlgorithmSpec: TypeAlias = Literal['ECDH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyAgreementAlgorithmSpec/)."""
 KeyAgreementAlgorithmSpecOutput: TypeAlias = KeyAgreementAlgorithmSpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyAgreementAlgorithmSpecOutput/)."""
 KeyEncryptionMechanism: TypeAlias = Literal['RSAES_OAEP_SHA_256']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyEncryptionMechanism/)."""
 KeyEncryptionMechanismOutput: TypeAlias = KeyEncryptionMechanism | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyEncryptionMechanismOutput/)."""
 KeyLastUsageTrackingOperation: TypeAlias = Literal['Decrypt', 'DeriveSharedSecret', 'Encrypt', 'GenerateDataKey', 'GenerateDataKeyPair', 'GenerateDataKeyPairWithoutPlaintext', 'GenerateDataKeyWithoutPlaintext', 'GenerateMac', 'ReEncrypt', 'Sign', 'Verify', 'VerifyMac']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyLastUsageTrackingOperation/)."""
 KeyLastUsageTrackingOperationOutput: TypeAlias = KeyLastUsageTrackingOperation | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyLastUsageTrackingOperationOutput/)."""
 KeyManagerType: TypeAlias = Literal['AWS', 'CUSTOMER']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyManagerType/)."""
 KeyManagerTypeOutput: TypeAlias = KeyManagerType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyManagerTypeOutput/)."""
 KeyMaterialState: TypeAlias = Literal['NON_CURRENT', 'CURRENT', 'PENDING_ROTATION', 'PENDING_MULTI_REGION_IMPORT_AND_ROTATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyMaterialState/)."""
 KeyMaterialStateOutput: TypeAlias = KeyMaterialState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyMaterialStateOutput/)."""
 KeySpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'ECC_NIST_P256', 'ECC_NIST_P384', 'ECC_NIST_P521', 'ECC_SECG_P256K1', 'SYMMETRIC_DEFAULT', 'HMAC_224', 'HMAC_256', 'HMAC_384', 'HMAC_512', 'SM2', 'ML_DSA_44', 'ML_DSA_65', 'ML_DSA_87', 'ECC_NIST_EDWARDS25519']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeySpec/)."""
 KeySpecOutput: TypeAlias = KeySpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeySpecOutput/)."""
 KeyState: TypeAlias = Literal['Creating', 'Enabled', 'Disabled', 'PendingDeletion', 'PendingImport', 'PendingReplicaDeletion', 'Unavailable', 'Updating']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyState/)."""
 KeyStateOutput: TypeAlias = KeyState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyStateOutput/)."""
 KeyUsageType: TypeAlias = Literal['SIGN_VERIFY', 'ENCRYPT_DECRYPT', 'GENERATE_VERIFY_MAC', 'KEY_AGREEMENT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyUsageType/)."""
 KeyUsageTypeOutput: TypeAlias = KeyUsageType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyUsageTypeOutput/)."""
 MacAlgorithmSpec: TypeAlias = Literal['HMAC_SHA_224', 'HMAC_SHA_256', 'HMAC_SHA_384', 'HMAC_SHA_512']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MacAlgorithmSpec/)."""
 MacAlgorithmSpecOutput: TypeAlias = MacAlgorithmSpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MacAlgorithmSpecOutput/)."""
 MessageType: TypeAlias = Literal['RAW', 'DIGEST', 'EXTERNAL_MU']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MessageType/)."""
 MessageTypeOutput: TypeAlias = MessageType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MessageTypeOutput/)."""
 MultiRegionKeyType: TypeAlias = Literal['PRIMARY', 'REPLICA']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionKeyType/)."""
 MultiRegionKeyTypeOutput: TypeAlias = MultiRegionKeyType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionKeyTypeOutput/)."""
 OriginType: TypeAlias = Literal['AWS_KMS', 'EXTERNAL', 'AWS_CLOUDHSM', 'EXTERNAL_KEY_STORE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/OriginType/)."""
 OriginTypeOutput: TypeAlias = OriginType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/OriginTypeOutput/)."""
 RotationType: TypeAlias = Literal['AUTOMATIC', 'ON_DEMAND']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotationType/)."""
 RotationTypeOutput: TypeAlias = RotationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotationTypeOutput/)."""
 SigningAlgorithmSpec: TypeAlias = Literal['RSASSA_PSS_SHA_256', 'RSASSA_PSS_SHA_384', 'RSASSA_PSS_SHA_512', 'RSASSA_PKCS1_V1_5_SHA_256', 'RSASSA_PKCS1_V1_5_SHA_384', 'RSASSA_PKCS1_V1_5_SHA_512', 'ECDSA_SHA_256', 'ECDSA_SHA_384', 'ECDSA_SHA_512', 'SM2DSA', 'ML_DSA_SHAKE_256', 'ED25519_SHA_512', 'ED25519_PH_SHA_512']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/SigningAlgorithmSpec/)."""
 SigningAlgorithmSpecOutput: TypeAlias = SigningAlgorithmSpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/SigningAlgorithmSpecOutput/)."""
 WrappingKeySpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'SM2']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/WrappingKeySpec/)."""
 WrappingKeySpecOutput: TypeAlias = WrappingKeySpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/WrappingKeySpecOutput/)."""
 XksProxyConnectivityType: TypeAlias = Literal['PUBLIC_ENDPOINT', 'VPC_ENDPOINT_SERVICE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksProxyConnectivityType/)."""
 XksProxyConnectivityTypeOutput: TypeAlias = XksProxyConnectivityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksProxyConnectivityTypeOutput/)."""
 
 AliasListEntry = TypedDict(
     "AliasListEntry",
@@ -136,6 +251,7 @@ AliasListEntry = TypedDict(
     "last_updated_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/AliasListEntry/)."""
 
 CancelKeyDeletionRequest = TypedDict(
     "CancelKeyDeletionRequest",
@@ -143,6 +259,7 @@ CancelKeyDeletionRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CancelKeyDeletionRequest/)."""
 
 ConnectCustomKeyStoreRequest = TypedDict(
     "ConnectCustomKeyStoreRequest",
@@ -150,6 +267,7 @@ ConnectCustomKeyStoreRequest = TypedDict(
     "custom_key_store_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ConnectCustomKeyStoreRequest/)."""
 
 CreateAliasRequest = TypedDict(
     "CreateAliasRequest",
@@ -158,6 +276,7 @@ CreateAliasRequest = TypedDict(
     "target_key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateAliasRequest/)."""
 
 CreateCustomKeyStoreRequest = TypedDict(
     "CreateCustomKeyStoreRequest",
@@ -175,6 +294,7 @@ CreateCustomKeyStoreRequest = TypedDict(
     "xks_proxy_connectivity": NotRequired["XksProxyConnectivityType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateCustomKeyStoreRequest/)."""
 
 CreateGrantRequest = TypedDict(
     "CreateGrantRequest",
@@ -191,6 +311,7 @@ CreateGrantRequest = TypedDict(
     "retiring_service_principal": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateGrantRequest/)."""
 
 CreateKeyRequest = TypedDict(
     "CreateKeyRequest",
@@ -208,6 +329,7 @@ CreateKeyRequest = TypedDict(
     "xks_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateKeyRequest/)."""
 
 CustomKeyStoresListEntry = TypedDict(
     "CustomKeyStoresListEntry",
@@ -223,6 +345,7 @@ CustomKeyStoresListEntry = TypedDict(
     "xks_proxy_configuration": NotRequired["XksProxyConfigurationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomKeyStoresListEntry/)."""
 
 DecryptRequest = TypedDict(
     "DecryptRequest",
@@ -237,6 +360,7 @@ DecryptRequest = TypedDict(
     "dry_run_modifiers": NotRequired["Sequence[DryRunModifierType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DecryptRequest/)."""
 
 DeleteAliasRequest = TypedDict(
     "DeleteAliasRequest",
@@ -244,6 +368,7 @@ DeleteAliasRequest = TypedDict(
     "alias_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeleteAliasRequest/)."""
 
 DeleteCustomKeyStoreRequest = TypedDict(
     "DeleteCustomKeyStoreRequest",
@@ -251,6 +376,7 @@ DeleteCustomKeyStoreRequest = TypedDict(
     "custom_key_store_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeleteCustomKeyStoreRequest/)."""
 
 DeleteImportedKeyMaterialRequest = TypedDict(
     "DeleteImportedKeyMaterialRequest",
@@ -259,6 +385,7 @@ DeleteImportedKeyMaterialRequest = TypedDict(
     "key_material_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeleteImportedKeyMaterialRequest/)."""
 
 DeriveSharedSecretRequest = TypedDict(
     "DeriveSharedSecretRequest",
@@ -271,6 +398,7 @@ DeriveSharedSecretRequest = TypedDict(
     "recipient": NotRequired["RecipientInfo"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeriveSharedSecretRequest/)."""
 
 DescribeCustomKeyStoresRequest = TypedDict(
     "DescribeCustomKeyStoresRequest",
@@ -281,6 +409,7 @@ DescribeCustomKeyStoresRequest = TypedDict(
     "marker": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DescribeCustomKeyStoresRequest/)."""
 
 DescribeKeyRequest = TypedDict(
     "DescribeKeyRequest",
@@ -289,6 +418,7 @@ DescribeKeyRequest = TypedDict(
     "grant_tokens": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DescribeKeyRequest/)."""
 
 DisableKeyRequest = TypedDict(
     "DisableKeyRequest",
@@ -296,6 +426,7 @@ DisableKeyRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DisableKeyRequest/)."""
 
 DisableKeyRotationRequest = TypedDict(
     "DisableKeyRotationRequest",
@@ -303,6 +434,7 @@ DisableKeyRotationRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DisableKeyRotationRequest/)."""
 
 DisconnectCustomKeyStoreRequest = TypedDict(
     "DisconnectCustomKeyStoreRequest",
@@ -310,6 +442,7 @@ DisconnectCustomKeyStoreRequest = TypedDict(
     "custom_key_store_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DisconnectCustomKeyStoreRequest/)."""
 
 EnableKeyRequest = TypedDict(
     "EnableKeyRequest",
@@ -317,6 +450,7 @@ EnableKeyRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EnableKeyRequest/)."""
 
 EnableKeyRotationRequest = TypedDict(
     "EnableKeyRotationRequest",
@@ -325,6 +459,7 @@ EnableKeyRotationRequest = TypedDict(
     "rotation_period_in_days": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EnableKeyRotationRequest/)."""
 
 EncryptRequest = TypedDict(
     "EncryptRequest",
@@ -337,6 +472,7 @@ EncryptRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncryptRequest/)."""
 
 GenerateDataKeyPairRequest = TypedDict(
     "GenerateDataKeyPairRequest",
@@ -349,6 +485,7 @@ GenerateDataKeyPairRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyPairRequest/)."""
 
 GenerateDataKeyPairWithoutPlaintextRequest = TypedDict(
     "GenerateDataKeyPairWithoutPlaintextRequest",
@@ -360,6 +497,7 @@ GenerateDataKeyPairWithoutPlaintextRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyPairWithoutPlaintextRequest/)."""
 
 GenerateDataKeyRequest = TypedDict(
     "GenerateDataKeyRequest",
@@ -373,6 +511,7 @@ GenerateDataKeyRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyRequest/)."""
 
 GenerateDataKeyWithoutPlaintextRequest = TypedDict(
     "GenerateDataKeyWithoutPlaintextRequest",
@@ -385,6 +524,7 @@ GenerateDataKeyWithoutPlaintextRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyWithoutPlaintextRequest/)."""
 
 GenerateMacRequest = TypedDict(
     "GenerateMacRequest",
@@ -396,6 +536,7 @@ GenerateMacRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateMacRequest/)."""
 
 GenerateRandomRequest = TypedDict(
     "GenerateRandomRequest",
@@ -405,6 +546,7 @@ GenerateRandomRequest = TypedDict(
     "recipient": NotRequired["RecipientInfo"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateRandomRequest/)."""
 
 GetKeyLastUsageRequest = TypedDict(
     "GetKeyLastUsageRequest",
@@ -412,6 +554,7 @@ GetKeyLastUsageRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyLastUsageRequest/)."""
 
 GetKeyPolicyRequest = TypedDict(
     "GetKeyPolicyRequest",
@@ -420,6 +563,7 @@ GetKeyPolicyRequest = TypedDict(
     "policy_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyPolicyRequest/)."""
 
 GetKeyRotationStatusRequest = TypedDict(
     "GetKeyRotationStatusRequest",
@@ -427,6 +571,7 @@ GetKeyRotationStatusRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyRotationStatusRequest/)."""
 
 GetParametersForImportRequest = TypedDict(
     "GetParametersForImportRequest",
@@ -436,6 +581,7 @@ GetParametersForImportRequest = TypedDict(
     "wrapping_key_spec": Required["WrappingKeySpec"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetParametersForImportRequest/)."""
 
 GetPublicKeyRequest = TypedDict(
     "GetPublicKeyRequest",
@@ -444,6 +590,7 @@ GetPublicKeyRequest = TypedDict(
     "grant_tokens": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetPublicKeyRequest/)."""
 
 GrantConstraints = TypedDict(
     "GrantConstraints",
@@ -453,6 +600,7 @@ GrantConstraints = TypedDict(
     "source_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantConstraints/)."""
 
 GrantListEntry = TypedDict(
     "GrantListEntry",
@@ -470,6 +618,7 @@ GrantListEntry = TypedDict(
     "retiring_service_principal": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantListEntry/)."""
 
 ImportKeyMaterialRequest = TypedDict(
     "ImportKeyMaterialRequest",
@@ -484,6 +633,7 @@ ImportKeyMaterialRequest = TypedDict(
     "key_material_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ImportKeyMaterialRequest/)."""
 
 KeyLastUsageData = TypedDict(
     "KeyLastUsageData",
@@ -494,6 +644,7 @@ KeyLastUsageData = TypedDict(
     "kms_request_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyLastUsageData/)."""
 
 KeyListEntry = TypedDict(
     "KeyListEntry",
@@ -502,6 +653,7 @@ KeyListEntry = TypedDict(
     "key_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyListEntry/)."""
 
 KeyMetadata = TypedDict(
     "KeyMetadata",
@@ -534,6 +686,7 @@ KeyMetadata = TypedDict(
     "current_key_material_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyMetadata/)."""
 
 ListAliasesRequest = TypedDict(
     "ListAliasesRequest",
@@ -543,6 +696,7 @@ ListAliasesRequest = TypedDict(
     "marker": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListAliasesRequest/)."""
 
 ListGrantsRequest = TypedDict(
     "ListGrantsRequest",
@@ -555,6 +709,7 @@ ListGrantsRequest = TypedDict(
     "grantee_service_principal": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListGrantsRequest/)."""
 
 ListKeyPoliciesRequest = TypedDict(
     "ListKeyPoliciesRequest",
@@ -564,6 +719,7 @@ ListKeyPoliciesRequest = TypedDict(
     "marker": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeyPoliciesRequest/)."""
 
 ListKeyRotationsRequest = TypedDict(
     "ListKeyRotationsRequest",
@@ -574,6 +730,7 @@ ListKeyRotationsRequest = TypedDict(
     "marker": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeyRotationsRequest/)."""
 
 ListKeysRequest = TypedDict(
     "ListKeysRequest",
@@ -582,6 +739,7 @@ ListKeysRequest = TypedDict(
     "marker": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeysRequest/)."""
 
 ListResourceTagsRequest = TypedDict(
     "ListResourceTagsRequest",
@@ -591,6 +749,7 @@ ListResourceTagsRequest = TypedDict(
     "marker": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListResourceTagsRequest/)."""
 
 ListRetirableGrantsRequest = TypedDict(
     "ListRetirableGrantsRequest",
@@ -601,6 +760,7 @@ ListRetirableGrantsRequest = TypedDict(
     "retiring_service_principal": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListRetirableGrantsRequest/)."""
 
 MultiRegionConfiguration = TypedDict(
     "MultiRegionConfiguration",
@@ -610,6 +770,7 @@ MultiRegionConfiguration = TypedDict(
     "replica_keys": NotRequired["Sequence[MultiRegionKey]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionConfiguration/)."""
 
 MultiRegionKey = TypedDict(
     "MultiRegionKey",
@@ -618,6 +779,7 @@ MultiRegionKey = TypedDict(
     "region": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionKey/)."""
 
 PutKeyPolicyRequest = TypedDict(
     "PutKeyPolicyRequest",
@@ -628,6 +790,7 @@ PutKeyPolicyRequest = TypedDict(
     "bypass_policy_lockout_safety_check": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/PutKeyPolicyRequest/)."""
 
 ReEncryptRequest = TypedDict(
     "ReEncryptRequest",
@@ -644,6 +807,7 @@ ReEncryptRequest = TypedDict(
     "dry_run_modifiers": NotRequired["Sequence[DryRunModifierType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ReEncryptRequest/)."""
 
 RecipientInfo = TypedDict(
     "RecipientInfo",
@@ -652,6 +816,7 @@ RecipientInfo = TypedDict(
     "attestation_document": NotRequired["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RecipientInfo/)."""
 
 ReplicateKeyRequest = TypedDict(
     "ReplicateKeyRequest",
@@ -664,6 +829,7 @@ ReplicateKeyRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ReplicateKeyRequest/)."""
 
 RetireGrantRequest = TypedDict(
     "RetireGrantRequest",
@@ -674,6 +840,7 @@ RetireGrantRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RetireGrantRequest/)."""
 
 RevokeGrantRequest = TypedDict(
     "RevokeGrantRequest",
@@ -683,6 +850,7 @@ RevokeGrantRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RevokeGrantRequest/)."""
 
 RotateKeyOnDemandRequest = TypedDict(
     "RotateKeyOnDemandRequest",
@@ -690,6 +858,7 @@ RotateKeyOnDemandRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotateKeyOnDemandRequest/)."""
 
 RotationsListEntry = TypedDict(
     "RotationsListEntry",
@@ -705,6 +874,7 @@ RotationsListEntry = TypedDict(
     "rotation_type": NotRequired["RotationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotationsListEntry/)."""
 
 ScheduleKeyDeletionRequest = TypedDict(
     "ScheduleKeyDeletionRequest",
@@ -713,6 +883,7 @@ ScheduleKeyDeletionRequest = TypedDict(
     "pending_window_in_days": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ScheduleKeyDeletionRequest/)."""
 
 SignRequest = TypedDict(
     "SignRequest",
@@ -725,6 +896,7 @@ SignRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/SignRequest/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -733,6 +905,7 @@ Tag = TypedDict(
     "tag_value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -741,6 +914,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/TagResourceRequest/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -749,6 +923,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/UntagResourceRequest/)."""
 
 UpdateAliasRequest = TypedDict(
     "UpdateAliasRequest",
@@ -757,6 +932,7 @@ UpdateAliasRequest = TypedDict(
     "target_key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/UpdateAliasRequest/)."""
 
 UpdateCustomKeyStoreRequest = TypedDict(
     "UpdateCustomKeyStoreRequest",
@@ -773,6 +949,7 @@ UpdateCustomKeyStoreRequest = TypedDict(
     "xks_proxy_connectivity": NotRequired["XksProxyConnectivityType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/UpdateCustomKeyStoreRequest/)."""
 
 UpdateKeyDescriptionRequest = TypedDict(
     "UpdateKeyDescriptionRequest",
@@ -781,6 +958,7 @@ UpdateKeyDescriptionRequest = TypedDict(
     "description": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/UpdateKeyDescriptionRequest/)."""
 
 UpdatePrimaryRegionRequest = TypedDict(
     "UpdatePrimaryRegionRequest",
@@ -789,6 +967,7 @@ UpdatePrimaryRegionRequest = TypedDict(
     "primary_region": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/UpdatePrimaryRegionRequest/)."""
 
 VerifyMacRequest = TypedDict(
     "VerifyMacRequest",
@@ -801,6 +980,7 @@ VerifyMacRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/VerifyMacRequest/)."""
 
 VerifyRequest = TypedDict(
     "VerifyRequest",
@@ -814,6 +994,7 @@ VerifyRequest = TypedDict(
     "dry_run": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/VerifyRequest/)."""
 
 XksKeyConfigurationType = TypedDict(
     "XksKeyConfigurationType",
@@ -821,6 +1002,7 @@ XksKeyConfigurationType = TypedDict(
     "id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksKeyConfigurationType/)."""
 
 XksProxyAuthenticationCredentialType = TypedDict(
     "XksProxyAuthenticationCredentialType",
@@ -829,6 +1011,7 @@ XksProxyAuthenticationCredentialType = TypedDict(
     "raw_secret_access_key": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksProxyAuthenticationCredentialType/)."""
 
 XksProxyConfigurationType = TypedDict(
     "XksProxyConfigurationType",
@@ -841,3 +1024,4 @@ XksProxyConfigurationType = TypedDict(
     "vpc_endpoint_service_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksProxyConfigurationType/)."""

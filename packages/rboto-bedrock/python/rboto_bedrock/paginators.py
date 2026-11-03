@@ -64,7 +64,7 @@ class BedrockClientPaginators:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListAdvancedPromptOptimizationJobsOutput]:
-        """Yield each page from list_advanced_prompt_optimization_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_advanced_prompt_optimization_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -92,7 +92,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListAutomatedReasoningPoliciesOutput]:
-        """Yield each page from list_automated_reasoning_policies; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policies/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if policy_arn is not None:
@@ -118,7 +118,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListAutomatedReasoningPolicyBuildWorkflowsOutput]:
-        """Yield each page from list_automated_reasoning_policy_build_workflows; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policy_build_workflows/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -143,7 +143,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListAutomatedReasoningPolicyTestCasesOutput]:
-        """Yield each page from list_automated_reasoning_policy_test_cases; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policy_test_cases/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -169,7 +169,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListAutomatedReasoningPolicyTestResultsOutput]:
-        """Yield each page from list_automated_reasoning_policy_test_results; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policy_test_results/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -201,7 +201,7 @@ class BedrockClientPaginators:
         status_equals: CustomModelDeploymentStatus | None = None,
         model_arn_equals: str | None = None,
     ) -> AsyncIterator[ListCustomModelDeploymentsOutput]:
-        """Yield each page from list_custom_model_deployments; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_custom_model_deployments/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if created_before is not None:
@@ -247,7 +247,7 @@ class BedrockClientPaginators:
         is_owned: bool | None = None,
         model_status: ModelStatus | None = None,
     ) -> AsyncIterator[ListCustomModelsOutput]:
-        """Yield each page from list_custom_models; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_custom_models/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if creation_time_before is not None:
@@ -287,7 +287,7 @@ class BedrockClientPaginators:
         *,
         next_token: str | None = None,
     ) -> AsyncIterator[ListEnforcedGuardrailsConfigurationOutput]:
-        """Yield each page from list_enforced_guardrails_configuration; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_enforced_guardrails_configuration/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -315,7 +315,7 @@ class BedrockClientPaginators:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListEvaluationJobsOutput]:
-        """Yield each page from list_evaluation_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_evaluation_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -353,7 +353,7 @@ class BedrockClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListGuardrailsOutput]:
-        """Yield each page from list_guardrails; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_guardrails/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if guardrail_identifier is not None:
@@ -383,7 +383,7 @@ class BedrockClientPaginators:
         sort_by: SortModelsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListImportedModelsOutput]:
-        """Yield each page from list_imported_models; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_imported_models/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if creation_time_before is not None:
@@ -417,7 +417,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         type_equals: InferenceProfileType | None = None,
     ) -> AsyncIterator[ListInferenceProfilesOutput]:
-        """Yield each page from list_inference_profiles; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_inference_profiles/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -443,7 +443,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         model_source_equals: str | None = None,
     ) -> AsyncIterator[ListMarketplaceModelEndpointsOutput]:
-        """Yield each page from list_marketplace_model_endpoints; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_marketplace_model_endpoints/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -476,7 +476,7 @@ class BedrockClientPaginators:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListModelCopyJobsOutput]:
-        """Yield each page from list_model_copy_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_copy_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -521,7 +521,7 @@ class BedrockClientPaginators:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListModelCustomizationJobsOutput]:
-        """Yield each page from list_model_customization_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_customization_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -562,7 +562,7 @@ class BedrockClientPaginators:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListModelImportJobsOutput]:
-        """Yield each page from list_model_import_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_import_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -603,7 +603,7 @@ class BedrockClientPaginators:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListModelInvocationJobsOutput]:
-        """Yield each page from list_model_invocation_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_invocation_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if submit_time_after is not None:
@@ -639,7 +639,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         type: PromptRouterType | None = None,
     ) -> AsyncIterator[ListPromptRoutersOutput]:
-        """Yield each page from list_prompt_routers; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_prompt_routers/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -671,7 +671,7 @@ class BedrockClientPaginators:
         sort_by: SortByProvisionedModels | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListProvisionedModelThroughputsOutput]:
-        """Yield each page from list_provisioned_model_throughputs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_provisioned_model_throughputs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:

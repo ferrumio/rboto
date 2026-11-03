@@ -18,6 +18,8 @@ from .paginators import SignInClientPaginators as _Paginators
 
 
 class SignInClient:
+    """Async SignInClient. See [reference](https://ferrumio.github.io/rboto/reference/signin/)."""
+
     logger_name = "rboto.signin"
 
     def __init__(
@@ -58,6 +60,7 @@ class SignInClient:
         *,
         token_input: CreateOAuth2TokenRequestBody,
     ) -> CreateOAuth2TokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/create_o_auth2_token/)."""
         params: dict[str, object] = {
             "token_input": token_input,
         }
@@ -81,6 +84,7 @@ class SignInClient:
         grant_type: str,
         resource: str,
     ) -> CreateOAuth2TokenWithIAMOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/create_o_auth2_token_with_iam/)."""
         params: dict[str, object] = {
             "grant_type": grant_type,
             "resource": resource,
@@ -104,6 +108,7 @@ class SignInClient:
         *,
         target_id: str | None = None,
     ) -> DeleteConsoleAuthorizationConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/delete_console_authorization_configuration/)."""
         params: dict[str, object] = {
         }
         if target_id is not None:
@@ -128,6 +133,7 @@ class SignInClient:
         statement_id: str,
         client_token: str | None = None,
     ) -> DeleteResourcePermissionStatementOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/delete_resource_permission_statement/)."""
         params: dict[str, object] = {
             "statement_id": statement_id,
         }
@@ -152,6 +158,7 @@ class SignInClient:
         *,
         target_id: str | None = None,
     ) -> GetConsoleAuthorizationConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/get_console_authorization_configuration/)."""
         params: dict[str, object] = {
         }
         if target_id is not None:
@@ -173,6 +180,7 @@ class SignInClient:
     async def get_resource_policy(
         self,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/get_resource_policy/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("signin", self._interceptors)
@@ -195,6 +203,7 @@ class SignInClient:
         token: str,
         token_type_hint: str | None = None,
     ) -> IntrospectOAuth2TokenWithIAMOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/introspect_o_auth2_token_with_iam/)."""
         params: dict[str, object] = {
             "token": token,
         }
@@ -220,6 +229,7 @@ class SignInClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListResourcePermissionStatementsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/list_resource_permission_statements/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -245,6 +255,7 @@ class SignInClient:
         *,
         target_id: str | None = None,
     ) -> PutConsoleAuthorizationConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/put_console_authorization_configuration/)."""
         params: dict[str, object] = {
         }
         if target_id is not None:
@@ -275,6 +286,7 @@ class SignInClient:
         excluded_principal: str | None = None,
         client_token: str | None = None,
     ) -> PutResourcePermissionStatementOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/put_resource_permission_statement/)."""
         params: dict[str, object] = {
         }
         if source_vpc is not None:
@@ -312,6 +324,7 @@ class SignInClient:
         *,
         token: str,
     ) -> RevokeOAuth2TokenWithIAMOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/revoke_o_auth2_token_with_iam/)."""
         params: dict[str, object] = {
             "token": token,
         }

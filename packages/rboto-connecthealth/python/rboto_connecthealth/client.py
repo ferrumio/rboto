@@ -29,6 +29,8 @@ from .paginators import ConnectHealthClientPaginators as _Paginators
 
 
 class ConnectHealthClient:
+    """Async ConnectHealthClient. See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/)."""
+
     logger_name = "rboto.connecthealth"
 
     def __init__(
@@ -70,6 +72,7 @@ class ConnectHealthClient:
         domain_id: str,
         subscription_id: str,
     ) -> ActivateSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/activate_subscription/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
             "subscription_id": subscription_id,
@@ -96,6 +99,7 @@ class ConnectHealthClient:
         web_app_setup_configuration: CreateWebAppConfiguration | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateDomainOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/create_domain/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -124,6 +128,7 @@ class ConnectHealthClient:
         *,
         domain_id: str,
     ) -> CreateSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/create_subscription/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
         }
@@ -147,6 +152,7 @@ class ConnectHealthClient:
         domain_id: str,
         subscription_id: str,
     ) -> DeactivateSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/deactivate_subscription/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
             "subscription_id": subscription_id,
@@ -170,6 +176,7 @@ class ConnectHealthClient:
         *,
         domain_id: str,
     ) -> DeleteDomainOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/delete_domain/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
         }
@@ -192,6 +199,7 @@ class ConnectHealthClient:
         *,
         domain_id: str,
     ) -> GetDomainOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/get_domain/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
         }
@@ -216,6 +224,7 @@ class ConnectHealthClient:
         domain_id: str,
         subscription_id: str,
     ) -> GetMedicalScribeListeningSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/get_medical_scribe_listening_session/)."""
         params: dict[str, object] = {
             "session_id": session_id,
             "domain_id": domain_id,
@@ -241,6 +250,7 @@ class ConnectHealthClient:
         domain_id: str,
         job_id: str,
     ) -> GetPatientInsightsJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/get_patient_insights_job/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
             "job_id": job_id,
@@ -265,6 +275,7 @@ class ConnectHealthClient:
         domain_id: str,
         subscription_id: str,
     ) -> GetSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/get_subscription/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
             "subscription_id": subscription_id,
@@ -290,6 +301,7 @@ class ConnectHealthClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDomainsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/list_domains/)."""
         params: dict[str, object] = {
         }
         if status is not None:
@@ -319,6 +331,7 @@ class ConnectHealthClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListSubscriptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/list_subscriptions/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
         }
@@ -345,6 +358,7 @@ class ConnectHealthClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -373,6 +387,7 @@ class ConnectHealthClient:
         media_encoding: MedicalScribeMediaEncoding,
         input_stream: AsyncIterator[MedicalScribeInputStream] | None = None,
     ) -> StartMedicalScribeListeningSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/start_medical_scribe_listening_session/)."""
         params: dict[str, object] = {
             "session_id": session_id,
             "domain_id": domain_id,
@@ -409,6 +424,7 @@ class ConnectHealthClient:
         output_data_config: OutputDataConfig,
         client_token: str | None = None,
     ) -> StartPatientInsightsJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/start_patient_insights_job/)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
             "patient_context": patient_context,
@@ -440,6 +456,7 @@ class ConnectHealthClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -464,6 +481,7 @@ class ConnectHealthClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,

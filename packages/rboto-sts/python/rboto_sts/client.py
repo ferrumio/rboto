@@ -18,6 +18,8 @@ from .types import (
 
 
 class STSClient:
+    """Async STSClient. See [reference](https://ferrumio.github.io/rboto/reference/sts/)."""
+
     logger_name = "rboto.sts"
 
     def __init__(
@@ -62,6 +64,7 @@ class STSClient:
         provided_contexts: Sequence[ProvidedContext] | None = None,
         minimum_session_token_size: int | None = None,
     ) -> AssumeRoleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/assume_role/)."""
         params: dict[str, object] = {
             "role_arn": role_arn,
             "role_session_name": role_session_name,
@@ -113,6 +116,7 @@ class STSClient:
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
     ) -> AssumeRoleWithSAMLOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/assume_role_with_saml/)."""
         params: dict[str, object] = {
             "role_arn": role_arn,
             "principal_arn": principal_arn,
@@ -152,6 +156,7 @@ class STSClient:
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
     ) -> AssumeRoleWithWebIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/assume_role_with_web_identity/)."""
         params: dict[str, object] = {
             "role_arn": role_arn,
             "role_session_name": role_session_name,
@@ -189,6 +194,7 @@ class STSClient:
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
     ) -> AssumeRootOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/assume_root/)."""
         params: dict[str, object] = {
             "target_principal": target_principal,
             "task_policy_arn": task_policy_arn,
@@ -216,6 +222,7 @@ class STSClient:
         *,
         encoded_message: str,
     ) -> DecodeAuthorizationMessageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/decode_authorization_message/)."""
         params: dict[str, object] = {
             "encoded_message": encoded_message,
         }
@@ -238,6 +245,7 @@ class STSClient:
         *,
         access_key_id: str,
     ) -> GetAccessKeyInfoOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_access_key_info/)."""
         params: dict[str, object] = {
             "access_key_id": access_key_id,
         }
@@ -258,6 +266,7 @@ class STSClient:
     async def get_caller_identity(
         self,
     ) -> GetCallerIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_caller_identity/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("sts", self._interceptors)
@@ -279,6 +288,7 @@ class STSClient:
         *,
         trade_in_token: str,
     ) -> GetDelegatedAccessTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_delegated_access_token/)."""
         params: dict[str, object] = {
             "trade_in_token": trade_in_token,
         }
@@ -306,6 +316,7 @@ class STSClient:
         tags: Sequence[Tag] | None = None,
         minimum_session_token_size: int | None = None,
     ) -> GetFederationTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_federation_token/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -341,6 +352,7 @@ class STSClient:
         token_code: str | None = None,
         minimum_session_token_size: int | None = None,
     ) -> GetSessionTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_session_token/)."""
         params: dict[str, object] = {
         }
         if duration_seconds is not None:
@@ -373,6 +385,7 @@ class STSClient:
         duration_seconds: int | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> GetWebIdentityTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sts/operations/get_web_identity_token/)."""
         params: dict[str, object] = {
             "audience": audience,
             "signing_algorithm": signing_algorithm,

@@ -19,6 +19,8 @@ from .paginators import CognitoIdentityClientPaginators as _Paginators
 
 
 class CognitoIdentityClient:
+    """Async CognitoIdentityClient. See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/)."""
+
     logger_name = "rboto.cognito-identity"
 
     def __init__(
@@ -67,6 +69,7 @@ class CognitoIdentityClient:
         saml_provider_arns: Sequence[str] | None = None,
         identity_pool_tags: dict[str, str] | None = None,
     ) -> CreateIdentityPoolOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/create_identity_pool/)."""
         params: dict[str, object] = {
             "identity_pool_name": identity_pool_name,
             "allow_unauthenticated_identities": allow_unauthenticated_identities,
@@ -104,6 +107,7 @@ class CognitoIdentityClient:
         *,
         identity_ids_to_delete: Sequence[str],
     ) -> DeleteIdentitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/delete_identities/)."""
         params: dict[str, object] = {
             "identity_ids_to_delete": identity_ids_to_delete,
         }
@@ -126,6 +130,7 @@ class CognitoIdentityClient:
         *,
         identity_pool_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/delete_identity_pool/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -148,6 +153,7 @@ class CognitoIdentityClient:
         *,
         identity_id: str,
     ) -> DescribeIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/describe_identity/)."""
         params: dict[str, object] = {
             "identity_id": identity_id,
         }
@@ -170,6 +176,7 @@ class CognitoIdentityClient:
         *,
         identity_pool_id: str,
     ) -> DescribeIdentityPoolOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/describe_identity_pool/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -194,6 +201,7 @@ class CognitoIdentityClient:
         logins: dict[str, str] | None = None,
         custom_role_arn: str | None = None,
     ) -> GetCredentialsForIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/get_credentials_for_identity/)."""
         params: dict[str, object] = {
             "identity_id": identity_id,
         }
@@ -222,6 +230,7 @@ class CognitoIdentityClient:
         account_id: str | None = None,
         logins: dict[str, str] | None = None,
     ) -> GetIdOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/get_id/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -248,6 +257,7 @@ class CognitoIdentityClient:
         *,
         identity_pool_id: str,
     ) -> GetIdentityPoolRolesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/get_identity_pool_roles/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -271,6 +281,7 @@ class CognitoIdentityClient:
         identity_id: str,
         logins: dict[str, str] | None = None,
     ) -> GetOpenIdTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/get_open_id_token/)."""
         params: dict[str, object] = {
             "identity_id": identity_id,
         }
@@ -299,6 +310,7 @@ class CognitoIdentityClient:
         principal_tags: dict[str, str] | None = None,
         token_duration: int | None = None,
     ) -> GetOpenIdTokenForDeveloperIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/get_open_id_token_for_developer_identity/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "logins": logins,
@@ -329,6 +341,7 @@ class CognitoIdentityClient:
         identity_pool_id: str,
         identity_provider_name: str,
     ) -> GetPrincipalTagAttributeMapOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/get_principal_tag_attribute_map/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "identity_provider_name": identity_provider_name,
@@ -355,6 +368,7 @@ class CognitoIdentityClient:
         next_token: str | None = None,
         hide_disabled: bool | None = None,
     ) -> ListIdentitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/list_identities/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "max_results": max_results,
@@ -383,6 +397,7 @@ class CognitoIdentityClient:
         max_results: int,
         next_token: str | None = None,
     ) -> ListIdentityPoolsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/list_identity_pools/)."""
         params: dict[str, object] = {
             "max_results": max_results,
         }
@@ -407,6 +422,7 @@ class CognitoIdentityClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -433,6 +449,7 @@ class CognitoIdentityClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> LookupDeveloperIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/lookup_developer_identity/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
@@ -466,6 +483,7 @@ class CognitoIdentityClient:
         developer_provider_name: str,
         identity_pool_id: str,
     ) -> MergeDeveloperIdentitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/merge_developer_identities/)."""
         params: dict[str, object] = {
             "source_user_identifier": source_user_identifier,
             "destination_user_identifier": destination_user_identifier,
@@ -493,6 +511,7 @@ class CognitoIdentityClient:
         roles: dict[str, str],
         role_mappings: dict[str, RoleMapping] | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/set_identity_pool_roles/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "roles": roles,
@@ -521,6 +540,7 @@ class CognitoIdentityClient:
         use_defaults: bool | None = None,
         principal_tags: dict[str, str] | None = None,
     ) -> SetPrincipalTagAttributeMapOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/set_principal_tag_attribute_map/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "identity_provider_name": identity_provider_name,
@@ -549,6 +569,7 @@ class CognitoIdentityClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -575,6 +596,7 @@ class CognitoIdentityClient:
         developer_provider_name: str,
         developer_user_identifier: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/unlink_developer_identity/)."""
         params: dict[str, object] = {
             "identity_id": identity_id,
             "identity_pool_id": identity_pool_id,
@@ -602,6 +624,7 @@ class CognitoIdentityClient:
         logins: dict[str, str],
         logins_to_remove: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/unlink_identity/)."""
         params: dict[str, object] = {
             "identity_id": identity_id,
             "logins": logins,
@@ -627,6 +650,7 @@ class CognitoIdentityClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -659,6 +683,7 @@ class CognitoIdentityClient:
         saml_provider_arns: Sequence[str] | None = None,
         identity_pool_tags: dict[str, str] | None = None,
     ) -> UpdateIdentityPoolOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/update_identity_pool/)."""
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
             "identity_pool_name": identity_pool_name,

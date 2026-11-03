@@ -41,6 +41,8 @@ from .paginators import KMSClientPaginators as _Paginators
 
 
 class KMSClient:
+    """Async KMSClient. See [reference](https://ferrumio.github.io/rboto/reference/kms/)."""
+
     logger_name = "rboto.kms"
 
     def __init__(
@@ -81,6 +83,7 @@ class KMSClient:
         *,
         key_id: str,
     ) -> CancelKeyDeletionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/cancel_key_deletion/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -103,6 +106,7 @@ class KMSClient:
         *,
         custom_key_store_id: str,
     ) -> ConnectCustomKeyStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/connect_custom_key_store/)."""
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -126,6 +130,7 @@ class KMSClient:
         alias_name: str,
         target_key_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/create_alias/)."""
         params: dict[str, object] = {
             "alias_name": alias_name,
             "target_key_id": target_key_id,
@@ -159,6 +164,7 @@ class KMSClient:
         xks_proxy_authentication_credential: XksProxyAuthenticationCredentialType | None = None,
         xks_proxy_connectivity: XksProxyConnectivityType | None = None,
     ) -> CreateCustomKeyStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/create_custom_key_store/)."""
         params: dict[str, object] = {
             "custom_key_store_name": custom_key_store_name,
         }
@@ -210,6 +216,7 @@ class KMSClient:
         grantee_service_principal: str | None = None,
         retiring_service_principal: str | None = None,
     ) -> CreateGrantOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/create_grant/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "operations": operations,
@@ -259,6 +266,7 @@ class KMSClient:
         multi_region: bool | None = None,
         xks_key_id: str | None = None,
     ) -> CreateKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/create_key/)."""
         params: dict[str, object] = {
         }
         if policy is not None:
@@ -309,6 +317,7 @@ class KMSClient:
         dry_run: bool | None = None,
         dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
     ) -> DecryptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/decrypt/)."""
         params: dict[str, object] = {
         }
         if ciphertext_blob is not None:
@@ -346,6 +355,7 @@ class KMSClient:
         *,
         alias_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/delete_alias/)."""
         params: dict[str, object] = {
             "alias_name": alias_name,
         }
@@ -368,6 +378,7 @@ class KMSClient:
         *,
         custom_key_store_id: str,
     ) -> DeleteCustomKeyStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/delete_custom_key_store/)."""
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -391,6 +402,7 @@ class KMSClient:
         key_id: str,
         key_material_id: str | None = None,
     ) -> DeleteImportedKeyMaterialOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/delete_imported_key_material/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -420,6 +432,7 @@ class KMSClient:
         dry_run: bool | None = None,
         recipient: RecipientInfo | None = None,
     ) -> DeriveSharedSecretOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/derive_shared_secret/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "key_agreement_algorithm": key_agreement_algorithm,
@@ -453,6 +466,7 @@ class KMSClient:
         limit: int | None = None,
         marker: str | None = None,
     ) -> DescribeCustomKeyStoresOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/describe_custom_key_stores/)."""
         params: dict[str, object] = {
         }
         if custom_key_store_id is not None:
@@ -483,6 +497,7 @@ class KMSClient:
         key_id: str,
         grant_tokens: Sequence[str] | None = None,
     ) -> DescribeKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/describe_key/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -507,6 +522,7 @@ class KMSClient:
         *,
         key_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/disable_key/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -529,6 +545,7 @@ class KMSClient:
         *,
         key_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/disable_key_rotation/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -551,6 +568,7 @@ class KMSClient:
         *,
         custom_key_store_id: str,
     ) -> DisconnectCustomKeyStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/disconnect_custom_key_store/)."""
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -573,6 +591,7 @@ class KMSClient:
         *,
         key_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/enable_key/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -596,6 +615,7 @@ class KMSClient:
         key_id: str,
         rotation_period_in_days: int | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/enable_key_rotation/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -625,6 +645,7 @@ class KMSClient:
         encryption_algorithm: EncryptionAlgorithmSpec | None = None,
         dry_run: bool | None = None,
     ) -> EncryptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/encrypt/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "plaintext": plaintext,
@@ -662,6 +683,7 @@ class KMSClient:
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/generate_data_key/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -701,6 +723,7 @@ class KMSClient:
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyPairOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/generate_data_key_pair/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "key_pair_spec": key_pair_spec,
@@ -736,6 +759,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyPairWithoutPlaintextOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/generate_data_key_pair_without_plaintext/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "key_pair_spec": key_pair_spec,
@@ -770,6 +794,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyWithoutPlaintextOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/generate_data_key_without_plaintext/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -806,6 +831,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> GenerateMacOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/generate_mac/)."""
         params: dict[str, object] = {
             "message": message,
             "key_id": key_id,
@@ -836,6 +862,7 @@ class KMSClient:
         custom_key_store_id: str | None = None,
         recipient: RecipientInfo | None = None,
     ) -> GenerateRandomOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/generate_random/)."""
         params: dict[str, object] = {
         }
         if number_of_bytes is not None:
@@ -863,6 +890,7 @@ class KMSClient:
         *,
         key_id: str,
     ) -> GetKeyLastUsageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/get_key_last_usage/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -886,6 +914,7 @@ class KMSClient:
         key_id: str,
         policy_name: str | None = None,
     ) -> GetKeyPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/get_key_policy/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -910,6 +939,7 @@ class KMSClient:
         *,
         key_id: str,
     ) -> GetKeyRotationStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/get_key_rotation_status/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -934,6 +964,7 @@ class KMSClient:
         wrapping_algorithm: AlgorithmSpec,
         wrapping_key_spec: WrappingKeySpec,
     ) -> GetParametersForImportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/get_parameters_for_import/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "wrapping_algorithm": wrapping_algorithm,
@@ -959,6 +990,7 @@ class KMSClient:
         key_id: str,
         grant_tokens: Sequence[str] | None = None,
     ) -> GetPublicKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/get_public_key/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -990,6 +1022,7 @@ class KMSClient:
         key_material_description: str | None = None,
         key_material_id: str | None = None,
     ) -> ImportKeyMaterialOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/import_key_material/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "import_token": import_token,
@@ -1026,6 +1059,7 @@ class KMSClient:
         limit: int | None = None,
         marker: str | None = None,
     ) -> ListAliasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_aliases/)."""
         params: dict[str, object] = {
         }
         if key_id is not None:
@@ -1058,6 +1092,7 @@ class KMSClient:
         grantee_principal: str | None = None,
         grantee_service_principal: str | None = None,
     ) -> ListGrantsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_grants/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1092,6 +1127,7 @@ class KMSClient:
         limit: int | None = None,
         marker: str | None = None,
     ) -> ListKeyPoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_key_policies/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1121,6 +1157,7 @@ class KMSClient:
         limit: int | None = None,
         marker: str | None = None,
     ) -> ListKeyRotationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_key_rotations/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1150,6 +1187,7 @@ class KMSClient:
         limit: int | None = None,
         marker: str | None = None,
     ) -> ListKeysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_keys/)."""
         params: dict[str, object] = {
         }
         if limit is not None:
@@ -1177,6 +1215,7 @@ class KMSClient:
         limit: int | None = None,
         marker: str | None = None,
     ) -> ListResourceTagsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_resource_tags/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1206,6 +1245,7 @@ class KMSClient:
         retiring_principal: str | None = None,
         retiring_service_principal: str | None = None,
     ) -> ListRetirableGrantsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_retirable_grants/)."""
         params: dict[str, object] = {
         }
         if limit is not None:
@@ -1238,6 +1278,7 @@ class KMSClient:
         policy_name: str | None = None,
         bypass_policy_lockout_safety_check: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/put_key_policy/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "policy": policy,
@@ -1274,6 +1315,7 @@ class KMSClient:
         dry_run: bool | None = None,
         dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
     ) -> ReEncryptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/re_encrypt/)."""
         params: dict[str, object] = {
             "destination_key_id": destination_key_id,
         }
@@ -1319,6 +1361,7 @@ class KMSClient:
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> ReplicateKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/replicate_key/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "replica_region": replica_region,
@@ -1353,6 +1396,7 @@ class KMSClient:
         grant_id: str | None = None,
         dry_run: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/retire_grant/)."""
         params: dict[str, object] = {
         }
         if grant_token is not None:
@@ -1384,6 +1428,7 @@ class KMSClient:
         grant_id: str,
         dry_run: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/revoke_grant/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "grant_id": grant_id,
@@ -1409,6 +1454,7 @@ class KMSClient:
         *,
         key_id: str,
     ) -> RotateKeyOnDemandOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/rotate_key_on_demand/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1432,6 +1478,7 @@ class KMSClient:
         key_id: str,
         pending_window_in_days: int | None = None,
     ) -> ScheduleKeyDeletionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/schedule_key_deletion/)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1461,6 +1508,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> SignOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/sign/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "message": message,
@@ -1492,6 +1540,7 @@ class KMSClient:
         key_id: str,
         tags: Sequence[Tag],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/tag_resource/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "tags": tags,
@@ -1516,6 +1565,7 @@ class KMSClient:
         key_id: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/untag_resource/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "tag_keys": tag_keys,
@@ -1540,6 +1590,7 @@ class KMSClient:
         alias_name: str,
         target_key_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/update_alias/)."""
         params: dict[str, object] = {
             "alias_name": alias_name,
             "target_key_id": target_key_id,
@@ -1572,6 +1623,7 @@ class KMSClient:
         xks_proxy_authentication_credential: XksProxyAuthenticationCredentialType | None = None,
         xks_proxy_connectivity: XksProxyConnectivityType | None = None,
     ) -> UpdateCustomKeyStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/update_custom_key_store/)."""
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -1613,6 +1665,7 @@ class KMSClient:
         key_id: str,
         description: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/update_key_description/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "description": description,
@@ -1637,6 +1690,7 @@ class KMSClient:
         key_id: str,
         primary_region: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/update_primary_region/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "primary_region": primary_region,
@@ -1666,6 +1720,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> VerifyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/verify/)."""
         params: dict[str, object] = {
             "key_id": key_id,
             "message": message,
@@ -1702,6 +1757,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> VerifyMacOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/verify_mac/)."""
         params: dict[str, object] = {
             "message": message,
             "key_id": key_id,

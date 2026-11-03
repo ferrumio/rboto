@@ -34,6 +34,8 @@ from .types import (
 
 
 class TranscribeStreamingClient:
+    """Async TranscribeStreamingClient. See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/)."""
+
     logger_name = "rboto.transcribe-streaming"
 
     def __init__(
@@ -66,6 +68,7 @@ class TranscribeStreamingClient:
         *,
         session_id: str,
     ) -> GetMedicalScribeStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/operations/get_medical_scribe_stream/)."""
         params: dict[str, object] = {
             "session_id": session_id,
         }
@@ -106,6 +109,7 @@ class TranscribeStreamingClient:
         content_redaction_type: ContentRedactionType | None = None,
         pii_entity_types: str | None = None,
     ) -> StartCallAnalyticsStreamTranscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/operations/start_call_analytics_stream_transcription/)."""
         params: dict[str, object] = {
             "media_sample_rate_hertz": media_sample_rate_hertz,
             "media_encoding": media_encoding,
@@ -166,6 +170,7 @@ class TranscribeStreamingClient:
         input_stream: AsyncIterator[MedicalScribeInputStream],
         session_id: str | None = None,
     ) -> StartMedicalScribeStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/operations/start_medical_scribe_stream/)."""
         params: dict[str, object] = {
             "language_code": language_code,
             "media_sample_rate_hertz": media_sample_rate_hertz,
@@ -204,6 +209,7 @@ class TranscribeStreamingClient:
         number_of_channels: int | None = None,
         content_identification_type: MedicalContentIdentificationType | None = None,
     ) -> StartMedicalStreamTranscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/operations/start_medical_stream_transcription/)."""
         params: dict[str, object] = {
             "language_code": language_code,
             "media_sample_rate_hertz": media_sample_rate_hertz,
@@ -267,6 +273,7 @@ class TranscribeStreamingClient:
         session_resume_window: int | None = None,
         transcript_format: TranscriptFormat | None = None,
     ) -> StartStreamTranscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/operations/start_stream_transcription/)."""
         params: dict[str, object] = {
             "media_sample_rate_hertz": media_sample_rate_hertz,
             "media_encoding": media_encoding,

@@ -22,6 +22,8 @@ from .paginators import EventBridgeSchedulerClientPaginators as _Paginators
 
 
 class EventBridgeSchedulerClient:
+    """Async EventBridgeSchedulerClient. See [reference](https://ferrumio.github.io/rboto/reference/scheduler/)."""
+
     logger_name = "rboto.scheduler"
 
     def __init__(
@@ -74,6 +76,7 @@ class EventBridgeSchedulerClient:
         client_token: str | None = None,
         action_after_completion: ActionAfterCompletion | None = None,
     ) -> CreateScheduleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/create_schedule/)."""
         params: dict[str, object] = {
             "name": name,
             "schedule_expression": schedule_expression,
@@ -119,6 +122,7 @@ class EventBridgeSchedulerClient:
         tags: Sequence[Tag] | None = None,
         client_token: str | None = None,
     ) -> CreateScheduleGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/create_schedule_group/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -147,6 +151,7 @@ class EventBridgeSchedulerClient:
         group_name: str | None = None,
         client_token: str | None = None,
     ) -> DeleteScheduleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/delete_schedule/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -174,6 +179,7 @@ class EventBridgeSchedulerClient:
         name: str,
         client_token: str | None = None,
     ) -> DeleteScheduleGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/delete_schedule_group/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -199,6 +205,7 @@ class EventBridgeSchedulerClient:
         name: str,
         group_name: str | None = None,
     ) -> GetScheduleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/get_schedule/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -223,6 +230,7 @@ class EventBridgeSchedulerClient:
         *,
         name: str,
     ) -> GetScheduleGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/get_schedule_group/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -247,6 +255,7 @@ class EventBridgeSchedulerClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListScheduleGroupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/list_schedule_groups/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -278,6 +287,7 @@ class EventBridgeSchedulerClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListSchedulesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/list_schedules/)."""
         params: dict[str, object] = {
         }
         if group_name is not None:
@@ -309,6 +319,7 @@ class EventBridgeSchedulerClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -332,6 +343,7 @@ class EventBridgeSchedulerClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -356,6 +368,7 @@ class EventBridgeSchedulerClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -391,6 +404,7 @@ class EventBridgeSchedulerClient:
         client_token: str | None = None,
         action_after_completion: ActionAfterCompletion | None = None,
     ) -> UpdateScheduleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/update_schedule/)."""
         params: dict[str, object] = {
             "name": name,
             "schedule_expression": schedule_expression,

@@ -41,7 +41,7 @@ class S3ClientPaginators:
         prefix: str | None = None,
         bucket_region: str | None = None,
     ) -> AsyncIterator[ListBucketsOutput]:
-        """Yield each page from list_buckets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_buckets/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_buckets is not None:
@@ -68,7 +68,7 @@ class S3ClientPaginators:
         continuation_token: str | None = None,
         max_directory_buckets: int | None = None,
     ) -> AsyncIterator[ListDirectoryBucketsOutput]:
-        """Yield each page from list_directory_buckets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_directory_buckets/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if continuation_token is not None:
@@ -98,7 +98,7 @@ class S3ClientPaginators:
         expected_bucket_owner: str | None = None,
         request_payer: RequestPayer | None = None,
     ) -> AsyncIterator[ListMultipartUploadsOutput]:
-        """Yield each page from list_multipart_uploads; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_multipart_uploads/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -140,7 +140,7 @@ class S3ClientPaginators:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> AsyncIterator[ListObjectAnnotationsOutput]:
-        """Yield each page from list_object_annotations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_object_annotations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -181,7 +181,7 @@ class S3ClientPaginators:
         request_payer: RequestPayer | None = None,
         optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> AsyncIterator[ListObjectVersionsOutput]:
-        """Yield each page from list_object_versions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_object_versions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -226,7 +226,7 @@ class S3ClientPaginators:
         expected_bucket_owner: str | None = None,
         optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> AsyncIterator[ListObjectsOutput]:
-        """Yield each page from list_objects; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_objects/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -271,7 +271,7 @@ class S3ClientPaginators:
         expected_bucket_owner: str | None = None,
         optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> AsyncIterator[ListObjectsV2Output]:
-        """Yield each page from list_objects_v2; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_objects_v2/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -319,7 +319,7 @@ class S3ClientPaginators:
         sse_customer_key: str | None = None,
         sse_customer_key_md5: str | None = None,
     ) -> AsyncIterator[ListPartsOutput]:
-        """Yield each page from list_parts; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_parts/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,

@@ -37,7 +37,7 @@ class BedrockRuntimeClientPaginators:
         sort_by: SortAsyncInvocationBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> AsyncIterator[ListAsyncInvokesOutput]:
-        """Yield each page from list_async_invokes; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/list_async_invokes/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if submit_time_after is not None:

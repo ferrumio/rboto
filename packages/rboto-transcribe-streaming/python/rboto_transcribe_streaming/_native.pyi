@@ -11,30 +11,36 @@ from .types import StartCallAnalyticsStreamTranscriptionOutput, StartMedicalScri
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class CallAnalyticsTranscriptResultStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/CallAnalyticsTranscriptResultStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.CallAnalyticsTranscriptResultStream]: ...
     def __anext__(self) -> Awaitable[_types.CallAnalyticsTranscriptResultStream]: ...
 @final
 class MedicalScribeResultStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeResultStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.MedicalScribeResultStream]: ...
     def __anext__(self) -> Awaitable[_types.MedicalScribeResultStream]: ...
 @final
 class MedicalTranscriptResultStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalTranscriptResultStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.MedicalTranscriptResultStream]: ...
     def __anext__(self) -> Awaitable[_types.MedicalTranscriptResultStream]: ...
 @final
 class TranscriptResultStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/TranscriptResultStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.TranscriptResultStream]: ...
     def __anext__(self) -> Awaitable[_types.TranscriptResultStream]: ...
 
 
 @final
 class ClinicalNoteGenerationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/ClinicalNoteGenerationResultOutput/)."""
     @property
     def clinical_note_output_location(self) -> str | None: ...
     @property
@@ -47,6 +53,7 @@ class ClinicalNoteGenerationResult:
 
 @final
 class ClinicalNoteGenerationSettings:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/ClinicalNoteGenerationSettingsOutput/)."""
     @property
     def output_bucket_name(self) -> str: ...
     @property
@@ -55,6 +62,7 @@ class ClinicalNoteGenerationSettings:
 
 @final
 class MedicalScribeChannelDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeChannelDefinitionOutput/)."""
     @property
     def channel_id(self) -> int: ...
     @property
@@ -63,6 +71,7 @@ class MedicalScribeChannelDefinition:
 
 @final
 class MedicalScribeEncryptionSettings:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeEncryptionSettingsOutput/)."""
     @property
     def kms_encryption_context(self) -> dict[str, str] | None: ...
     @property
@@ -71,18 +80,21 @@ class MedicalScribeEncryptionSettings:
 
 @final
 class MedicalScribePostStreamAnalyticsResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribePostStreamAnalyticsResultOutput/)."""
     @property
     def clinical_note_generation_result(self) -> ClinicalNoteGenerationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MedicalScribePostStreamAnalyticsSettings:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribePostStreamAnalyticsSettingsOutput/)."""
     @property
     def clinical_note_generation_settings(self) -> ClinicalNoteGenerationSettings | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MedicalScribeStreamDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeStreamDetailsOutput/)."""
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -119,6 +131,7 @@ class MedicalScribeStreamDetails:
 
 @final
 class GetMedicalScribeStreamOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/GetMedicalScribeStreamOutput/)."""
     @property
     def medical_scribe_stream_details(self) -> MedicalScribeStreamDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...

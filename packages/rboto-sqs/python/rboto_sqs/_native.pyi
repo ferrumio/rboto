@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class BatchResultErrorEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/BatchResultErrorEntryOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -29,18 +31,21 @@ class BatchResultErrorEntry:
 
 @final
 class ChangeMessageVisibilityBatchResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchResultEntryOutput/)."""
     @property
     def id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMessageBatchResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchResultEntryOutput/)."""
     @property
     def id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListMessageMoveTasksResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListMessageMoveTasksResultEntryOutput/)."""
     @property
     def task_handle(self) -> str | None: ...
     @property
@@ -63,6 +68,7 @@ class ListMessageMoveTasksResultEntry:
 
 @final
 class Message:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageOutput/)."""
     @property
     def message_id(self) -> str | None: ...
     @property
@@ -81,6 +87,7 @@ class Message:
 
 @final
 class MessageAttributeValue:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageAttributeValueOutput/)."""
     @property
     def string_value(self) -> str | None: ...
     @property
@@ -95,6 +102,7 @@ class MessageAttributeValue:
 
 @final
 class SendMessageBatchResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchResultEntryOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -111,12 +119,14 @@ class SendMessageBatchResultEntry:
 
 @final
 class CancelMessageMoveTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CancelMessageMoveTaskOutput/)."""
     @property
     def approximate_number_of_messages_moved(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ChangeMessageVisibilityBatchOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchOutput/)."""
     @property
     def successful(self) -> list[ChangeMessageVisibilityBatchResultEntry]: ...
     @property
@@ -125,12 +135,14 @@ class ChangeMessageVisibilityBatchOutput:
 
 @final
 class CreateQueueOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CreateQueueOutput/)."""
     @property
     def queue_url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMessageBatchOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchOutput/)."""
     @property
     def successful(self) -> list[DeleteMessageBatchResultEntry]: ...
     @property
@@ -139,18 +151,21 @@ class DeleteMessageBatchOutput:
 
 @final
 class GetQueueAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueAttributesOutput/)."""
     @property
     def attributes(self) -> dict[_types.QueueAttributeNameOutput, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetQueueUrlOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueUrlOutput/)."""
     @property
     def queue_url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListDeadLetterSourceQueuesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListDeadLetterSourceQueuesOutput/)."""
     @property
     def queue_urls(self) -> list[str]: ...
     @property
@@ -159,18 +174,21 @@ class ListDeadLetterSourceQueuesOutput:
 
 @final
 class ListMessageMoveTasksOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListMessageMoveTasksOutput/)."""
     @property
     def results(self) -> list[ListMessageMoveTasksResultEntry] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListQueueTagsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueueTagsOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListQueuesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueuesOutput/)."""
     @property
     def queue_urls(self) -> list[str] | None: ...
     @property
@@ -179,12 +197,14 @@ class ListQueuesOutput:
 
 @final
 class ReceiveMessageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ReceiveMessageOutput/)."""
     @property
     def messages(self) -> list[Message] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendMessageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageOutput/)."""
     @property
     def md5_of_message_body(self) -> str | None: ...
     @property
@@ -199,6 +219,7 @@ class SendMessageOutput:
 
 @final
 class SendMessageBatchOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchOutput/)."""
     @property
     def successful(self) -> list[SendMessageBatchResultEntry]: ...
     @property
@@ -207,6 +228,7 @@ class SendMessageBatchOutput:
 
 @final
 class StartMessageMoveTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/StartMessageMoveTaskOutput/)."""
     @property
     def task_handle(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...

@@ -46,7 +46,7 @@ class DynamoDBClientPaginators:
         exclusive_start_backup_arn: str | None = None,
         backup_type: BackupTypeFilter | None = None,
     ) -> AsyncIterator[ListBackupsOutput]:
-        """Yield each page from list_backups; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_backups/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if table_name is not None:
@@ -78,7 +78,7 @@ class DynamoDBClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListContributorInsightsOutput]:
-        """Yield each page from list_contributor_insights; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_contributor_insights/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if table_name is not None:
@@ -104,7 +104,7 @@ class DynamoDBClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListExportsOutput]:
-        """Yield each page from list_exports; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_exports/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if table_arn is not None:
@@ -130,7 +130,7 @@ class DynamoDBClientPaginators:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListImportsOutput]:
-        """Yield each page from list_imports; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_imports/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if table_arn is not None:
@@ -155,7 +155,7 @@ class DynamoDBClientPaginators:
         exclusive_start_table_name: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[ListTablesOutput]:
-        """Yield each page from list_tables; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_tables/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if exclusive_start_table_name is not None:
@@ -178,7 +178,7 @@ class DynamoDBClientPaginators:
         resource_arn: str,
         next_token: str | None = None,
     ) -> AsyncIterator[ListTagsOfResourceOutput]:
-        """Yield each page from list_tags_of_resource; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_tags_of_resource/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -215,7 +215,7 @@ class DynamoDBClientPaginators:
         expression_attribute_names: dict[str, str] | None = None,
         expression_attribute_values: dict[str, AttributeValue] | None = None,
     ) -> AsyncIterator[QueryOutput]:
-        """Yield each page from query; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/query/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -281,7 +281,7 @@ class DynamoDBClientPaginators:
         expression_attribute_values: dict[str, AttributeValue] | None = None,
         consistent_read: bool | None = None,
     ) -> AsyncIterator[ScanOutput]:
-        """Yield each page from scan; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/scan/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }

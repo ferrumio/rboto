@@ -38,7 +38,7 @@ class StepFunctionsClientPaginators:
         next_token: str | None = None,
         include_execution_data: bool | None = None,
     ) -> AsyncIterator[GetExecutionHistoryOutput]:
-        """Yield each page from get_execution_history; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/get_execution_history/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -66,7 +66,7 @@ class StepFunctionsClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListActivitiesOutput]:
-        """Yield each page from list_activities; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_activities/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -93,7 +93,7 @@ class StepFunctionsClientPaginators:
         map_run_arn: str | None = None,
         redrive_filter: ExecutionRedriveFilter | None = None,
     ) -> AsyncIterator[ListExecutionsOutput]:
-        """Yield each page from list_executions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_executions/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if state_machine_arn is not None:
@@ -125,7 +125,7 @@ class StepFunctionsClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListMapRunsOutput]:
-        """Yield each page from list_map_runs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_map_runs/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -149,7 +149,7 @@ class StepFunctionsClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListStateMachinesOutput]:
-        """Yield each page from list_state_machines; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_state_machines/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:

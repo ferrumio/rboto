@@ -11,18 +11,21 @@ from .types import ChatOutput
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class ChatOutputStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.ChatOutputStream]: ...
     def __anext__(self) -> Awaitable[_types.ChatOutputStream]: ...
 
 
 @final
 class ActionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionConfigurationOutput/)."""
     @property
     def action(self) -> str: ...
     @property
@@ -31,6 +34,7 @@ class ActionConfiguration:
 
 @final
 class ActionExecution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionExecutionOutput/)."""
     @property
     def plugin_id(self) -> str: ...
     @property
@@ -41,18 +45,21 @@ class ActionExecution:
 
 @final
 class ActionExecutionPayloadField:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionExecutionPayloadFieldOutput/)."""
     @property
     def value(self) -> JSONValue: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ActionFilterConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionFilterConfigurationOutput/)."""
     @property
     def document_attribute_filter(self) -> AttributeFilter | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ActionReview:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionReviewOutput/)."""
     @property
     def plugin_id(self) -> str | None: ...
     @property
@@ -65,6 +72,7 @@ class ActionReview:
 
 @final
 class ActionReviewPayloadField:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionReviewPayloadFieldOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -87,6 +95,7 @@ class ActionReviewPayloadField:
 
 @final
 class ActionReviewPayloadFieldAllowedValue:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionReviewPayloadFieldAllowedValueOutput/)."""
     @property
     def value(self) -> JSONValue | None: ...
     @property
@@ -95,6 +104,7 @@ class ActionReviewPayloadFieldAllowedValue:
 
 @final
 class ActionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ActionSummaryOutput/)."""
     @property
     def action_identifier(self) -> str | None: ...
     @property
@@ -107,6 +117,7 @@ class ActionSummary:
 
 @final
 class Application:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ApplicationOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -125,24 +136,28 @@ class Application:
 
 @final
 class AppliedAttachmentsConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AppliedAttachmentsConfigurationOutput/)."""
     @property
     def attachments_control_mode(self) -> _types.AttachmentsControlModeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AppliedCreatorModeConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AppliedCreatorModeConfigurationOutput/)."""
     @property
     def creator_mode_control(self) -> _types.CreatorModeControlOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AppliedOrchestrationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AppliedOrchestrationConfigurationOutput/)."""
     @property
     def control(self) -> _types.OrchestrationControlOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AssociatedGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AssociatedGroupOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -151,6 +166,7 @@ class AssociatedGroup:
 
 @final
 class AssociatedUser:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AssociatedUserOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -159,6 +175,7 @@ class AssociatedUser:
 
 @final
 class Attachment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AttachmentValueOutput/)."""
     @property
     def attachment_id(self) -> str | None: ...
     @property
@@ -183,6 +200,7 @@ class Attachment:
 
 @final
 class AttachmentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AttachmentValueValueOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -197,6 +215,7 @@ class AttachmentOutput:
 
 @final
 class AttributeFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AttributeFilterOutput/)."""
     @property
     def and_all_filters(self) -> list[AttributeFilter] | None: ...
     @property
@@ -221,18 +240,21 @@ class AttributeFilter:
 
 @final
 class AudioExtractionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AudioExtractionConfigurationOutput/)."""
     @property
     def audio_extraction_status(self) -> _types.AudioExtractionStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AuthChallengeRequest:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AuthChallengeRequestOutput/)."""
     @property
     def authorization_url(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AutoSubscriptionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AutoSubscriptionConfigurationOutput/)."""
     @property
     def auto_subscribe(self) -> _types.AutoSubscriptionStatusOutput: ...
     @property
@@ -241,6 +263,7 @@ class AutoSubscriptionConfiguration:
 
 @final
 class BlockedPhrasesConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/BlockedPhrasesConfigurationOutput/)."""
     @property
     def blocked_phrases(self) -> list[str] | None: ...
     @property
@@ -249,12 +272,14 @@ class BlockedPhrasesConfiguration:
 
 @final
 class BrowserExtensionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/BrowserExtensionConfigurationOutput/)."""
     @property
     def enabled_browser_extensions(self) -> list[_types.BrowserExtensionOutput]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ChatResponseConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatResponseConfigurationOutput/)."""
     @property
     def chat_response_configuration_id(self) -> str: ...
     @property
@@ -273,6 +298,7 @@ class ChatResponseConfiguration:
 
 @final
 class ChatResponseConfigurationDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatResponseConfigurationDetailOutput/)."""
     @property
     def response_configurations(self) -> dict[_types.ResponseConfigurationTypeOutput, ResponseConfiguration] | None: ...
     @property
@@ -287,6 +313,7 @@ class ChatResponseConfigurationDetail:
 
 @final
 class Conversation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ConversationOutput/)."""
     @property
     def conversation_id(self) -> str | None: ...
     @property
@@ -297,6 +324,7 @@ class Conversation:
 
 @final
 class CustomPluginConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CustomPluginConfigurationOutput/)."""
     @property
     def description(self) -> str: ...
     @property
@@ -307,6 +335,7 @@ class CustomPluginConfiguration:
 
 @final
 class CustomizationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CustomizationConfigurationOutput/)."""
     @property
     def custom_css_url(self) -> str | None: ...
     @property
@@ -319,6 +348,7 @@ class CustomizationConfiguration:
 
 @final
 class DataAccessor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessorOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -339,6 +369,7 @@ class DataAccessor:
 
 @final
 class DataAccessorAuthenticationDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessorAuthenticationDetailOutput/)."""
     @property
     def authentication_type(self) -> _types.DataAccessorAuthenticationTypeOutput: ...
     @property
@@ -349,6 +380,7 @@ class DataAccessorAuthenticationDetail:
 
 @final
 class DataSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataSourceOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -365,6 +397,7 @@ class DataSource:
 
 @final
 class DataSourceSyncJob:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataSourceSyncJobOutput/)."""
     @property
     def execution_id(self) -> str | None: ...
     @property
@@ -383,6 +416,7 @@ class DataSourceSyncJob:
 
 @final
 class DataSourceSyncJobMetrics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataSourceSyncJobMetricsOutput/)."""
     @property
     def documents_added(self) -> str | None: ...
     @property
@@ -397,6 +431,7 @@ class DataSourceSyncJobMetrics:
 
 @final
 class DataSourceVpcConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataSourceVpcConfigurationOutput/)."""
     @property
     def subnet_ids(self) -> list[str]: ...
     @property
@@ -405,6 +440,7 @@ class DataSourceVpcConfiguration:
 
 @final
 class DocumentAcl:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAclOutput/)."""
     @property
     def allowlist(self) -> DocumentAclMembership | None: ...
     @property
@@ -413,6 +449,7 @@ class DocumentAcl:
 
 @final
 class DocumentAclCondition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAclConditionOutput/)."""
     @property
     def member_relation(self) -> _types.MemberRelationOutput | None: ...
     @property
@@ -423,6 +460,7 @@ class DocumentAclCondition:
 
 @final
 class DocumentAclGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAclGroupOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -431,6 +469,7 @@ class DocumentAclGroup:
 
 @final
 class DocumentAclMembership:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAclMembershipOutput/)."""
     @property
     def member_relation(self) -> _types.MemberRelationOutput | None: ...
     @property
@@ -439,6 +478,7 @@ class DocumentAclMembership:
 
 @final
 class DocumentAclUser:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAclUserOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -447,6 +487,7 @@ class DocumentAclUser:
 
 @final
 class DocumentAttribute:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -455,6 +496,7 @@ class DocumentAttribute:
 
 @final
 class DocumentAttributeCondition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeConditionOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -465,6 +507,7 @@ class DocumentAttributeCondition:
 
 @final
 class DocumentAttributeConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeConfigurationOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -475,6 +518,7 @@ class DocumentAttributeConfiguration:
 
 @final
 class DocumentAttributeTarget:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeTargetOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -485,6 +529,7 @@ class DocumentAttributeTarget:
 
 @final
 class DocumentDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentDetailsOutput/)."""
     @property
     def document_id(self) -> str | None: ...
     @property
@@ -499,6 +544,7 @@ class DocumentDetails:
 
 @final
 class DocumentEnrichmentConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentEnrichmentConfigurationOutput/)."""
     @property
     def inline_configurations(self) -> list[InlineDocumentEnrichmentConfiguration] | None: ...
     @property
@@ -509,12 +555,14 @@ class DocumentEnrichmentConfiguration:
 
 @final
 class EncryptionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/EncryptionConfigurationOutput/)."""
     @property
     def kms_key_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ErrorDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ErrorDetailOutput/)."""
     @property
     def error_message(self) -> str | None: ...
     @property
@@ -523,6 +571,7 @@ class ErrorDetail:
 
 @final
 class FailedDocument:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/FailedDocumentOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -533,6 +582,7 @@ class FailedDocument:
 
 @final
 class GroupStatusDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GroupStatusDetailOutput/)."""
     @property
     def status(self) -> _types.GroupStatusOutput | None: ...
     @property
@@ -543,18 +593,21 @@ class GroupStatusDetail:
 
 @final
 class GroupSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GroupSummaryOutput/)."""
     @property
     def group_name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class HallucinationReductionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/HallucinationReductionConfigurationOutput/)."""
     @property
     def hallucination_reduction_control(self) -> _types.HallucinationReductionControlOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class HookConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/HookConfigurationOutput/)."""
     @property
     def invocation_condition(self) -> DocumentAttributeCondition | None: ...
     @property
@@ -567,12 +620,14 @@ class HookConfiguration:
 
 @final
 class ImageExtractionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ImageExtractionConfigurationOutput/)."""
     @property
     def image_extraction_status(self) -> _types.ImageExtractionStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Index:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IndexOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -587,18 +642,21 @@ class Index:
 
 @final
 class IndexCapacityConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IndexCapacityConfigurationOutput/)."""
     @property
     def units(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class IndexStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IndexStatisticsOutput/)."""
     @property
     def text_document_statistics(self) -> TextDocumentStatistics | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InlineDocumentEnrichmentConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/InlineDocumentEnrichmentConfigurationOutput/)."""
     @property
     def condition(self) -> DocumentAttributeCondition | None: ...
     @property
@@ -609,6 +667,7 @@ class InlineDocumentEnrichmentConfiguration:
 
 @final
 class InstructionCollection:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/InstructionCollectionOutput/)."""
     @property
     def response_length(self) -> str | None: ...
     @property
@@ -629,6 +688,7 @@ class InstructionCollection:
 
 @final
 class MediaExtractionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/MediaExtractionConfigurationOutput/)."""
     @property
     def image_extraction_configuration(self) -> ImageExtractionConfiguration | None: ...
     @property
@@ -639,6 +699,7 @@ class MediaExtractionConfiguration:
 
 @final
 class Message:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/MessageOutput/)."""
     @property
     def message_id(self) -> str | None: ...
     @property
@@ -659,12 +720,14 @@ class Message:
 
 @final
 class PersonalizationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PersonalizationConfigurationOutput/)."""
     @property
     def personalization_control_mode(self) -> _types.PersonalizationControlModeOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Plugin:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginOutput/)."""
     @property
     def plugin_id(self) -> str | None: ...
     @property
@@ -685,6 +748,7 @@ class Plugin:
 
 @final
 class PluginTypeMetadataSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginTypeMetadataSummaryOutput/)."""
     @property
     def type(self) -> _types.PluginTypeOutput | None: ...
     @property
@@ -695,18 +759,21 @@ class PluginTypeMetadataSummary:
 
 @final
 class QAppsConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/QAppsConfigurationOutput/)."""
     @property
     def q_apps_control_mode(self) -> _types.QAppsControlModeOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class QuickSightConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/QuickSightConfigurationOutput/)."""
     @property
     def client_namespace(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RelevantContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RelevantContentOutput/)."""
     @property
     def content(self) -> str | None: ...
     @property
@@ -723,12 +790,14 @@ class RelevantContent:
 
 @final
 class ResponseConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ResponseConfigurationOutput/)."""
     @property
     def instruction_collection(self) -> InstructionCollection | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Retriever:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverOutput/)."""
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -743,6 +812,7 @@ class Retriever:
 
 @final
 class Rule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleOutput/)."""
     @property
     def included_users_and_groups(self) -> UsersAndGroups | None: ...
     @property
@@ -755,18 +825,21 @@ class Rule:
 
 @final
 class ScoreAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ScoreAttributesOutput/)."""
     @property
     def score_confidence(self) -> _types.ScoreConfidenceOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SnippetExcerpt:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SnippetExcerptOutput/)."""
     @property
     def text(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SourceAttribution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SourceAttributionOutput/)."""
     @property
     def title(self) -> str | None: ...
     @property
@@ -789,6 +862,7 @@ class SourceAttribution:
 
 @final
 class Subscription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionOutput/)."""
     @property
     def subscription_id(self) -> str | None: ...
     @property
@@ -803,12 +877,14 @@ class Subscription:
 
 @final
 class SubscriptionDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionDetailsOutput/)."""
     @property
     def type(self) -> _types.SubscriptionTypeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -817,6 +893,7 @@ class Tag:
 
 @final
 class TextDocumentStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/TextDocumentStatisticsOutput/)."""
     @property
     def indexed_text_bytes(self) -> int | None: ...
     @property
@@ -825,6 +902,7 @@ class TextDocumentStatistics:
 
 @final
 class TextSegment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/TextSegmentOutput/)."""
     @property
     def begin_offset(self) -> int | None: ...
     @property
@@ -841,6 +919,7 @@ class TextSegment:
 
 @final
 class TopicConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/TopicConfigurationOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -853,6 +932,7 @@ class TopicConfiguration:
 
 @final
 class UserAlias:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UserAliasOutput/)."""
     @property
     def index_id(self) -> str | None: ...
     @property
@@ -863,6 +943,7 @@ class UserAlias:
 
 @final
 class UsersAndGroups:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UsersAndGroupsOutput/)."""
     @property
     def user_ids(self) -> list[str] | None: ...
     @property
@@ -871,12 +952,14 @@ class UsersAndGroups:
 
 @final
 class VideoExtractionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/VideoExtractionConfigurationOutput/)."""
     @property
     def video_extraction_status(self) -> _types.VideoExtractionStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class WebExperience:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperienceOutput/)."""
     @property
     def web_experience_id(self) -> str | None: ...
     @property
@@ -891,24 +974,28 @@ class WebExperience:
 
 @final
 class AssociatePermissionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/AssociatePermissionOutput/)."""
     @property
     def statement(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BatchDeleteDocumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/BatchDeleteDocumentOutput/)."""
     @property
     def failed_documents(self) -> list[FailedDocument] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BatchPutDocumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/BatchPutDocumentOutput/)."""
     @property
     def failed_documents(self) -> list[FailedDocument] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CancelSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CancelSubscriptionOutput/)."""
     @property
     def subscription_arn(self) -> str | None: ...
     @property
@@ -919,6 +1006,7 @@ class CancelSubscriptionOutput:
 
 @final
 class ChatSyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatSyncOutput/)."""
     @property
     def conversation_id(self) -> str | None: ...
     @property
@@ -939,6 +1027,7 @@ class ChatSyncOutput:
 
 @final
 class CheckDocumentAccessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CheckDocumentAccessOutput/)."""
     @property
     def user_groups(self) -> list[AssociatedGroup] | None: ...
     @property
@@ -951,12 +1040,14 @@ class CheckDocumentAccessOutput:
 
 @final
 class CreateAnonymousWebExperienceUrlOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateAnonymousWebExperienceUrlOutput/)."""
     @property
     def anonymous_url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateApplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateApplicationOutput/)."""
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -965,6 +1056,7 @@ class CreateApplicationOutput:
 
 @final
 class CreateChatResponseConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateChatResponseConfigurationOutput/)."""
     @property
     def chat_response_configuration_id(self) -> str: ...
     @property
@@ -973,6 +1065,7 @@ class CreateChatResponseConfigurationOutput:
 
 @final
 class CreateDataAccessorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateDataAccessorOutput/)."""
     @property
     def data_accessor_id(self) -> str: ...
     @property
@@ -983,6 +1076,7 @@ class CreateDataAccessorOutput:
 
 @final
 class CreateDataSourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateDataSourceOutput/)."""
     @property
     def data_source_id(self) -> str | None: ...
     @property
@@ -991,6 +1085,7 @@ class CreateDataSourceOutput:
 
 @final
 class CreateIndexOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateIndexOutput/)."""
     @property
     def index_id(self) -> str | None: ...
     @property
@@ -999,6 +1094,7 @@ class CreateIndexOutput:
 
 @final
 class CreatePluginOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreatePluginOutput/)."""
     @property
     def plugin_id(self) -> str | None: ...
     @property
@@ -1009,6 +1105,7 @@ class CreatePluginOutput:
 
 @final
 class CreateRetrieverOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateRetrieverOutput/)."""
     @property
     def retriever_id(self) -> str | None: ...
     @property
@@ -1017,6 +1114,7 @@ class CreateRetrieverOutput:
 
 @final
 class CreateSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateSubscriptionOutput/)."""
     @property
     def subscription_id(self) -> str | None: ...
     @property
@@ -1029,10 +1127,12 @@ class CreateSubscriptionOutput:
 
 @final
 class CreateUserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateUserOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateWebExperienceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CreateWebExperienceOutput/)."""
     @property
     def web_experience_id(self) -> str | None: ...
     @property
@@ -1041,62 +1141,77 @@ class CreateWebExperienceOutput:
 
 @final
 class DeleteApplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteApplicationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAttachmentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteAttachmentOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteChatControlsConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteChatControlsConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteChatResponseConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteChatResponseConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteConversationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteConversationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDataAccessorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteDataAccessorOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDataSourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteDataSourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteGroupOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteIndexOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteIndexOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePluginOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeletePluginOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteRetrieverOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteRetrieverOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteUserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteUserOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteWebExperienceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DeleteWebExperienceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociatePermissionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DisassociatePermissionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetApplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetApplicationOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -1139,6 +1254,7 @@ class GetApplicationOutput:
 
 @final
 class GetChatControlsConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetChatControlsConfigurationOutput/)."""
     @property
     def response_scope(self) -> _types.ResponseScopeOutput | None: ...
     @property
@@ -1157,6 +1273,7 @@ class GetChatControlsConfigurationOutput:
 
 @final
 class GetChatResponseConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetChatResponseConfigurationOutput/)."""
     @property
     def chat_response_configuration_id(self) -> str | None: ...
     @property
@@ -1173,6 +1290,7 @@ class GetChatResponseConfigurationOutput:
 
 @final
 class GetDataAccessorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetDataAccessorOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -1197,6 +1315,7 @@ class GetDataAccessorOutput:
 
 @final
 class GetDataSourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetDataSourceOutput/)."""
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1235,6 +1354,7 @@ class GetDataSourceOutput:
 
 @final
 class GetDocumentContentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetDocumentContentOutput/)."""
     @property
     def presigned_url(self) -> str: ...
     @property
@@ -1243,6 +1363,7 @@ class GetDocumentContentOutput:
 
 @final
 class GetGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetGroupOutput/)."""
     @property
     def status(self) -> GroupStatusDetail | None: ...
     @property
@@ -1251,6 +1372,7 @@ class GetGroupOutput:
 
 @final
 class GetIndexOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetIndexOutput/)."""
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1281,6 +1403,7 @@ class GetIndexOutput:
 
 @final
 class GetMediaOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetMediaOutput/)."""
     @property
     def media_bytes(self) -> bytes | None: ...
     @property
@@ -1289,6 +1412,7 @@ class GetMediaOutput:
 
 @final
 class GetPluginOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetPluginOutput/)."""
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1317,12 +1441,14 @@ class GetPluginOutput:
 
 @final
 class GetPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetPolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetRetrieverOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetRetrieverOutput/)."""
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1347,12 +1473,14 @@ class GetRetrieverOutput:
 
 @final
 class GetUserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetUserOutput/)."""
     @property
     def user_aliases(self) -> list[UserAlias] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetWebExperienceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/GetWebExperienceOutput/)."""
     @property
     def application_id(self) -> str | None: ...
     @property
@@ -1393,6 +1521,7 @@ class GetWebExperienceOutput:
 
 @final
 class ListApplicationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListApplicationsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1401,6 +1530,7 @@ class ListApplicationsOutput:
 
 @final
 class ListAttachmentsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListAttachmentsOutput/)."""
     @property
     def attachments(self) -> list[Attachment] | None: ...
     @property
@@ -1409,6 +1539,7 @@ class ListAttachmentsOutput:
 
 @final
 class ListChatResponseConfigurationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListChatResponseConfigurationsOutput/)."""
     @property
     def chat_response_configurations(self) -> list[ChatResponseConfiguration] | None: ...
     @property
@@ -1417,6 +1548,7 @@ class ListChatResponseConfigurationsOutput:
 
 @final
 class ListConversationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListConversationsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1425,6 +1557,7 @@ class ListConversationsOutput:
 
 @final
 class ListDataAccessorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDataAccessorsOutput/)."""
     @property
     def data_accessors(self) -> list[DataAccessor] | None: ...
     @property
@@ -1433,6 +1566,7 @@ class ListDataAccessorsOutput:
 
 @final
 class ListDataSourceSyncJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDataSourceSyncJobsOutput/)."""
     @property
     def history(self) -> list[DataSourceSyncJob] | None: ...
     @property
@@ -1441,6 +1575,7 @@ class ListDataSourceSyncJobsOutput:
 
 @final
 class ListDataSourcesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDataSourcesOutput/)."""
     @property
     def data_sources(self) -> list[DataSource] | None: ...
     @property
@@ -1449,6 +1584,7 @@ class ListDataSourcesOutput:
 
 @final
 class ListDocumentsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListDocumentsOutput/)."""
     @property
     def document_detail_list(self) -> list[DocumentDetails] | None: ...
     @property
@@ -1457,6 +1593,7 @@ class ListDocumentsOutput:
 
 @final
 class ListGroupsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListGroupsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1465,6 +1602,7 @@ class ListGroupsOutput:
 
 @final
 class ListIndicesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListIndicesOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1473,6 +1611,7 @@ class ListIndicesOutput:
 
 @final
 class ListMessagesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListMessagesOutput/)."""
     @property
     def messages(self) -> list[Message] | None: ...
     @property
@@ -1481,6 +1620,7 @@ class ListMessagesOutput:
 
 @final
 class ListPluginActionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginActionsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1489,6 +1629,7 @@ class ListPluginActionsOutput:
 
 @final
 class ListPluginTypeActionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginTypeActionsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1497,6 +1638,7 @@ class ListPluginTypeActionsOutput:
 
 @final
 class ListPluginTypeMetadataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginTypeMetadataOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1505,6 +1647,7 @@ class ListPluginTypeMetadataOutput:
 
 @final
 class ListPluginsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListPluginsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1513,6 +1656,7 @@ class ListPluginsOutput:
 
 @final
 class ListRetrieversOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListRetrieversOutput/)."""
     @property
     def retrievers(self) -> list[Retriever] | None: ...
     @property
@@ -1521,6 +1665,7 @@ class ListRetrieversOutput:
 
 @final
 class ListSubscriptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListSubscriptionsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1529,12 +1674,14 @@ class ListSubscriptionsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListWebExperiencesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ListWebExperiencesOutput/)."""
     @property
     def web_experiences(self) -> list[WebExperience] | None: ...
     @property
@@ -1543,10 +1690,12 @@ class ListWebExperiencesOutput:
 
 @final
 class PutGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PutGroupOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SearchRelevantContentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SearchRelevantContentOutput/)."""
     @property
     def relevant_content(self) -> list[RelevantContent] | None: ...
     @property
@@ -1555,56 +1704,69 @@ class SearchRelevantContentOutput:
 
 @final
 class StartDataSourceSyncJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/StartDataSourceSyncJobOutput/)."""
     @property
     def execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopDataSourceSyncJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/StopDataSourceSyncJobOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateApplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateApplicationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateChatControlsConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateChatControlsConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateChatResponseConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateChatResponseConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDataAccessorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateDataAccessorOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDataSourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateDataSourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateIndexOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateIndexOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdatePluginOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdatePluginOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateRetrieverOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateRetrieverOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateSubscriptionOutput/)."""
     @property
     def subscription_arn(self) -> str | None: ...
     @property
@@ -1615,6 +1777,7 @@ class UpdateSubscriptionOutput:
 
 @final
 class UpdateUserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateUserOutput/)."""
     @property
     def user_aliases_added(self) -> list[UserAlias] | None: ...
     @property
@@ -1625,6 +1788,7 @@ class UpdateUserOutput:
 
 @final
 class UpdateWebExperienceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UpdateWebExperienceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 

@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class BatchResultErrorEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/BatchResultErrorEntryOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -29,6 +31,7 @@ class BatchResultErrorEntry:
 
 @final
 class Endpoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/EndpointOutput/)."""
     @property
     def endpoint_arn(self) -> str | None: ...
     @property
@@ -37,6 +40,7 @@ class Endpoint:
 
 @final
 class PhoneNumberInformation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PhoneNumberInformationOutput/)."""
     @property
     def created_at(self) -> str | None: ...
     @property
@@ -53,6 +57,7 @@ class PhoneNumberInformation:
 
 @final
 class PlatformApplication:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PlatformApplicationOutput/)."""
     @property
     def platform_application_arn(self) -> str | None: ...
     @property
@@ -61,6 +66,7 @@ class PlatformApplication:
 
 @final
 class PublishBatchResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchResultEntryOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -71,6 +77,7 @@ class PublishBatchResultEntry:
 
 @final
 class SmsSandboxPhoneNumber:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SmsSandboxPhoneNumber-2dfbd3dfb447/)."""
     @property
     def phone_number(self) -> str | None: ...
     @property
@@ -79,6 +86,7 @@ class SmsSandboxPhoneNumber:
 
 @final
 class Subscription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SubscriptionOutput/)."""
     @property
     def subscription_arn(self) -> str | None: ...
     @property
@@ -93,6 +101,7 @@ class Subscription:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -101,92 +110,108 @@ class Tag:
 
 @final
 class Topic:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TopicOutput/)."""
     @property
     def topic_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CheckIfPhoneNumberIsOptedOutOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CheckIfPhoneNumberIsOptedOutOutput/)."""
     @property
     def is_opted_out(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ConfirmSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ConfirmSubscriptionOutput/)."""
     @property
     def subscription_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreatePlatformApplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformApplicationOutput/)."""
     @property
     def platform_application_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreatePlatformEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformEndpointOutput/)."""
     @property
     def endpoint_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateSMSSandboxPhoneNumberOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateSMSSandboxPhoneNumberOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateTopicOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateTopicOutput/)."""
     @property
     def topic_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteSMSSandboxPhoneNumberOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/DeleteSMSSandboxPhoneNumberOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDataProtectionPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetDataProtectionPolicyOutput/)."""
     @property
     def data_protection_policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetEndpointAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetEndpointAttributesOutput/)."""
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetPlatformApplicationAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetPlatformApplicationAttributesOutput/)."""
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetSMSAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSAttributesOutput/)."""
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetSMSSandboxAccountStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSSandboxAccountStatusOutput/)."""
     @property
     def is_in_sandbox(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetSubscriptionAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSubscriptionAttributesOutput/)."""
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetTopicAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetTopicAttributesOutput/)."""
     @property
     def attributes(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListEndpointsByPlatformApplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListEndpointsByPlatformApplicationOutput/)."""
     @property
     def endpoints(self) -> list[Endpoint] | None: ...
     @property
@@ -195,6 +220,7 @@ class ListEndpointsByPlatformApplicationOutput:
 
 @final
 class ListOriginationNumbersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListOriginationNumbersOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -203,6 +229,7 @@ class ListOriginationNumbersOutput:
 
 @final
 class ListPhoneNumbersOptedOutOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPhoneNumbersOptedOutOutput/)."""
     @property
     def phone_numbers(self) -> list[str] | None: ...
     @property
@@ -211,6 +238,7 @@ class ListPhoneNumbersOptedOutOutput:
 
 @final
 class ListPlatformApplicationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPlatformApplicationsOutput/)."""
     @property
     def platform_applications(self) -> list[PlatformApplication] | None: ...
     @property
@@ -219,6 +247,7 @@ class ListPlatformApplicationsOutput:
 
 @final
 class ListSMSSandboxPhoneNumbersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSMSSandboxPhoneNumbersOutput/)."""
     @property
     def phone_numbers(self) -> list[SmsSandboxPhoneNumber]: ...
     @property
@@ -227,6 +256,7 @@ class ListSMSSandboxPhoneNumbersOutput:
 
 @final
 class ListSubscriptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsOutput/)."""
     @property
     def subscriptions(self) -> list[Subscription] | None: ...
     @property
@@ -235,6 +265,7 @@ class ListSubscriptionsOutput:
 
 @final
 class ListSubscriptionsByTopicOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsByTopicOutput/)."""
     @property
     def subscriptions(self) -> list[Subscription] | None: ...
     @property
@@ -243,12 +274,14 @@ class ListSubscriptionsByTopicOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListTopicsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTopicsOutput/)."""
     @property
     def topics(self) -> list[Topic] | None: ...
     @property
@@ -257,10 +290,12 @@ class ListTopicsOutput:
 
 @final
 class OptInPhoneNumberOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/OptInPhoneNumberOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PublishOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishOutput/)."""
     @property
     def message_id(self) -> str | None: ...
     @property
@@ -269,6 +304,7 @@ class PublishOutput:
 
 @final
 class PublishBatchOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchOutput/)."""
     @property
     def successful(self) -> list[PublishBatchResultEntry] | None: ...
     @property
@@ -277,24 +313,29 @@ class PublishBatchOutput:
 
 @final
 class SetSMSAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetSMSAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SubscribeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SubscribeOutput/)."""
     @property
     def subscription_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VerifySMSSandboxPhoneNumberOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/VerifySMSSandboxPhoneNumberOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 

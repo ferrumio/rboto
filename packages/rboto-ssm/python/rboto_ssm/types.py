@@ -9,492 +9,977 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AccountSharingInfoOutput: TypeAlias = _native.AccountSharingInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AccountSharingInfoOutput/)."""
 ActivationOutput: TypeAlias = _native.Activation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ActivationOutput/)."""
 AddTagsToResourceOutput: TypeAlias = _native.AddTagsToResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AddTagsToResourceOutput/)."""
 AlarmOutput: TypeAlias = _native.Alarm
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmOutput/)."""
 AlarmConfigurationOutput: TypeAlias = _native.AlarmConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmConfigurationOutput/)."""
 AlarmStateInformationOutput: TypeAlias = _native.AlarmStateInformation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmStateInformationOutput/)."""
 AssociateOpsItemRelatedItemOutput: TypeAlias = _native.AssociateOpsItemRelatedItemOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociateOpsItemRelatedItemOutput/)."""
 AssociationOutput: TypeAlias = _native.Association
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationOutput/)."""
 AssociationDescriptionOutput: TypeAlias = _native.AssociationDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationDescriptionOutput/)."""
 AssociationExecutionOutput: TypeAlias = _native.AssociationExecution
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionOutput/)."""
 AssociationExecutionTargetOutput: TypeAlias = _native.AssociationExecutionTarget
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionTargetOutput/)."""
 AssociationOverviewOutput: TypeAlias = _native.AssociationOverview
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationOverviewOutput/)."""
 AssociationStatusOutput: TypeAlias = _native.AssociationStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationStatusOutput/)."""
 AssociationVersionInfoOutput: TypeAlias = _native.AssociationVersionInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationVersionInfoOutput/)."""
 AttachmentContentOutput: TypeAlias = _native.AttachmentContent
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentContentOutput/)."""
 AttachmentInformationOutput: TypeAlias = _native.AttachmentInformation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentInformationOutput/)."""
 AutomationExecutionOutput: TypeAlias = _native.AutomationExecution
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionOutput/)."""
 AutomationExecutionMetadataOutput: TypeAlias = _native.AutomationExecutionMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionMetadataOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ByteStream/)."""
 CancelCommandOutput: TypeAlias = _native.CancelCommandOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelCommandOutput/)."""
 CancelMaintenanceWindowExecutionOutput: TypeAlias = _native.CancelMaintenanceWindowExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelMaintenanceWindowExecutionOutput/)."""
 CloudConnectorSummaryOutput: TypeAlias = _native.CloudConnectorSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorSummaryOutput/)."""
 CloudWatchOutputConfigOutput: TypeAlias = _native.CloudWatchOutputConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudWatchOutputConfigOutput/)."""
 CommandOutput: TypeAlias = _native.Command
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandOutput/)."""
 CommandInvocationOutput: TypeAlias = _native.CommandInvocation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandInvocationOutput/)."""
 CommandPluginOutput: TypeAlias = _native.CommandPlugin
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandPluginOutput/)."""
 ComplianceExecutionSummaryOutput: TypeAlias = _native.ComplianceExecutionSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceExecutionSummaryOutput/)."""
 ComplianceItemOutput: TypeAlias = _native.ComplianceItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceItemOutput/)."""
 ComplianceSummaryItemOutput: TypeAlias = _native.ComplianceSummaryItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceSummaryItemOutput/)."""
 CompliantSummaryOutput: TypeAlias = _native.CompliantSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CompliantSummaryOutput/)."""
 CreateActivationOutput: TypeAlias = _native.CreateActivationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateActivationOutput/)."""
 CreateAssociationBatchOutput: TypeAlias = _native.CreateAssociationBatchOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationBatchOutput/)."""
 CreateAssociationBatchRequestEntryOutput: TypeAlias = _native.CreateAssociationBatchRequestEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationBatchRequestEntryOutput/)."""
 CreateAssociationOutput: TypeAlias = _native.CreateAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationOutput/)."""
 CreateCloudConnectorOutput: TypeAlias = _native.CreateCloudConnectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateCloudConnectorOutput/)."""
 CreateDocumentOutput: TypeAlias = _native.CreateDocumentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateDocumentOutput/)."""
 CreateMaintenanceWindowOutput: TypeAlias = _native.CreateMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateMaintenanceWindowOutput/)."""
 CreateOpsItemOutput: TypeAlias = _native.CreateOpsItemOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsItemOutput/)."""
 CreateOpsMetadataOutput: TypeAlias = _native.CreateOpsMetadataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsMetadataOutput/)."""
 CreatePatchBaselineOutput: TypeAlias = _native.CreatePatchBaselineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreatePatchBaselineOutput/)."""
 CreateResourceDataSyncOutput: TypeAlias = _native.CreateResourceDataSyncOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateResourceDataSyncOutput/)."""
 CredentialsOutput: TypeAlias = _native.Credentials
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CredentialsOutput/)."""
 DeleteActivationOutput: TypeAlias = _native.DeleteActivationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteActivationOutput/)."""
 DeleteAssociationOutput: TypeAlias = _native.DeleteAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteAssociationOutput/)."""
 DeleteCloudConnectorOutput: TypeAlias = _native.DeleteCloudConnectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteCloudConnectorOutput/)."""
 DeleteDocumentOutput: TypeAlias = _native.DeleteDocumentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteDocumentOutput/)."""
 DeleteInventoryOutput: TypeAlias = _native.DeleteInventoryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteInventoryOutput/)."""
 DeleteMaintenanceWindowOutput: TypeAlias = _native.DeleteMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteMaintenanceWindowOutput/)."""
 DeleteOpsItemOutput: TypeAlias = _native.DeleteOpsItemOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsItemOutput/)."""
 DeleteOpsMetadataOutput: TypeAlias = _native.DeleteOpsMetadataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsMetadataOutput/)."""
 DeleteParameterOutput: TypeAlias = _native.DeleteParameterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParameterOutput/)."""
 DeleteParametersOutput: TypeAlias = _native.DeleteParametersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParametersOutput/)."""
 DeletePatchBaselineOutput: TypeAlias = _native.DeletePatchBaselineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeletePatchBaselineOutput/)."""
 DeleteResourceDataSyncOutput: TypeAlias = _native.DeleteResourceDataSyncOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourceDataSyncOutput/)."""
 DeleteResourcePolicyOutput: TypeAlias = _native.DeleteResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourcePolicyOutput/)."""
 DeregisterManagedInstanceOutput: TypeAlias = _native.DeregisterManagedInstanceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterManagedInstanceOutput/)."""
 DeregisterPatchBaselineForPatchGroupOutput: TypeAlias = _native.DeregisterPatchBaselineForPatchGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterPatchBaselineForPatchGroupOutput/)."""
 DeregisterTargetFromMaintenanceWindowOutput: TypeAlias = _native.DeregisterTargetFromMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTargetFromMaintenanceWindowOutput/)."""
 DeregisterTaskFromMaintenanceWindowOutput: TypeAlias = _native.DeregisterTaskFromMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTaskFromMaintenanceWindowOutput/)."""
 DescribeActivationsOutput: TypeAlias = _native.DescribeActivationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeActivationsOutput/)."""
 DescribeAssociationExecutionTargetsOutput: TypeAlias = _native.DescribeAssociationExecutionTargetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionTargetsOutput/)."""
 DescribeAssociationExecutionsOutput: TypeAlias = _native.DescribeAssociationExecutionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionsOutput/)."""
 DescribeAssociationOutput: TypeAlias = _native.DescribeAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationOutput/)."""
 DescribeAutomationExecutionsOutput: TypeAlias = _native.DescribeAutomationExecutionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationExecutionsOutput/)."""
 DescribeAutomationStepExecutionsOutput: TypeAlias = _native.DescribeAutomationStepExecutionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationStepExecutionsOutput/)."""
 DescribeAvailablePatchesOutput: TypeAlias = _native.DescribeAvailablePatchesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAvailablePatchesOutput/)."""
 DescribeDocumentOutput: TypeAlias = _native.DescribeDocumentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentOutput/)."""
 DescribeDocumentPermissionOutput: TypeAlias = _native.DescribeDocumentPermissionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentPermissionOutput/)."""
 DescribeEffectiveInstanceAssociationsOutput: TypeAlias = _native.DescribeEffectiveInstanceAssociationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectiveInstanceAssociationsOutput/)."""
 DescribeEffectivePatchesForPatchBaselineOutput: TypeAlias = _native.DescribeEffectivePatchesForPatchBaselineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectivePatchesForPatchBaselineOutput/)."""
 DescribeInstanceAssociationsStatusOutput: TypeAlias = _native.DescribeInstanceAssociationsStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceAssociationsStatusOutput/)."""
 DescribeInstanceInformationOutput: TypeAlias = _native.DescribeInstanceInformationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceInformationOutput/)."""
 DescribeInstancePatchStatesForPatchGroupOutput: TypeAlias = _native.DescribeInstancePatchStatesForPatchGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesForPatchGroupOutput/)."""
 DescribeInstancePatchStatesOutput: TypeAlias = _native.DescribeInstancePatchStatesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesOutput/)."""
 DescribeInstancePatchesOutput: TypeAlias = _native.DescribeInstancePatchesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchesOutput/)."""
 DescribeInstancePropertiesOutput: TypeAlias = _native.DescribeInstancePropertiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePropertiesOutput/)."""
 DescribeInventoryDeletionsOutput: TypeAlias = _native.DescribeInventoryDeletionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInventoryDeletionsOutput/)."""
 DescribeMaintenanceWindowExecutionTaskInvocationsOutput: TypeAlias = _native.DescribeMaintenanceWindowExecutionTaskInvocationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTaskInvocationsOutput/)."""
 DescribeMaintenanceWindowExecutionTasksOutput: TypeAlias = _native.DescribeMaintenanceWindowExecutionTasksOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTasksOutput/)."""
 DescribeMaintenanceWindowExecutionsOutput: TypeAlias = _native.DescribeMaintenanceWindowExecutionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionsOutput/)."""
 DescribeMaintenanceWindowScheduleOutput: TypeAlias = _native.DescribeMaintenanceWindowScheduleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowScheduleOutput/)."""
 DescribeMaintenanceWindowTargetsOutput: TypeAlias = _native.DescribeMaintenanceWindowTargetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTargetsOutput/)."""
 DescribeMaintenanceWindowTasksOutput: TypeAlias = _native.DescribeMaintenanceWindowTasksOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTasksOutput/)."""
 DescribeMaintenanceWindowsForTargetOutput: TypeAlias = _native.DescribeMaintenanceWindowsForTargetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsForTargetOutput/)."""
 DescribeMaintenanceWindowsOutput: TypeAlias = _native.DescribeMaintenanceWindowsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsOutput/)."""
 DescribeOpsItemsOutput: TypeAlias = _native.DescribeOpsItemsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeOpsItemsOutput/)."""
 DescribeParametersOutput: TypeAlias = _native.DescribeParametersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeParametersOutput/)."""
 DescribePatchBaselinesOutput: TypeAlias = _native.DescribePatchBaselinesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchBaselinesOutput/)."""
 DescribePatchGroupStateOutput: TypeAlias = _native.DescribePatchGroupStateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupStateOutput/)."""
 DescribePatchGroupsOutput: TypeAlias = _native.DescribePatchGroupsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupsOutput/)."""
 DescribePatchPropertiesOutput: TypeAlias = _native.DescribePatchPropertiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchPropertiesOutput/)."""
 DescribeSessionsOutput: TypeAlias = _native.DescribeSessionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeSessionsOutput/)."""
 DisassociateOpsItemRelatedItemOutput: TypeAlias = _native.DisassociateOpsItemRelatedItemOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DisassociateOpsItemRelatedItemOutput/)."""
 DocumentDefaultVersionDescriptionOutput: TypeAlias = _native.DocumentDefaultVersionDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentDefaultVersionDescriptionOutput/)."""
 DocumentDescriptionOutput: TypeAlias = _native.DocumentDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentDescriptionOutput/)."""
 DocumentIdentifierOutput: TypeAlias = _native.DocumentIdentifier
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentIdentifierOutput/)."""
 DocumentMetadataResponseInfoOutput: TypeAlias = _native.DocumentMetadataResponseInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentMetadataResponseInfoOutput/)."""
 DocumentParameterOutput: TypeAlias = _native.DocumentParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentParameterOutput/)."""
 DocumentRequiresOutput: TypeAlias = _native.DocumentRequires
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentRequiresOutput/)."""
 DocumentReviewCommentSourceOutput: TypeAlias = _native.DocumentReviewCommentSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewCommentSourceOutput/)."""
 DocumentReviewerResponseSourceOutput: TypeAlias = _native.DocumentReviewerResponseSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewerResponseSourceOutput/)."""
 DocumentVersionInfoOutput: TypeAlias = _native.DocumentVersionInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentVersionInfoOutput/)."""
 EffectivePatchOutput: TypeAlias = _native.EffectivePatch
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/EffectivePatchOutput/)."""
 FailedCreateAssociationOutput: TypeAlias = _native.FailedCreateAssociation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FailedCreateAssociationOutput/)."""
 FailureDetailsOutput: TypeAlias = _native.FailureDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FailureDetailsOutput/)."""
 GetAccessTokenOutput: TypeAlias = _native.GetAccessTokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAccessTokenOutput/)."""
 GetAutomationExecutionOutput: TypeAlias = _native.GetAutomationExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAutomationExecutionOutput/)."""
 GetCalendarStateOutput: TypeAlias = _native.GetCalendarStateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCalendarStateOutput/)."""
 GetCloudConnectorOutput: TypeAlias = _native.GetCloudConnectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCloudConnectorOutput/)."""
 GetCommandInvocationOutput: TypeAlias = _native.GetCommandInvocationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCommandInvocationOutput/)."""
 GetConnectionStatusOutput: TypeAlias = _native.GetConnectionStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetConnectionStatusOutput/)."""
 GetDefaultPatchBaselineOutput: TypeAlias = _native.GetDefaultPatchBaselineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDefaultPatchBaselineOutput/)."""
 GetDeployablePatchSnapshotForInstanceOutput: TypeAlias = _native.GetDeployablePatchSnapshotForInstanceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDeployablePatchSnapshotForInstanceOutput/)."""
 GetDocumentOutput: TypeAlias = _native.GetDocumentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDocumentOutput/)."""
 GetExecutionPreviewOutput: TypeAlias = _native.GetExecutionPreviewOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetExecutionPreviewOutput/)."""
 GetInventoryOutput: TypeAlias = _native.GetInventoryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventoryOutput/)."""
 GetInventorySchemaOutput: TypeAlias = _native.GetInventorySchemaOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventorySchemaOutput/)."""
 GetMaintenanceWindowExecutionOutput: TypeAlias = _native.GetMaintenanceWindowExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionOutput/)."""
 GetMaintenanceWindowExecutionTaskInvocationOutput: TypeAlias = _native.GetMaintenanceWindowExecutionTaskInvocationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskInvocationOutput/)."""
 GetMaintenanceWindowExecutionTaskOutput: TypeAlias = _native.GetMaintenanceWindowExecutionTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskOutput/)."""
 GetMaintenanceWindowOutput: TypeAlias = _native.GetMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowOutput/)."""
 GetMaintenanceWindowTaskOutput: TypeAlias = _native.GetMaintenanceWindowTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowTaskOutput/)."""
 GetOpsItemOutput: TypeAlias = _native.GetOpsItemOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsItemOutput/)."""
 GetOpsMetadataOutput: TypeAlias = _native.GetOpsMetadataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsMetadataOutput/)."""
 GetOpsSummaryOutput: TypeAlias = _native.GetOpsSummaryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsSummaryOutput/)."""
 GetParameterHistoryOutput: TypeAlias = _native.GetParameterHistoryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterHistoryOutput/)."""
 GetParameterOutput: TypeAlias = _native.GetParameterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterOutput/)."""
 GetParametersByPathOutput: TypeAlias = _native.GetParametersByPathOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersByPathOutput/)."""
 GetParametersOutput: TypeAlias = _native.GetParametersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersOutput/)."""
 GetPatchBaselineForPatchGroupOutput: TypeAlias = _native.GetPatchBaselineForPatchGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineForPatchGroupOutput/)."""
 GetPatchBaselineOutput: TypeAlias = _native.GetPatchBaselineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineOutput/)."""
 GetResourcePoliciesOutput: TypeAlias = _native.GetResourcePoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetResourcePoliciesOutput/)."""
 GetResourcePoliciesResponseEntryOutput: TypeAlias = _native.GetResourcePoliciesResponseEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetResourcePoliciesResponseEntryOutput/)."""
 GetServiceSettingOutput: TypeAlias = _native.GetServiceSettingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetServiceSettingOutput/)."""
 InstanceAggregatedAssociationOverviewOutput: TypeAlias = _native.InstanceAggregatedAssociationOverview
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAggregatedAssociationOverviewOutput/)."""
 InstanceAssociationOutput: TypeAlias = _native.InstanceAssociation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutput/)."""
 InstanceAssociationOutputLocationOutput: TypeAlias = _native.InstanceAssociationOutputLocation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutputLocationOutput/)."""
 InstanceAssociationOutputUrlOutput: TypeAlias = _native.InstanceAssociationOutputUrl
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutputUrlOutput/)."""
 InstanceAssociationStatusInfoOutput: TypeAlias = _native.InstanceAssociationStatusInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationStatusInfoOutput/)."""
 InstanceInformationOutput: TypeAlias = _native.InstanceInformation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInformationOutput/)."""
 InstancePatchStateOutput: TypeAlias = _native.InstancePatchState
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePatchStateOutput/)."""
 InstancePropertyOutput: TypeAlias = _native.InstanceProperty
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyOutput/)."""
 InventoryDeletionStatusItemOutput: TypeAlias = _native.InventoryDeletionStatusItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionStatusItemOutput/)."""
 InventoryDeletionSummaryOutput: TypeAlias = _native.InventoryDeletionSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionSummaryOutput/)."""
 InventoryDeletionSummaryItemOutput: TypeAlias = _native.InventoryDeletionSummaryItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionSummaryItemOutput/)."""
 InventoryItemAttributeOutput: TypeAlias = _native.InventoryItemAttribute
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryItemAttributeOutput/)."""
 InventoryItemSchemaOutput: TypeAlias = _native.InventoryItemSchema
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryItemSchemaOutput/)."""
 InventoryResultEntityOutput: TypeAlias = _native.InventoryResultEntity
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryResultEntityOutput/)."""
 InventoryResultItemOutput: TypeAlias = _native.InventoryResultItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryResultItemOutput/)."""
 LabelParameterVersionOutput: TypeAlias = _native.LabelParameterVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LabelParameterVersionOutput/)."""
 ListAssociationVersionsOutput: TypeAlias = _native.ListAssociationVersionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationVersionsOutput/)."""
 ListAssociationsOutput: TypeAlias = _native.ListAssociationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationsOutput/)."""
 ListCloudConnectorsOutput: TypeAlias = _native.ListCloudConnectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCloudConnectorsOutput/)."""
 ListCommandInvocationsOutput: TypeAlias = _native.ListCommandInvocationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandInvocationsOutput/)."""
 ListCommandsOutput: TypeAlias = _native.ListCommandsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandsOutput/)."""
 ListComplianceItemsOutput: TypeAlias = _native.ListComplianceItemsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceItemsOutput/)."""
 ListComplianceSummariesOutput: TypeAlias = _native.ListComplianceSummariesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceSummariesOutput/)."""
 ListDocumentMetadataHistoryOutput: TypeAlias = _native.ListDocumentMetadataHistoryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentMetadataHistoryOutput/)."""
 ListDocumentVersionsOutput: TypeAlias = _native.ListDocumentVersionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentVersionsOutput/)."""
 ListDocumentsOutput: TypeAlias = _native.ListDocumentsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentsOutput/)."""
 ListInventoryEntriesOutput: TypeAlias = _native.ListInventoryEntriesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListInventoryEntriesOutput/)."""
 ListNodesOutput: TypeAlias = _native.ListNodesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesOutput/)."""
 ListNodesSummaryOutput: TypeAlias = _native.ListNodesSummaryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesSummaryOutput/)."""
 ListOpsItemEventsOutput: TypeAlias = _native.ListOpsItemEventsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemEventsOutput/)."""
 ListOpsItemRelatedItemsOutput: TypeAlias = _native.ListOpsItemRelatedItemsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemRelatedItemsOutput/)."""
 ListOpsMetadataOutput: TypeAlias = _native.ListOpsMetadataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsMetadataOutput/)."""
 ListResourceComplianceSummariesOutput: TypeAlias = _native.ListResourceComplianceSummariesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceComplianceSummariesOutput/)."""
 ListResourceDataSyncOutput: TypeAlias = _native.ListResourceDataSyncOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceDataSyncOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListTagsForResourceOutput/)."""
 LoggingInfoOutput: TypeAlias = _native.LoggingInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LoggingInfoOutput/)."""
 MaintenanceWindowAutomationParametersOutput: TypeAlias = _native.MaintenanceWindowAutomationParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowAutomationParametersOutput/)."""
 MaintenanceWindowExecutionOutput: TypeAlias = _native.MaintenanceWindowExecution
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionOutput/)."""
 MaintenanceWindowExecutionTaskIdentityOutput: TypeAlias = _native.MaintenanceWindowExecutionTaskIdentity
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionTaskIdentityOutput/)."""
 MaintenanceWindowExecutionTaskInvocationIdentityOutput: TypeAlias = _native.MaintenanceWindowExecutionTaskInvocationIdentity
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionTaskInvocationIdentityOutput/)."""
 MaintenanceWindowIdentityOutput: TypeAlias = _native.MaintenanceWindowIdentity
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowIdentityOutput/)."""
 MaintenanceWindowIdentityForTargetOutput: TypeAlias = _native.MaintenanceWindowIdentityForTarget
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowIdentityForTargetOutput/)."""
 MaintenanceWindowLambdaParametersOutput: TypeAlias = _native.MaintenanceWindowLambdaParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowLambdaParametersOutput/)."""
 MaintenanceWindowRunCommandParametersOutput: TypeAlias = _native.MaintenanceWindowRunCommandParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowRunCommandParametersOutput/)."""
 MaintenanceWindowStepFunctionsParametersOutput: TypeAlias = _native.MaintenanceWindowStepFunctionsParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowStepFunctionsParametersOutput/)."""
 MaintenanceWindowTargetOutput: TypeAlias = _native.MaintenanceWindowTarget
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTargetOutput/)."""
 MaintenanceWindowTaskOutput: TypeAlias = _native.MaintenanceWindowTask
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskOutput/)."""
 MaintenanceWindowTaskInvocationParametersOutput: TypeAlias = _native.MaintenanceWindowTaskInvocationParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskInvocationParametersOutput/)."""
 MaintenanceWindowTaskParameterValueExpressionOutput: TypeAlias = _native.MaintenanceWindowTaskParameterValueExpression
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskParameterValueExpressionOutput/)."""
 MetadataValueOutput: TypeAlias = _native.MetadataValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MetadataValueOutput/)."""
 ModifyDocumentPermissionOutput: TypeAlias = _native.ModifyDocumentPermissionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ModifyDocumentPermissionOutput/)."""
 NodeOutput: TypeAlias = _native.Node
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeOutput/)."""
 NodeOwnerInfoOutput: TypeAlias = _native.NodeOwnerInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeOwnerInfoOutput/)."""
 NonCompliantSummaryOutput: TypeAlias = _native.NonCompliantSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NonCompliantSummaryOutput/)."""
 NotificationConfigOutput: TypeAlias = _native.NotificationConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NotificationConfigOutput/)."""
 OpsEntityOutput: TypeAlias = _native.OpsEntity
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsEntityOutput/)."""
 OpsEntityItemOutput: TypeAlias = _native.OpsEntityItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsEntityItemOutput/)."""
 OpsItemOutput: TypeAlias = _native.OpsItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemOutput/)."""
 OpsItemDataValueOutput: TypeAlias = _native.OpsItemDataValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemDataValueOutput/)."""
 OpsItemEventSummaryOutput: TypeAlias = _native.OpsItemEventSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventSummaryOutput/)."""
 OpsItemIdentityOutput: TypeAlias = _native.OpsItemIdentity
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemIdentityOutput/)."""
 OpsItemNotificationOutput: TypeAlias = _native.OpsItemNotification
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemNotificationOutput/)."""
 OpsItemRelatedItemSummaryOutput: TypeAlias = _native.OpsItemRelatedItemSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemSummaryOutput/)."""
 OpsItemSummaryOutput: TypeAlias = _native.OpsItemSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemSummaryOutput/)."""
 OpsMetadataOutput: TypeAlias = _native.OpsMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsMetadataOutput/)."""
 OutputSourceOutput: TypeAlias = _native.OutputSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OutputSourceOutput/)."""
 ParameterOutput: TypeAlias = _native.Parameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterOutput/)."""
 ParameterHistoryOutput: TypeAlias = _native.ParameterHistory
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterHistoryOutput/)."""
 ParameterInlinePolicyOutput: TypeAlias = _native.ParameterInlinePolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterInlinePolicyOutput/)."""
 ParameterMetadataOutput: TypeAlias = _native.ParameterMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterMetadataOutput/)."""
 ParentStepDetailsOutput: TypeAlias = _native.ParentStepDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParentStepDetailsOutput/)."""
 PatchOutput: TypeAlias = _native.Patch
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchOutput/)."""
 PatchBaselineIdentityOutput: TypeAlias = _native.PatchBaselineIdentity
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchBaselineIdentityOutput/)."""
 PatchComplianceDataOutput: TypeAlias = _native.PatchComplianceData
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceDataOutput/)."""
 PatchFilterOutput: TypeAlias = _native.PatchFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilterOutput/)."""
 PatchFilterGroupOutput: TypeAlias = _native.PatchFilterGroup
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilterGroupOutput/)."""
 PatchGroupPatchBaselineMappingOutput: TypeAlias = _native.PatchGroupPatchBaselineMapping
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchGroupPatchBaselineMappingOutput/)."""
 PatchRuleOutput: TypeAlias = _native.PatchRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchRuleOutput/)."""
 PatchRuleGroupOutput: TypeAlias = _native.PatchRuleGroup
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchRuleGroupOutput/)."""
 PatchSourceOutput: TypeAlias = _native.PatchSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchSourceOutput/)."""
 PatchStatusOutput: TypeAlias = _native.PatchStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchStatusOutput/)."""
 ProgressCountersOutput: TypeAlias = _native.ProgressCounters
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ProgressCountersOutput/)."""
 PutComplianceItemsOutput: TypeAlias = _native.PutComplianceItemsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutComplianceItemsOutput/)."""
 PutInventoryOutput: TypeAlias = _native.PutInventoryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutInventoryOutput/)."""
 PutParameterOutput: TypeAlias = _native.PutParameterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutParameterOutput/)."""
 PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutResourcePolicyOutput/)."""
 RegisterDefaultPatchBaselineOutput: TypeAlias = _native.RegisterDefaultPatchBaselineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterDefaultPatchBaselineOutput/)."""
 RegisterPatchBaselineForPatchGroupOutput: TypeAlias = _native.RegisterPatchBaselineForPatchGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterPatchBaselineForPatchGroupOutput/)."""
 RegisterTargetWithMaintenanceWindowOutput: TypeAlias = _native.RegisterTargetWithMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTargetWithMaintenanceWindowOutput/)."""
 RegisterTaskWithMaintenanceWindowOutput: TypeAlias = _native.RegisterTaskWithMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTaskWithMaintenanceWindowOutput/)."""
 RelatedOpsItemOutput: TypeAlias = _native.RelatedOpsItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RelatedOpsItemOutput/)."""
 RemoveTagsFromResourceOutput: TypeAlias = _native.RemoveTagsFromResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RemoveTagsFromResourceOutput/)."""
 ResetServiceSettingOutput: TypeAlias = _native.ResetServiceSettingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResetServiceSettingOutput/)."""
 ResolvedTargetsOutput: TypeAlias = _native.ResolvedTargets
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResolvedTargetsOutput/)."""
 ResourceComplianceSummaryItemOutput: TypeAlias = _native.ResourceComplianceSummaryItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceComplianceSummaryItemOutput/)."""
 ResourceDataSyncAwsOrganizationsSourceOutput: TypeAlias = _native.ResourceDataSyncAwsOrganizationsSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncAwsOrganizationsSourceOutput/)."""
 ResourceDataSyncDestinationDataSharingOutput: TypeAlias = _native.ResourceDataSyncDestinationDataSharing
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncDestinationDataSharingOutput/)."""
 ResourceDataSyncItemOutput: TypeAlias = _native.ResourceDataSyncItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncItemOutput/)."""
 ResourceDataSyncOrganizationalUnitOutput: TypeAlias = _native.ResourceDataSyncOrganizationalUnit
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncOrganizationalUnitOutput/)."""
 ResourceDataSyncS3DestinationOutput: TypeAlias = _native.ResourceDataSyncS3Destination
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncS3DestinationOutput/)."""
 ResourceDataSyncSourceWithStateOutput: TypeAlias = _native.ResourceDataSyncSourceWithState
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncSourceWithStateOutput/)."""
 ResumeSessionOutput: TypeAlias = _native.ResumeSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResumeSessionOutput/)."""
 ReviewInformationOutput: TypeAlias = _native.ReviewInformation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ReviewInformationOutput/)."""
 RunbookOutput: TypeAlias = _native.Runbook
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RunbookOutput/)."""
 S3OutputLocationOutput: TypeAlias = _native.S3OutputLocation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/S3OutputLocationOutput/)."""
 S3OutputUrlOutput: TypeAlias = _native.S3OutputUrl
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/S3OutputUrlOutput/)."""
 ScheduledWindowExecutionOutput: TypeAlias = _native.ScheduledWindowExecution
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ScheduledWindowExecutionOutput/)."""
 SendAutomationSignalOutput: TypeAlias = _native.SendAutomationSignalOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendAutomationSignalOutput/)."""
 SendCommandOutput: TypeAlias = _native.SendCommandOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendCommandOutput/)."""
 ServiceSettingOutput: TypeAlias = _native.ServiceSetting
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ServiceSettingOutput/)."""
 SessionOutput: TypeAlias = _native.Session
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionOutput/)."""
 SessionManagerOutputUrlOutput: TypeAlias = _native.SessionManagerOutputUrl
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionManagerOutputUrlOutput/)."""
 SeveritySummaryOutput: TypeAlias = _native.SeveritySummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SeveritySummaryOutput/)."""
 StartAccessRequestOutput: TypeAlias = _native.StartAccessRequestOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAccessRequestOutput/)."""
 StartAssociationsOnceOutput: TypeAlias = _native.StartAssociationsOnceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAssociationsOnceOutput/)."""
 StartAutomationExecutionOutput: TypeAlias = _native.StartAutomationExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAutomationExecutionOutput/)."""
 StartChangeRequestExecutionOutput: TypeAlias = _native.StartChangeRequestExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartChangeRequestExecutionOutput/)."""
 StartExecutionPreviewOutput: TypeAlias = _native.StartExecutionPreviewOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartExecutionPreviewOutput/)."""
 StartSessionOutput: TypeAlias = _native.StartSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartSessionOutput/)."""
 StepExecutionOutput: TypeAlias = _native.StepExecution
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StepExecutionOutput/)."""
 StopAutomationExecutionOutput: TypeAlias = _native.StopAutomationExecutionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopAutomationExecutionOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TagOutput/)."""
 TargetOutput: TypeAlias = _native.Target
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetOutput/)."""
 TargetLocationOutput: TypeAlias = _native.TargetLocation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetLocationOutput/)."""
 TerminateSessionOutput: TypeAlias = _native.TerminateSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TerminateSessionOutput/)."""
 UnlabelParameterVersionOutput: TypeAlias = _native.UnlabelParameterVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UnlabelParameterVersionOutput/)."""
 UpdateAssociationOutput: TypeAlias = _native.UpdateAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationOutput/)."""
 UpdateAssociationStatusOutput: TypeAlias = _native.UpdateAssociationStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationStatusOutput/)."""
 UpdateCloudConnectorOutput: TypeAlias = _native.UpdateCloudConnectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateCloudConnectorOutput/)."""
 UpdateDocumentDefaultVersionOutput: TypeAlias = _native.UpdateDocumentDefaultVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentDefaultVersionOutput/)."""
 UpdateDocumentMetadataOutput: TypeAlias = _native.UpdateDocumentMetadataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentMetadataOutput/)."""
 UpdateDocumentOutput: TypeAlias = _native.UpdateDocumentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentOutput/)."""
 UpdateMaintenanceWindowOutput: TypeAlias = _native.UpdateMaintenanceWindowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowOutput/)."""
 UpdateMaintenanceWindowTargetOutput: TypeAlias = _native.UpdateMaintenanceWindowTargetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTargetOutput/)."""
 UpdateMaintenanceWindowTaskOutput: TypeAlias = _native.UpdateMaintenanceWindowTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTaskOutput/)."""
 UpdateManagedInstanceRoleOutput: TypeAlias = _native.UpdateManagedInstanceRoleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateManagedInstanceRoleOutput/)."""
 UpdateOpsItemOutput: TypeAlias = _native.UpdateOpsItemOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsItemOutput/)."""
 UpdateOpsMetadataOutput: TypeAlias = _native.UpdateOpsMetadataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsMetadataOutput/)."""
 UpdatePatchBaselineOutput: TypeAlias = _native.UpdatePatchBaselineOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdatePatchBaselineOutput/)."""
 UpdateResourceDataSyncOutput: TypeAlias = _native.UpdateResourceDataSyncOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateResourceDataSyncOutput/)."""
 UpdateServiceSettingOutput: TypeAlias = _native.UpdateServiceSettingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateServiceSettingOutput/)."""
 ValidateCloudConnectorOutput: TypeAlias = _native.ValidateCloudConnectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidateCloudConnectorOutput/)."""
 ValidationFindingOutput: TypeAlias = _native.ValidationFinding
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingOutput/)."""
 ValidationFindingScopeOutput: TypeAlias = _native.ValidationFindingScope
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingScopeOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/JSONValue/)."""
 
 AccessRequestStatus: TypeAlias = Literal['Approved', 'Rejected', 'Revoked', 'Expired', 'Pending']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AccessRequestStatus/)."""
 AccessRequestStatusOutput: TypeAlias = AccessRequestStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AccessRequestStatusOutput/)."""
 AccessType: TypeAlias = Literal['Standard', 'JustInTime']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AccessType/)."""
 AccessTypeOutput: TypeAlias = AccessType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AccessTypeOutput/)."""
 AssociationComplianceSeverity: TypeAlias = Literal['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'UNSPECIFIED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationComplianceSeverity/)."""
 AssociationComplianceSeverityOutput: TypeAlias = AssociationComplianceSeverity | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationComplianceSeverityOutput/)."""
 AssociationExecutionFilterKey: TypeAlias = Literal['ExecutionId', 'Status', 'CreatedTime']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionFilterKey/)."""
 AssociationExecutionFilterKeyOutput: TypeAlias = AssociationExecutionFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionFilterKeyOutput/)."""
 AssociationExecutionTargetsFilterKey: TypeAlias = Literal['Status', 'ResourceId', 'ResourceType']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionTargetsFilterKey/)."""
 AssociationExecutionTargetsFilterKeyOutput: TypeAlias = AssociationExecutionTargetsFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionTargetsFilterKeyOutput/)."""
 AssociationFilterKey: TypeAlias = Literal['InstanceId', 'Name', 'AssociationId', 'AssociationStatusName', 'LastExecutedBefore', 'LastExecutedAfter', 'AssociationName', 'ResourceGroupName', 'CloudConnectorId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationFilterKey/)."""
 AssociationFilterKeyOutput: TypeAlias = AssociationFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationFilterKeyOutput/)."""
 AssociationFilterOperatorType: TypeAlias = Literal['EQUAL', 'LESS_THAN', 'GREATER_THAN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationFilterOperatorType/)."""
 AssociationFilterOperatorTypeOutput: TypeAlias = AssociationFilterOperatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationFilterOperatorTypeOutput/)."""
 AssociationStatusName: TypeAlias = Literal['Pending', 'Success', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationStatusName/)."""
 AssociationStatusNameOutput: TypeAlias = AssociationStatusName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationStatusNameOutput/)."""
 AssociationSyncCompliance: TypeAlias = Literal['AUTO', 'MANUAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationSyncCompliance/)."""
 AssociationSyncComplianceOutput: TypeAlias = AssociationSyncCompliance | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationSyncComplianceOutput/)."""
 AttachmentHashType: TypeAlias = Literal['Sha256']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentHashType/)."""
 AttachmentHashTypeOutput: TypeAlias = AttachmentHashType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentHashTypeOutput/)."""
 AttachmentsSourceKey: TypeAlias = Literal['SourceUrl', 'S3FileUrl', 'AttachmentReference']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentsSourceKey/)."""
 AttachmentsSourceKeyOutput: TypeAlias = AttachmentsSourceKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentsSourceKeyOutput/)."""
 AutomationExecutionFilterKey: TypeAlias = Literal['DocumentNamePrefix', 'ExecutionStatus', 'ExecutionId', 'ParentExecutionId', 'CurrentAction', 'StartTimeBefore', 'StartTimeAfter', 'AutomationType', 'TagKey', 'TargetResourceGroup', 'AutomationSubtype', 'OpsItemId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionFilterKey/)."""
 AutomationExecutionFilterKeyOutput: TypeAlias = AutomationExecutionFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionFilterKeyOutput/)."""
 AutomationExecutionStatus: TypeAlias = Literal['Pending', 'InProgress', 'Waiting', 'Success', 'TimedOut', 'Cancelling', 'Cancelled', 'Failed', 'PendingApproval', 'Approved', 'Rejected', 'Scheduled', 'RunbookInProgress', 'PendingChangeCalendarOverride', 'ChangeCalendarOverrideApproved', 'ChangeCalendarOverrideRejected', 'CompletedWithSuccess', 'CompletedWithFailure', 'Exited']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionStatus/)."""
 AutomationExecutionStatusOutput: TypeAlias = AutomationExecutionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionStatusOutput/)."""
 AutomationSubtype: TypeAlias = Literal['ChangeRequest', 'AccessRequest']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationSubtype/)."""
 AutomationSubtypeOutput: TypeAlias = AutomationSubtype | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationSubtypeOutput/)."""
 AutomationType: TypeAlias = Literal['CrossAccount', 'Local']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationType/)."""
 AutomationTypeOutput: TypeAlias = AutomationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationTypeOutput/)."""
 CalendarState: TypeAlias = Literal['OPEN', 'CLOSED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CalendarState/)."""
 CalendarStateOutput: TypeAlias = CalendarState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CalendarStateOutput/)."""
 CloudConnectorFilterKey: TypeAlias = Literal['SubscriptionId', 'TenantId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorFilterKey/)."""
 CloudConnectorFilterKeyOutput: TypeAlias = CloudConnectorFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorFilterKeyOutput/)."""
 CommandFilterKey: TypeAlias = Literal['InvokedAfter', 'InvokedBefore', 'Status', 'ExecutionStage', 'DocumentName']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandFilterKey/)."""
 CommandFilterKeyOutput: TypeAlias = CommandFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandFilterKeyOutput/)."""
 CommandInvocationStatus: TypeAlias = Literal['Pending', 'InProgress', 'Delayed', 'Success', 'Cancelled', 'TimedOut', 'Failed', 'Cancelling']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandInvocationStatus/)."""
 CommandInvocationStatusOutput: TypeAlias = CommandInvocationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandInvocationStatusOutput/)."""
 CommandPluginStatus: TypeAlias = Literal['Pending', 'InProgress', 'Success', 'TimedOut', 'Cancelled', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandPluginStatus/)."""
 CommandPluginStatusOutput: TypeAlias = CommandPluginStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandPluginStatusOutput/)."""
 CommandStatus: TypeAlias = Literal['Pending', 'InProgress', 'Success', 'Cancelled', 'Failed', 'TimedOut', 'Cancelling']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandStatus/)."""
 CommandStatusOutput: TypeAlias = CommandStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandStatusOutput/)."""
 ComplianceQueryOperatorType: TypeAlias = Literal['EQUAL', 'NOT_EQUAL', 'BEGIN_WITH', 'LESS_THAN', 'GREATER_THAN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceQueryOperatorType/)."""
 ComplianceQueryOperatorTypeOutput: TypeAlias = ComplianceQueryOperatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceQueryOperatorTypeOutput/)."""
 ComplianceSeverity: TypeAlias = Literal['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFORMATIONAL', 'UNSPECIFIED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceSeverity/)."""
 ComplianceSeverityOutput: TypeAlias = ComplianceSeverity | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceSeverityOutput/)."""
 ComplianceStatus: TypeAlias = Literal['COMPLIANT', 'NON_COMPLIANT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceStatus/)."""
 ComplianceStatusOutput: TypeAlias = ComplianceStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceStatusOutput/)."""
 ComplianceUploadType: TypeAlias = Literal['COMPLETE', 'PARTIAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceUploadType/)."""
 ComplianceUploadTypeOutput: TypeAlias = ComplianceUploadType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceUploadTypeOutput/)."""
 ConnectionStatus: TypeAlias = Literal['connected', 'notconnected']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConnectionStatus/)."""
 ConnectionStatusOutput: TypeAlias = ConnectionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConnectionStatusOutput/)."""
 DeletionMode: TypeAlias = Literal['RemoveSharing', 'RollbackMigration']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeletionMode/)."""
 DeletionModeOutput: TypeAlias = DeletionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeletionModeOutput/)."""
 DescribeActivationsFilterKeys: TypeAlias = Literal['ActivationIds', 'DefaultInstanceName', 'IamRole']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeActivationsFilterKeys/)."""
 DescribeActivationsFilterKeysOutput: TypeAlias = DescribeActivationsFilterKeys | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeActivationsFilterKeysOutput/)."""
 DocumentFilterKey: TypeAlias = Literal['Name', 'Owner', 'PlatformTypes', 'DocumentType']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentFilterKey/)."""
 DocumentFilterKeyOutput: TypeAlias = DocumentFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentFilterKeyOutput/)."""
 DocumentFormat: TypeAlias = Literal['YAML', 'JSON', 'TEXT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentFormat/)."""
 DocumentFormatOutput: TypeAlias = DocumentFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentFormatOutput/)."""
 DocumentHashType: TypeAlias = Literal['Sha256', 'Sha1']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentHashType/)."""
 DocumentHashTypeOutput: TypeAlias = DocumentHashType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentHashTypeOutput/)."""
 DocumentMetadataEnum: TypeAlias = Literal['DocumentReviews']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentMetadataEnum/)."""
 DocumentMetadataEnumOutput: TypeAlias = DocumentMetadataEnum | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentMetadataEnumOutput/)."""
 DocumentParameterType: TypeAlias = Literal['String', 'StringList']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentParameterType/)."""
 DocumentParameterTypeOutput: TypeAlias = DocumentParameterType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentParameterTypeOutput/)."""
 DocumentPermissionType: TypeAlias = Literal['Share']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentPermissionType/)."""
 DocumentPermissionTypeOutput: TypeAlias = DocumentPermissionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentPermissionTypeOutput/)."""
 DocumentReviewAction: TypeAlias = Literal['SendForReview', 'UpdateReview', 'Approve', 'Reject']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewAction/)."""
 DocumentReviewActionOutput: TypeAlias = DocumentReviewAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewActionOutput/)."""
 DocumentReviewCommentType: TypeAlias = Literal['Comment']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewCommentType/)."""
 DocumentReviewCommentTypeOutput: TypeAlias = DocumentReviewCommentType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewCommentTypeOutput/)."""
 DocumentStatus: TypeAlias = Literal['Creating', 'Active', 'Updating', 'Deleting', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentStatus/)."""
 DocumentStatusOutput: TypeAlias = DocumentStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentStatusOutput/)."""
 DocumentType: TypeAlias = Literal['Command', 'Policy', 'Automation', 'Session', 'Package', 'ApplicationConfiguration', 'ApplicationConfigurationSchema', 'DeploymentStrategy', 'ChangeCalendar', 'Automation.ChangeTemplate', 'ProblemAnalysis', 'ProblemAnalysisTemplate', 'CloudFormation', 'ConformancePackTemplate', 'QuickSetup', 'ManualApprovalPolicy', 'AutoApprovalPolicy']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentType/)."""
 DocumentTypeOutput: TypeAlias = DocumentType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentTypeOutput/)."""
 ExecutionMode: TypeAlias = Literal['Auto', 'Interactive']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionMode/)."""
 ExecutionModeOutput: TypeAlias = ExecutionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionModeOutput/)."""
 ExecutionPreviewStatus: TypeAlias = Literal['Pending', 'InProgress', 'Success', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreviewStatus/)."""
 ExecutionPreviewStatusOutput: TypeAlias = ExecutionPreviewStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreviewStatusOutput/)."""
 ExternalAlarmState: TypeAlias = Literal['UNKNOWN', 'ALARM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExternalAlarmState/)."""
 ExternalAlarmStateOutput: TypeAlias = ExternalAlarmState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExternalAlarmStateOutput/)."""
 Fault: TypeAlias = Literal['Client', 'Server', 'Unknown']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Fault/)."""
 FaultOutput: TypeAlias = Fault | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FaultOutput/)."""
 ImpactType: TypeAlias = Literal['Mutating', 'NonMutating', 'Undetermined']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ImpactType/)."""
 ImpactTypeOutput: TypeAlias = ImpactType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ImpactTypeOutput/)."""
 InstanceInformationFilterKey: TypeAlias = Literal['InstanceIds', 'AgentVersion', 'PingStatus', 'PlatformTypes', 'ActivationIds', 'IamRole', 'ResourceType', 'AssociationStatus']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInformationFilterKey/)."""
 InstanceInformationFilterKeyOutput: TypeAlias = InstanceInformationFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInformationFilterKeyOutput/)."""
 InstancePatchStateOperatorType: TypeAlias = Literal['Equal', 'NotEqual', 'LessThan', 'GreaterThan']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePatchStateOperatorType/)."""
 InstancePatchStateOperatorTypeOutput: TypeAlias = InstancePatchStateOperatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePatchStateOperatorTypeOutput/)."""
 InstancePropertyFilterKey: TypeAlias = Literal['InstanceIds', 'AgentVersion', 'PingStatus', 'PlatformTypes', 'DocumentName', 'ActivationIds', 'IamRole', 'ResourceType', 'AssociationStatus']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyFilterKey/)."""
 InstancePropertyFilterKeyOutput: TypeAlias = InstancePropertyFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyFilterKeyOutput/)."""
 InstancePropertyFilterOperator: TypeAlias = Literal['Equal', 'NotEqual', 'BeginWith', 'LessThan', 'GreaterThan']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyFilterOperator/)."""
 InstancePropertyFilterOperatorOutput: TypeAlias = InstancePropertyFilterOperator | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyFilterOperatorOutput/)."""
 InventoryAttributeDataType: TypeAlias = Literal['string', 'number']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryAttributeDataType/)."""
 InventoryAttributeDataTypeOutput: TypeAlias = InventoryAttributeDataType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryAttributeDataTypeOutput/)."""
 InventoryDeletionStatus: TypeAlias = Literal['InProgress', 'Complete']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionStatus/)."""
 InventoryDeletionStatusOutput: TypeAlias = InventoryDeletionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionStatusOutput/)."""
 InventoryQueryOperatorType: TypeAlias = Literal['Equal', 'NotEqual', 'BeginWith', 'LessThan', 'GreaterThan', 'Exists']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryQueryOperatorType/)."""
 InventoryQueryOperatorTypeOutput: TypeAlias = InventoryQueryOperatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryQueryOperatorTypeOutput/)."""
 InventorySchemaDeleteOption: TypeAlias = Literal['DisableSchema', 'DeleteSchema']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventorySchemaDeleteOption/)."""
 InventorySchemaDeleteOptionOutput: TypeAlias = InventorySchemaDeleteOption | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventorySchemaDeleteOptionOutput/)."""
 LastResourceDataSyncStatus: TypeAlias = Literal['Successful', 'Failed', 'InProgress']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LastResourceDataSyncStatus/)."""
 LastResourceDataSyncStatusOutput: TypeAlias = LastResourceDataSyncStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LastResourceDataSyncStatusOutput/)."""
 MaintenanceWindowExecutionStatus: TypeAlias = Literal['PENDING', 'IN_PROGRESS', 'SUCCESS', 'FAILED', 'TIMED_OUT', 'CANCELLING', 'CANCELLED', 'SKIPPED_OVERLAPPING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionStatus/)."""
 MaintenanceWindowExecutionStatusOutput: TypeAlias = MaintenanceWindowExecutionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionStatusOutput/)."""
 MaintenanceWindowResourceType: TypeAlias = Literal['INSTANCE', 'RESOURCE_GROUP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowResourceType/)."""
 MaintenanceWindowResourceTypeOutput: TypeAlias = MaintenanceWindowResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowResourceTypeOutput/)."""
 MaintenanceWindowTaskCutoffBehavior: TypeAlias = Literal['CONTINUE_TASK', 'CANCEL_TASK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskCutoffBehavior/)."""
 MaintenanceWindowTaskCutoffBehaviorOutput: TypeAlias = MaintenanceWindowTaskCutoffBehavior | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskCutoffBehaviorOutput/)."""
 MaintenanceWindowTaskType: TypeAlias = Literal['RUN_COMMAND', 'AUTOMATION', 'STEP_FUNCTIONS', 'LAMBDA']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskType/)."""
 MaintenanceWindowTaskTypeOutput: TypeAlias = MaintenanceWindowTaskType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskTypeOutput/)."""
 ManagedStatus: TypeAlias = Literal['All', 'Managed', 'Unmanaged']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ManagedStatus/)."""
 ManagedStatusOutput: TypeAlias = ManagedStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ManagedStatusOutput/)."""
 NodeAggregatorType: TypeAlias = Literal['Count']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeAggregatorType/)."""
 NodeAggregatorTypeOutput: TypeAlias = NodeAggregatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeAggregatorTypeOutput/)."""
 NodeAttributeName: TypeAlias = Literal['AgentVersion', 'PlatformName', 'PlatformType', 'PlatformVersion', 'Region', 'ResourceType', 'SourceType', 'AvailabilityZone']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeAttributeName/)."""
 NodeAttributeNameOutput: TypeAlias = NodeAttributeName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeAttributeNameOutput/)."""
 NodeFilterKey: TypeAlias = Literal['AgentType', 'AgentVersion', 'ComputerName', 'InstanceId', 'InstanceStatus', 'IpAddress', 'ManagedStatus', 'PlatformName', 'PlatformType', 'PlatformVersion', 'ResourceType', 'OrganizationalUnitId', 'OrganizationalUnitPath', 'Region', 'AccountId', 'SourceType', 'SourceId', 'SourceLocation', 'AvailabilityZone', 'AvailabilityZoneId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeFilterKey/)."""
 NodeFilterKeyOutput: TypeAlias = NodeFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeFilterKeyOutput/)."""
 NodeFilterOperatorType: TypeAlias = Literal['Equal', 'NotEqual', 'BeginWith']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeFilterOperatorType/)."""
 NodeFilterOperatorTypeOutput: TypeAlias = NodeFilterOperatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeFilterOperatorTypeOutput/)."""
 NodeTypeName: TypeAlias = Literal['Instance']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeTypeName/)."""
 NodeTypeNameOutput: TypeAlias = NodeTypeName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeTypeNameOutput/)."""
 NotificationEvent: TypeAlias = Literal['All', 'InProgress', 'Success', 'TimedOut', 'Cancelled', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NotificationEvent/)."""
 NotificationEventOutput: TypeAlias = NotificationEvent | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NotificationEventOutput/)."""
 NotificationType: TypeAlias = Literal['Command', 'Invocation']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NotificationType/)."""
 NotificationTypeOutput: TypeAlias = NotificationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NotificationTypeOutput/)."""
 OperatingSystem: TypeAlias = Literal['WINDOWS', 'AMAZON_LINUX', 'AMAZON_LINUX_2', 'AMAZON_LINUX_2022', 'UBUNTU', 'REDHAT_ENTERPRISE_LINUX', 'SUSE', 'CENTOS', 'ORACLE_LINUX', 'DEBIAN', 'MACOS', 'RASPBIAN', 'ROCKY_LINUX', 'ALMA_LINUX', 'AMAZON_LINUX_2023']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OperatingSystem/)."""
 OperatingSystemOutput: TypeAlias = OperatingSystem | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OperatingSystemOutput/)."""
 OpsFilterOperatorType: TypeAlias = Literal['Equal', 'NotEqual', 'BeginWith', 'LessThan', 'GreaterThan', 'Exists']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsFilterOperatorType/)."""
 OpsFilterOperatorTypeOutput: TypeAlias = OpsFilterOperatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsFilterOperatorTypeOutput/)."""
 OpsItemDataType: TypeAlias = Literal['SearchableString', 'String']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemDataType/)."""
 OpsItemDataTypeOutput: TypeAlias = OpsItemDataType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemDataTypeOutput/)."""
 OpsItemEventFilterKey: TypeAlias = Literal['OpsItemId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventFilterKey/)."""
 OpsItemEventFilterKeyOutput: TypeAlias = OpsItemEventFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventFilterKeyOutput/)."""
 OpsItemEventFilterOperator: TypeAlias = Literal['Equal']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventFilterOperator/)."""
 OpsItemEventFilterOperatorOutput: TypeAlias = OpsItemEventFilterOperator | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventFilterOperatorOutput/)."""
 OpsItemFilterKey: TypeAlias = Literal['Status', 'CreatedBy', 'Source', 'Priority', 'Title', 'OpsItemId', 'CreatedTime', 'LastModifiedTime', 'ActualStartTime', 'ActualEndTime', 'PlannedStartTime', 'PlannedEndTime', 'OperationalData', 'OperationalDataKey', 'OperationalDataValue', 'ResourceId', 'AutomationId', 'Category', 'Severity', 'OpsItemType', 'AccessRequestByRequesterArn', 'AccessRequestByRequesterId', 'AccessRequestByApproverArn', 'AccessRequestByApproverId', 'AccessRequestBySourceAccountId', 'AccessRequestBySourceOpsItemId', 'AccessRequestBySourceRegion', 'AccessRequestByIsReplica', 'AccessRequestByTargetResourceId', 'ChangeRequestByRequesterArn', 'ChangeRequestByRequesterName', 'ChangeRequestByApproverArn', 'ChangeRequestByApproverName', 'ChangeRequestByTemplate', 'ChangeRequestByTargetsResourceGroup', 'InsightByType', 'AccountId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemFilterKey/)."""
 OpsItemFilterKeyOutput: TypeAlias = OpsItemFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemFilterKeyOutput/)."""
 OpsItemFilterOperator: TypeAlias = Literal['Equal', 'Contains', 'GreaterThan', 'LessThan']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemFilterOperator/)."""
 OpsItemFilterOperatorOutput: TypeAlias = OpsItemFilterOperator | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemFilterOperatorOutput/)."""
 OpsItemRelatedItemsFilterKey: TypeAlias = Literal['ResourceType', 'AssociationId', 'ResourceUri']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemsFilterKey/)."""
 OpsItemRelatedItemsFilterKeyOutput: TypeAlias = OpsItemRelatedItemsFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemsFilterKeyOutput/)."""
 OpsItemRelatedItemsFilterOperator: TypeAlias = Literal['Equal']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemsFilterOperator/)."""
 OpsItemRelatedItemsFilterOperatorOutput: TypeAlias = OpsItemRelatedItemsFilterOperator | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemsFilterOperatorOutput/)."""
 OpsItemStatus: TypeAlias = Literal['Open', 'InProgress', 'Resolved', 'Pending', 'TimedOut', 'Cancelling', 'Cancelled', 'Failed', 'CompletedWithSuccess', 'CompletedWithFailure', 'Scheduled', 'RunbookInProgress', 'PendingChangeCalendarOverride', 'ChangeCalendarOverrideApproved', 'ChangeCalendarOverrideRejected', 'PendingApproval', 'Approved', 'Revoked', 'Rejected', 'Closed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemStatus/)."""
 OpsItemStatusOutput: TypeAlias = OpsItemStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemStatusOutput/)."""
 ParameterTier: TypeAlias = Literal['Standard', 'Advanced', 'Intelligent-Tiering']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterTier/)."""
 ParameterTierOutput: TypeAlias = ParameterTier | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterTierOutput/)."""
 ParameterType: TypeAlias = Literal['String', 'StringList', 'SecureString']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterType/)."""
 ParameterTypeOutput: TypeAlias = ParameterType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterTypeOutput/)."""
 ParametersFilterKey: TypeAlias = Literal['Name', 'Type', 'KeyId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParametersFilterKey/)."""
 ParametersFilterKeyOutput: TypeAlias = ParametersFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParametersFilterKeyOutput/)."""
 PatchAction: TypeAlias = Literal['ALLOW_AS_DEPENDENCY', 'BLOCK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchAction/)."""
 PatchActionOutput: TypeAlias = PatchAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchActionOutput/)."""
 PatchComplianceDataState: TypeAlias = Literal['INSTALLED', 'INSTALLED_OTHER', 'INSTALLED_PENDING_REBOOT', 'INSTALLED_REJECTED', 'MISSING', 'NOT_APPLICABLE', 'FAILED', 'AVAILABLE_SECURITY_UPDATE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceDataState/)."""
 PatchComplianceDataStateOutput: TypeAlias = PatchComplianceDataState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceDataStateOutput/)."""
 PatchComplianceLevel: TypeAlias = Literal['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'INFORMATIONAL', 'UNSPECIFIED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceLevel/)."""
 PatchComplianceLevelOutput: TypeAlias = PatchComplianceLevel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceLevelOutput/)."""
 PatchComplianceStatus: TypeAlias = Literal['COMPLIANT', 'NON_COMPLIANT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceStatus/)."""
 PatchComplianceStatusOutput: TypeAlias = PatchComplianceStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceStatusOutput/)."""
 PatchDeploymentStatus: TypeAlias = Literal['APPROVED', 'PENDING_APPROVAL', 'EXPLICIT_APPROVED', 'EXPLICIT_REJECTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchDeploymentStatus/)."""
 PatchDeploymentStatusOutput: TypeAlias = PatchDeploymentStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchDeploymentStatusOutput/)."""
 PatchFilterKey: TypeAlias = Literal['ARCH', 'ADVISORY_ID', 'BUGZILLA_ID', 'PATCH_SET', 'PRODUCT', 'PRODUCT_FAMILY', 'CLASSIFICATION', 'CVE_ID', 'EPOCH', 'MSRC_SEVERITY', 'NAME', 'PATCH_ID', 'SECTION', 'PRIORITY', 'REPOSITORY', 'RELEASE', 'SEVERITY', 'SECURITY', 'VERSION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilterKey/)."""
 PatchFilterKeyOutput: TypeAlias = PatchFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilterKeyOutput/)."""
 PatchOperationType: TypeAlias = Literal['Scan', 'Install']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchOperationType/)."""
 PatchOperationTypeOutput: TypeAlias = PatchOperationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchOperationTypeOutput/)."""
 PatchProperty: TypeAlias = Literal['PRODUCT', 'PRODUCT_FAMILY', 'CLASSIFICATION', 'MSRC_SEVERITY', 'PRIORITY', 'SEVERITY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchProperty/)."""
 PatchPropertyOutput: TypeAlias = PatchProperty | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchPropertyOutput/)."""
 PatchSet: TypeAlias = Literal['OS', 'APPLICATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchSet/)."""
 PatchSetOutput: TypeAlias = PatchSet | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchSetOutput/)."""
 PingStatus: TypeAlias = Literal['Online', 'ConnectionLost', 'Inactive']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PingStatus/)."""
 PingStatusOutput: TypeAlias = PingStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PingStatusOutput/)."""
 PlatformType: TypeAlias = Literal['Windows', 'Linux', 'MacOS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PlatformType/)."""
 PlatformTypeOutput: TypeAlias = PlatformType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PlatformTypeOutput/)."""
 RebootOption: TypeAlias = Literal['RebootIfNeeded', 'NoReboot']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RebootOption/)."""
 RebootOptionOutput: TypeAlias = RebootOption | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RebootOptionOutput/)."""
 ResourceDataSyncS3Format: TypeAlias = Literal['JsonSerDe']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncS3Format/)."""
 ResourceDataSyncS3FormatOutput: TypeAlias = ResourceDataSyncS3Format | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncS3FormatOutput/)."""
 ResourceType: TypeAlias = Literal['ManagedInstance', 'EC2Instance']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceType/)."""
 ResourceTypeOutput: TypeAlias = ResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceTypeOutput/)."""
 ResourceTypeForTagging: TypeAlias = Literal['Document', 'ManagedInstance', 'MaintenanceWindow', 'Parameter', 'PatchBaseline', 'OpsItem', 'OpsMetadata', 'Automation', 'Association', 'CloudConnector']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceTypeForTagging/)."""
 ResourceTypeForTaggingOutput: TypeAlias = ResourceTypeForTagging | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceTypeForTaggingOutput/)."""
 ReviewStatus: TypeAlias = Literal['APPROVED', 'NOT_REVIEWED', 'PENDING', 'REJECTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ReviewStatus/)."""
 ReviewStatusOutput: TypeAlias = ReviewStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ReviewStatusOutput/)."""
 SessionFilterKey: TypeAlias = Literal['InvokedAfter', 'InvokedBefore', 'Target', 'Owner', 'Status', 'SessionId', 'AccessType']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionFilterKey/)."""
 SessionFilterKeyOutput: TypeAlias = SessionFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionFilterKeyOutput/)."""
 SessionState: TypeAlias = Literal['Active', 'History']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionState/)."""
 SessionStateOutput: TypeAlias = SessionState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionStateOutput/)."""
 SessionStatus: TypeAlias = Literal['Connected', 'Connecting', 'Disconnected', 'Terminated', 'Terminating', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionStatus/)."""
 SessionStatusOutput: TypeAlias = SessionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionStatusOutput/)."""
 SignalType: TypeAlias = Literal['Approve', 'Reject', 'StartStep', 'StopStep', 'Resume', 'Revoke']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SignalType/)."""
 SignalTypeOutput: TypeAlias = SignalType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SignalTypeOutput/)."""
 SourceType: TypeAlias = Literal['AWS::EC2::Instance', 'AWS::IoT::Thing', 'AWS::SSM::ManagedInstance', 'Microsoft.Compute/virtualMachines']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SourceType/)."""
 SourceTypeOutput: TypeAlias = SourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SourceTypeOutput/)."""
 StepExecutionFilterKey: TypeAlias = Literal['StartTimeBefore', 'StartTimeAfter', 'StepExecutionStatus', 'StepExecutionId', 'StepName', 'Action', 'ParentStepExecutionId', 'ParentStepIteration', 'ParentStepIteratorValue']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StepExecutionFilterKey/)."""
 StepExecutionFilterKeyOutput: TypeAlias = StepExecutionFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StepExecutionFilterKeyOutput/)."""
 StopType: TypeAlias = Literal['Complete', 'Cancel']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopType/)."""
 StopTypeOutput: TypeAlias = StopType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopTypeOutput/)."""
 ValidationFindingCode: TypeAlias = Literal['TargetInaccessible', 'TargetUnusable', 'TargetStateWarning', 'AwsRoleAssumptionFailed', 'WebIdentityTokenFailed', 'OutboundWebIdentityFederationDisabled', 'ProviderCredentialCreationFailed', 'TenantSummary', 'SubscriptionAccessible']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingCode/)."""
 ValidationFindingCodeOutput: TypeAlias = ValidationFindingCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingCodeOutput/)."""
 ValidationFindingScopeType: TypeAlias = Literal['azure:tenant', 'azure:subscription']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingScopeType/)."""
 ValidationFindingScopeTypeOutput: TypeAlias = ValidationFindingScopeType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingScopeTypeOutput/)."""
 ValidationFindingType: TypeAlias = Literal['INFO', 'WARN', 'ERROR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingType/)."""
 ValidationFindingTypeOutput: TypeAlias = ValidationFindingType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingTypeOutput/)."""
 
 AccountSharingInfo = TypedDict(
     "AccountSharingInfo",
@@ -503,6 +988,7 @@ AccountSharingInfo = TypedDict(
     "shared_document_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AccountSharingInfo/)."""
 
 Activation = TypedDict(
     "Activation",
@@ -519,6 +1005,7 @@ Activation = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Activation/)."""
 
 AddTagsToResourceRequest = TypedDict(
     "AddTagsToResourceRequest",
@@ -528,6 +1015,7 @@ AddTagsToResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AddTagsToResourceRequest/)."""
 
 Alarm = TypedDict(
     "Alarm",
@@ -535,6 +1023,7 @@ Alarm = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Alarm/)."""
 
 AlarmConfiguration = TypedDict(
     "AlarmConfiguration",
@@ -543,6 +1032,7 @@ AlarmConfiguration = TypedDict(
     "alarms": Required["Sequence[Alarm]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmConfiguration/)."""
 
 AlarmStateInformation = TypedDict(
     "AlarmStateInformation",
@@ -551,6 +1041,7 @@ AlarmStateInformation = TypedDict(
     "state": Required["ExternalAlarmState"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmStateInformation/)."""
 
 AssociateOpsItemRelatedItemRequest = TypedDict(
     "AssociateOpsItemRelatedItemRequest",
@@ -561,6 +1052,7 @@ AssociateOpsItemRelatedItemRequest = TypedDict(
     "resource_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociateOpsItemRelatedItemRequest/)."""
 
 Association = TypedDict(
     "Association",
@@ -580,6 +1072,7 @@ Association = TypedDict(
     "target_maps": NotRequired["Sequence[dict[str, Sequence[str]]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Association/)."""
 
 AssociationDescription = TypedDict(
     "AssociationDescription",
@@ -616,6 +1109,7 @@ AssociationDescription = TypedDict(
     "association_dispatch_assume_role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationDescription/)."""
 
 AssociationExecution = TypedDict(
     "AssociationExecution",
@@ -632,6 +1126,7 @@ AssociationExecution = TypedDict(
     "triggered_alarms": NotRequired["Sequence[AlarmStateInformation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecution/)."""
 
 AssociationExecutionFilter = TypedDict(
     "AssociationExecutionFilter",
@@ -641,6 +1136,7 @@ AssociationExecutionFilter = TypedDict(
     "type": Required["AssociationFilterOperatorType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionFilter/)."""
 
 AssociationExecutionTarget = TypedDict(
     "AssociationExecutionTarget",
@@ -656,6 +1152,7 @@ AssociationExecutionTarget = TypedDict(
     "output_source": NotRequired["OutputSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionTarget/)."""
 
 AssociationExecutionTargetsFilter = TypedDict(
     "AssociationExecutionTargetsFilter",
@@ -664,6 +1161,7 @@ AssociationExecutionTargetsFilter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionTargetsFilter/)."""
 
 AssociationFilter = TypedDict(
     "AssociationFilter",
@@ -672,6 +1170,7 @@ AssociationFilter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationFilter/)."""
 
 AssociationOverview = TypedDict(
     "AssociationOverview",
@@ -681,6 +1180,7 @@ AssociationOverview = TypedDict(
     "association_status_aggregated_count": NotRequired["dict[str, int]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationOverview/)."""
 
 AssociationStatus = TypedDict(
     "AssociationStatus",
@@ -691,6 +1191,7 @@ AssociationStatus = TypedDict(
     "additional_info": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationStatus/)."""
 
 AssociationVersionInfo = TypedDict(
     "AssociationVersionInfo",
@@ -718,6 +1219,7 @@ AssociationVersionInfo = TypedDict(
     "association_dispatch_assume_role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationVersionInfo/)."""
 
 AttachmentContent = TypedDict(
     "AttachmentContent",
@@ -729,6 +1231,7 @@ AttachmentContent = TypedDict(
     "url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentContent/)."""
 
 AttachmentInformation = TypedDict(
     "AttachmentInformation",
@@ -736,6 +1239,7 @@ AttachmentInformation = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentInformation/)."""
 
 AttachmentsSource = TypedDict(
     "AttachmentsSource",
@@ -745,6 +1249,7 @@ AttachmentsSource = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentsSource/)."""
 
 AutomationExecution = TypedDict(
     "AutomationExecution",
@@ -787,6 +1292,7 @@ AutomationExecution = TypedDict(
     "variables": NotRequired["dict[str, Sequence[str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecution/)."""
 
 AutomationExecutionFilter = TypedDict(
     "AutomationExecutionFilter",
@@ -795,6 +1301,7 @@ AutomationExecutionFilter = TypedDict(
     "values": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionFilter/)."""
 
 AutomationExecutionInputs = TypedDict(
     "AutomationExecutionInputs",
@@ -807,6 +1314,7 @@ AutomationExecutionInputs = TypedDict(
     "target_locations_url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionInputs/)."""
 
 AutomationExecutionMetadata = TypedDict(
     "AutomationExecutionMetadata",
@@ -845,6 +1353,7 @@ AutomationExecutionMetadata = TypedDict(
     "change_request_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionMetadata/)."""
 
 AutomationExecutionPreview = TypedDict(
     "AutomationExecutionPreview",
@@ -855,6 +1364,7 @@ AutomationExecutionPreview = TypedDict(
     "total_accounts": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionPreview/)."""
 
 AzureConfiguration = TypedDict(
     "AzureConfiguration",
@@ -866,6 +1376,7 @@ AzureConfiguration = TypedDict(
     "targets": NotRequired["ConfigurationTargets"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AzureConfiguration/)."""
 
 AzureConfigurationOutput = TypedDict(
     "AzureConfigurationOutput",
@@ -877,6 +1388,7 @@ AzureConfigurationOutput = TypedDict(
     "targets": Required["ConfigurationTargetsOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AzureConfigurationOutput/)."""
 
 AzureSubscription = TypedDict(
     "AzureSubscription",
@@ -885,6 +1397,7 @@ AzureSubscription = TypedDict(
     "display_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AzureSubscription/)."""
 
 AzureSubscriptionOutput = TypedDict(
     "AzureSubscriptionOutput",
@@ -893,6 +1406,7 @@ AzureSubscriptionOutput = TypedDict(
     "display_name": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AzureSubscriptionOutput/)."""
 
 BaselineOverride = TypedDict(
     "BaselineOverride",
@@ -909,6 +1423,7 @@ BaselineOverride = TypedDict(
     "available_security_updates_compliance_status": NotRequired["PatchComplianceStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/BaselineOverride/)."""
 
 CancelCommandRequest = TypedDict(
     "CancelCommandRequest",
@@ -917,6 +1432,7 @@ CancelCommandRequest = TypedDict(
     "instance_ids": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelCommandRequest/)."""
 
 CancelMaintenanceWindowExecutionRequest = TypedDict(
     "CancelMaintenanceWindowExecutionRequest",
@@ -924,13 +1440,19 @@ CancelMaintenanceWindowExecutionRequest = TypedDict(
     "window_execution_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelMaintenanceWindowExecutionRequest/)."""
 
 CloudConnectorConfigurationAzureConfiguration = TypedDict("CloudConnectorConfigurationAzureConfiguration", {"azure_configuration": Required["AzureConfiguration"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationAzureConfiguration/)."""
 CloudConnectorConfiguration: TypeAlias = CloudConnectorConfigurationAzureConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfiguration/)."""
 
 CloudConnectorConfigurationOutputAzureConfiguration = TypedDict("CloudConnectorConfigurationOutputAzureConfiguration", {"azure_configuration": Required["AzureConfigurationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutputAzureConfiguration/)."""
 CloudConnectorConfigurationOutputUnknown = TypedDict("CloudConnectorConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutputUnknown/)."""
 CloudConnectorConfigurationOutput: TypeAlias = CloudConnectorConfigurationOutputAzureConfiguration | CloudConnectorConfigurationOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutput/)."""
 
 CloudConnectorFilter = TypedDict(
     "CloudConnectorFilter",
@@ -939,6 +1461,7 @@ CloudConnectorFilter = TypedDict(
     "filter_values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorFilter/)."""
 
 CloudConnectorSummary = TypedDict(
     "CloudConnectorSummary",
@@ -951,6 +1474,7 @@ CloudConnectorSummary = TypedDict(
     "updated_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorSummary/)."""
 
 CloudWatchOutputConfig = TypedDict(
     "CloudWatchOutputConfig",
@@ -959,6 +1483,7 @@ CloudWatchOutputConfig = TypedDict(
     "cloud_watch_output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudWatchOutputConfig/)."""
 
 Command = TypedDict(
     "Command",
@@ -991,6 +1516,7 @@ Command = TypedDict(
     "triggered_alarms": NotRequired["Sequence[AlarmStateInformation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Command/)."""
 
 CommandFilter = TypedDict(
     "CommandFilter",
@@ -999,6 +1525,7 @@ CommandFilter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandFilter/)."""
 
 CommandInvocation = TypedDict(
     "CommandInvocation",
@@ -1021,6 +1548,7 @@ CommandInvocation = TypedDict(
     "cloud_watch_output_config": NotRequired["CloudWatchOutputConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandInvocation/)."""
 
 CommandPlugin = TypedDict(
     "CommandPlugin",
@@ -1039,6 +1567,7 @@ CommandPlugin = TypedDict(
     "output_s3_key_prefix": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandPlugin/)."""
 
 ComplianceExecutionSummary = TypedDict(
     "ComplianceExecutionSummary",
@@ -1048,6 +1577,7 @@ ComplianceExecutionSummary = TypedDict(
     "execution_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceExecutionSummary/)."""
 
 ComplianceItem = TypedDict(
     "ComplianceItem",
@@ -1063,6 +1593,7 @@ ComplianceItem = TypedDict(
     "details": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceItem/)."""
 
 ComplianceItemEntry = TypedDict(
     "ComplianceItemEntry",
@@ -1074,6 +1605,7 @@ ComplianceItemEntry = TypedDict(
     "details": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceItemEntry/)."""
 
 ComplianceStringFilter = TypedDict(
     "ComplianceStringFilter",
@@ -1083,6 +1615,7 @@ ComplianceStringFilter = TypedDict(
     "type": NotRequired["ComplianceQueryOperatorType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceStringFilter/)."""
 
 ComplianceSummaryItem = TypedDict(
     "ComplianceSummaryItem",
@@ -1092,6 +1625,7 @@ ComplianceSummaryItem = TypedDict(
     "non_compliant_summary": NotRequired["NonCompliantSummary"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceSummaryItem/)."""
 
 CompliantSummary = TypedDict(
     "CompliantSummary",
@@ -1100,13 +1634,19 @@ CompliantSummary = TypedDict(
     "severity_summary": NotRequired["SeveritySummary"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CompliantSummary/)."""
 
 ConfigurationTargetsSubscriptions = TypedDict("ConfigurationTargetsSubscriptions", {"subscriptions": Required["Sequence[AzureSubscription]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsSubscriptions/)."""
 ConfigurationTargets: TypeAlias = ConfigurationTargetsSubscriptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargets/)."""
 
 ConfigurationTargetsOutputSubscriptions = TypedDict("ConfigurationTargetsOutputSubscriptions", {"subscriptions": Required["list[AzureSubscriptionOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsOutputSubscriptions/)."""
 ConfigurationTargetsOutputUnknown = TypedDict("ConfigurationTargetsOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsOutputUnknown/)."""
 ConfigurationTargetsOutput: TypeAlias = ConfigurationTargetsOutputSubscriptions | ConfigurationTargetsOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsOutput/)."""
 
 CreateActivationRequest = TypedDict(
     "CreateActivationRequest",
@@ -1120,6 +1660,7 @@ CreateActivationRequest = TypedDict(
     "registration_metadata": NotRequired["Sequence[RegistrationMetadataItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateActivationRequest/)."""
 
 CreateAssociationBatchRequest = TypedDict(
     "CreateAssociationBatchRequest",
@@ -1128,6 +1669,7 @@ CreateAssociationBatchRequest = TypedDict(
     "association_dispatch_assume_role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationBatchRequest/)."""
 
 CreateAssociationBatchRequestEntry = TypedDict(
     "CreateAssociationBatchRequestEntry",
@@ -1154,6 +1696,7 @@ CreateAssociationBatchRequestEntry = TypedDict(
     "alarm_configuration": NotRequired["AlarmConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationBatchRequestEntry/)."""
 
 CreateAssociationRequest = TypedDict(
     "CreateAssociationRequest",
@@ -1182,6 +1725,7 @@ CreateAssociationRequest = TypedDict(
     "association_dispatch_assume_role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationRequest/)."""
 
 CreateCloudConnectorRequest = TypedDict(
     "CreateCloudConnectorRequest",
@@ -1194,6 +1738,7 @@ CreateCloudConnectorRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateCloudConnectorRequest/)."""
 
 CreateDocumentRequest = TypedDict(
     "CreateDocumentRequest",
@@ -1210,6 +1755,7 @@ CreateDocumentRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateDocumentRequest/)."""
 
 CreateMaintenanceWindowRequest = TypedDict(
     "CreateMaintenanceWindowRequest",
@@ -1228,6 +1774,7 @@ CreateMaintenanceWindowRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateMaintenanceWindowRequest/)."""
 
 CreateOpsItemRequest = TypedDict(
     "CreateOpsItemRequest",
@@ -1250,6 +1797,7 @@ CreateOpsItemRequest = TypedDict(
     "account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsItemRequest/)."""
 
 CreateOpsMetadataRequest = TypedDict(
     "CreateOpsMetadataRequest",
@@ -1259,6 +1807,7 @@ CreateOpsMetadataRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsMetadataRequest/)."""
 
 CreatePatchBaselineRequest = TypedDict(
     "CreatePatchBaselineRequest",
@@ -1279,6 +1828,7 @@ CreatePatchBaselineRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreatePatchBaselineRequest/)."""
 
 CreateResourceDataSyncRequest = TypedDict(
     "CreateResourceDataSyncRequest",
@@ -1289,6 +1839,7 @@ CreateResourceDataSyncRequest = TypedDict(
     "sync_source": NotRequired["ResourceDataSyncSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateResourceDataSyncRequest/)."""
 
 Credentials = TypedDict(
     "Credentials",
@@ -1299,6 +1850,7 @@ Credentials = TypedDict(
     "expiration_time": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Credentials/)."""
 
 DeleteActivationRequest = TypedDict(
     "DeleteActivationRequest",
@@ -1306,6 +1858,7 @@ DeleteActivationRequest = TypedDict(
     "activation_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteActivationRequest/)."""
 
 DeleteAssociationRequest = TypedDict(
     "DeleteAssociationRequest",
@@ -1315,6 +1868,7 @@ DeleteAssociationRequest = TypedDict(
     "association_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteAssociationRequest/)."""
 
 DeleteCloudConnectorRequest = TypedDict(
     "DeleteCloudConnectorRequest",
@@ -1322,6 +1876,7 @@ DeleteCloudConnectorRequest = TypedDict(
     "cloud_connector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteCloudConnectorRequest/)."""
 
 DeleteDocumentRequest = TypedDict(
     "DeleteDocumentRequest",
@@ -1332,6 +1887,7 @@ DeleteDocumentRequest = TypedDict(
     "force": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteDocumentRequest/)."""
 
 DeleteInventoryRequest = TypedDict(
     "DeleteInventoryRequest",
@@ -1342,6 +1898,7 @@ DeleteInventoryRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteInventoryRequest/)."""
 
 DeleteMaintenanceWindowRequest = TypedDict(
     "DeleteMaintenanceWindowRequest",
@@ -1349,6 +1906,7 @@ DeleteMaintenanceWindowRequest = TypedDict(
     "window_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteMaintenanceWindowRequest/)."""
 
 DeleteOpsItemRequest = TypedDict(
     "DeleteOpsItemRequest",
@@ -1356,6 +1914,7 @@ DeleteOpsItemRequest = TypedDict(
     "ops_item_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsItemRequest/)."""
 
 DeleteOpsMetadataRequest = TypedDict(
     "DeleteOpsMetadataRequest",
@@ -1363,6 +1922,7 @@ DeleteOpsMetadataRequest = TypedDict(
     "ops_metadata_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsMetadataRequest/)."""
 
 DeleteParameterRequest = TypedDict(
     "DeleteParameterRequest",
@@ -1370,6 +1930,7 @@ DeleteParameterRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParameterRequest/)."""
 
 DeleteParametersRequest = TypedDict(
     "DeleteParametersRequest",
@@ -1377,6 +1938,7 @@ DeleteParametersRequest = TypedDict(
     "names": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParametersRequest/)."""
 
 DeletePatchBaselineRequest = TypedDict(
     "DeletePatchBaselineRequest",
@@ -1384,6 +1946,7 @@ DeletePatchBaselineRequest = TypedDict(
     "baseline_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeletePatchBaselineRequest/)."""
 
 DeleteResourceDataSyncRequest = TypedDict(
     "DeleteResourceDataSyncRequest",
@@ -1392,6 +1955,7 @@ DeleteResourceDataSyncRequest = TypedDict(
     "sync_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourceDataSyncRequest/)."""
 
 DeleteResourcePolicyRequest = TypedDict(
     "DeleteResourcePolicyRequest",
@@ -1402,6 +1966,7 @@ DeleteResourcePolicyRequest = TypedDict(
     "deletion_mode": NotRequired["DeletionMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourcePolicyRequest/)."""
 
 DeregisterManagedInstanceRequest = TypedDict(
     "DeregisterManagedInstanceRequest",
@@ -1409,6 +1974,7 @@ DeregisterManagedInstanceRequest = TypedDict(
     "instance_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterManagedInstanceRequest/)."""
 
 DeregisterPatchBaselineForPatchGroupRequest = TypedDict(
     "DeregisterPatchBaselineForPatchGroupRequest",
@@ -1417,6 +1983,7 @@ DeregisterPatchBaselineForPatchGroupRequest = TypedDict(
     "patch_group": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterPatchBaselineForPatchGroupRequest/)."""
 
 DeregisterTargetFromMaintenanceWindowRequest = TypedDict(
     "DeregisterTargetFromMaintenanceWindowRequest",
@@ -1426,6 +1993,7 @@ DeregisterTargetFromMaintenanceWindowRequest = TypedDict(
     "safe": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTargetFromMaintenanceWindowRequest/)."""
 
 DeregisterTaskFromMaintenanceWindowRequest = TypedDict(
     "DeregisterTaskFromMaintenanceWindowRequest",
@@ -1434,6 +2002,7 @@ DeregisterTaskFromMaintenanceWindowRequest = TypedDict(
     "window_task_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTaskFromMaintenanceWindowRequest/)."""
 
 DescribeActivationsFilter = TypedDict(
     "DescribeActivationsFilter",
@@ -1442,6 +2011,7 @@ DescribeActivationsFilter = TypedDict(
     "filter_values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeActivationsFilter/)."""
 
 DescribeActivationsRequest = TypedDict(
     "DescribeActivationsRequest",
@@ -1451,6 +2021,7 @@ DescribeActivationsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeActivationsRequest/)."""
 
 DescribeAssociationExecutionTargetsRequest = TypedDict(
     "DescribeAssociationExecutionTargetsRequest",
@@ -1462,6 +2033,7 @@ DescribeAssociationExecutionTargetsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionTargetsRequest/)."""
 
 DescribeAssociationExecutionsRequest = TypedDict(
     "DescribeAssociationExecutionsRequest",
@@ -1472,6 +2044,7 @@ DescribeAssociationExecutionsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionsRequest/)."""
 
 DescribeAssociationRequest = TypedDict(
     "DescribeAssociationRequest",
@@ -1482,6 +2055,7 @@ DescribeAssociationRequest = TypedDict(
     "association_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationRequest/)."""
 
 DescribeAutomationExecutionsRequest = TypedDict(
     "DescribeAutomationExecutionsRequest",
@@ -1491,6 +2065,7 @@ DescribeAutomationExecutionsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationExecutionsRequest/)."""
 
 DescribeAutomationStepExecutionsRequest = TypedDict(
     "DescribeAutomationStepExecutionsRequest",
@@ -1502,6 +2077,7 @@ DescribeAutomationStepExecutionsRequest = TypedDict(
     "reverse_order": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationStepExecutionsRequest/)."""
 
 DescribeAvailablePatchesRequest = TypedDict(
     "DescribeAvailablePatchesRequest",
@@ -1511,6 +2087,7 @@ DescribeAvailablePatchesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAvailablePatchesRequest/)."""
 
 DescribeDocumentPermissionRequest = TypedDict(
     "DescribeDocumentPermissionRequest",
@@ -1521,6 +2098,7 @@ DescribeDocumentPermissionRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentPermissionRequest/)."""
 
 DescribeDocumentRequest = TypedDict(
     "DescribeDocumentRequest",
@@ -1530,6 +2108,7 @@ DescribeDocumentRequest = TypedDict(
     "version_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentRequest/)."""
 
 DescribeEffectiveInstanceAssociationsRequest = TypedDict(
     "DescribeEffectiveInstanceAssociationsRequest",
@@ -1539,6 +2118,7 @@ DescribeEffectiveInstanceAssociationsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectiveInstanceAssociationsRequest/)."""
 
 DescribeEffectivePatchesForPatchBaselineRequest = TypedDict(
     "DescribeEffectivePatchesForPatchBaselineRequest",
@@ -1548,6 +2128,7 @@ DescribeEffectivePatchesForPatchBaselineRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectivePatchesForPatchBaselineRequest/)."""
 
 DescribeInstanceAssociationsStatusRequest = TypedDict(
     "DescribeInstanceAssociationsStatusRequest",
@@ -1557,6 +2138,7 @@ DescribeInstanceAssociationsStatusRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceAssociationsStatusRequest/)."""
 
 DescribeInstanceInformationRequest = TypedDict(
     "DescribeInstanceInformationRequest",
@@ -1567,6 +2149,7 @@ DescribeInstanceInformationRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceInformationRequest/)."""
 
 DescribeInstancePatchStatesForPatchGroupRequest = TypedDict(
     "DescribeInstancePatchStatesForPatchGroupRequest",
@@ -1577,6 +2160,7 @@ DescribeInstancePatchStatesForPatchGroupRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesForPatchGroupRequest/)."""
 
 DescribeInstancePatchStatesRequest = TypedDict(
     "DescribeInstancePatchStatesRequest",
@@ -1586,6 +2170,7 @@ DescribeInstancePatchStatesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesRequest/)."""
 
 DescribeInstancePatchesRequest = TypedDict(
     "DescribeInstancePatchesRequest",
@@ -1596,6 +2181,7 @@ DescribeInstancePatchesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchesRequest/)."""
 
 DescribeInstancePropertiesRequest = TypedDict(
     "DescribeInstancePropertiesRequest",
@@ -1606,6 +2192,7 @@ DescribeInstancePropertiesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePropertiesRequest/)."""
 
 DescribeInventoryDeletionsRequest = TypedDict(
     "DescribeInventoryDeletionsRequest",
@@ -1615,6 +2202,7 @@ DescribeInventoryDeletionsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInventoryDeletionsRequest/)."""
 
 DescribeMaintenanceWindowExecutionTaskInvocationsRequest = TypedDict(
     "DescribeMaintenanceWindowExecutionTaskInvocationsRequest",
@@ -1626,6 +2214,7 @@ DescribeMaintenanceWindowExecutionTaskInvocationsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTaskInvocationsRequest/)."""
 
 DescribeMaintenanceWindowExecutionTasksRequest = TypedDict(
     "DescribeMaintenanceWindowExecutionTasksRequest",
@@ -1636,6 +2225,7 @@ DescribeMaintenanceWindowExecutionTasksRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTasksRequest/)."""
 
 DescribeMaintenanceWindowExecutionsRequest = TypedDict(
     "DescribeMaintenanceWindowExecutionsRequest",
@@ -1646,6 +2236,7 @@ DescribeMaintenanceWindowExecutionsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionsRequest/)."""
 
 DescribeMaintenanceWindowScheduleRequest = TypedDict(
     "DescribeMaintenanceWindowScheduleRequest",
@@ -1658,6 +2249,7 @@ DescribeMaintenanceWindowScheduleRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowScheduleRequest/)."""
 
 DescribeMaintenanceWindowTargetsRequest = TypedDict(
     "DescribeMaintenanceWindowTargetsRequest",
@@ -1668,6 +2260,7 @@ DescribeMaintenanceWindowTargetsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTargetsRequest/)."""
 
 DescribeMaintenanceWindowTasksRequest = TypedDict(
     "DescribeMaintenanceWindowTasksRequest",
@@ -1678,6 +2271,7 @@ DescribeMaintenanceWindowTasksRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTasksRequest/)."""
 
 DescribeMaintenanceWindowsForTargetRequest = TypedDict(
     "DescribeMaintenanceWindowsForTargetRequest",
@@ -1688,6 +2282,7 @@ DescribeMaintenanceWindowsForTargetRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsForTargetRequest/)."""
 
 DescribeMaintenanceWindowsRequest = TypedDict(
     "DescribeMaintenanceWindowsRequest",
@@ -1697,6 +2292,7 @@ DescribeMaintenanceWindowsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsRequest/)."""
 
 DescribeOpsItemsRequest = TypedDict(
     "DescribeOpsItemsRequest",
@@ -1706,6 +2302,7 @@ DescribeOpsItemsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeOpsItemsRequest/)."""
 
 DescribeParametersRequest = TypedDict(
     "DescribeParametersRequest",
@@ -1717,6 +2314,7 @@ DescribeParametersRequest = TypedDict(
     "shared": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeParametersRequest/)."""
 
 DescribePatchBaselinesRequest = TypedDict(
     "DescribePatchBaselinesRequest",
@@ -1726,6 +2324,7 @@ DescribePatchBaselinesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchBaselinesRequest/)."""
 
 DescribePatchGroupStateRequest = TypedDict(
     "DescribePatchGroupStateRequest",
@@ -1733,6 +2332,7 @@ DescribePatchGroupStateRequest = TypedDict(
     "patch_group": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupStateRequest/)."""
 
 DescribePatchGroupsRequest = TypedDict(
     "DescribePatchGroupsRequest",
@@ -1742,6 +2342,7 @@ DescribePatchGroupsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupsRequest/)."""
 
 DescribePatchPropertiesRequest = TypedDict(
     "DescribePatchPropertiesRequest",
@@ -1753,6 +2354,7 @@ DescribePatchPropertiesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchPropertiesRequest/)."""
 
 DescribeSessionsRequest = TypedDict(
     "DescribeSessionsRequest",
@@ -1763,6 +2365,7 @@ DescribeSessionsRequest = TypedDict(
     "filters": NotRequired["Sequence[SessionFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeSessionsRequest/)."""
 
 DisassociateOpsItemRelatedItemRequest = TypedDict(
     "DisassociateOpsItemRelatedItemRequest",
@@ -1771,6 +2374,7 @@ DisassociateOpsItemRelatedItemRequest = TypedDict(
     "association_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DisassociateOpsItemRelatedItemRequest/)."""
 
 DocumentDefaultVersionDescription = TypedDict(
     "DocumentDefaultVersionDescription",
@@ -1780,6 +2384,7 @@ DocumentDefaultVersionDescription = TypedDict(
     "default_version_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentDefaultVersionDescription/)."""
 
 DocumentDescription = TypedDict(
     "DocumentDescription",
@@ -1816,6 +2421,7 @@ DocumentDescription = TypedDict(
     "category_enum": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentDescription/)."""
 
 DocumentFilter = TypedDict(
     "DocumentFilter",
@@ -1824,6 +2430,7 @@ DocumentFilter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentFilter/)."""
 
 DocumentIdentifier = TypedDict(
     "DocumentIdentifier",
@@ -1845,6 +2452,7 @@ DocumentIdentifier = TypedDict(
     "author": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentIdentifier/)."""
 
 DocumentKeyValuesFilter = TypedDict(
     "DocumentKeyValuesFilter",
@@ -1853,6 +2461,7 @@ DocumentKeyValuesFilter = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentKeyValuesFilter/)."""
 
 DocumentMetadataResponseInfo = TypedDict(
     "DocumentMetadataResponseInfo",
@@ -1860,6 +2469,7 @@ DocumentMetadataResponseInfo = TypedDict(
     "reviewer_response": NotRequired["Sequence[DocumentReviewerResponseSource]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentMetadataResponseInfo/)."""
 
 DocumentParameter = TypedDict(
     "DocumentParameter",
@@ -1870,6 +2480,7 @@ DocumentParameter = TypedDict(
     "default_value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentParameter/)."""
 
 DocumentRequires = TypedDict(
     "DocumentRequires",
@@ -1880,6 +2491,7 @@ DocumentRequires = TypedDict(
     "version_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentRequires/)."""
 
 DocumentReviewCommentSource = TypedDict(
     "DocumentReviewCommentSource",
@@ -1888,6 +2500,7 @@ DocumentReviewCommentSource = TypedDict(
     "content": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewCommentSource/)."""
 
 DocumentReviewerResponseSource = TypedDict(
     "DocumentReviewerResponseSource",
@@ -1899,6 +2512,7 @@ DocumentReviewerResponseSource = TypedDict(
     "reviewer": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewerResponseSource/)."""
 
 DocumentReviews = TypedDict(
     "DocumentReviews",
@@ -1907,6 +2521,7 @@ DocumentReviews = TypedDict(
     "comment": NotRequired["Sequence[DocumentReviewCommentSource]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviews/)."""
 
 DocumentVersionInfo = TypedDict(
     "DocumentVersionInfo",
@@ -1923,6 +2538,7 @@ DocumentVersionInfo = TypedDict(
     "review_status": NotRequired["ReviewStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentVersionInfo/)."""
 
 EffectivePatch = TypedDict(
     "EffectivePatch",
@@ -1931,13 +2547,19 @@ EffectivePatch = TypedDict(
     "patch_status": NotRequired["PatchStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/EffectivePatch/)."""
 
 ExecutionInputsAutomation = TypedDict("ExecutionInputsAutomation", {"automation": Required["AutomationExecutionInputs"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionInputsAutomation/)."""
 ExecutionInputs: TypeAlias = ExecutionInputsAutomation
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionInputs/)."""
 
 ExecutionPreviewAutomation = TypedDict("ExecutionPreviewAutomation", {"automation": Required["AutomationExecutionPreview"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreviewAutomation/)."""
 ExecutionPreviewUnknown = TypedDict("ExecutionPreviewUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreviewUnknown/)."""
 ExecutionPreview: TypeAlias = ExecutionPreviewAutomation | ExecutionPreviewUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreview/)."""
 
 FailedCreateAssociation = TypedDict(
     "FailedCreateAssociation",
@@ -1947,6 +2569,7 @@ FailedCreateAssociation = TypedDict(
     "fault": NotRequired["Fault"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FailedCreateAssociation/)."""
 
 FailureDetails = TypedDict(
     "FailureDetails",
@@ -1956,6 +2579,7 @@ FailureDetails = TypedDict(
     "details": NotRequired["dict[str, Sequence[str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FailureDetails/)."""
 
 GetAccessTokenRequest = TypedDict(
     "GetAccessTokenRequest",
@@ -1963,6 +2587,7 @@ GetAccessTokenRequest = TypedDict(
     "access_request_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAccessTokenRequest/)."""
 
 GetAutomationExecutionRequest = TypedDict(
     "GetAutomationExecutionRequest",
@@ -1970,6 +2595,7 @@ GetAutomationExecutionRequest = TypedDict(
     "automation_execution_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAutomationExecutionRequest/)."""
 
 GetCalendarStateRequest = TypedDict(
     "GetCalendarStateRequest",
@@ -1978,6 +2604,7 @@ GetCalendarStateRequest = TypedDict(
     "at_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCalendarStateRequest/)."""
 
 GetCloudConnectorRequest = TypedDict(
     "GetCloudConnectorRequest",
@@ -1985,6 +2612,7 @@ GetCloudConnectorRequest = TypedDict(
     "cloud_connector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCloudConnectorRequest/)."""
 
 GetCommandInvocationRequest = TypedDict(
     "GetCommandInvocationRequest",
@@ -1994,6 +2622,7 @@ GetCommandInvocationRequest = TypedDict(
     "plugin_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCommandInvocationRequest/)."""
 
 GetConnectionStatusRequest = TypedDict(
     "GetConnectionStatusRequest",
@@ -2001,6 +2630,7 @@ GetConnectionStatusRequest = TypedDict(
     "target": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetConnectionStatusRequest/)."""
 
 GetDefaultPatchBaselineRequest = TypedDict(
     "GetDefaultPatchBaselineRequest",
@@ -2008,6 +2638,7 @@ GetDefaultPatchBaselineRequest = TypedDict(
     "operating_system": NotRequired["OperatingSystem"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDefaultPatchBaselineRequest/)."""
 
 GetDeployablePatchSnapshotForInstanceRequest = TypedDict(
     "GetDeployablePatchSnapshotForInstanceRequest",
@@ -2018,6 +2649,7 @@ GetDeployablePatchSnapshotForInstanceRequest = TypedDict(
     "use_s3_dual_stack_endpoint": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDeployablePatchSnapshotForInstanceRequest/)."""
 
 GetDocumentRequest = TypedDict(
     "GetDocumentRequest",
@@ -2028,6 +2660,7 @@ GetDocumentRequest = TypedDict(
     "document_format": NotRequired["DocumentFormat"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDocumentRequest/)."""
 
 GetExecutionPreviewRequest = TypedDict(
     "GetExecutionPreviewRequest",
@@ -2035,6 +2668,7 @@ GetExecutionPreviewRequest = TypedDict(
     "execution_preview_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetExecutionPreviewRequest/)."""
 
 GetInventoryRequest = TypedDict(
     "GetInventoryRequest",
@@ -2046,6 +2680,7 @@ GetInventoryRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventoryRequest/)."""
 
 GetInventorySchemaRequest = TypedDict(
     "GetInventorySchemaRequest",
@@ -2057,6 +2692,7 @@ GetInventorySchemaRequest = TypedDict(
     "sub_type": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventorySchemaRequest/)."""
 
 GetMaintenanceWindowExecutionRequest = TypedDict(
     "GetMaintenanceWindowExecutionRequest",
@@ -2064,6 +2700,7 @@ GetMaintenanceWindowExecutionRequest = TypedDict(
     "window_execution_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionRequest/)."""
 
 GetMaintenanceWindowExecutionTaskInvocationRequest = TypedDict(
     "GetMaintenanceWindowExecutionTaskInvocationRequest",
@@ -2073,6 +2710,7 @@ GetMaintenanceWindowExecutionTaskInvocationRequest = TypedDict(
     "invocation_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskInvocationRequest/)."""
 
 GetMaintenanceWindowExecutionTaskRequest = TypedDict(
     "GetMaintenanceWindowExecutionTaskRequest",
@@ -2081,6 +2719,7 @@ GetMaintenanceWindowExecutionTaskRequest = TypedDict(
     "task_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskRequest/)."""
 
 GetMaintenanceWindowRequest = TypedDict(
     "GetMaintenanceWindowRequest",
@@ -2088,6 +2727,7 @@ GetMaintenanceWindowRequest = TypedDict(
     "window_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowRequest/)."""
 
 GetMaintenanceWindowTaskRequest = TypedDict(
     "GetMaintenanceWindowTaskRequest",
@@ -2096,6 +2736,7 @@ GetMaintenanceWindowTaskRequest = TypedDict(
     "window_task_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowTaskRequest/)."""
 
 GetOpsItemRequest = TypedDict(
     "GetOpsItemRequest",
@@ -2104,6 +2745,7 @@ GetOpsItemRequest = TypedDict(
     "ops_item_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsItemRequest/)."""
 
 GetOpsMetadataRequest = TypedDict(
     "GetOpsMetadataRequest",
@@ -2113,6 +2755,7 @@ GetOpsMetadataRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsMetadataRequest/)."""
 
 GetOpsSummaryRequest = TypedDict(
     "GetOpsSummaryRequest",
@@ -2125,6 +2768,7 @@ GetOpsSummaryRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsSummaryRequest/)."""
 
 GetParameterHistoryRequest = TypedDict(
     "GetParameterHistoryRequest",
@@ -2135,6 +2779,7 @@ GetParameterHistoryRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterHistoryRequest/)."""
 
 GetParameterRequest = TypedDict(
     "GetParameterRequest",
@@ -2143,6 +2788,7 @@ GetParameterRequest = TypedDict(
     "with_decryption": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterRequest/)."""
 
 GetParametersByPathRequest = TypedDict(
     "GetParametersByPathRequest",
@@ -2155,6 +2801,7 @@ GetParametersByPathRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersByPathRequest/)."""
 
 GetParametersRequest = TypedDict(
     "GetParametersRequest",
@@ -2163,6 +2810,7 @@ GetParametersRequest = TypedDict(
     "with_decryption": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersRequest/)."""
 
 GetPatchBaselineForPatchGroupRequest = TypedDict(
     "GetPatchBaselineForPatchGroupRequest",
@@ -2171,6 +2819,7 @@ GetPatchBaselineForPatchGroupRequest = TypedDict(
     "operating_system": NotRequired["OperatingSystem"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineForPatchGroupRequest/)."""
 
 GetPatchBaselineRequest = TypedDict(
     "GetPatchBaselineRequest",
@@ -2178,6 +2827,7 @@ GetPatchBaselineRequest = TypedDict(
     "baseline_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineRequest/)."""
 
 GetResourcePoliciesRequest = TypedDict(
     "GetResourcePoliciesRequest",
@@ -2187,6 +2837,7 @@ GetResourcePoliciesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetResourcePoliciesRequest/)."""
 
 GetResourcePoliciesResponseEntry = TypedDict(
     "GetResourcePoliciesResponseEntry",
@@ -2196,6 +2847,7 @@ GetResourcePoliciesResponseEntry = TypedDict(
     "policy": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetResourcePoliciesResponseEntry/)."""
 
 GetServiceSettingRequest = TypedDict(
     "GetServiceSettingRequest",
@@ -2203,6 +2855,7 @@ GetServiceSettingRequest = TypedDict(
     "setting_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetServiceSettingRequest/)."""
 
 InstanceAggregatedAssociationOverview = TypedDict(
     "InstanceAggregatedAssociationOverview",
@@ -2211,6 +2864,7 @@ InstanceAggregatedAssociationOverview = TypedDict(
     "instance_association_status_aggregated_count": NotRequired["dict[str, int]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAggregatedAssociationOverview/)."""
 
 InstanceAssociation = TypedDict(
     "InstanceAssociation",
@@ -2221,6 +2875,7 @@ InstanceAssociation = TypedDict(
     "association_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociation/)."""
 
 InstanceAssociationOutputLocation = TypedDict(
     "InstanceAssociationOutputLocation",
@@ -2228,6 +2883,7 @@ InstanceAssociationOutputLocation = TypedDict(
     "s3_location": NotRequired["S3OutputLocation"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutputLocation/)."""
 
 InstanceAssociationOutputUrl = TypedDict(
     "InstanceAssociationOutputUrl",
@@ -2235,6 +2891,7 @@ InstanceAssociationOutputUrl = TypedDict(
     "s3_output_url": NotRequired["S3OutputUrl"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutputUrl/)."""
 
 InstanceAssociationStatusInfo = TypedDict(
     "InstanceAssociationStatusInfo",
@@ -2253,6 +2910,7 @@ InstanceAssociationStatusInfo = TypedDict(
     "association_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationStatusInfo/)."""
 
 InstanceInfo = TypedDict(
     "InstanceInfo",
@@ -2275,6 +2933,7 @@ InstanceInfo = TypedDict(
     "availability_zone_id": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInfo/)."""
 
 InstanceInformation = TypedDict(
     "InstanceInformation",
@@ -2303,6 +2962,7 @@ InstanceInformation = TypedDict(
     "source_location": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInformation/)."""
 
 InstanceInformationFilter = TypedDict(
     "InstanceInformationFilter",
@@ -2311,6 +2971,7 @@ InstanceInformationFilter = TypedDict(
     "value_set": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInformationFilter/)."""
 
 InstanceInformationStringFilter = TypedDict(
     "InstanceInformationStringFilter",
@@ -2319,6 +2980,7 @@ InstanceInformationStringFilter = TypedDict(
     "values": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInformationStringFilter/)."""
 
 InstancePatchState = TypedDict(
     "InstancePatchState",
@@ -2348,6 +3010,7 @@ InstancePatchState = TypedDict(
     "other_non_compliant_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePatchState/)."""
 
 InstancePatchStateFilter = TypedDict(
     "InstancePatchStateFilter",
@@ -2357,6 +3020,7 @@ InstancePatchStateFilter = TypedDict(
     "type": Required["InstancePatchStateOperatorType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePatchStateFilter/)."""
 
 InstanceProperty = TypedDict(
     "InstanceProperty",
@@ -2391,6 +3055,7 @@ InstanceProperty = TypedDict(
     "availability_zone": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceProperty/)."""
 
 InstancePropertyFilter = TypedDict(
     "InstancePropertyFilter",
@@ -2399,6 +3064,7 @@ InstancePropertyFilter = TypedDict(
     "value_set": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyFilter/)."""
 
 InstancePropertyStringFilter = TypedDict(
     "InstancePropertyStringFilter",
@@ -2408,6 +3074,7 @@ InstancePropertyStringFilter = TypedDict(
     "operator": NotRequired["InstancePropertyFilterOperator"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyStringFilter/)."""
 
 InventoryAggregator = TypedDict(
     "InventoryAggregator",
@@ -2417,6 +3084,7 @@ InventoryAggregator = TypedDict(
     "groups": NotRequired["Sequence[InventoryGroup]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryAggregator/)."""
 
 InventoryDeletionStatusItem = TypedDict(
     "InventoryDeletionStatusItem",
@@ -2430,6 +3098,7 @@ InventoryDeletionStatusItem = TypedDict(
     "last_status_update_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionStatusItem/)."""
 
 InventoryDeletionSummary = TypedDict(
     "InventoryDeletionSummary",
@@ -2439,6 +3108,7 @@ InventoryDeletionSummary = TypedDict(
     "summary_items": NotRequired["Sequence[InventoryDeletionSummaryItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionSummary/)."""
 
 InventoryDeletionSummaryItem = TypedDict(
     "InventoryDeletionSummaryItem",
@@ -2448,6 +3118,7 @@ InventoryDeletionSummaryItem = TypedDict(
     "remaining_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionSummaryItem/)."""
 
 InventoryFilter = TypedDict(
     "InventoryFilter",
@@ -2457,6 +3128,7 @@ InventoryFilter = TypedDict(
     "type": NotRequired["InventoryQueryOperatorType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryFilter/)."""
 
 InventoryGroup = TypedDict(
     "InventoryGroup",
@@ -2465,6 +3137,7 @@ InventoryGroup = TypedDict(
     "filters": Required["Sequence[InventoryFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryGroup/)."""
 
 InventoryItem = TypedDict(
     "InventoryItem",
@@ -2477,6 +3150,7 @@ InventoryItem = TypedDict(
     "context": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryItem/)."""
 
 InventoryItemAttribute = TypedDict(
     "InventoryItemAttribute",
@@ -2485,6 +3159,7 @@ InventoryItemAttribute = TypedDict(
     "data_type": Required["InventoryAttributeDataType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryItemAttribute/)."""
 
 InventoryItemSchema = TypedDict(
     "InventoryItemSchema",
@@ -2495,6 +3170,7 @@ InventoryItemSchema = TypedDict(
     "display_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryItemSchema/)."""
 
 InventoryResultEntity = TypedDict(
     "InventoryResultEntity",
@@ -2503,6 +3179,7 @@ InventoryResultEntity = TypedDict(
     "data": NotRequired["dict[str, InventoryResultItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryResultEntity/)."""
 
 InventoryResultItem = TypedDict(
     "InventoryResultItem",
@@ -2514,6 +3191,7 @@ InventoryResultItem = TypedDict(
     "content": Required["Sequence[dict[str, str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryResultItem/)."""
 
 LabelParameterVersionRequest = TypedDict(
     "LabelParameterVersionRequest",
@@ -2523,6 +3201,7 @@ LabelParameterVersionRequest = TypedDict(
     "labels": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LabelParameterVersionRequest/)."""
 
 ListAssociationVersionsRequest = TypedDict(
     "ListAssociationVersionsRequest",
@@ -2532,6 +3211,7 @@ ListAssociationVersionsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationVersionsRequest/)."""
 
 ListAssociationsRequest = TypedDict(
     "ListAssociationsRequest",
@@ -2541,6 +3221,7 @@ ListAssociationsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationsRequest/)."""
 
 ListCloudConnectorsRequest = TypedDict(
     "ListCloudConnectorsRequest",
@@ -2550,6 +3231,7 @@ ListCloudConnectorsRequest = TypedDict(
     "filters": NotRequired["Sequence[CloudConnectorFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCloudConnectorsRequest/)."""
 
 ListCommandInvocationsRequest = TypedDict(
     "ListCommandInvocationsRequest",
@@ -2562,6 +3244,7 @@ ListCommandInvocationsRequest = TypedDict(
     "details": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandInvocationsRequest/)."""
 
 ListCommandsRequest = TypedDict(
     "ListCommandsRequest",
@@ -2573,6 +3256,7 @@ ListCommandsRequest = TypedDict(
     "filters": NotRequired["Sequence[CommandFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandsRequest/)."""
 
 ListComplianceItemsRequest = TypedDict(
     "ListComplianceItemsRequest",
@@ -2584,6 +3268,7 @@ ListComplianceItemsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceItemsRequest/)."""
 
 ListComplianceSummariesRequest = TypedDict(
     "ListComplianceSummariesRequest",
@@ -2593,6 +3278,7 @@ ListComplianceSummariesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceSummariesRequest/)."""
 
 ListDocumentMetadataHistoryRequest = TypedDict(
     "ListDocumentMetadataHistoryRequest",
@@ -2604,6 +3290,7 @@ ListDocumentMetadataHistoryRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentMetadataHistoryRequest/)."""
 
 ListDocumentVersionsRequest = TypedDict(
     "ListDocumentVersionsRequest",
@@ -2613,6 +3300,7 @@ ListDocumentVersionsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentVersionsRequest/)."""
 
 ListDocumentsRequest = TypedDict(
     "ListDocumentsRequest",
@@ -2623,6 +3311,7 @@ ListDocumentsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentsRequest/)."""
 
 ListInventoryEntriesRequest = TypedDict(
     "ListInventoryEntriesRequest",
@@ -2634,6 +3323,7 @@ ListInventoryEntriesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListInventoryEntriesRequest/)."""
 
 ListNodesRequest = TypedDict(
     "ListNodesRequest",
@@ -2644,6 +3334,7 @@ ListNodesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesRequest/)."""
 
 ListNodesSummaryRequest = TypedDict(
     "ListNodesSummaryRequest",
@@ -2655,6 +3346,7 @@ ListNodesSummaryRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesSummaryRequest/)."""
 
 ListOpsItemEventsRequest = TypedDict(
     "ListOpsItemEventsRequest",
@@ -2664,6 +3356,7 @@ ListOpsItemEventsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemEventsRequest/)."""
 
 ListOpsItemRelatedItemsRequest = TypedDict(
     "ListOpsItemRelatedItemsRequest",
@@ -2674,6 +3367,7 @@ ListOpsItemRelatedItemsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemRelatedItemsRequest/)."""
 
 ListOpsMetadataRequest = TypedDict(
     "ListOpsMetadataRequest",
@@ -2683,6 +3377,7 @@ ListOpsMetadataRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsMetadataRequest/)."""
 
 ListResourceComplianceSummariesRequest = TypedDict(
     "ListResourceComplianceSummariesRequest",
@@ -2692,6 +3387,7 @@ ListResourceComplianceSummariesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceComplianceSummariesRequest/)."""
 
 ListResourceDataSyncRequest = TypedDict(
     "ListResourceDataSyncRequest",
@@ -2701,6 +3397,7 @@ ListResourceDataSyncRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceDataSyncRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -2709,6 +3406,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListTagsForResourceRequest/)."""
 
 LoggingInfo = TypedDict(
     "LoggingInfo",
@@ -2718,6 +3416,7 @@ LoggingInfo = TypedDict(
     "s3_region": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LoggingInfo/)."""
 
 MaintenanceWindowAutomationParameters = TypedDict(
     "MaintenanceWindowAutomationParameters",
@@ -2726,6 +3425,7 @@ MaintenanceWindowAutomationParameters = TypedDict(
     "parameters": NotRequired["dict[str, Sequence[str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowAutomationParameters/)."""
 
 MaintenanceWindowExecution = TypedDict(
     "MaintenanceWindowExecution",
@@ -2738,6 +3438,7 @@ MaintenanceWindowExecution = TypedDict(
     "end_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecution/)."""
 
 MaintenanceWindowExecutionTaskIdentity = TypedDict(
     "MaintenanceWindowExecutionTaskIdentity",
@@ -2754,6 +3455,7 @@ MaintenanceWindowExecutionTaskIdentity = TypedDict(
     "triggered_alarms": NotRequired["Sequence[AlarmStateInformation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionTaskIdentity/)."""
 
 MaintenanceWindowExecutionTaskInvocationIdentity = TypedDict(
     "MaintenanceWindowExecutionTaskInvocationIdentity",
@@ -2772,6 +3474,7 @@ MaintenanceWindowExecutionTaskInvocationIdentity = TypedDict(
     "window_target_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionTaskInvocationIdentity/)."""
 
 MaintenanceWindowFilter = TypedDict(
     "MaintenanceWindowFilter",
@@ -2780,6 +3483,7 @@ MaintenanceWindowFilter = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowFilter/)."""
 
 MaintenanceWindowIdentity = TypedDict(
     "MaintenanceWindowIdentity",
@@ -2798,6 +3502,7 @@ MaintenanceWindowIdentity = TypedDict(
     "next_execution_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowIdentity/)."""
 
 MaintenanceWindowIdentityForTarget = TypedDict(
     "MaintenanceWindowIdentityForTarget",
@@ -2806,6 +3511,7 @@ MaintenanceWindowIdentityForTarget = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowIdentityForTarget/)."""
 
 MaintenanceWindowLambdaParameters = TypedDict(
     "MaintenanceWindowLambdaParameters",
@@ -2815,6 +3521,7 @@ MaintenanceWindowLambdaParameters = TypedDict(
     "payload": NotRequired["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowLambdaParameters/)."""
 
 MaintenanceWindowRunCommandParameters = TypedDict(
     "MaintenanceWindowRunCommandParameters",
@@ -2832,6 +3539,7 @@ MaintenanceWindowRunCommandParameters = TypedDict(
     "timeout_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowRunCommandParameters/)."""
 
 MaintenanceWindowStepFunctionsParameters = TypedDict(
     "MaintenanceWindowStepFunctionsParameters",
@@ -2840,6 +3548,7 @@ MaintenanceWindowStepFunctionsParameters = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowStepFunctionsParameters/)."""
 
 MaintenanceWindowTarget = TypedDict(
     "MaintenanceWindowTarget",
@@ -2853,6 +3562,7 @@ MaintenanceWindowTarget = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTarget/)."""
 
 MaintenanceWindowTask = TypedDict(
     "MaintenanceWindowTask",
@@ -2874,6 +3584,7 @@ MaintenanceWindowTask = TypedDict(
     "alarm_configuration": NotRequired["AlarmConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTask/)."""
 
 MaintenanceWindowTaskInvocationParameters = TypedDict(
     "MaintenanceWindowTaskInvocationParameters",
@@ -2884,6 +3595,7 @@ MaintenanceWindowTaskInvocationParameters = TypedDict(
     "lambda": NotRequired["MaintenanceWindowLambdaParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskInvocationParameters/)."""
 
 MaintenanceWindowTaskParameterValueExpression = TypedDict(
     "MaintenanceWindowTaskParameterValueExpression",
@@ -2891,6 +3603,7 @@ MaintenanceWindowTaskParameterValueExpression = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskParameterValueExpression/)."""
 
 MetadataValue = TypedDict(
     "MetadataValue",
@@ -2898,6 +3611,7 @@ MetadataValue = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MetadataValue/)."""
 
 ModifyDocumentPermissionRequest = TypedDict(
     "ModifyDocumentPermissionRequest",
@@ -2909,6 +3623,7 @@ ModifyDocumentPermissionRequest = TypedDict(
     "shared_document_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ModifyDocumentPermissionRequest/)."""
 
 Node = TypedDict(
     "Node",
@@ -2920,6 +3635,7 @@ Node = TypedDict(
     "node_type": NotRequired["NodeType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Node/)."""
 
 NodeAggregator = TypedDict(
     "NodeAggregator",
@@ -2930,6 +3646,7 @@ NodeAggregator = TypedDict(
     "aggregators": NotRequired["Sequence[NodeAggregator]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeAggregator/)."""
 
 NodeFilter = TypedDict(
     "NodeFilter",
@@ -2939,6 +3656,7 @@ NodeFilter = TypedDict(
     "type": NotRequired["NodeFilterOperatorType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeFilter/)."""
 
 NodeOwnerInfo = TypedDict(
     "NodeOwnerInfo",
@@ -2948,10 +3666,14 @@ NodeOwnerInfo = TypedDict(
     "organizational_unit_path": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeOwnerInfo/)."""
 
 NodeTypeInstance = TypedDict("NodeTypeInstance", {"instance": Required["InstanceInfo"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeTypeInstance/)."""
 NodeTypeUnknown = TypedDict("NodeTypeUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeTypeUnknown/)."""
 NodeType: TypeAlias = NodeTypeInstance | NodeTypeUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeType/)."""
 
 NonCompliantSummary = TypedDict(
     "NonCompliantSummary",
@@ -2960,6 +3682,7 @@ NonCompliantSummary = TypedDict(
     "severity_summary": NotRequired["SeveritySummary"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NonCompliantSummary/)."""
 
 NotificationConfig = TypedDict(
     "NotificationConfig",
@@ -2969,6 +3692,7 @@ NotificationConfig = TypedDict(
     "notification_type": NotRequired["NotificationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NotificationConfig/)."""
 
 OpsAggregator = TypedDict(
     "OpsAggregator",
@@ -2981,6 +3705,7 @@ OpsAggregator = TypedDict(
     "aggregators": NotRequired["Sequence[OpsAggregator]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsAggregator/)."""
 
 OpsEntity = TypedDict(
     "OpsEntity",
@@ -2989,6 +3714,7 @@ OpsEntity = TypedDict(
     "data": NotRequired["dict[str, OpsEntityItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsEntity/)."""
 
 OpsEntityItem = TypedDict(
     "OpsEntityItem",
@@ -2997,6 +3723,7 @@ OpsEntityItem = TypedDict(
     "content": NotRequired["Sequence[dict[str, str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsEntityItem/)."""
 
 OpsFilter = TypedDict(
     "OpsFilter",
@@ -3006,6 +3733,7 @@ OpsFilter = TypedDict(
     "type": NotRequired["OpsFilterOperatorType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsFilter/)."""
 
 OpsItem = TypedDict(
     "OpsItem",
@@ -3034,6 +3762,7 @@ OpsItem = TypedDict(
     "ops_item_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItem/)."""
 
 OpsItemDataValue = TypedDict(
     "OpsItemDataValue",
@@ -3042,6 +3771,7 @@ OpsItemDataValue = TypedDict(
     "type": NotRequired["OpsItemDataType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemDataValue/)."""
 
 OpsItemEventFilter = TypedDict(
     "OpsItemEventFilter",
@@ -3051,6 +3781,7 @@ OpsItemEventFilter = TypedDict(
     "operator": Required["OpsItemEventFilterOperator"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventFilter/)."""
 
 OpsItemEventSummary = TypedDict(
     "OpsItemEventSummary",
@@ -3064,6 +3795,7 @@ OpsItemEventSummary = TypedDict(
     "created_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventSummary/)."""
 
 OpsItemFilter = TypedDict(
     "OpsItemFilter",
@@ -3073,6 +3805,7 @@ OpsItemFilter = TypedDict(
     "operator": Required["OpsItemFilterOperator"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemFilter/)."""
 
 OpsItemIdentity = TypedDict(
     "OpsItemIdentity",
@@ -3080,6 +3813,7 @@ OpsItemIdentity = TypedDict(
     "arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemIdentity/)."""
 
 OpsItemNotification = TypedDict(
     "OpsItemNotification",
@@ -3087,6 +3821,7 @@ OpsItemNotification = TypedDict(
     "arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemNotification/)."""
 
 OpsItemRelatedItemSummary = TypedDict(
     "OpsItemRelatedItemSummary",
@@ -3102,6 +3837,7 @@ OpsItemRelatedItemSummary = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemSummary/)."""
 
 OpsItemRelatedItemsFilter = TypedDict(
     "OpsItemRelatedItemsFilter",
@@ -3111,6 +3847,7 @@ OpsItemRelatedItemsFilter = TypedDict(
     "operator": Required["OpsItemRelatedItemsFilterOperator"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemsFilter/)."""
 
 OpsItemSummary = TypedDict(
     "OpsItemSummary",
@@ -3134,6 +3871,7 @@ OpsItemSummary = TypedDict(
     "planned_end_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemSummary/)."""
 
 OpsMetadata = TypedDict(
     "OpsMetadata",
@@ -3145,6 +3883,7 @@ OpsMetadata = TypedDict(
     "creation_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsMetadata/)."""
 
 OpsMetadataFilter = TypedDict(
     "OpsMetadataFilter",
@@ -3153,6 +3892,7 @@ OpsMetadataFilter = TypedDict(
     "values": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsMetadataFilter/)."""
 
 OpsResultAttribute = TypedDict(
     "OpsResultAttribute",
@@ -3160,6 +3900,7 @@ OpsResultAttribute = TypedDict(
     "type_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsResultAttribute/)."""
 
 OutputSource = TypedDict(
     "OutputSource",
@@ -3168,6 +3909,7 @@ OutputSource = TypedDict(
     "output_source_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OutputSource/)."""
 
 Parameter = TypedDict(
     "Parameter",
@@ -3183,6 +3925,7 @@ Parameter = TypedDict(
     "data_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Parameter/)."""
 
 ParameterHistory = TypedDict(
     "ParameterHistory",
@@ -3202,6 +3945,7 @@ ParameterHistory = TypedDict(
     "data_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterHistory/)."""
 
 ParameterInlinePolicy = TypedDict(
     "ParameterInlinePolicy",
@@ -3211,6 +3955,7 @@ ParameterInlinePolicy = TypedDict(
     "policy_status": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterInlinePolicy/)."""
 
 ParameterMetadata = TypedDict(
     "ParameterMetadata",
@@ -3229,6 +3974,7 @@ ParameterMetadata = TypedDict(
     "data_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterMetadata/)."""
 
 ParameterStringFilter = TypedDict(
     "ParameterStringFilter",
@@ -3238,6 +3984,7 @@ ParameterStringFilter = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterStringFilter/)."""
 
 ParametersFilter = TypedDict(
     "ParametersFilter",
@@ -3246,6 +3993,7 @@ ParametersFilter = TypedDict(
     "values": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParametersFilter/)."""
 
 ParentStepDetails = TypedDict(
     "ParentStepDetails",
@@ -3257,6 +4005,7 @@ ParentStepDetails = TypedDict(
     "iterator_value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParentStepDetails/)."""
 
 Patch = TypedDict(
     "Patch",
@@ -3286,6 +4035,7 @@ Patch = TypedDict(
     "repository": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Patch/)."""
 
 PatchBaselineIdentity = TypedDict(
     "PatchBaselineIdentity",
@@ -3297,6 +4047,7 @@ PatchBaselineIdentity = TypedDict(
     "default_baseline": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchBaselineIdentity/)."""
 
 PatchComplianceData = TypedDict(
     "PatchComplianceData",
@@ -3310,6 +4061,7 @@ PatchComplianceData = TypedDict(
     "cve_ids": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceData/)."""
 
 PatchFilter = TypedDict(
     "PatchFilter",
@@ -3318,6 +4070,7 @@ PatchFilter = TypedDict(
     "values": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilter/)."""
 
 PatchFilterGroup = TypedDict(
     "PatchFilterGroup",
@@ -3325,6 +4078,7 @@ PatchFilterGroup = TypedDict(
     "patch_filters": Required["Sequence[PatchFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilterGroup/)."""
 
 PatchGroupPatchBaselineMapping = TypedDict(
     "PatchGroupPatchBaselineMapping",
@@ -3333,6 +4087,7 @@ PatchGroupPatchBaselineMapping = TypedDict(
     "baseline_identity": NotRequired["PatchBaselineIdentity"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchGroupPatchBaselineMapping/)."""
 
 PatchOrchestratorFilter = TypedDict(
     "PatchOrchestratorFilter",
@@ -3341,6 +4096,7 @@ PatchOrchestratorFilter = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchOrchestratorFilter/)."""
 
 PatchRule = TypedDict(
     "PatchRule",
@@ -3352,6 +4108,7 @@ PatchRule = TypedDict(
     "enable_non_security": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchRule/)."""
 
 PatchRuleGroup = TypedDict(
     "PatchRuleGroup",
@@ -3359,6 +4116,7 @@ PatchRuleGroup = TypedDict(
     "patch_rules": Required["Sequence[PatchRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchRuleGroup/)."""
 
 PatchSource = TypedDict(
     "PatchSource",
@@ -3368,6 +4126,7 @@ PatchSource = TypedDict(
     "configuration": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchSource/)."""
 
 PatchStatus = TypedDict(
     "PatchStatus",
@@ -3377,6 +4136,7 @@ PatchStatus = TypedDict(
     "approval_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchStatus/)."""
 
 ProgressCounters = TypedDict(
     "ProgressCounters",
@@ -3388,6 +4148,7 @@ ProgressCounters = TypedDict(
     "timed_out_steps": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ProgressCounters/)."""
 
 PutComplianceItemsRequest = TypedDict(
     "PutComplianceItemsRequest",
@@ -3401,6 +4162,7 @@ PutComplianceItemsRequest = TypedDict(
     "upload_type": NotRequired["ComplianceUploadType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutComplianceItemsRequest/)."""
 
 PutInventoryRequest = TypedDict(
     "PutInventoryRequest",
@@ -3409,6 +4171,7 @@ PutInventoryRequest = TypedDict(
     "items": Required["Sequence[InventoryItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutInventoryRequest/)."""
 
 PutParameterRequest = TypedDict(
     "PutParameterRequest",
@@ -3426,6 +4189,7 @@ PutParameterRequest = TypedDict(
     "data_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutParameterRequest/)."""
 
 PutResourcePolicyRequest = TypedDict(
     "PutResourcePolicyRequest",
@@ -3436,6 +4200,7 @@ PutResourcePolicyRequest = TypedDict(
     "policy_hash": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutResourcePolicyRequest/)."""
 
 RegisterDefaultPatchBaselineRequest = TypedDict(
     "RegisterDefaultPatchBaselineRequest",
@@ -3443,6 +4208,7 @@ RegisterDefaultPatchBaselineRequest = TypedDict(
     "baseline_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterDefaultPatchBaselineRequest/)."""
 
 RegisterPatchBaselineForPatchGroupRequest = TypedDict(
     "RegisterPatchBaselineForPatchGroupRequest",
@@ -3451,6 +4217,7 @@ RegisterPatchBaselineForPatchGroupRequest = TypedDict(
     "patch_group": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterPatchBaselineForPatchGroupRequest/)."""
 
 RegisterTargetWithMaintenanceWindowRequest = TypedDict(
     "RegisterTargetWithMaintenanceWindowRequest",
@@ -3464,6 +4231,7 @@ RegisterTargetWithMaintenanceWindowRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTargetWithMaintenanceWindowRequest/)."""
 
 RegisterTaskWithMaintenanceWindowRequest = TypedDict(
     "RegisterTaskWithMaintenanceWindowRequest",
@@ -3486,6 +4254,7 @@ RegisterTaskWithMaintenanceWindowRequest = TypedDict(
     "alarm_configuration": NotRequired["AlarmConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTaskWithMaintenanceWindowRequest/)."""
 
 RegistrationMetadataItem = TypedDict(
     "RegistrationMetadataItem",
@@ -3494,6 +4263,7 @@ RegistrationMetadataItem = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegistrationMetadataItem/)."""
 
 RelatedOpsItem = TypedDict(
     "RelatedOpsItem",
@@ -3501,6 +4271,7 @@ RelatedOpsItem = TypedDict(
     "ops_item_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RelatedOpsItem/)."""
 
 RemoveTagsFromResourceRequest = TypedDict(
     "RemoveTagsFromResourceRequest",
@@ -3510,6 +4281,7 @@ RemoveTagsFromResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RemoveTagsFromResourceRequest/)."""
 
 ResetServiceSettingRequest = TypedDict(
     "ResetServiceSettingRequest",
@@ -3517,6 +4289,7 @@ ResetServiceSettingRequest = TypedDict(
     "setting_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResetServiceSettingRequest/)."""
 
 ResolvedTargets = TypedDict(
     "ResolvedTargets",
@@ -3525,6 +4298,7 @@ ResolvedTargets = TypedDict(
     "truncated": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResolvedTargets/)."""
 
 ResourceComplianceSummaryItem = TypedDict(
     "ResourceComplianceSummaryItem",
@@ -3539,6 +4313,7 @@ ResourceComplianceSummaryItem = TypedDict(
     "non_compliant_summary": NotRequired["NonCompliantSummary"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceComplianceSummaryItem/)."""
 
 ResourceDataSyncAwsOrganizationsSource = TypedDict(
     "ResourceDataSyncAwsOrganizationsSource",
@@ -3547,6 +4322,7 @@ ResourceDataSyncAwsOrganizationsSource = TypedDict(
     "organizational_units": NotRequired["Sequence[ResourceDataSyncOrganizationalUnit]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncAwsOrganizationsSource/)."""
 
 ResourceDataSyncDestinationDataSharing = TypedDict(
     "ResourceDataSyncDestinationDataSharing",
@@ -3554,6 +4330,7 @@ ResourceDataSyncDestinationDataSharing = TypedDict(
     "destination_data_sharing_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncDestinationDataSharing/)."""
 
 ResourceDataSyncItem = TypedDict(
     "ResourceDataSyncItem",
@@ -3570,6 +4347,7 @@ ResourceDataSyncItem = TypedDict(
     "last_sync_status_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncItem/)."""
 
 ResourceDataSyncOrganizationalUnit = TypedDict(
     "ResourceDataSyncOrganizationalUnit",
@@ -3577,6 +4355,7 @@ ResourceDataSyncOrganizationalUnit = TypedDict(
     "organizational_unit_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncOrganizationalUnit/)."""
 
 ResourceDataSyncS3Destination = TypedDict(
     "ResourceDataSyncS3Destination",
@@ -3589,6 +4368,7 @@ ResourceDataSyncS3Destination = TypedDict(
     "destination_data_sharing": NotRequired["ResourceDataSyncDestinationDataSharing"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncS3Destination/)."""
 
 ResourceDataSyncSource = TypedDict(
     "ResourceDataSyncSource",
@@ -3600,6 +4380,7 @@ ResourceDataSyncSource = TypedDict(
     "enable_all_ops_data_sources": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncSource/)."""
 
 ResourceDataSyncSourceWithState = TypedDict(
     "ResourceDataSyncSourceWithState",
@@ -3612,6 +4393,7 @@ ResourceDataSyncSourceWithState = TypedDict(
     "enable_all_ops_data_sources": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncSourceWithState/)."""
 
 ResultAttribute = TypedDict(
     "ResultAttribute",
@@ -3619,6 +4401,7 @@ ResultAttribute = TypedDict(
     "type_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResultAttribute/)."""
 
 ResumeSessionRequest = TypedDict(
     "ResumeSessionRequest",
@@ -3626,6 +4409,7 @@ ResumeSessionRequest = TypedDict(
     "session_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResumeSessionRequest/)."""
 
 ReviewInformation = TypedDict(
     "ReviewInformation",
@@ -3635,6 +4419,7 @@ ReviewInformation = TypedDict(
     "reviewer": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ReviewInformation/)."""
 
 Runbook = TypedDict(
     "Runbook",
@@ -3650,6 +4435,7 @@ Runbook = TypedDict(
     "target_locations": NotRequired["Sequence[TargetLocation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Runbook/)."""
 
 S3OutputLocation = TypedDict(
     "S3OutputLocation",
@@ -3659,6 +4445,7 @@ S3OutputLocation = TypedDict(
     "output_s3_key_prefix": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/S3OutputLocation/)."""
 
 S3OutputUrl = TypedDict(
     "S3OutputUrl",
@@ -3666,6 +4453,7 @@ S3OutputUrl = TypedDict(
     "output_url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/S3OutputUrl/)."""
 
 ScheduledWindowExecution = TypedDict(
     "ScheduledWindowExecution",
@@ -3675,6 +4463,7 @@ ScheduledWindowExecution = TypedDict(
     "execution_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ScheduledWindowExecution/)."""
 
 SendAutomationSignalRequest = TypedDict(
     "SendAutomationSignalRequest",
@@ -3684,6 +4473,7 @@ SendAutomationSignalRequest = TypedDict(
     "payload": NotRequired["dict[str, Sequence[str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendAutomationSignalRequest/)."""
 
 SendCommandRequest = TypedDict(
     "SendCommandRequest",
@@ -3708,6 +4498,7 @@ SendCommandRequest = TypedDict(
     "alarm_configuration": NotRequired["AlarmConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendCommandRequest/)."""
 
 ServiceSetting = TypedDict(
     "ServiceSetting",
@@ -3720,6 +4511,7 @@ ServiceSetting = TypedDict(
     "status": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ServiceSetting/)."""
 
 Session = TypedDict(
     "Session",
@@ -3738,6 +4530,7 @@ Session = TypedDict(
     "access_type": NotRequired["AccessType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Session/)."""
 
 SessionFilter = TypedDict(
     "SessionFilter",
@@ -3746,6 +4539,7 @@ SessionFilter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionFilter/)."""
 
 SessionManagerOutputUrl = TypedDict(
     "SessionManagerOutputUrl",
@@ -3754,6 +4548,7 @@ SessionManagerOutputUrl = TypedDict(
     "cloud_watch_output_url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionManagerOutputUrl/)."""
 
 SeveritySummary = TypedDict(
     "SeveritySummary",
@@ -3766,6 +4561,7 @@ SeveritySummary = TypedDict(
     "unspecified_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SeveritySummary/)."""
 
 StartAccessRequestRequest = TypedDict(
     "StartAccessRequestRequest",
@@ -3775,6 +4571,7 @@ StartAccessRequestRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAccessRequestRequest/)."""
 
 StartAssociationsOnceRequest = TypedDict(
     "StartAssociationsOnceRequest",
@@ -3782,6 +4579,7 @@ StartAssociationsOnceRequest = TypedDict(
     "association_ids": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAssociationsOnceRequest/)."""
 
 StartAutomationExecutionRequest = TypedDict(
     "StartAutomationExecutionRequest",
@@ -3802,6 +4600,7 @@ StartAutomationExecutionRequest = TypedDict(
     "target_locations_url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAutomationExecutionRequest/)."""
 
 StartChangeRequestExecutionRequest = TypedDict(
     "StartChangeRequestExecutionRequest",
@@ -3819,6 +4618,7 @@ StartChangeRequestExecutionRequest = TypedDict(
     "change_details": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartChangeRequestExecutionRequest/)."""
 
 StartExecutionPreviewRequest = TypedDict(
     "StartExecutionPreviewRequest",
@@ -3828,6 +4628,7 @@ StartExecutionPreviewRequest = TypedDict(
     "execution_inputs": NotRequired["ExecutionInputs"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartExecutionPreviewRequest/)."""
 
 StartSessionRequest = TypedDict(
     "StartSessionRequest",
@@ -3838,6 +4639,7 @@ StartSessionRequest = TypedDict(
     "parameters": NotRequired["dict[str, Sequence[str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartSessionRequest/)."""
 
 StepExecution = TypedDict(
     "StepExecution",
@@ -3869,6 +4671,7 @@ StepExecution = TypedDict(
     "parent_step_details": NotRequired["ParentStepDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StepExecution/)."""
 
 StepExecutionFilter = TypedDict(
     "StepExecutionFilter",
@@ -3877,6 +4680,7 @@ StepExecutionFilter = TypedDict(
     "values": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StepExecutionFilter/)."""
 
 StopAutomationExecutionRequest = TypedDict(
     "StopAutomationExecutionRequest",
@@ -3885,6 +4689,7 @@ StopAutomationExecutionRequest = TypedDict(
     "type": NotRequired["StopType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopAutomationExecutionRequest/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -3893,6 +4698,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Tag/)."""
 
 Target = TypedDict(
     "Target",
@@ -3901,6 +4707,7 @@ Target = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/Target/)."""
 
 TargetLocation = TypedDict(
     "TargetLocation",
@@ -3918,6 +4725,7 @@ TargetLocation = TypedDict(
     "targets_max_errors": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetLocation/)."""
 
 TargetPreview = TypedDict(
     "TargetPreview",
@@ -3926,6 +4734,7 @@ TargetPreview = TypedDict(
     "target_type": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetPreview/)."""
 
 TerminateSessionRequest = TypedDict(
     "TerminateSessionRequest",
@@ -3933,6 +4742,7 @@ TerminateSessionRequest = TypedDict(
     "session_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TerminateSessionRequest/)."""
 
 UnlabelParameterVersionRequest = TypedDict(
     "UnlabelParameterVersionRequest",
@@ -3942,6 +4752,7 @@ UnlabelParameterVersionRequest = TypedDict(
     "labels": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UnlabelParameterVersionRequest/)."""
 
 UpdateAssociationRequest = TypedDict(
     "UpdateAssociationRequest",
@@ -3970,6 +4781,7 @@ UpdateAssociationRequest = TypedDict(
     "association_dispatch_assume_role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationRequest/)."""
 
 UpdateAssociationStatusRequest = TypedDict(
     "UpdateAssociationStatusRequest",
@@ -3979,6 +4791,7 @@ UpdateAssociationStatusRequest = TypedDict(
     "association_status": Required["AssociationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationStatusRequest/)."""
 
 UpdateCloudConnectorRequest = TypedDict(
     "UpdateCloudConnectorRequest",
@@ -3989,6 +4802,7 @@ UpdateCloudConnectorRequest = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateCloudConnectorRequest/)."""
 
 UpdateDocumentDefaultVersionRequest = TypedDict(
     "UpdateDocumentDefaultVersionRequest",
@@ -3997,6 +4811,7 @@ UpdateDocumentDefaultVersionRequest = TypedDict(
     "document_version": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentDefaultVersionRequest/)."""
 
 UpdateDocumentMetadataRequest = TypedDict(
     "UpdateDocumentMetadataRequest",
@@ -4006,6 +4821,7 @@ UpdateDocumentMetadataRequest = TypedDict(
     "document_reviews": Required["DocumentReviews"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentMetadataRequest/)."""
 
 UpdateDocumentRequest = TypedDict(
     "UpdateDocumentRequest",
@@ -4020,6 +4836,7 @@ UpdateDocumentRequest = TypedDict(
     "target_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentRequest/)."""
 
 UpdateMaintenanceWindowRequest = TypedDict(
     "UpdateMaintenanceWindowRequest",
@@ -4039,6 +4856,7 @@ UpdateMaintenanceWindowRequest = TypedDict(
     "replace": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowRequest/)."""
 
 UpdateMaintenanceWindowTargetRequest = TypedDict(
     "UpdateMaintenanceWindowTargetRequest",
@@ -4052,6 +4870,7 @@ UpdateMaintenanceWindowTargetRequest = TypedDict(
     "replace": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTargetRequest/)."""
 
 UpdateMaintenanceWindowTaskRequest = TypedDict(
     "UpdateMaintenanceWindowTaskRequest",
@@ -4074,6 +4893,7 @@ UpdateMaintenanceWindowTaskRequest = TypedDict(
     "alarm_configuration": NotRequired["AlarmConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTaskRequest/)."""
 
 UpdateManagedInstanceRoleRequest = TypedDict(
     "UpdateManagedInstanceRoleRequest",
@@ -4082,6 +4902,7 @@ UpdateManagedInstanceRoleRequest = TypedDict(
     "iam_role": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateManagedInstanceRoleRequest/)."""
 
 UpdateOpsItemRequest = TypedDict(
     "UpdateOpsItemRequest",
@@ -4104,6 +4925,7 @@ UpdateOpsItemRequest = TypedDict(
     "ops_item_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsItemRequest/)."""
 
 UpdateOpsMetadataRequest = TypedDict(
     "UpdateOpsMetadataRequest",
@@ -4113,6 +4935,7 @@ UpdateOpsMetadataRequest = TypedDict(
     "keys_to_delete": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsMetadataRequest/)."""
 
 UpdatePatchBaselineRequest = TypedDict(
     "UpdatePatchBaselineRequest",
@@ -4132,6 +4955,7 @@ UpdatePatchBaselineRequest = TypedDict(
     "replace": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdatePatchBaselineRequest/)."""
 
 UpdateResourceDataSyncRequest = TypedDict(
     "UpdateResourceDataSyncRequest",
@@ -4141,6 +4965,7 @@ UpdateResourceDataSyncRequest = TypedDict(
     "sync_source": Required["ResourceDataSyncSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateResourceDataSyncRequest/)."""
 
 UpdateServiceSettingRequest = TypedDict(
     "UpdateServiceSettingRequest",
@@ -4149,6 +4974,7 @@ UpdateServiceSettingRequest = TypedDict(
     "setting_value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateServiceSettingRequest/)."""
 
 ValidateCloudConnectorRequest = TypedDict(
     "ValidateCloudConnectorRequest",
@@ -4158,6 +4984,7 @@ ValidateCloudConnectorRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidateCloudConnectorRequest/)."""
 
 ValidationFinding = TypedDict(
     "ValidationFinding",
@@ -4169,6 +4996,7 @@ ValidationFinding = TypedDict(
     "scope": NotRequired["ValidationFindingScope"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFinding/)."""
 
 ValidationFindingScope = TypedDict(
     "ValidationFindingScope",
@@ -4177,3 +5005,4 @@ ValidationFindingScope = TypedDict(
     "id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingScope/)."""

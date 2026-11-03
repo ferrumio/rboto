@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AccessControlList:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessControlListOutput/)."""
     @property
     def allows_public_read_access(self) -> bool | None: ...
     @property
@@ -25,6 +27,7 @@ class AccessControlList:
 
 @final
 class AccessKey:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessKeyOutput/)."""
     @property
     def principal_id(self) -> str | None: ...
     @property
@@ -35,6 +38,7 @@ class AccessKey:
 
 @final
 class AccessKeyDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessKeyDetailsOutput/)."""
     @property
     def access_key_id(self) -> str | None: ...
     @property
@@ -47,6 +51,7 @@ class AccessKeyDetails:
 
 @final
 class Account:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountOutput/)."""
     @property
     def uid(self) -> str | None: ...
     @property
@@ -55,6 +60,7 @@ class Account:
 
 @final
 class AccountFreeTrialInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountFreeTrialInfoOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -65,12 +71,14 @@ class AccountFreeTrialInfo:
 
 @final
 class AccountLevelPermissions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountLevelPermissionsOutput/)."""
     @property
     def block_public_access(self) -> BlockPublicAccess | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AccountStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountStatisticsOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -81,6 +89,7 @@ class AccountStatistics:
 
 @final
 class Action:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActionOutput/)."""
     @property
     def action_type(self) -> str | None: ...
     @property
@@ -105,6 +114,7 @@ class Action:
 
 @final
 class Activity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActivityOutput/)."""
     @property
     def type(self) -> _types.ActivityTypeOutput | None: ...
     @property
@@ -113,6 +123,7 @@ class Activity:
 
 @final
 class Actor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActorOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -125,6 +136,7 @@ class Actor:
 
 @final
 class ActorProcess:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActorProcessOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -135,6 +147,7 @@ class ActorProcess:
 
 @final
 class AdditionalInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdditionalInfoOutput/)."""
     @property
     def version_id(self) -> str | None: ...
     @property
@@ -143,6 +156,7 @@ class AdditionalInfo:
 
 @final
 class AddonDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AddonDetailsOutput/)."""
     @property
     def addon_version(self) -> str | None: ...
     @property
@@ -151,6 +165,7 @@ class AddonDetails:
 
 @final
 class AdminAccount:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminAccountOutput/)."""
     @property
     def admin_account_id(self) -> str | None: ...
     @property
@@ -159,6 +174,7 @@ class AdminAccount:
 
 @final
 class Administrator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdministratorOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -171,12 +187,14 @@ class Administrator:
 
 @final
 class AgentDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AgentDetailsOutput/)."""
     @property
     def version(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Anomaly:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyOutput/)."""
     @property
     def profiles(self) -> dict[str, dict[str, list[AnomalyObject]]] | None: ...
     @property
@@ -185,6 +203,7 @@ class Anomaly:
 
 @final
 class AnomalyObject:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyObjectOutput/)."""
     @property
     def profile_type(self) -> _types.ProfileTypeOutput | None: ...
     @property
@@ -195,12 +214,14 @@ class AnomalyObject:
 
 @final
 class AnomalyUnusual:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyUnusualOutput/)."""
     @property
     def behavior(self) -> dict[str, dict[str, AnomalyObject]] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ApiCall:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ApiCallOutput/)."""
     @property
     def operation(self) -> str | None: ...
     @property
@@ -213,6 +234,7 @@ class ApiCall:
 
 @final
 class AssociationDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationDetailOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     @property
@@ -233,6 +255,7 @@ class AssociationDetail:
 
 @final
 class AssociationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationSummaryOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     @property
@@ -251,6 +274,7 @@ class AssociationSummary:
 
 @final
 class AutonomousSystem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutonomousSystemOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -259,12 +283,14 @@ class AutonomousSystem:
 
 @final
 class AutoscalingAutoScalingGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutoscalingAutoScalingGroupOutput/)."""
     @property
     def ec2_instance_uids(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AwsApiCallAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AwsApiCallActionOutput/)."""
     @property
     def api(self) -> str | None: ...
     @property
@@ -287,6 +313,7 @@ class AwsApiCallAction:
 
 @final
 class BedrockGuardrail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -295,6 +322,7 @@ class BedrockGuardrail:
 
 @final
 class BedrockGuardrailDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailDetailsOutput/)."""
     @property
     def guardrail_arn(self) -> str | None: ...
     @property
@@ -311,6 +339,7 @@ class BedrockGuardrailDetails:
 
 @final
 class BedrockGuardrailResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailResourceOutput/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -321,6 +350,7 @@ class BedrockGuardrailResource:
 
 @final
 class BlockPublicAccess:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BlockPublicAccessOutput/)."""
     @property
     def ignore_public_acls(self) -> bool | None: ...
     @property
@@ -333,6 +363,7 @@ class BlockPublicAccess:
 
 @final
 class BucketLevelPermissions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BucketLevelPermissionsOutput/)."""
     @property
     def access_control_list(self) -> AccessControlList | None: ...
     @property
@@ -343,6 +374,7 @@ class BucketLevelPermissions:
 
 @final
 class BucketPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BucketPolicyOutput/)."""
     @property
     def allows_public_read_access(self) -> bool | None: ...
     @property
@@ -351,12 +383,14 @@ class BucketPolicy:
 
 @final
 class City:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CityOutput/)."""
     @property
     def city_name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CloudDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudDetailsOutput/)."""
     @property
     def provider(self) -> _types.CloudProviderOutput | None: ...
     @property
@@ -367,18 +401,21 @@ class CloudDetails:
 
 @final
 class CloudTrailConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudTrailConfigurationResultOutput/)."""
     @property
     def status(self) -> _types.DataSourceStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CloudformationStack:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudformationStackOutput/)."""
     @property
     def ec2_instance_uids(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Condition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ConditionOutput/)."""
     @property
     def eq(self) -> list[str] | None: ...
     @property
@@ -411,6 +448,7 @@ class Condition:
 
 @final
 class Container:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerOutput/)."""
     @property
     def container_runtime(self) -> str | None: ...
     @property
@@ -429,6 +467,7 @@ class Container:
 
 @final
 class ContainerFindingResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerFindingResourceOutput/)."""
     @property
     def image(self) -> str | None: ...
     @property
@@ -437,6 +476,7 @@ class ContainerFindingResource:
 
 @final
 class ContainerInstanceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerInstanceDetailsOutput/)."""
     @property
     def covered_container_instances(self) -> int | None: ...
     @property
@@ -445,6 +485,7 @@ class ContainerInstanceDetails:
 
 @final
 class ContentPolicyFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterOutput/)."""
     @property
     def type(self) -> _types.ContentPolicyFilterTypeOutput | None: ...
     @property
@@ -455,6 +496,7 @@ class ContentPolicyFilter:
 
 @final
 class Country:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CountryOutput/)."""
     @property
     def country_code(self) -> str | None: ...
     @property
@@ -463,6 +505,7 @@ class Country:
 
 @final
 class CoverageEc2InstanceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEc2InstanceDetailsOutput/)."""
     @property
     def instance_id(self) -> str | None: ...
     @property
@@ -477,6 +520,7 @@ class CoverageEc2InstanceDetails:
 
 @final
 class CoverageEcsClusterDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEcsClusterDetailsOutput/)."""
     @property
     def cluster_name(self) -> str | None: ...
     @property
@@ -487,6 +531,7 @@ class CoverageEcsClusterDetails:
 
 @final
 class CoverageEksClusterDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEksClusterDetailsOutput/)."""
     @property
     def cluster_name(self) -> str | None: ...
     @property
@@ -501,6 +546,7 @@ class CoverageEksClusterDetails:
 
 @final
 class CoverageResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageResourceOutput/)."""
     @property
     def resource_id(self) -> str | None: ...
     @property
@@ -519,6 +565,7 @@ class CoverageResource:
 
 @final
 class CoverageResourceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageResourceDetailsOutput/)."""
     @property
     def eks_cluster_details(self) -> CoverageEksClusterDetails | None: ...
     @property
@@ -531,6 +578,7 @@ class CoverageResourceDetails:
 
 @final
 class CoverageStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageStatisticsOutput/)."""
     @property
     def count_by_resource_type(self) -> dict[_types.ResourceTypeOutput, int] | None: ...
     @property
@@ -539,12 +587,14 @@ class CoverageStatistics:
 
 @final
 class CreateProtectedResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateProtectedResourceOutput/)."""
     @property
     def s3_bucket(self) -> CreateS3BucketResource | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateS3BucketResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateS3BucketResourceOutput/)."""
     @property
     def bucket_name(self) -> str | None: ...
     @property
@@ -553,6 +603,7 @@ class CreateS3BucketResource:
 
 @final
 class DataSourceConfigurationsResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceConfigurationsResultOutput/)."""
     @property
     def cloud_trail(self) -> CloudTrailConfigurationResult | None: ...
     @property
@@ -569,12 +620,14 @@ class DataSourceConfigurationsResult:
 
 @final
 class DataSourceFreeTrial:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceFreeTrialOutput/)."""
     @property
     def free_trial_days_remaining(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DataSourcesFreeTrial:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourcesFreeTrialOutput/)."""
     @property
     def cloud_trail(self) -> DataSourceFreeTrial | None: ...
     @property
@@ -591,6 +644,7 @@ class DataSourcesFreeTrial:
 
 @final
 class DateStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DateStatisticsOutput/)."""
     @property
     def date(self) -> str | None: ...
     @property
@@ -603,6 +657,7 @@ class DateStatistics:
 
 @final
 class DefaultServerSideEncryption:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DefaultServerSideEncryptionOutput/)."""
     @property
     def encryption_type(self) -> str | None: ...
     @property
@@ -611,6 +666,7 @@ class DefaultServerSideEncryption:
 
 @final
 class Destination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationOutput/)."""
     @property
     def destination_id(self) -> str | None: ...
     @property
@@ -621,6 +677,7 @@ class Destination:
 
 @final
 class DestinationProperties:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationPropertiesOutput/)."""
     @property
     def destination_arn(self) -> str | None: ...
     @property
@@ -631,6 +688,7 @@ class DestinationProperties:
 
 @final
 class Detection:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionOutput/)."""
     @property
     def anomaly(self) -> Anomaly | None: ...
     @property
@@ -639,24 +697,28 @@ class Detection:
 
 @final
 class DetectionRuleEc2Requirements:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEc2RequirementsOutput/)."""
     @property
     def min_agent_version(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DetectionRuleEcsFargateRequirements:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEcsFargateRequirementsOutput/)."""
     @property
     def min_agent_version(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DetectionRuleEksRequirements:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEksRequirementsOutput/)."""
     @property
     def min_agent_version(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DetectionRuleOrgConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleOrgConfigurationOutput/)."""
     @property
     def rule_id(self) -> str | None: ...
     @property
@@ -679,6 +741,7 @@ class DetectionRuleOrgConfiguration:
 
 @final
 class DetectionRuleOrgConfigurationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleOrgConfigurationSummaryOutput/)."""
     @property
     def rule_id(self) -> str | None: ...
     @property
@@ -697,12 +760,14 @@ class DetectionRuleOrgConfigurationSummary:
 
 @final
 class DetectionRuleRuntimeMonitoringDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleRuntimeMonitoringDetailsOutput/)."""
     @property
     def platforms(self) -> DetectionRuleRuntimePlatforms | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DetectionRuleRuntimePlatforms:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleRuntimePlatformsOutput/)."""
     @property
     def eks(self) -> DetectionRuleEksRequirements | None: ...
     @property
@@ -713,6 +778,7 @@ class DetectionRuleRuntimePlatforms:
 
 @final
 class DetectorAdditionalConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorAdditionalConfigurationResultOutput/)."""
     @property
     def name(self) -> _types.FeatureAdditionalConfigurationOutput | None: ...
     @property
@@ -725,6 +791,7 @@ class DetectorAdditionalConfigurationResult:
 
 @final
 class DetectorFeatureConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeatureConfigurationResultOutput/)."""
     @property
     def name(self) -> _types.DetectorFeatureResultOutput | None: ...
     @property
@@ -739,12 +806,14 @@ class DetectorFeatureConfigurationResult:
 
 @final
 class DnsLogsConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DnsLogsConfigurationResult-486dfb991741/)."""
     @property
     def status(self) -> _types.DataSourceStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DnsRequestAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DnsRequestActionOutput/)."""
     @property
     def domain(self) -> str | None: ...
     @property
@@ -759,24 +828,28 @@ class DnsRequestAction:
 
 @final
 class DomainDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DomainDetailsOutput/)."""
     @property
     def domain(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EbsSnapshot:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotOutput/)."""
     @property
     def device_name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EbsSnapshotDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotDetailsOutput/)."""
     @property
     def snapshot_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EbsVolumeDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumeDetailsOutput/)."""
     @property
     def scanned_volume_details(self) -> list[VolumeDetail] | None: ...
     @property
@@ -785,6 +858,7 @@ class EbsVolumeDetails:
 
 @final
 class EbsVolumeScanDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumeScanDetailsOutput/)."""
     @property
     def scan_id(self) -> str | None: ...
     @property
@@ -803,6 +877,7 @@ class EbsVolumeScanDetails:
 
 @final
 class EbsVolumesResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumesResultOutput/)."""
     @property
     def status(self) -> _types.DataSourceStatusOutput | None: ...
     @property
@@ -811,18 +886,21 @@ class EbsVolumesResult:
 
 @final
 class Ec2Image:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2ImageOutput/)."""
     @property
     def ec2_instance_uids(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Ec2ImageDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2ImageDetailsOutput/)."""
     @property
     def image_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Ec2Instance:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2InstanceOutput/)."""
     @property
     def availability_zone(self) -> str | None: ...
     @property
@@ -845,6 +923,7 @@ class Ec2Instance:
 
 @final
 class Ec2LaunchTemplate:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2LaunchTemplateOutput/)."""
     @property
     def ec2_instance_uids(self) -> list[str] | None: ...
     @property
@@ -853,6 +932,7 @@ class Ec2LaunchTemplate:
 
 @final
 class Ec2NetworkInterface:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2NetworkInterfaceOutput/)."""
     @property
     def ipv6_addresses(self) -> list[str] | None: ...
     @property
@@ -869,12 +949,14 @@ class Ec2NetworkInterface:
 
 @final
 class Ec2Vpc:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2VpcOutput/)."""
     @property
     def ec2_instance_uids(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EcsCluster:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsClusterOutput/)."""
     @property
     def status(self) -> _types.EcsClusterStatusOutput | None: ...
     @property
@@ -883,6 +965,7 @@ class EcsCluster:
 
 @final
 class EcsClusterDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsClusterDetailsOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -903,6 +986,7 @@ class EcsClusterDetails:
 
 @final
 class EcsTask:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsTaskOutput/)."""
     @property
     def created_at(self) -> str | None: ...
     @property
@@ -915,6 +999,7 @@ class EcsTask:
 
 @final
 class EcsTaskDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsTaskDetailsOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -941,6 +1026,7 @@ class EcsTaskDetails:
 
 @final
 class EksCluster:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EksClusterOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -955,6 +1041,7 @@ class EksCluster:
 
 @final
 class EksClusterDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EksClusterDetailsOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -971,12 +1058,14 @@ class EksClusterDetails:
 
 @final
 class Evidence:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EvidenceOutput/)."""
     @property
     def threat_intelligence_details(self) -> list[ThreatIntelligenceDetail] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FargateDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FargateDetailsOutput/)."""
     @property
     def issues(self) -> list[str] | None: ...
     @property
@@ -985,6 +1074,7 @@ class FargateDetails:
 
 @final
 class Finding:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -1023,12 +1113,14 @@ class Finding:
 
 @final
 class FindingCriteria:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingCriteriaOutput/)."""
     @property
     def criterion(self) -> dict[str, Condition] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FindingStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingStatisticsOutput/)."""
     @property
     def count_by_severity(self) -> dict[str, int] | None: ...
     @property
@@ -1045,6 +1137,7 @@ class FindingStatistics:
 
 @final
 class FindingTypeStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeStatisticsOutput/)."""
     @property
     def finding_type(self) -> str | None: ...
     @property
@@ -1055,12 +1148,14 @@ class FindingTypeStatistics:
 
 @final
 class FlowLogsConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FlowLogsConfigurationResultOutput/)."""
     @property
     def status(self) -> _types.DataSourceStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FreeTrialFeatureConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FreeTrialFeatureConfigurationResultOutput/)."""
     @property
     def name(self) -> _types.FreeTrialFeatureResultOutput | None: ...
     @property
@@ -1069,6 +1164,7 @@ class FreeTrialFeatureConfigurationResult:
 
 @final
 class GeoLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GeoLocationOutput/)."""
     @property
     def lat(self) -> float | None: ...
     @property
@@ -1077,6 +1173,7 @@ class GeoLocation:
 
 @final
 class GetMalwareScanResultDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanResultDetailsOutput/)."""
     @property
     def scan_result_status(self) -> _types.ScanResultStatusOutput | None: ...
     @property
@@ -1097,6 +1194,7 @@ class GetMalwareScanResultDetails:
 
 @final
 class HighestSeverityThreatDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/HighestSeverityThreatDetailsOutput/)."""
     @property
     def severity(self) -> str | None: ...
     @property
@@ -1107,12 +1205,14 @@ class HighestSeverityThreatDetails:
 
 @final
 class HostPath:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/HostPathOutput/)."""
     @property
     def path(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class IamInstanceProfile:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IamInstanceProfileOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -1121,12 +1221,14 @@ class IamInstanceProfile:
 
 @final
 class IamInstanceProfileV2:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IamInstanceProfileV2Output/)."""
     @property
     def ec2_instance_uids(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ImpersonatedUser:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ImpersonatedUserOutput/)."""
     @property
     def username(self) -> str | None: ...
     @property
@@ -1135,12 +1237,14 @@ class ImpersonatedUser:
 
 @final
 class IncrementalScanDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IncrementalScanDetailsOutput/)."""
     @property
     def baseline_resource_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Indicator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IndicatorOutput/)."""
     @property
     def key(self) -> _types.IndicatorTypeOutput | None: ...
     @property
@@ -1151,6 +1255,7 @@ class Indicator:
 
 @final
 class InstanceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InstanceDetailsOutput/)."""
     @property
     def availability_zone(self) -> str | None: ...
     @property
@@ -1181,6 +1286,7 @@ class InstanceDetails:
 
 @final
 class Investigation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationOutput/)."""
     @property
     def investigation_id(self) -> str | None: ...
     @property
@@ -1211,6 +1317,7 @@ class Investigation:
 
 @final
 class InvestigationMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationMetadataOutput/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -1219,6 +1326,7 @@ class InvestigationMetadata:
 
 @final
 class InvestigationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSummaryOutput/)."""
     @property
     def investigation_id(self) -> str | None: ...
     @property
@@ -1241,6 +1349,7 @@ class InvestigationSummary:
 
 @final
 class Invitation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvitationOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -1253,6 +1362,7 @@ class Invitation:
 
 @final
 class ItemDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemDetailsOutput/)."""
     @property
     def resource_arn(self) -> str | None: ...
     @property
@@ -1265,6 +1375,7 @@ class ItemDetails:
 
 @final
 class ItemPath:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemPathOutput/)."""
     @property
     def nested_item_path(self) -> str | None: ...
     @property
@@ -1273,6 +1384,7 @@ class ItemPath:
 
 @final
 class KubernetesApiCallAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesApiCallActionOutput/)."""
     @property
     def request_uri(self) -> str | None: ...
     @property
@@ -1299,24 +1411,28 @@ class KubernetesApiCallAction:
 
 @final
 class KubernetesAuditLogsConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesAuditLogsConfigurationResultOutput/)."""
     @property
     def status(self) -> _types.DataSourceStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class KubernetesConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesConfigurationResultOutput/)."""
     @property
     def audit_logs(self) -> KubernetesAuditLogsConfigurationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class KubernetesDataSourceFreeTrial:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesDataSourceFreeTrialOutput/)."""
     @property
     def audit_logs(self) -> DataSourceFreeTrial | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class KubernetesDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesDetailsOutput/)."""
     @property
     def kubernetes_user_details(self) -> KubernetesUserDetails | None: ...
     @property
@@ -1325,6 +1441,7 @@ class KubernetesDetails:
 
 @final
 class KubernetesPermissionCheckedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesPermissionCheckedDetailsOutput/)."""
     @property
     def verb(self) -> str | None: ...
     @property
@@ -1337,6 +1454,7 @@ class KubernetesPermissionCheckedDetails:
 
 @final
 class KubernetesRoleBindingDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesRoleBindingDetailsOutput/)."""
     @property
     def kind(self) -> str | None: ...
     @property
@@ -1351,6 +1469,7 @@ class KubernetesRoleBindingDetails:
 
 @final
 class KubernetesRoleDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesRoleDetailsOutput/)."""
     @property
     def kind(self) -> str | None: ...
     @property
@@ -1361,6 +1480,7 @@ class KubernetesRoleDetails:
 
 @final
 class KubernetesUserDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesUserDetailsOutput/)."""
     @property
     def username(self) -> str | None: ...
     @property
@@ -1375,6 +1495,7 @@ class KubernetesUserDetails:
 
 @final
 class KubernetesWorkload:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesWorkloadOutput/)."""
     @property
     def container_uids(self) -> list[str] | None: ...
     @property
@@ -1385,6 +1506,7 @@ class KubernetesWorkload:
 
 @final
 class KubernetesWorkloadDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesWorkloadDetailsOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -1409,6 +1531,7 @@ class KubernetesWorkloadDetails:
 
 @final
 class LambdaDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LambdaDetailsOutput/)."""
     @property
     def function_arn(self) -> str | None: ...
     @property
@@ -1431,6 +1554,7 @@ class LambdaDetails:
 
 @final
 class LineageObject:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LineageObjectOutput/)."""
     @property
     def start_time(self) -> str | None: ...
     @property
@@ -1453,6 +1577,7 @@ class LineageObject:
 
 @final
 class LocalIpDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LocalIpDetailsOutput/)."""
     @property
     def ip_address_v4(self) -> str | None: ...
     @property
@@ -1461,6 +1586,7 @@ class LocalIpDetails:
 
 @final
 class LocalPortDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LocalPortDetailsOutput/)."""
     @property
     def port(self) -> int | None: ...
     @property
@@ -1469,6 +1595,7 @@ class LocalPortDetails:
 
 @final
 class LoginAttribute:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LoginAttributeOutput/)."""
     @property
     def user(self) -> str | None: ...
     @property
@@ -1481,6 +1608,7 @@ class LoginAttribute:
 
 @final
 class MalwareProtectionConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionConfigurationResultOutput/)."""
     @property
     def scan_ec2_instance_with_findings(self) -> ScanEc2InstanceWithFindingsResult | None: ...
     @property
@@ -1489,12 +1617,14 @@ class MalwareProtectionConfigurationResult:
 
 @final
 class MalwareProtectionDataSourceFreeTrial:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionDataSourceFreeTrialOutput/)."""
     @property
     def scan_ec2_instance_with_findings(self) -> DataSourceFreeTrial | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MalwareProtectionFindingsScanConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionFindingsScanConfigurationOutput/)."""
     @property
     def trigger_type(self) -> _types.TriggerTypeOutput | None: ...
     @property
@@ -1503,12 +1633,14 @@ class MalwareProtectionFindingsScanConfiguration:
 
 @final
 class MalwareProtectionPlanActions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanActionsOutput/)."""
     @property
     def tagging(self) -> MalwareProtectionPlanTaggingAction | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MalwareProtectionPlanStatusReason:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanStatusReasonOutput/)."""
     @property
     def code(self) -> str | None: ...
     @property
@@ -1517,18 +1649,21 @@ class MalwareProtectionPlanStatusReason:
 
 @final
 class MalwareProtectionPlanSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanSummaryOutput/)."""
     @property
     def malware_protection_plan_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MalwareProtectionPlanTaggingAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanTaggingActionOutput/)."""
     @property
     def status(self) -> _types.MalwareProtectionPlanTaggingActionStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MalwareScan:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareScanOutput/)."""
     @property
     def resource_arn(self) -> str | None: ...
     @property
@@ -1549,6 +1684,7 @@ class MalwareScan:
 
 @final
 class MalwareScanDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareScanDetailsOutput/)."""
     @property
     def threats(self) -> list[Threat] | None: ...
     @property
@@ -1565,6 +1701,7 @@ class MalwareScanDetails:
 
 @final
 class Master:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MasterOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -1577,6 +1714,7 @@ class Master:
 
 @final
 class Member:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -1597,6 +1735,7 @@ class Member:
 
 @final
 class MemberAdditionalConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberAdditionalConfigurationResultOutput/)."""
     @property
     def name(self) -> _types.OrgFeatureAdditionalConfigurationOutput | None: ...
     @property
@@ -1609,6 +1748,7 @@ class MemberAdditionalConfigurationResult:
 
 @final
 class MemberDataSourceConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberDataSourceConfigurationOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -1619,6 +1759,7 @@ class MemberDataSourceConfiguration:
 
 @final
 class MemberFeaturesConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberFeaturesConfigurationResultOutput/)."""
     @property
     def name(self) -> _types.OrgFeatureOutput | None: ...
     @property
@@ -1633,18 +1774,21 @@ class MemberFeaturesConfigurationResult:
 
 @final
 class ModelDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ModelDetailOutput/)."""
     @property
     def model_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class NetworkConnection:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkConnectionOutput/)."""
     @property
     def direction(self) -> _types.NetworkDirectionOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class NetworkConnectionAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkConnectionActionOutput/)."""
     @property
     def blocked(self) -> bool | None: ...
     @property
@@ -1665,6 +1809,7 @@ class NetworkConnectionAction:
 
 @final
 class NetworkEndpoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkEndpointOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1683,6 +1828,7 @@ class NetworkEndpoint:
 
 @final
 class NetworkGeoLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkGeoLocationOutput/)."""
     @property
     def city(self) -> str | None: ...
     @property
@@ -1695,6 +1841,7 @@ class NetworkGeoLocation:
 
 @final
 class NetworkInterface:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkInterfaceOutput/)."""
     @property
     def ipv6_addresses(self) -> list[str] | None: ...
     @property
@@ -1719,6 +1866,7 @@ class NetworkInterface:
 
 @final
 class Observations:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ObservationsOutput/)."""
     @property
     def text(self) -> list[str] | None: ...
     @property
@@ -1727,6 +1875,7 @@ class Observations:
 
 @final
 class Organization:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationOutput/)."""
     @property
     def asn(self) -> str | None: ...
     @property
@@ -1739,6 +1888,7 @@ class Organization:
 
 @final
 class OrganizationAdditionalConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAdditionalConfigurationResultOutput/)."""
     @property
     def name(self) -> _types.OrgFeatureAdditionalConfigurationOutput | None: ...
     @property
@@ -1747,6 +1897,7 @@ class OrganizationAdditionalConfigurationResult:
 
 @final
 class OrganizationDataSourceConfigurationsResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDataSourceConfigurationsResultOutput/)."""
     @property
     def s3_logs(self) -> OrganizationS3LogsConfigurationResult | None: ...
     @property
@@ -1757,6 +1908,7 @@ class OrganizationDataSourceConfigurationsResult:
 
 @final
 class OrganizationDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDetailsOutput/)."""
     @property
     def updated_at(self) -> str | None: ...
     @property
@@ -1765,12 +1917,14 @@ class OrganizationDetails:
 
 @final
 class OrganizationEbsVolumesResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationEbsVolumesResultOutput/)."""
     @property
     def auto_enable(self) -> bool | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OrganizationFeatureConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureConfigurationResultOutput/)."""
     @property
     def name(self) -> _types.OrgFeatureOutput | None: ...
     @property
@@ -1781,6 +1935,7 @@ class OrganizationFeatureConfigurationResult:
 
 @final
 class OrganizationFeatureStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsOutput/)."""
     @property
     def name(self) -> _types.OrgFeatureOutput | None: ...
     @property
@@ -1791,6 +1946,7 @@ class OrganizationFeatureStatistics:
 
 @final
 class OrganizationFeatureStatisticsAdditionalConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsAdditionalConfigurationOutput/)."""
     @property
     def name(self) -> _types.OrgFeatureAdditionalConfigurationOutput | None: ...
     @property
@@ -1799,36 +1955,42 @@ class OrganizationFeatureStatisticsAdditionalConfiguration:
 
 @final
 class OrganizationKubernetesAuditLogsConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesAuditLogsConfigurationResultOutput/)."""
     @property
     def auto_enable(self) -> bool | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OrganizationKubernetesConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesConfigurationResultOutput/)."""
     @property
     def audit_logs(self) -> OrganizationKubernetesAuditLogsConfigurationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OrganizationMalwareProtectionConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationMalwareProtectionConfigurationResultOutput/)."""
     @property
     def scan_ec2_instance_with_findings(self) -> OrganizationScanEc2InstanceWithFindingsResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OrganizationS3LogsConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationS3LogsConfigurationResultOutput/)."""
     @property
     def auto_enable(self) -> bool | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OrganizationScanEc2InstanceWithFindingsResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationScanEc2InstanceWithFindingsResultOutput/)."""
     @property
     def ebs_volumes(self) -> OrganizationEbsVolumesResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OrganizationStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationStatisticsOutput/)."""
     @property
     def total_accounts_count(self) -> int | None: ...
     @property
@@ -1843,12 +2005,14 @@ class OrganizationStatistics:
 
 @final
 class Owner:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OwnerOutput/)."""
     @property
     def id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PermissionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PermissionConfigurationOutput/)."""
     @property
     def bucket_level_permissions(self) -> BucketLevelPermissions | None: ...
     @property
@@ -1857,6 +2021,7 @@ class PermissionConfiguration:
 
 @final
 class PortProbeAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PortProbeActionOutput/)."""
     @property
     def blocked(self) -> bool | None: ...
     @property
@@ -1865,6 +2030,7 @@ class PortProbeAction:
 
 @final
 class PortProbeDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PortProbeDetailOutput/)."""
     @property
     def local_port_details(self) -> LocalPortDetails | None: ...
     @property
@@ -1875,6 +2041,7 @@ class PortProbeDetail:
 
 @final
 class PrivateIpAddressDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PrivateIpAddressDetailsOutput/)."""
     @property
     def private_dns_name(self) -> str | None: ...
     @property
@@ -1883,6 +2050,7 @@ class PrivateIpAddressDetails:
 
 @final
 class ProcessDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProcessDetailsOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -1913,6 +2081,7 @@ class ProcessDetails:
 
 @final
 class Product:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProductOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -1921,6 +2090,7 @@ class Product:
 
 @final
 class ProductCode:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProductCodeOutput/)."""
     @property
     def code(self) -> str | None: ...
     @property
@@ -1929,6 +2099,7 @@ class ProductCode:
 
 @final
 class PublicAccess:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessOutput/)."""
     @property
     def permission_configuration(self) -> PermissionConfiguration | None: ...
     @property
@@ -1937,6 +2108,7 @@ class PublicAccess:
 
 @final
 class PublicAccessConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessConfigurationOutput/)."""
     @property
     def public_acl_access(self) -> _types.PublicAccessStatusOutput | None: ...
     @property
@@ -1949,6 +2121,7 @@ class PublicAccessConfiguration:
 
 @final
 class RdsDbInstanceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbInstanceDetailsOutput/)."""
     @property
     def db_instance_identifier(self) -> str | None: ...
     @property
@@ -1967,6 +2140,7 @@ class RdsDbInstanceDetails:
 
 @final
 class RdsDbUserDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbUserDetailsOutput/)."""
     @property
     def user(self) -> str | None: ...
     @property
@@ -1981,6 +2155,7 @@ class RdsDbUserDetails:
 
 @final
 class RdsLimitlessDbDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLimitlessDbDetailsOutput/)."""
     @property
     def db_shard_group_identifier(self) -> str | None: ...
     @property
@@ -1999,6 +2174,7 @@ class RdsLimitlessDbDetails:
 
 @final
 class RdsLoginAttemptAction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLoginAttemptActionOutput/)."""
     @property
     def remote_ip_details(self) -> RemoteIpDetails | None: ...
     @property
@@ -2007,6 +2183,7 @@ class RdsLoginAttemptAction:
 
 @final
 class RecoveryPointDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecoveryPointDetailsOutput/)."""
     @property
     def recovery_point_arn(self) -> str | None: ...
     @property
@@ -2017,6 +2194,7 @@ class RecoveryPointDetails:
 
 @final
 class RemoteAccountDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemoteAccountDetailsOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -2027,6 +2205,7 @@ class RemoteAccountDetails:
 
 @final
 class RemoteIpDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemoteIpDetailsOutput/)."""
     @property
     def city(self) -> City | None: ...
     @property
@@ -2043,6 +2222,7 @@ class RemoteIpDetails:
 
 @final
 class RemotePortDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemotePortDetailsOutput/)."""
     @property
     def port(self) -> int | None: ...
     @property
@@ -2051,6 +2231,7 @@ class RemotePortDetails:
 
 @final
 class Resource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceOutput/)."""
     @property
     def access_key_details(self) -> AccessKeyDetails | None: ...
     @property
@@ -2091,6 +2272,7 @@ class Resource:
 
 @final
 class ResourceData:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDataOutput/)."""
     @property
     def s3_bucket(self) -> S3Bucket | None: ...
     @property
@@ -2129,12 +2311,14 @@ class ResourceData:
 
 @final
 class ResourceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDetailsOutput/)."""
     @property
     def instance_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ResourceStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceStatisticsOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -2149,6 +2333,7 @@ class ResourceStatistics:
 
 @final
 class ResourceV2:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceV2Output/)."""
     @property
     def uid(self) -> str | None: ...
     @property
@@ -2171,12 +2356,14 @@ class ResourceV2:
 
 @final
 class RuleDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleDefinitionOutput/)."""
     @property
     def expression(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RuleDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleDetailOutput/)."""
     @property
     def rule_id(self) -> str | None: ...
     @property
@@ -2211,6 +2398,7 @@ class RuleDetail:
 
 @final
 class RuleSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleSummaryOutput/)."""
     @property
     def rule_id(self) -> str | None: ...
     @property
@@ -2241,6 +2429,7 @@ class RuleSummary:
 
 @final
 class RuntimeContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeContextOutput/)."""
     @property
     def modifying_process(self) -> ProcessDetails | None: ...
     @property
@@ -2301,6 +2490,7 @@ class RuntimeContext:
 
 @final
 class RuntimeDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeDetailsOutput/)."""
     @property
     def process(self) -> ProcessDetails | None: ...
     @property
@@ -2309,6 +2499,7 @@ class RuntimeDetails:
 
 @final
 class S3Bucket:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3BucketOutput/)."""
     @property
     def owner_id(self) -> str | None: ...
     @property
@@ -2333,6 +2524,7 @@ class S3Bucket:
 
 @final
 class S3BucketDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3BucketDetailOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -2355,12 +2547,14 @@ class S3BucketDetail:
 
 @final
 class S3LogsConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3LogsConfigurationResultOutput/)."""
     @property
     def status(self) -> _types.DataSourceStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class S3Object:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3ObjectOutput/)."""
     @property
     def e_tag(self) -> str | None: ...
     @property
@@ -2371,6 +2565,7 @@ class S3Object:
 
 @final
 class S3ObjectDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3ObjectDetailOutput/)."""
     @property
     def object_arn(self) -> str | None: ...
     @property
@@ -2385,6 +2580,7 @@ class S3ObjectDetail:
 
 @final
 class Scan:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanOutput/)."""
     @property
     def detector_id(self) -> str | None: ...
     @property
@@ -2419,12 +2615,14 @@ class Scan:
 
 @final
 class ScanCondition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConditionOutput/)."""
     @property
     def map_equals(self) -> list[ScanConditionPair] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScanConditionPair:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConditionPairOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -2433,6 +2631,7 @@ class ScanConditionPair:
 
 @final
 class ScanConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationOutput/)."""
     @property
     def role(self) -> str | None: ...
     @property
@@ -2445,6 +2644,7 @@ class ScanConfiguration:
 
 @final
 class ScanConfigurationContinuousScanDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationContinuousScanDetailsOutput/)."""
     @property
     def start_time(self) -> str | None: ...
     @property
@@ -2453,6 +2653,7 @@ class ScanConfigurationContinuousScanDetails:
 
 @final
 class ScanConfigurationRecoveryPoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationRecoveryPointOutput/)."""
     @property
     def backup_vault_name(self) -> str | None: ...
     @property
@@ -2461,6 +2662,7 @@ class ScanConfigurationRecoveryPoint:
 
 @final
 class ScanDetections:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanDetectionsOutput/)."""
     @property
     def scanned_item_count(self) -> ScannedItemCount | None: ...
     @property
@@ -2473,12 +2675,14 @@ class ScanDetections:
 
 @final
 class ScanEc2InstanceWithFindingsResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanEc2InstanceWithFindingsResultOutput/)."""
     @property
     def ebs_volumes(self) -> EbsVolumesResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScanFilePath:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanFilePathOutput/)."""
     @property
     def file_path(self) -> str | None: ...
     @property
@@ -2491,6 +2695,7 @@ class ScanFilePath:
 
 @final
 class ScanResourceCriteria:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResourceCriteriaOutput/)."""
     @property
     def include(self) -> dict[_types.ScanCriterionKeyOutput, ScanCondition] | None: ...
     @property
@@ -2499,12 +2704,14 @@ class ScanResourceCriteria:
 
 @final
 class ScanResultDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultDetailsOutput/)."""
     @property
     def scan_result(self) -> _types.ScanResultOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScanResultThreat:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultThreatOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -2519,6 +2726,7 @@ class ScanResultThreat:
 
 @final
 class ScanThreatName:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanThreatNameOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -2531,6 +2739,7 @@ class ScanThreatName:
 
 @final
 class ScannedItemCount:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedItemCountOutput/)."""
     @property
     def total_gb(self) -> int | None: ...
     @property
@@ -2541,6 +2750,7 @@ class ScannedItemCount:
 
 @final
 class ScannedResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedResourceOutput/)."""
     @property
     def scanned_resource_arn(self) -> str | None: ...
     @property
@@ -2555,6 +2765,7 @@ class ScannedResource:
 
 @final
 class ScannedResourceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedResourceDetailsOutput/)."""
     @property
     def ebs_volume(self) -> VolumeDetail | None: ...
     @property
@@ -2563,6 +2774,7 @@ class ScannedResourceDetails:
 
 @final
 class SecurityContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SecurityContextOutput/)."""
     @property
     def privileged(self) -> bool | None: ...
     @property
@@ -2571,6 +2783,7 @@ class SecurityContext:
 
 @final
 class SecurityGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SecurityGroupOutput/)."""
     @property
     def group_id(self) -> str | None: ...
     @property
@@ -2579,6 +2792,7 @@ class SecurityGroup:
 
 @final
 class Sequence:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SequenceOutput/)."""
     @property
     def uid(self) -> str | None: ...
     @property
@@ -2599,6 +2813,7 @@ class Sequence:
 
 @final
 class Service:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ServiceOutput/)."""
     @property
     def action(self) -> Action | None: ...
     @property
@@ -2635,6 +2850,7 @@ class Service:
 
 @final
 class ServiceAdditionalInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ServiceAdditionalInfoOutput/)."""
     @property
     def value(self) -> str | None: ...
     @property
@@ -2643,6 +2859,7 @@ class ServiceAdditionalInfo:
 
 @final
 class Session:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SessionOutput/)."""
     @property
     def uid(self) -> str | None: ...
     @property
@@ -2655,6 +2872,7 @@ class Session:
 
 @final
 class SeverityStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SeverityStatisticsOutput/)."""
     @property
     def last_generated_at(self) -> str | None: ...
     @property
@@ -2665,6 +2883,7 @@ class SeverityStatistics:
 
 @final
 class Signal:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SignalOutput/)."""
     @property
     def uid(self) -> str | None: ...
     @property
@@ -2699,6 +2918,7 @@ class Signal:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -2707,6 +2927,7 @@ class Tag:
 
 @final
 class Threat:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -2723,6 +2944,7 @@ class Threat:
 
 @final
 class ThreatDetectedByName:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatDetectedByNameOutput/)."""
     @property
     def item_count(self) -> int | None: ...
     @property
@@ -2735,6 +2957,7 @@ class ThreatDetectedByName:
 
 @final
 class ThreatIntelligenceDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelligenceDetailOutput/)."""
     @property
     def threat_list_name(self) -> str | None: ...
     @property
@@ -2745,12 +2968,14 @@ class ThreatIntelligenceDetail:
 
 @final
 class ThreatsDetectedItemCount:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatsDetectedItemCountOutput/)."""
     @property
     def files(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Total:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TotalOutput/)."""
     @property
     def amount(self) -> str | None: ...
     @property
@@ -2759,6 +2984,7 @@ class Total:
 
 @final
 class TriggerDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TriggerDetailsOutput/)."""
     @property
     def guard_duty_finding_id(self) -> str | None: ...
     @property
@@ -2769,6 +2995,7 @@ class TriggerDetails:
 
 @final
 class UnprocessedAccount:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnprocessedAccountOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -2777,12 +3004,14 @@ class UnprocessedAccount:
 
 @final
 class UnprocessedDataSourcesResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnprocessedDataSourcesResultOutput/)."""
     @property
     def malware_protection(self) -> MalwareProtectionConfigurationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UsageAccountResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageAccountResultOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -2791,6 +3020,7 @@ class UsageAccountResult:
 
 @final
 class UsageDataSourceResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageDataSourceResultOutput/)."""
     @property
     def data_source(self) -> _types.DataSourceOutput | None: ...
     @property
@@ -2799,6 +3029,7 @@ class UsageDataSourceResult:
 
 @final
 class UsageFeatureResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageFeatureResultOutput/)."""
     @property
     def feature(self) -> _types.UsageFeatureOutput | None: ...
     @property
@@ -2807,6 +3038,7 @@ class UsageFeatureResult:
 
 @final
 class UsageResourceResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageResourceResultOutput/)."""
     @property
     def resource(self) -> str | None: ...
     @property
@@ -2815,6 +3047,7 @@ class UsageResourceResult:
 
 @final
 class UsageStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageStatisticsOutput/)."""
     @property
     def sum_by_account(self) -> list[UsageAccountResult] | None: ...
     @property
@@ -2831,6 +3064,7 @@ class UsageStatistics:
 
 @final
 class UsageTopAccountResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageTopAccountResultOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -2839,6 +3073,7 @@ class UsageTopAccountResult:
 
 @final
 class UsageTopAccountsResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageTopAccountsResultOutput/)."""
     @property
     def feature(self) -> _types.UsageFeatureOutput | None: ...
     @property
@@ -2847,6 +3082,7 @@ class UsageTopAccountsResult:
 
 @final
 class User:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UserOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -2861,6 +3097,7 @@ class User:
 
 @final
 class Volume:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -2869,6 +3106,7 @@ class Volume:
 
 @final
 class VolumeDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeDetailOutput/)."""
     @property
     def volume_arn(self) -> str | None: ...
     @property
@@ -2887,6 +3125,7 @@ class VolumeDetail:
 
 @final
 class VolumeMount:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeMountOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -2895,6 +3134,7 @@ class VolumeMount:
 
 @final
 class VpcConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VpcConfigOutput/)."""
     @property
     def subnet_ids(self) -> list[str] | None: ...
     @property
@@ -2905,28 +3145,34 @@ class VpcConfig:
 
 @final
 class AcceptAdministratorInvitationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptAdministratorInvitationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AcceptInvitationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptInvitationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ArchiveFindingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ArchiveFindingsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCustomDetectionRuleAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleAssociationOutput/)."""
     @property
     def rule_association(self) -> AssociationDetail | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCustomDetectionRuleOrgConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleOrgConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDetectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateDetectorOutput/)."""
     @property
     def detector_id(self) -> str | None: ...
     @property
@@ -2935,118 +3181,141 @@ class CreateDetectorOutput:
 
 @final
 class CreateFilterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateFilterOutput/)."""
     @property
     def name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateIPSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateIPSetOutput/)."""
     @property
     def ip_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateInvestigationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateInvestigationOutput/)."""
     @property
     def investigation_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateMalwareProtectionPlanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMalwareProtectionPlanOutput/)."""
     @property
     def malware_protection_plan_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMembersOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreatePublishingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreatePublishingDestinationOutput/)."""
     @property
     def destination_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateSampleFindingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateSampleFindingsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateThreatEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatEntitySetOutput/)."""
     @property
     def threat_entity_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateThreatIntelSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatIntelSetOutput/)."""
     @property
     def threat_intel_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateTrustedEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateTrustedEntitySetOutput/)."""
     @property
     def trusted_entity_set_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeclineInvitationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeclineInvitationsOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomDetectionRuleAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleAssociationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomDetectionRuleOrgConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleOrgConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDetectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteDetectorOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteFilterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteFilterOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteIPSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteIPSetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteInvitationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteInvitationsOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteMembersOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePublishingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeletePublishingDestinationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteThreatEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatEntitySetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteThreatIntelSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatIntelSetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTrustedEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteTrustedEntitySetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeMalwareScansOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeMalwareScansOutput/)."""
     @property
     def scans(self) -> list[Scan] | None: ...
     @property
@@ -3055,6 +3324,7 @@ class DescribeMalwareScansOutput:
 
 @final
 class DescribeOrganizationConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeOrganizationConfigurationOutput/)."""
     @property
     def auto_enable(self) -> bool | None: ...
     @property
@@ -3071,6 +3341,7 @@ class DescribeOrganizationConfigurationOutput:
 
 @final
 class DescribePublishingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribePublishingDestinationOutput/)."""
     @property
     def destination_id(self) -> str | None: ...
     @property
@@ -3087,46 +3358,55 @@ class DescribePublishingDestinationOutput:
 
 @final
 class DisableOrganizationAdminAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisableOrganizationAdminAccountOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateFromAdministratorAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromAdministratorAccountOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateFromMasterAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromMasterAccountOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateMembersOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EnableOrganizationAdminAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EnableOrganizationAdminAccountOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAdministratorAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetAdministratorAccountOutput/)."""
     @property
     def administrator(self) -> Administrator | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetCoverageStatisticsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCoverageStatisticsOutput/)."""
     @property
     def coverage_statistics(self) -> CoverageStatistics | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetCustomDetectionRuleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleOutput/)."""
     @property
     def rule(self) -> RuleDetail | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetCustomDetectionRuleAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleAssociationOutput/)."""
     @property
     def rule_association(self) -> AssociationDetail | None: ...
     @property
@@ -3135,12 +3415,14 @@ class GetCustomDetectionRuleAssociationOutput:
 
 @final
 class GetCustomDetectionRuleOrgConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleOrgConfigurationOutput/)."""
     @property
     def configuration(self) -> DetectionRuleOrgConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDetectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetDetectorOutput/)."""
     @property
     def created_at(self) -> str | None: ...
     @property
@@ -3161,6 +3443,7 @@ class GetDetectorOutput:
 
 @final
 class GetFilterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFilterOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -3183,12 +3466,14 @@ class GetFilterOutput:
 
 @final
 class GetFindingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsOutput/)."""
     @property
     def findings(self) -> list[Finding] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetFindingsStatisticsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsStatisticsOutput/)."""
     @property
     def finding_statistics(self) -> FindingStatistics | None: ...
     @property
@@ -3197,6 +3482,7 @@ class GetFindingsStatisticsOutput:
 
 @final
 class GetIPSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetIPSetOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -3213,18 +3499,21 @@ class GetIPSetOutput:
 
 @final
 class GetInvestigationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvestigationOutput/)."""
     @property
     def investigation(self) -> Investigation | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetInvitationsCountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvitationsCountOutput/)."""
     @property
     def invitations_count(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetMalwareProtectionPlanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareProtectionPlanOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -3245,6 +3534,7 @@ class GetMalwareProtectionPlanOutput:
 
 @final
 class GetMalwareScanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanOutput/)."""
     @property
     def scan_id(self) -> str | None: ...
     @property
@@ -3283,6 +3573,7 @@ class GetMalwareScanOutput:
 
 @final
 class GetMalwareScanSettingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanSettingsOutput/)."""
     @property
     def scan_resource_criteria(self) -> ScanResourceCriteria | None: ...
     @property
@@ -3291,12 +3582,14 @@ class GetMalwareScanSettingsOutput:
 
 @final
 class GetMasterAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMasterAccountOutput/)."""
     @property
     def master(self) -> Master | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetMemberDetectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMemberDetectorsOutput/)."""
     @property
     def member_data_source_configurations(self) -> list[MemberDataSourceConfiguration] | None: ...
     @property
@@ -3305,6 +3598,7 @@ class GetMemberDetectorsOutput:
 
 @final
 class GetMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMembersOutput/)."""
     @property
     def members(self) -> list[Member] | None: ...
     @property
@@ -3313,12 +3607,14 @@ class GetMembersOutput:
 
 @final
 class GetOrganizationStatisticsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetOrganizationStatisticsOutput/)."""
     @property
     def organization_details(self) -> OrganizationDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetRemainingFreeTrialDaysOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetRemainingFreeTrialDaysOutput/)."""
     @property
     def accounts(self) -> list[AccountFreeTrialInfo] | None: ...
     @property
@@ -3327,6 +3623,7 @@ class GetRemainingFreeTrialDaysOutput:
 
 @final
 class GetThreatEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatEntitySetOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -3349,6 +3646,7 @@ class GetThreatEntitySetOutput:
 
 @final
 class GetThreatIntelSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatIntelSetOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -3365,6 +3663,7 @@ class GetThreatIntelSetOutput:
 
 @final
 class GetTrustedEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetTrustedEntitySetOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -3387,6 +3686,7 @@ class GetTrustedEntitySetOutput:
 
 @final
 class GetUsageStatisticsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetUsageStatisticsOutput/)."""
     @property
     def usage_statistics(self) -> UsageStatistics | None: ...
     @property
@@ -3395,12 +3695,14 @@ class GetUsageStatisticsOutput:
 
 @final
 class InviteMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InviteMembersOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListCoverageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCoverageOutput/)."""
     @property
     def resources(self) -> list[CoverageResource] | None: ...
     @property
@@ -3409,6 +3711,7 @@ class ListCoverageOutput:
 
 @final
 class ListCustomDetectionRuleAssociationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleAssociationsOutput/)."""
     @property
     def rule_associations(self) -> list[AssociationSummary] | None: ...
     @property
@@ -3417,6 +3720,7 @@ class ListCustomDetectionRuleAssociationsOutput:
 
 @final
 class ListCustomDetectionRuleOrgConfigurationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleOrgConfigurationsOutput/)."""
     @property
     def configurations(self) -> list[DetectionRuleOrgConfigurationSummary] | None: ...
     @property
@@ -3425,6 +3729,7 @@ class ListCustomDetectionRuleOrgConfigurationsOutput:
 
 @final
 class ListCustomDetectionRulesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRulesOutput/)."""
     @property
     def rules(self) -> list[RuleSummary] | None: ...
     @property
@@ -3433,6 +3738,7 @@ class ListCustomDetectionRulesOutput:
 
 @final
 class ListDetectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListDetectorsOutput/)."""
     @property
     def detector_ids(self) -> list[str] | None: ...
     @property
@@ -3441,6 +3747,7 @@ class ListDetectorsOutput:
 
 @final
 class ListFiltersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFiltersOutput/)."""
     @property
     def filter_names(self) -> list[str] | None: ...
     @property
@@ -3449,6 +3756,7 @@ class ListFiltersOutput:
 
 @final
 class ListFindingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFindingsOutput/)."""
     @property
     def finding_ids(self) -> list[str] | None: ...
     @property
@@ -3457,6 +3765,7 @@ class ListFindingsOutput:
 
 @final
 class ListIPSetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListIPSetsOutput/)."""
     @property
     def ip_set_ids(self) -> list[str] | None: ...
     @property
@@ -3465,6 +3774,7 @@ class ListIPSetsOutput:
 
 @final
 class ListInvestigationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvestigationsOutput/)."""
     @property
     def investigations(self) -> list[InvestigationSummary] | None: ...
     @property
@@ -3473,6 +3783,7 @@ class ListInvestigationsOutput:
 
 @final
 class ListInvitationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvitationsOutput/)."""
     @property
     def invitations(self) -> list[Invitation] | None: ...
     @property
@@ -3481,6 +3792,7 @@ class ListInvitationsOutput:
 
 @final
 class ListMalwareProtectionPlansOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareProtectionPlansOutput/)."""
     @property
     def malware_protection_plans(self) -> list[MalwareProtectionPlanSummary] | None: ...
     @property
@@ -3489,6 +3801,7 @@ class ListMalwareProtectionPlansOutput:
 
 @final
 class ListMalwareScansOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansOutput/)."""
     @property
     def scans(self) -> list[MalwareScan] | None: ...
     @property
@@ -3497,6 +3810,7 @@ class ListMalwareScansOutput:
 
 @final
 class ListMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMembersOutput/)."""
     @property
     def members(self) -> list[Member] | None: ...
     @property
@@ -3505,6 +3819,7 @@ class ListMembersOutput:
 
 @final
 class ListOrganizationAdminAccountsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListOrganizationAdminAccountsOutput/)."""
     @property
     def admin_accounts(self) -> list[AdminAccount] | None: ...
     @property
@@ -3513,6 +3828,7 @@ class ListOrganizationAdminAccountsOutput:
 
 @final
 class ListPublishingDestinationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListPublishingDestinationsOutput/)."""
     @property
     def destinations(self) -> list[Destination] | None: ...
     @property
@@ -3521,12 +3837,14 @@ class ListPublishingDestinationsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListThreatEntitySetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatEntitySetsOutput/)."""
     @property
     def threat_entity_set_ids(self) -> list[str] | None: ...
     @property
@@ -3535,6 +3853,7 @@ class ListThreatEntitySetsOutput:
 
 @final
 class ListThreatIntelSetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatIntelSetsOutput/)."""
     @property
     def threat_intel_set_ids(self) -> list[str] | None: ...
     @property
@@ -3543,6 +3862,7 @@ class ListThreatIntelSetsOutput:
 
 @final
 class ListTrustedEntitySetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTrustedEntitySetsOutput/)."""
     @property
     def trusted_entity_set_ids(self) -> list[str] | None: ...
     @property
@@ -3551,92 +3871,112 @@ class ListTrustedEntitySetsOutput:
 
 @final
 class SendObjectMalwareScanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SendObjectMalwareScanOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartMalwareScanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMalwareScanOutput/)."""
     @property
     def scan_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartMonitoringMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMonitoringMembersOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopMonitoringMembersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StopMonitoringMembersOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UnarchiveFindingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnarchiveFindingsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCustomDetectionRuleAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleAssociationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCustomDetectionRuleOrgConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleOrgConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDetectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateDetectorOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateFilterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFilterOutput/)."""
     @property
     def name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateFindingsFeedbackOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFindingsFeedbackOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateIPSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateIPSetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMalwareScanSettingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMalwareScanSettingsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMemberDetectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMemberDetectorsOutput/)."""
     @property
     def unprocessed_accounts(self) -> list[UnprocessedAccount] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateOrganizationConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateOrganizationConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdatePublishingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdatePublishingDestinationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateThreatEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatEntitySetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateThreatIntelSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatIntelSetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateTrustedEntitySetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateTrustedEntitySetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 

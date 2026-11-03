@@ -9,46 +9,85 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ByteStream/)."""
 DeleteLexiconOutput: TypeAlias = _native.DeleteLexiconOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DeleteLexiconOutput/)."""
 DescribeVoicesOutput: TypeAlias = _native.DescribeVoicesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DescribeVoicesOutput/)."""
 GetLexiconOutput: TypeAlias = _native.GetLexiconOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetLexiconOutput/)."""
 GetSpeechSynthesisTaskOutput: TypeAlias = _native.GetSpeechSynthesisTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetSpeechSynthesisTaskOutput/)."""
 LexiconOutput: TypeAlias = _native.Lexicon
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconOutput/)."""
 LexiconAttributesOutput: TypeAlias = _native.LexiconAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconAttributesOutput/)."""
 LexiconDescriptionOutput: TypeAlias = _native.LexiconDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconDescriptionOutput/)."""
 ListLexiconsOutput: TypeAlias = _native.ListLexiconsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListLexiconsOutput/)."""
 ListSpeechSynthesisTasksOutput: TypeAlias = _native.ListSpeechSynthesisTasksOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListSpeechSynthesisTasksOutput/)."""
 PutLexiconOutput: TypeAlias = _native.PutLexiconOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/PutLexiconOutput/)."""
 StartSpeechSynthesisStreamEventStreamReceiver: TypeAlias = _native.StartSpeechSynthesisStreamEventStreamReceiver
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamReceiver/)."""
 StartSpeechSynthesisTaskOutput: TypeAlias = _native.StartSpeechSynthesisTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisTaskOutput/)."""
 SynthesisTaskOutput: TypeAlias = _native.SynthesisTask
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesisTaskOutput/)."""
 SynthesizeSpeechOutput: TypeAlias = _native.SynthesizeSpeechOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesizeSpeechOutput/)."""
 VoiceOutput: TypeAlias = _native.Voice
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/VoiceOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/JSONValue/)."""
 
 Engine: TypeAlias = Literal['standard', 'neural', 'long-form', 'generative']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/Engine/)."""
 EngineOutput: TypeAlias = Engine | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/EngineOutput/)."""
 Gender: TypeAlias = Literal['Female', 'Male']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/Gender/)."""
 GenderOutput: TypeAlias = Gender | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GenderOutput/)."""
 LanguageCode: TypeAlias = Literal['arb', 'cmn-CN', 'cy-GB', 'da-DK', 'de-DE', 'en-AU', 'en-GB', 'en-GB-WLS', 'en-IN', 'en-US', 'es-ES', 'es-MX', 'es-US', 'fr-CA', 'fr-FR', 'is-IS', 'it-IT', 'ja-JP', 'hi-IN', 'ko-KR', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR', 'pt-PT', 'ro-RO', 'ru-RU', 'sv-SE', 'tr-TR', 'en-NZ', 'en-ZA', 'ca-ES', 'de-AT', 'yue-CN', 'ar-AE', 'fi-FI', 'en-IE', 'nl-BE', 'fr-BE', 'cs-CZ', 'de-CH', 'en-SG']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LanguageCode/)."""
 LanguageCodeOutput: TypeAlias = LanguageCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LanguageCodeOutput/)."""
 OutputFormat: TypeAlias = Literal['json', 'mp3', 'ogg_opus', 'ogg_vorbis', 'pcm', 'mulaw', 'alaw']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/OutputFormat/)."""
 OutputFormatOutput: TypeAlias = OutputFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/OutputFormatOutput/)."""
 QuotaCode: TypeAlias = Literal['input-stream-inbound-event-timeout', 'input-stream-timeout']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/QuotaCode/)."""
 QuotaCodeOutput: TypeAlias = QuotaCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/QuotaCodeOutput/)."""
 ServiceCode: TypeAlias = Literal['polly']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ServiceCode/)."""
 ServiceCodeOutput: TypeAlias = ServiceCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ServiceCodeOutput/)."""
 SpeechMarkType: TypeAlias = Literal['sentence', 'ssml', 'viseme', 'word']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SpeechMarkType/)."""
 SpeechMarkTypeOutput: TypeAlias = SpeechMarkType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SpeechMarkTypeOutput/)."""
 TaskStatus: TypeAlias = Literal['scheduled', 'inProgress', 'completed', 'failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TaskStatus/)."""
 TaskStatusOutput: TypeAlias = TaskStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TaskStatusOutput/)."""
 TextType: TypeAlias = Literal['ssml', 'text']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TextType/)."""
 TextTypeOutput: TypeAlias = TextType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TextTypeOutput/)."""
 ValidationExceptionReason: TypeAlias = Literal['unsupportedOperation', 'fieldValidationFailed', 'other', 'invalidInboundEvent']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ValidationExceptionReason/)."""
 ValidationExceptionReasonOutput: TypeAlias = ValidationExceptionReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ValidationExceptionReasonOutput/)."""
 VoiceId: TypeAlias = Literal['Aditi', 'Amy', 'Astrid', 'Bianca', 'Brian', 'Camila', 'Carla', 'Carmen', 'Celine', 'Chantal', 'Conchita', 'Cristiano', 'Dora', 'Emma', 'Enrique', 'Ewa', 'Filiz', 'Gabrielle', 'Geraint', 'Giorgio', 'Gwyneth', 'Hans', 'Ines', 'Ivy', 'Jacek', 'Jan', 'Joanna', 'Joey', 'Justin', 'Karl', 'Kendra', 'Kevin', 'Kimberly', 'Lea', 'Liv', 'Lotte', 'Lucia', 'Lupe', 'Mads', 'Maja', 'Marlene', 'Mathieu', 'Matthew', 'Maxim', 'Mia', 'Miguel', 'Mizuki', 'Naja', 'Nicole', 'Olivia', 'Penelope', 'Raveena', 'Ricardo', 'Ruben', 'Russell', 'Salli', 'Seoyeon', 'Takumi', 'Tatyana', 'Vicki', 'Vitoria', 'Zeina', 'Zhiyu', 'Aria', 'Ayanda', 'Arlet', 'Hannah', 'Arthur', 'Daniel', 'Liam', 'Pedro', 'Kajal', 'Hiujin', 'Laura', 'Elin', 'Ida', 'Suvi', 'Ola', 'Hala', 'Andres', 'Sergio', 'Remi', 'Adriano', 'Thiago', 'Ruth', 'Stephen', 'Kazuha', 'Tomoko', 'Niamh', 'Sofie', 'Lisa', 'Isabelle', 'Zayd', 'Danielle', 'Gregory', 'Burcu', 'Jitka', 'Sabrina', 'Jasmine', 'Jihye', 'Ambre', 'Beatrice', 'Florian', 'Lennart', 'Lorenzo', 'Tiffany', 'Arjun', 'Carlos', 'Carolina', 'Curtis', 'Hyunduk', 'Kenneth', 'Kiara', 'Leo', 'Nate', 'Tina']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/VoiceId/)."""
 VoiceIdOutput: TypeAlias = VoiceId | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/VoiceIdOutput/)."""
 
 AudioEvent = TypedDict(
     "AudioEvent",
@@ -56,12 +95,14 @@ AudioEvent = TypedDict(
     "audio_chunk": Required["bytes | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/AudioEvent/)."""
 
 CloseStreamEvent = TypedDict(
     "CloseStreamEvent",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/CloseStreamEvent/)."""
 
 DeleteLexiconInput = TypedDict(
     "DeleteLexiconInput",
@@ -69,6 +110,7 @@ DeleteLexiconInput = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DeleteLexiconInput/)."""
 
 DescribeVoicesInput = TypedDict(
     "DescribeVoicesInput",
@@ -79,6 +121,7 @@ DescribeVoicesInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DescribeVoicesInput/)."""
 
 FlushStreamConfiguration = TypedDict(
     "FlushStreamConfiguration",
@@ -86,6 +129,7 @@ FlushStreamConfiguration = TypedDict(
     "force": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/FlushStreamConfiguration/)."""
 
 GetLexiconInput = TypedDict(
     "GetLexiconInput",
@@ -93,6 +137,7 @@ GetLexiconInput = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetLexiconInput/)."""
 
 GetSpeechSynthesisTaskInput = TypedDict(
     "GetSpeechSynthesisTaskInput",
@@ -100,6 +145,7 @@ GetSpeechSynthesisTaskInput = TypedDict(
     "task_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetSpeechSynthesisTaskInput/)."""
 
 Lexicon = TypedDict(
     "Lexicon",
@@ -108,6 +154,7 @@ Lexicon = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/Lexicon/)."""
 
 LexiconAttributes = TypedDict(
     "LexiconAttributes",
@@ -120,6 +167,7 @@ LexiconAttributes = TypedDict(
     "size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconAttributes/)."""
 
 LexiconDescription = TypedDict(
     "LexiconDescription",
@@ -128,6 +176,7 @@ LexiconDescription = TypedDict(
     "attributes": NotRequired["LexiconAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconDescription/)."""
 
 ListLexiconsInput = TypedDict(
     "ListLexiconsInput",
@@ -135,6 +184,7 @@ ListLexiconsInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListLexiconsInput/)."""
 
 ListSpeechSynthesisTasksInput = TypedDict(
     "ListSpeechSynthesisTasksInput",
@@ -144,6 +194,7 @@ ListSpeechSynthesisTasksInput = TypedDict(
     "status": NotRequired["TaskStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListSpeechSynthesisTasksInput/)."""
 
 PutLexiconInput = TypedDict(
     "PutLexiconInput",
@@ -152,15 +203,23 @@ PutLexiconInput = TypedDict(
     "content": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/PutLexiconInput/)."""
 
 StartSpeechSynthesisStreamActionStreamTextEvent = TypedDict("StartSpeechSynthesisStreamActionStreamTextEvent", {"text_event": Required["TextEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamActionStreamTextEvent/)."""
 StartSpeechSynthesisStreamActionStreamCloseStreamEvent = TypedDict("StartSpeechSynthesisStreamActionStreamCloseStreamEvent", {"close_stream_event": Required["CloseStreamEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamActionStreamCloseStreamEvent/)."""
 StartSpeechSynthesisStreamActionStream: TypeAlias = StartSpeechSynthesisStreamActionStreamTextEvent | StartSpeechSynthesisStreamActionStreamCloseStreamEvent
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamActionStream/)."""
 
 StartSpeechSynthesisStreamEventStreamAudioEvent = TypedDict("StartSpeechSynthesisStreamEventStreamAudioEvent", {"audio_event": Required["AudioEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamAudioEvent/)."""
 StartSpeechSynthesisStreamEventStreamStreamClosedEvent = TypedDict("StartSpeechSynthesisStreamEventStreamStreamClosedEvent", {"stream_closed_event": Required["StreamClosedEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamStreamClosedEvent/)."""
 StartSpeechSynthesisStreamEventStreamUnknown = TypedDict("StartSpeechSynthesisStreamEventStreamUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamUnknown/)."""
 StartSpeechSynthesisStreamEventStream: TypeAlias = StartSpeechSynthesisStreamEventStreamAudioEvent | StartSpeechSynthesisStreamEventStreamStreamClosedEvent | StartSpeechSynthesisStreamEventStreamUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStream/)."""
 
 StartSpeechSynthesisStreamInput = TypedDict(
     "StartSpeechSynthesisStreamInput",
@@ -174,6 +233,7 @@ StartSpeechSynthesisStreamInput = TypedDict(
     "action_stream": NotRequired["AsyncIterator[StartSpeechSynthesisStreamActionStream]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamInput/)."""
 
 StartSpeechSynthesisStreamOutput = TypedDict(
     "StartSpeechSynthesisStreamOutput",
@@ -181,6 +241,7 @@ StartSpeechSynthesisStreamOutput = TypedDict(
     "event_stream": Required["AsyncIterator[StartSpeechSynthesisStreamEventStream]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamOutput/)."""
 
 StartSpeechSynthesisTaskInput = TypedDict(
     "StartSpeechSynthesisTaskInput",
@@ -199,6 +260,7 @@ StartSpeechSynthesisTaskInput = TypedDict(
     "voice_id": Required["VoiceId"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisTaskInput/)."""
 
 StreamClosedEvent = TypedDict(
     "StreamClosedEvent",
@@ -206,6 +268,7 @@ StreamClosedEvent = TypedDict(
     "request_characters": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StreamClosedEvent/)."""
 
 SynthesisTask = TypedDict(
     "SynthesisTask",
@@ -227,6 +290,7 @@ SynthesisTask = TypedDict(
     "language_code": NotRequired["LanguageCode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesisTask/)."""
 
 SynthesizeSpeechInput = TypedDict(
     "SynthesizeSpeechInput",
@@ -242,6 +306,7 @@ SynthesizeSpeechInput = TypedDict(
     "voice_id": Required["VoiceId"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesizeSpeechInput/)."""
 
 TextEvent = TypedDict(
     "TextEvent",
@@ -251,6 +316,7 @@ TextEvent = TypedDict(
     "flush_stream_configuration": NotRequired["FlushStreamConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TextEvent/)."""
 
 ThrottlingReason = TypedDict(
     "ThrottlingReason",
@@ -259,6 +325,7 @@ ThrottlingReason = TypedDict(
     "resource": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ThrottlingReason/)."""
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",
@@ -267,6 +334,7 @@ ValidationExceptionField = TypedDict(
     "message": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ValidationExceptionField/)."""
 
 Voice = TypedDict(
     "Voice",
@@ -280,3 +348,4 @@ Voice = TypedDict(
     "supported_engines": NotRequired["Sequence[Engine]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/Voice/)."""

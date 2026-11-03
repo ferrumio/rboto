@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class ArchivalSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ArchivalSummaryOutput/)."""
     @property
     def archival_date_time(self) -> str | None: ...
     @property
@@ -27,6 +29,7 @@ class ArchivalSummary:
 
 @final
 class AttributeDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeDefinitionOutput/)."""
     @property
     def attribute_name(self) -> str: ...
     @property
@@ -35,6 +38,7 @@ class AttributeDefinition:
 
 @final
 class AutoScalingPolicyDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AutoScalingPolicyDescriptionOutput/)."""
     @property
     def policy_name(self) -> str | None: ...
     @property
@@ -43,6 +47,7 @@ class AutoScalingPolicyDescription:
 
 @final
 class AutoScalingSettingsDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AutoScalingSettingsDescriptionOutput/)."""
     @property
     def minimum_units(self) -> int | None: ...
     @property
@@ -57,6 +62,7 @@ class AutoScalingSettingsDescription:
 
 @final
 class AutoScalingTargetTrackingScalingPolicyConfigurationDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AutoScalingTargetTrackingScalingPolicyConfigurationDescriptionOutput/)."""
     @property
     def disable_scale_in(self) -> bool | None: ...
     @property
@@ -69,6 +75,7 @@ class AutoScalingTargetTrackingScalingPolicyConfigurationDescription:
 
 @final
 class BackupDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BackupDescriptionOutput/)."""
     @property
     def backup_details(self) -> BackupDetails | None: ...
     @property
@@ -79,6 +86,7 @@ class BackupDescription:
 
 @final
 class BackupDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BackupDetailsOutput/)."""
     @property
     def backup_arn(self) -> str: ...
     @property
@@ -97,6 +105,7 @@ class BackupDetails:
 
 @final
 class BackupSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BackupSummaryOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -121,6 +130,7 @@ class BackupSummary:
 
 @final
 class BatchStatementError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BatchStatementErrorOutput/)."""
     @property
     def code(self) -> _types.BatchStatementErrorCodeEnumOutput | None: ...
     @property
@@ -131,6 +141,7 @@ class BatchStatementError:
 
 @final
 class BatchStatementResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BatchStatementResponseOutput/)."""
     @property
     def error(self) -> BatchStatementError | None: ...
     @property
@@ -141,6 +152,7 @@ class BatchStatementResponse:
 
 @final
 class BillingModeSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BillingModeSummaryOutput/)."""
     @property
     def billing_mode(self) -> _types.BillingModeOutput | None: ...
     @property
@@ -149,6 +161,7 @@ class BillingModeSummary:
 
 @final
 class Capacity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CapacityOutput/)."""
     @property
     def read_capacity_units(self) -> float | None: ...
     @property
@@ -159,6 +172,7 @@ class Capacity:
 
 @final
 class ConsumedCapacity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ConsumedCapacityOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -179,6 +193,7 @@ class ConsumedCapacity:
 
 @final
 class ContinuousBackupsDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ContinuousBackupsDescriptionOutput/)."""
     @property
     def continuous_backups_status(self) -> _types.ContinuousBackupsStatusOutput: ...
     @property
@@ -187,6 +202,7 @@ class ContinuousBackupsDescription:
 
 @final
 class ContributorInsightsSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ContributorInsightsSummaryOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -199,6 +215,7 @@ class ContributorInsightsSummary:
 
 @final
 class CsvOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CsvOptionsOutput/)."""
     @property
     def delimiter(self) -> str | None: ...
     @property
@@ -207,18 +224,21 @@ class CsvOptions:
 
 @final
 class DeleteRequest:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DeleteRequestOutput/)."""
     @property
     def key(self) -> dict[str, _types.AttributeValueOutput]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EnableKinesisStreamingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/EnableKinesisStreamingConfigurationOutput/)."""
     @property
     def approximate_creation_date_time_precision(self) -> _types.ApproximateCreationDateTimePrecisionOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Endpoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/EndpointOutput/)."""
     @property
     def address(self) -> str: ...
     @property
@@ -227,6 +247,7 @@ class Endpoint:
 
 @final
 class ExportDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ExportDescriptionOutput/)."""
     @property
     def export_arn(self) -> str | None: ...
     @property
@@ -275,6 +296,7 @@ class ExportDescription:
 
 @final
 class ExportSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ExportSummaryOutput/)."""
     @property
     def export_arn(self) -> str | None: ...
     @property
@@ -285,6 +307,7 @@ class ExportSummary:
 
 @final
 class FailureException:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/FailureExceptionOutput/)."""
     @property
     def exception_name(self) -> str | None: ...
     @property
@@ -293,6 +316,7 @@ class FailureException:
 
 @final
 class FilterSpecification:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/FilterSpecificationOutput/)."""
     @property
     def filter_expression(self) -> str | None: ...
     @property
@@ -307,6 +331,7 @@ class FilterSpecification:
 
 @final
 class GlobalSecondaryIndex:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GlobalSecondaryIndexOutput/)."""
     @property
     def index_name(self) -> str: ...
     @property
@@ -323,6 +348,7 @@ class GlobalSecondaryIndex:
 
 @final
 class GlobalSecondaryIndexDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GlobalSecondaryIndexDescriptionOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -349,6 +375,7 @@ class GlobalSecondaryIndexDescription:
 
 @final
 class GlobalSecondaryIndexInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GlobalSecondaryIndexInfoOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -363,6 +390,7 @@ class GlobalSecondaryIndexInfo:
 
 @final
 class GlobalSecondaryIndexWarmThroughputDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GlobalSecondaryIndexWarmThroughputDescriptionOutput/)."""
     @property
     def read_units_per_second(self) -> int | None: ...
     @property
@@ -373,6 +401,7 @@ class GlobalSecondaryIndexWarmThroughputDescription:
 
 @final
 class GlobalTable:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GlobalTableOutput/)."""
     @property
     def global_table_name(self) -> str | None: ...
     @property
@@ -381,6 +410,7 @@ class GlobalTable:
 
 @final
 class GlobalTableDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GlobalTableDescriptionOutput/)."""
     @property
     def replication_group(self) -> list[ReplicaDescription] | None: ...
     @property
@@ -395,6 +425,7 @@ class GlobalTableDescription:
 
 @final
 class GlobalTableWitnessDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GlobalTableWitnessDescriptionOutput/)."""
     @property
     def region_name(self) -> str | None: ...
     @property
@@ -403,6 +434,7 @@ class GlobalTableWitnessDescription:
 
 @final
 class ImportSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ImportSummaryOutput/)."""
     @property
     def import_arn(self) -> str | None: ...
     @property
@@ -423,6 +455,7 @@ class ImportSummary:
 
 @final
 class ImportTableDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ImportTableDescriptionOutput/)."""
     @property
     def import_arn(self) -> str | None: ...
     @property
@@ -465,6 +498,7 @@ class ImportTableDescription:
 
 @final
 class IncrementalExportSpecification:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/IncrementalExportSpecificationOutput/)."""
     @property
     def export_from_time(self) -> str | None: ...
     @property
@@ -475,12 +509,14 @@ class IncrementalExportSpecification:
 
 @final
 class InputFormatOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/InputFormatOptionsOutput/)."""
     @property
     def csv(self) -> CsvOptions | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ItemCollectionMetrics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ItemCollectionMetricsOutput/)."""
     @property
     def item_collection_key(self) -> dict[str, _types.AttributeValueOutput] | None: ...
     @property
@@ -489,12 +525,14 @@ class ItemCollectionMetrics:
 
 @final
 class ItemResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ItemResponseOutput/)."""
     @property
     def item(self) -> dict[str, _types.AttributeValueOutput] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class KeySchemaElement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/KeySchemaElementOutput/)."""
     @property
     def attribute_name(self) -> str: ...
     @property
@@ -503,6 +541,7 @@ class KeySchemaElement:
 
 @final
 class KeysAndAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/KeysAndAttributesOutput/)."""
     @property
     def keys(self) -> list[dict[str, _types.AttributeValueOutput]]: ...
     @property
@@ -517,6 +556,7 @@ class KeysAndAttributes:
 
 @final
 class KinesisDataStreamDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/KinesisDataStreamDestinationOutput/)."""
     @property
     def stream_arn(self) -> str | None: ...
     @property
@@ -529,6 +569,7 @@ class KinesisDataStreamDestination:
 
 @final
 class LocalSecondaryIndexDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/LocalSecondaryIndexDescriptionOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -545,6 +586,7 @@ class LocalSecondaryIndexDescription:
 
 @final
 class LocalSecondaryIndexInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/LocalSecondaryIndexInfoOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -555,6 +597,7 @@ class LocalSecondaryIndexInfo:
 
 @final
 class OnDemandThroughput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OnDemandThroughputOutput/)."""
     @property
     def max_read_request_units(self) -> int | None: ...
     @property
@@ -563,12 +606,14 @@ class OnDemandThroughput:
 
 @final
 class OnDemandThroughputOverride:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OnDemandThroughputOverrideOutput/)."""
     @property
     def max_read_request_units(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PointInTimeRecoveryDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/PointInTimeRecoveryDescriptionOutput/)."""
     @property
     def point_in_time_recovery_status(self) -> _types.PointInTimeRecoveryStatusOutput | None: ...
     @property
@@ -581,6 +626,7 @@ class PointInTimeRecoveryDescription:
 
 @final
 class Projection:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ProjectionOutput/)."""
     @property
     def projection_type(self) -> _types.ProjectionTypeOutput | None: ...
     @property
@@ -589,6 +635,7 @@ class Projection:
 
 @final
 class ProvisionedThroughput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ProvisionedThroughputOutput/)."""
     @property
     def read_capacity_units(self) -> int: ...
     @property
@@ -597,6 +644,7 @@ class ProvisionedThroughput:
 
 @final
 class ProvisionedThroughputDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ProvisionedThroughputDescriptionOutput/)."""
     @property
     def last_increase_date_time(self) -> str | None: ...
     @property
@@ -611,24 +659,28 @@ class ProvisionedThroughputDescription:
 
 @final
 class ProvisionedThroughputOverride:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ProvisionedThroughputOverrideOutput/)."""
     @property
     def read_capacity_units(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutRequest:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/PutRequestOutput/)."""
     @property
     def item(self) -> dict[str, _types.AttributeValueOutput]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Replica:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicaOutput/)."""
     @property
     def region_name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ReplicaAutoScalingDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicaAutoScalingDescriptionOutput/)."""
     @property
     def region_name(self) -> str | None: ...
     @property
@@ -643,6 +695,7 @@ class ReplicaAutoScalingDescription:
 
 @final
 class ReplicaDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicaDescriptionOutput/)."""
     @property
     def region_name(self) -> str | None: ...
     @property
@@ -673,6 +726,7 @@ class ReplicaDescription:
 
 @final
 class ReplicaGlobalSecondaryIndexAutoScalingDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicaGlobalSecondaryIndexAutoScalingDescriptionOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -685,6 +739,7 @@ class ReplicaGlobalSecondaryIndexAutoScalingDescription:
 
 @final
 class ReplicaGlobalSecondaryIndexDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicaGlobalSecondaryIndexDescriptionOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -697,6 +752,7 @@ class ReplicaGlobalSecondaryIndexDescription:
 
 @final
 class ReplicaGlobalSecondaryIndexSettingsDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicaGlobalSecondaryIndexSettingsDescriptionOutput/)."""
     @property
     def index_name(self) -> str: ...
     @property
@@ -713,6 +769,7 @@ class ReplicaGlobalSecondaryIndexSettingsDescription:
 
 @final
 class ReplicaSettingsDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicaSettingsDescriptionOutput/)."""
     @property
     def region_name(self) -> str: ...
     @property
@@ -735,6 +792,7 @@ class ReplicaSettingsDescription:
 
 @final
 class RestoreSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/RestoreSummaryOutput/)."""
     @property
     def source_backup_arn(self) -> str | None: ...
     @property
@@ -747,6 +805,7 @@ class RestoreSummary:
 
 @final
 class S3BucketSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/S3BucketSourceOutput/)."""
     @property
     def s3_bucket_owner(self) -> str | None: ...
     @property
@@ -757,6 +816,7 @@ class S3BucketSource:
 
 @final
 class SearchResultItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SearchResultItemOutput/)."""
     @property
     def item(self) -> dict[str, _types.AttributeValueOutput] | None: ...
     @property
@@ -765,6 +825,7 @@ class SearchResultItem:
 
 @final
 class SearchSchemaElement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SearchSchemaElementOutput/)."""
     @property
     def attribute_name(self) -> str: ...
     @property
@@ -773,6 +834,7 @@ class SearchSchemaElement:
 
 @final
 class SourceTableDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SourceTableDetailsOutput/)."""
     @property
     def table_name(self) -> str: ...
     @property
@@ -797,6 +859,7 @@ class SourceTableDetails:
 
 @final
 class SourceTableFeatureDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SourceTableFeatureDetailsOutput/)."""
     @property
     def local_secondary_indexes(self) -> list[LocalSecondaryIndexInfo] | None: ...
     @property
@@ -813,6 +876,7 @@ class SourceTableFeatureDetails:
 
 @final
 class SseDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SseDescription-ce4cf0e0a831/)."""
     @property
     def status(self) -> _types.SSEStatusOutput | None: ...
     @property
@@ -825,6 +889,7 @@ class SseDescription:
 
 @final
 class SseSpecification:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SseSpecification-4dfa25d00dd9/)."""
     @property
     def enabled(self) -> bool | None: ...
     @property
@@ -835,6 +900,7 @@ class SseSpecification:
 
 @final
 class StreamSpecification:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/StreamSpecificationOutput/)."""
     @property
     def stream_enabled(self) -> bool: ...
     @property
@@ -843,6 +909,7 @@ class StreamSpecification:
 
 @final
 class TableAutoScalingDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TableAutoScalingDescriptionOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -853,6 +920,7 @@ class TableAutoScalingDescription:
 
 @final
 class TableClassSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TableClassSummaryOutput/)."""
     @property
     def table_class(self) -> _types.TableClassOutput | None: ...
     @property
@@ -861,6 +929,7 @@ class TableClassSummary:
 
 @final
 class TableCreationParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TableCreationParametersOutput/)."""
     @property
     def table_name(self) -> str: ...
     @property
@@ -883,6 +952,7 @@ class TableCreationParameters:
 
 @final
 class TableDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TableDescriptionOutput/)."""
     @property
     def attribute_definitions(self) -> list[AttributeDefinition] | None: ...
     @property
@@ -947,6 +1017,7 @@ class TableDescription:
 
 @final
 class TableWarmThroughputDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TableWarmThroughputDescriptionOutput/)."""
     @property
     def read_units_per_second(self) -> int | None: ...
     @property
@@ -957,6 +1028,7 @@ class TableWarmThroughputDescription:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -965,6 +1037,7 @@ class Tag:
 
 @final
 class TimeToLiveDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TimeToLiveDescriptionOutput/)."""
     @property
     def time_to_live_status(self) -> _types.TimeToLiveStatusOutput | None: ...
     @property
@@ -973,6 +1046,7 @@ class TimeToLiveDescription:
 
 @final
 class TimeToLiveSpecification:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TimeToLiveSpecificationOutput/)."""
     @property
     def enabled(self) -> bool: ...
     @property
@@ -981,18 +1055,21 @@ class TimeToLiveSpecification:
 
 @final
 class UpdateKinesisStreamingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateKinesisStreamingConfigurationOutput/)."""
     @property
     def approximate_creation_date_time_precision(self) -> _types.ApproximateCreationDateTimePrecisionOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VectorAttributeDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/VectorAttributeDefinitionOutput/)."""
     @property
     def attribute_name(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VectorCapacity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/VectorCapacityOutput/)."""
     @property
     def vector_search_request_bytes(self) -> float | None: ...
     @property
@@ -1001,6 +1078,7 @@ class VectorCapacity:
 
 @final
 class VectorIndex:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/VectorIndexOutput/)."""
     @property
     def index_name(self) -> str: ...
     @property
@@ -1017,6 +1095,7 @@ class VectorIndex:
 
 @final
 class VectorIndexDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/VectorIndexDescriptionOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -1043,6 +1122,7 @@ class VectorIndexDescription:
 
 @final
 class VectorIndexInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/VectorIndexInfoOutput/)."""
     @property
     def index_name(self) -> str | None: ...
     @property
@@ -1059,6 +1139,7 @@ class VectorIndexInfo:
 
 @final
 class WarmThroughput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/WarmThroughputOutput/)."""
     @property
     def read_units_per_second(self) -> int | None: ...
     @property
@@ -1067,6 +1148,7 @@ class WarmThroughput:
 
 @final
 class WriteRequest:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/WriteRequestOutput/)."""
     @property
     def put_request(self) -> PutRequest | None: ...
     @property
@@ -1075,6 +1157,7 @@ class WriteRequest:
 
 @final
 class BatchExecuteStatementOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BatchExecuteStatementOutput/)."""
     @property
     def responses(self) -> list[BatchStatementResponse] | None: ...
     @property
@@ -1083,6 +1166,7 @@ class BatchExecuteStatementOutput:
 
 @final
 class BatchGetItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BatchGetItemOutput/)."""
     @property
     def responses(self) -> dict[str, list[dict[str, _types.AttributeValueOutput]]] | None: ...
     @property
@@ -1093,6 +1177,7 @@ class BatchGetItemOutput:
 
 @final
 class BatchWriteItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BatchWriteItemOutput/)."""
     @property
     def unprocessed_items(self) -> dict[str, list[WriteRequest]] | None: ...
     @property
@@ -1103,30 +1188,35 @@ class BatchWriteItemOutput:
 
 @final
 class CreateBackupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CreateBackupOutput/)."""
     @property
     def backup_details(self) -> BackupDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateGlobalTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CreateGlobalTableOutput/)."""
     @property
     def global_table_description(self) -> GlobalTableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CreateTableOutput/)."""
     @property
     def table_description(self) -> TableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteBackupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DeleteBackupOutput/)."""
     @property
     def backup_description(self) -> BackupDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DeleteItemOutput/)."""
     @property
     def attributes(self) -> dict[str, _types.AttributeValueOutput] | None: ...
     @property
@@ -1137,30 +1227,35 @@ class DeleteItemOutput:
 
 @final
 class DeleteResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DeleteResourcePolicyOutput/)."""
     @property
     def revision_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DeleteTableOutput/)."""
     @property
     def table_description(self) -> TableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeBackupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeBackupOutput/)."""
     @property
     def backup_description(self) -> BackupDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeContinuousBackupsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeContinuousBackupsOutput/)."""
     @property
     def continuous_backups_description(self) -> ContinuousBackupsDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeContributorInsightsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeContributorInsightsOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -1179,24 +1274,28 @@ class DescribeContributorInsightsOutput:
 
 @final
 class DescribeEndpointsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeEndpointsOutput/)."""
     @property
     def endpoints(self) -> list[Endpoint]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeExportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeExportOutput/)."""
     @property
     def export_description(self) -> ExportDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeGlobalTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeGlobalTableOutput/)."""
     @property
     def global_table_description(self) -> GlobalTableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeGlobalTableSettingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeGlobalTableSettingsOutput/)."""
     @property
     def global_table_name(self) -> str | None: ...
     @property
@@ -1205,12 +1304,14 @@ class DescribeGlobalTableSettingsOutput:
 
 @final
 class DescribeImportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeImportOutput/)."""
     @property
     def import_table_description(self) -> ImportTableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeKinesisStreamingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeKinesisStreamingDestinationOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -1219,6 +1320,7 @@ class DescribeKinesisStreamingDestinationOutput:
 
 @final
 class DescribeLimitsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeLimitsOutput/)."""
     @property
     def account_max_read_capacity_units(self) -> int | None: ...
     @property
@@ -1231,24 +1333,28 @@ class DescribeLimitsOutput:
 
 @final
 class DescribeTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeTableOutput/)."""
     @property
     def table(self) -> TableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeTableReplicaAutoScalingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeTableReplicaAutoScalingOutput/)."""
     @property
     def table_auto_scaling_description(self) -> TableAutoScalingDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeTimeToLiveOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeTimeToLiveOutput/)."""
     @property
     def time_to_live_description(self) -> TimeToLiveDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisableKinesisStreamingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DisableKinesisStreamingDestinationOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -1261,6 +1367,7 @@ class DisableKinesisStreamingDestinationOutput:
 
 @final
 class EnableKinesisStreamingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/EnableKinesisStreamingDestinationOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -1273,6 +1380,7 @@ class EnableKinesisStreamingDestinationOutput:
 
 @final
 class ExecuteStatementOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ExecuteStatementOutput/)."""
     @property
     def items(self) -> list[dict[str, _types.AttributeValueOutput]] | None: ...
     @property
@@ -1285,6 +1393,7 @@ class ExecuteStatementOutput:
 
 @final
 class ExecuteTransactionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ExecuteTransactionOutput/)."""
     @property
     def responses(self) -> list[ItemResponse] | None: ...
     @property
@@ -1293,12 +1402,14 @@ class ExecuteTransactionOutput:
 
 @final
 class ExportTableToPointInTimeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ExportTableToPointInTimeOutput/)."""
     @property
     def export_description(self) -> ExportDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GetItemOutput/)."""
     @property
     def item(self) -> dict[str, _types.AttributeValueOutput] | None: ...
     @property
@@ -1307,6 +1418,7 @@ class GetItemOutput:
 
 @final
 class GetResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/GetResourcePolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     @property
@@ -1315,12 +1427,14 @@ class GetResourcePolicyOutput:
 
 @final
 class ImportTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ImportTableOutput/)."""
     @property
     def import_table_description(self) -> ImportTableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListBackupsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListBackupsOutput/)."""
     @property
     def backup_summaries(self) -> list[BackupSummary] | None: ...
     @property
@@ -1329,6 +1443,7 @@ class ListBackupsOutput:
 
 @final
 class ListContributorInsightsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListContributorInsightsOutput/)."""
     @property
     def contributor_insights_summaries(self) -> list[ContributorInsightsSummary] | None: ...
     @property
@@ -1337,6 +1452,7 @@ class ListContributorInsightsOutput:
 
 @final
 class ListExportsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListExportsOutput/)."""
     @property
     def export_summaries(self) -> list[ExportSummary] | None: ...
     @property
@@ -1345,6 +1461,7 @@ class ListExportsOutput:
 
 @final
 class ListGlobalTablesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListGlobalTablesOutput/)."""
     @property
     def global_tables(self) -> list[GlobalTable] | None: ...
     @property
@@ -1353,6 +1470,7 @@ class ListGlobalTablesOutput:
 
 @final
 class ListImportsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListImportsOutput/)."""
     @property
     def import_summary_list(self) -> list[ImportSummary] | None: ...
     @property
@@ -1361,6 +1479,7 @@ class ListImportsOutput:
 
 @final
 class ListTablesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListTablesOutput/)."""
     @property
     def table_names(self) -> list[str] | None: ...
     @property
@@ -1369,6 +1488,7 @@ class ListTablesOutput:
 
 @final
 class ListTagsOfResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListTagsOfResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     @property
@@ -1377,6 +1497,7 @@ class ListTagsOfResourceOutput:
 
 @final
 class PutItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/PutItemOutput/)."""
     @property
     def attributes(self) -> dict[str, _types.AttributeValueOutput] | None: ...
     @property
@@ -1387,12 +1508,14 @@ class PutItemOutput:
 
 @final
 class PutResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/PutResourcePolicyOutput/)."""
     @property
     def revision_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class QueryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/QueryOutput/)."""
     @property
     def items(self) -> list[dict[str, _types.AttributeValueOutput]] | None: ...
     @property
@@ -1407,18 +1530,21 @@ class QueryOutput:
 
 @final
 class RestoreTableFromBackupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/RestoreTableFromBackupOutput/)."""
     @property
     def table_description(self) -> TableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RestoreTableToPointInTimeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/RestoreTableToPointInTimeOutput/)."""
     @property
     def table_description(self) -> TableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ScanOutput/)."""
     @property
     def items(self) -> list[dict[str, _types.AttributeValueOutput]] | None: ...
     @property
@@ -1433,6 +1559,7 @@ class ScanOutput:
 
 @final
 class SearchVectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SearchVectorsOutput/)."""
     @property
     def consumed_capacity(self) -> VectorCapacity | None: ...
     @property
@@ -1441,6 +1568,7 @@ class SearchVectorsOutput:
 
 @final
 class TransactGetItemsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TransactGetItemsOutput/)."""
     @property
     def consumed_capacity(self) -> list[ConsumedCapacity] | None: ...
     @property
@@ -1449,6 +1577,7 @@ class TransactGetItemsOutput:
 
 @final
 class TransactWriteItemsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TransactWriteItemsOutput/)."""
     @property
     def consumed_capacity(self) -> list[ConsumedCapacity] | None: ...
     @property
@@ -1457,12 +1586,14 @@ class TransactWriteItemsOutput:
 
 @final
 class UpdateContinuousBackupsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateContinuousBackupsOutput/)."""
     @property
     def continuous_backups_description(self) -> ContinuousBackupsDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateContributorInsightsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateContributorInsightsOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -1475,12 +1606,14 @@ class UpdateContributorInsightsOutput:
 
 @final
 class UpdateGlobalTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateGlobalTableOutput/)."""
     @property
     def global_table_description(self) -> GlobalTableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateGlobalTableSettingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateGlobalTableSettingsOutput/)."""
     @property
     def global_table_name(self) -> str | None: ...
     @property
@@ -1489,6 +1622,7 @@ class UpdateGlobalTableSettingsOutput:
 
 @final
 class UpdateItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateItemOutput/)."""
     @property
     def attributes(self) -> dict[str, _types.AttributeValueOutput] | None: ...
     @property
@@ -1499,6 +1633,7 @@ class UpdateItemOutput:
 
 @final
 class UpdateKinesisStreamingDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateKinesisStreamingDestinationOutput/)."""
     @property
     def table_name(self) -> str | None: ...
     @property
@@ -1511,18 +1646,21 @@ class UpdateKinesisStreamingDestinationOutput:
 
 @final
 class UpdateTableOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateTableOutput/)."""
     @property
     def table_description(self) -> TableDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateTableReplicaAutoScalingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateTableReplicaAutoScalingOutput/)."""
     @property
     def table_auto_scaling_description(self) -> TableAutoScalingDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateTimeToLiveOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/UpdateTimeToLiveOutput/)."""
     @property
     def time_to_live_specification(self) -> TimeToLiveSpecification | None: ...
     def to_dict(self) -> dict[str, object]: ...

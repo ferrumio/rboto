@@ -20,6 +20,8 @@ from .types import (
 
 
 class LexRuntimeV2Client:
+    """Async LexRuntimeV2Client. See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/)."""
+
     logger_name = "rboto.lex-runtime-v2"
 
     def __init__(
@@ -55,6 +57,7 @@ class LexRuntimeV2Client:
         locale_id: str,
         session_id: str,
     ) -> DeleteSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/delete_session/)."""
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -83,6 +86,7 @@ class LexRuntimeV2Client:
         locale_id: str,
         session_id: str,
     ) -> GetSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/get_session/)."""
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -115,6 +119,7 @@ class LexRuntimeV2Client:
         request_attributes: dict[str, str] | None = None,
         response_content_type: str | None = None,
     ) -> PutSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/put_session/)."""
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -153,6 +158,7 @@ class LexRuntimeV2Client:
         session_state: SessionState | None = None,
         request_attributes: dict[str, str] | None = None,
     ) -> RecognizeTextOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/recognize_text/)."""
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -191,6 +197,7 @@ class LexRuntimeV2Client:
         response_content_type: str | None = None,
         input_stream: bytes | None = None,
     ) -> RecognizeUtteranceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/recognize_utterance/)."""
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,
@@ -230,6 +237,7 @@ class LexRuntimeV2Client:
         request_event_stream: AsyncIterator[StartConversationRequestEventStream],
         conversation_mode: ConversationMode | None = None,
     ) -> StartConversationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/start_conversation/)."""
         params: dict[str, object] = {
             "bot_id": bot_id,
             "bot_alias_id": bot_alias_id,

@@ -63,6 +63,8 @@ from .paginators import BedrockAgentRuntimeClientPaginators as _Paginators
 
 
 class BedrockAgentRuntimeClient:
+    """Async BedrockAgentRuntimeClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/)."""
+
     logger_name = "rboto.bedrock-agent-runtime"
 
     def __init__(
@@ -111,6 +113,7 @@ class BedrockAgentRuntimeClient:
         retrieval_instruction_configuration: AgenticRetrieveInstructionConfiguration | None = None,
         generate_response: bool | None = None,
     ) -> AgenticRetrieveStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/agentic_retrieve_stream/)."""
         params: dict[str, object] = {
             "messages": messages,
             "retrievers": retrievers,
@@ -150,6 +153,7 @@ class BedrockAgentRuntimeClient:
         document_id: str,
         user_context: UserContext,
     ) -> CheckIngestedDocumentAclOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/check_ingested_document_acl/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -177,6 +181,7 @@ class BedrockAgentRuntimeClient:
         invocation_id: str | None = None,
         description: str | None = None,
     ) -> CreateInvocationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/create_invocation/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -205,6 +210,7 @@ class BedrockAgentRuntimeClient:
         encryption_key_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/create_session/)."""
         params: dict[str, object] = {
         }
         if session_metadata is not None:
@@ -235,6 +241,7 @@ class BedrockAgentRuntimeClient:
         memory_id: str | None = None,
         session_id: str | None = None,
     ) -> DeleteAgentMemoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/delete_agent_memory/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_id": agent_alias_id,
@@ -262,6 +269,7 @@ class BedrockAgentRuntimeClient:
         *,
         session_identifier: str,
     ) -> DeleteSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/delete_session/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -284,6 +292,7 @@ class BedrockAgentRuntimeClient:
         *,
         session_identifier: str,
     ) -> EndSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/end_session/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -307,6 +316,7 @@ class BedrockAgentRuntimeClient:
         query_generation_input: QueryGenerationInput,
         transformation_configuration: TransformationConfiguration,
     ) -> GenerateQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/generate_query/)."""
         params: dict[str, object] = {
             "query_generation_input": query_generation_input,
             "transformation_configuration": transformation_configuration,
@@ -335,6 +345,7 @@ class BedrockAgentRuntimeClient:
         next_token: str | None = None,
         max_items: int | None = None,
     ) -> GetAgentMemoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_agent_memory/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_id": agent_alias_id,
@@ -368,6 +379,7 @@ class BedrockAgentRuntimeClient:
         output_format: DocumentOutputFormat | None = None,
         user_context: UserContext | None = None,
     ) -> GetDocumentContentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_document_content/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -398,6 +410,7 @@ class BedrockAgentRuntimeClient:
         flow_alias_identifier: str,
         execution_identifier: str,
     ) -> GetExecutionFlowSnapshotOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_execution_flow_snapshot/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_alias_identifier": flow_alias_identifier,
@@ -424,6 +437,7 @@ class BedrockAgentRuntimeClient:
         flow_alias_identifier: str,
         execution_identifier: str,
     ) -> GetFlowExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_flow_execution/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_alias_identifier": flow_alias_identifier,
@@ -450,6 +464,7 @@ class BedrockAgentRuntimeClient:
         data_source_id: str,
         document_id: str,
     ) -> GetIngestedDocumentAclOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_ingested_document_acl/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -476,6 +491,7 @@ class BedrockAgentRuntimeClient:
         invocation_step_id: str,
         session_identifier: str,
     ) -> GetInvocationStepOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_invocation_step/)."""
         params: dict[str, object] = {
             "invocation_identifier": invocation_identifier,
             "invocation_step_id": invocation_step_id,
@@ -500,6 +516,7 @@ class BedrockAgentRuntimeClient:
         *,
         session_identifier: str,
     ) -> GetSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_session/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -533,6 +550,7 @@ class BedrockAgentRuntimeClient:
         prompt_creation_configurations: PromptCreationConfigurations | None = None,
         source_arn: str | None = None,
     ) -> InvokeAgentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/invoke_agent/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_id": agent_alias_id,
@@ -580,6 +598,7 @@ class BedrockAgentRuntimeClient:
         model_performance_configuration: ModelPerformanceConfiguration | None = None,
         execution_id: str | None = None,
     ) -> InvokeFlowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/invoke_flow/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_alias_identifier": flow_alias_identifier,
@@ -631,6 +650,7 @@ class BedrockAgentRuntimeClient:
         orchestration_type: OrchestrationType | None = None,
         custom_orchestration: CustomOrchestration | None = None,
     ) -> InvokeInlineAgentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/invoke_inline_agent/)."""
         params: dict[str, object] = {
             "foundation_model": foundation_model,
             "instruction": instruction,
@@ -698,6 +718,7 @@ class BedrockAgentRuntimeClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListFlowExecutionEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_flow_execution_events/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_alias_identifier": flow_alias_identifier,
@@ -730,6 +751,7 @@ class BedrockAgentRuntimeClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListFlowExecutionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_flow_executions/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -761,6 +783,7 @@ class BedrockAgentRuntimeClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListInvocationStepsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_invocation_steps/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -791,6 +814,7 @@ class BedrockAgentRuntimeClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListInvocationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_invocations/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -818,6 +842,7 @@ class BedrockAgentRuntimeClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_sessions/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -843,6 +868,7 @@ class BedrockAgentRuntimeClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -866,6 +892,7 @@ class BedrockAgentRuntimeClient:
         input: InputPrompt,
         target_model_id: str,
     ) -> OptimizePromptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/optimize_prompt/)."""
         params: dict[str, object] = {
             "input": input,
             "target_model_id": target_model_id,
@@ -893,6 +920,7 @@ class BedrockAgentRuntimeClient:
         payload: InvocationStepPayload,
         invocation_step_id: str | None = None,
     ) -> PutInvocationStepOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/put_invocation_step/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
             "invocation_identifier": invocation_identifier,
@@ -923,6 +951,7 @@ class BedrockAgentRuntimeClient:
         reranking_configuration: RerankingConfiguration,
         next_token: str | None = None,
     ) -> RerankOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/rerank/)."""
         params: dict[str, object] = {
             "queries": queries,
             "sources": sources,
@@ -954,6 +983,7 @@ class BedrockAgentRuntimeClient:
         next_token: str | None = None,
         user_context: UserContext | None = None,
     ) -> RetrieveOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/retrieve/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "retrieval_query": retrieval_query,
@@ -989,6 +1019,7 @@ class BedrockAgentRuntimeClient:
         session_configuration: RetrieveAndGenerateSessionConfiguration | None = None,
         user_context: UserContext | None = None,
     ) -> RetrieveAndGenerateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/retrieve_and_generate/)."""
         params: dict[str, object] = {
             "input": input,
         }
@@ -1023,6 +1054,7 @@ class BedrockAgentRuntimeClient:
         session_configuration: RetrieveAndGenerateSessionConfiguration | None = None,
         user_context: UserContext | None = None,
     ) -> RetrieveAndGenerateStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/retrieve_and_generate_stream/)."""
         params: dict[str, object] = {
             "input": input,
         }
@@ -1057,6 +1089,7 @@ class BedrockAgentRuntimeClient:
         flow_execution_name: str | None = None,
         model_performance_configuration: ModelPerformanceConfiguration | None = None,
     ) -> StartFlowExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/start_flow_execution/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_alias_identifier": flow_alias_identifier,
@@ -1087,6 +1120,7 @@ class BedrockAgentRuntimeClient:
         flow_alias_identifier: str,
         execution_identifier: str,
     ) -> StopFlowExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/stop_flow_execution/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_alias_identifier": flow_alias_identifier,
@@ -1112,6 +1146,7 @@ class BedrockAgentRuntimeClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -1136,6 +1171,7 @@ class BedrockAgentRuntimeClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -1160,6 +1196,7 @@ class BedrockAgentRuntimeClient:
         session_identifier: str,
         session_metadata: dict[str, str] | None = None,
     ) -> UpdateSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/update_session/)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }

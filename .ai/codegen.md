@@ -10,6 +10,11 @@
   in the service descriptor.
 - Package usage examples: edit `examples/clients/<python_name>.py`. README operation
   tables and full signatures come from the in-memory Python API during generation.
+- Operation references: `reference.py` reads the in-memory client, types and native
+  stub contracts, with pinned model notes and resolved pagination metadata.
+  `reference_site.py` generates and validates pages under ignored `docs/reference/`
+  only for website builds. Do not commit or package generated reference pages.
+  Methods and public types carry short docstrings with matching website URLs.
 - Handwritten runtime behavior: edit the relevant non-generated Rust runtime file.
 - Pagination traits: parsed in `smithy.py`, validated in `pagination.py`, and
   rendered in `paginators.py.j2`. Missing metadata belongs in the service TOML

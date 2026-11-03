@@ -46,6 +46,8 @@ from .paginators import BedrockRuntimeClientPaginators as _Paginators
 
 
 class BedrockRuntimeClient:
+    """Async BedrockRuntimeClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/)."""
+
     logger_name = "rboto.bedrock-runtime"
 
     def __init__(
@@ -90,6 +92,7 @@ class BedrockRuntimeClient:
         content: Sequence[GuardrailContentBlock],
         output_scope: GuardrailOutputScope | None = None,
     ) -> ApplyGuardrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/apply_guardrail/)."""
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
             "guardrail_version": guardrail_version,
@@ -129,6 +132,7 @@ class BedrockRuntimeClient:
         service_tier: ServiceTier | None = None,
         output_config: OutputConfig | None = None,
     ) -> ConverseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/converse/)."""
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -187,6 +191,7 @@ class BedrockRuntimeClient:
         service_tier: ServiceTier | None = None,
         output_config: OutputConfig | None = None,
     ) -> ConverseStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/converse_stream/)."""
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -234,6 +239,7 @@ class BedrockRuntimeClient:
         model_id: str,
         input: CountTokensInput,
     ) -> CountTokensOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/count_tokens/)."""
         params: dict[str, object] = {
             "model_id": model_id,
             "input": input,
@@ -257,6 +263,7 @@ class BedrockRuntimeClient:
         *,
         invocation_arn: str,
     ) -> GetAsyncInvokeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/get_async_invoke/)."""
         params: dict[str, object] = {
             "invocation_arn": invocation_arn,
         }
@@ -280,6 +287,7 @@ class BedrockRuntimeClient:
         messages: Sequence[GuardrailChecksMessage],
         checks: GuardrailChecksConfig,
     ) -> InvokeGuardrailChecksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/invoke_guardrail_checks/)."""
         params: dict[str, object] = {
             "messages": messages,
             "checks": checks,
@@ -312,6 +320,7 @@ class BedrockRuntimeClient:
         service_tier: ServiceTierType | None = None,
         request_metadata: str | None = None,
     ) -> InvokeModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/invoke_model/)."""
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -353,6 +362,7 @@ class BedrockRuntimeClient:
         model_id: str,
         body: AsyncIterator[InvokeModelWithBidirectionalStreamInput],
     ) -> InvokeModelWithBidirectionalStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/invoke_model_with_bidirectional_stream/)."""
         params: dict[str, object] = {
             "model_id": model_id,
             "body": body,
@@ -385,6 +395,7 @@ class BedrockRuntimeClient:
         service_tier: ServiceTierType | None = None,
         request_metadata: str | None = None,
     ) -> InvokeModelWithResponseStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/invoke_model_with_response_stream/)."""
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -431,6 +442,7 @@ class BedrockRuntimeClient:
         sort_by: SortAsyncInvocationBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListAsyncInvokesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/list_async_invokes/)."""
         params: dict[str, object] = {
         }
         if submit_time_after is not None:
@@ -470,6 +482,7 @@ class BedrockRuntimeClient:
         client_request_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> StartAsyncInvokeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/start_async_invoke/)."""
         params: dict[str, object] = {
             "model_id": model_id,
             "model_input": model_input,

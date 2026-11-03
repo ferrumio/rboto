@@ -71,6 +71,8 @@ from .paginators import SESV2ClientPaginators as _Paginators
 
 
 class SESV2Client:
+    """Async SESV2Client. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/)."""
+
     logger_name = "rboto.sesv2"
 
     def __init__(
@@ -113,6 +115,7 @@ class SESV2Client:
         certificate_arn: str,
         from_address: str | None = None,
     ) -> AssociateEmailIdentityCertificateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/associate_email_identity_certificate/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
             "certificate_arn": certificate_arn,
@@ -138,6 +141,7 @@ class SESV2Client:
         *,
         queries: Sequence[BatchGetMetricDataQuery],
     ) -> BatchGetMetricDataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/batch_get_metric_data/)."""
         params: dict[str, object] = {
             "queries": queries,
         }
@@ -160,6 +164,7 @@ class SESV2Client:
         *,
         job_id: str,
     ) -> CancelExportJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/cancel_export_job/)."""
         params: dict[str, object] = {
             "job_id": job_id,
         }
@@ -191,6 +196,7 @@ class SESV2Client:
         archiving_options: ArchivingOptions | None = None,
         message_security_options: MessageSecurityOptions | None = None,
     ) -> CreateConfigurationSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_configuration_set/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -233,6 +239,7 @@ class SESV2Client:
         event_destination_name: str,
         event_destination: EventDestinationDefinition,
     ) -> CreateConfigurationSetEventDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_configuration_set_event_destination/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
             "event_destination_name": event_destination_name,
@@ -261,6 +268,7 @@ class SESV2Client:
         unsubscribe_all: bool | None = None,
         attributes_data: str | None = None,
     ) -> CreateContactOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_contact/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -293,6 +301,7 @@ class SESV2Client:
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateContactListOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_contact_list/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -327,6 +336,7 @@ class SESV2Client:
         failure_redirection_url: str,
         tags: Sequence[Tag] | None = None,
     ) -> CreateCustomVerificationEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_custom_verification_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
             "from_email_address": from_email_address,
@@ -358,6 +368,7 @@ class SESV2Client:
         tags: Sequence[Tag] | None = None,
         scaling_mode: ScalingMode | None = None,
     ) -> CreateDedicatedIpPoolOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_dedicated_ip_pool/)."""
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
@@ -387,6 +398,7 @@ class SESV2Client:
         report_name: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateDeliverabilityTestReportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_deliverability_test_report/)."""
         params: dict[str, object] = {
             "from_email_address": from_email_address,
             "content": content,
@@ -417,6 +429,7 @@ class SESV2Client:
         dkim_signing_attributes: DkimSigningAttributes | None = None,
         configuration_set_name: str | None = None,
     ) -> CreateEmailIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_email_identity/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -447,6 +460,7 @@ class SESV2Client:
         policy_name: str,
         policy: str,
     ) -> CreateEmailIdentityPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_email_identity_policy/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
             "policy_name": policy_name,
@@ -473,6 +487,7 @@ class SESV2Client:
         template_content: EmailTemplateContent,
         tags: Sequence[Tag] | None = None,
     ) -> CreateEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
             "template_content": template_content,
@@ -499,6 +514,7 @@ class SESV2Client:
         export_data_source: ExportDataSource,
         export_destination: ExportDestination,
     ) -> CreateExportJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_export_job/)."""
         params: dict[str, object] = {
             "export_data_source": export_data_source,
             "export_destination": export_destination,
@@ -523,6 +539,7 @@ class SESV2Client:
         import_destination: ImportDestination,
         import_data_source: ImportDataSource,
     ) -> CreateImportJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_import_job/)."""
         params: dict[str, object] = {
             "import_destination": import_destination,
             "import_data_source": import_data_source,
@@ -548,6 +565,7 @@ class SESV2Client:
         details: Details,
         tags: Sequence[Tag] | None = None,
     ) -> CreateMultiRegionEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_multi_region_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
             "details": details,
@@ -575,6 +593,7 @@ class SESV2Client:
         tags: Sequence[Tag] | None = None,
         suppression_attributes: TenantSuppressionAttributes | None = None,
     ) -> CreateTenantOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_tenant/)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -602,6 +621,7 @@ class SESV2Client:
         tenant_name: str,
         resource_arn: str,
     ) -> CreateTenantResourceAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/create_tenant_resource_association/)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
             "resource_arn": resource_arn,
@@ -625,6 +645,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
     ) -> DeleteConfigurationSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_configuration_set/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -648,6 +669,7 @@ class SESV2Client:
         configuration_set_name: str,
         event_destination_name: str,
     ) -> DeleteConfigurationSetEventDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_configuration_set_event_destination/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
             "event_destination_name": event_destination_name,
@@ -672,6 +694,7 @@ class SESV2Client:
         contact_list_name: str,
         email_address: str,
     ) -> DeleteContactOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_contact/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -695,6 +718,7 @@ class SESV2Client:
         *,
         contact_list_name: str,
     ) -> DeleteContactListOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_contact_list/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -717,6 +741,7 @@ class SESV2Client:
         *,
         template_name: str,
     ) -> DeleteCustomVerificationEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_custom_verification_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -739,6 +764,7 @@ class SESV2Client:
         *,
         pool_name: str,
     ) -> DeleteDedicatedIpPoolOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_dedicated_ip_pool/)."""
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
@@ -761,6 +787,7 @@ class SESV2Client:
         *,
         email_identity: str,
     ) -> DeleteEmailIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_email_identity/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -784,6 +811,7 @@ class SESV2Client:
         email_identity: str,
         policy_name: str,
     ) -> DeleteEmailIdentityPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_email_identity_policy/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
             "policy_name": policy_name,
@@ -807,6 +835,7 @@ class SESV2Client:
         *,
         template_name: str,
     ) -> DeleteEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -829,6 +858,7 @@ class SESV2Client:
         *,
         endpoint_name: str,
     ) -> DeleteMultiRegionEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_multi_region_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
         }
@@ -852,6 +882,7 @@ class SESV2Client:
         email_address: str,
         tenant_name: str | None = None,
     ) -> DeleteSuppressedDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_suppressed_destination/)."""
         params: dict[str, object] = {
             "email_address": email_address,
         }
@@ -876,6 +907,7 @@ class SESV2Client:
         *,
         tenant_name: str,
     ) -> DeleteTenantOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_tenant/)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -899,6 +931,7 @@ class SESV2Client:
         tenant_name: str,
         resource_arn: str,
     ) -> DeleteTenantResourceAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/delete_tenant_resource_association/)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
             "resource_arn": resource_arn,
@@ -923,6 +956,7 @@ class SESV2Client:
         email_identity: str,
         from_address: str | None = None,
     ) -> DisassociateEmailIdentityCertificateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/disassociate_email_identity_certificate/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -945,6 +979,7 @@ class SESV2Client:
     async def get_account(
         self,
     ) -> GetAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_account/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("sesv2", self._interceptors)
@@ -966,6 +1001,7 @@ class SESV2Client:
         *,
         blacklist_item_names: Sequence[str],
     ) -> GetBlacklistReportsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_blacklist_reports/)."""
         params: dict[str, object] = {
             "blacklist_item_names": blacklist_item_names,
         }
@@ -988,6 +1024,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
     ) -> GetConfigurationSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_configuration_set/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -1010,6 +1047,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
     ) -> GetConfigurationSetEventDestinationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_configuration_set_event_destinations/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -1033,6 +1071,7 @@ class SESV2Client:
         contact_list_name: str,
         email_address: str,
     ) -> GetContactOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_contact/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -1056,6 +1095,7 @@ class SESV2Client:
         *,
         contact_list_name: str,
     ) -> GetContactListOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_contact_list/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -1078,6 +1118,7 @@ class SESV2Client:
         *,
         template_name: str,
     ) -> GetCustomVerificationEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_custom_verification_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -1100,6 +1141,7 @@ class SESV2Client:
         *,
         ip: str,
     ) -> GetDedicatedIpOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_dedicated_ip/)."""
         params: dict[str, object] = {
             "ip": ip,
         }
@@ -1122,6 +1164,7 @@ class SESV2Client:
         *,
         pool_name: str,
     ) -> GetDedicatedIpPoolOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_dedicated_ip_pool/)."""
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
@@ -1146,6 +1189,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> GetDedicatedIpsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_dedicated_ips/)."""
         params: dict[str, object] = {
         }
         if pool_name is not None:
@@ -1171,6 +1215,7 @@ class SESV2Client:
     async def get_deliverability_dashboard_options(
         self,
     ) -> GetDeliverabilityDashboardOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_deliverability_dashboard_options/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("sesv2", self._interceptors)
@@ -1192,6 +1237,7 @@ class SESV2Client:
         *,
         report_id: str,
     ) -> GetDeliverabilityTestReportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_deliverability_test_report/)."""
         params: dict[str, object] = {
             "report_id": report_id,
         }
@@ -1214,6 +1260,7 @@ class SESV2Client:
         *,
         campaign_id: str,
     ) -> GetDomainDeliverabilityCampaignOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_domain_deliverability_campaign/)."""
         params: dict[str, object] = {
             "campaign_id": campaign_id,
         }
@@ -1238,6 +1285,7 @@ class SESV2Client:
         start_date: str,
         end_date: str,
     ) -> GetDomainStatisticsReportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_domain_statistics_report/)."""
         params: dict[str, object] = {
             "domain": domain,
             "start_date": start_date,
@@ -1262,6 +1310,7 @@ class SESV2Client:
         *,
         email_address: str,
     ) -> GetEmailAddressInsightsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_email_address_insights/)."""
         params: dict[str, object] = {
             "email_address": email_address,
         }
@@ -1284,6 +1333,7 @@ class SESV2Client:
         *,
         email_identity: str,
     ) -> GetEmailIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_email_identity/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -1306,6 +1356,7 @@ class SESV2Client:
         *,
         email_identity: str,
     ) -> GetEmailIdentityPoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_email_identity_policies/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -1328,6 +1379,7 @@ class SESV2Client:
         *,
         template_name: str,
     ) -> GetEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
         }
@@ -1350,6 +1402,7 @@ class SESV2Client:
         *,
         job_id: str,
     ) -> GetExportJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_export_job/)."""
         params: dict[str, object] = {
             "job_id": job_id,
         }
@@ -1372,6 +1425,7 @@ class SESV2Client:
         *,
         job_id: str,
     ) -> GetImportJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_import_job/)."""
         params: dict[str, object] = {
             "job_id": job_id,
         }
@@ -1394,6 +1448,7 @@ class SESV2Client:
         *,
         message_id: str,
     ) -> GetMessageInsightsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_message_insights/)."""
         params: dict[str, object] = {
             "message_id": message_id,
         }
@@ -1416,6 +1471,7 @@ class SESV2Client:
         *,
         endpoint_name: str,
     ) -> GetMultiRegionEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_multi_region_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
         }
@@ -1439,6 +1495,7 @@ class SESV2Client:
         reputation_entity_reference: str,
         reputation_entity_type: ReputationEntityType,
     ) -> GetReputationEntityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_reputation_entity/)."""
         params: dict[str, object] = {
             "reputation_entity_reference": reputation_entity_reference,
             "reputation_entity_type": reputation_entity_type,
@@ -1463,6 +1520,7 @@ class SESV2Client:
         email_address: str,
         tenant_name: str | None = None,
     ) -> GetSuppressedDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_suppressed_destination/)."""
         params: dict[str, object] = {
             "email_address": email_address,
         }
@@ -1487,6 +1545,7 @@ class SESV2Client:
         *,
         tenant_name: str,
     ) -> GetTenantOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_tenant/)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -1511,6 +1570,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListConfigurationSetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_configuration_sets/)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1539,6 +1599,7 @@ class SESV2Client:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> ListContactListsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_contact_lists/)."""
         params: dict[str, object] = {
         }
         if page_size is not None:
@@ -1567,6 +1628,7 @@ class SESV2Client:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> ListContactsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_contacts/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -1596,6 +1658,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListCustomVerificationEmailTemplatesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_custom_verification_email_templates/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1622,6 +1685,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListDedicatedIpPoolsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_dedicated_ip_pools/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1648,6 +1712,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListDeliverabilityTestReportsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_deliverability_test_reports/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1677,6 +1742,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListDomainDeliverabilityCampaignsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_domain_deliverability_campaigns/)."""
         params: dict[str, object] = {
             "start_date": start_date,
             "end_date": end_date,
@@ -1707,6 +1773,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListEmailIdentitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_email_identities/)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1736,6 +1803,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListEmailIdentityCertificatesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_email_identity_certificates/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -1763,6 +1831,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListEmailTemplatesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_email_templates/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1791,6 +1860,7 @@ class SESV2Client:
         export_source_type: ExportSourceType | None = None,
         job_status: JobStatus | None = None,
     ) -> ListExportJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_export_jobs/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1822,6 +1892,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListImportJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_import_jobs/)."""
         params: dict[str, object] = {
         }
         if import_destination_type is not None:
@@ -1850,6 +1921,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListMultiRegionEndpointsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_multi_region_endpoints/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1877,6 +1949,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListRecommendationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_recommendations/)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1906,6 +1979,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListReputationEntitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_reputation_entities/)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -1935,6 +2009,7 @@ class SESV2Client:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> ListResourceTenantsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_resource_tenants/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1966,6 +2041,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListSuppressedDestinationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_suppressed_destinations/)."""
         params: dict[str, object] = {
         }
         if tenant_name is not None:
@@ -1999,6 +2075,7 @@ class SESV2Client:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2024,6 +2101,7 @@ class SESV2Client:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> ListTenantResourcesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_tenant_resources/)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -2054,6 +2132,7 @@ class SESV2Client:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> ListTenantsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_tenants/)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -2081,6 +2160,7 @@ class SESV2Client:
         *,
         auto_warmup_enabled: bool | None = None,
     ) -> PutAccountDedicatedIpWarmupAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_account_dedicated_ip_warmup_attributes/)."""
         params: dict[str, object] = {
         }
         if auto_warmup_enabled is not None:
@@ -2109,6 +2189,7 @@ class SESV2Client:
         additional_contact_email_addresses: Sequence[str] | None = None,
         production_access_enabled: bool | None = None,
     ) -> PutAccountDetailsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_account_details/)."""
         params: dict[str, object] = {
             "mail_type": mail_type,
             "website_url": website_url,
@@ -2140,6 +2221,7 @@ class SESV2Client:
         *,
         plan: PricingPlan,
     ) -> PutAccountPricingAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_account_pricing_attributes/)."""
         params: dict[str, object] = {
             "plan": plan,
         }
@@ -2162,6 +2244,7 @@ class SESV2Client:
         *,
         sending_enabled: bool | None = None,
     ) -> PutAccountSendingAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_account_sending_attributes/)."""
         params: dict[str, object] = {
         }
         if sending_enabled is not None:
@@ -2186,6 +2269,7 @@ class SESV2Client:
         suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         validation_attributes: SuppressionValidationAttributes | None = None,
     ) -> PutAccountSuppressionAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_account_suppression_attributes/)."""
         params: dict[str, object] = {
         }
         if suppressed_reasons is not None:
@@ -2211,6 +2295,7 @@ class SESV2Client:
         *,
         vdm_attributes: VdmAttributes,
     ) -> PutAccountVdmAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_account_vdm_attributes/)."""
         params: dict[str, object] = {
             "vdm_attributes": vdm_attributes,
         }
@@ -2234,6 +2319,7 @@ class SESV2Client:
         configuration_set_name: str,
         archive_arn: str | None = None,
     ) -> PutConfigurationSetArchivingOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_archiving_options/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2261,6 +2347,7 @@ class SESV2Client:
         sending_pool_name: str | None = None,
         max_delivery_seconds: int | None = None,
     ) -> PutConfigurationSetDeliveryOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_delivery_options/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2290,6 +2377,7 @@ class SESV2Client:
         configuration_set_name: str,
         reputation_metrics_enabled: bool | None = None,
     ) -> PutConfigurationSetReputationOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_reputation_options/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2315,6 +2403,7 @@ class SESV2Client:
         configuration_set_name: str,
         sending_enabled: bool | None = None,
     ) -> PutConfigurationSetSendingOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_sending_options/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2342,6 +2431,7 @@ class SESV2Client:
         suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         validation_options: SuppressionValidationOptions | None = None,
     ) -> PutConfigurationSetSuppressionOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_suppression_options/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2372,6 +2462,7 @@ class SESV2Client:
         custom_redirect_domain: str | None = None,
         https_policy: HttpsPolicy | None = None,
     ) -> PutConfigurationSetTrackingOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_tracking_options/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2399,6 +2490,7 @@ class SESV2Client:
         configuration_set_name: str,
         vdm_options: VdmOptions | None = None,
     ) -> PutConfigurationSetVdmOptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_configuration_set_vdm_options/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2424,6 +2516,7 @@ class SESV2Client:
         ip: str,
         destination_pool_name: str,
     ) -> PutDedicatedIpInPoolOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_dedicated_ip_in_pool/)."""
         params: dict[str, object] = {
             "ip": ip,
             "destination_pool_name": destination_pool_name,
@@ -2448,6 +2541,7 @@ class SESV2Client:
         pool_name: str,
         scaling_mode: ScalingMode,
     ) -> PutDedicatedIpPoolScalingAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_dedicated_ip_pool_scaling_attributes/)."""
         params: dict[str, object] = {
             "pool_name": pool_name,
             "scaling_mode": scaling_mode,
@@ -2472,6 +2566,7 @@ class SESV2Client:
         ip: str,
         warmup_percentage: int,
     ) -> PutDedicatedIpWarmupAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_dedicated_ip_warmup_attributes/)."""
         params: dict[str, object] = {
             "ip": ip,
             "warmup_percentage": warmup_percentage,
@@ -2496,6 +2591,7 @@ class SESV2Client:
         dashboard_enabled: bool,
         subscribed_domains: Sequence[DomainDeliverabilityTrackingOption] | None = None,
     ) -> PutDeliverabilityDashboardOptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_deliverability_dashboard_option/)."""
         params: dict[str, object] = {
             "dashboard_enabled": dashboard_enabled,
         }
@@ -2521,6 +2617,7 @@ class SESV2Client:
         email_identity: str,
         configuration_set_name: str | None = None,
     ) -> PutEmailIdentityConfigurationSetAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_email_identity_configuration_set_attributes/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2546,6 +2643,7 @@ class SESV2Client:
         email_identity: str,
         signing_enabled: bool | None = None,
     ) -> PutEmailIdentityDkimAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_email_identity_dkim_attributes/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2572,6 +2670,7 @@ class SESV2Client:
         signing_attributes_origin: DkimSigningAttributesOrigin,
         signing_attributes: DkimSigningAttributes | None = None,
     ) -> PutEmailIdentityDkimSigningAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_email_identity_dkim_signing_attributes/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
             "signing_attributes_origin": signing_attributes_origin,
@@ -2598,6 +2697,7 @@ class SESV2Client:
         email_identity: str,
         email_forwarding_enabled: bool | None = None,
     ) -> PutEmailIdentityFeedbackAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_email_identity_feedback_attributes/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2624,6 +2724,7 @@ class SESV2Client:
         mail_from_domain: str | None = None,
         behavior_on_mx_failure: BehaviorOnMxFailure | None = None,
     ) -> PutEmailIdentityMailFromAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_email_identity_mail_from_attributes/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -2652,6 +2753,7 @@ class SESV2Client:
         reason: SuppressionListReason,
         tenant_name: str | None = None,
     ) -> PutSuppressedDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_suppressed_destination/)."""
         params: dict[str, object] = {
             "email_address": email_address,
             "reason": reason,
@@ -2679,6 +2781,7 @@ class SESV2Client:
         suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         suppression_scope: SuppressionListScope | None = None,
     ) -> PutTenantSuppressionAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/put_tenant_suppression_attributes/)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -2716,6 +2819,7 @@ class SESV2Client:
         tenant_name: str | None = None,
         configuration_overrides: ConfigurationOverrides | None = None,
     ) -> SendBulkEmailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/send_bulk_email/)."""
         params: dict[str, object] = {
             "default_content": default_content,
             "bulk_email_entries": bulk_email_entries,
@@ -2761,6 +2865,7 @@ class SESV2Client:
         template_name: str,
         configuration_set_name: str | None = None,
     ) -> SendCustomVerificationEmailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/send_custom_verification_email/)."""
         params: dict[str, object] = {
             "email_address": email_address,
             "template_name": template_name,
@@ -2798,6 +2903,7 @@ class SESV2Client:
         list_management_options: ListManagementOptions | None = None,
         configuration_overrides: ConfigurationOverrides | None = None,
     ) -> SendEmailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/send_email/)."""
         params: dict[str, object] = {
             "content": content,
         }
@@ -2845,6 +2951,7 @@ class SESV2Client:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2869,6 +2976,7 @@ class SESV2Client:
         template_name: str,
         template_data: str,
     ) -> TestRenderEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/test_render_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
             "template_data": template_data,
@@ -2893,6 +3001,7 @@ class SESV2Client:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2917,6 +3026,7 @@ class SESV2Client:
         configuration_set_name: str,
         message_security_options: MessageSecurityOptions | None = None,
     ) -> UpdateConfigurationSetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_configuration_set/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
@@ -2943,6 +3053,7 @@ class SESV2Client:
         event_destination_name: str,
         event_destination: EventDestinationDefinition,
     ) -> UpdateConfigurationSetEventDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_configuration_set_event_destination/)."""
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
             "event_destination_name": event_destination_name,
@@ -2971,6 +3082,7 @@ class SESV2Client:
         unsubscribe_all: bool | None = None,
         attributes_data: str | None = None,
     ) -> UpdateContactOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_contact/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
             "email_address": email_address,
@@ -3002,6 +3114,7 @@ class SESV2Client:
         topics: Sequence[Topic] | None = None,
         description: str | None = None,
     ) -> UpdateContactListOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_contact_list/)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -3033,6 +3146,7 @@ class SESV2Client:
         success_redirection_url: str,
         failure_redirection_url: str,
     ) -> UpdateCustomVerificationEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_custom_verification_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
             "from_email_address": from_email_address,
@@ -3062,6 +3176,7 @@ class SESV2Client:
         policy_name: str,
         policy: str,
     ) -> UpdateEmailIdentityPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_email_identity_policy/)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
             "policy_name": policy_name,
@@ -3087,6 +3202,7 @@ class SESV2Client:
         template_name: str,
         template_content: EmailTemplateContent,
     ) -> UpdateEmailTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_email_template/)."""
         params: dict[str, object] = {
             "template_name": template_name,
             "template_content": template_content,
@@ -3112,6 +3228,7 @@ class SESV2Client:
         reputation_entity_reference: str,
         sending_status: SendingStatus,
     ) -> UpdateReputationEntityCustomerManagedStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_reputation_entity_customer_managed_status/)."""
         params: dict[str, object] = {
             "reputation_entity_type": reputation_entity_type,
             "reputation_entity_reference": reputation_entity_reference,
@@ -3138,6 +3255,7 @@ class SESV2Client:
         reputation_entity_reference: str,
         reputation_entity_policy: str,
     ) -> UpdateReputationEntityPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/update_reputation_entity_policy/)."""
         params: dict[str, object] = {
             "reputation_entity_type": reputation_entity_type,
             "reputation_entity_reference": reputation_entity_reference,

@@ -32,7 +32,7 @@ class EventBridgeSchedulerClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListScheduleGroupsOutput]:
-        """Yield each page from list_schedule_groups; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/list_schedule_groups/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -60,7 +60,7 @@ class EventBridgeSchedulerClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListSchedulesOutput]:
-        """Yield each page from list_schedules; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/scheduler/operations/list_schedules/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if group_name is not None:

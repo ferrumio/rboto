@@ -26,6 +26,8 @@ from .paginators import PollyClientPaginators as _Paginators
 
 
 class PollyClient:
+    """Async PollyClient. See [reference](https://ferrumio.github.io/rboto/reference/polly/)."""
+
     logger_name = "rboto.polly"
 
     def __init__(
@@ -66,6 +68,7 @@ class PollyClient:
         *,
         name: str,
     ) -> DeleteLexiconOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/delete_lexicon/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -91,6 +94,7 @@ class PollyClient:
         include_additional_language_codes: bool | None = None,
         next_token: str | None = None,
     ) -> DescribeVoicesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/describe_voices/)."""
         params: dict[str, object] = {
         }
         if engine is not None:
@@ -120,6 +124,7 @@ class PollyClient:
         *,
         name: str,
     ) -> GetLexiconOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/get_lexicon/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -142,6 +147,7 @@ class PollyClient:
         *,
         task_id: str,
     ) -> GetSpeechSynthesisTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/get_speech_synthesis_task/)."""
         params: dict[str, object] = {
             "task_id": task_id,
         }
@@ -164,6 +170,7 @@ class PollyClient:
         *,
         next_token: str | None = None,
     ) -> ListLexiconsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/list_lexicons/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -189,6 +196,7 @@ class PollyClient:
         next_token: str | None = None,
         status: TaskStatus | None = None,
     ) -> ListSpeechSynthesisTasksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/list_speech_synthesis_tasks/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -217,6 +225,7 @@ class PollyClient:
         name: str,
         content: str,
     ) -> PutLexiconOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/put_lexicon/)."""
         params: dict[str, object] = {
             "name": name,
             "content": content,
@@ -246,6 +255,7 @@ class PollyClient:
         sample_rate: str | None = None,
         action_stream: AsyncIterator[StartSpeechSynthesisStreamActionStream] | None = None,
     ) -> StartSpeechSynthesisStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/start_speech_synthesis_stream/)."""
         params: dict[str, object] = {
             "engine": engine,
             "output_format": output_format,
@@ -289,6 +299,7 @@ class PollyClient:
         speech_mark_types: Sequence[SpeechMarkType] | None = None,
         text_type: TextType | None = None,
     ) -> StartSpeechSynthesisTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/start_speech_synthesis_task/)."""
         params: dict[str, object] = {
             "output_format": output_format,
             "output_s3_bucket_name": output_s3_bucket_name,
@@ -338,6 +349,7 @@ class PollyClient:
         speech_mark_types: Sequence[SpeechMarkType] | None = None,
         text_type: TextType | None = None,
     ) -> SynthesizeSpeechOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/synthesize_speech/)."""
         params: dict[str, object] = {
             "output_format": output_format,
             "text": text,

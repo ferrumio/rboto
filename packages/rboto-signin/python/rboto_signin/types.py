@@ -9,27 +9,47 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AccessTokenOutput: TypeAlias = _native.AccessToken
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessTokenOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ByteStream/)."""
 CreateOAuth2TokenOutput: TypeAlias = _native.CreateOAuth2TokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenOutput/)."""
 CreateOAuth2TokenResponseBodyOutput: TypeAlias = _native.CreateOAuth2TokenResponseBody
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenResponseBodyOutput/)."""
 CreateOAuth2TokenWithIAMOutput: TypeAlias = _native.CreateOAuth2TokenWithIAMOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithIAMOutput/)."""
 DeleteConsoleAuthorizationConfigurationOutput: TypeAlias = _native.DeleteConsoleAuthorizationConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteConsoleAuthorizationConfigurationOutput/)."""
 DeleteResourcePermissionStatementOutput: TypeAlias = _native.DeleteResourcePermissionStatementOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteResourcePermissionStatementOutput/)."""
 GetConsoleAuthorizationConfigurationOutput: TypeAlias = _native.GetConsoleAuthorizationConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetConsoleAuthorizationConfigurationOutput/)."""
 GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetResourcePolicyOutput/)."""
 IntrospectOAuth2TokenWithIAMOutput: TypeAlias = _native.IntrospectOAuth2TokenWithIAMOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/IntrospectOAuth2TokenWithIAMOutput/)."""
 ListResourcePermissionStatementsOutput: TypeAlias = _native.ListResourcePermissionStatementsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListResourcePermissionStatementsOutput/)."""
 PermissionStatementSummaryOutput: TypeAlias = _native.PermissionStatementSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PermissionStatementSummaryOutput/)."""
 PolicyStatementOutput: TypeAlias = _native.PolicyStatement
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PolicyStatementOutput/)."""
 PutConsoleAuthorizationConfigurationOutput: TypeAlias = _native.PutConsoleAuthorizationConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutConsoleAuthorizationConfigurationOutput/)."""
 PutResourcePermissionStatementOutput: TypeAlias = _native.PutResourcePermissionStatementOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutResourcePermissionStatementOutput/)."""
 RevokeOAuth2TokenWithIAMOutput: TypeAlias = _native.RevokeOAuth2TokenWithIAMOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokeOAuth2TokenWithIAMOutput/)."""
 SigninResourceBasedPolicyOutput: TypeAlias = _native.SigninResourceBasedPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SigninResourceBasedPolicyOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/JSONValue/)."""
 
 OAuth2ErrorCode: TypeAlias = Literal['TOKEN_EXPIRED', 'USER_CREDENTIALS_CHANGED', 'INSUFFICIENT_PERMISSIONS', 'AUTHCODE_EXPIRED', 'server_error', 'INVALID_REQUEST', 'RESOURCE_NOT_FOUND', 'CONFLICT', 'SERVICE_QUOTA_EXCEEDED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/OAuth2ErrorCode/)."""
 OAuth2ErrorCodeOutput: TypeAlias = OAuth2ErrorCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/OAuth2ErrorCodeOutput/)."""
 
 AccessToken = TypedDict(
     "AccessToken",
@@ -39,6 +59,7 @@ AccessToken = TypedDict(
     "session_token": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessToken/)."""
 
 CreateOAuth2TokenRequest = TypedDict(
     "CreateOAuth2TokenRequest",
@@ -46,6 +67,7 @@ CreateOAuth2TokenRequest = TypedDict(
     "token_input": Required["CreateOAuth2TokenRequestBody"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenRequest/)."""
 
 CreateOAuth2TokenRequestBody = TypedDict(
     "CreateOAuth2TokenRequestBody",
@@ -58,6 +80,7 @@ CreateOAuth2TokenRequestBody = TypedDict(
     "refresh_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenRequestBody/)."""
 
 CreateOAuth2TokenResponseBody = TypedDict(
     "CreateOAuth2TokenResponseBody",
@@ -69,6 +92,7 @@ CreateOAuth2TokenResponseBody = TypedDict(
     "id_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenResponseBody/)."""
 
 CreateOAuth2TokenWithIAMRequest = TypedDict(
     "CreateOAuth2TokenWithIAMRequest",
@@ -77,6 +101,7 @@ CreateOAuth2TokenWithIAMRequest = TypedDict(
     "resource": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithIAMRequest/)."""
 
 DeleteConsoleAuthorizationConfigurationInput = TypedDict(
     "DeleteConsoleAuthorizationConfigurationInput",
@@ -84,6 +109,7 @@ DeleteConsoleAuthorizationConfigurationInput = TypedDict(
     "target_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteConsoleAuthorizationConfigurationInput/)."""
 
 DeleteResourcePermissionStatementInput = TypedDict(
     "DeleteResourcePermissionStatementInput",
@@ -92,6 +118,7 @@ DeleteResourcePermissionStatementInput = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteResourcePermissionStatementInput/)."""
 
 GetConsoleAuthorizationConfigurationInput = TypedDict(
     "GetConsoleAuthorizationConfigurationInput",
@@ -99,12 +126,14 @@ GetConsoleAuthorizationConfigurationInput = TypedDict(
     "target_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetConsoleAuthorizationConfigurationInput/)."""
 
 GetResourcePolicyInput = TypedDict(
     "GetResourcePolicyInput",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetResourcePolicyInput/)."""
 
 IntrospectOAuth2TokenWithIAMRequest = TypedDict(
     "IntrospectOAuth2TokenWithIAMRequest",
@@ -113,6 +142,7 @@ IntrospectOAuth2TokenWithIAMRequest = TypedDict(
     "token_type_hint": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/IntrospectOAuth2TokenWithIAMRequest/)."""
 
 ListResourcePermissionStatementsInput = TypedDict(
     "ListResourcePermissionStatementsInput",
@@ -121,6 +151,7 @@ ListResourcePermissionStatementsInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListResourcePermissionStatementsInput/)."""
 
 PermissionStatementSummary = TypedDict(
     "PermissionStatementSummary",
@@ -129,6 +160,7 @@ PermissionStatementSummary = TypedDict(
     "condition": NotRequired["dict[str, dict[str, Sequence[str]]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PermissionStatementSummary/)."""
 
 PolicyStatement = TypedDict(
     "PolicyStatement",
@@ -140,6 +172,7 @@ PolicyStatement = TypedDict(
     "condition": NotRequired["dict[str, dict[str, Sequence[str]]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PolicyStatement/)."""
 
 PutConsoleAuthorizationConfigurationInput = TypedDict(
     "PutConsoleAuthorizationConfigurationInput",
@@ -147,6 +180,7 @@ PutConsoleAuthorizationConfigurationInput = TypedDict(
     "target_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutConsoleAuthorizationConfigurationInput/)."""
 
 PutResourcePermissionStatementInput = TypedDict(
     "PutResourcePermissionStatementInput",
@@ -161,6 +195,7 @@ PutResourcePermissionStatementInput = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutResourcePermissionStatementInput/)."""
 
 RevokeOAuth2TokenWithIAMRequest = TypedDict(
     "RevokeOAuth2TokenWithIAMRequest",
@@ -168,6 +203,7 @@ RevokeOAuth2TokenWithIAMRequest = TypedDict(
     "token": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokeOAuth2TokenWithIAMRequest/)."""
 
 SigninResourceBasedPolicy = TypedDict(
     "SigninResourceBasedPolicy",
@@ -176,3 +212,4 @@ SigninResourceBasedPolicy = TypedDict(
     "statement": NotRequired["Sequence[PolicyStatement]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SigninResourceBasedPolicy/)."""

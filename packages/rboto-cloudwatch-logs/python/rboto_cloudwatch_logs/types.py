@@ -9,271 +9,535 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AccountPolicyOutput: TypeAlias = _native.AccountPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AccountPolicyOutput/)."""
 AddKeyEntryOutput: TypeAlias = _native.AddKeyEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AddKeyEntryOutput/)."""
 AddKeysOutput: TypeAlias = _native.AddKeys
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AddKeysOutput/)."""
 AggregateLogGroupSummaryOutput: TypeAlias = _native.AggregateLogGroupSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AggregateLogGroupSummaryOutput/)."""
 AnomalyOutput: TypeAlias = _native.Anomaly
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AnomalyOutput/)."""
 AnomalyDetectorOutput: TypeAlias = _native.AnomalyDetector
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AnomalyDetectorOutput/)."""
 AssociateSourceToS3TableIntegrationOutput: TypeAlias = _native.AssociateSourceToS3TableIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AssociateSourceToS3TableIntegrationOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ByteStream/)."""
 CancelImportTaskOutput: TypeAlias = _native.CancelImportTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CancelImportTaskOutput/)."""
 ConfigurationTemplateOutput: TypeAlias = _native.ConfigurationTemplate
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ConfigurationTemplateOutput/)."""
 ConfigurationTemplateDeliveryConfigValuesOutput: TypeAlias = _native.ConfigurationTemplateDeliveryConfigValues
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ConfigurationTemplateDeliveryConfigValuesOutput/)."""
 CopyValueOutput: TypeAlias = _native.CopyValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CopyValueOutput/)."""
 CopyValueEntryOutput: TypeAlias = _native.CopyValueEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CopyValueEntryOutput/)."""
 CreateDeliveryOutput: TypeAlias = _native.CreateDeliveryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateDeliveryOutput/)."""
 CreateExportTaskOutput: TypeAlias = _native.CreateExportTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateExportTaskOutput/)."""
 CreateImportTaskOutput: TypeAlias = _native.CreateImportTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateImportTaskOutput/)."""
 CreateLogAnomalyDetectorOutput: TypeAlias = _native.CreateLogAnomalyDetectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLogAnomalyDetectorOutput/)."""
 CreateLookupTableOutput: TypeAlias = _native.CreateLookupTableOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLookupTableOutput/)."""
 CreateScheduledQueryOutput: TypeAlias = _native.CreateScheduledQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateScheduledQueryOutput/)."""
 Csv: TypeAlias = _native.Csv
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Csv-da58de467474/)."""
 DataSourceOutput: TypeAlias = _native.DataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DataSourceOutput/)."""
 DateTimeConverterOutput: TypeAlias = _native.DateTimeConverter
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DateTimeConverterOutput/)."""
 DeleteIndexPolicyOutput: TypeAlias = _native.DeleteIndexPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteIndexPolicyOutput/)."""
 DeleteIntegrationOutput: TypeAlias = _native.DeleteIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteIntegrationOutput/)."""
 DeleteKeysOutput: TypeAlias = _native.DeleteKeys
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteKeysOutput/)."""
 DeleteQueryDefinitionOutput: TypeAlias = _native.DeleteQueryDefinitionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteQueryDefinitionOutput/)."""
 DeleteScheduledQueryOutput: TypeAlias = _native.DeleteScheduledQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteScheduledQueryOutput/)."""
 DeliveryOutput: TypeAlias = _native.Delivery
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliveryOutput/)."""
 DeliveryDestinationOutput: TypeAlias = _native.DeliveryDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliveryDestinationOutput/)."""
 DeliveryDestinationConfigurationOutput: TypeAlias = _native.DeliveryDestinationConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliveryDestinationConfigurationOutput/)."""
 DeliverySourceOutput: TypeAlias = _native.DeliverySource
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceOutput/)."""
 DeliverySourceConfigurationSchemaOutput: TypeAlias = _native.DeliverySourceConfigurationSchema
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceConfigurationSchemaOutput/)."""
 DescribeAccountPoliciesOutput: TypeAlias = _native.DescribeAccountPoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeAccountPoliciesOutput/)."""
 DescribeConfigurationTemplatesOutput: TypeAlias = _native.DescribeConfigurationTemplatesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeConfigurationTemplatesOutput/)."""
 DescribeDeliveriesOutput: TypeAlias = _native.DescribeDeliveriesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliveriesOutput/)."""
 DescribeDeliveryDestinationsOutput: TypeAlias = _native.DescribeDeliveryDestinationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliveryDestinationsOutput/)."""
 DescribeDeliverySourcesOutput: TypeAlias = _native.DescribeDeliverySourcesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliverySourcesOutput/)."""
 DescribeDestinationsOutput: TypeAlias = _native.DescribeDestinationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDestinationsOutput/)."""
 DescribeExportTasksOutput: TypeAlias = _native.DescribeExportTasksOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeExportTasksOutput/)."""
 DescribeFieldIndexesOutput: TypeAlias = _native.DescribeFieldIndexesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeFieldIndexesOutput/)."""
 DescribeImportTaskBatchesOutput: TypeAlias = _native.DescribeImportTaskBatchesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeImportTaskBatchesOutput/)."""
 DescribeImportTasksOutput: TypeAlias = _native.DescribeImportTasksOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeImportTasksOutput/)."""
 DescribeIndexPoliciesOutput: TypeAlias = _native.DescribeIndexPoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeIndexPoliciesOutput/)."""
 DescribeLogGroupsOutput: TypeAlias = _native.DescribeLogGroupsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLogGroupsOutput/)."""
 DescribeLogStreamsOutput: TypeAlias = _native.DescribeLogStreamsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLogStreamsOutput/)."""
 DescribeLookupTablesOutput: TypeAlias = _native.DescribeLookupTablesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLookupTablesOutput/)."""
 DescribeMetricFiltersOutput: TypeAlias = _native.DescribeMetricFiltersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeMetricFiltersOutput/)."""
 DescribeQueriesOutput: TypeAlias = _native.DescribeQueriesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeQueriesOutput/)."""
 DescribeQueryDefinitionsOutput: TypeAlias = _native.DescribeQueryDefinitionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeQueryDefinitionsOutput/)."""
 DescribeResourcePoliciesOutput: TypeAlias = _native.DescribeResourcePoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeResourcePoliciesOutput/)."""
 DescribeSubscriptionFiltersOutput: TypeAlias = _native.DescribeSubscriptionFiltersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeSubscriptionFiltersOutput/)."""
 DestinationOutput: TypeAlias = _native.Destination
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DestinationOutput/)."""
 DestinationConfigurationOutput: TypeAlias = _native.DestinationConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DestinationConfigurationOutput/)."""
 DisassociateSourceFromS3TableIntegrationOutput: TypeAlias = _native.DisassociateSourceFromS3TableIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DisassociateSourceFromS3TableIntegrationOutput/)."""
 ExportTaskOutput: TypeAlias = _native.ExportTask
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskOutput/)."""
 ExportTaskExecutionInfoOutput: TypeAlias = _native.ExportTaskExecutionInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskExecutionInfoOutput/)."""
 ExportTaskStatusOutput: TypeAlias = _native.ExportTaskStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskStatusOutput/)."""
 FieldIndexOutput: TypeAlias = _native.FieldIndex
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FieldIndexOutput/)."""
 FilterLogEventsOutput: TypeAlias = _native.FilterLogEventsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FilterLogEventsOutput/)."""
 FilteredLogEventOutput: TypeAlias = _native.FilteredLogEvent
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FilteredLogEventOutput/)."""
 GetDataProtectionPolicyOutput: TypeAlias = _native.GetDataProtectionPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDataProtectionPolicyOutput/)."""
 GetDeliveryDestinationOutput: TypeAlias = _native.GetDeliveryDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryDestinationOutput/)."""
 GetDeliveryDestinationPolicyOutput: TypeAlias = _native.GetDeliveryDestinationPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryDestinationPolicyOutput/)."""
 GetDeliveryOutput: TypeAlias = _native.GetDeliveryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryOutput/)."""
 GetDeliverySourceOutput: TypeAlias = _native.GetDeliverySourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliverySourceOutput/)."""
 GetIntegrationOutput: TypeAlias = _native.GetIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetIntegrationOutput/)."""
 GetLogAnomalyDetectorOutput: TypeAlias = _native.GetLogAnomalyDetectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogAnomalyDetectorOutput/)."""
 GetLogEventsOutput: TypeAlias = _native.GetLogEventsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogEventsOutput/)."""
 GetLogFieldsOutput: TypeAlias = _native.GetLogFieldsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogFieldsOutput/)."""
 GetLogGroupFieldsOutput: TypeAlias = _native.GetLogGroupFieldsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogGroupFieldsOutput/)."""
 GetLogObjectResponseStreamReceiver: TypeAlias = _native.GetLogObjectResponseStreamReceiver
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectResponseStreamReceiver/)."""
 GetLogRecordOutput: TypeAlias = _native.GetLogRecordOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogRecordOutput/)."""
 GetLookupTableOutput: TypeAlias = _native.GetLookupTableOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLookupTableOutput/)."""
 GetQueryResultsOutput: TypeAlias = _native.GetQueryResultsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetQueryResultsOutput/)."""
 GetScheduledQueryHistoryOutput: TypeAlias = _native.GetScheduledQueryHistoryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetScheduledQueryHistoryOutput/)."""
 GetScheduledQueryOutput: TypeAlias = _native.GetScheduledQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetScheduledQueryOutput/)."""
 GetStorageTierPolicyOutput: TypeAlias = _native.GetStorageTierPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetStorageTierPolicyOutput/)."""
 GetTransformerOutput: TypeAlias = _native.GetTransformerOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetTransformerOutput/)."""
 GrokOutput: TypeAlias = _native.Grok
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GrokOutput/)."""
 GroupingIdentifierOutput: TypeAlias = _native.GroupingIdentifier
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GroupingIdentifierOutput/)."""
 ImportOutput: TypeAlias = _native.Import
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportOutput/)."""
 ImportBatchOutput: TypeAlias = _native.ImportBatch
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportBatchOutput/)."""
 ImportFilterOutput: TypeAlias = _native.ImportFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportFilterOutput/)."""
 ImportStatisticsOutput: TypeAlias = _native.ImportStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportStatisticsOutput/)."""
 IndexPolicyOutput: TypeAlias = _native.IndexPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexPolicyOutput/)."""
 IntegrationSummaryOutput: TypeAlias = _native.IntegrationSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationSummaryOutput/)."""
 ListAggregateLogGroupSummariesOutput: TypeAlias = _native.ListAggregateLogGroupSummariesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAggregateLogGroupSummariesOutput/)."""
 ListAnomaliesOutput: TypeAlias = _native.ListAnomaliesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAnomaliesOutput/)."""
 ListIntegrationsOutput: TypeAlias = _native.ListIntegrationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListIntegrationsOutput/)."""
 ListLogAnomalyDetectorsOutput: TypeAlias = _native.ListLogAnomalyDetectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogAnomalyDetectorsOutput/)."""
 ListLogGroupsForQueryOutput: TypeAlias = _native.ListLogGroupsForQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogGroupsForQueryOutput/)."""
 ListLogGroupsOutput: TypeAlias = _native.ListLogGroupsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogGroupsOutput/)."""
 ListScheduledQueriesOutput: TypeAlias = _native.ListScheduledQueriesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListScheduledQueriesOutput/)."""
 ListSourcesForS3TableIntegrationOutput: TypeAlias = _native.ListSourcesForS3TableIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListSourcesForS3TableIntegrationOutput/)."""
 ListSyslogConfigurationsOutput: TypeAlias = _native.ListSyslogConfigurationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListSyslogConfigurationsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListTagsForResourceOutput/)."""
 ListTagsLogGroupOutput: TypeAlias = _native.ListTagsLogGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListTagsLogGroupOutput/)."""
 ListToMapOutput: TypeAlias = _native.ListToMap
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListToMapOutput/)."""
 LogEventOutput: TypeAlias = _native.LogEvent
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogEventOutput/)."""
 LogFieldTypeOutput: TypeAlias = _native.LogFieldType
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogFieldTypeOutput/)."""
 LogFieldsListItemOutput: TypeAlias = _native.LogFieldsListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogFieldsListItemOutput/)."""
 LogGroupOutput: TypeAlias = _native.LogGroup
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupOutput/)."""
 LogGroupFieldOutput: TypeAlias = _native.LogGroupField
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupFieldOutput/)."""
 LogGroupSummaryOutput: TypeAlias = _native.LogGroupSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupSummaryOutput/)."""
 LogStreamOutput: TypeAlias = _native.LogStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogStreamOutput/)."""
 LookupTableOutput: TypeAlias = _native.LookupTable
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LookupTableOutput/)."""
 LookupTableConfigurationOutput: TypeAlias = _native.LookupTableConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LookupTableConfigurationOutput/)."""
 LowerCaseStringOutput: TypeAlias = _native.LowerCaseString
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LowerCaseStringOutput/)."""
 MetricFilterOutput: TypeAlias = _native.MetricFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MetricFilterOutput/)."""
 MetricFilterMatchRecordOutput: TypeAlias = _native.MetricFilterMatchRecord
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MetricFilterMatchRecordOutput/)."""
 MetricTransformationOutput: TypeAlias = _native.MetricTransformation
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MetricTransformationOutput/)."""
 MoveKeyEntryOutput: TypeAlias = _native.MoveKeyEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MoveKeyEntryOutput/)."""
 MoveKeysOutput: TypeAlias = _native.MoveKeys
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MoveKeysOutput/)."""
 OutputLogEventOutput: TypeAlias = _native.OutputLogEvent
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OutputLogEventOutput/)."""
 ParseCloudfrontOutput: TypeAlias = _native.ParseCloudfront
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseCloudfrontOutput/)."""
 ParseJson: TypeAlias = _native.ParseJson
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseJson-967b6f07b1e0/)."""
 ParseKeyValueOutput: TypeAlias = _native.ParseKeyValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseKeyValueOutput/)."""
 ParsePostgresOutput: TypeAlias = _native.ParsePostgres
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParsePostgresOutput/)."""
 ParseRoute53Output: TypeAlias = _native.ParseRoute53
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseRoute53Output/)."""
 ParseToOcsf: TypeAlias = _native.ParseToOcsf
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseToOcsf-17e324697962/)."""
 ParseVpc: TypeAlias = _native.ParseVpc
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseVpc-92a58f37ea42/)."""
 ParseWaf: TypeAlias = _native.ParseWaf
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseWaf-69d5b9a31277/)."""
 PatternTokenOutput: TypeAlias = _native.PatternToken
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PatternTokenOutput/)."""
 PolicyOutput: TypeAlias = _native.Policy
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyOutput/)."""
 ProcessorOutput: TypeAlias = _native.Processor
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ProcessorOutput/)."""
 PutAccountPolicyOutput: TypeAlias = _native.PutAccountPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutAccountPolicyOutput/)."""
 PutDataProtectionPolicyOutput: TypeAlias = _native.PutDataProtectionPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDataProtectionPolicyOutput/)."""
 PutDeliveryDestinationOutput: TypeAlias = _native.PutDeliveryDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliveryDestinationOutput/)."""
 PutDeliveryDestinationPolicyOutput: TypeAlias = _native.PutDeliveryDestinationPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliveryDestinationPolicyOutput/)."""
 PutDeliverySourceOutput: TypeAlias = _native.PutDeliverySourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliverySourceOutput/)."""
 PutDestinationOutput: TypeAlias = _native.PutDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDestinationOutput/)."""
 PutIndexPolicyOutput: TypeAlias = _native.PutIndexPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutIndexPolicyOutput/)."""
 PutIntegrationOutput: TypeAlias = _native.PutIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutIntegrationOutput/)."""
 PutLogEventsOutput: TypeAlias = _native.PutLogEventsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutLogEventsOutput/)."""
 PutQueryDefinitionOutput: TypeAlias = _native.PutQueryDefinitionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutQueryDefinitionOutput/)."""
 PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutResourcePolicyOutput/)."""
 PutStorageTierPolicyOutput: TypeAlias = _native.PutStorageTierPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutStorageTierPolicyOutput/)."""
 QueryDefinitionOutput: TypeAlias = _native.QueryDefinition
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryDefinitionOutput/)."""
 QueryInfoOutput: TypeAlias = _native.QueryInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryInfoOutput/)."""
 QueryParameterOutput: TypeAlias = _native.QueryParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryParameterOutput/)."""
 QueryStatisticsOutput: TypeAlias = _native.QueryStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryStatisticsOutput/)."""
 RecordFieldOutput: TypeAlias = _native.RecordField
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RecordFieldOutput/)."""
 RejectedEntityInfoOutput: TypeAlias = _native.RejectedEntityInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RejectedEntityInfoOutput/)."""
 RejectedLogEventsInfoOutput: TypeAlias = _native.RejectedLogEventsInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RejectedLogEventsInfoOutput/)."""
 RenameKeyEntryOutput: TypeAlias = _native.RenameKeyEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RenameKeyEntryOutput/)."""
 RenameKeysOutput: TypeAlias = _native.RenameKeys
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RenameKeysOutput/)."""
 ResourcePolicyOutput: TypeAlias = _native.ResourcePolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResourcePolicyOutput/)."""
 ResultFieldOutput: TypeAlias = _native.ResultField
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResultFieldOutput/)."""
 S3ConfigurationOutput: TypeAlias = _native.S3Configuration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3ConfigurationOutput/)."""
 S3DeliveryConfigurationOutput: TypeAlias = _native.S3DeliveryConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3DeliveryConfigurationOutput/)."""
 S3TableIntegrationSourceOutput: TypeAlias = _native.S3TableIntegrationSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3TableIntegrationSourceOutput/)."""
 S3TablesIntegrationOutput: TypeAlias = _native.S3TablesIntegration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3TablesIntegrationOutput/)."""
 ScheduledQueryDestinationOutput: TypeAlias = _native.ScheduledQueryDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQueryDestinationOutput/)."""
 ScheduledQuerySummaryOutput: TypeAlias = _native.ScheduledQuerySummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQuerySummaryOutput/)."""
 SearchedLogStreamOutput: TypeAlias = _native.SearchedLogStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SearchedLogStreamOutput/)."""
 SplitStringOutput: TypeAlias = _native.SplitString
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SplitStringOutput/)."""
 SplitStringEntryOutput: TypeAlias = _native.SplitStringEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SplitStringEntryOutput/)."""
 StartLiveTailResponseStreamReceiver: TypeAlias = _native.StartLiveTailResponseStreamReceiver
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStreamReceiver/)."""
 StartQueryOutput: TypeAlias = _native.StartQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartQueryOutput/)."""
 StopQueryOutput: TypeAlias = _native.StopQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StopQueryOutput/)."""
 SubscriptionFilterOutput: TypeAlias = _native.SubscriptionFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SubscriptionFilterOutput/)."""
 SubstituteStringOutput: TypeAlias = _native.SubstituteString
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SubstituteStringOutput/)."""
 SubstituteStringEntryOutput: TypeAlias = _native.SubstituteStringEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SubstituteStringEntryOutput/)."""
 SyslogConfigurationOutput: TypeAlias = _native.SyslogConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SyslogConfigurationOutput/)."""
 TestMetricFilterOutput: TypeAlias = _native.TestMetricFilterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TestMetricFilterOutput/)."""
 TestTransformerOutput: TypeAlias = _native.TestTransformerOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TestTransformerOutput/)."""
 TransformedLogRecordOutput: TypeAlias = _native.TransformedLogRecord
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TransformedLogRecordOutput/)."""
 TriggerHistoryRecordOutput: TypeAlias = _native.TriggerHistoryRecord
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TriggerHistoryRecordOutput/)."""
 TrimStringOutput: TypeAlias = _native.TrimString
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TrimStringOutput/)."""
 TypeConverterOutput: TypeAlias = _native.TypeConverter
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TypeConverterOutput/)."""
 TypeConverterEntryOutput: TypeAlias = _native.TypeConverterEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TypeConverterEntryOutput/)."""
 UpdateDeliveryConfigurationOutput: TypeAlias = _native.UpdateDeliveryConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateDeliveryConfigurationOutput/)."""
 UpdateLookupTableOutput: TypeAlias = _native.UpdateLookupTableOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateLookupTableOutput/)."""
 UpdateScheduledQueryOutput: TypeAlias = _native.UpdateScheduledQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateScheduledQueryOutput/)."""
 UpperCaseStringOutput: TypeAlias = _native.UpperCaseString
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpperCaseStringOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/JSONValue/)."""
 
 ActionStatus: TypeAlias = Literal['IN_PROGRESS', 'CLIENT_ERROR', 'FAILED', 'COMPLETE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ActionStatus/)."""
 ActionStatusOutput: TypeAlias = ActionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ActionStatusOutput/)."""
 AnomalyDetectorStatus: TypeAlias = Literal['INITIALIZING', 'TRAINING', 'ANALYZING', 'FAILED', 'DELETED', 'PAUSED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AnomalyDetectorStatus/)."""
 AnomalyDetectorStatusOutput: TypeAlias = AnomalyDetectorStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AnomalyDetectorStatusOutput/)."""
 DataProtectionStatus: TypeAlias = Literal['ACTIVATED', 'DELETED', 'ARCHIVED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DataProtectionStatus/)."""
 DataProtectionStatusOutput: TypeAlias = DataProtectionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DataProtectionStatusOutput/)."""
 DeliveryDestinationType: TypeAlias = Literal['S3', 'CWL', 'FH', 'XRAY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliveryDestinationType/)."""
 DeliveryDestinationTypeOutput: TypeAlias = DeliveryDestinationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliveryDestinationTypeOutput/)."""
 DeliverySourceConfigurationSchemaValueType: TypeAlias = Literal['string', 'boolean', 'int', 'double', 'long']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceConfigurationSchemaValueType/)."""
 DeliverySourceConfigurationSchemaValueTypeOutput: TypeAlias = DeliverySourceConfigurationSchemaValueType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceConfigurationSchemaValueTypeOutput/)."""
 DeliverySourceStatus: TypeAlias = Literal['ACTIVE', 'INACTIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceStatus/)."""
 DeliverySourceStatusOutput: TypeAlias = DeliverySourceStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceStatusOutput/)."""
 DeliverySourceStatusReason: TypeAlias = Literal['RESOURCE_DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceStatusReason/)."""
 DeliverySourceStatusReasonOutput: TypeAlias = DeliverySourceStatusReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceStatusReasonOutput/)."""
 Distribution: TypeAlias = Literal['Random', 'ByLogStream']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Distribution/)."""
 DistributionOutput: TypeAlias = Distribution | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DistributionOutput/)."""
 EntityRejectionErrorType: TypeAlias = Literal['InvalidEntity', 'InvalidTypeValue', 'InvalidKeyAttributes', 'InvalidAttributes', 'EntitySizeTooLarge', 'UnsupportedLogGroupType', 'MissingRequiredFields']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/EntityRejectionErrorType/)."""
 EntityRejectionErrorTypeOutput: TypeAlias = EntityRejectionErrorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/EntityRejectionErrorTypeOutput/)."""
 EvaluationFrequency: TypeAlias = Literal['ONE_MIN', 'FIVE_MIN', 'TEN_MIN', 'FIFTEEN_MIN', 'THIRTY_MIN', 'ONE_HOUR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/EvaluationFrequency/)."""
 EvaluationFrequencyOutput: TypeAlias = EvaluationFrequency | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/EvaluationFrequencyOutput/)."""
 EventSource: TypeAlias = Literal['CloudTrail', 'Route53Resolver', 'VPCFlow', 'EKSAudit', 'AWSWAF']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/EventSource/)."""
 EventSourceOutput: TypeAlias = EventSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/EventSourceOutput/)."""
 ExecutionStatus: TypeAlias = Literal['Running', 'InvalidQuery', 'Complete', 'Failed', 'Timeout']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExecutionStatus/)."""
 ExecutionStatusOutput: TypeAlias = ExecutionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExecutionStatusOutput/)."""
 ExportTaskStatusCode: TypeAlias = Literal['CANCELLED', 'COMPLETED', 'FAILED', 'PENDING', 'PENDING_CANCEL', 'RUNNING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskStatusCode/)."""
 ExportTaskStatusCodeOutput: TypeAlias = ExportTaskStatusCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskStatusCodeOutput/)."""
 FlattenedElement: TypeAlias = Literal['first', 'last']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FlattenedElement/)."""
 FlattenedElementOutput: TypeAlias = FlattenedElement | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FlattenedElementOutput/)."""
 ImportStatus: TypeAlias = Literal['IN_PROGRESS', 'CANCELLED', 'COMPLETED', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportStatus/)."""
 ImportStatusOutput: TypeAlias = ImportStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportStatusOutput/)."""
 IndexCategory: TypeAlias = Literal['DEFAULT', 'CUSTOM', 'AUTO', 'INACTIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexCategory/)."""
 IndexCategoryOutput: TypeAlias = IndexCategory | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexCategoryOutput/)."""
 IndexSource: TypeAlias = Literal['ACCOUNT', 'LOG_GROUP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexSource/)."""
 IndexSourceOutput: TypeAlias = IndexSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexSourceOutput/)."""
 IndexType: TypeAlias = Literal['FACET', 'FIELD_INDEX']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexType/)."""
 IndexTypeOutput: TypeAlias = IndexType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexTypeOutput/)."""
 InheritedProperty: TypeAlias = Literal['ACCOUNT_DATA_PROTECTION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/InheritedProperty/)."""
 InheritedPropertyOutput: TypeAlias = InheritedProperty | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/InheritedPropertyOutput/)."""
 IntegrationStatus: TypeAlias = Literal['PROVISIONING', 'ACTIVE', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationStatus/)."""
 IntegrationStatusOutput: TypeAlias = IntegrationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationStatusOutput/)."""
 IntegrationType: TypeAlias = Literal['OPENSEARCH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationType/)."""
 IntegrationTypeOutput: TypeAlias = IntegrationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationTypeOutput/)."""
 ListAggregateLogGroupSummariesGroupBy: TypeAlias = Literal['DATA_SOURCE_NAME_TYPE_AND_FORMAT', 'DATA_SOURCE_NAME_AND_TYPE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAggregateLogGroupSummariesGroupBy/)."""
 ListAggregateLogGroupSummariesGroupByOutput: TypeAlias = ListAggregateLogGroupSummariesGroupBy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAggregateLogGroupSummariesGroupByOutput/)."""
 LogGroupClass: TypeAlias = Literal['STANDARD', 'INFREQUENT_ACCESS', 'DELIVERY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupClass/)."""
 LogGroupClassOutput: TypeAlias = LogGroupClass | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupClassOutput/)."""
 OCSFVersion: TypeAlias = Literal['V1.1', 'V1.5']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OCSFVersion/)."""
 OCSFVersionOutput: TypeAlias = OCSFVersion | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OCSFVersionOutput/)."""
 OpenSearchResourceStatusType: TypeAlias = Literal['ACTIVE', 'NOT_FOUND', 'ERROR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchResourceStatusType/)."""
 OpenSearchResourceStatusTypeOutput: TypeAlias = OpenSearchResourceStatusType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchResourceStatusTypeOutput/)."""
 OrderBy: TypeAlias = Literal['LogStreamName', 'LastEventTime']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OrderBy/)."""
 OrderByOutput: TypeAlias = OrderBy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OrderByOutput/)."""
 OutputFormat: TypeAlias = Literal['json', 'plain', 'w3c', 'raw', 'parquet']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OutputFormat/)."""
 OutputFormatOutput: TypeAlias = OutputFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OutputFormatOutput/)."""
 PolicyScope: TypeAlias = Literal['ACCOUNT', 'RESOURCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyScope/)."""
 PolicyScopeOutput: TypeAlias = PolicyScope | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyScopeOutput/)."""
 PolicyType: TypeAlias = Literal['DATA_PROTECTION_POLICY', 'SUBSCRIPTION_FILTER_POLICY', 'FIELD_INDEX_POLICY', 'TRANSFORMER_POLICY', 'METRIC_EXTRACTION_POLICY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyType/)."""
 PolicyTypeOutput: TypeAlias = PolicyType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyTypeOutput/)."""
 QueryLanguage: TypeAlias = Literal['CWLI', 'SQL', 'PPL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryLanguage/)."""
 QueryLanguageOutput: TypeAlias = QueryLanguage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryLanguageOutput/)."""
 QueryStatus: TypeAlias = Literal['Scheduled', 'Running', 'Complete', 'Failed', 'Cancelled', 'Timeout', 'Unknown']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryStatus/)."""
 QueryStatusOutput: TypeAlias = QueryStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryStatusOutput/)."""
 S3TableIntegrationSourceStatus: TypeAlias = Literal['ACTIVE', 'UNHEALTHY', 'FAILED', 'DATA_SOURCE_DELETE_IN_PROGRESS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3TableIntegrationSourceStatus/)."""
 S3TableIntegrationSourceStatusOutput: TypeAlias = S3TableIntegrationSourceStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3TableIntegrationSourceStatusOutput/)."""
 ScheduleType: TypeAlias = Literal['CUSTOMER_MANAGED', 'AWS_MANAGED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduleType/)."""
 ScheduleTypeOutput: TypeAlias = ScheduleType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduleTypeOutput/)."""
 ScheduledQueryDestinationType: TypeAlias = Literal['S3', 'LOOKUP_TABLE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQueryDestinationType/)."""
 ScheduledQueryDestinationTypeOutput: TypeAlias = ScheduledQueryDestinationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQueryDestinationTypeOutput/)."""
 ScheduledQueryState: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQueryState/)."""
 ScheduledQueryStateOutput: TypeAlias = ScheduledQueryState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQueryStateOutput/)."""
 Scope: TypeAlias = Literal['ALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Scope/)."""
 ScopeOutput: TypeAlias = Scope | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScopeOutput/)."""
 StandardUnit: TypeAlias = Literal['Seconds', 'Microseconds', 'Milliseconds', 'Bytes', 'Kilobytes', 'Megabytes', 'Gigabytes', 'Terabytes', 'Bits', 'Kilobits', 'Megabits', 'Gigabits', 'Terabits', 'Percent', 'Count', 'Bytes/Second', 'Kilobytes/Second', 'Megabytes/Second', 'Gigabytes/Second', 'Terabytes/Second', 'Bits/Second', 'Kilobits/Second', 'Megabits/Second', 'Gigabits/Second', 'Terabits/Second', 'Count/Second', 'None']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StandardUnit/)."""
 StandardUnitOutput: TypeAlias = StandardUnit | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StandardUnitOutput/)."""
 State: TypeAlias = Literal['Active', 'Suppressed', 'Baseline']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/State/)."""
 StateOutput: TypeAlias = State | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StateOutput/)."""
 StorageTier: TypeAlias = Literal['STANDARD', 'INTELLIGENT_TIERING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StorageTier/)."""
 StorageTierOutput: TypeAlias = StorageTier | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StorageTierOutput/)."""
 SuppressionState: TypeAlias = Literal['SUPPRESSED', 'UNSUPPRESSED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SuppressionState/)."""
 SuppressionStateOutput: TypeAlias = SuppressionState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SuppressionStateOutput/)."""
 SuppressionType: TypeAlias = Literal['LIMITED', 'INFINITE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SuppressionType/)."""
 SuppressionTypeOutput: TypeAlias = SuppressionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SuppressionTypeOutput/)."""
 SuppressionUnit: TypeAlias = Literal['SECONDS', 'MINUTES', 'HOURS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SuppressionUnit/)."""
 SuppressionUnitOutput: TypeAlias = SuppressionUnit | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SuppressionUnitOutput/)."""
 SyslogSourceType: TypeAlias = Literal['VPCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SyslogSourceType/)."""
 SyslogSourceTypeOutput: TypeAlias = SyslogSourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SyslogSourceTypeOutput/)."""
 Type: TypeAlias = Literal['boolean', 'integer', 'double', 'string']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Type/)."""
 TypeOutput: TypeAlias = Type | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TypeOutput/)."""
 
 AccountPolicy = TypedDict(
     "AccountPolicy",
@@ -287,6 +551,7 @@ AccountPolicy = TypedDict(
     "account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AccountPolicy/)."""
 
 AddKeyEntry = TypedDict(
     "AddKeyEntry",
@@ -296,6 +561,7 @@ AddKeyEntry = TypedDict(
     "overwrite_if_exists": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AddKeyEntry/)."""
 
 AddKeys = TypedDict(
     "AddKeys",
@@ -303,6 +569,7 @@ AddKeys = TypedDict(
     "entries": Required["Sequence[AddKeyEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AddKeys/)."""
 
 AggregateLogGroupSummary = TypedDict(
     "AggregateLogGroupSummary",
@@ -311,6 +578,7 @@ AggregateLogGroupSummary = TypedDict(
     "grouping_identifiers": NotRequired["Sequence[GroupingIdentifier]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AggregateLogGroupSummary/)."""
 
 Anomaly = TypedDict(
     "Anomaly",
@@ -336,6 +604,7 @@ Anomaly = TypedDict(
     "is_pattern_level_suppression": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Anomaly/)."""
 
 AnomalyDetector = TypedDict(
     "AnomalyDetector",
@@ -352,6 +621,7 @@ AnomalyDetector = TypedDict(
     "anomaly_visibility_time": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AnomalyDetector/)."""
 
 AssociateKmsKeyRequest = TypedDict(
     "AssociateKmsKeyRequest",
@@ -361,6 +631,7 @@ AssociateKmsKeyRequest = TypedDict(
     "resource_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AssociateKmsKeyRequest/)."""
 
 AssociateSourceToS3TableIntegrationRequest = TypedDict(
     "AssociateSourceToS3TableIntegrationRequest",
@@ -369,6 +640,7 @@ AssociateSourceToS3TableIntegrationRequest = TypedDict(
     "data_source": Required["DataSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/AssociateSourceToS3TableIntegrationRequest/)."""
 
 CSV = TypedDict(
     "CSV",
@@ -380,6 +652,7 @@ CSV = TypedDict(
     "destination": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CSV-eb6b42f54c42/)."""
 
 CancelExportTaskRequest = TypedDict(
     "CancelExportTaskRequest",
@@ -387,6 +660,7 @@ CancelExportTaskRequest = TypedDict(
     "task_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CancelExportTaskRequest/)."""
 
 CancelImportTaskRequest = TypedDict(
     "CancelImportTaskRequest",
@@ -394,6 +668,7 @@ CancelImportTaskRequest = TypedDict(
     "import_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CancelImportTaskRequest/)."""
 
 ConfigurationTemplate = TypedDict(
     "ConfigurationTemplate",
@@ -412,6 +687,7 @@ ConfigurationTemplate = TypedDict(
     "s3_tables_integration": NotRequired["S3TablesIntegration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ConfigurationTemplate/)."""
 
 ConfigurationTemplateDeliveryConfigValues = TypedDict(
     "ConfigurationTemplateDeliveryConfigValues",
@@ -421,6 +697,7 @@ ConfigurationTemplateDeliveryConfigValues = TypedDict(
     "s3_delivery_configuration": NotRequired["S3DeliveryConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ConfigurationTemplateDeliveryConfigValues/)."""
 
 CopyValue = TypedDict(
     "CopyValue",
@@ -428,6 +705,7 @@ CopyValue = TypedDict(
     "entries": Required["Sequence[CopyValueEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CopyValue/)."""
 
 CopyValueEntry = TypedDict(
     "CopyValueEntry",
@@ -437,6 +715,7 @@ CopyValueEntry = TypedDict(
     "overwrite_if_exists": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CopyValueEntry/)."""
 
 CreateDeliveryRequest = TypedDict(
     "CreateDeliveryRequest",
@@ -449,6 +728,7 @@ CreateDeliveryRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateDeliveryRequest/)."""
 
 CreateExportTaskRequest = TypedDict(
     "CreateExportTaskRequest",
@@ -462,6 +742,7 @@ CreateExportTaskRequest = TypedDict(
     "destination_prefix": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateExportTaskRequest/)."""
 
 CreateImportTaskRequest = TypedDict(
     "CreateImportTaskRequest",
@@ -471,6 +752,7 @@ CreateImportTaskRequest = TypedDict(
     "import_filter": NotRequired["ImportFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateImportTaskRequest/)."""
 
 CreateLogAnomalyDetectorRequest = TypedDict(
     "CreateLogAnomalyDetectorRequest",
@@ -484,6 +766,7 @@ CreateLogAnomalyDetectorRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLogAnomalyDetectorRequest/)."""
 
 CreateLogGroupRequest = TypedDict(
     "CreateLogGroupRequest",
@@ -495,6 +778,7 @@ CreateLogGroupRequest = TypedDict(
     "deletion_protection_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLogGroupRequest/)."""
 
 CreateLogStreamRequest = TypedDict(
     "CreateLogStreamRequest",
@@ -503,6 +787,7 @@ CreateLogStreamRequest = TypedDict(
     "log_stream_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLogStreamRequest/)."""
 
 CreateLookupTableRequest = TypedDict(
     "CreateLookupTableRequest",
@@ -515,6 +800,7 @@ CreateLookupTableRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateLookupTableRequest/)."""
 
 CreateScheduledQueryRequest = TypedDict(
     "CreateScheduledQueryRequest",
@@ -536,6 +822,7 @@ CreateScheduledQueryRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateScheduledQueryRequest/)."""
 
 DataSource = TypedDict(
     "DataSource",
@@ -544,6 +831,7 @@ DataSource = TypedDict(
     "type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DataSource/)."""
 
 DataSourceFilter = TypedDict(
     "DataSourceFilter",
@@ -552,6 +840,7 @@ DataSourceFilter = TypedDict(
     "type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DataSourceFilter/)."""
 
 DateTimeConverter = TypedDict(
     "DateTimeConverter",
@@ -565,6 +854,7 @@ DateTimeConverter = TypedDict(
     "locale": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DateTimeConverter/)."""
 
 DeleteAccountPolicyRequest = TypedDict(
     "DeleteAccountPolicyRequest",
@@ -573,6 +863,7 @@ DeleteAccountPolicyRequest = TypedDict(
     "policy_type": Required["PolicyType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteAccountPolicyRequest/)."""
 
 DeleteDataProtectionPolicyRequest = TypedDict(
     "DeleteDataProtectionPolicyRequest",
@@ -580,6 +871,7 @@ DeleteDataProtectionPolicyRequest = TypedDict(
     "log_group_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteDataProtectionPolicyRequest/)."""
 
 DeleteDeliveryDestinationPolicyRequest = TypedDict(
     "DeleteDeliveryDestinationPolicyRequest",
@@ -587,6 +879,7 @@ DeleteDeliveryDestinationPolicyRequest = TypedDict(
     "delivery_destination_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteDeliveryDestinationPolicyRequest/)."""
 
 DeleteDeliveryDestinationRequest = TypedDict(
     "DeleteDeliveryDestinationRequest",
@@ -594,6 +887,7 @@ DeleteDeliveryDestinationRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteDeliveryDestinationRequest/)."""
 
 DeleteDeliveryRequest = TypedDict(
     "DeleteDeliveryRequest",
@@ -601,6 +895,7 @@ DeleteDeliveryRequest = TypedDict(
     "id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteDeliveryRequest/)."""
 
 DeleteDeliverySourceRequest = TypedDict(
     "DeleteDeliverySourceRequest",
@@ -608,6 +903,7 @@ DeleteDeliverySourceRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteDeliverySourceRequest/)."""
 
 DeleteDestinationRequest = TypedDict(
     "DeleteDestinationRequest",
@@ -615,6 +911,7 @@ DeleteDestinationRequest = TypedDict(
     "destination_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteDestinationRequest/)."""
 
 DeleteIndexPolicyRequest = TypedDict(
     "DeleteIndexPolicyRequest",
@@ -622,6 +919,7 @@ DeleteIndexPolicyRequest = TypedDict(
     "log_group_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteIndexPolicyRequest/)."""
 
 DeleteIntegrationRequest = TypedDict(
     "DeleteIntegrationRequest",
@@ -630,6 +928,7 @@ DeleteIntegrationRequest = TypedDict(
     "force": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteIntegrationRequest/)."""
 
 DeleteKeys = TypedDict(
     "DeleteKeys",
@@ -637,6 +936,7 @@ DeleteKeys = TypedDict(
     "with_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteKeys/)."""
 
 DeleteLogAnomalyDetectorRequest = TypedDict(
     "DeleteLogAnomalyDetectorRequest",
@@ -644,6 +944,7 @@ DeleteLogAnomalyDetectorRequest = TypedDict(
     "anomaly_detector_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteLogAnomalyDetectorRequest/)."""
 
 DeleteLogGroupRequest = TypedDict(
     "DeleteLogGroupRequest",
@@ -651,6 +952,7 @@ DeleteLogGroupRequest = TypedDict(
     "log_group_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteLogGroupRequest/)."""
 
 DeleteLogStreamRequest = TypedDict(
     "DeleteLogStreamRequest",
@@ -659,6 +961,7 @@ DeleteLogStreamRequest = TypedDict(
     "log_stream_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteLogStreamRequest/)."""
 
 DeleteLookupTableRequest = TypedDict(
     "DeleteLookupTableRequest",
@@ -666,6 +969,7 @@ DeleteLookupTableRequest = TypedDict(
     "lookup_table_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteLookupTableRequest/)."""
 
 DeleteMetricFilterRequest = TypedDict(
     "DeleteMetricFilterRequest",
@@ -674,6 +978,7 @@ DeleteMetricFilterRequest = TypedDict(
     "filter_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteMetricFilterRequest/)."""
 
 DeleteQueryDefinitionRequest = TypedDict(
     "DeleteQueryDefinitionRequest",
@@ -681,6 +986,7 @@ DeleteQueryDefinitionRequest = TypedDict(
     "query_definition_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteQueryDefinitionRequest/)."""
 
 DeleteResourcePolicyRequest = TypedDict(
     "DeleteResourcePolicyRequest",
@@ -690,6 +996,7 @@ DeleteResourcePolicyRequest = TypedDict(
     "expected_revision_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteResourcePolicyRequest/)."""
 
 DeleteRetentionPolicyRequest = TypedDict(
     "DeleteRetentionPolicyRequest",
@@ -697,6 +1004,7 @@ DeleteRetentionPolicyRequest = TypedDict(
     "log_group_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteRetentionPolicyRequest/)."""
 
 DeleteScheduledQueryRequest = TypedDict(
     "DeleteScheduledQueryRequest",
@@ -704,6 +1012,7 @@ DeleteScheduledQueryRequest = TypedDict(
     "identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteScheduledQueryRequest/)."""
 
 DeleteSubscriptionFilterRequest = TypedDict(
     "DeleteSubscriptionFilterRequest",
@@ -712,6 +1021,7 @@ DeleteSubscriptionFilterRequest = TypedDict(
     "filter_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteSubscriptionFilterRequest/)."""
 
 DeleteSyslogConfigurationRequest = TypedDict(
     "DeleteSyslogConfigurationRequest",
@@ -720,6 +1030,7 @@ DeleteSyslogConfigurationRequest = TypedDict(
     "vpc_endpoint_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteSyslogConfigurationRequest/)."""
 
 DeleteTransformerRequest = TypedDict(
     "DeleteTransformerRequest",
@@ -727,6 +1038,7 @@ DeleteTransformerRequest = TypedDict(
     "log_group_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteTransformerRequest/)."""
 
 Delivery = TypedDict(
     "Delivery",
@@ -742,6 +1054,7 @@ Delivery = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Delivery/)."""
 
 DeliveryDestination = TypedDict(
     "DeliveryDestination",
@@ -755,6 +1068,7 @@ DeliveryDestination = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliveryDestination/)."""
 
 DeliveryDestinationConfiguration = TypedDict(
     "DeliveryDestinationConfiguration",
@@ -762,6 +1076,7 @@ DeliveryDestinationConfiguration = TypedDict(
     "destination_resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliveryDestinationConfiguration/)."""
 
 DeliverySource = TypedDict(
     "DeliverySource",
@@ -777,6 +1092,7 @@ DeliverySource = TypedDict(
     "status_reason": NotRequired["DeliverySourceStatusReason"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySource/)."""
 
 DeliverySourceConfigurationSchema = TypedDict(
     "DeliverySourceConfigurationSchema",
@@ -789,6 +1105,7 @@ DeliverySourceConfigurationSchema = TypedDict(
     "max_value": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeliverySourceConfigurationSchema/)."""
 
 DescribeAccountPoliciesRequest = TypedDict(
     "DescribeAccountPoliciesRequest",
@@ -799,6 +1116,7 @@ DescribeAccountPoliciesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeAccountPoliciesRequest/)."""
 
 DescribeConfigurationTemplatesRequest = TypedDict(
     "DescribeConfigurationTemplatesRequest",
@@ -811,6 +1129,7 @@ DescribeConfigurationTemplatesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeConfigurationTemplatesRequest/)."""
 
 DescribeDeliveriesRequest = TypedDict(
     "DescribeDeliveriesRequest",
@@ -820,6 +1139,7 @@ DescribeDeliveriesRequest = TypedDict(
     "delivery_source_names": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliveriesRequest/)."""
 
 DescribeDeliveryDestinationsRequest = TypedDict(
     "DescribeDeliveryDestinationsRequest",
@@ -829,6 +1149,7 @@ DescribeDeliveryDestinationsRequest = TypedDict(
     "names": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliveryDestinationsRequest/)."""
 
 DescribeDeliverySourcesRequest = TypedDict(
     "DescribeDeliverySourcesRequest",
@@ -838,6 +1159,7 @@ DescribeDeliverySourcesRequest = TypedDict(
     "resource_arns": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDeliverySourcesRequest/)."""
 
 DescribeDestinationsRequest = TypedDict(
     "DescribeDestinationsRequest",
@@ -847,6 +1169,7 @@ DescribeDestinationsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeDestinationsRequest/)."""
 
 DescribeExportTasksRequest = TypedDict(
     "DescribeExportTasksRequest",
@@ -857,6 +1180,7 @@ DescribeExportTasksRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeExportTasksRequest/)."""
 
 DescribeFieldIndexesRequest = TypedDict(
     "DescribeFieldIndexesRequest",
@@ -866,6 +1190,7 @@ DescribeFieldIndexesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeFieldIndexesRequest/)."""
 
 DescribeImportTaskBatchesRequest = TypedDict(
     "DescribeImportTaskBatchesRequest",
@@ -876,6 +1201,7 @@ DescribeImportTaskBatchesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeImportTaskBatchesRequest/)."""
 
 DescribeImportTasksRequest = TypedDict(
     "DescribeImportTasksRequest",
@@ -887,6 +1213,7 @@ DescribeImportTasksRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeImportTasksRequest/)."""
 
 DescribeIndexPoliciesRequest = TypedDict(
     "DescribeIndexPoliciesRequest",
@@ -895,6 +1222,7 @@ DescribeIndexPoliciesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeIndexPoliciesRequest/)."""
 
 DescribeLogGroupsRequest = TypedDict(
     "DescribeLogGroupsRequest",
@@ -909,6 +1237,7 @@ DescribeLogGroupsRequest = TypedDict(
     "log_group_identifiers": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLogGroupsRequest/)."""
 
 DescribeLogStreamsRequest = TypedDict(
     "DescribeLogStreamsRequest",
@@ -922,6 +1251,7 @@ DescribeLogStreamsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLogStreamsRequest/)."""
 
 DescribeLookupTablesRequest = TypedDict(
     "DescribeLookupTablesRequest",
@@ -931,6 +1261,7 @@ DescribeLookupTablesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeLookupTablesRequest/)."""
 
 DescribeMetricFiltersRequest = TypedDict(
     "DescribeMetricFiltersRequest",
@@ -943,6 +1274,7 @@ DescribeMetricFiltersRequest = TypedDict(
     "metric_namespace": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeMetricFiltersRequest/)."""
 
 DescribeQueriesRequest = TypedDict(
     "DescribeQueriesRequest",
@@ -954,6 +1286,7 @@ DescribeQueriesRequest = TypedDict(
     "query_language": NotRequired["QueryLanguage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeQueriesRequest/)."""
 
 DescribeQueryDefinitionsRequest = TypedDict(
     "DescribeQueryDefinitionsRequest",
@@ -964,6 +1297,7 @@ DescribeQueryDefinitionsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeQueryDefinitionsRequest/)."""
 
 DescribeResourcePoliciesRequest = TypedDict(
     "DescribeResourcePoliciesRequest",
@@ -974,6 +1308,7 @@ DescribeResourcePoliciesRequest = TypedDict(
     "policy_scope": NotRequired["PolicyScope"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeResourcePoliciesRequest/)."""
 
 DescribeSubscriptionFiltersRequest = TypedDict(
     "DescribeSubscriptionFiltersRequest",
@@ -984,6 +1319,7 @@ DescribeSubscriptionFiltersRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DescribeSubscriptionFiltersRequest/)."""
 
 Destination = TypedDict(
     "Destination",
@@ -996,6 +1332,7 @@ Destination = TypedDict(
     "creation_time": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Destination/)."""
 
 DestinationConfiguration = TypedDict(
     "DestinationConfiguration",
@@ -1004,6 +1341,7 @@ DestinationConfiguration = TypedDict(
     "lookup_table_configuration": NotRequired["LookupTableConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DestinationConfiguration/)."""
 
 DisassociateKmsKeyRequest = TypedDict(
     "DisassociateKmsKeyRequest",
@@ -1012,6 +1350,7 @@ DisassociateKmsKeyRequest = TypedDict(
     "resource_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DisassociateKmsKeyRequest/)."""
 
 DisassociateSourceFromS3TableIntegrationRequest = TypedDict(
     "DisassociateSourceFromS3TableIntegrationRequest",
@@ -1019,6 +1358,7 @@ DisassociateSourceFromS3TableIntegrationRequest = TypedDict(
     "identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DisassociateSourceFromS3TableIntegrationRequest/)."""
 
 Entity = TypedDict(
     "Entity",
@@ -1027,6 +1367,7 @@ Entity = TypedDict(
     "attributes": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Entity/)."""
 
 ExportTask = TypedDict(
     "ExportTask",
@@ -1042,6 +1383,7 @@ ExportTask = TypedDict(
     "execution_info": NotRequired["ExportTaskExecutionInfo"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTask/)."""
 
 ExportTaskExecutionInfo = TypedDict(
     "ExportTaskExecutionInfo",
@@ -1050,6 +1392,7 @@ ExportTaskExecutionInfo = TypedDict(
     "completion_time": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskExecutionInfo/)."""
 
 ExportTaskStatus = TypedDict(
     "ExportTaskStatus",
@@ -1058,6 +1401,7 @@ ExportTaskStatus = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskStatus/)."""
 
 FieldIndex = TypedDict(
     "FieldIndex",
@@ -1071,6 +1415,7 @@ FieldIndex = TypedDict(
     "index_category": NotRequired["IndexCategory"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FieldIndex/)."""
 
 FieldsData = TypedDict(
     "FieldsData",
@@ -1078,6 +1423,7 @@ FieldsData = TypedDict(
     "data": Required["bytes | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FieldsData/)."""
 
 FilterLogEventsRequest = TypedDict(
     "FilterLogEventsRequest",
@@ -1096,6 +1442,7 @@ FilterLogEventsRequest = TypedDict(
     "unmask": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FilterLogEventsRequest/)."""
 
 FilteredLogEvent = TypedDict(
     "FilteredLogEvent",
@@ -1107,6 +1454,7 @@ FilteredLogEvent = TypedDict(
     "event_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/FilteredLogEvent/)."""
 
 GetDataProtectionPolicyRequest = TypedDict(
     "GetDataProtectionPolicyRequest",
@@ -1114,6 +1462,7 @@ GetDataProtectionPolicyRequest = TypedDict(
     "log_group_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDataProtectionPolicyRequest/)."""
 
 GetDeliveryDestinationPolicyRequest = TypedDict(
     "GetDeliveryDestinationPolicyRequest",
@@ -1121,6 +1470,7 @@ GetDeliveryDestinationPolicyRequest = TypedDict(
     "delivery_destination_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryDestinationPolicyRequest/)."""
 
 GetDeliveryDestinationRequest = TypedDict(
     "GetDeliveryDestinationRequest",
@@ -1128,6 +1478,7 @@ GetDeliveryDestinationRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryDestinationRequest/)."""
 
 GetDeliveryRequest = TypedDict(
     "GetDeliveryRequest",
@@ -1135,6 +1486,7 @@ GetDeliveryRequest = TypedDict(
     "id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliveryRequest/)."""
 
 GetDeliverySourceRequest = TypedDict(
     "GetDeliverySourceRequest",
@@ -1142,6 +1494,7 @@ GetDeliverySourceRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetDeliverySourceRequest/)."""
 
 GetIntegrationRequest = TypedDict(
     "GetIntegrationRequest",
@@ -1149,6 +1502,7 @@ GetIntegrationRequest = TypedDict(
     "integration_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetIntegrationRequest/)."""
 
 GetLogAnomalyDetectorRequest = TypedDict(
     "GetLogAnomalyDetectorRequest",
@@ -1156,6 +1510,7 @@ GetLogAnomalyDetectorRequest = TypedDict(
     "anomaly_detector_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogAnomalyDetectorRequest/)."""
 
 GetLogEventsRequest = TypedDict(
     "GetLogEventsRequest",
@@ -1171,6 +1526,7 @@ GetLogEventsRequest = TypedDict(
     "unmask": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogEventsRequest/)."""
 
 GetLogFieldsRequest = TypedDict(
     "GetLogFieldsRequest",
@@ -1179,6 +1535,7 @@ GetLogFieldsRequest = TypedDict(
     "data_source_type": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogFieldsRequest/)."""
 
 GetLogGroupFieldsRequest = TypedDict(
     "GetLogGroupFieldsRequest",
@@ -1188,6 +1545,7 @@ GetLogGroupFieldsRequest = TypedDict(
     "log_group_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogGroupFieldsRequest/)."""
 
 GetLogObjectRequest = TypedDict(
     "GetLogObjectRequest",
@@ -1196,6 +1554,7 @@ GetLogObjectRequest = TypedDict(
     "log_object_pointer": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectRequest/)."""
 
 GetLogObjectOutput = TypedDict(
     "GetLogObjectOutput",
@@ -1203,10 +1562,14 @@ GetLogObjectOutput = TypedDict(
     "field_stream": Required["AsyncIterator[GetLogObjectResponseStream]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectOutput/)."""
 
 GetLogObjectResponseStreamfields = TypedDict("GetLogObjectResponseStreamfields", {"fields": Required["FieldsData"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectResponseStreamfields/)."""
 GetLogObjectResponseStreamUnknown = TypedDict("GetLogObjectResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectResponseStreamUnknown/)."""
 GetLogObjectResponseStream: TypeAlias = GetLogObjectResponseStreamfields | GetLogObjectResponseStreamUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectResponseStream/)."""
 
 GetLogRecordRequest = TypedDict(
     "GetLogRecordRequest",
@@ -1215,6 +1578,7 @@ GetLogRecordRequest = TypedDict(
     "unmask": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogRecordRequest/)."""
 
 GetLookupTableRequest = TypedDict(
     "GetLookupTableRequest",
@@ -1222,6 +1586,7 @@ GetLookupTableRequest = TypedDict(
     "lookup_table_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLookupTableRequest/)."""
 
 GetQueryResultsRequest = TypedDict(
     "GetQueryResultsRequest",
@@ -1231,6 +1596,7 @@ GetQueryResultsRequest = TypedDict(
     "max_items": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetQueryResultsRequest/)."""
 
 GetScheduledQueryHistoryRequest = TypedDict(
     "GetScheduledQueryHistoryRequest",
@@ -1243,6 +1609,7 @@ GetScheduledQueryHistoryRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetScheduledQueryHistoryRequest/)."""
 
 GetScheduledQueryRequest = TypedDict(
     "GetScheduledQueryRequest",
@@ -1250,12 +1617,14 @@ GetScheduledQueryRequest = TypedDict(
     "identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetScheduledQueryRequest/)."""
 
 GetStorageTierPolicyRequest = TypedDict(
     "GetStorageTierPolicyRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetStorageTierPolicyRequest/)."""
 
 GetTransformerRequest = TypedDict(
     "GetTransformerRequest",
@@ -1263,6 +1632,7 @@ GetTransformerRequest = TypedDict(
     "log_group_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetTransformerRequest/)."""
 
 Grok = TypedDict(
     "Grok",
@@ -1271,6 +1641,7 @@ Grok = TypedDict(
     "match": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Grok/)."""
 
 GroupingIdentifier = TypedDict(
     "GroupingIdentifier",
@@ -1279,6 +1650,7 @@ GroupingIdentifier = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GroupingIdentifier/)."""
 
 Import = TypedDict(
     "Import",
@@ -1294,6 +1666,7 @@ Import = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Import/)."""
 
 ImportBatch = TypedDict(
     "ImportBatch",
@@ -1303,6 +1676,7 @@ ImportBatch = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportBatch/)."""
 
 ImportFilter = TypedDict(
     "ImportFilter",
@@ -1311,6 +1685,7 @@ ImportFilter = TypedDict(
     "end_event_time": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportFilter/)."""
 
 ImportStatistics = TypedDict(
     "ImportStatistics",
@@ -1318,6 +1693,7 @@ ImportStatistics = TypedDict(
     "bytes_imported": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ImportStatistics/)."""
 
 IndexPolicy = TypedDict(
     "IndexPolicy",
@@ -1329,6 +1705,7 @@ IndexPolicy = TypedDict(
     "source": NotRequired["IndexSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IndexPolicy/)."""
 
 InputLogEvent = TypedDict(
     "InputLogEvent",
@@ -1337,10 +1714,14 @@ InputLogEvent = TypedDict(
     "message": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/InputLogEvent/)."""
 
 IntegrationDetailsopenSearchIntegrationDetails = TypedDict("IntegrationDetailsopenSearchIntegrationDetails", {"open_search_integration_details": Required["OpenSearchIntegrationDetails"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationDetailsopenSearchIntegrationDetails/)."""
 IntegrationDetailsUnknown = TypedDict("IntegrationDetailsUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationDetailsUnknown/)."""
 IntegrationDetails: TypeAlias = IntegrationDetailsopenSearchIntegrationDetails | IntegrationDetailsUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationDetails/)."""
 
 IntegrationSummary = TypedDict(
     "IntegrationSummary",
@@ -1350,6 +1731,7 @@ IntegrationSummary = TypedDict(
     "integration_status": NotRequired["IntegrationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationSummary/)."""
 
 ListAggregateLogGroupSummariesRequest = TypedDict(
     "ListAggregateLogGroupSummariesRequest",
@@ -1364,6 +1746,7 @@ ListAggregateLogGroupSummariesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAggregateLogGroupSummariesRequest/)."""
 
 ListAnomaliesRequest = TypedDict(
     "ListAnomaliesRequest",
@@ -1374,6 +1757,7 @@ ListAnomaliesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAnomaliesRequest/)."""
 
 ListIntegrationsRequest = TypedDict(
     "ListIntegrationsRequest",
@@ -1383,6 +1767,7 @@ ListIntegrationsRequest = TypedDict(
     "integration_status": NotRequired["IntegrationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListIntegrationsRequest/)."""
 
 ListLogAnomalyDetectorsRequest = TypedDict(
     "ListLogAnomalyDetectorsRequest",
@@ -1392,6 +1777,7 @@ ListLogAnomalyDetectorsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogAnomalyDetectorsRequest/)."""
 
 ListLogGroupsForQueryRequest = TypedDict(
     "ListLogGroupsForQueryRequest",
@@ -1401,6 +1787,7 @@ ListLogGroupsForQueryRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogGroupsForQueryRequest/)."""
 
 ListLogGroupsRequest = TypedDict(
     "ListLogGroupsRequest",
@@ -1416,6 +1803,7 @@ ListLogGroupsRequest = TypedDict(
     "log_group_tags": NotRequired["Sequence[TagFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListLogGroupsRequest/)."""
 
 ListScheduledQueriesRequest = TypedDict(
     "ListScheduledQueriesRequest",
@@ -1426,6 +1814,7 @@ ListScheduledQueriesRequest = TypedDict(
     "schedule_type": NotRequired["ScheduleType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListScheduledQueriesRequest/)."""
 
 ListSourcesForS3TableIntegrationRequest = TypedDict(
     "ListSourcesForS3TableIntegrationRequest",
@@ -1435,6 +1824,7 @@ ListSourcesForS3TableIntegrationRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListSourcesForS3TableIntegrationRequest/)."""
 
 ListSyslogConfigurationsRequest = TypedDict(
     "ListSyslogConfigurationsRequest",
@@ -1445,6 +1835,7 @@ ListSyslogConfigurationsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListSyslogConfigurationsRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -1452,6 +1843,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListTagsForResourceRequest/)."""
 
 ListTagsLogGroupRequest = TypedDict(
     "ListTagsLogGroupRequest",
@@ -1459,6 +1851,7 @@ ListTagsLogGroupRequest = TypedDict(
     "log_group_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListTagsLogGroupRequest/)."""
 
 ListToMap = TypedDict(
     "ListToMap",
@@ -1471,6 +1864,7 @@ ListToMap = TypedDict(
     "flattened_element": NotRequired["FlattenedElement"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListToMap/)."""
 
 LiveTailSessionLogEvent = TypedDict(
     "LiveTailSessionLogEvent",
@@ -1482,6 +1876,7 @@ LiveTailSessionLogEvent = TypedDict(
     "ingestion_time": Required["int | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LiveTailSessionLogEvent/)."""
 
 LiveTailSessionMetadata = TypedDict(
     "LiveTailSessionMetadata",
@@ -1489,6 +1884,7 @@ LiveTailSessionMetadata = TypedDict(
     "sampled": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LiveTailSessionMetadata/)."""
 
 LiveTailSessionStart = TypedDict(
     "LiveTailSessionStart",
@@ -1501,6 +1897,7 @@ LiveTailSessionStart = TypedDict(
     "log_event_filter_pattern": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LiveTailSessionStart/)."""
 
 LiveTailSessionUpdate = TypedDict(
     "LiveTailSessionUpdate",
@@ -1509,6 +1906,7 @@ LiveTailSessionUpdate = TypedDict(
     "session_results": Required["list[LiveTailSessionLogEvent] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LiveTailSessionUpdate/)."""
 
 LogEvent = TypedDict(
     "LogEvent",
@@ -1517,6 +1915,7 @@ LogEvent = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogEvent/)."""
 
 LogFieldType = TypedDict(
     "LogFieldType",
@@ -1526,6 +1925,7 @@ LogFieldType = TypedDict(
     "fields": NotRequired["Sequence[LogFieldsListItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogFieldType/)."""
 
 LogFieldsListItem = TypedDict(
     "LogFieldsListItem",
@@ -1534,6 +1934,7 @@ LogFieldsListItem = TypedDict(
     "log_field_type": NotRequired["LogFieldType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogFieldsListItem/)."""
 
 LogGroup = TypedDict(
     "LogGroup",
@@ -1553,6 +1954,7 @@ LogGroup = TypedDict(
     "bearer_token_authentication_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroup/)."""
 
 LogGroupField = TypedDict(
     "LogGroupField",
@@ -1561,6 +1963,7 @@ LogGroupField = TypedDict(
     "percent": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupField/)."""
 
 LogGroupSummary = TypedDict(
     "LogGroupSummary",
@@ -1570,6 +1973,7 @@ LogGroupSummary = TypedDict(
     "log_group_class": NotRequired["LogGroupClass"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupSummary/)."""
 
 LogStream = TypedDict(
     "LogStream",
@@ -1584,6 +1988,7 @@ LogStream = TypedDict(
     "stored_bytes": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogStream/)."""
 
 LookupTable = TypedDict(
     "LookupTable",
@@ -1598,6 +2003,7 @@ LookupTable = TypedDict(
     "kms_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LookupTable/)."""
 
 LookupTableConfiguration = TypedDict(
     "LookupTableConfiguration",
@@ -1609,6 +2015,7 @@ LookupTableConfiguration = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LookupTableConfiguration/)."""
 
 LowerCaseString = TypedDict(
     "LowerCaseString",
@@ -1616,6 +2023,7 @@ LowerCaseString = TypedDict(
     "with_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LowerCaseString/)."""
 
 MetricFilter = TypedDict(
     "MetricFilter",
@@ -1630,6 +2038,7 @@ MetricFilter = TypedDict(
     "emit_system_field_dimensions": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MetricFilter/)."""
 
 MetricFilterMatchRecord = TypedDict(
     "MetricFilterMatchRecord",
@@ -1639,6 +2048,7 @@ MetricFilterMatchRecord = TypedDict(
     "extracted_values": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MetricFilterMatchRecord/)."""
 
 MetricTransformation = TypedDict(
     "MetricTransformation",
@@ -1651,6 +2061,7 @@ MetricTransformation = TypedDict(
     "unit": NotRequired["StandardUnit"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MetricTransformation/)."""
 
 MoveKeyEntry = TypedDict(
     "MoveKeyEntry",
@@ -1660,6 +2071,7 @@ MoveKeyEntry = TypedDict(
     "overwrite_if_exists": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MoveKeyEntry/)."""
 
 MoveKeys = TypedDict(
     "MoveKeys",
@@ -1667,6 +2079,7 @@ MoveKeys = TypedDict(
     "entries": Required["Sequence[MoveKeyEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MoveKeys/)."""
 
 OpenSearchApplication = TypedDict(
     "OpenSearchApplication",
@@ -1677,6 +2090,7 @@ OpenSearchApplication = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchApplication/)."""
 
 OpenSearchCollection = TypedDict(
     "OpenSearchCollection",
@@ -1686,6 +2100,7 @@ OpenSearchCollection = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchCollection/)."""
 
 OpenSearchDataAccessPolicy = TypedDict(
     "OpenSearchDataAccessPolicy",
@@ -1694,6 +2109,7 @@ OpenSearchDataAccessPolicy = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchDataAccessPolicy/)."""
 
 OpenSearchDataSource = TypedDict(
     "OpenSearchDataSource",
@@ -1702,6 +2118,7 @@ OpenSearchDataSource = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchDataSource/)."""
 
 OpenSearchEncryptionPolicy = TypedDict(
     "OpenSearchEncryptionPolicy",
@@ -1710,6 +2127,7 @@ OpenSearchEncryptionPolicy = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchEncryptionPolicy/)."""
 
 OpenSearchIntegrationDetails = TypedDict(
     "OpenSearchIntegrationDetails",
@@ -1724,6 +2142,7 @@ OpenSearchIntegrationDetails = TypedDict(
     "lifecycle_policy": Required["OpenSearchLifecyclePolicy | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchIntegrationDetails/)."""
 
 OpenSearchLifecyclePolicy = TypedDict(
     "OpenSearchLifecyclePolicy",
@@ -1732,6 +2151,7 @@ OpenSearchLifecyclePolicy = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchLifecyclePolicy/)."""
 
 OpenSearchNetworkPolicy = TypedDict(
     "OpenSearchNetworkPolicy",
@@ -1740,6 +2160,7 @@ OpenSearchNetworkPolicy = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchNetworkPolicy/)."""
 
 OpenSearchResourceConfig = TypedDict(
     "OpenSearchResourceConfig",
@@ -1751,6 +2172,7 @@ OpenSearchResourceConfig = TypedDict(
     "retention_days": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchResourceConfig/)."""
 
 OpenSearchResourceStatus = TypedDict(
     "OpenSearchResourceStatus",
@@ -1759,6 +2181,7 @@ OpenSearchResourceStatus = TypedDict(
     "status_message": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchResourceStatus/)."""
 
 OpenSearchWorkspace = TypedDict(
     "OpenSearchWorkspace",
@@ -1767,6 +2190,7 @@ OpenSearchWorkspace = TypedDict(
     "status": Required["OpenSearchResourceStatus | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OpenSearchWorkspace/)."""
 
 OutputLogEvent = TypedDict(
     "OutputLogEvent",
@@ -1776,6 +2200,7 @@ OutputLogEvent = TypedDict(
     "ingestion_time": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/OutputLogEvent/)."""
 
 ParseCloudfront = TypedDict(
     "ParseCloudfront",
@@ -1783,6 +2208,7 @@ ParseCloudfront = TypedDict(
     "source": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseCloudfront/)."""
 
 ParseJSON = TypedDict(
     "ParseJSON",
@@ -1791,6 +2217,7 @@ ParseJSON = TypedDict(
     "destination": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseJSON-87335274509c/)."""
 
 ParseKeyValue = TypedDict(
     "ParseKeyValue",
@@ -1804,6 +2231,7 @@ ParseKeyValue = TypedDict(
     "overwrite_if_exists": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseKeyValue/)."""
 
 ParsePostgres = TypedDict(
     "ParsePostgres",
@@ -1811,6 +2239,7 @@ ParsePostgres = TypedDict(
     "source": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParsePostgres/)."""
 
 ParseRoute53 = TypedDict(
     "ParseRoute53",
@@ -1818,6 +2247,7 @@ ParseRoute53 = TypedDict(
     "source": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseRoute53/)."""
 
 ParseToOCSF = TypedDict(
     "ParseToOCSF",
@@ -1828,6 +2258,7 @@ ParseToOCSF = TypedDict(
     "mapping_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseToOCSF-bb56074d4f35/)."""
 
 ParseVPC = TypedDict(
     "ParseVPC",
@@ -1835,6 +2266,7 @@ ParseVPC = TypedDict(
     "source": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseVPC-f6797fabc307/)."""
 
 ParseWAF = TypedDict(
     "ParseWAF",
@@ -1842,6 +2274,7 @@ ParseWAF = TypedDict(
     "source": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ParseWAF-9e51f21e6cac/)."""
 
 PatternToken = TypedDict(
     "PatternToken",
@@ -1853,6 +2286,7 @@ PatternToken = TypedDict(
     "inferred_token_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PatternToken/)."""
 
 Policy = TypedDict(
     "Policy",
@@ -1860,6 +2294,7 @@ Policy = TypedDict(
     "delivery_destination_policy": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Policy/)."""
 
 Processor = TypedDict(
     "Processor",
@@ -1889,6 +2324,7 @@ Processor = TypedDict(
     "upper_case_string": NotRequired["UpperCaseString"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/Processor/)."""
 
 PutAccountPolicyRequest = TypedDict(
     "PutAccountPolicyRequest",
@@ -1900,6 +2336,7 @@ PutAccountPolicyRequest = TypedDict(
     "selection_criteria": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutAccountPolicyRequest/)."""
 
 PutBearerTokenAuthenticationRequest = TypedDict(
     "PutBearerTokenAuthenticationRequest",
@@ -1908,6 +2345,7 @@ PutBearerTokenAuthenticationRequest = TypedDict(
     "bearer_token_authentication_enabled": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutBearerTokenAuthenticationRequest/)."""
 
 PutDataProtectionPolicyRequest = TypedDict(
     "PutDataProtectionPolicyRequest",
@@ -1916,6 +2354,7 @@ PutDataProtectionPolicyRequest = TypedDict(
     "policy_document": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDataProtectionPolicyRequest/)."""
 
 PutDeliveryDestinationPolicyRequest = TypedDict(
     "PutDeliveryDestinationPolicyRequest",
@@ -1924,6 +2363,7 @@ PutDeliveryDestinationPolicyRequest = TypedDict(
     "delivery_destination_policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliveryDestinationPolicyRequest/)."""
 
 PutDeliveryDestinationRequest = TypedDict(
     "PutDeliveryDestinationRequest",
@@ -1936,6 +2376,7 @@ PutDeliveryDestinationRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliveryDestinationRequest/)."""
 
 PutDeliverySourceRequest = TypedDict(
     "PutDeliverySourceRequest",
@@ -1947,6 +2388,7 @@ PutDeliverySourceRequest = TypedDict(
     "delivery_source_configuration": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDeliverySourceRequest/)."""
 
 PutDestinationPolicyRequest = TypedDict(
     "PutDestinationPolicyRequest",
@@ -1956,6 +2398,7 @@ PutDestinationPolicyRequest = TypedDict(
     "force_update": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDestinationPolicyRequest/)."""
 
 PutDestinationRequest = TypedDict(
     "PutDestinationRequest",
@@ -1966,6 +2409,7 @@ PutDestinationRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutDestinationRequest/)."""
 
 PutIndexPolicyRequest = TypedDict(
     "PutIndexPolicyRequest",
@@ -1974,6 +2418,7 @@ PutIndexPolicyRequest = TypedDict(
     "policy_document": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutIndexPolicyRequest/)."""
 
 PutIntegrationRequest = TypedDict(
     "PutIntegrationRequest",
@@ -1983,6 +2428,7 @@ PutIntegrationRequest = TypedDict(
     "integration_type": Required["IntegrationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutIntegrationRequest/)."""
 
 PutLogEventsRequest = TypedDict(
     "PutLogEventsRequest",
@@ -1994,6 +2440,7 @@ PutLogEventsRequest = TypedDict(
     "entity": NotRequired["Entity"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutLogEventsRequest/)."""
 
 PutLogGroupDeletionProtectionRequest = TypedDict(
     "PutLogGroupDeletionProtectionRequest",
@@ -2002,6 +2449,7 @@ PutLogGroupDeletionProtectionRequest = TypedDict(
     "deletion_protection_enabled": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutLogGroupDeletionProtectionRequest/)."""
 
 PutMetricFilterRequest = TypedDict(
     "PutMetricFilterRequest",
@@ -2015,6 +2463,7 @@ PutMetricFilterRequest = TypedDict(
     "emit_system_field_dimensions": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutMetricFilterRequest/)."""
 
 PutQueryDefinitionRequest = TypedDict(
     "PutQueryDefinitionRequest",
@@ -2028,6 +2477,7 @@ PutQueryDefinitionRequest = TypedDict(
     "parameters": NotRequired["Sequence[QueryParameter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutQueryDefinitionRequest/)."""
 
 PutResourcePolicyRequest = TypedDict(
     "PutResourcePolicyRequest",
@@ -2038,6 +2488,7 @@ PutResourcePolicyRequest = TypedDict(
     "expected_revision_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutResourcePolicyRequest/)."""
 
 PutRetentionPolicyRequest = TypedDict(
     "PutRetentionPolicyRequest",
@@ -2046,6 +2497,7 @@ PutRetentionPolicyRequest = TypedDict(
     "retention_in_days": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutRetentionPolicyRequest/)."""
 
 PutStorageTierPolicyRequest = TypedDict(
     "PutStorageTierPolicyRequest",
@@ -2053,6 +2505,7 @@ PutStorageTierPolicyRequest = TypedDict(
     "storage_tier": Required["StorageTier"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutStorageTierPolicyRequest/)."""
 
 PutSubscriptionFilterRequest = TypedDict(
     "PutSubscriptionFilterRequest",
@@ -2068,6 +2521,7 @@ PutSubscriptionFilterRequest = TypedDict(
     "emit_system_fields": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutSubscriptionFilterRequest/)."""
 
 PutSyslogConfigurationRequest = TypedDict(
     "PutSyslogConfigurationRequest",
@@ -2076,6 +2530,7 @@ PutSyslogConfigurationRequest = TypedDict(
     "vpc_endpoint_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutSyslogConfigurationRequest/)."""
 
 PutTransformerRequest = TypedDict(
     "PutTransformerRequest",
@@ -2084,6 +2539,7 @@ PutTransformerRequest = TypedDict(
     "transformer_config": Required["Sequence[Processor]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutTransformerRequest/)."""
 
 QueryCompileError = TypedDict(
     "QueryCompileError",
@@ -2092,6 +2548,7 @@ QueryCompileError = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryCompileError/)."""
 
 QueryCompileErrorLocation = TypedDict(
     "QueryCompileErrorLocation",
@@ -2100,6 +2557,7 @@ QueryCompileErrorLocation = TypedDict(
     "end_char_offset": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryCompileErrorLocation/)."""
 
 QueryDefinition = TypedDict(
     "QueryDefinition",
@@ -2113,6 +2571,7 @@ QueryDefinition = TypedDict(
     "parameters": NotRequired["Sequence[QueryParameter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryDefinition/)."""
 
 QueryInfo = TypedDict(
     "QueryInfo",
@@ -2128,6 +2587,7 @@ QueryInfo = TypedDict(
     "user_identity": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryInfo/)."""
 
 QueryParameter = TypedDict(
     "QueryParameter",
@@ -2137,6 +2597,7 @@ QueryParameter = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryParameter/)."""
 
 QueryStatistics = TypedDict(
     "QueryStatistics",
@@ -2150,6 +2611,7 @@ QueryStatistics = TypedDict(
     "result_count": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryStatistics/)."""
 
 RecordField = TypedDict(
     "RecordField",
@@ -2158,6 +2620,7 @@ RecordField = TypedDict(
     "mandatory": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RecordField/)."""
 
 RejectedEntityInfo = TypedDict(
     "RejectedEntityInfo",
@@ -2165,6 +2628,7 @@ RejectedEntityInfo = TypedDict(
     "error_type": Required["EntityRejectionErrorType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RejectedEntityInfo/)."""
 
 RejectedLogEventsInfo = TypedDict(
     "RejectedLogEventsInfo",
@@ -2174,6 +2638,7 @@ RejectedLogEventsInfo = TypedDict(
     "expired_log_event_end_index": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RejectedLogEventsInfo/)."""
 
 RenameKeyEntry = TypedDict(
     "RenameKeyEntry",
@@ -2183,6 +2648,7 @@ RenameKeyEntry = TypedDict(
     "overwrite_if_exists": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RenameKeyEntry/)."""
 
 RenameKeys = TypedDict(
     "RenameKeys",
@@ -2190,9 +2656,12 @@ RenameKeys = TypedDict(
     "entries": Required["Sequence[RenameKeyEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RenameKeys/)."""
 
 ResourceConfigopenSearchResourceConfig = TypedDict("ResourceConfigopenSearchResourceConfig", {"open_search_resource_config": Required["OpenSearchResourceConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResourceConfigopenSearchResourceConfig/)."""
 ResourceConfig: TypeAlias = ResourceConfigopenSearchResourceConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResourceConfig/)."""
 
 ResourcePolicy = TypedDict(
     "ResourcePolicy",
@@ -2205,6 +2674,7 @@ ResourcePolicy = TypedDict(
     "revision_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResourcePolicy/)."""
 
 ResultField = TypedDict(
     "ResultField",
@@ -2213,6 +2683,7 @@ ResultField = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResultField/)."""
 
 S3Configuration = TypedDict(
     "S3Configuration",
@@ -2223,6 +2694,7 @@ S3Configuration = TypedDict(
     "kms_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3Configuration/)."""
 
 S3DeliveryConfiguration = TypedDict(
     "S3DeliveryConfiguration",
@@ -2231,6 +2703,7 @@ S3DeliveryConfiguration = TypedDict(
     "enable_hive_compatible_path": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3DeliveryConfiguration/)."""
 
 S3TableIntegrationSource = TypedDict(
     "S3TableIntegrationSource",
@@ -2243,6 +2716,7 @@ S3TableIntegrationSource = TypedDict(
     "parent_source_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3TableIntegrationSource/)."""
 
 S3TablesIntegration = TypedDict(
     "S3TablesIntegration",
@@ -2251,6 +2725,7 @@ S3TablesIntegration = TypedDict(
     "datasource_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/S3TablesIntegration/)."""
 
 ScheduledQueryDestination = TypedDict(
     "ScheduledQueryDestination",
@@ -2262,6 +2737,7 @@ ScheduledQueryDestination = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQueryDestination/)."""
 
 ScheduledQuerySummary = TypedDict(
     "ScheduledQuerySummary",
@@ -2279,6 +2755,7 @@ ScheduledQuerySummary = TypedDict(
     "last_updated_time": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ScheduledQuerySummary/)."""
 
 SearchedLogStream = TypedDict(
     "SearchedLogStream",
@@ -2287,6 +2764,7 @@ SearchedLogStream = TypedDict(
     "searched_completely": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SearchedLogStream/)."""
 
 SplitString = TypedDict(
     "SplitString",
@@ -2294,6 +2772,7 @@ SplitString = TypedDict(
     "entries": Required["Sequence[SplitStringEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SplitString/)."""
 
 SplitStringEntry = TypedDict(
     "SplitStringEntry",
@@ -2302,6 +2781,7 @@ SplitStringEntry = TypedDict(
     "delimiter": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SplitStringEntry/)."""
 
 StartLiveTailRequest = TypedDict(
     "StartLiveTailRequest",
@@ -2312,6 +2792,7 @@ StartLiveTailRequest = TypedDict(
     "log_event_filter_pattern": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailRequest/)."""
 
 StartLiveTailOutput = TypedDict(
     "StartLiveTailOutput",
@@ -2319,11 +2800,16 @@ StartLiveTailOutput = TypedDict(
     "response_stream": Required["AsyncIterator[StartLiveTailResponseStream]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailOutput/)."""
 
 StartLiveTailResponseStreamsessionStart = TypedDict("StartLiveTailResponseStreamsessionStart", {"session_start": Required["LiveTailSessionStart"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStreamsessionStart/)."""
 StartLiveTailResponseStreamsessionUpdate = TypedDict("StartLiveTailResponseStreamsessionUpdate", {"session_update": Required["LiveTailSessionUpdate"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStreamsessionUpdate/)."""
 StartLiveTailResponseStreamUnknown = TypedDict("StartLiveTailResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStreamUnknown/)."""
 StartLiveTailResponseStream: TypeAlias = StartLiveTailResponseStreamsessionStart | StartLiveTailResponseStreamsessionUpdate | StartLiveTailResponseStreamUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStream/)."""
 
 StartQueryRequest = TypedDict(
     "StartQueryRequest",
@@ -2338,6 +2824,7 @@ StartQueryRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartQueryRequest/)."""
 
 StopQueryRequest = TypedDict(
     "StopQueryRequest",
@@ -2345,6 +2832,7 @@ StopQueryRequest = TypedDict(
     "query_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StopQueryRequest/)."""
 
 SubscriptionFilter = TypedDict(
     "SubscriptionFilter",
@@ -2361,6 +2849,7 @@ SubscriptionFilter = TypedDict(
     "emit_system_fields": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SubscriptionFilter/)."""
 
 SubstituteString = TypedDict(
     "SubstituteString",
@@ -2368,6 +2857,7 @@ SubstituteString = TypedDict(
     "entries": Required["Sequence[SubstituteStringEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SubstituteString/)."""
 
 SubstituteStringEntry = TypedDict(
     "SubstituteStringEntry",
@@ -2377,6 +2867,7 @@ SubstituteStringEntry = TypedDict(
     "to": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SubstituteStringEntry/)."""
 
 SuppressionPeriod = TypedDict(
     "SuppressionPeriod",
@@ -2385,6 +2876,7 @@ SuppressionPeriod = TypedDict(
     "suppression_unit": NotRequired["SuppressionUnit"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SuppressionPeriod/)."""
 
 SyslogConfiguration = TypedDict(
     "SyslogConfiguration",
@@ -2395,6 +2887,7 @@ SyslogConfiguration = TypedDict(
     "created_at": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/SyslogConfiguration/)."""
 
 TagFilter = TypedDict(
     "TagFilter",
@@ -2403,6 +2896,7 @@ TagFilter = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TagFilter/)."""
 
 TagLogGroupRequest = TypedDict(
     "TagLogGroupRequest",
@@ -2411,6 +2905,7 @@ TagLogGroupRequest = TypedDict(
     "tags": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TagLogGroupRequest/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -2419,6 +2914,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TagResourceRequest/)."""
 
 TestMetricFilterRequest = TypedDict(
     "TestMetricFilterRequest",
@@ -2427,6 +2923,7 @@ TestMetricFilterRequest = TypedDict(
     "log_event_messages": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TestMetricFilterRequest/)."""
 
 TestTransformerRequest = TypedDict(
     "TestTransformerRequest",
@@ -2435,6 +2932,7 @@ TestTransformerRequest = TypedDict(
     "log_event_messages": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TestTransformerRequest/)."""
 
 TransformedLogRecord = TypedDict(
     "TransformedLogRecord",
@@ -2444,6 +2942,7 @@ TransformedLogRecord = TypedDict(
     "transformed_event_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TransformedLogRecord/)."""
 
 TriggerHistoryRecord = TypedDict(
     "TriggerHistoryRecord",
@@ -2455,6 +2954,7 @@ TriggerHistoryRecord = TypedDict(
     "destinations": NotRequired["Sequence[ScheduledQueryDestination]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TriggerHistoryRecord/)."""
 
 TrimString = TypedDict(
     "TrimString",
@@ -2462,6 +2962,7 @@ TrimString = TypedDict(
     "with_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TrimString/)."""
 
 TypeConverter = TypedDict(
     "TypeConverter",
@@ -2469,6 +2970,7 @@ TypeConverter = TypedDict(
     "entries": Required["Sequence[TypeConverterEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TypeConverter/)."""
 
 TypeConverterEntry = TypedDict(
     "TypeConverterEntry",
@@ -2477,6 +2979,7 @@ TypeConverterEntry = TypedDict(
     "type": Required["Type"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TypeConverterEntry/)."""
 
 UntagLogGroupRequest = TypedDict(
     "UntagLogGroupRequest",
@@ -2485,6 +2988,7 @@ UntagLogGroupRequest = TypedDict(
     "tags": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UntagLogGroupRequest/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -2493,6 +2997,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UntagResourceRequest/)."""
 
 UpdateAnomalyRequest = TypedDict(
     "UpdateAnomalyRequest",
@@ -2505,6 +3010,7 @@ UpdateAnomalyRequest = TypedDict(
     "baseline": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateAnomalyRequest/)."""
 
 UpdateDeliveryConfigurationRequest = TypedDict(
     "UpdateDeliveryConfigurationRequest",
@@ -2515,6 +3021,7 @@ UpdateDeliveryConfigurationRequest = TypedDict(
     "s3_delivery_configuration": NotRequired["S3DeliveryConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateDeliveryConfigurationRequest/)."""
 
 UpdateLogAnomalyDetectorRequest = TypedDict(
     "UpdateLogAnomalyDetectorRequest",
@@ -2526,6 +3033,7 @@ UpdateLogAnomalyDetectorRequest = TypedDict(
     "enabled": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateLogAnomalyDetectorRequest/)."""
 
 UpdateLookupTableRequest = TypedDict(
     "UpdateLookupTableRequest",
@@ -2537,6 +3045,7 @@ UpdateLookupTableRequest = TypedDict(
     "kms_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateLookupTableRequest/)."""
 
 UpdateScheduledQueryRequest = TypedDict(
     "UpdateScheduledQueryRequest",
@@ -2557,6 +3066,7 @@ UpdateScheduledQueryRequest = TypedDict(
     "state": NotRequired["ScheduledQueryState"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpdateScheduledQueryRequest/)."""
 
 UpperCaseString = TypedDict(
     "UpperCaseString",
@@ -2564,3 +3074,4 @@ UpperCaseString = TypedDict(
     "with_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/UpperCaseString/)."""

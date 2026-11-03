@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class ActivityFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -25,6 +27,7 @@ class ActivityFailedEventDetails:
 
 @final
 class ActivityListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityListItemOutput/)."""
     @property
     def activity_arn(self) -> str: ...
     @property
@@ -35,6 +38,7 @@ class ActivityListItem:
 
 @final
 class ActivityScheduleFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityScheduleFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -43,6 +47,7 @@ class ActivityScheduleFailedEventDetails:
 
 @final
 class ActivityScheduledEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityScheduledEventDetailsOutput/)."""
     @property
     def resource(self) -> str: ...
     @property
@@ -57,12 +62,14 @@ class ActivityScheduledEventDetails:
 
 @final
 class ActivityStartedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityStartedEventDetailsOutput/)."""
     @property
     def worker_name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ActivitySucceededEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivitySucceededEventDetailsOutput/)."""
     @property
     def output(self) -> str | None: ...
     @property
@@ -71,6 +78,7 @@ class ActivitySucceededEventDetails:
 
 @final
 class ActivityTimedOutEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ActivityTimedOutEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -79,12 +87,14 @@ class ActivityTimedOutEventDetails:
 
 @final
 class AssignedVariablesDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/AssignedVariablesDetailsOutput/)."""
     @property
     def truncated(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BillingDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/BillingDetailsOutput/)."""
     @property
     def billed_memory_used_in_mb(self) -> int: ...
     @property
@@ -93,18 +103,21 @@ class BillingDetails:
 
 @final
 class CloudWatchEventsExecutionDataDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CloudWatchEventsExecutionDataDetailsOutput/)."""
     @property
     def included(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CloudWatchLogsLogGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CloudWatchLogsLogGroupOutput/)."""
     @property
     def log_group_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EncryptionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EncryptionConfigurationOutput/)."""
     @property
     def kms_key_id(self) -> str | None: ...
     @property
@@ -115,6 +128,7 @@ class EncryptionConfiguration:
 
 @final
 class EvaluationFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/EvaluationFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -127,6 +141,7 @@ class EvaluationFailedEventDetails:
 
 @final
 class ExecutionAbortedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionAbortedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -135,6 +150,7 @@ class ExecutionAbortedEventDetails:
 
 @final
 class ExecutionFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -143,6 +159,7 @@ class ExecutionFailedEventDetails:
 
 @final
 class ExecutionListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionListItemOutput/)."""
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -171,12 +188,14 @@ class ExecutionListItem:
 
 @final
 class ExecutionRedrivenEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionRedrivenEventDetailsOutput/)."""
     @property
     def redrive_count(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExecutionStartedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionStartedEventDetailsOutput/)."""
     @property
     def input(self) -> str | None: ...
     @property
@@ -191,6 +210,7 @@ class ExecutionStartedEventDetails:
 
 @final
 class ExecutionSucceededEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionSucceededEventDetailsOutput/)."""
     @property
     def output(self) -> str | None: ...
     @property
@@ -199,6 +219,7 @@ class ExecutionSucceededEventDetails:
 
 @final
 class ExecutionTimedOutEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ExecutionTimedOutEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -207,6 +228,7 @@ class ExecutionTimedOutEventDetails:
 
 @final
 class HistoryEvent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEventOutput/)."""
     @property
     def timestamp(self) -> str: ...
     @property
@@ -293,12 +315,14 @@ class HistoryEvent:
 
 @final
 class HistoryEventExecutionDataDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/HistoryEventExecutionDataDetailsOutput/)."""
     @property
     def truncated(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InspectionData:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataOutput/)."""
     @property
     def input(self) -> str | None: ...
     @property
@@ -339,6 +363,7 @@ class InspectionData:
 
 @final
 class InspectionDataRequest:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataRequestOutput/)."""
     @property
     def protocol(self) -> str | None: ...
     @property
@@ -353,6 +378,7 @@ class InspectionDataRequest:
 
 @final
 class InspectionDataResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionDataResponseOutput/)."""
     @property
     def protocol(self) -> str | None: ...
     @property
@@ -367,6 +393,7 @@ class InspectionDataResponse:
 
 @final
 class InspectionErrorDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionErrorDetailsOutput/)."""
     @property
     def catch_index(self) -> int | None: ...
     @property
@@ -377,6 +404,7 @@ class InspectionErrorDetails:
 
 @final
 class LambdaFunctionFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -385,6 +413,7 @@ class LambdaFunctionFailedEventDetails:
 
 @final
 class LambdaFunctionScheduleFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionScheduleFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -393,6 +422,7 @@ class LambdaFunctionScheduleFailedEventDetails:
 
 @final
 class LambdaFunctionScheduledEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionScheduledEventDetailsOutput/)."""
     @property
     def resource(self) -> str: ...
     @property
@@ -407,6 +437,7 @@ class LambdaFunctionScheduledEventDetails:
 
 @final
 class LambdaFunctionStartFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionStartFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -415,6 +446,7 @@ class LambdaFunctionStartFailedEventDetails:
 
 @final
 class LambdaFunctionSucceededEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionSucceededEventDetailsOutput/)."""
     @property
     def output(self) -> str | None: ...
     @property
@@ -423,6 +455,7 @@ class LambdaFunctionSucceededEventDetails:
 
 @final
 class LambdaFunctionTimedOutEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LambdaFunctionTimedOutEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -431,12 +464,14 @@ class LambdaFunctionTimedOutEventDetails:
 
 @final
 class LogDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LogDestinationOutput/)."""
     @property
     def cloud_watch_logs_log_group(self) -> CloudWatchLogsLogGroup | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class LoggingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/LoggingConfigurationOutput/)."""
     @property
     def level(self) -> _types.LogLevelOutput | None: ...
     @property
@@ -447,6 +482,7 @@ class LoggingConfiguration:
 
 @final
 class MapIterationEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapIterationEventDetailsOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -455,6 +491,7 @@ class MapIterationEventDetails:
 
 @final
 class MapRunExecutionCounts:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunExecutionCountsOutput/)."""
     @property
     def pending(self) -> int: ...
     @property
@@ -479,6 +516,7 @@ class MapRunExecutionCounts:
 
 @final
 class MapRunFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunFailedEventDetailsOutput/)."""
     @property
     def error(self) -> str | None: ...
     @property
@@ -487,6 +525,7 @@ class MapRunFailedEventDetails:
 
 @final
 class MapRunItemCounts:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunItemCountsOutput/)."""
     @property
     def pending(self) -> int: ...
     @property
@@ -511,6 +550,7 @@ class MapRunItemCounts:
 
 @final
 class MapRunListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunListItemOutput/)."""
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -525,6 +565,7 @@ class MapRunListItem:
 
 @final
 class MapRunRedrivenEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunRedrivenEventDetailsOutput/)."""
     @property
     def map_run_arn(self) -> str | None: ...
     @property
@@ -533,18 +574,21 @@ class MapRunRedrivenEventDetails:
 
 @final
 class MapRunStartedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapRunStartedEventDetailsOutput/)."""
     @property
     def map_run_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MapStateStartedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/MapStateStartedEventDetailsOutput/)."""
     @property
     def length(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RoutingConfigurationListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RoutingConfigurationListItemOutput/)."""
     @property
     def state_machine_version_arn(self) -> str: ...
     @property
@@ -553,6 +597,7 @@ class RoutingConfigurationListItem:
 
 @final
 class StateEnteredEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateEnteredEventDetailsOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -563,6 +608,7 @@ class StateEnteredEventDetails:
 
 @final
 class StateExitedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateExitedEventDetailsOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -577,6 +623,7 @@ class StateExitedEventDetails:
 
 @final
 class StateMachineAliasListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineAliasListItemOutput/)."""
     @property
     def state_machine_alias_arn(self) -> str: ...
     @property
@@ -585,6 +632,7 @@ class StateMachineAliasListItem:
 
 @final
 class StateMachineListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineListItemOutput/)."""
     @property
     def state_machine_arn(self) -> str: ...
     @property
@@ -597,6 +645,7 @@ class StateMachineListItem:
 
 @final
 class StateMachineVersionListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StateMachineVersionListItemOutput/)."""
     @property
     def state_machine_version_arn(self) -> str: ...
     @property
@@ -605,6 +654,7 @@ class StateMachineVersionListItem:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TagOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -613,12 +663,14 @@ class Tag:
 
 @final
 class TaskCredentials:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskCredentialsOutput/)."""
     @property
     def role_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TaskFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskFailedEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -631,6 +683,7 @@ class TaskFailedEventDetails:
 
 @final
 class TaskScheduledEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskScheduledEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -649,6 +702,7 @@ class TaskScheduledEventDetails:
 
 @final
 class TaskStartFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskStartFailedEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -661,6 +715,7 @@ class TaskStartFailedEventDetails:
 
 @final
 class TaskStartedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskStartedEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -669,6 +724,7 @@ class TaskStartedEventDetails:
 
 @final
 class TaskSubmitFailedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSubmitFailedEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -681,6 +737,7 @@ class TaskSubmitFailedEventDetails:
 
 @final
 class TaskSubmittedEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSubmittedEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -693,6 +750,7 @@ class TaskSubmittedEventDetails:
 
 @final
 class TaskSucceededEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskSucceededEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -705,6 +763,7 @@ class TaskSucceededEventDetails:
 
 @final
 class TaskTimedOutEventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TaskTimedOutEventDetailsOutput/)."""
     @property
     def resource_type(self) -> str: ...
     @property
@@ -717,12 +776,14 @@ class TaskTimedOutEventDetails:
 
 @final
 class TracingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TracingConfigurationOutput/)."""
     @property
     def enabled(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidateStateMachineDefinitionDiagnostic:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionDiagnosticOutput/)."""
     @property
     def severity(self) -> _types.ValidateStateMachineDefinitionSeverityOutput: ...
     @property
@@ -735,6 +796,7 @@ class ValidateStateMachineDefinitionDiagnostic:
 
 @final
 class CreateActivityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateActivityOutput/)."""
     @property
     def activity_arn(self) -> str: ...
     @property
@@ -743,6 +805,7 @@ class CreateActivityOutput:
 
 @final
 class CreateStateMachineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineOutput/)."""
     @property
     def state_machine_arn(self) -> str: ...
     @property
@@ -753,6 +816,7 @@ class CreateStateMachineOutput:
 
 @final
 class CreateStateMachineAliasOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/CreateStateMachineAliasOutput/)."""
     @property
     def state_machine_alias_arn(self) -> str: ...
     @property
@@ -761,22 +825,27 @@ class CreateStateMachineAliasOutput:
 
 @final
 class DeleteActivityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteActivityOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteStateMachineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteStateMachineAliasOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineAliasOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteStateMachineVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DeleteStateMachineVersionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeActivityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeActivityOutput/)."""
     @property
     def activity_arn(self) -> str: ...
     @property
@@ -789,6 +858,7 @@ class DescribeActivityOutput:
 
 @final
 class DescribeExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeExecutionOutput/)."""
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -833,6 +903,7 @@ class DescribeExecutionOutput:
 
 @final
 class DescribeMapRunOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeMapRunOutput/)."""
     @property
     def map_run_arn(self) -> str: ...
     @property
@@ -861,6 +932,7 @@ class DescribeMapRunOutput:
 
 @final
 class DescribeStateMachineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineOutput/)."""
     @property
     def state_machine_arn(self) -> str: ...
     @property
@@ -893,6 +965,7 @@ class DescribeStateMachineOutput:
 
 @final
 class DescribeStateMachineAliasOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineAliasOutput/)."""
     @property
     def state_machine_alias_arn(self) -> str | None: ...
     @property
@@ -909,6 +982,7 @@ class DescribeStateMachineAliasOutput:
 
 @final
 class DescribeStateMachineForExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/DescribeStateMachineForExecutionOutput/)."""
     @property
     def state_machine_arn(self) -> str: ...
     @property
@@ -937,6 +1011,7 @@ class DescribeStateMachineForExecutionOutput:
 
 @final
 class GetActivityTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetActivityTaskOutput/)."""
     @property
     def task_token(self) -> str | None: ...
     @property
@@ -945,6 +1020,7 @@ class GetActivityTaskOutput:
 
 @final
 class GetExecutionHistoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/GetExecutionHistoryOutput/)."""
     @property
     def events(self) -> list[HistoryEvent]: ...
     @property
@@ -953,6 +1029,7 @@ class GetExecutionHistoryOutput:
 
 @final
 class ListActivitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListActivitiesOutput/)."""
     @property
     def activities(self) -> list[ActivityListItem]: ...
     @property
@@ -961,6 +1038,7 @@ class ListActivitiesOutput:
 
 @final
 class ListExecutionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListExecutionsOutput/)."""
     @property
     def executions(self) -> list[ExecutionListItem]: ...
     @property
@@ -969,6 +1047,7 @@ class ListExecutionsOutput:
 
 @final
 class ListMapRunsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListMapRunsOutput/)."""
     @property
     def map_runs(self) -> list[MapRunListItem]: ...
     @property
@@ -977,6 +1056,7 @@ class ListMapRunsOutput:
 
 @final
 class ListStateMachineAliasesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineAliasesOutput/)."""
     @property
     def state_machine_aliases(self) -> list[StateMachineAliasListItem]: ...
     @property
@@ -985,6 +1065,7 @@ class ListStateMachineAliasesOutput:
 
 @final
 class ListStateMachineVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachineVersionsOutput/)."""
     @property
     def state_machine_versions(self) -> list[StateMachineVersionListItem]: ...
     @property
@@ -993,6 +1074,7 @@ class ListStateMachineVersionsOutput:
 
 @final
 class ListStateMachinesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListStateMachinesOutput/)."""
     @property
     def state_machines(self) -> list[StateMachineListItem]: ...
     @property
@@ -1001,12 +1083,14 @@ class ListStateMachinesOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PublishStateMachineVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/PublishStateMachineVersionOutput/)."""
     @property
     def creation_date(self) -> str: ...
     @property
@@ -1015,24 +1099,29 @@ class PublishStateMachineVersionOutput:
 
 @final
 class RedriveExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RedriveExecutionOutput/)."""
     @property
     def redrive_date(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendTaskFailureOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskFailureOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendTaskHeartbeatOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskHeartbeatOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendTaskSuccessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/SendTaskSuccessOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartExecutionOutput/)."""
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -1041,6 +1130,7 @@ class StartExecutionOutput:
 
 @final
 class StartSyncExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StartSyncExecutionOutput/)."""
     @property
     def execution_arn(self) -> str: ...
     @property
@@ -1073,16 +1163,19 @@ class StartSyncExecutionOutput:
 
 @final
 class StopExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/StopExecutionOutput/)."""
     @property
     def stop_date(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TestStateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestStateOutput/)."""
     @property
     def output(self) -> str | None: ...
     @property
@@ -1099,14 +1192,17 @@ class TestStateOutput:
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMapRunOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateMapRunOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateStateMachineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineOutput/)."""
     @property
     def update_date(self) -> str: ...
     @property
@@ -1117,12 +1213,14 @@ class UpdateStateMachineOutput:
 
 @final
 class UpdateStateMachineAliasOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/UpdateStateMachineAliasOutput/)."""
     @property
     def update_date(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidateStateMachineDefinitionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionOutput/)."""
     @property
     def result(self) -> _types.ValidateStateMachineDefinitionResultCodeOutput: ...
     @property

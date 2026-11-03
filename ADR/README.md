@@ -37,6 +37,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0020: Expose service input and response types together](0020-service-type-namespace.md)
 - [ADR-0021: Name every operation result with an Output suffix](0021-operation-output-names.md)
 - [ADR-0022: Publish the package family with a PyPI API token](0022-pypi-token-publishing.md)
+- [ADR-0023: Website operation references and docstring links](0023-generated-operation-references.md)
 
 ## Creating an ADR
 

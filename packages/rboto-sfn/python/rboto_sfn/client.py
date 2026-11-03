@@ -30,6 +30,8 @@ from .paginators import StepFunctionsClientPaginators as _Paginators
 
 
 class StepFunctionsClient:
+    """Async StepFunctionsClient. See [reference](https://ferrumio.github.io/rboto/reference/sfn/)."""
+
     logger_name = "rboto.sfn"
 
     def __init__(
@@ -72,6 +74,7 @@ class StepFunctionsClient:
         tags: Sequence[Tag] | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
     ) -> CreateActivityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/create_activity/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -107,6 +110,7 @@ class StepFunctionsClient:
         version_description: str | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
     ) -> CreateStateMachineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/create_state_machine/)."""
         params: dict[str, object] = {
             "name": name,
             "definition": definition,
@@ -147,6 +151,7 @@ class StepFunctionsClient:
         routing_configuration: Sequence[RoutingConfigurationListItem],
         description: str | None = None,
     ) -> CreateStateMachineAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/create_state_machine_alias/)."""
         params: dict[str, object] = {
             "name": name,
             "routing_configuration": routing_configuration,
@@ -172,6 +177,7 @@ class StepFunctionsClient:
         *,
         activity_arn: str,
     ) -> DeleteActivityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/delete_activity/)."""
         params: dict[str, object] = {
             "activity_arn": activity_arn,
         }
@@ -194,6 +200,7 @@ class StepFunctionsClient:
         *,
         state_machine_arn: str,
     ) -> DeleteStateMachineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/delete_state_machine/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -216,6 +223,7 @@ class StepFunctionsClient:
         *,
         state_machine_alias_arn: str,
     ) -> DeleteStateMachineAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/delete_state_machine_alias/)."""
         params: dict[str, object] = {
             "state_machine_alias_arn": state_machine_alias_arn,
         }
@@ -238,6 +246,7 @@ class StepFunctionsClient:
         *,
         state_machine_version_arn: str,
     ) -> DeleteStateMachineVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/delete_state_machine_version/)."""
         params: dict[str, object] = {
             "state_machine_version_arn": state_machine_version_arn,
         }
@@ -260,6 +269,7 @@ class StepFunctionsClient:
         *,
         activity_arn: str,
     ) -> DescribeActivityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/describe_activity/)."""
         params: dict[str, object] = {
             "activity_arn": activity_arn,
         }
@@ -283,6 +293,7 @@ class StepFunctionsClient:
         execution_arn: str,
         included_data: IncludedData | None = None,
     ) -> DescribeExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/describe_execution/)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -307,6 +318,7 @@ class StepFunctionsClient:
         *,
         map_run_arn: str,
     ) -> DescribeMapRunOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/describe_map_run/)."""
         params: dict[str, object] = {
             "map_run_arn": map_run_arn,
         }
@@ -330,6 +342,7 @@ class StepFunctionsClient:
         state_machine_arn: str,
         included_data: IncludedData | None = None,
     ) -> DescribeStateMachineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/describe_state_machine/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -354,6 +367,7 @@ class StepFunctionsClient:
         *,
         state_machine_alias_arn: str,
     ) -> DescribeStateMachineAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/describe_state_machine_alias/)."""
         params: dict[str, object] = {
             "state_machine_alias_arn": state_machine_alias_arn,
         }
@@ -377,6 +391,7 @@ class StepFunctionsClient:
         execution_arn: str,
         included_data: IncludedData | None = None,
     ) -> DescribeStateMachineForExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/describe_state_machine_for_execution/)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -402,6 +417,7 @@ class StepFunctionsClient:
         activity_arn: str,
         worker_name: str | None = None,
     ) -> GetActivityTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/get_activity_task/)."""
         params: dict[str, object] = {
             "activity_arn": activity_arn,
         }
@@ -430,6 +446,7 @@ class StepFunctionsClient:
         next_token: str | None = None,
         include_execution_data: bool | None = None,
     ) -> GetExecutionHistoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/get_execution_history/)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -461,6 +478,7 @@ class StepFunctionsClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListActivitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_activities/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -491,6 +509,7 @@ class StepFunctionsClient:
         map_run_arn: str | None = None,
         redrive_filter: ExecutionRedriveFilter | None = None,
     ) -> ListExecutionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_executions/)."""
         params: dict[str, object] = {
         }
         if state_machine_arn is not None:
@@ -526,6 +545,7 @@ class StepFunctionsClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListMapRunsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_map_runs/)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -554,6 +574,7 @@ class StepFunctionsClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListStateMachineAliasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_state_machine_aliases/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -582,6 +603,7 @@ class StepFunctionsClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListStateMachineVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_state_machine_versions/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -609,6 +631,7 @@ class StepFunctionsClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListStateMachinesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_state_machines/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -634,6 +657,7 @@ class StepFunctionsClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -658,6 +682,7 @@ class StepFunctionsClient:
         revision_id: str | None = None,
         description: str | None = None,
     ) -> PublishStateMachineVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/publish_state_machine_version/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -685,6 +710,7 @@ class StepFunctionsClient:
         execution_arn: str,
         client_token: str | None = None,
     ) -> RedriveExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/redrive_execution/)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -711,6 +737,7 @@ class StepFunctionsClient:
         error: str | None = None,
         cause: str | None = None,
     ) -> SendTaskFailureOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/send_task_failure/)."""
         params: dict[str, object] = {
             "task_token": task_token,
         }
@@ -737,6 +764,7 @@ class StepFunctionsClient:
         *,
         task_token: str,
     ) -> SendTaskHeartbeatOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/send_task_heartbeat/)."""
         params: dict[str, object] = {
             "task_token": task_token,
         }
@@ -760,6 +788,7 @@ class StepFunctionsClient:
         task_token: str,
         output: str,
     ) -> SendTaskSuccessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/send_task_success/)."""
         params: dict[str, object] = {
             "task_token": task_token,
             "output": output,
@@ -786,6 +815,7 @@ class StepFunctionsClient:
         input: str | None = None,
         trace_header: str | None = None,
     ) -> StartExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/start_execution/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -818,6 +848,7 @@ class StepFunctionsClient:
         trace_header: str | None = None,
         included_data: IncludedData | None = None,
     ) -> StartSyncExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/start_sync_execution/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -850,6 +881,7 @@ class StepFunctionsClient:
         error: str | None = None,
         cause: str | None = None,
     ) -> StopExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/stop_execution/)."""
         params: dict[str, object] = {
             "execution_arn": execution_arn,
         }
@@ -877,6 +909,7 @@ class StepFunctionsClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -909,6 +942,7 @@ class StepFunctionsClient:
         context: str | None = None,
         state_configuration: TestStateConfiguration | None = None,
     ) -> TestStateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/test_state/)."""
         params: dict[str, object] = {
             "definition": definition,
         }
@@ -950,6 +984,7 @@ class StepFunctionsClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -976,6 +1011,7 @@ class StepFunctionsClient:
         tolerated_failure_percentage: float | None = None,
         tolerated_failure_count: int | None = None,
     ) -> UpdateMapRunOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/update_map_run/)."""
         params: dict[str, object] = {
             "map_run_arn": map_run_arn,
         }
@@ -1011,6 +1047,7 @@ class StepFunctionsClient:
         version_description: str | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
     ) -> UpdateStateMachineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/update_state_machine/)."""
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
@@ -1049,6 +1086,7 @@ class StepFunctionsClient:
         description: str | None = None,
         routing_configuration: Sequence[RoutingConfigurationListItem] | None = None,
     ) -> UpdateStateMachineAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/update_state_machine_alias/)."""
         params: dict[str, object] = {
             "state_machine_alias_arn": state_machine_alias_arn,
         }
@@ -1078,6 +1116,7 @@ class StepFunctionsClient:
         severity: ValidateStateMachineDefinitionSeverity | None = None,
         max_results: int | None = None,
     ) -> ValidateStateMachineDefinitionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sfn/operations/validate_state_machine_definition/)."""
         params: dict[str, object] = {
             "definition": definition,
         }

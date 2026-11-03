@@ -19,6 +19,8 @@ from .paginators import {{ client_class }}Paginators as _Paginators
 
 
 class {{ client_class }}:
+    """Async {{ client_class }}. See [reference]({{ documentation_url }})."""
+
     logger_name = "rboto.{{ service_id }}"
 
     def __init__(
@@ -59,6 +61,7 @@ class {{ client_class }}:
 {% if method.parameters %}        *,
 {% for parameter in method.parameters %}        {{ parameter.name }}: {{ parameter.annotation }}{% if not parameter.required %} | None = None{% endif %},
 {% endfor %}{% endif %}    ) -> {{ method.output }}:
+        """See [reference]({{ method.documentation_url }})."""
         params: dict[str, object] = {
 {% for parameter in method.parameters %}{% if parameter.required %}            "{{ parameter.key }}": {{ parameter.name }},
 {% endif %}{% endfor %}        }

@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AwsVpcConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/AwsVpcConfigurationOutput/)."""
     @property
     def subnets(self) -> list[str]: ...
     @property
@@ -27,6 +29,7 @@ class AwsVpcConfiguration:
 
 @final
 class CapacityProviderStrategyItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CapacityProviderStrategyItemOutput/)."""
     @property
     def capacity_provider(self) -> str: ...
     @property
@@ -37,12 +40,14 @@ class CapacityProviderStrategyItem:
 
 @final
 class DeadLetterConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeadLetterConfigOutput/)."""
     @property
     def arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EcsParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EcsParametersOutput/)."""
     @property
     def task_definition_arn(self) -> str: ...
     @property
@@ -75,6 +80,7 @@ class EcsParameters:
 
 @final
 class EventBridgeParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgeParametersOutput/)."""
     @property
     def detail_type(self) -> str: ...
     @property
@@ -83,6 +89,7 @@ class EventBridgeParameters:
 
 @final
 class FlexibleTimeWindow:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/FlexibleTimeWindowOutput/)."""
     @property
     def mode(self) -> _types.FlexibleTimeWindowModeOutput: ...
     @property
@@ -91,18 +98,21 @@ class FlexibleTimeWindow:
 
 @final
 class KinesisParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/KinesisParametersOutput/)."""
     @property
     def partition_key(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class NetworkConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/NetworkConfigurationOutput/)."""
     @property
     def awsvpc_configuration(self) -> AwsVpcConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PlacementConstraint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementConstraintOutput/)."""
     @property
     def type(self) -> _types.PlacementConstraintTypeOutput | None: ...
     @property
@@ -111,6 +121,7 @@ class PlacementConstraint:
 
 @final
 class PlacementStrategy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementStrategyOutput/)."""
     @property
     def type(self) -> _types.PlacementStrategyTypeOutput | None: ...
     @property
@@ -119,6 +130,7 @@ class PlacementStrategy:
 
 @final
 class RetryPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/RetryPolicyOutput/)."""
     @property
     def maximum_event_age_in_seconds(self) -> int | None: ...
     @property
@@ -127,6 +139,7 @@ class RetryPolicy:
 
 @final
 class SageMakerPipelineParameter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SageMakerPipelineParameterOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -135,12 +148,14 @@ class SageMakerPipelineParameter:
 
 @final
 class SageMakerPipelineParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SageMakerPipelineParametersOutput/)."""
     @property
     def pipeline_parameter_list(self) -> list[SageMakerPipelineParameter] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScheduleGroupSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleGroupSummaryOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -155,6 +170,7 @@ class ScheduleGroupSummary:
 
 @final
 class ScheduleSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleSummaryOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -173,12 +189,14 @@ class ScheduleSummary:
 
 @final
 class SqsParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SqsParametersOutput/)."""
     @property
     def message_group_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -187,6 +205,7 @@ class Tag:
 
 @final
 class Target:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TargetOutput/)."""
     @property
     def arn(self) -> str: ...
     @property
@@ -211,32 +230,38 @@ class Target:
 
 @final
 class TargetSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TargetSummaryOutput/)."""
     @property
     def arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateScheduleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleOutput/)."""
     @property
     def schedule_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateScheduleGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleGroupOutput/)."""
     @property
     def schedule_group_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteScheduleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteScheduleGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleGroupOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetScheduleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -271,6 +296,7 @@ class GetScheduleOutput:
 
 @final
 class GetScheduleGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleGroupOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -285,6 +311,7 @@ class GetScheduleGroupOutput:
 
 @final
 class ListScheduleGroupsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListScheduleGroupsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -293,6 +320,7 @@ class ListScheduleGroupsOutput:
 
 @final
 class ListSchedulesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListSchedulesOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -301,20 +329,24 @@ class ListSchedulesOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateScheduleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UpdateScheduleOutput/)."""
     @property
     def schedule_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...

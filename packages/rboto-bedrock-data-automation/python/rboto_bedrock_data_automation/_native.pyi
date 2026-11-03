@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AudioExtractionCategory:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategoryOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     @property
@@ -27,12 +29,14 @@ class AudioExtractionCategory:
 
 @final
 class AudioExtractionCategoryTypeConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategoryTypeConfigurationOutput/)."""
     @property
     def transcript(self) -> TranscriptConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AudioLanguageConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioLanguageConfigurationOutput/)."""
     @property
     def input_languages(self) -> list[_types.LanguageOutput] | None: ...
     @property
@@ -43,6 +47,7 @@ class AudioLanguageConfiguration:
 
 @final
 class AudioOverrideConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioOverrideConfigurationOutput/)."""
     @property
     def modality_processing(self) -> ModalityProcessingConfiguration | None: ...
     @property
@@ -53,12 +58,14 @@ class AudioOverrideConfiguration:
 
 @final
 class AudioStandardExtraction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardExtractionOutput/)."""
     @property
     def category(self) -> AudioExtractionCategory | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AudioStandardGenerativeField:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardGenerativeFieldOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     @property
@@ -67,6 +74,7 @@ class AudioStandardGenerativeField:
 
 @final
 class AudioStandardOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardOutputConfigurationOutput/)."""
     @property
     def extraction(self) -> AudioStandardExtraction | None: ...
     @property
@@ -75,6 +83,7 @@ class AudioStandardOutputConfiguration:
 
 @final
 class Blueprint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOutput/)."""
     @property
     def blueprint_arn(self) -> str: ...
     @property
@@ -103,6 +112,7 @@ class Blueprint:
 
 @final
 class BlueprintItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintItemOutput/)."""
     @property
     def blueprint_arn(self) -> str: ...
     @property
@@ -113,12 +123,14 @@ class BlueprintItem:
 
 @final
 class BlueprintOptimizationOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationOutputConfigurationOutput/)."""
     @property
     def s3_object(self) -> S3Object | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BlueprintOptimizationSample:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationSampleOutput/)."""
     @property
     def asset_s3_object(self) -> S3Object | None: ...
     @property
@@ -127,6 +139,7 @@ class BlueprintOptimizationSample:
 
 @final
 class BlueprintSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintSummaryOutput/)."""
     @property
     def blueprint_arn(self) -> str: ...
     @property
@@ -143,12 +156,14 @@ class BlueprintSummary:
 
 @final
 class ChannelLabelingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ChannelLabelingConfigurationOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CustomOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CustomOutputConfigurationOutput/)."""
     @property
     def blueprints(self) -> list[BlueprintItem] | None: ...
     @property
@@ -157,6 +172,7 @@ class CustomOutputConfiguration:
 
 @final
 class DataAutomationLibrary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryOutput/)."""
     @property
     def library_arn(self) -> str: ...
     @property
@@ -177,12 +193,14 @@ class DataAutomationLibrary:
 
 @final
 class DataAutomationLibraryConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryConfigurationOutput/)."""
     @property
     def libraries(self) -> list[DataAutomationLibraryItem] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DataAutomationLibraryIngestionJob:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryIngestionJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -205,6 +223,7 @@ class DataAutomationLibraryIngestionJob:
 
 @final
 class DataAutomationLibraryIngestionJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryIngestionJobSummaryOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -221,12 +240,14 @@ class DataAutomationLibraryIngestionJobSummary:
 
 @final
 class DataAutomationLibraryItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryItemOutput/)."""
     @property
     def library_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DataAutomationLibrarySummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibrarySummaryOutput/)."""
     @property
     def library_arn(self) -> str: ...
     @property
@@ -237,6 +258,7 @@ class DataAutomationLibrarySummary:
 
 @final
 class DataAutomationProject:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectOutput/)."""
     @property
     def project_arn(self) -> str: ...
     @property
@@ -269,6 +291,7 @@ class DataAutomationProject:
 
 @final
 class DataAutomationProjectSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectSummaryOutput/)."""
     @property
     def project_arn(self) -> str: ...
     @property
@@ -283,30 +306,35 @@ class DataAutomationProjectSummary:
 
 @final
 class DocumentBoundingBox:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentBoundingBoxOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DocumentCustomOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentCustomOutputConfigurationOutput/)."""
     @property
     def fallback_blueprints(self) -> list[BlueprintItem] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DocumentExtractionGranularity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentExtractionGranularityOutput/)."""
     @property
     def types(self) -> list[_types.DocumentExtractionGranularityTypeOutput] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DocumentOutputAdditionalFileFormat:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputAdditionalFileFormatOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DocumentOutputFormat:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputFormatOutput/)."""
     @property
     def text_format(self) -> DocumentOutputTextFormat | None: ...
     @property
@@ -315,12 +343,14 @@ class DocumentOutputFormat:
 
 @final
 class DocumentOutputTextFormat:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputTextFormatOutput/)."""
     @property
     def types(self) -> list[_types.DocumentOutputTextFormatTypeOutput] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DocumentOverrideConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOverrideConfigurationOutput/)."""
     @property
     def splitter(self) -> SplitterConfiguration | None: ...
     @property
@@ -331,6 +361,7 @@ class DocumentOverrideConfiguration:
 
 @final
 class DocumentStandardExtraction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardExtractionOutput/)."""
     @property
     def granularity(self) -> DocumentExtractionGranularity | None: ...
     @property
@@ -339,12 +370,14 @@ class DocumentStandardExtraction:
 
 @final
 class DocumentStandardGenerativeField:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardGenerativeFieldOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DocumentStandardOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardOutputConfigurationOutput/)."""
     @property
     def extraction(self) -> DocumentStandardExtraction | None: ...
     @property
@@ -355,6 +388,7 @@ class DocumentStandardOutputConfiguration:
 
 @final
 class EntityTypeInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityTypeInfoOutput/)."""
     @property
     def entity_type(self) -> _types.EntityTypeOutput: ...
     @property
@@ -363,12 +397,14 @@ class EntityTypeInfo:
 
 @final
 class ImageBoundingBox:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageBoundingBoxOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ImageExtractionCategory:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageExtractionCategoryOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     @property
@@ -377,6 +413,7 @@ class ImageExtractionCategory:
 
 @final
 class ImageOverrideConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageOverrideConfigurationOutput/)."""
     @property
     def modality_processing(self) -> ModalityProcessingConfiguration | None: ...
     @property
@@ -385,6 +422,7 @@ class ImageOverrideConfiguration:
 
 @final
 class ImageStandardExtraction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardExtractionOutput/)."""
     @property
     def category(self) -> ImageExtractionCategory | None: ...
     @property
@@ -393,6 +431,7 @@ class ImageStandardExtraction:
 
 @final
 class ImageStandardGenerativeField:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardGenerativeFieldOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     @property
@@ -401,6 +440,7 @@ class ImageStandardGenerativeField:
 
 @final
 class ImageStandardOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardOutputConfigurationOutput/)."""
     @property
     def extraction(self) -> ImageStandardExtraction | None: ...
     @property
@@ -409,12 +449,14 @@ class ImageStandardOutputConfiguration:
 
 @final
 class ModalityProcessingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ModalityProcessingConfigurationOutput/)."""
     @property
     def state(self) -> _types.StateOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ModalityRoutingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ModalityRoutingConfigurationOutput/)."""
     @property
     def jpeg(self) -> _types.DesiredModalityOutput | None: ...
     @property
@@ -427,12 +469,14 @@ class ModalityRoutingConfiguration:
 
 @final
 class OutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/OutputConfigurationOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OverrideConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/OverrideConfigurationOutput/)."""
     @property
     def document(self) -> DocumentOverrideConfiguration | None: ...
     @property
@@ -447,6 +491,7 @@ class OverrideConfiguration:
 
 @final
 class PiiEntitiesConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PiiEntitiesConfiguration-e97a902134d3/)."""
     @property
     def pii_entity_types(self) -> list[_types.PIIEntityTypeOutput] | None: ...
     @property
@@ -455,6 +500,7 @@ class PiiEntitiesConfiguration:
 
 @final
 class S3Object:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/S3ObjectOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     @property
@@ -463,6 +509,7 @@ class S3Object:
 
 @final
 class SensitiveDataConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SensitiveDataConfigurationOutput/)."""
     @property
     def detection_mode(self) -> _types.SensitiveDataDetectionModeOutput: ...
     @property
@@ -473,18 +520,21 @@ class SensitiveDataConfiguration:
 
 @final
 class SpeakerLabelingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SpeakerLabelingConfigurationOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SplitterConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SplitterConfigurationOutput/)."""
     @property
     def state(self) -> _types.StateOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StandardOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/StandardOutputConfigurationOutput/)."""
     @property
     def document(self) -> DocumentStandardOutputConfiguration | None: ...
     @property
@@ -497,6 +547,7 @@ class StandardOutputConfiguration:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -505,6 +556,7 @@ class Tag:
 
 @final
 class TranscriptConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TranscriptConfigurationOutput/)."""
     @property
     def speaker_labeling(self) -> SpeakerLabelingConfiguration | None: ...
     @property
@@ -513,12 +565,14 @@ class TranscriptConfiguration:
 
 @final
 class VideoBoundingBox:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoBoundingBoxOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VideoExtractionCategory:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoExtractionCategoryOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     @property
@@ -527,6 +581,7 @@ class VideoExtractionCategory:
 
 @final
 class VideoOverrideConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoOverrideConfigurationOutput/)."""
     @property
     def modality_processing(self) -> ModalityProcessingConfiguration | None: ...
     @property
@@ -535,6 +590,7 @@ class VideoOverrideConfiguration:
 
 @final
 class VideoStandardExtraction:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardExtractionOutput/)."""
     @property
     def category(self) -> VideoExtractionCategory | None: ...
     @property
@@ -543,6 +599,7 @@ class VideoStandardExtraction:
 
 @final
 class VideoStandardGenerativeField:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardGenerativeFieldOutput/)."""
     @property
     def state(self) -> _types.StateOutput: ...
     @property
@@ -551,6 +608,7 @@ class VideoStandardGenerativeField:
 
 @final
 class VideoStandardOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardOutputConfigurationOutput/)."""
     @property
     def extraction(self) -> VideoStandardExtraction | None: ...
     @property
@@ -559,22 +617,26 @@ class VideoStandardOutputConfiguration:
 
 @final
 class CopyBlueprintStageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CopyBlueprintStageOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateBlueprintOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintOutput/)."""
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateBlueprintVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintVersionOutput/)."""
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDataAutomationLibraryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationLibraryOutput/)."""
     @property
     def library_arn(self) -> str | None: ...
     @property
@@ -583,6 +645,7 @@ class CreateDataAutomationLibraryOutput:
 
 @final
 class CreateDataAutomationProjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationProjectOutput/)."""
     @property
     def project_arn(self) -> str: ...
     @property
@@ -593,10 +656,12 @@ class CreateDataAutomationProjectOutput:
 
 @final
 class DeleteBlueprintOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteBlueprintOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDataAutomationLibraryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationLibraryOutput/)."""
     @property
     def library_arn(self) -> str | None: ...
     @property
@@ -605,6 +670,7 @@ class DeleteDataAutomationLibraryOutput:
 
 @final
 class DeleteDataAutomationProjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationProjectOutput/)."""
     @property
     def project_arn(self) -> str: ...
     @property
@@ -613,12 +679,14 @@ class DeleteDataAutomationProjectOutput:
 
 @final
 class GetBlueprintOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintOutput/)."""
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBlueprintOptimizationStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintOptimizationStatusOutput/)."""
     @property
     def status(self) -> _types.BlueprintOptimizationJobStatusOutput | None: ...
     @property
@@ -631,42 +699,49 @@ class GetBlueprintOptimizationStatusOutput:
 
 @final
 class GetDataAutomationLibraryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryOutput/)."""
     @property
     def library(self) -> DataAutomationLibrary | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDataAutomationLibraryEntityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryEntityOutput/)."""
     @property
     def entity(self) -> _types.EntityDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDataAutomationLibraryIngestionJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryIngestionJobOutput/)."""
     @property
     def job(self) -> DataAutomationLibraryIngestionJob | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDataAutomationProjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationProjectOutput/)."""
     @property
     def project(self) -> DataAutomationProject | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InvokeBlueprintOptimizationAsyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeBlueprintOptimizationAsyncOutput/)."""
     @property
     def invocation_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InvokeDataAutomationLibraryIngestionJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeDataAutomationLibraryIngestionJobOutput/)."""
     @property
     def job_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListBlueprintsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListBlueprintsOutput/)."""
     @property
     def blueprints(self) -> list[BlueprintSummary]: ...
     @property
@@ -675,6 +750,7 @@ class ListBlueprintsOutput:
 
 @final
 class ListDataAutomationLibrariesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibrariesOutput/)."""
     @property
     def libraries(self) -> list[DataAutomationLibrarySummary] | None: ...
     @property
@@ -683,6 +759,7 @@ class ListDataAutomationLibrariesOutput:
 
 @final
 class ListDataAutomationLibraryEntitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryEntitiesOutput/)."""
     @property
     def entities(self) -> list[_types.DataAutomationLibraryEntitySummary] | None: ...
     @property
@@ -691,6 +768,7 @@ class ListDataAutomationLibraryEntitiesOutput:
 
 @final
 class ListDataAutomationLibraryIngestionJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryIngestionJobsOutput/)."""
     @property
     def jobs(self) -> list[DataAutomationLibraryIngestionJobSummary] | None: ...
     @property
@@ -699,6 +777,7 @@ class ListDataAutomationLibraryIngestionJobsOutput:
 
 @final
 class ListDataAutomationProjectsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationProjectsOutput/)."""
     @property
     def projects(self) -> list[DataAutomationProjectSummary]: ...
     @property
@@ -707,26 +786,31 @@ class ListDataAutomationProjectsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateBlueprintOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateBlueprintOutput/)."""
     @property
     def blueprint(self) -> Blueprint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDataAutomationLibraryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationLibraryOutput/)."""
     @property
     def library_arn(self) -> str | None: ...
     @property
@@ -735,6 +819,7 @@ class UpdateDataAutomationLibraryOutput:
 
 @final
 class UpdateDataAutomationProjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationProjectOutput/)."""
     @property
     def project_arn(self) -> str: ...
     @property

@@ -53,7 +53,7 @@ class QBusinessClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[GetChatControlsConfigurationOutput]:
-        """Yield each page from get_chat_controls_configuration; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_chat_controls_configuration/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -77,7 +77,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListApplicationsOutput]:
-        """Yield each page from list_applications; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_applications/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -103,7 +103,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListAttachmentsOutput]:
-        """Yield each page from list_attachments; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_attachments/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -132,7 +132,7 @@ class QBusinessClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListChatResponseConfigurationsOutput]:
-        """Yield each page from list_chat_response_configurations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_chat_response_configurations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -158,7 +158,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListConversationsOutput]:
-        """Yield each page from list_conversations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_conversations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -185,7 +185,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListDataAccessorsOutput]:
-        """Yield each page from list_data_accessors; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_data_accessors/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -215,7 +215,7 @@ class QBusinessClientPaginators:
         end_time: str | None = None,
         status_filter: DataSourceSyncJobStatus | None = None,
     ) -> AsyncIterator[ListDataSourceSyncJobsOutput]:
-        """Yield each page from list_data_source_sync_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_data_source_sync_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "data_source_id": data_source_id,
             "application_id": application_id,
@@ -249,7 +249,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListDataSourcesOutput]:
-        """Yield each page from list_data_sources; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_data_sources/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -277,7 +277,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListDocumentsOutput]:
-        """Yield each page from list_documents; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_documents/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -308,7 +308,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListGroupsOutput]:
-        """Yield each page from list_groups; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_groups/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -337,7 +337,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListIndicesOutput]:
-        """Yield each page from list_indices; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_indices/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -364,7 +364,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListMessagesOutput]:
-        """Yield each page from list_messages; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_messages/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "conversation_id": conversation_id,
             "application_id": application_id,
@@ -393,7 +393,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListPluginActionsOutput]:
-        """Yield each page from list_plugin_actions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugin_actions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -419,7 +419,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListPluginTypeActionsOutput]:
-        """Yield each page from list_plugin_type_actions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugin_type_actions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "plugin_type": plugin_type,
         }
@@ -443,7 +443,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListPluginTypeMetadataOutput]:
-        """Yield each page from list_plugin_type_metadata; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugin_type_metadata/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -467,7 +467,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListPluginsOutput]:
-        """Yield each page from list_plugins; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugins/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -492,7 +492,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListRetrieversOutput]:
-        """Yield each page from list_retrievers; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_retrievers/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -517,7 +517,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListSubscriptionsOutput]:
-        """Yield each page from list_subscriptions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_subscriptions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -542,7 +542,7 @@ class QBusinessClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListWebExperiencesOutput]:
-        """Yield each page from list_web_experiences; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_web_experiences/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -570,7 +570,7 @@ class QBusinessClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[SearchRelevantContentOutput]:
-        """Yield each page from search_relevant_content; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/search_relevant_content/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "query_text": query_text,

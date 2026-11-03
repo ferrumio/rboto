@@ -11,18 +11,21 @@ from .types import StartSpeechSynthesisStreamOutput
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class StartSpeechSynthesisStreamEventStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.StartSpeechSynthesisStreamEventStream]: ...
     def __anext__(self) -> Awaitable[_types.StartSpeechSynthesisStreamEventStream]: ...
 
 
 @final
 class Lexicon:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconOutput/)."""
     @property
     def content(self) -> str | None: ...
     @property
@@ -31,6 +34,7 @@ class Lexicon:
 
 @final
 class LexiconAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconAttributesOutput/)."""
     @property
     def alphabet(self) -> str | None: ...
     @property
@@ -47,6 +51,7 @@ class LexiconAttributes:
 
 @final
 class LexiconDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/LexiconDescriptionOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -55,6 +60,7 @@ class LexiconDescription:
 
 @final
 class SynthesisTask:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesisTaskOutput/)."""
     @property
     def engine(self) -> _types.EngineOutput | None: ...
     @property
@@ -89,6 +95,7 @@ class SynthesisTask:
 
 @final
 class Voice:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/VoiceOutput/)."""
     @property
     def gender(self) -> _types.GenderOutput | None: ...
     @property
@@ -107,10 +114,12 @@ class Voice:
 
 @final
 class DeleteLexiconOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DeleteLexiconOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeVoicesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/DescribeVoicesOutput/)."""
     @property
     def voices(self) -> list[Voice] | None: ...
     @property
@@ -119,6 +128,7 @@ class DescribeVoicesOutput:
 
 @final
 class GetLexiconOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetLexiconOutput/)."""
     @property
     def lexicon(self) -> Lexicon | None: ...
     @property
@@ -127,12 +137,14 @@ class GetLexiconOutput:
 
 @final
 class GetSpeechSynthesisTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/GetSpeechSynthesisTaskOutput/)."""
     @property
     def synthesis_task(self) -> SynthesisTask | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListLexiconsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListLexiconsOutput/)."""
     @property
     def lexicons(self) -> list[LexiconDescription] | None: ...
     @property
@@ -141,6 +153,7 @@ class ListLexiconsOutput:
 
 @final
 class ListSpeechSynthesisTasksOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListSpeechSynthesisTasksOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -149,16 +162,19 @@ class ListSpeechSynthesisTasksOutput:
 
 @final
 class PutLexiconOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/PutLexiconOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartSpeechSynthesisTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisTaskOutput/)."""
     @property
     def synthesis_task(self) -> SynthesisTask | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SynthesizeSpeechOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesizeSpeechOutput/)."""
     @property
     def audio_stream(self) -> ByteStream: ...
     @property

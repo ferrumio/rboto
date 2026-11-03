@@ -44,7 +44,7 @@ class BedrockDataAutomationClientPaginators:
         next_token: str | None = None,
         project_filter: DataAutomationProjectFilter | None = None,
     ) -> AsyncIterator[ListBlueprintsOutput]:
-        """Yield each page from list_blueprints; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_blueprints/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if blueprint_arn is not None:
@@ -76,7 +76,7 @@ class BedrockDataAutomationClientPaginators:
         next_token: str | None = None,
         project_filter: DataAutomationProjectFilter | None = None,
     ) -> AsyncIterator[ListDataAutomationLibrariesOutput]:
-        """Yield each page from list_data_automation_libraries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_libraries/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -103,7 +103,7 @@ class BedrockDataAutomationClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListDataAutomationLibraryEntitiesOutput]:
-        """Yield each page from list_data_automation_library_entities; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_library_entities/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
             "entity_type": entity_type,
@@ -129,7 +129,7 @@ class BedrockDataAutomationClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListDataAutomationLibraryIngestionJobsOutput]:
-        """Yield each page from list_data_automation_library_ingestion_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_library_ingestion_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
         }
@@ -157,7 +157,7 @@ class BedrockDataAutomationClientPaginators:
         resource_owner: ResourceOwner | None = None,
         library_filter: DataAutomationLibraryFilter | None = None,
     ) -> AsyncIterator[ListDataAutomationProjectsOutput]:
-        """Yield each page from list_data_automation_projects; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_projects/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:

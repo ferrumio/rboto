@@ -9,151 +9,295 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AudioExtractionCategoryOutput: TypeAlias = _native.AudioExtractionCategory
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategoryOutput/)."""
 AudioExtractionCategoryTypeConfigurationOutput: TypeAlias = _native.AudioExtractionCategoryTypeConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategoryTypeConfigurationOutput/)."""
 AudioLanguageConfigurationOutput: TypeAlias = _native.AudioLanguageConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioLanguageConfigurationOutput/)."""
 AudioOverrideConfigurationOutput: TypeAlias = _native.AudioOverrideConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioOverrideConfigurationOutput/)."""
 AudioStandardExtractionOutput: TypeAlias = _native.AudioStandardExtraction
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardExtractionOutput/)."""
 AudioStandardGenerativeFieldOutput: TypeAlias = _native.AudioStandardGenerativeField
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardGenerativeFieldOutput/)."""
 AudioStandardOutputConfigurationOutput: TypeAlias = _native.AudioStandardOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardOutputConfigurationOutput/)."""
 BlueprintOutput: TypeAlias = _native.Blueprint
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOutput/)."""
 BlueprintItemOutput: TypeAlias = _native.BlueprintItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintItemOutput/)."""
 BlueprintOptimizationOutputConfigurationOutput: TypeAlias = _native.BlueprintOptimizationOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationOutputConfigurationOutput/)."""
 BlueprintOptimizationSampleOutput: TypeAlias = _native.BlueprintOptimizationSample
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationSampleOutput/)."""
 BlueprintSummaryOutput: TypeAlias = _native.BlueprintSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintSummaryOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ByteStream/)."""
 ChannelLabelingConfigurationOutput: TypeAlias = _native.ChannelLabelingConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ChannelLabelingConfigurationOutput/)."""
 CopyBlueprintStageOutput: TypeAlias = _native.CopyBlueprintStageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CopyBlueprintStageOutput/)."""
 CreateBlueprintOutput: TypeAlias = _native.CreateBlueprintOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintOutput/)."""
 CreateBlueprintVersionOutput: TypeAlias = _native.CreateBlueprintVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintVersionOutput/)."""
 CreateDataAutomationLibraryOutput: TypeAlias = _native.CreateDataAutomationLibraryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationLibraryOutput/)."""
 CreateDataAutomationProjectOutput: TypeAlias = _native.CreateDataAutomationProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationProjectOutput/)."""
 CustomOutputConfigurationOutput: TypeAlias = _native.CustomOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CustomOutputConfigurationOutput/)."""
 DataAutomationLibraryOutput: TypeAlias = _native.DataAutomationLibrary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryOutput/)."""
 DataAutomationLibraryConfigurationOutput: TypeAlias = _native.DataAutomationLibraryConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryConfigurationOutput/)."""
 DataAutomationLibraryIngestionJobOutput: TypeAlias = _native.DataAutomationLibraryIngestionJob
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryIngestionJobOutput/)."""
 DataAutomationLibraryIngestionJobSummaryOutput: TypeAlias = _native.DataAutomationLibraryIngestionJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryIngestionJobSummaryOutput/)."""
 DataAutomationLibraryItemOutput: TypeAlias = _native.DataAutomationLibraryItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryItemOutput/)."""
 DataAutomationLibrarySummaryOutput: TypeAlias = _native.DataAutomationLibrarySummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibrarySummaryOutput/)."""
 DataAutomationProjectOutput: TypeAlias = _native.DataAutomationProject
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectOutput/)."""
 DataAutomationProjectSummaryOutput: TypeAlias = _native.DataAutomationProjectSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectSummaryOutput/)."""
 DeleteBlueprintOutput: TypeAlias = _native.DeleteBlueprintOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteBlueprintOutput/)."""
 DeleteDataAutomationLibraryOutput: TypeAlias = _native.DeleteDataAutomationLibraryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationLibraryOutput/)."""
 DeleteDataAutomationProjectOutput: TypeAlias = _native.DeleteDataAutomationProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationProjectOutput/)."""
 DocumentBoundingBoxOutput: TypeAlias = _native.DocumentBoundingBox
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentBoundingBoxOutput/)."""
 DocumentCustomOutputConfigurationOutput: TypeAlias = _native.DocumentCustomOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentCustomOutputConfigurationOutput/)."""
 DocumentExtractionGranularityOutput: TypeAlias = _native.DocumentExtractionGranularity
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentExtractionGranularityOutput/)."""
 DocumentOutputAdditionalFileFormatOutput: TypeAlias = _native.DocumentOutputAdditionalFileFormat
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputAdditionalFileFormatOutput/)."""
 DocumentOutputFormatOutput: TypeAlias = _native.DocumentOutputFormat
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputFormatOutput/)."""
 DocumentOutputTextFormatOutput: TypeAlias = _native.DocumentOutputTextFormat
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputTextFormatOutput/)."""
 DocumentOverrideConfigurationOutput: TypeAlias = _native.DocumentOverrideConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOverrideConfigurationOutput/)."""
 DocumentStandardExtractionOutput: TypeAlias = _native.DocumentStandardExtraction
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardExtractionOutput/)."""
 DocumentStandardGenerativeFieldOutput: TypeAlias = _native.DocumentStandardGenerativeField
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardGenerativeFieldOutput/)."""
 DocumentStandardOutputConfigurationOutput: TypeAlias = _native.DocumentStandardOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardOutputConfigurationOutput/)."""
 EntityTypeInfoOutput: TypeAlias = _native.EntityTypeInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityTypeInfoOutput/)."""
 GetBlueprintOptimizationStatusOutput: TypeAlias = _native.GetBlueprintOptimizationStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintOptimizationStatusOutput/)."""
 GetBlueprintOutput: TypeAlias = _native.GetBlueprintOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintOutput/)."""
 GetDataAutomationLibraryEntityOutput: TypeAlias = _native.GetDataAutomationLibraryEntityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryEntityOutput/)."""
 GetDataAutomationLibraryIngestionJobOutput: TypeAlias = _native.GetDataAutomationLibraryIngestionJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryIngestionJobOutput/)."""
 GetDataAutomationLibraryOutput: TypeAlias = _native.GetDataAutomationLibraryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryOutput/)."""
 GetDataAutomationProjectOutput: TypeAlias = _native.GetDataAutomationProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationProjectOutput/)."""
 ImageBoundingBoxOutput: TypeAlias = _native.ImageBoundingBox
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageBoundingBoxOutput/)."""
 ImageExtractionCategoryOutput: TypeAlias = _native.ImageExtractionCategory
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageExtractionCategoryOutput/)."""
 ImageOverrideConfigurationOutput: TypeAlias = _native.ImageOverrideConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageOverrideConfigurationOutput/)."""
 ImageStandardExtractionOutput: TypeAlias = _native.ImageStandardExtraction
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardExtractionOutput/)."""
 ImageStandardGenerativeFieldOutput: TypeAlias = _native.ImageStandardGenerativeField
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardGenerativeFieldOutput/)."""
 ImageStandardOutputConfigurationOutput: TypeAlias = _native.ImageStandardOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardOutputConfigurationOutput/)."""
 InvokeBlueprintOptimizationAsyncOutput: TypeAlias = _native.InvokeBlueprintOptimizationAsyncOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeBlueprintOptimizationAsyncOutput/)."""
 InvokeDataAutomationLibraryIngestionJobOutput: TypeAlias = _native.InvokeDataAutomationLibraryIngestionJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeDataAutomationLibraryIngestionJobOutput/)."""
 ListBlueprintsOutput: TypeAlias = _native.ListBlueprintsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListBlueprintsOutput/)."""
 ListDataAutomationLibrariesOutput: TypeAlias = _native.ListDataAutomationLibrariesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibrariesOutput/)."""
 ListDataAutomationLibraryEntitiesOutput: TypeAlias = _native.ListDataAutomationLibraryEntitiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryEntitiesOutput/)."""
 ListDataAutomationLibraryIngestionJobsOutput: TypeAlias = _native.ListDataAutomationLibraryIngestionJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryIngestionJobsOutput/)."""
 ListDataAutomationProjectsOutput: TypeAlias = _native.ListDataAutomationProjectsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationProjectsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListTagsForResourceOutput/)."""
 ModalityProcessingConfigurationOutput: TypeAlias = _native.ModalityProcessingConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ModalityProcessingConfigurationOutput/)."""
 ModalityRoutingConfigurationOutput: TypeAlias = _native.ModalityRoutingConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ModalityRoutingConfigurationOutput/)."""
 OutputConfigurationOutput: TypeAlias = _native.OutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/OutputConfigurationOutput/)."""
 OverrideConfigurationOutput: TypeAlias = _native.OverrideConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/OverrideConfigurationOutput/)."""
 PiiEntitiesConfiguration: TypeAlias = _native.PiiEntitiesConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PiiEntitiesConfiguration-e97a902134d3/)."""
 S3ObjectOutput: TypeAlias = _native.S3Object
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/S3ObjectOutput/)."""
 SensitiveDataConfigurationOutput: TypeAlias = _native.SensitiveDataConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SensitiveDataConfigurationOutput/)."""
 SpeakerLabelingConfigurationOutput: TypeAlias = _native.SpeakerLabelingConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SpeakerLabelingConfigurationOutput/)."""
 SplitterConfigurationOutput: TypeAlias = _native.SplitterConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SplitterConfigurationOutput/)."""
 StandardOutputConfigurationOutput: TypeAlias = _native.StandardOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/StandardOutputConfigurationOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TagResourceOutput/)."""
 TranscriptConfigurationOutput: TypeAlias = _native.TranscriptConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TranscriptConfigurationOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UntagResourceOutput/)."""
 UpdateBlueprintOutput: TypeAlias = _native.UpdateBlueprintOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateBlueprintOutput/)."""
 UpdateDataAutomationLibraryOutput: TypeAlias = _native.UpdateDataAutomationLibraryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationLibraryOutput/)."""
 UpdateDataAutomationProjectOutput: TypeAlias = _native.UpdateDataAutomationProjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationProjectOutput/)."""
 VideoBoundingBoxOutput: TypeAlias = _native.VideoBoundingBox
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoBoundingBoxOutput/)."""
 VideoExtractionCategoryOutput: TypeAlias = _native.VideoExtractionCategory
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoExtractionCategoryOutput/)."""
 VideoOverrideConfigurationOutput: TypeAlias = _native.VideoOverrideConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoOverrideConfigurationOutput/)."""
 VideoStandardExtractionOutput: TypeAlias = _native.VideoStandardExtraction
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardExtractionOutput/)."""
 VideoStandardGenerativeFieldOutput: TypeAlias = _native.VideoStandardGenerativeField
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardGenerativeFieldOutput/)."""
 VideoStandardOutputConfigurationOutput: TypeAlias = _native.VideoStandardOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardOutputConfigurationOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/JSONValue/)."""
 
 AudioExtractionCategoryType: TypeAlias = Literal['AUDIO_CONTENT_MODERATION', 'TRANSCRIPT', 'TOPIC_CONTENT_MODERATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategoryType/)."""
 AudioExtractionCategoryTypeOutput: TypeAlias = AudioExtractionCategoryType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategoryTypeOutput/)."""
 AudioGenerativeOutputLanguage: TypeAlias = Literal['DEFAULT', 'EN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioGenerativeOutputLanguage/)."""
 AudioGenerativeOutputLanguageOutput: TypeAlias = AudioGenerativeOutputLanguage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioGenerativeOutputLanguageOutput/)."""
 AudioStandardGenerativeFieldType: TypeAlias = Literal['AUDIO_SUMMARY', 'IAB', 'TOPIC_SUMMARY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardGenerativeFieldType/)."""
 AudioStandardGenerativeFieldTypeOutput: TypeAlias = AudioStandardGenerativeFieldType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardGenerativeFieldTypeOutput/)."""
 BlueprintOptimizationJobStatus: TypeAlias = Literal['Created', 'InProgress', 'Success', 'ServiceError', 'ClientError']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationJobStatus/)."""
 BlueprintOptimizationJobStatusOutput: TypeAlias = BlueprintOptimizationJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationJobStatusOutput/)."""
 BlueprintStage: TypeAlias = Literal['DEVELOPMENT', 'LIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintStage/)."""
 BlueprintStageOutput: TypeAlias = BlueprintStage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintStageOutput/)."""
 BlueprintStageFilter: TypeAlias = Literal['DEVELOPMENT', 'LIVE', 'ALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintStageFilter/)."""
 BlueprintStageFilterOutput: TypeAlias = BlueprintStageFilter | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintStageFilterOutput/)."""
 DataAutomationLibraryStatus: TypeAlias = Literal['ACTIVE', 'DELETING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryStatus/)."""
 DataAutomationLibraryStatusOutput: TypeAlias = DataAutomationLibraryStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryStatusOutput/)."""
 DataAutomationProjectStage: TypeAlias = Literal['DEVELOPMENT', 'LIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectStage/)."""
 DataAutomationProjectStageOutput: TypeAlias = DataAutomationProjectStage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectStageOutput/)."""
 DataAutomationProjectStageFilter: TypeAlias = Literal['DEVELOPMENT', 'LIVE', 'ALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectStageFilter/)."""
 DataAutomationProjectStageFilterOutput: TypeAlias = DataAutomationProjectStageFilter | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectStageFilterOutput/)."""
 DataAutomationProjectStatus: TypeAlias = Literal['COMPLETED', 'IN_PROGRESS', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectStatus/)."""
 DataAutomationProjectStatusOutput: TypeAlias = DataAutomationProjectStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectStatusOutput/)."""
 DataAutomationProjectType: TypeAlias = Literal['ASYNC', 'SYNC']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectType/)."""
 DataAutomationProjectTypeOutput: TypeAlias = DataAutomationProjectType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectTypeOutput/)."""
 DesiredModality: TypeAlias = Literal['IMAGE', 'DOCUMENT', 'AUDIO', 'VIDEO']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DesiredModality/)."""
 DesiredModalityOutput: TypeAlias = DesiredModality | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DesiredModalityOutput/)."""
 DocumentExtractionGranularityType: TypeAlias = Literal['DOCUMENT', 'PAGE', 'ELEMENT', 'WORD', 'LINE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentExtractionGranularityType/)."""
 DocumentExtractionGranularityTypeOutput: TypeAlias = DocumentExtractionGranularityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentExtractionGranularityTypeOutput/)."""
 DocumentOutputTextFormatType: TypeAlias = Literal['PLAIN_TEXT', 'MARKDOWN', 'HTML', 'CSV']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputTextFormatType/)."""
 DocumentOutputTextFormatTypeOutput: TypeAlias = DocumentOutputTextFormatType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputTextFormatTypeOutput/)."""
 EntityType: TypeAlias = Literal['VOCABULARY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityType/)."""
 EntityTypeOutput: TypeAlias = EntityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityTypeOutput/)."""
 ImageExtractionCategoryType: TypeAlias = Literal['CONTENT_MODERATION', 'TEXT_DETECTION', 'LOGOS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageExtractionCategoryType/)."""
 ImageExtractionCategoryTypeOutput: TypeAlias = ImageExtractionCategoryType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageExtractionCategoryTypeOutput/)."""
 ImageStandardGenerativeFieldType: TypeAlias = Literal['IMAGE_SUMMARY', 'IAB']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardGenerativeFieldType/)."""
 ImageStandardGenerativeFieldTypeOutput: TypeAlias = ImageStandardGenerativeFieldType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardGenerativeFieldTypeOutput/)."""
 Language: TypeAlias = Literal['EN', 'DE', 'ES', 'FR', 'IT', 'PT', 'JA', 'KO', 'CN', 'TW', 'HK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/Language/)."""
 LanguageOutput: TypeAlias = Language | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/LanguageOutput/)."""
 LibraryIngestionJobOperationType: TypeAlias = Literal['UPSERT', 'DELETE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/LibraryIngestionJobOperationType/)."""
 LibraryIngestionJobOperationTypeOutput: TypeAlias = LibraryIngestionJobOperationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/LibraryIngestionJobOperationTypeOutput/)."""
 LibraryIngestionJobStatus: TypeAlias = Literal['IN_PROGRESS', 'COMPLETED', 'COMPLETED_WITH_ERRORS', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/LibraryIngestionJobStatus/)."""
 LibraryIngestionJobStatusOutput: TypeAlias = LibraryIngestionJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/LibraryIngestionJobStatusOutput/)."""
 PIIEntityType: TypeAlias = Literal['ALL', 'ADDRESS', 'AGE', 'NAME', 'EMAIL', 'PHONE', 'USERNAME', 'PASSWORD', 'DRIVER_ID', 'LICENSE_PLATE', 'VEHICLE_IDENTIFICATION_NUMBER', 'CREDIT_DEBIT_CARD_CVV', 'CREDIT_DEBIT_CARD_EXPIRY', 'CREDIT_DEBIT_CARD_NUMBER', 'PIN', 'INTERNATIONAL_BANK_ACCOUNT_NUMBER', 'SWIFT_CODE', 'IP_ADDRESS', 'MAC_ADDRESS', 'URL', 'AWS_ACCESS_KEY', 'AWS_SECRET_KEY', 'US_BANK_ACCOUNT_NUMBER', 'US_BANK_ROUTING_NUMBER', 'US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER', 'US_PASSPORT_NUMBER', 'US_SOCIAL_SECURITY_NUMBER', 'CA_HEALTH_NUMBER', 'CA_SOCIAL_INSURANCE_NUMBER', 'UK_NATIONAL_HEALTH_SERVICE_NUMBER', 'UK_NATIONAL_INSURANCE_NUMBER', 'UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PIIEntityType/)."""
 PIIEntityTypeOutput: TypeAlias = PIIEntityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PIIEntityTypeOutput/)."""
 PIIRedactionMaskMode: TypeAlias = Literal['PII', 'ENTITY_TYPE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PIIRedactionMaskMode/)."""
 PIIRedactionMaskModeOutput: TypeAlias = PIIRedactionMaskMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PIIRedactionMaskModeOutput/)."""
 ResourceOwner: TypeAlias = Literal['SERVICE', 'ACCOUNT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ResourceOwner/)."""
 ResourceOwnerOutput: TypeAlias = ResourceOwner | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ResourceOwnerOutput/)."""
 SensitiveDataDetectionMode: TypeAlias = Literal['DETECTION', 'DETECTION_AND_REDACTION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SensitiveDataDetectionMode/)."""
 SensitiveDataDetectionModeOutput: TypeAlias = SensitiveDataDetectionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SensitiveDataDetectionModeOutput/)."""
 SensitiveDataDetectionScopeType: TypeAlias = Literal['STANDARD', 'CUSTOM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SensitiveDataDetectionScopeType/)."""
 SensitiveDataDetectionScopeTypeOutput: TypeAlias = SensitiveDataDetectionScopeType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SensitiveDataDetectionScopeTypeOutput/)."""
 State: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/State/)."""
 StateOutput: TypeAlias = State | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/StateOutput/)."""
 Type: TypeAlias = Literal['DOCUMENT', 'IMAGE', 'AUDIO', 'VIDEO']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/Type/)."""
 TypeOutput: TypeAlias = Type | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TypeOutput/)."""
 VideoExtractionCategoryType: TypeAlias = Literal['CONTENT_MODERATION', 'TEXT_DETECTION', 'TRANSCRIPT', 'LOGOS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoExtractionCategoryType/)."""
 VideoExtractionCategoryTypeOutput: TypeAlias = VideoExtractionCategoryType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoExtractionCategoryTypeOutput/)."""
 VideoStandardGenerativeFieldType: TypeAlias = Literal['VIDEO_SUMMARY', 'IAB', 'CHAPTER_SUMMARY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardGenerativeFieldType/)."""
 VideoStandardGenerativeFieldTypeOutput: TypeAlias = VideoStandardGenerativeFieldType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardGenerativeFieldTypeOutput/)."""
 
 AudioExtractionCategory = TypedDict(
     "AudioExtractionCategory",
@@ -163,6 +307,7 @@ AudioExtractionCategory = TypedDict(
     "type_configuration": NotRequired["AudioExtractionCategoryTypeConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategory/)."""
 
 AudioExtractionCategoryTypeConfiguration = TypedDict(
     "AudioExtractionCategoryTypeConfiguration",
@@ -170,6 +315,7 @@ AudioExtractionCategoryTypeConfiguration = TypedDict(
     "transcript": NotRequired["TranscriptConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioExtractionCategoryTypeConfiguration/)."""
 
 AudioLanguageConfiguration = TypedDict(
     "AudioLanguageConfiguration",
@@ -179,6 +325,7 @@ AudioLanguageConfiguration = TypedDict(
     "identify_multiple_languages": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioLanguageConfiguration/)."""
 
 AudioOverrideConfiguration = TypedDict(
     "AudioOverrideConfiguration",
@@ -188,6 +335,7 @@ AudioOverrideConfiguration = TypedDict(
     "sensitive_data_configuration": NotRequired["SensitiveDataConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioOverrideConfiguration/)."""
 
 AudioStandardExtraction = TypedDict(
     "AudioStandardExtraction",
@@ -195,6 +343,7 @@ AudioStandardExtraction = TypedDict(
     "category": Required["AudioExtractionCategory"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardExtraction/)."""
 
 AudioStandardGenerativeField = TypedDict(
     "AudioStandardGenerativeField",
@@ -203,6 +352,7 @@ AudioStandardGenerativeField = TypedDict(
     "types": NotRequired["Sequence[AudioStandardGenerativeFieldType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardGenerativeField/)."""
 
 AudioStandardOutputConfiguration = TypedDict(
     "AudioStandardOutputConfiguration",
@@ -211,6 +361,7 @@ AudioStandardOutputConfiguration = TypedDict(
     "generative_field": NotRequired["AudioStandardGenerativeField"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/AudioStandardOutputConfiguration/)."""
 
 Blueprint = TypedDict(
     "Blueprint",
@@ -229,6 +380,7 @@ Blueprint = TypedDict(
     "optimization_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/Blueprint/)."""
 
 BlueprintFilter = TypedDict(
     "BlueprintFilter",
@@ -238,6 +390,7 @@ BlueprintFilter = TypedDict(
     "blueprint_stage": NotRequired["BlueprintStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintFilter/)."""
 
 BlueprintItem = TypedDict(
     "BlueprintItem",
@@ -247,6 +400,7 @@ BlueprintItem = TypedDict(
     "blueprint_stage": NotRequired["BlueprintStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintItem/)."""
 
 BlueprintOptimizationObject = TypedDict(
     "BlueprintOptimizationObject",
@@ -255,6 +409,7 @@ BlueprintOptimizationObject = TypedDict(
     "stage": NotRequired["BlueprintStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationObject/)."""
 
 BlueprintOptimizationOutputConfiguration = TypedDict(
     "BlueprintOptimizationOutputConfiguration",
@@ -262,6 +417,7 @@ BlueprintOptimizationOutputConfiguration = TypedDict(
     "s3_object": Required["S3Object"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationOutputConfiguration/)."""
 
 BlueprintOptimizationSample = TypedDict(
     "BlueprintOptimizationSample",
@@ -270,6 +426,7 @@ BlueprintOptimizationSample = TypedDict(
     "ground_truth_s3_object": Required["S3Object"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintOptimizationSample/)."""
 
 BlueprintSummary = TypedDict(
     "BlueprintSummary",
@@ -282,6 +439,7 @@ BlueprintSummary = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/BlueprintSummary/)."""
 
 ChannelLabelingConfiguration = TypedDict(
     "ChannelLabelingConfiguration",
@@ -289,6 +447,7 @@ ChannelLabelingConfiguration = TypedDict(
     "state": Required["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ChannelLabelingConfiguration/)."""
 
 CopyBlueprintStageRequest = TypedDict(
     "CopyBlueprintStageRequest",
@@ -299,6 +458,7 @@ CopyBlueprintStageRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CopyBlueprintStageRequest/)."""
 
 CreateBlueprintRequest = TypedDict(
     "CreateBlueprintRequest",
@@ -312,6 +472,7 @@ CreateBlueprintRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintRequest/)."""
 
 CreateBlueprintVersionRequest = TypedDict(
     "CreateBlueprintVersionRequest",
@@ -320,6 +481,7 @@ CreateBlueprintVersionRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateBlueprintVersionRequest/)."""
 
 CreateDataAutomationLibraryRequest = TypedDict(
     "CreateDataAutomationLibraryRequest",
@@ -331,6 +493,7 @@ CreateDataAutomationLibraryRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationLibraryRequest/)."""
 
 CreateDataAutomationProjectRequest = TypedDict(
     "CreateDataAutomationProjectRequest",
@@ -348,6 +511,7 @@ CreateDataAutomationProjectRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CreateDataAutomationProjectRequest/)."""
 
 CustomOutputConfiguration = TypedDict(
     "CustomOutputConfiguration",
@@ -356,6 +520,7 @@ CustomOutputConfiguration = TypedDict(
     "document": NotRequired["DocumentCustomOutputConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/CustomOutputConfiguration/)."""
 
 DataAutomationLibrary = TypedDict(
     "DataAutomationLibrary",
@@ -370,6 +535,7 @@ DataAutomationLibrary = TypedDict(
     "kms_encryption_context": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibrary/)."""
 
 DataAutomationLibraryConfiguration = TypedDict(
     "DataAutomationLibraryConfiguration",
@@ -377,10 +543,14 @@ DataAutomationLibraryConfiguration = TypedDict(
     "libraries": NotRequired["Sequence[DataAutomationLibraryItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryConfiguration/)."""
 
 DataAutomationLibraryEntitySummaryvocabulary = TypedDict("DataAutomationLibraryEntitySummaryvocabulary", {"vocabulary": Required["VocabularyEntitySummary"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryEntitySummaryvocabulary/)."""
 DataAutomationLibraryEntitySummaryUnknown = TypedDict("DataAutomationLibraryEntitySummaryUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryEntitySummaryUnknown/)."""
 DataAutomationLibraryEntitySummary: TypeAlias = DataAutomationLibraryEntitySummaryvocabulary | DataAutomationLibraryEntitySummaryUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryEntitySummary/)."""
 
 DataAutomationLibraryFilter = TypedDict(
     "DataAutomationLibraryFilter",
@@ -388,6 +558,7 @@ DataAutomationLibraryFilter = TypedDict(
     "library_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryFilter/)."""
 
 DataAutomationLibraryIngestionJob = TypedDict(
     "DataAutomationLibraryIngestionJob",
@@ -403,6 +574,7 @@ DataAutomationLibraryIngestionJob = TypedDict(
     "error_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryIngestionJob/)."""
 
 DataAutomationLibraryIngestionJobSummary = TypedDict(
     "DataAutomationLibraryIngestionJobSummary",
@@ -415,6 +587,7 @@ DataAutomationLibraryIngestionJobSummary = TypedDict(
     "completion_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryIngestionJobSummary/)."""
 
 DataAutomationLibraryItem = TypedDict(
     "DataAutomationLibraryItem",
@@ -422,6 +595,7 @@ DataAutomationLibraryItem = TypedDict(
     "library_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryItem/)."""
 
 DataAutomationLibrarySummary = TypedDict(
     "DataAutomationLibrarySummary",
@@ -431,6 +605,7 @@ DataAutomationLibrarySummary = TypedDict(
     "creation_time": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibrarySummary/)."""
 
 DataAutomationProject = TypedDict(
     "DataAutomationProject",
@@ -451,6 +626,7 @@ DataAutomationProject = TypedDict(
     "kms_encryption_context": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProject/)."""
 
 DataAutomationProjectFilter = TypedDict(
     "DataAutomationProjectFilter",
@@ -459,6 +635,7 @@ DataAutomationProjectFilter = TypedDict(
     "project_stage": NotRequired["DataAutomationProjectStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectFilter/)."""
 
 DataAutomationProjectSummary = TypedDict(
     "DataAutomationProjectSummary",
@@ -470,6 +647,7 @@ DataAutomationProjectSummary = TypedDict(
     "creation_time": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationProjectSummary/)."""
 
 DeleteBlueprintRequest = TypedDict(
     "DeleteBlueprintRequest",
@@ -478,6 +656,7 @@ DeleteBlueprintRequest = TypedDict(
     "blueprint_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteBlueprintRequest/)."""
 
 DeleteDataAutomationLibraryRequest = TypedDict(
     "DeleteDataAutomationLibraryRequest",
@@ -485,6 +664,7 @@ DeleteDataAutomationLibraryRequest = TypedDict(
     "library_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationLibraryRequest/)."""
 
 DeleteDataAutomationProjectRequest = TypedDict(
     "DeleteDataAutomationProjectRequest",
@@ -492,6 +672,7 @@ DeleteDataAutomationProjectRequest = TypedDict(
     "project_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteDataAutomationProjectRequest/)."""
 
 DeleteEntitiesInfo = TypedDict(
     "DeleteEntitiesInfo",
@@ -499,6 +680,7 @@ DeleteEntitiesInfo = TypedDict(
     "entity_ids": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DeleteEntitiesInfo/)."""
 
 DocumentBoundingBox = TypedDict(
     "DocumentBoundingBox",
@@ -506,6 +688,7 @@ DocumentBoundingBox = TypedDict(
     "state": Required["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentBoundingBox/)."""
 
 DocumentCustomOutputConfiguration = TypedDict(
     "DocumentCustomOutputConfiguration",
@@ -513,6 +696,7 @@ DocumentCustomOutputConfiguration = TypedDict(
     "fallback_blueprints": NotRequired["Sequence[BlueprintItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentCustomOutputConfiguration/)."""
 
 DocumentExtractionGranularity = TypedDict(
     "DocumentExtractionGranularity",
@@ -520,6 +704,7 @@ DocumentExtractionGranularity = TypedDict(
     "types": NotRequired["Sequence[DocumentExtractionGranularityType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentExtractionGranularity/)."""
 
 DocumentOutputAdditionalFileFormat = TypedDict(
     "DocumentOutputAdditionalFileFormat",
@@ -527,6 +712,7 @@ DocumentOutputAdditionalFileFormat = TypedDict(
     "state": Required["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputAdditionalFileFormat/)."""
 
 DocumentOutputFormat = TypedDict(
     "DocumentOutputFormat",
@@ -535,6 +721,7 @@ DocumentOutputFormat = TypedDict(
     "additional_file_format": Required["DocumentOutputAdditionalFileFormat"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputFormat/)."""
 
 DocumentOutputTextFormat = TypedDict(
     "DocumentOutputTextFormat",
@@ -542,6 +729,7 @@ DocumentOutputTextFormat = TypedDict(
     "types": NotRequired["Sequence[DocumentOutputTextFormatType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOutputTextFormat/)."""
 
 DocumentOverrideConfiguration = TypedDict(
     "DocumentOverrideConfiguration",
@@ -551,6 +739,7 @@ DocumentOverrideConfiguration = TypedDict(
     "sensitive_data_configuration": NotRequired["SensitiveDataConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentOverrideConfiguration/)."""
 
 DocumentStandardExtraction = TypedDict(
     "DocumentStandardExtraction",
@@ -559,6 +748,7 @@ DocumentStandardExtraction = TypedDict(
     "bounding_box": Required["DocumentBoundingBox"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardExtraction/)."""
 
 DocumentStandardGenerativeField = TypedDict(
     "DocumentStandardGenerativeField",
@@ -566,6 +756,7 @@ DocumentStandardGenerativeField = TypedDict(
     "state": Required["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardGenerativeField/)."""
 
 DocumentStandardOutputConfiguration = TypedDict(
     "DocumentStandardOutputConfiguration",
@@ -575,6 +766,7 @@ DocumentStandardOutputConfiguration = TypedDict(
     "output_format": NotRequired["DocumentOutputFormat"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DocumentStandardOutputConfiguration/)."""
 
 EncryptionConfiguration = TypedDict(
     "EncryptionConfiguration",
@@ -583,10 +775,14 @@ EncryptionConfiguration = TypedDict(
     "kms_encryption_context": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EncryptionConfiguration/)."""
 
 EntityDetailsvocabulary = TypedDict("EntityDetailsvocabulary", {"vocabulary": Required["VocabularyEntity"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityDetailsvocabulary/)."""
 EntityDetailsUnknown = TypedDict("EntityDetailsUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityDetailsUnknown/)."""
 EntityDetails: TypeAlias = EntityDetailsvocabulary | EntityDetailsUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityDetails/)."""
 
 EntityTypeInfo = TypedDict(
     "EntityTypeInfo",
@@ -595,6 +791,7 @@ EntityTypeInfo = TypedDict(
     "entity_metadata": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityTypeInfo/)."""
 
 EventBridgeConfiguration = TypedDict(
     "EventBridgeConfiguration",
@@ -602,6 +799,7 @@ EventBridgeConfiguration = TypedDict(
     "event_bridge_enabled": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EventBridgeConfiguration/)."""
 
 GetBlueprintOptimizationStatusRequest = TypedDict(
     "GetBlueprintOptimizationStatusRequest",
@@ -609,6 +807,7 @@ GetBlueprintOptimizationStatusRequest = TypedDict(
     "invocation_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintOptimizationStatusRequest/)."""
 
 GetBlueprintRequest = TypedDict(
     "GetBlueprintRequest",
@@ -618,6 +817,7 @@ GetBlueprintRequest = TypedDict(
     "blueprint_stage": NotRequired["BlueprintStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetBlueprintRequest/)."""
 
 GetDataAutomationLibraryEntityRequest = TypedDict(
     "GetDataAutomationLibraryEntityRequest",
@@ -627,6 +827,7 @@ GetDataAutomationLibraryEntityRequest = TypedDict(
     "entity_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryEntityRequest/)."""
 
 GetDataAutomationLibraryIngestionJobRequest = TypedDict(
     "GetDataAutomationLibraryIngestionJobRequest",
@@ -635,6 +836,7 @@ GetDataAutomationLibraryIngestionJobRequest = TypedDict(
     "job_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryIngestionJobRequest/)."""
 
 GetDataAutomationLibraryRequest = TypedDict(
     "GetDataAutomationLibraryRequest",
@@ -642,6 +844,7 @@ GetDataAutomationLibraryRequest = TypedDict(
     "library_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationLibraryRequest/)."""
 
 GetDataAutomationProjectRequest = TypedDict(
     "GetDataAutomationProjectRequest",
@@ -650,6 +853,7 @@ GetDataAutomationProjectRequest = TypedDict(
     "project_stage": NotRequired["DataAutomationProjectStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/GetDataAutomationProjectRequest/)."""
 
 ImageBoundingBox = TypedDict(
     "ImageBoundingBox",
@@ -657,6 +861,7 @@ ImageBoundingBox = TypedDict(
     "state": Required["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageBoundingBox/)."""
 
 ImageExtractionCategory = TypedDict(
     "ImageExtractionCategory",
@@ -665,6 +870,7 @@ ImageExtractionCategory = TypedDict(
     "types": NotRequired["Sequence[ImageExtractionCategoryType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageExtractionCategory/)."""
 
 ImageOverrideConfiguration = TypedDict(
     "ImageOverrideConfiguration",
@@ -673,6 +879,7 @@ ImageOverrideConfiguration = TypedDict(
     "sensitive_data_configuration": NotRequired["SensitiveDataConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageOverrideConfiguration/)."""
 
 ImageStandardExtraction = TypedDict(
     "ImageStandardExtraction",
@@ -681,6 +888,7 @@ ImageStandardExtraction = TypedDict(
     "bounding_box": Required["ImageBoundingBox"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardExtraction/)."""
 
 ImageStandardGenerativeField = TypedDict(
     "ImageStandardGenerativeField",
@@ -689,6 +897,7 @@ ImageStandardGenerativeField = TypedDict(
     "types": NotRequired["Sequence[ImageStandardGenerativeFieldType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardGenerativeField/)."""
 
 ImageStandardOutputConfiguration = TypedDict(
     "ImageStandardOutputConfiguration",
@@ -697,10 +906,14 @@ ImageStandardOutputConfiguration = TypedDict(
     "generative_field": NotRequired["ImageStandardGenerativeField"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardOutputConfiguration/)."""
 
 InlinePayloadupsertEntitiesInfo = TypedDict("InlinePayloadupsertEntitiesInfo", {"upsert_entities_info": Required["Sequence[UpsertEntityInfo]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InlinePayloadupsertEntitiesInfo/)."""
 InlinePayloaddeleteEntitiesInfo = TypedDict("InlinePayloaddeleteEntitiesInfo", {"delete_entities_info": Required["DeleteEntitiesInfo"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InlinePayloaddeleteEntitiesInfo/)."""
 InlinePayload: TypeAlias = InlinePayloadupsertEntitiesInfo | InlinePayloaddeleteEntitiesInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InlinePayload/)."""
 
 InputConfiguration = TypedDict(
     "InputConfiguration",
@@ -709,6 +922,7 @@ InputConfiguration = TypedDict(
     "inline_payload": NotRequired["InlinePayload"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InputConfiguration/)."""
 
 InvokeBlueprintOptimizationAsyncRequest = TypedDict(
     "InvokeBlueprintOptimizationAsyncRequest",
@@ -721,6 +935,7 @@ InvokeBlueprintOptimizationAsyncRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeBlueprintOptimizationAsyncRequest/)."""
 
 InvokeDataAutomationLibraryIngestionJobRequest = TypedDict(
     "InvokeDataAutomationLibraryIngestionJobRequest",
@@ -735,6 +950,7 @@ InvokeDataAutomationLibraryIngestionJobRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InvokeDataAutomationLibraryIngestionJobRequest/)."""
 
 ListBlueprintsRequest = TypedDict(
     "ListBlueprintsRequest",
@@ -747,6 +963,7 @@ ListBlueprintsRequest = TypedDict(
     "project_filter": NotRequired["DataAutomationProjectFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListBlueprintsRequest/)."""
 
 ListDataAutomationLibrariesRequest = TypedDict(
     "ListDataAutomationLibrariesRequest",
@@ -756,6 +973,7 @@ ListDataAutomationLibrariesRequest = TypedDict(
     "project_filter": NotRequired["DataAutomationProjectFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibrariesRequest/)."""
 
 ListDataAutomationLibraryEntitiesRequest = TypedDict(
     "ListDataAutomationLibraryEntitiesRequest",
@@ -766,6 +984,7 @@ ListDataAutomationLibraryEntitiesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryEntitiesRequest/)."""
 
 ListDataAutomationLibraryIngestionJobsRequest = TypedDict(
     "ListDataAutomationLibraryIngestionJobsRequest",
@@ -775,6 +994,7 @@ ListDataAutomationLibraryIngestionJobsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationLibraryIngestionJobsRequest/)."""
 
 ListDataAutomationProjectsRequest = TypedDict(
     "ListDataAutomationProjectsRequest",
@@ -787,6 +1007,7 @@ ListDataAutomationProjectsRequest = TypedDict(
     "library_filter": NotRequired["DataAutomationLibraryFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListDataAutomationProjectsRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -794,6 +1015,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ListTagsForResourceRequest/)."""
 
 ModalityProcessingConfiguration = TypedDict(
     "ModalityProcessingConfiguration",
@@ -801,6 +1023,7 @@ ModalityProcessingConfiguration = TypedDict(
     "state": NotRequired["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ModalityProcessingConfiguration/)."""
 
 ModalityRoutingConfiguration = TypedDict(
     "ModalityRoutingConfiguration",
@@ -811,6 +1034,7 @@ ModalityRoutingConfiguration = TypedDict(
     "mov": NotRequired["DesiredModality"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ModalityRoutingConfiguration/)."""
 
 NotificationConfiguration = TypedDict(
     "NotificationConfiguration",
@@ -818,6 +1042,7 @@ NotificationConfiguration = TypedDict(
     "event_bridge_configuration": Required["EventBridgeConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/NotificationConfiguration/)."""
 
 OutputConfiguration = TypedDict(
     "OutputConfiguration",
@@ -825,6 +1050,7 @@ OutputConfiguration = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/OutputConfiguration/)."""
 
 OverrideConfiguration = TypedDict(
     "OverrideConfiguration",
@@ -836,6 +1062,7 @@ OverrideConfiguration = TypedDict(
     "modality_routing": NotRequired["ModalityRoutingConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/OverrideConfiguration/)."""
 
 PIIEntitiesConfiguration = TypedDict(
     "PIIEntitiesConfiguration",
@@ -844,6 +1071,7 @@ PIIEntitiesConfiguration = TypedDict(
     "redaction_mask_mode": NotRequired["PIIRedactionMaskMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PIIEntitiesConfiguration-897737326781/)."""
 
 Phrase = TypedDict(
     "Phrase",
@@ -852,6 +1080,7 @@ Phrase = TypedDict(
     "display_as_text": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/Phrase/)."""
 
 PhraseOutput = TypedDict(
     "PhraseOutput",
@@ -860,6 +1089,7 @@ PhraseOutput = TypedDict(
     "display_as_text": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/PhraseOutput/)."""
 
 S3Object = TypedDict(
     "S3Object",
@@ -868,6 +1098,7 @@ S3Object = TypedDict(
     "version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/S3Object/)."""
 
 SensitiveDataConfiguration = TypedDict(
     "SensitiveDataConfiguration",
@@ -877,6 +1108,7 @@ SensitiveDataConfiguration = TypedDict(
     "pii_entities_configuration": NotRequired["PIIEntitiesConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SensitiveDataConfiguration/)."""
 
 SpeakerLabelingConfiguration = TypedDict(
     "SpeakerLabelingConfiguration",
@@ -884,6 +1116,7 @@ SpeakerLabelingConfiguration = TypedDict(
     "state": Required["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SpeakerLabelingConfiguration/)."""
 
 SplitterConfiguration = TypedDict(
     "SplitterConfiguration",
@@ -891,6 +1124,7 @@ SplitterConfiguration = TypedDict(
     "state": NotRequired["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/SplitterConfiguration/)."""
 
 StandardOutputConfiguration = TypedDict(
     "StandardOutputConfiguration",
@@ -901,6 +1135,7 @@ StandardOutputConfiguration = TypedDict(
     "audio": NotRequired["AudioStandardOutputConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/StandardOutputConfiguration/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -909,6 +1144,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -917,6 +1153,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TagResourceRequest/)."""
 
 TranscriptConfiguration = TypedDict(
     "TranscriptConfiguration",
@@ -925,6 +1162,7 @@ TranscriptConfiguration = TypedDict(
     "channel_labeling": NotRequired["ChannelLabelingConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/TranscriptConfiguration/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -933,6 +1171,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UntagResourceRequest/)."""
 
 UpdateBlueprintRequest = TypedDict(
     "UpdateBlueprintRequest",
@@ -943,6 +1182,7 @@ UpdateBlueprintRequest = TypedDict(
     "encryption_configuration": NotRequired["EncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateBlueprintRequest/)."""
 
 UpdateDataAutomationLibraryRequest = TypedDict(
     "UpdateDataAutomationLibraryRequest",
@@ -952,6 +1192,7 @@ UpdateDataAutomationLibraryRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationLibraryRequest/)."""
 
 UpdateDataAutomationProjectRequest = TypedDict(
     "UpdateDataAutomationProjectRequest",
@@ -966,9 +1207,12 @@ UpdateDataAutomationProjectRequest = TypedDict(
     "encryption_configuration": NotRequired["EncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationProjectRequest/)."""
 
 UpsertEntityInfovocabulary = TypedDict("UpsertEntityInfovocabulary", {"vocabulary": Required["VocabularyEntityInfo"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpsertEntityInfovocabulary/)."""
 UpsertEntityInfo: TypeAlias = UpsertEntityInfovocabulary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpsertEntityInfo/)."""
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",
@@ -977,6 +1221,7 @@ ValidationExceptionField = TypedDict(
     "message": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ValidationExceptionField/)."""
 
 VideoBoundingBox = TypedDict(
     "VideoBoundingBox",
@@ -984,6 +1229,7 @@ VideoBoundingBox = TypedDict(
     "state": Required["State"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoBoundingBox/)."""
 
 VideoExtractionCategory = TypedDict(
     "VideoExtractionCategory",
@@ -992,6 +1238,7 @@ VideoExtractionCategory = TypedDict(
     "types": NotRequired["Sequence[VideoExtractionCategoryType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoExtractionCategory/)."""
 
 VideoOverrideConfiguration = TypedDict(
     "VideoOverrideConfiguration",
@@ -1000,6 +1247,7 @@ VideoOverrideConfiguration = TypedDict(
     "sensitive_data_configuration": NotRequired["SensitiveDataConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoOverrideConfiguration/)."""
 
 VideoStandardExtraction = TypedDict(
     "VideoStandardExtraction",
@@ -1008,6 +1256,7 @@ VideoStandardExtraction = TypedDict(
     "bounding_box": Required["VideoBoundingBox"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardExtraction/)."""
 
 VideoStandardGenerativeField = TypedDict(
     "VideoStandardGenerativeField",
@@ -1016,6 +1265,7 @@ VideoStandardGenerativeField = TypedDict(
     "types": NotRequired["Sequence[VideoStandardGenerativeFieldType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardGenerativeField/)."""
 
 VideoStandardOutputConfiguration = TypedDict(
     "VideoStandardOutputConfiguration",
@@ -1024,6 +1274,7 @@ VideoStandardOutputConfiguration = TypedDict(
     "generative_field": NotRequired["VideoStandardGenerativeField"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VideoStandardOutputConfiguration/)."""
 
 VocabularyEntity = TypedDict(
     "VocabularyEntity",
@@ -1035,6 +1286,7 @@ VocabularyEntity = TypedDict(
     "last_modified_time": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VocabularyEntity/)."""
 
 VocabularyEntityInfo = TypedDict(
     "VocabularyEntityInfo",
@@ -1045,6 +1297,7 @@ VocabularyEntityInfo = TypedDict(
     "phrases": Required["Sequence[Phrase]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VocabularyEntityInfo/)."""
 
 VocabularyEntitySummary = TypedDict(
     "VocabularyEntitySummary",
@@ -1056,3 +1309,4 @@ VocabularyEntitySummary = TypedDict(
     "last_modified_time": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/VocabularyEntitySummary/)."""

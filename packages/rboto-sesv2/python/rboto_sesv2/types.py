@@ -9,336 +9,665 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AccountDetailsOutput: TypeAlias = _native.AccountDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AccountDetailsOutput/)."""
 ArchivingOptionsOutput: TypeAlias = _native.ArchivingOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ArchivingOptionsOutput/)."""
 AssociateEmailIdentityCertificateOutput: TypeAlias = _native.AssociateEmailIdentityCertificateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AssociateEmailIdentityCertificateOutput/)."""
 BatchGetMetricDataOutput: TypeAlias = _native.BatchGetMetricDataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BatchGetMetricDataOutput/)."""
 BlacklistEntryOutput: TypeAlias = _native.BlacklistEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BlacklistEntryOutput/)."""
 BounceOutput: TypeAlias = _native.Bounce
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BounceOutput/)."""
 BulkEmailEntryResultOutput: TypeAlias = _native.BulkEmailEntryResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BulkEmailEntryResultOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ByteStream/)."""
 CancelExportJobOutput: TypeAlias = _native.CancelExportJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CancelExportJobOutput/)."""
 CloudWatchDestinationOutput: TypeAlias = _native.CloudWatchDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CloudWatchDestinationOutput/)."""
 CloudWatchDimensionConfigurationOutput: TypeAlias = _native.CloudWatchDimensionConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CloudWatchDimensionConfigurationOutput/)."""
 ComplaintOutput: TypeAlias = _native.Complaint
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ComplaintOutput/)."""
 ContactOutput: TypeAlias = _native.Contact
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactOutput/)."""
 ContactListOutput: TypeAlias = _native.ContactList
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactListOutput/)."""
 ContactListDestinationOutput: TypeAlias = _native.ContactListDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactListDestinationOutput/)."""
 CreateConfigurationSetEventDestinationOutput: TypeAlias = _native.CreateConfigurationSetEventDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetEventDestinationOutput/)."""
 CreateConfigurationSetOutput: TypeAlias = _native.CreateConfigurationSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetOutput/)."""
 CreateContactListOutput: TypeAlias = _native.CreateContactListOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactListOutput/)."""
 CreateContactOutput: TypeAlias = _native.CreateContactOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactOutput/)."""
 CreateCustomVerificationEmailTemplateOutput: TypeAlias = _native.CreateCustomVerificationEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateCustomVerificationEmailTemplateOutput/)."""
 CreateDedicatedIpPoolOutput: TypeAlias = _native.CreateDedicatedIpPoolOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDedicatedIpPoolOutput/)."""
 CreateDeliverabilityTestReportOutput: TypeAlias = _native.CreateDeliverabilityTestReportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDeliverabilityTestReportOutput/)."""
 CreateEmailIdentityOutput: TypeAlias = _native.CreateEmailIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityOutput/)."""
 CreateEmailIdentityPolicyOutput: TypeAlias = _native.CreateEmailIdentityPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityPolicyOutput/)."""
 CreateEmailTemplateOutput: TypeAlias = _native.CreateEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailTemplateOutput/)."""
 CreateExportJobOutput: TypeAlias = _native.CreateExportJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateExportJobOutput/)."""
 CreateImportJobOutput: TypeAlias = _native.CreateImportJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateImportJobOutput/)."""
 CreateMultiRegionEndpointOutput: TypeAlias = _native.CreateMultiRegionEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateMultiRegionEndpointOutput/)."""
 CreateTenantOutput: TypeAlias = _native.CreateTenantOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantOutput/)."""
 CreateTenantResourceAssociationOutput: TypeAlias = _native.CreateTenantResourceAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantResourceAssociationOutput/)."""
 CustomVerificationEmailTemplateMetadataOutput: TypeAlias = _native.CustomVerificationEmailTemplateMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CustomVerificationEmailTemplateMetadataOutput/)."""
 DailyVolumeOutput: TypeAlias = _native.DailyVolume
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DailyVolumeOutput/)."""
 DashboardAttributesOutput: TypeAlias = _native.DashboardAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DashboardAttributesOutput/)."""
 DashboardOptionsOutput: TypeAlias = _native.DashboardOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DashboardOptionsOutput/)."""
 DedicatedIpOutput: TypeAlias = _native.DedicatedIp
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DedicatedIpOutput/)."""
 DedicatedIpPoolOutput: TypeAlias = _native.DedicatedIpPool
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DedicatedIpPoolOutput/)."""
 DeleteConfigurationSetEventDestinationOutput: TypeAlias = _native.DeleteConfigurationSetEventDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetEventDestinationOutput/)."""
 DeleteConfigurationSetOutput: TypeAlias = _native.DeleteConfigurationSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetOutput/)."""
 DeleteContactListOutput: TypeAlias = _native.DeleteContactListOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactListOutput/)."""
 DeleteContactOutput: TypeAlias = _native.DeleteContactOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactOutput/)."""
 DeleteCustomVerificationEmailTemplateOutput: TypeAlias = _native.DeleteCustomVerificationEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteCustomVerificationEmailTemplateOutput/)."""
 DeleteDedicatedIpPoolOutput: TypeAlias = _native.DeleteDedicatedIpPoolOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteDedicatedIpPoolOutput/)."""
 DeleteEmailIdentityOutput: TypeAlias = _native.DeleteEmailIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityOutput/)."""
 DeleteEmailIdentityPolicyOutput: TypeAlias = _native.DeleteEmailIdentityPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityPolicyOutput/)."""
 DeleteEmailTemplateOutput: TypeAlias = _native.DeleteEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailTemplateOutput/)."""
 DeleteMultiRegionEndpointOutput: TypeAlias = _native.DeleteMultiRegionEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteMultiRegionEndpointOutput/)."""
 DeleteSuppressedDestinationOutput: TypeAlias = _native.DeleteSuppressedDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteSuppressedDestinationOutput/)."""
 DeleteTenantOutput: TypeAlias = _native.DeleteTenantOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantOutput/)."""
 DeleteTenantResourceAssociationOutput: TypeAlias = _native.DeleteTenantResourceAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantResourceAssociationOutput/)."""
 DeliverabilityTestReportOutput: TypeAlias = _native.DeliverabilityTestReport
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityTestReportOutput/)."""
 DeliveryOptionsOutput: TypeAlias = _native.DeliveryOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryOptionsOutput/)."""
 DisassociateEmailIdentityCertificateOutput: TypeAlias = _native.DisassociateEmailIdentityCertificateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DisassociateEmailIdentityCertificateOutput/)."""
 DkimAttributesOutput: TypeAlias = _native.DkimAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimAttributesOutput/)."""
 DomainDeliverabilityCampaignOutput: TypeAlias = _native.DomainDeliverabilityCampaign
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainDeliverabilityCampaignOutput/)."""
 DomainDeliverabilityTrackingOptionOutput: TypeAlias = _native.DomainDeliverabilityTrackingOption
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainDeliverabilityTrackingOptionOutput/)."""
 DomainIspPlacementOutput: TypeAlias = _native.DomainIspPlacement
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainIspPlacementOutput/)."""
 EmailAddressInsightsMailboxEvaluationsOutput: TypeAlias = _native.EmailAddressInsightsMailboxEvaluations
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsMailboxEvaluationsOutput/)."""
 EmailAddressInsightsVerdictOutput: TypeAlias = _native.EmailAddressInsightsVerdict
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsVerdictOutput/)."""
 EmailInsightsOutput: TypeAlias = _native.EmailInsights
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailInsightsOutput/)."""
 EmailTemplateContentOutput: TypeAlias = _native.EmailTemplateContent
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailTemplateContentOutput/)."""
 EmailTemplateMetadataOutput: TypeAlias = _native.EmailTemplateMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailTemplateMetadataOutput/)."""
 EventBridgeDestinationOutput: TypeAlias = _native.EventBridgeDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventBridgeDestinationOutput/)."""
 EventDestinationOutput: TypeAlias = _native.EventDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventDestinationOutput/)."""
 EventDetailsOutput: TypeAlias = _native.EventDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventDetailsOutput/)."""
 ExportDataSourceOutput: TypeAlias = _native.ExportDataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportDataSourceOutput/)."""
 ExportDestinationOutput: TypeAlias = _native.ExportDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportDestinationOutput/)."""
 ExportJobSummaryOutput: TypeAlias = _native.ExportJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportJobSummaryOutput/)."""
 ExportMetricOutput: TypeAlias = _native.ExportMetric
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportMetricOutput/)."""
 ExportStatisticsOutput: TypeAlias = _native.ExportStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportStatisticsOutput/)."""
 FailureInfoOutput: TypeAlias = _native.FailureInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/FailureInfoOutput/)."""
 GetAccountOutput: TypeAlias = _native.GetAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetAccountOutput/)."""
 GetBlacklistReportsOutput: TypeAlias = _native.GetBlacklistReportsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetBlacklistReportsOutput/)."""
 GetConfigurationSetEventDestinationsOutput: TypeAlias = _native.GetConfigurationSetEventDestinationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetEventDestinationsOutput/)."""
 GetConfigurationSetOutput: TypeAlias = _native.GetConfigurationSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetOutput/)."""
 GetContactListOutput: TypeAlias = _native.GetContactListOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactListOutput/)."""
 GetContactOutput: TypeAlias = _native.GetContactOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactOutput/)."""
 GetCustomVerificationEmailTemplateOutput: TypeAlias = _native.GetCustomVerificationEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetCustomVerificationEmailTemplateOutput/)."""
 GetDedicatedIpOutput: TypeAlias = _native.GetDedicatedIpOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpOutput/)."""
 GetDedicatedIpPoolOutput: TypeAlias = _native.GetDedicatedIpPoolOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpPoolOutput/)."""
 GetDedicatedIpsOutput: TypeAlias = _native.GetDedicatedIpsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpsOutput/)."""
 GetDeliverabilityDashboardOptionsOutput: TypeAlias = _native.GetDeliverabilityDashboardOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityDashboardOptionsOutput/)."""
 GetDeliverabilityTestReportOutput: TypeAlias = _native.GetDeliverabilityTestReportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityTestReportOutput/)."""
 GetDomainDeliverabilityCampaignOutput: TypeAlias = _native.GetDomainDeliverabilityCampaignOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainDeliverabilityCampaignOutput/)."""
 GetDomainStatisticsReportOutput: TypeAlias = _native.GetDomainStatisticsReportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainStatisticsReportOutput/)."""
 GetEmailAddressInsightsOutput: TypeAlias = _native.GetEmailAddressInsightsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailAddressInsightsOutput/)."""
 GetEmailIdentityOutput: TypeAlias = _native.GetEmailIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityOutput/)."""
 GetEmailIdentityPoliciesOutput: TypeAlias = _native.GetEmailIdentityPoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityPoliciesOutput/)."""
 GetEmailTemplateOutput: TypeAlias = _native.GetEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailTemplateOutput/)."""
 GetExportJobOutput: TypeAlias = _native.GetExportJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetExportJobOutput/)."""
 GetImportJobOutput: TypeAlias = _native.GetImportJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetImportJobOutput/)."""
 GetMessageInsightsOutput: TypeAlias = _native.GetMessageInsightsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMessageInsightsOutput/)."""
 GetMultiRegionEndpointOutput: TypeAlias = _native.GetMultiRegionEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMultiRegionEndpointOutput/)."""
 GetReputationEntityOutput: TypeAlias = _native.GetReputationEntityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetReputationEntityOutput/)."""
 GetSuppressedDestinationOutput: TypeAlias = _native.GetSuppressedDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetSuppressedDestinationOutput/)."""
 GetTenantOutput: TypeAlias = _native.GetTenantOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetTenantOutput/)."""
 GuardianAttributesOutput: TypeAlias = _native.GuardianAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GuardianAttributesOutput/)."""
 GuardianOptionsOutput: TypeAlias = _native.GuardianOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GuardianOptionsOutput/)."""
 IdentityCertificateOutput: TypeAlias = _native.IdentityCertificate
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityCertificateOutput/)."""
 IdentityInfoOutput: TypeAlias = _native.IdentityInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityInfoOutput/)."""
 ImportDataSourceOutput: TypeAlias = _native.ImportDataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDataSourceOutput/)."""
 ImportDestinationOutput: TypeAlias = _native.ImportDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDestinationOutput/)."""
 ImportJobSummaryOutput: TypeAlias = _native.ImportJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportJobSummaryOutput/)."""
 InboxPlacementTrackingOptionOutput: TypeAlias = _native.InboxPlacementTrackingOption
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/InboxPlacementTrackingOptionOutput/)."""
 InsightsEventOutput: TypeAlias = _native.InsightsEvent
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/InsightsEventOutput/)."""
 IspPlacementOutput: TypeAlias = _native.IspPlacement
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IspPlacementOutput/)."""
 KinesisFirehoseDestinationOutput: TypeAlias = _native.KinesisFirehoseDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/KinesisFirehoseDestinationOutput/)."""
 ListConfigurationSetsOutput: TypeAlias = _native.ListConfigurationSetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListConfigurationSetsOutput/)."""
 ListContactListsOutput: TypeAlias = _native.ListContactListsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactListsOutput/)."""
 ListContactsOutput: TypeAlias = _native.ListContactsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactsOutput/)."""
 ListCustomVerificationEmailTemplatesOutput: TypeAlias = _native.ListCustomVerificationEmailTemplatesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListCustomVerificationEmailTemplatesOutput/)."""
 ListDedicatedIpPoolsOutput: TypeAlias = _native.ListDedicatedIpPoolsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDedicatedIpPoolsOutput/)."""
 ListDeliverabilityTestReportsOutput: TypeAlias = _native.ListDeliverabilityTestReportsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDeliverabilityTestReportsOutput/)."""
 ListDomainDeliverabilityCampaignsOutput: TypeAlias = _native.ListDomainDeliverabilityCampaignsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDomainDeliverabilityCampaignsOutput/)."""
 ListEmailIdentitiesOutput: TypeAlias = _native.ListEmailIdentitiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentitiesOutput/)."""
 ListEmailIdentityCertificatesOutput: TypeAlias = _native.ListEmailIdentityCertificatesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentityCertificatesOutput/)."""
 ListEmailTemplatesOutput: TypeAlias = _native.ListEmailTemplatesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailTemplatesOutput/)."""
 ListExportJobsOutput: TypeAlias = _native.ListExportJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListExportJobsOutput/)."""
 ListImportJobsOutput: TypeAlias = _native.ListImportJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListImportJobsOutput/)."""
 ListMultiRegionEndpointsOutput: TypeAlias = _native.ListMultiRegionEndpointsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListMultiRegionEndpointsOutput/)."""
 ListRecommendationsOutput: TypeAlias = _native.ListRecommendationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListRecommendationsOutput/)."""
 ListReputationEntitiesOutput: TypeAlias = _native.ListReputationEntitiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListReputationEntitiesOutput/)."""
 ListResourceTenantsOutput: TypeAlias = _native.ListResourceTenantsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListResourceTenantsOutput/)."""
 ListSuppressedDestinationsOutput: TypeAlias = _native.ListSuppressedDestinationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListSuppressedDestinationsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTagsForResourceOutput/)."""
 ListTenantResourcesOutput: TypeAlias = _native.ListTenantResourcesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantResourcesOutput/)."""
 ListTenantsOutput: TypeAlias = _native.ListTenantsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantsOutput/)."""
 MailFromAttributesOutput: TypeAlias = _native.MailFromAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailFromAttributesOutput/)."""
 MailboxValidationOutput: TypeAlias = _native.MailboxValidation
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailboxValidationOutput/)."""
 MessageInsightsDataSourceOutput: TypeAlias = _native.MessageInsightsDataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageInsightsDataSourceOutput/)."""
 MessageInsightsFiltersOutput: TypeAlias = _native.MessageInsightsFilters
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageInsightsFiltersOutput/)."""
 MessageSecurityOptionsOutput: TypeAlias = _native.MessageSecurityOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageSecurityOptionsOutput/)."""
 MessageTagOutput: TypeAlias = _native.MessageTag
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageTagOutput/)."""
 MetricDataErrorOutput: TypeAlias = _native.MetricDataError
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDataErrorOutput/)."""
 MetricDataResultOutput: TypeAlias = _native.MetricDataResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDataResultOutput/)."""
 MetricsDataSourceOutput: TypeAlias = _native.MetricsDataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricsDataSourceOutput/)."""
 MultiRegionEndpointOutput: TypeAlias = _native.MultiRegionEndpoint
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MultiRegionEndpointOutput/)."""
 OverallVolumeOutput: TypeAlias = _native.OverallVolume
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/OverallVolumeOutput/)."""
 PinpointDestinationOutput: TypeAlias = _native.PinpointDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PinpointDestinationOutput/)."""
 PlacementStatisticsOutput: TypeAlias = _native.PlacementStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PlacementStatisticsOutput/)."""
 PricingAttributesOutput: TypeAlias = _native.PricingAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PricingAttributesOutput/)."""
 PutAccountDedicatedIpWarmupAttributesOutput: TypeAlias = _native.PutAccountDedicatedIpWarmupAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDedicatedIpWarmupAttributesOutput/)."""
 PutAccountDetailsOutput: TypeAlias = _native.PutAccountDetailsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDetailsOutput/)."""
 PutAccountPricingAttributesOutput: TypeAlias = _native.PutAccountPricingAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountPricingAttributesOutput/)."""
 PutAccountSendingAttributesOutput: TypeAlias = _native.PutAccountSendingAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSendingAttributesOutput/)."""
 PutAccountSuppressionAttributesOutput: TypeAlias = _native.PutAccountSuppressionAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSuppressionAttributesOutput/)."""
 PutAccountVdmAttributesOutput: TypeAlias = _native.PutAccountVdmAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountVdmAttributesOutput/)."""
 PutConfigurationSetArchivingOptionsOutput: TypeAlias = _native.PutConfigurationSetArchivingOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetArchivingOptionsOutput/)."""
 PutConfigurationSetDeliveryOptionsOutput: TypeAlias = _native.PutConfigurationSetDeliveryOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetDeliveryOptionsOutput/)."""
 PutConfigurationSetReputationOptionsOutput: TypeAlias = _native.PutConfigurationSetReputationOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetReputationOptionsOutput/)."""
 PutConfigurationSetSendingOptionsOutput: TypeAlias = _native.PutConfigurationSetSendingOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSendingOptionsOutput/)."""
 PutConfigurationSetSuppressionOptionsOutput: TypeAlias = _native.PutConfigurationSetSuppressionOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSuppressionOptionsOutput/)."""
 PutConfigurationSetTrackingOptionsOutput: TypeAlias = _native.PutConfigurationSetTrackingOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetTrackingOptionsOutput/)."""
 PutConfigurationSetVdmOptionsOutput: TypeAlias = _native.PutConfigurationSetVdmOptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetVdmOptionsOutput/)."""
 PutDedicatedIpInPoolOutput: TypeAlias = _native.PutDedicatedIpInPoolOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpInPoolOutput/)."""
 PutDedicatedIpPoolScalingAttributesOutput: TypeAlias = _native.PutDedicatedIpPoolScalingAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpPoolScalingAttributesOutput/)."""
 PutDedicatedIpWarmupAttributesOutput: TypeAlias = _native.PutDedicatedIpWarmupAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpWarmupAttributesOutput/)."""
 PutDeliverabilityDashboardOptionOutput: TypeAlias = _native.PutDeliverabilityDashboardOptionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDeliverabilityDashboardOptionOutput/)."""
 PutEmailIdentityConfigurationSetAttributesOutput: TypeAlias = _native.PutEmailIdentityConfigurationSetAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityConfigurationSetAttributesOutput/)."""
 PutEmailIdentityDkimAttributesOutput: TypeAlias = _native.PutEmailIdentityDkimAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimAttributesOutput/)."""
 PutEmailIdentityDkimSigningAttributesOutput: TypeAlias = _native.PutEmailIdentityDkimSigningAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimSigningAttributesOutput/)."""
 PutEmailIdentityFeedbackAttributesOutput: TypeAlias = _native.PutEmailIdentityFeedbackAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityFeedbackAttributesOutput/)."""
 PutEmailIdentityMailFromAttributesOutput: TypeAlias = _native.PutEmailIdentityMailFromAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityMailFromAttributesOutput/)."""
 PutSuppressedDestinationOutput: TypeAlias = _native.PutSuppressedDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutSuppressedDestinationOutput/)."""
 PutTenantSuppressionAttributesOutput: TypeAlias = _native.PutTenantSuppressionAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutTenantSuppressionAttributesOutput/)."""
 RecommendationOutput: TypeAlias = _native.Recommendation
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationOutput/)."""
 ReputationEntityOutput: TypeAlias = _native.ReputationEntity
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationEntityOutput/)."""
 ReputationOptionsOutput: TypeAlias = _native.ReputationOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationOptionsOutput/)."""
 ResourceTenantMetadataOutput: TypeAlias = _native.ResourceTenantMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ResourceTenantMetadataOutput/)."""
 ReviewDetailsOutput: TypeAlias = _native.ReviewDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReviewDetailsOutput/)."""
 RouteOutput: TypeAlias = _native.Route
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RouteOutput/)."""
 SendBulkEmailOutput: TypeAlias = _native.SendBulkEmailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendBulkEmailOutput/)."""
 SendCustomVerificationEmailOutput: TypeAlias = _native.SendCustomVerificationEmailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendCustomVerificationEmailOutput/)."""
 SendEmailOutput: TypeAlias = _native.SendEmailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendEmailOutput/)."""
 SendQuotaOutput: TypeAlias = _native.SendQuota
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendQuotaOutput/)."""
 SendingOptionsOutput: TypeAlias = _native.SendingOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingOptionsOutput/)."""
 SnsDestinationOutput: TypeAlias = _native.SnsDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SnsDestinationOutput/)."""
 SoaRecord: TypeAlias = _native.SoaRecord
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SoaRecord-e7875dc3367e/)."""
 StatusRecordOutput: TypeAlias = _native.StatusRecord
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/StatusRecordOutput/)."""
 SuppressedDestinationOutput: TypeAlias = _native.SuppressedDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationOutput/)."""
 SuppressedDestinationAttributesOutput: TypeAlias = _native.SuppressedDestinationAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationAttributesOutput/)."""
 SuppressedDestinationSummaryOutput: TypeAlias = _native.SuppressedDestinationSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationSummaryOutput/)."""
 SuppressionAttributesOutput: TypeAlias = _native.SuppressionAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionAttributesOutput/)."""
 SuppressionConditionThresholdOutput: TypeAlias = _native.SuppressionConditionThreshold
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConditionThresholdOutput/)."""
 SuppressionConfidenceThresholdOutput: TypeAlias = _native.SuppressionConfidenceThreshold
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConfidenceThresholdOutput/)."""
 SuppressionListDestinationOutput: TypeAlias = _native.SuppressionListDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListDestinationOutput/)."""
 SuppressionOptionsOutput: TypeAlias = _native.SuppressionOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionOptionsOutput/)."""
 SuppressionValidationAttributesOutput: TypeAlias = _native.SuppressionValidationAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionValidationAttributesOutput/)."""
 SuppressionValidationOptionsOutput: TypeAlias = _native.SuppressionValidationOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionValidationOptionsOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TagResourceOutput/)."""
 TenantOutput: TypeAlias = _native.Tenant
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantOutput/)."""
 TenantInfoOutput: TypeAlias = _native.TenantInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantInfoOutput/)."""
 TenantResourceOutput: TypeAlias = _native.TenantResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantResourceOutput/)."""
 TenantSuppressionAttributesOutput: TypeAlias = _native.TenantSuppressionAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantSuppressionAttributesOutput/)."""
 TestRenderEmailTemplateOutput: TypeAlias = _native.TestRenderEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TestRenderEmailTemplateOutput/)."""
 TopicOutput: TypeAlias = _native.Topic
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TopicOutput/)."""
 TopicPreferenceOutput: TypeAlias = _native.TopicPreference
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TopicPreferenceOutput/)."""
 TrackingOptionsOutput: TypeAlias = _native.TrackingOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TrackingOptionsOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UntagResourceOutput/)."""
 UpdateConfigurationSetEventDestinationOutput: TypeAlias = _native.UpdateConfigurationSetEventDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetEventDestinationOutput/)."""
 UpdateConfigurationSetOutput: TypeAlias = _native.UpdateConfigurationSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetOutput/)."""
 UpdateContactListOutput: TypeAlias = _native.UpdateContactListOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactListOutput/)."""
 UpdateContactOutput: TypeAlias = _native.UpdateContactOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactOutput/)."""
 UpdateCustomVerificationEmailTemplateOutput: TypeAlias = _native.UpdateCustomVerificationEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateCustomVerificationEmailTemplateOutput/)."""
 UpdateEmailIdentityPolicyOutput: TypeAlias = _native.UpdateEmailIdentityPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailIdentityPolicyOutput/)."""
 UpdateEmailTemplateOutput: TypeAlias = _native.UpdateEmailTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailTemplateOutput/)."""
 UpdateReputationEntityCustomerManagedStatusOutput: TypeAlias = _native.UpdateReputationEntityCustomerManagedStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityCustomerManagedStatusOutput/)."""
 UpdateReputationEntityPolicyOutput: TypeAlias = _native.UpdateReputationEntityPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityPolicyOutput/)."""
 VdmAttributesOutput: TypeAlias = _native.VdmAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VdmAttributesOutput/)."""
 VdmOptionsOutput: TypeAlias = _native.VdmOptions
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VdmOptionsOutput/)."""
 VerificationInfoOutput: TypeAlias = _native.VerificationInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VerificationInfoOutput/)."""
 VolumeStatisticsOutput: TypeAlias = _native.VolumeStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VolumeStatisticsOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/JSONValue/)."""
 
 AttachmentContentDisposition: TypeAlias = Literal['ATTACHMENT', 'INLINE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AttachmentContentDisposition/)."""
 AttachmentContentDispositionOutput: TypeAlias = AttachmentContentDisposition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AttachmentContentDispositionOutput/)."""
 AttachmentContentTransferEncoding: TypeAlias = Literal['BASE64', 'QUOTED_PRINTABLE', 'SEVEN_BIT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AttachmentContentTransferEncoding/)."""
 AttachmentContentTransferEncodingOutput: TypeAlias = AttachmentContentTransferEncoding | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AttachmentContentTransferEncodingOutput/)."""
 BehaviorOnMxFailure: TypeAlias = Literal['USE_DEFAULT_VALUE', 'REJECT_MESSAGE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BehaviorOnMxFailure/)."""
 BehaviorOnMxFailureOutput: TypeAlias = BehaviorOnMxFailure | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BehaviorOnMxFailureOutput/)."""
 BounceType: TypeAlias = Literal['UNDETERMINED', 'TRANSIENT', 'PERMANENT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BounceType/)."""
 BounceTypeOutput: TypeAlias = BounceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BounceTypeOutput/)."""
 BulkEmailStatus: TypeAlias = Literal['SUCCESS', 'MESSAGE_REJECTED', 'MAIL_FROM_DOMAIN_NOT_VERIFIED', 'CONFIGURATION_SET_NOT_FOUND', 'TEMPLATE_NOT_FOUND', 'ACCOUNT_SUSPENDED', 'ACCOUNT_THROTTLED', 'ACCOUNT_DAILY_QUOTA_EXCEEDED', 'INVALID_SENDING_POOL_NAME', 'ACCOUNT_SENDING_PAUSED', 'CONFIGURATION_SET_SENDING_PAUSED', 'INVALID_PARAMETER', 'TRANSIENT_FAILURE', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BulkEmailStatus/)."""
 BulkEmailStatusOutput: TypeAlias = BulkEmailStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BulkEmailStatusOutput/)."""
 ConfigurationSetFilterKey: TypeAlias = Literal['CONFIGURATION_SET_NAME_CONTAINS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ConfigurationSetFilterKey/)."""
 ConfigurationSetFilterKeyOutput: TypeAlias = ConfigurationSetFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ConfigurationSetFilterKeyOutput/)."""
 ContactLanguage: TypeAlias = Literal['EN', 'JA']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactLanguage/)."""
 ContactLanguageOutput: TypeAlias = ContactLanguage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactLanguageOutput/)."""
 ContactListImportAction: TypeAlias = Literal['DELETE', 'PUT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactListImportAction/)."""
 ContactListImportActionOutput: TypeAlias = ContactListImportAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactListImportActionOutput/)."""
 DataFormat: TypeAlias = Literal['CSV', 'JSON']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DataFormat/)."""
 DataFormatOutput: TypeAlias = DataFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DataFormatOutput/)."""
 DeliverabilityDashboardAccountStatus: TypeAlias = Literal['ACTIVE', 'PENDING_EXPIRATION', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityDashboardAccountStatus/)."""
 DeliverabilityDashboardAccountStatusOutput: TypeAlias = DeliverabilityDashboardAccountStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityDashboardAccountStatusOutput/)."""
 DeliverabilityTestStatus: TypeAlias = Literal['IN_PROGRESS', 'COMPLETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityTestStatus/)."""
 DeliverabilityTestStatusOutput: TypeAlias = DeliverabilityTestStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityTestStatusOutput/)."""
 DeliveryEventType: TypeAlias = Literal['SEND', 'DELIVERY', 'TRANSIENT_BOUNCE', 'PERMANENT_BOUNCE', 'UNDETERMINED_BOUNCE', 'COMPLAINT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryEventType/)."""
 DeliveryEventTypeOutput: TypeAlias = DeliveryEventType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryEventTypeOutput/)."""
 DimensionValueSource: TypeAlias = Literal['MESSAGE_TAG', 'EMAIL_HEADER', 'LINK_TAG']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DimensionValueSource/)."""
 DimensionValueSourceOutput: TypeAlias = DimensionValueSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DimensionValueSourceOutput/)."""
 DkimSigningAttributesOrigin: TypeAlias = Literal['AWS_SES', 'EXTERNAL', 'AWS_SES_AF_SOUTH_1', 'AWS_SES_EU_NORTH_1', 'AWS_SES_AP_SOUTH_1', 'AWS_SES_EU_WEST_3', 'AWS_SES_EU_WEST_2', 'AWS_SES_EU_SOUTH_1', 'AWS_SES_EU_WEST_1', 'AWS_SES_AP_NORTHEAST_3', 'AWS_SES_AP_NORTHEAST_2', 'AWS_SES_ME_SOUTH_1', 'AWS_SES_AP_NORTHEAST_1', 'AWS_SES_IL_CENTRAL_1', 'AWS_SES_SA_EAST_1', 'AWS_SES_CA_CENTRAL_1', 'AWS_SES_AP_SOUTHEAST_1', 'AWS_SES_AP_SOUTHEAST_2', 'AWS_SES_AP_SOUTHEAST_3', 'AWS_SES_EU_CENTRAL_1', 'AWS_SES_US_EAST_1', 'AWS_SES_US_EAST_2', 'AWS_SES_US_WEST_1', 'AWS_SES_US_WEST_2', 'AWS_SES_ME_CENTRAL_1', 'AWS_SES_AP_SOUTH_2', 'AWS_SES_EU_CENTRAL_2', 'AWS_SES_AP_SOUTHEAST_5', 'AWS_SES_CA_WEST_1', 'AWS_SES_US_GOV_EAST_1', 'AWS_SES_US_GOV_WEST_1']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimSigningAttributesOrigin/)."""
 DkimSigningAttributesOriginOutput: TypeAlias = DkimSigningAttributesOrigin | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimSigningAttributesOriginOutput/)."""
 DkimSigningKeyLength: TypeAlias = Literal['RSA_1024_BIT', 'RSA_2048_BIT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimSigningKeyLength/)."""
 DkimSigningKeyLengthOutput: TypeAlias = DkimSigningKeyLength | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimSigningKeyLengthOutput/)."""
 DkimStatus: TypeAlias = Literal['PENDING', 'SUCCESS', 'FAILED', 'TEMPORARY_FAILURE', 'NOT_STARTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimStatus/)."""
 DkimStatusOutput: TypeAlias = DkimStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimStatusOutput/)."""
 EmailAddressInsightsConfidenceVerdict: TypeAlias = Literal['LOW', 'MEDIUM', 'HIGH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsConfidenceVerdict/)."""
 EmailAddressInsightsConfidenceVerdictOutput: TypeAlias = EmailAddressInsightsConfidenceVerdict | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsConfidenceVerdictOutput/)."""
 EngagementEventType: TypeAlias = Literal['OPEN', 'CLICK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EngagementEventType/)."""
 EngagementEventTypeOutput: TypeAlias = EngagementEventType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EngagementEventTypeOutput/)."""
 EventType: TypeAlias = Literal['SEND', 'REJECT', 'BOUNCE', 'COMPLAINT', 'DELIVERY', 'OPEN', 'CLICK', 'RENDERING_FAILURE', 'DELIVERY_DELAY', 'SUBSCRIPTION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventType/)."""
 EventTypeOutput: TypeAlias = EventType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventTypeOutput/)."""
 ExportSourceType: TypeAlias = Literal['METRICS_DATA', 'MESSAGE_INSIGHTS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportSourceType/)."""
 ExportSourceTypeOutput: TypeAlias = ExportSourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportSourceTypeOutput/)."""
 FeatureStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/FeatureStatus/)."""
 FeatureStatusOutput: TypeAlias = FeatureStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/FeatureStatusOutput/)."""
 HttpsPolicy: TypeAlias = Literal['REQUIRE', 'REQUIRE_OPEN_ONLY', 'OPTIONAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/HttpsPolicy/)."""
 HttpsPolicyOutput: TypeAlias = HttpsPolicy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/HttpsPolicyOutput/)."""
 IdentityCertificateStatus: TypeAlias = Literal['PROVISIONING', 'INACTIVE', 'DEPROVISIONING', 'ACTIVE', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityCertificateStatus/)."""
 IdentityCertificateStatusOutput: TypeAlias = IdentityCertificateStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityCertificateStatusOutput/)."""
 IdentityFilterKey: TypeAlias = Literal['IDENTITY_NAME_CONTAINS', 'IDENTITY_TYPE', 'VERIFICATION_STATUS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityFilterKey/)."""
 IdentityFilterKeyOutput: TypeAlias = IdentityFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityFilterKeyOutput/)."""
 IdentityType: TypeAlias = Literal['EMAIL_ADDRESS', 'DOMAIN', 'MANAGED_DOMAIN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityType/)."""
 IdentityTypeOutput: TypeAlias = IdentityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityTypeOutput/)."""
 ImportDestinationType: TypeAlias = Literal['SUPPRESSION_LIST', 'CONTACT_LIST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDestinationType/)."""
 ImportDestinationTypeOutput: TypeAlias = ImportDestinationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDestinationTypeOutput/)."""
 JobStatus: TypeAlias = Literal['CREATED', 'PROCESSING', 'COMPLETED', 'FAILED', 'CANCELLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/JobStatus/)."""
 JobStatusOutput: TypeAlias = JobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/JobStatusOutput/)."""
 ListRecommendationsFilterKey: TypeAlias = Literal['TYPE', 'IMPACT', 'STATUS', 'RESOURCE_ARN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListRecommendationsFilterKey/)."""
 ListRecommendationsFilterKeyOutput: TypeAlias = ListRecommendationsFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListRecommendationsFilterKeyOutput/)."""
 ListTenantResourcesFilterKey: TypeAlias = Literal['RESOURCE_TYPE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantResourcesFilterKey/)."""
 ListTenantResourcesFilterKeyOutput: TypeAlias = ListTenantResourcesFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantResourcesFilterKeyOutput/)."""
 ListTenantsFilterKey: TypeAlias = Literal['TENANT_NAME_CONTAINS', 'SENDING_STATUS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantsFilterKey/)."""
 ListTenantsFilterKeyOutput: TypeAlias = ListTenantsFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantsFilterKeyOutput/)."""
 MailFromDomainStatus: TypeAlias = Literal['PENDING', 'SUCCESS', 'FAILED', 'TEMPORARY_FAILURE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailFromDomainStatus/)."""
 MailFromDomainStatusOutput: TypeAlias = MailFromDomainStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailFromDomainStatusOutput/)."""
 MailType: TypeAlias = Literal['MARKETING', 'TRANSACTIONAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailType/)."""
 MailTypeOutput: TypeAlias = MailType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailTypeOutput/)."""
 Metric: TypeAlias = Literal['SEND', 'COMPLAINT', 'PERMANENT_BOUNCE', 'TRANSIENT_BOUNCE', 'OPEN', 'CLICK', 'DELIVERY', 'DELIVERY_OPEN', 'DELIVERY_CLICK', 'DELIVERY_COMPLAINT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Metric/)."""
 MetricOutput: TypeAlias = Metric | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricOutput/)."""
 MetricAggregation: TypeAlias = Literal['RATE', 'VOLUME']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricAggregation/)."""
 MetricAggregationOutput: TypeAlias = MetricAggregation | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricAggregationOutput/)."""
 MetricDimensionName: TypeAlias = Literal['EMAIL_IDENTITY', 'CONFIGURATION_SET', 'ISP', 'TENANT_NAME']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDimensionName/)."""
 MetricDimensionNameOutput: TypeAlias = MetricDimensionName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDimensionNameOutput/)."""
 MetricNamespace: TypeAlias = Literal['VDM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricNamespace/)."""
 MetricNamespaceOutput: TypeAlias = MetricNamespace | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricNamespaceOutput/)."""
 PricingPlan: TypeAlias = Literal['NONE', 'ESSENTIALS', 'PRO', 'ENTERPRISE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PricingPlan/)."""
 PricingPlanOutput: TypeAlias = PricingPlan | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PricingPlanOutput/)."""
 QueryErrorCode: TypeAlias = Literal['INTERNAL_FAILURE', 'ACCESS_DENIED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/QueryErrorCode/)."""
 QueryErrorCodeOutput: TypeAlias = QueryErrorCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/QueryErrorCodeOutput/)."""
 RecommendationImpact: TypeAlias = Literal['LOW', 'HIGH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationImpact/)."""
 RecommendationImpactOutput: TypeAlias = RecommendationImpact | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationImpactOutput/)."""
 RecommendationStatus: TypeAlias = Literal['OPEN', 'FIXED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationStatus/)."""
 RecommendationStatusOutput: TypeAlias = RecommendationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationStatusOutput/)."""
 RecommendationType: TypeAlias = Literal['DKIM', 'DMARC', 'SPF', 'BIMI', 'COMPLAINT', 'BOUNCE', 'FEEDBACK_3P', 'IP_LISTING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationType/)."""
 RecommendationTypeOutput: TypeAlias = RecommendationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationTypeOutput/)."""
 ReputationEntityFilterKey: TypeAlias = Literal['ENTITY_TYPE', 'REPUTATION_IMPACT', 'SENDING_STATUS', 'ENTITY_REFERENCE_PREFIX']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationEntityFilterKey/)."""
 ReputationEntityFilterKeyOutput: TypeAlias = ReputationEntityFilterKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationEntityFilterKeyOutput/)."""
 ReputationEntityType: TypeAlias = Literal['RESOURCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationEntityType/)."""
 ReputationEntityTypeOutput: TypeAlias = ReputationEntityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationEntityTypeOutput/)."""
 ResourceType: TypeAlias = Literal['EMAIL_IDENTITY', 'CONFIGURATION_SET', 'EMAIL_TEMPLATE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ResourceType/)."""
 ResourceTypeOutput: TypeAlias = ResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ResourceTypeOutput/)."""
 ReviewStatus: TypeAlias = Literal['PENDING', 'FAILED', 'GRANTED', 'DENIED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReviewStatus/)."""
 ReviewStatusOutput: TypeAlias = ReviewStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReviewStatusOutput/)."""
 ScalingMode: TypeAlias = Literal['STANDARD', 'MANAGED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ScalingMode/)."""
 ScalingModeOutput: TypeAlias = ScalingMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ScalingModeOutput/)."""
 SendingStatus: TypeAlias = Literal['ENABLED', 'REINSTATED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingStatus/)."""
 SendingStatusOutput: TypeAlias = SendingStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingStatusOutput/)."""
 SignatureFormat: TypeAlias = Literal['DETACHED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SignatureFormat/)."""
 SignatureFormatOutput: TypeAlias = SignatureFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SignatureFormatOutput/)."""
 Status: TypeAlias = Literal['CREATING', 'READY', 'FAILED', 'DELETING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Status/)."""
 StatusOutput: TypeAlias = Status | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/StatusOutput/)."""
 SubscriptionStatus: TypeAlias = Literal['OPT_IN', 'OPT_OUT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SubscriptionStatus/)."""
 SubscriptionStatusOutput: TypeAlias = SubscriptionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SubscriptionStatusOutput/)."""
 SuppressionConfidenceVerdictThreshold: TypeAlias = Literal['MEDIUM', 'HIGH', 'MANAGED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConfidenceVerdictThreshold/)."""
 SuppressionConfidenceVerdictThresholdOutput: TypeAlias = SuppressionConfidenceVerdictThreshold | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConfidenceVerdictThresholdOutput/)."""
 SuppressionListImportAction: TypeAlias = Literal['DELETE', 'PUT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListImportAction/)."""
 SuppressionListImportActionOutput: TypeAlias = SuppressionListImportAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListImportActionOutput/)."""
 SuppressionListReason: TypeAlias = Literal['BOUNCE', 'COMPLAINT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListReason/)."""
 SuppressionListReasonOutput: TypeAlias = SuppressionListReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListReasonOutput/)."""
 SuppressionListScope: TypeAlias = Literal['ACCOUNT', 'TENANT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListScope/)."""
 SuppressionListScopeOutput: TypeAlias = SuppressionListScope | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListScopeOutput/)."""
 TlsPolicy: TypeAlias = Literal['REQUIRE', 'OPTIONAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TlsPolicy/)."""
 TlsPolicyOutput: TypeAlias = TlsPolicy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TlsPolicyOutput/)."""
 VerificationError: TypeAlias = Literal['SERVICE_ERROR', 'DNS_SERVER_ERROR', 'HOST_NOT_FOUND', 'TYPE_NOT_FOUND', 'INVALID_VALUE', 'REPLICATION_ACCESS_DENIED', 'REPLICATION_PRIMARY_NOT_FOUND', 'REPLICATION_PRIMARY_BYO_DKIM_NOT_SUPPORTED', 'REPLICATION_REPLICA_AS_PRIMARY_NOT_SUPPORTED', 'REPLICATION_PRIMARY_INVALID_REGION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VerificationError/)."""
 VerificationErrorOutput: TypeAlias = VerificationError | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VerificationErrorOutput/)."""
 VerificationStatus: TypeAlias = Literal['PENDING', 'SUCCESS', 'FAILED', 'TEMPORARY_FAILURE', 'NOT_STARTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VerificationStatus/)."""
 VerificationStatusOutput: TypeAlias = VerificationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VerificationStatusOutput/)."""
 WarmupStatus: TypeAlias = Literal['IN_PROGRESS', 'DONE', 'NOT_APPLICABLE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/WarmupStatus/)."""
 WarmupStatusOutput: TypeAlias = WarmupStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/WarmupStatusOutput/)."""
 
 AccountDetails = TypedDict(
     "AccountDetails",
@@ -351,6 +680,7 @@ AccountDetails = TypedDict(
     "review_details": NotRequired["ReviewDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AccountDetails/)."""
 
 ArchivingOptions = TypedDict(
     "ArchivingOptions",
@@ -358,6 +688,7 @@ ArchivingOptions = TypedDict(
     "archive_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ArchivingOptions/)."""
 
 AssociateEmailIdentityCertificateRequest = TypedDict(
     "AssociateEmailIdentityCertificateRequest",
@@ -367,6 +698,7 @@ AssociateEmailIdentityCertificateRequest = TypedDict(
     "certificate_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AssociateEmailIdentityCertificateRequest/)."""
 
 Attachment = TypedDict(
     "Attachment",
@@ -380,6 +712,7 @@ Attachment = TypedDict(
     "content_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Attachment/)."""
 
 BatchGetMetricDataQuery = TypedDict(
     "BatchGetMetricDataQuery",
@@ -392,6 +725,7 @@ BatchGetMetricDataQuery = TypedDict(
     "end_date": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BatchGetMetricDataQuery/)."""
 
 BatchGetMetricDataRequest = TypedDict(
     "BatchGetMetricDataRequest",
@@ -399,6 +733,7 @@ BatchGetMetricDataRequest = TypedDict(
     "queries": Required["Sequence[BatchGetMetricDataQuery]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BatchGetMetricDataRequest/)."""
 
 BlacklistEntry = TypedDict(
     "BlacklistEntry",
@@ -408,6 +743,7 @@ BlacklistEntry = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BlacklistEntry/)."""
 
 Body = TypedDict(
     "Body",
@@ -416,6 +752,7 @@ Body = TypedDict(
     "html": NotRequired["Content"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Body/)."""
 
 Bounce = TypedDict(
     "Bounce",
@@ -425,6 +762,7 @@ Bounce = TypedDict(
     "diagnostic_code": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Bounce/)."""
 
 BulkEmailContent = TypedDict(
     "BulkEmailContent",
@@ -432,6 +770,7 @@ BulkEmailContent = TypedDict(
     "template": NotRequired["Template"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BulkEmailContent/)."""
 
 BulkEmailEntry = TypedDict(
     "BulkEmailEntry",
@@ -442,6 +781,7 @@ BulkEmailEntry = TypedDict(
     "replacement_headers": NotRequired["Sequence[MessageHeader]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BulkEmailEntry/)."""
 
 BulkEmailEntryResult = TypedDict(
     "BulkEmailEntryResult",
@@ -451,6 +791,7 @@ BulkEmailEntryResult = TypedDict(
     "message_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BulkEmailEntryResult/)."""
 
 CancelExportJobRequest = TypedDict(
     "CancelExportJobRequest",
@@ -458,6 +799,7 @@ CancelExportJobRequest = TypedDict(
     "job_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CancelExportJobRequest/)."""
 
 CloudWatchDestination = TypedDict(
     "CloudWatchDestination",
@@ -465,6 +807,7 @@ CloudWatchDestination = TypedDict(
     "dimension_configurations": Required["Sequence[CloudWatchDimensionConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CloudWatchDestination/)."""
 
 CloudWatchDimensionConfiguration = TypedDict(
     "CloudWatchDimensionConfiguration",
@@ -474,6 +817,7 @@ CloudWatchDimensionConfiguration = TypedDict(
     "default_dimension_value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CloudWatchDimensionConfiguration/)."""
 
 Complaint = TypedDict(
     "Complaint",
@@ -482,6 +826,7 @@ Complaint = TypedDict(
     "complaint_feedback_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Complaint/)."""
 
 ConfigurationOverrides = TypedDict(
     "ConfigurationOverrides",
@@ -489,6 +834,7 @@ ConfigurationOverrides = TypedDict(
     "tracking": NotRequired["TrackingConfigurationOverrides"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ConfigurationOverrides/)."""
 
 Contact = TypedDict(
     "Contact",
@@ -500,6 +846,7 @@ Contact = TypedDict(
     "last_updated_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Contact/)."""
 
 ContactList = TypedDict(
     "ContactList",
@@ -508,6 +855,7 @@ ContactList = TypedDict(
     "last_updated_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactList/)."""
 
 ContactListDestination = TypedDict(
     "ContactListDestination",
@@ -516,6 +864,7 @@ ContactListDestination = TypedDict(
     "contact_list_import_action": Required["ContactListImportAction"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactListDestination/)."""
 
 Content = TypedDict(
     "Content",
@@ -524,6 +873,7 @@ Content = TypedDict(
     "charset": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Content/)."""
 
 CreateConfigurationSetEventDestinationRequest = TypedDict(
     "CreateConfigurationSetEventDestinationRequest",
@@ -533,6 +883,7 @@ CreateConfigurationSetEventDestinationRequest = TypedDict(
     "event_destination": Required["EventDestinationDefinition"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetEventDestinationRequest/)."""
 
 CreateConfigurationSetRequest = TypedDict(
     "CreateConfigurationSetRequest",
@@ -549,6 +900,7 @@ CreateConfigurationSetRequest = TypedDict(
     "message_security_options": NotRequired["MessageSecurityOptions"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetRequest/)."""
 
 CreateContactListRequest = TypedDict(
     "CreateContactListRequest",
@@ -559,6 +911,7 @@ CreateContactListRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactListRequest/)."""
 
 CreateContactRequest = TypedDict(
     "CreateContactRequest",
@@ -570,6 +923,7 @@ CreateContactRequest = TypedDict(
     "attributes_data": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactRequest/)."""
 
 CreateCustomVerificationEmailTemplateRequest = TypedDict(
     "CreateCustomVerificationEmailTemplateRequest",
@@ -583,6 +937,7 @@ CreateCustomVerificationEmailTemplateRequest = TypedDict(
     "failure_redirection_url": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateCustomVerificationEmailTemplateRequest/)."""
 
 CreateDedicatedIpPoolRequest = TypedDict(
     "CreateDedicatedIpPoolRequest",
@@ -592,6 +947,7 @@ CreateDedicatedIpPoolRequest = TypedDict(
     "scaling_mode": NotRequired["ScalingMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDedicatedIpPoolRequest/)."""
 
 CreateDeliverabilityTestReportRequest = TypedDict(
     "CreateDeliverabilityTestReportRequest",
@@ -602,6 +958,7 @@ CreateDeliverabilityTestReportRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDeliverabilityTestReportRequest/)."""
 
 CreateEmailIdentityPolicyRequest = TypedDict(
     "CreateEmailIdentityPolicyRequest",
@@ -611,6 +968,7 @@ CreateEmailIdentityPolicyRequest = TypedDict(
     "policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityPolicyRequest/)."""
 
 CreateEmailIdentityRequest = TypedDict(
     "CreateEmailIdentityRequest",
@@ -621,6 +979,7 @@ CreateEmailIdentityRequest = TypedDict(
     "configuration_set_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityRequest/)."""
 
 CreateEmailTemplateRequest = TypedDict(
     "CreateEmailTemplateRequest",
@@ -630,6 +989,7 @@ CreateEmailTemplateRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailTemplateRequest/)."""
 
 CreateExportJobRequest = TypedDict(
     "CreateExportJobRequest",
@@ -638,6 +998,7 @@ CreateExportJobRequest = TypedDict(
     "export_destination": Required["ExportDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateExportJobRequest/)."""
 
 CreateImportJobRequest = TypedDict(
     "CreateImportJobRequest",
@@ -646,6 +1007,7 @@ CreateImportJobRequest = TypedDict(
     "import_data_source": Required["ImportDataSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateImportJobRequest/)."""
 
 CreateMultiRegionEndpointRequest = TypedDict(
     "CreateMultiRegionEndpointRequest",
@@ -655,6 +1017,7 @@ CreateMultiRegionEndpointRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateMultiRegionEndpointRequest/)."""
 
 CreateTenantRequest = TypedDict(
     "CreateTenantRequest",
@@ -664,6 +1027,7 @@ CreateTenantRequest = TypedDict(
     "suppression_attributes": NotRequired["TenantSuppressionAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantRequest/)."""
 
 CreateTenantResourceAssociationRequest = TypedDict(
     "CreateTenantResourceAssociationRequest",
@@ -672,6 +1036,7 @@ CreateTenantResourceAssociationRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantResourceAssociationRequest/)."""
 
 CustomVerificationEmailTemplateMetadata = TypedDict(
     "CustomVerificationEmailTemplateMetadata",
@@ -683,6 +1048,7 @@ CustomVerificationEmailTemplateMetadata = TypedDict(
     "failure_redirection_url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CustomVerificationEmailTemplateMetadata/)."""
 
 DailyVolume = TypedDict(
     "DailyVolume",
@@ -692,6 +1058,7 @@ DailyVolume = TypedDict(
     "domain_isp_placements": NotRequired["Sequence[DomainIspPlacement]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DailyVolume/)."""
 
 DashboardAttributes = TypedDict(
     "DashboardAttributes",
@@ -699,6 +1066,7 @@ DashboardAttributes = TypedDict(
     "engagement_metrics": NotRequired["FeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DashboardAttributes/)."""
 
 DashboardOptions = TypedDict(
     "DashboardOptions",
@@ -706,6 +1074,7 @@ DashboardOptions = TypedDict(
     "engagement_metrics": NotRequired["FeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DashboardOptions/)."""
 
 DedicatedIp = TypedDict(
     "DedicatedIp",
@@ -716,6 +1085,7 @@ DedicatedIp = TypedDict(
     "pool_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DedicatedIp/)."""
 
 DedicatedIpPool = TypedDict(
     "DedicatedIpPool",
@@ -724,18 +1094,21 @@ DedicatedIpPool = TypedDict(
     "scaling_mode": Required["ScalingMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DedicatedIpPool/)."""
 
 DefaultSigningScheme = TypedDict(
     "DefaultSigningScheme",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DefaultSigningScheme/)."""
 
 DefaultSigningSchemeOutput = TypedDict(
     "DefaultSigningSchemeOutput",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DefaultSigningSchemeOutput/)."""
 
 DeleteConfigurationSetEventDestinationRequest = TypedDict(
     "DeleteConfigurationSetEventDestinationRequest",
@@ -744,6 +1117,7 @@ DeleteConfigurationSetEventDestinationRequest = TypedDict(
     "event_destination_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetEventDestinationRequest/)."""
 
 DeleteConfigurationSetRequest = TypedDict(
     "DeleteConfigurationSetRequest",
@@ -751,6 +1125,7 @@ DeleteConfigurationSetRequest = TypedDict(
     "configuration_set_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetRequest/)."""
 
 DeleteContactListRequest = TypedDict(
     "DeleteContactListRequest",
@@ -758,6 +1133,7 @@ DeleteContactListRequest = TypedDict(
     "contact_list_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactListRequest/)."""
 
 DeleteContactRequest = TypedDict(
     "DeleteContactRequest",
@@ -766,6 +1142,7 @@ DeleteContactRequest = TypedDict(
     "email_address": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactRequest/)."""
 
 DeleteCustomVerificationEmailTemplateRequest = TypedDict(
     "DeleteCustomVerificationEmailTemplateRequest",
@@ -773,6 +1150,7 @@ DeleteCustomVerificationEmailTemplateRequest = TypedDict(
     "template_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteCustomVerificationEmailTemplateRequest/)."""
 
 DeleteDedicatedIpPoolRequest = TypedDict(
     "DeleteDedicatedIpPoolRequest",
@@ -780,6 +1158,7 @@ DeleteDedicatedIpPoolRequest = TypedDict(
     "pool_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteDedicatedIpPoolRequest/)."""
 
 DeleteEmailIdentityPolicyRequest = TypedDict(
     "DeleteEmailIdentityPolicyRequest",
@@ -788,6 +1167,7 @@ DeleteEmailIdentityPolicyRequest = TypedDict(
     "policy_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityPolicyRequest/)."""
 
 DeleteEmailIdentityRequest = TypedDict(
     "DeleteEmailIdentityRequest",
@@ -795,6 +1175,7 @@ DeleteEmailIdentityRequest = TypedDict(
     "email_identity": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityRequest/)."""
 
 DeleteEmailTemplateRequest = TypedDict(
     "DeleteEmailTemplateRequest",
@@ -802,6 +1183,7 @@ DeleteEmailTemplateRequest = TypedDict(
     "template_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailTemplateRequest/)."""
 
 DeleteMultiRegionEndpointRequest = TypedDict(
     "DeleteMultiRegionEndpointRequest",
@@ -809,6 +1191,7 @@ DeleteMultiRegionEndpointRequest = TypedDict(
     "endpoint_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteMultiRegionEndpointRequest/)."""
 
 DeleteSuppressedDestinationRequest = TypedDict(
     "DeleteSuppressedDestinationRequest",
@@ -817,6 +1200,7 @@ DeleteSuppressedDestinationRequest = TypedDict(
     "tenant_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteSuppressedDestinationRequest/)."""
 
 DeleteTenantRequest = TypedDict(
     "DeleteTenantRequest",
@@ -824,6 +1208,7 @@ DeleteTenantRequest = TypedDict(
     "tenant_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantRequest/)."""
 
 DeleteTenantResourceAssociationRequest = TypedDict(
     "DeleteTenantResourceAssociationRequest",
@@ -832,6 +1217,7 @@ DeleteTenantResourceAssociationRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantResourceAssociationRequest/)."""
 
 DeliverabilityTestReport = TypedDict(
     "DeliverabilityTestReport",
@@ -844,6 +1230,7 @@ DeliverabilityTestReport = TypedDict(
     "deliverability_test_status": NotRequired["DeliverabilityTestStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityTestReport/)."""
 
 DeliveryOptions = TypedDict(
     "DeliveryOptions",
@@ -853,6 +1240,7 @@ DeliveryOptions = TypedDict(
     "max_delivery_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryOptions/)."""
 
 Destination = TypedDict(
     "Destination",
@@ -862,6 +1250,7 @@ Destination = TypedDict(
     "bcc_addresses": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Destination/)."""
 
 Details = TypedDict(
     "Details",
@@ -869,6 +1258,7 @@ Details = TypedDict(
     "routes_details": Required["Sequence[RouteDetails]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Details/)."""
 
 DisassociateEmailIdentityCertificateRequest = TypedDict(
     "DisassociateEmailIdentityCertificateRequest",
@@ -877,6 +1267,7 @@ DisassociateEmailIdentityCertificateRequest = TypedDict(
     "from_address": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DisassociateEmailIdentityCertificateRequest/)."""
 
 DkimAttributes = TypedDict(
     "DkimAttributes",
@@ -891,6 +1282,7 @@ DkimAttributes = TypedDict(
     "last_key_generation_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimAttributes/)."""
 
 DkimSigningAttributes = TypedDict(
     "DkimSigningAttributes",
@@ -901,6 +1293,7 @@ DkimSigningAttributes = TypedDict(
     "domain_signing_attributes_origin": NotRequired["DkimSigningAttributesOrigin"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimSigningAttributes/)."""
 
 DomainDeliverabilityCampaign = TypedDict(
     "DomainDeliverabilityCampaign",
@@ -921,6 +1314,7 @@ DomainDeliverabilityCampaign = TypedDict(
     "esps": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainDeliverabilityCampaign/)."""
 
 DomainDeliverabilityTrackingOption = TypedDict(
     "DomainDeliverabilityTrackingOption",
@@ -930,6 +1324,7 @@ DomainDeliverabilityTrackingOption = TypedDict(
     "inbox_placement_tracking_option": NotRequired["InboxPlacementTrackingOption"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainDeliverabilityTrackingOption/)."""
 
 DomainIspPlacement = TypedDict(
     "DomainIspPlacement",
@@ -941,6 +1336,7 @@ DomainIspPlacement = TypedDict(
     "spam_percentage": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainIspPlacement/)."""
 
 EmailAddressInsightsMailboxEvaluations = TypedDict(
     "EmailAddressInsightsMailboxEvaluations",
@@ -953,6 +1349,7 @@ EmailAddressInsightsMailboxEvaluations = TypedDict(
     "is_random_input": NotRequired["EmailAddressInsightsVerdict"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsMailboxEvaluations/)."""
 
 EmailAddressInsightsVerdict = TypedDict(
     "EmailAddressInsightsVerdict",
@@ -960,6 +1357,7 @@ EmailAddressInsightsVerdict = TypedDict(
     "confidence_verdict": NotRequired["EmailAddressInsightsConfidenceVerdict"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsVerdict/)."""
 
 EmailContent = TypedDict(
     "EmailContent",
@@ -969,6 +1367,7 @@ EmailContent = TypedDict(
     "template": NotRequired["Template"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailContent/)."""
 
 EmailInsights = TypedDict(
     "EmailInsights",
@@ -978,6 +1377,7 @@ EmailInsights = TypedDict(
     "events": NotRequired["Sequence[InsightsEvent]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailInsights/)."""
 
 EmailTemplateContent = TypedDict(
     "EmailTemplateContent",
@@ -987,6 +1387,7 @@ EmailTemplateContent = TypedDict(
     "html": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailTemplateContent/)."""
 
 EmailTemplateMetadata = TypedDict(
     "EmailTemplateMetadata",
@@ -995,6 +1396,7 @@ EmailTemplateMetadata = TypedDict(
     "created_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailTemplateMetadata/)."""
 
 EventBridgeDestination = TypedDict(
     "EventBridgeDestination",
@@ -1002,6 +1404,7 @@ EventBridgeDestination = TypedDict(
     "event_bus_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventBridgeDestination/)."""
 
 EventDestination = TypedDict(
     "EventDestination",
@@ -1016,6 +1419,7 @@ EventDestination = TypedDict(
     "pinpoint_destination": NotRequired["PinpointDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventDestination/)."""
 
 EventDestinationDefinition = TypedDict(
     "EventDestinationDefinition",
@@ -1029,6 +1433,7 @@ EventDestinationDefinition = TypedDict(
     "pinpoint_destination": NotRequired["PinpointDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventDestinationDefinition/)."""
 
 EventDetails = TypedDict(
     "EventDetails",
@@ -1037,6 +1442,7 @@ EventDetails = TypedDict(
     "complaint": NotRequired["Complaint"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventDetails/)."""
 
 ExportDataSource = TypedDict(
     "ExportDataSource",
@@ -1045,6 +1451,7 @@ ExportDataSource = TypedDict(
     "message_insights_data_source": NotRequired["MessageInsightsDataSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportDataSource/)."""
 
 ExportDestination = TypedDict(
     "ExportDestination",
@@ -1053,6 +1460,7 @@ ExportDestination = TypedDict(
     "s3_url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportDestination/)."""
 
 ExportJobSummary = TypedDict(
     "ExportJobSummary",
@@ -1064,6 +1472,7 @@ ExportJobSummary = TypedDict(
     "completed_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportJobSummary/)."""
 
 ExportMetric = TypedDict(
     "ExportMetric",
@@ -1072,6 +1481,7 @@ ExportMetric = TypedDict(
     "aggregation": NotRequired["MetricAggregation"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportMetric/)."""
 
 ExportStatistics = TypedDict(
     "ExportStatistics",
@@ -1080,6 +1490,7 @@ ExportStatistics = TypedDict(
     "exported_records_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportStatistics/)."""
 
 FailureInfo = TypedDict(
     "FailureInfo",
@@ -1088,12 +1499,14 @@ FailureInfo = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/FailureInfo/)."""
 
 GetAccountRequest = TypedDict(
     "GetAccountRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetAccountRequest/)."""
 
 GetBlacklistReportsRequest = TypedDict(
     "GetBlacklistReportsRequest",
@@ -1101,6 +1514,7 @@ GetBlacklistReportsRequest = TypedDict(
     "blacklist_item_names": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetBlacklistReportsRequest/)."""
 
 GetConfigurationSetEventDestinationsRequest = TypedDict(
     "GetConfigurationSetEventDestinationsRequest",
@@ -1108,6 +1522,7 @@ GetConfigurationSetEventDestinationsRequest = TypedDict(
     "configuration_set_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetEventDestinationsRequest/)."""
 
 GetConfigurationSetRequest = TypedDict(
     "GetConfigurationSetRequest",
@@ -1115,6 +1530,7 @@ GetConfigurationSetRequest = TypedDict(
     "configuration_set_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetRequest/)."""
 
 GetContactListRequest = TypedDict(
     "GetContactListRequest",
@@ -1122,6 +1538,7 @@ GetContactListRequest = TypedDict(
     "contact_list_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactListRequest/)."""
 
 GetContactRequest = TypedDict(
     "GetContactRequest",
@@ -1130,6 +1547,7 @@ GetContactRequest = TypedDict(
     "email_address": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactRequest/)."""
 
 GetCustomVerificationEmailTemplateRequest = TypedDict(
     "GetCustomVerificationEmailTemplateRequest",
@@ -1137,6 +1555,7 @@ GetCustomVerificationEmailTemplateRequest = TypedDict(
     "template_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetCustomVerificationEmailTemplateRequest/)."""
 
 GetDedicatedIpPoolRequest = TypedDict(
     "GetDedicatedIpPoolRequest",
@@ -1144,6 +1563,7 @@ GetDedicatedIpPoolRequest = TypedDict(
     "pool_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpPoolRequest/)."""
 
 GetDedicatedIpRequest = TypedDict(
     "GetDedicatedIpRequest",
@@ -1151,6 +1571,7 @@ GetDedicatedIpRequest = TypedDict(
     "ip": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpRequest/)."""
 
 GetDedicatedIpsRequest = TypedDict(
     "GetDedicatedIpsRequest",
@@ -1160,12 +1581,14 @@ GetDedicatedIpsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpsRequest/)."""
 
 GetDeliverabilityDashboardOptionsRequest = TypedDict(
     "GetDeliverabilityDashboardOptionsRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityDashboardOptionsRequest/)."""
 
 GetDeliverabilityTestReportRequest = TypedDict(
     "GetDeliverabilityTestReportRequest",
@@ -1173,6 +1596,7 @@ GetDeliverabilityTestReportRequest = TypedDict(
     "report_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityTestReportRequest/)."""
 
 GetDomainDeliverabilityCampaignRequest = TypedDict(
     "GetDomainDeliverabilityCampaignRequest",
@@ -1180,6 +1604,7 @@ GetDomainDeliverabilityCampaignRequest = TypedDict(
     "campaign_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainDeliverabilityCampaignRequest/)."""
 
 GetDomainStatisticsReportRequest = TypedDict(
     "GetDomainStatisticsReportRequest",
@@ -1189,6 +1614,7 @@ GetDomainStatisticsReportRequest = TypedDict(
     "end_date": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainStatisticsReportRequest/)."""
 
 GetEmailAddressInsightsRequest = TypedDict(
     "GetEmailAddressInsightsRequest",
@@ -1196,6 +1622,7 @@ GetEmailAddressInsightsRequest = TypedDict(
     "email_address": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailAddressInsightsRequest/)."""
 
 GetEmailIdentityPoliciesRequest = TypedDict(
     "GetEmailIdentityPoliciesRequest",
@@ -1203,6 +1630,7 @@ GetEmailIdentityPoliciesRequest = TypedDict(
     "email_identity": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityPoliciesRequest/)."""
 
 GetEmailIdentityRequest = TypedDict(
     "GetEmailIdentityRequest",
@@ -1210,6 +1638,7 @@ GetEmailIdentityRequest = TypedDict(
     "email_identity": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityRequest/)."""
 
 GetEmailTemplateRequest = TypedDict(
     "GetEmailTemplateRequest",
@@ -1217,6 +1646,7 @@ GetEmailTemplateRequest = TypedDict(
     "template_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailTemplateRequest/)."""
 
 GetExportJobRequest = TypedDict(
     "GetExportJobRequest",
@@ -1224,6 +1654,7 @@ GetExportJobRequest = TypedDict(
     "job_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetExportJobRequest/)."""
 
 GetImportJobRequest = TypedDict(
     "GetImportJobRequest",
@@ -1231,6 +1662,7 @@ GetImportJobRequest = TypedDict(
     "job_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetImportJobRequest/)."""
 
 GetMessageInsightsRequest = TypedDict(
     "GetMessageInsightsRequest",
@@ -1238,6 +1670,7 @@ GetMessageInsightsRequest = TypedDict(
     "message_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMessageInsightsRequest/)."""
 
 GetMultiRegionEndpointRequest = TypedDict(
     "GetMultiRegionEndpointRequest",
@@ -1245,6 +1678,7 @@ GetMultiRegionEndpointRequest = TypedDict(
     "endpoint_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMultiRegionEndpointRequest/)."""
 
 GetReputationEntityRequest = TypedDict(
     "GetReputationEntityRequest",
@@ -1253,6 +1687,7 @@ GetReputationEntityRequest = TypedDict(
     "reputation_entity_type": Required["ReputationEntityType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetReputationEntityRequest/)."""
 
 GetSuppressedDestinationRequest = TypedDict(
     "GetSuppressedDestinationRequest",
@@ -1261,6 +1696,7 @@ GetSuppressedDestinationRequest = TypedDict(
     "tenant_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetSuppressedDestinationRequest/)."""
 
 GetTenantRequest = TypedDict(
     "GetTenantRequest",
@@ -1268,6 +1704,7 @@ GetTenantRequest = TypedDict(
     "tenant_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetTenantRequest/)."""
 
 GuardianAttributes = TypedDict(
     "GuardianAttributes",
@@ -1275,6 +1712,7 @@ GuardianAttributes = TypedDict(
     "optimized_shared_delivery": NotRequired["FeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GuardianAttributes/)."""
 
 GuardianOptions = TypedDict(
     "GuardianOptions",
@@ -1282,6 +1720,7 @@ GuardianOptions = TypedDict(
     "optimized_shared_delivery": NotRequired["FeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GuardianOptions/)."""
 
 IdentityCertificate = TypedDict(
     "IdentityCertificate",
@@ -1292,6 +1731,7 @@ IdentityCertificate = TypedDict(
     "certificate_expiry_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityCertificate/)."""
 
 IdentityInfo = TypedDict(
     "IdentityInfo",
@@ -1302,6 +1742,7 @@ IdentityInfo = TypedDict(
     "verification_status": NotRequired["VerificationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityInfo/)."""
 
 ImportDataSource = TypedDict(
     "ImportDataSource",
@@ -1310,6 +1751,7 @@ ImportDataSource = TypedDict(
     "data_format": Required["DataFormat"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDataSource/)."""
 
 ImportDestination = TypedDict(
     "ImportDestination",
@@ -1318,6 +1760,7 @@ ImportDestination = TypedDict(
     "contact_list_destination": NotRequired["ContactListDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDestination/)."""
 
 ImportJobSummary = TypedDict(
     "ImportJobSummary",
@@ -1330,6 +1773,7 @@ ImportJobSummary = TypedDict(
     "failed_records_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportJobSummary/)."""
 
 InboxPlacementTrackingOption = TypedDict(
     "InboxPlacementTrackingOption",
@@ -1338,6 +1782,7 @@ InboxPlacementTrackingOption = TypedDict(
     "tracked_isps": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/InboxPlacementTrackingOption/)."""
 
 InsightsEvent = TypedDict(
     "InsightsEvent",
@@ -1347,6 +1792,7 @@ InsightsEvent = TypedDict(
     "details": NotRequired["EventDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/InsightsEvent/)."""
 
 IspPlacement = TypedDict(
     "IspPlacement",
@@ -1355,6 +1801,7 @@ IspPlacement = TypedDict(
     "placement_statistics": NotRequired["PlacementStatistics"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IspPlacement/)."""
 
 KinesisFirehoseDestination = TypedDict(
     "KinesisFirehoseDestination",
@@ -1363,6 +1810,7 @@ KinesisFirehoseDestination = TypedDict(
     "delivery_stream_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/KinesisFirehoseDestination/)."""
 
 ListConfigurationSetsRequest = TypedDict(
     "ListConfigurationSetsRequest",
@@ -1372,6 +1820,7 @@ ListConfigurationSetsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListConfigurationSetsRequest/)."""
 
 ListContactListsRequest = TypedDict(
     "ListContactListsRequest",
@@ -1380,6 +1829,7 @@ ListContactListsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactListsRequest/)."""
 
 ListContactsFilter = TypedDict(
     "ListContactsFilter",
@@ -1388,6 +1838,7 @@ ListContactsFilter = TypedDict(
     "topic_filter": NotRequired["TopicFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactsFilter/)."""
 
 ListContactsRequest = TypedDict(
     "ListContactsRequest",
@@ -1398,6 +1849,7 @@ ListContactsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactsRequest/)."""
 
 ListCustomVerificationEmailTemplatesRequest = TypedDict(
     "ListCustomVerificationEmailTemplatesRequest",
@@ -1406,6 +1858,7 @@ ListCustomVerificationEmailTemplatesRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListCustomVerificationEmailTemplatesRequest/)."""
 
 ListDedicatedIpPoolsRequest = TypedDict(
     "ListDedicatedIpPoolsRequest",
@@ -1414,6 +1867,7 @@ ListDedicatedIpPoolsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDedicatedIpPoolsRequest/)."""
 
 ListDeliverabilityTestReportsRequest = TypedDict(
     "ListDeliverabilityTestReportsRequest",
@@ -1422,6 +1876,7 @@ ListDeliverabilityTestReportsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDeliverabilityTestReportsRequest/)."""
 
 ListDomainDeliverabilityCampaignsRequest = TypedDict(
     "ListDomainDeliverabilityCampaignsRequest",
@@ -1433,6 +1888,7 @@ ListDomainDeliverabilityCampaignsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDomainDeliverabilityCampaignsRequest/)."""
 
 ListEmailIdentitiesRequest = TypedDict(
     "ListEmailIdentitiesRequest",
@@ -1442,6 +1898,7 @@ ListEmailIdentitiesRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentitiesRequest/)."""
 
 ListEmailIdentityCertificatesRequest = TypedDict(
     "ListEmailIdentityCertificatesRequest",
@@ -1451,6 +1908,7 @@ ListEmailIdentityCertificatesRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentityCertificatesRequest/)."""
 
 ListEmailTemplatesRequest = TypedDict(
     "ListEmailTemplatesRequest",
@@ -1459,6 +1917,7 @@ ListEmailTemplatesRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailTemplatesRequest/)."""
 
 ListExportJobsRequest = TypedDict(
     "ListExportJobsRequest",
@@ -1469,6 +1928,7 @@ ListExportJobsRequest = TypedDict(
     "job_status": NotRequired["JobStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListExportJobsRequest/)."""
 
 ListImportJobsRequest = TypedDict(
     "ListImportJobsRequest",
@@ -1478,6 +1938,7 @@ ListImportJobsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListImportJobsRequest/)."""
 
 ListManagementOptions = TypedDict(
     "ListManagementOptions",
@@ -1486,6 +1947,7 @@ ListManagementOptions = TypedDict(
     "topic_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListManagementOptions/)."""
 
 ListMultiRegionEndpointsRequest = TypedDict(
     "ListMultiRegionEndpointsRequest",
@@ -1494,6 +1956,7 @@ ListMultiRegionEndpointsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListMultiRegionEndpointsRequest/)."""
 
 ListRecommendationsRequest = TypedDict(
     "ListRecommendationsRequest",
@@ -1503,6 +1966,7 @@ ListRecommendationsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListRecommendationsRequest/)."""
 
 ListReputationEntitiesRequest = TypedDict(
     "ListReputationEntitiesRequest",
@@ -1512,6 +1976,7 @@ ListReputationEntitiesRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListReputationEntitiesRequest/)."""
 
 ListResourceTenantsRequest = TypedDict(
     "ListResourceTenantsRequest",
@@ -1521,6 +1986,7 @@ ListResourceTenantsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListResourceTenantsRequest/)."""
 
 ListSuppressedDestinationsRequest = TypedDict(
     "ListSuppressedDestinationsRequest",
@@ -1533,6 +1999,7 @@ ListSuppressedDestinationsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListSuppressedDestinationsRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -1540,6 +2007,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTagsForResourceRequest/)."""
 
 ListTenantResourcesRequest = TypedDict(
     "ListTenantResourcesRequest",
@@ -1550,6 +2018,7 @@ ListTenantResourcesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantResourcesRequest/)."""
 
 ListTenantsRequest = TypedDict(
     "ListTenantsRequest",
@@ -1559,6 +2028,7 @@ ListTenantsRequest = TypedDict(
     "page_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantsRequest/)."""
 
 MailFromAttributes = TypedDict(
     "MailFromAttributes",
@@ -1568,6 +2038,7 @@ MailFromAttributes = TypedDict(
     "behavior_on_mx_failure": Required["BehaviorOnMxFailure"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailFromAttributes/)."""
 
 MailboxValidation = TypedDict(
     "MailboxValidation",
@@ -1576,6 +2047,7 @@ MailboxValidation = TypedDict(
     "evaluations": NotRequired["EmailAddressInsightsMailboxEvaluations"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailboxValidation/)."""
 
 Message = TypedDict(
     "Message",
@@ -1586,6 +2058,7 @@ Message = TypedDict(
     "attachments": NotRequired["Sequence[Attachment]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Message/)."""
 
 MessageHeader = TypedDict(
     "MessageHeader",
@@ -1594,6 +2067,7 @@ MessageHeader = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageHeader/)."""
 
 MessageInsightsDataSource = TypedDict(
     "MessageInsightsDataSource",
@@ -1605,6 +2079,7 @@ MessageInsightsDataSource = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageInsightsDataSource/)."""
 
 MessageInsightsFilters = TypedDict(
     "MessageInsightsFilters",
@@ -1618,6 +2093,7 @@ MessageInsightsFilters = TypedDict(
     "last_engagement_event": NotRequired["Sequence[EngagementEventType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageInsightsFilters/)."""
 
 MessageSecurityOptions = TypedDict(
     "MessageSecurityOptions",
@@ -1625,6 +2101,7 @@ MessageSecurityOptions = TypedDict(
     "signing_scheme": NotRequired["SigningScheme"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageSecurityOptions/)."""
 
 MessageTag = TypedDict(
     "MessageTag",
@@ -1633,6 +2110,7 @@ MessageTag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageTag/)."""
 
 MetricDataError = TypedDict(
     "MetricDataError",
@@ -1642,6 +2120,7 @@ MetricDataError = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDataError/)."""
 
 MetricDataResult = TypedDict(
     "MetricDataResult",
@@ -1651,6 +2130,7 @@ MetricDataResult = TypedDict(
     "values": NotRequired["Sequence[int]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDataResult/)."""
 
 MetricsDataSource = TypedDict(
     "MetricsDataSource",
@@ -1662,6 +2142,7 @@ MetricsDataSource = TypedDict(
     "end_date": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricsDataSource/)."""
 
 MultiRegionEndpoint = TypedDict(
     "MultiRegionEndpoint",
@@ -1674,6 +2155,7 @@ MultiRegionEndpoint = TypedDict(
     "last_updated_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MultiRegionEndpoint/)."""
 
 OverallVolume = TypedDict(
     "OverallVolume",
@@ -1683,6 +2165,7 @@ OverallVolume = TypedDict(
     "domain_isp_placements": NotRequired["Sequence[DomainIspPlacement]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/OverallVolume/)."""
 
 PinpointDestination = TypedDict(
     "PinpointDestination",
@@ -1690,6 +2173,7 @@ PinpointDestination = TypedDict(
     "application_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PinpointDestination/)."""
 
 PlacementStatistics = TypedDict(
     "PlacementStatistics",
@@ -1701,6 +2185,7 @@ PlacementStatistics = TypedDict(
     "dkim_percentage": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PlacementStatistics/)."""
 
 PricingAttributes = TypedDict(
     "PricingAttributes",
@@ -1709,6 +2194,7 @@ PricingAttributes = TypedDict(
     "next_plan": NotRequired["PricingPlan"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PricingAttributes/)."""
 
 PutAccountDedicatedIpWarmupAttributesRequest = TypedDict(
     "PutAccountDedicatedIpWarmupAttributesRequest",
@@ -1716,6 +2202,7 @@ PutAccountDedicatedIpWarmupAttributesRequest = TypedDict(
     "auto_warmup_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDedicatedIpWarmupAttributesRequest/)."""
 
 PutAccountDetailsRequest = TypedDict(
     "PutAccountDetailsRequest",
@@ -1728,6 +2215,7 @@ PutAccountDetailsRequest = TypedDict(
     "production_access_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDetailsRequest/)."""
 
 PutAccountPricingAttributesRequest = TypedDict(
     "PutAccountPricingAttributesRequest",
@@ -1735,6 +2223,7 @@ PutAccountPricingAttributesRequest = TypedDict(
     "plan": Required["PricingPlan"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountPricingAttributesRequest/)."""
 
 PutAccountSendingAttributesRequest = TypedDict(
     "PutAccountSendingAttributesRequest",
@@ -1742,6 +2231,7 @@ PutAccountSendingAttributesRequest = TypedDict(
     "sending_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSendingAttributesRequest/)."""
 
 PutAccountSuppressionAttributesRequest = TypedDict(
     "PutAccountSuppressionAttributesRequest",
@@ -1750,6 +2240,7 @@ PutAccountSuppressionAttributesRequest = TypedDict(
     "validation_attributes": NotRequired["SuppressionValidationAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSuppressionAttributesRequest/)."""
 
 PutAccountVdmAttributesRequest = TypedDict(
     "PutAccountVdmAttributesRequest",
@@ -1757,6 +2248,7 @@ PutAccountVdmAttributesRequest = TypedDict(
     "vdm_attributes": Required["VdmAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountVdmAttributesRequest/)."""
 
 PutConfigurationSetArchivingOptionsRequest = TypedDict(
     "PutConfigurationSetArchivingOptionsRequest",
@@ -1765,6 +2257,7 @@ PutConfigurationSetArchivingOptionsRequest = TypedDict(
     "archive_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetArchivingOptionsRequest/)."""
 
 PutConfigurationSetDeliveryOptionsRequest = TypedDict(
     "PutConfigurationSetDeliveryOptionsRequest",
@@ -1775,6 +2268,7 @@ PutConfigurationSetDeliveryOptionsRequest = TypedDict(
     "max_delivery_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetDeliveryOptionsRequest/)."""
 
 PutConfigurationSetReputationOptionsRequest = TypedDict(
     "PutConfigurationSetReputationOptionsRequest",
@@ -1783,6 +2277,7 @@ PutConfigurationSetReputationOptionsRequest = TypedDict(
     "reputation_metrics_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetReputationOptionsRequest/)."""
 
 PutConfigurationSetSendingOptionsRequest = TypedDict(
     "PutConfigurationSetSendingOptionsRequest",
@@ -1791,6 +2286,7 @@ PutConfigurationSetSendingOptionsRequest = TypedDict(
     "sending_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSendingOptionsRequest/)."""
 
 PutConfigurationSetSuppressionOptionsRequest = TypedDict(
     "PutConfigurationSetSuppressionOptionsRequest",
@@ -1801,6 +2297,7 @@ PutConfigurationSetSuppressionOptionsRequest = TypedDict(
     "validation_options": NotRequired["SuppressionValidationOptions"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSuppressionOptionsRequest/)."""
 
 PutConfigurationSetTrackingOptionsRequest = TypedDict(
     "PutConfigurationSetTrackingOptionsRequest",
@@ -1810,6 +2307,7 @@ PutConfigurationSetTrackingOptionsRequest = TypedDict(
     "https_policy": NotRequired["HttpsPolicy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetTrackingOptionsRequest/)."""
 
 PutConfigurationSetVdmOptionsRequest = TypedDict(
     "PutConfigurationSetVdmOptionsRequest",
@@ -1818,6 +2316,7 @@ PutConfigurationSetVdmOptionsRequest = TypedDict(
     "vdm_options": NotRequired["VdmOptions"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetVdmOptionsRequest/)."""
 
 PutDedicatedIpInPoolRequest = TypedDict(
     "PutDedicatedIpInPoolRequest",
@@ -1826,6 +2325,7 @@ PutDedicatedIpInPoolRequest = TypedDict(
     "destination_pool_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpInPoolRequest/)."""
 
 PutDedicatedIpPoolScalingAttributesRequest = TypedDict(
     "PutDedicatedIpPoolScalingAttributesRequest",
@@ -1834,6 +2334,7 @@ PutDedicatedIpPoolScalingAttributesRequest = TypedDict(
     "scaling_mode": Required["ScalingMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpPoolScalingAttributesRequest/)."""
 
 PutDedicatedIpWarmupAttributesRequest = TypedDict(
     "PutDedicatedIpWarmupAttributesRequest",
@@ -1842,6 +2343,7 @@ PutDedicatedIpWarmupAttributesRequest = TypedDict(
     "warmup_percentage": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpWarmupAttributesRequest/)."""
 
 PutDeliverabilityDashboardOptionRequest = TypedDict(
     "PutDeliverabilityDashboardOptionRequest",
@@ -1850,6 +2352,7 @@ PutDeliverabilityDashboardOptionRequest = TypedDict(
     "subscribed_domains": NotRequired["Sequence[DomainDeliverabilityTrackingOption]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDeliverabilityDashboardOptionRequest/)."""
 
 PutEmailIdentityConfigurationSetAttributesRequest = TypedDict(
     "PutEmailIdentityConfigurationSetAttributesRequest",
@@ -1858,6 +2361,7 @@ PutEmailIdentityConfigurationSetAttributesRequest = TypedDict(
     "configuration_set_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityConfigurationSetAttributesRequest/)."""
 
 PutEmailIdentityDkimAttributesRequest = TypedDict(
     "PutEmailIdentityDkimAttributesRequest",
@@ -1866,6 +2370,7 @@ PutEmailIdentityDkimAttributesRequest = TypedDict(
     "signing_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimAttributesRequest/)."""
 
 PutEmailIdentityDkimSigningAttributesRequest = TypedDict(
     "PutEmailIdentityDkimSigningAttributesRequest",
@@ -1875,6 +2380,7 @@ PutEmailIdentityDkimSigningAttributesRequest = TypedDict(
     "signing_attributes": NotRequired["DkimSigningAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimSigningAttributesRequest/)."""
 
 PutEmailIdentityFeedbackAttributesRequest = TypedDict(
     "PutEmailIdentityFeedbackAttributesRequest",
@@ -1883,6 +2389,7 @@ PutEmailIdentityFeedbackAttributesRequest = TypedDict(
     "email_forwarding_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityFeedbackAttributesRequest/)."""
 
 PutEmailIdentityMailFromAttributesRequest = TypedDict(
     "PutEmailIdentityMailFromAttributesRequest",
@@ -1892,6 +2399,7 @@ PutEmailIdentityMailFromAttributesRequest = TypedDict(
     "behavior_on_mx_failure": NotRequired["BehaviorOnMxFailure"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityMailFromAttributesRequest/)."""
 
 PutSuppressedDestinationRequest = TypedDict(
     "PutSuppressedDestinationRequest",
@@ -1901,6 +2409,7 @@ PutSuppressedDestinationRequest = TypedDict(
     "tenant_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutSuppressedDestinationRequest/)."""
 
 PutTenantSuppressionAttributesRequest = TypedDict(
     "PutTenantSuppressionAttributesRequest",
@@ -1910,6 +2419,7 @@ PutTenantSuppressionAttributesRequest = TypedDict(
     "suppression_scope": NotRequired["SuppressionListScope"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutTenantSuppressionAttributesRequest/)."""
 
 RawMessage = TypedDict(
     "RawMessage",
@@ -1917,6 +2427,7 @@ RawMessage = TypedDict(
     "data": Required["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RawMessage/)."""
 
 Recommendation = TypedDict(
     "Recommendation",
@@ -1930,6 +2441,7 @@ Recommendation = TypedDict(
     "impact": NotRequired["RecommendationImpact"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Recommendation/)."""
 
 ReplacementEmailContent = TypedDict(
     "ReplacementEmailContent",
@@ -1937,6 +2449,7 @@ ReplacementEmailContent = TypedDict(
     "replacement_template": NotRequired["ReplacementTemplate"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReplacementEmailContent/)."""
 
 ReplacementTemplate = TypedDict(
     "ReplacementTemplate",
@@ -1944,6 +2457,7 @@ ReplacementTemplate = TypedDict(
     "replacement_template_data": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReplacementTemplate/)."""
 
 ReputationEntity = TypedDict(
     "ReputationEntity",
@@ -1957,6 +2471,7 @@ ReputationEntity = TypedDict(
     "reputation_impact": NotRequired["RecommendationImpact"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationEntity/)."""
 
 ReputationOptions = TypedDict(
     "ReputationOptions",
@@ -1965,6 +2480,7 @@ ReputationOptions = TypedDict(
     "last_fresh_start": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationOptions/)."""
 
 ResourceTenantMetadata = TypedDict(
     "ResourceTenantMetadata",
@@ -1975,6 +2491,7 @@ ResourceTenantMetadata = TypedDict(
     "associated_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ResourceTenantMetadata/)."""
 
 ReviewDetails = TypedDict(
     "ReviewDetails",
@@ -1983,6 +2500,7 @@ ReviewDetails = TypedDict(
     "case_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReviewDetails/)."""
 
 Route = TypedDict(
     "Route",
@@ -1990,6 +2508,7 @@ Route = TypedDict(
     "region": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Route/)."""
 
 RouteDetails = TypedDict(
     "RouteDetails",
@@ -1997,6 +2516,7 @@ RouteDetails = TypedDict(
     "region": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RouteDetails/)."""
 
 SOARecord = TypedDict(
     "SOARecord",
@@ -2006,6 +2526,7 @@ SOARecord = TypedDict(
     "serial_number": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SOARecord-3e355b8474eb/)."""
 
 SendBulkEmailRequest = TypedDict(
     "SendBulkEmailRequest",
@@ -2024,6 +2545,7 @@ SendBulkEmailRequest = TypedDict(
     "configuration_overrides": NotRequired["ConfigurationOverrides"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendBulkEmailRequest/)."""
 
 SendCustomVerificationEmailRequest = TypedDict(
     "SendCustomVerificationEmailRequest",
@@ -2033,6 +2555,7 @@ SendCustomVerificationEmailRequest = TypedDict(
     "configuration_set_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendCustomVerificationEmailRequest/)."""
 
 SendEmailRequest = TypedDict(
     "SendEmailRequest",
@@ -2052,6 +2575,7 @@ SendEmailRequest = TypedDict(
     "configuration_overrides": NotRequired["ConfigurationOverrides"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendEmailRequest/)."""
 
 SendQuota = TypedDict(
     "SendQuota",
@@ -2061,6 +2585,7 @@ SendQuota = TypedDict(
     "sent_last24_hours": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendQuota/)."""
 
 SendingOptions = TypedDict(
     "SendingOptions",
@@ -2068,15 +2593,23 @@ SendingOptions = TypedDict(
     "sending_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingOptions/)."""
 
 SigningSchemeDefaultScheme = TypedDict("SigningSchemeDefaultScheme", {"default_scheme": Required["DefaultSigningScheme"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeDefaultScheme/)."""
 SigningSchemeSmimeScheme = TypedDict("SigningSchemeSmimeScheme", {"smime_scheme": Required["SmimeSigningScheme"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeSmimeScheme/)."""
 SigningScheme: TypeAlias = SigningSchemeDefaultScheme | SigningSchemeSmimeScheme
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningScheme/)."""
 
 SigningSchemeOutputDefaultScheme = TypedDict("SigningSchemeOutputDefaultScheme", {"default_scheme": Required["DefaultSigningSchemeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutputDefaultScheme/)."""
 SigningSchemeOutputSmimeScheme = TypedDict("SigningSchemeOutputSmimeScheme", {"smime_scheme": Required["SmimeSigningSchemeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutputSmimeScheme/)."""
 SigningSchemeOutputUnknown = TypedDict("SigningSchemeOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutputUnknown/)."""
 SigningSchemeOutput: TypeAlias = SigningSchemeOutputDefaultScheme | SigningSchemeOutputSmimeScheme | SigningSchemeOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutput/)."""
 
 SmimeSigningScheme = TypedDict(
     "SmimeSigningScheme",
@@ -2084,6 +2617,7 @@ SmimeSigningScheme = TypedDict(
     "signature_format": NotRequired["SignatureFormat"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SmimeSigningScheme/)."""
 
 SmimeSigningSchemeOutput = TypedDict(
     "SmimeSigningSchemeOutput",
@@ -2091,6 +2625,7 @@ SmimeSigningSchemeOutput = TypedDict(
     "signature_format": Required["SignatureFormatOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SmimeSigningSchemeOutput/)."""
 
 SnsDestination = TypedDict(
     "SnsDestination",
@@ -2098,6 +2633,7 @@ SnsDestination = TypedDict(
     "topic_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SnsDestination/)."""
 
 StatusRecord = TypedDict(
     "StatusRecord",
@@ -2107,6 +2643,7 @@ StatusRecord = TypedDict(
     "last_updated_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/StatusRecord/)."""
 
 SuppressedDestination = TypedDict(
     "SuppressedDestination",
@@ -2118,6 +2655,7 @@ SuppressedDestination = TypedDict(
     "tenant_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestination/)."""
 
 SuppressedDestinationAttributes = TypedDict(
     "SuppressedDestinationAttributes",
@@ -2126,6 +2664,7 @@ SuppressedDestinationAttributes = TypedDict(
     "feedback_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationAttributes/)."""
 
 SuppressedDestinationSummary = TypedDict(
     "SuppressedDestinationSummary",
@@ -2135,6 +2674,7 @@ SuppressedDestinationSummary = TypedDict(
     "last_update_time": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationSummary/)."""
 
 SuppressionAttributes = TypedDict(
     "SuppressionAttributes",
@@ -2143,6 +2683,7 @@ SuppressionAttributes = TypedDict(
     "validation_attributes": NotRequired["SuppressionValidationAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionAttributes/)."""
 
 SuppressionConditionThreshold = TypedDict(
     "SuppressionConditionThreshold",
@@ -2151,6 +2692,7 @@ SuppressionConditionThreshold = TypedDict(
     "overall_confidence_threshold": NotRequired["SuppressionConfidenceThreshold"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConditionThreshold/)."""
 
 SuppressionConfidenceThreshold = TypedDict(
     "SuppressionConfidenceThreshold",
@@ -2158,6 +2700,7 @@ SuppressionConfidenceThreshold = TypedDict(
     "confidence_verdict_threshold": Required["SuppressionConfidenceVerdictThreshold"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConfidenceThreshold/)."""
 
 SuppressionListDestination = TypedDict(
     "SuppressionListDestination",
@@ -2165,6 +2708,7 @@ SuppressionListDestination = TypedDict(
     "suppression_list_import_action": Required["SuppressionListImportAction"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListDestination/)."""
 
 SuppressionOptions = TypedDict(
     "SuppressionOptions",
@@ -2174,6 +2718,7 @@ SuppressionOptions = TypedDict(
     "validation_options": NotRequired["SuppressionValidationOptions"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionOptions/)."""
 
 SuppressionValidationAttributes = TypedDict(
     "SuppressionValidationAttributes",
@@ -2181,6 +2726,7 @@ SuppressionValidationAttributes = TypedDict(
     "condition_threshold": Required["SuppressionConditionThreshold"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionValidationAttributes/)."""
 
 SuppressionValidationOptions = TypedDict(
     "SuppressionValidationOptions",
@@ -2188,6 +2734,7 @@ SuppressionValidationOptions = TypedDict(
     "condition_threshold": Required["SuppressionConditionThreshold"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionValidationOptions/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -2196,6 +2743,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -2204,6 +2752,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TagResourceRequest/)."""
 
 Template = TypedDict(
     "Template",
@@ -2216,6 +2765,7 @@ Template = TypedDict(
     "attachments": NotRequired["Sequence[Attachment]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Template/)."""
 
 Tenant = TypedDict(
     "Tenant",
@@ -2229,6 +2779,7 @@ Tenant = TypedDict(
     "suppression_attributes": NotRequired["TenantSuppressionAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Tenant/)."""
 
 TenantInfo = TypedDict(
     "TenantInfo",
@@ -2240,6 +2791,7 @@ TenantInfo = TypedDict(
     "sending_status": NotRequired["SendingStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantInfo/)."""
 
 TenantResource = TypedDict(
     "TenantResource",
@@ -2248,6 +2800,7 @@ TenantResource = TypedDict(
     "resource_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantResource/)."""
 
 TenantSuppressionAttributes = TypedDict(
     "TenantSuppressionAttributes",
@@ -2256,6 +2809,7 @@ TenantSuppressionAttributes = TypedDict(
     "suppression_scope": NotRequired["SuppressionListScope"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantSuppressionAttributes/)."""
 
 TestRenderEmailTemplateRequest = TypedDict(
     "TestRenderEmailTemplateRequest",
@@ -2264,6 +2818,7 @@ TestRenderEmailTemplateRequest = TypedDict(
     "template_data": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TestRenderEmailTemplateRequest/)."""
 
 Topic = TypedDict(
     "Topic",
@@ -2274,6 +2829,7 @@ Topic = TypedDict(
     "default_subscription_status": Required["SubscriptionStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/Topic/)."""
 
 TopicFilter = TypedDict(
     "TopicFilter",
@@ -2282,6 +2838,7 @@ TopicFilter = TypedDict(
     "use_default_if_preference_unavailable": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TopicFilter/)."""
 
 TopicPreference = TypedDict(
     "TopicPreference",
@@ -2290,6 +2847,7 @@ TopicPreference = TypedDict(
     "subscription_status": Required["SubscriptionStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TopicPreference/)."""
 
 TrackingConfigurationOverrides = TypedDict(
     "TrackingConfigurationOverrides",
@@ -2298,6 +2856,7 @@ TrackingConfigurationOverrides = TypedDict(
     "click_tracking_enabled": NotRequired["FeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TrackingConfigurationOverrides/)."""
 
 TrackingOptions = TypedDict(
     "TrackingOptions",
@@ -2306,6 +2865,7 @@ TrackingOptions = TypedDict(
     "https_policy": NotRequired["HttpsPolicy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TrackingOptions/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -2314,6 +2874,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UntagResourceRequest/)."""
 
 UpdateConfigurationSetEventDestinationRequest = TypedDict(
     "UpdateConfigurationSetEventDestinationRequest",
@@ -2323,6 +2884,7 @@ UpdateConfigurationSetEventDestinationRequest = TypedDict(
     "event_destination": Required["EventDestinationDefinition"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetEventDestinationRequest/)."""
 
 UpdateConfigurationSetRequest = TypedDict(
     "UpdateConfigurationSetRequest",
@@ -2331,6 +2893,7 @@ UpdateConfigurationSetRequest = TypedDict(
     "message_security_options": NotRequired["MessageSecurityOptions"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetRequest/)."""
 
 UpdateContactListRequest = TypedDict(
     "UpdateContactListRequest",
@@ -2340,6 +2903,7 @@ UpdateContactListRequest = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactListRequest/)."""
 
 UpdateContactRequest = TypedDict(
     "UpdateContactRequest",
@@ -2351,6 +2915,7 @@ UpdateContactRequest = TypedDict(
     "attributes_data": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactRequest/)."""
 
 UpdateCustomVerificationEmailTemplateRequest = TypedDict(
     "UpdateCustomVerificationEmailTemplateRequest",
@@ -2363,6 +2928,7 @@ UpdateCustomVerificationEmailTemplateRequest = TypedDict(
     "failure_redirection_url": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateCustomVerificationEmailTemplateRequest/)."""
 
 UpdateEmailIdentityPolicyRequest = TypedDict(
     "UpdateEmailIdentityPolicyRequest",
@@ -2372,6 +2938,7 @@ UpdateEmailIdentityPolicyRequest = TypedDict(
     "policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailIdentityPolicyRequest/)."""
 
 UpdateEmailTemplateRequest = TypedDict(
     "UpdateEmailTemplateRequest",
@@ -2380,6 +2947,7 @@ UpdateEmailTemplateRequest = TypedDict(
     "template_content": Required["EmailTemplateContent"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailTemplateRequest/)."""
 
 UpdateReputationEntityCustomerManagedStatusRequest = TypedDict(
     "UpdateReputationEntityCustomerManagedStatusRequest",
@@ -2389,6 +2957,7 @@ UpdateReputationEntityCustomerManagedStatusRequest = TypedDict(
     "sending_status": Required["SendingStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityCustomerManagedStatusRequest/)."""
 
 UpdateReputationEntityPolicyRequest = TypedDict(
     "UpdateReputationEntityPolicyRequest",
@@ -2398,6 +2967,7 @@ UpdateReputationEntityPolicyRequest = TypedDict(
     "reputation_entity_policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityPolicyRequest/)."""
 
 VdmAttributes = TypedDict(
     "VdmAttributes",
@@ -2407,6 +2977,7 @@ VdmAttributes = TypedDict(
     "guardian_attributes": NotRequired["GuardianAttributes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VdmAttributes/)."""
 
 VdmOptions = TypedDict(
     "VdmOptions",
@@ -2415,6 +2986,7 @@ VdmOptions = TypedDict(
     "guardian_options": NotRequired["GuardianOptions"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VdmOptions/)."""
 
 VerificationInfo = TypedDict(
     "VerificationInfo",
@@ -2425,6 +2997,7 @@ VerificationInfo = TypedDict(
     "soa_record": NotRequired["SOARecord"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VerificationInfo/)."""
 
 VolumeStatistics = TypedDict(
     "VolumeStatistics",
@@ -2435,3 +3008,4 @@ VolumeStatistics = TypedDict(
     "projected_spam": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VolumeStatistics/)."""

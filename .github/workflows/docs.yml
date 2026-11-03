@@ -3,10 +3,10 @@ name: Documentation
 on:
   pull_request:
     branches: [main]
-    paths: ["docs/**", "examples/docs/**", "zensical.toml", ".github/workflows/docs.yml"]
+    paths: ["docs/**", "examples/**", "codegen/**", "Cargo.toml", "Cargo.lock", "zensical.toml", ".github/workflows/docs.yml"]
   push:
     branches: [main]
-    paths: ["docs/**", "examples/docs/**", "zensical.toml", ".github/workflows/docs.yml"]
+    paths: ["docs/**", "examples/**", "codegen/**", "Cargo.toml", "Cargo.lock", "zensical.toml", ".github/workflows/docs.yml"]
   workflow_dispatch:
   workflow_call:
 
@@ -33,7 +33,10 @@ jobs:
       - name: Build documentation
         run: |
           python -m venv .venv
-          .venv/bin/pip install zensical
+          .venv/bin/pip install -e codegen zensical
+          cargo fetch --locked
+          .venv/bin/rboto-codegen fetch-model --all
+          .venv/bin/python -m rboto_codegen.reference_site
           .venv/bin/zensical build --clean --strict
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
         if: github.event_name != 'pull_request'

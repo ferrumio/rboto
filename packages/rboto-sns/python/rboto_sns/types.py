@@ -9,57 +9,107 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 BatchResultErrorEntryOutput: TypeAlias = _native.BatchResultErrorEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/BatchResultErrorEntryOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ByteStream/)."""
 CheckIfPhoneNumberIsOptedOutOutput: TypeAlias = _native.CheckIfPhoneNumberIsOptedOutOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CheckIfPhoneNumberIsOptedOutOutput/)."""
 ConfirmSubscriptionOutput: TypeAlias = _native.ConfirmSubscriptionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ConfirmSubscriptionOutput/)."""
 CreatePlatformApplicationOutput: TypeAlias = _native.CreatePlatformApplicationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformApplicationOutput/)."""
 CreatePlatformEndpointOutput: TypeAlias = _native.CreatePlatformEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformEndpointOutput/)."""
 CreateSMSSandboxPhoneNumberOutput: TypeAlias = _native.CreateSMSSandboxPhoneNumberOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateSMSSandboxPhoneNumberOutput/)."""
 CreateTopicOutput: TypeAlias = _native.CreateTopicOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateTopicOutput/)."""
 DeleteSMSSandboxPhoneNumberOutput: TypeAlias = _native.DeleteSMSSandboxPhoneNumberOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/DeleteSMSSandboxPhoneNumberOutput/)."""
 EndpointOutput: TypeAlias = _native.Endpoint
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/EndpointOutput/)."""
 GetDataProtectionPolicyOutput: TypeAlias = _native.GetDataProtectionPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetDataProtectionPolicyOutput/)."""
 GetEndpointAttributesOutput: TypeAlias = _native.GetEndpointAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetEndpointAttributesOutput/)."""
 GetPlatformApplicationAttributesOutput: TypeAlias = _native.GetPlatformApplicationAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetPlatformApplicationAttributesOutput/)."""
 GetSMSAttributesOutput: TypeAlias = _native.GetSMSAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSAttributesOutput/)."""
 GetSMSSandboxAccountStatusOutput: TypeAlias = _native.GetSMSSandboxAccountStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSSandboxAccountStatusOutput/)."""
 GetSubscriptionAttributesOutput: TypeAlias = _native.GetSubscriptionAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSubscriptionAttributesOutput/)."""
 GetTopicAttributesOutput: TypeAlias = _native.GetTopicAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetTopicAttributesOutput/)."""
 ListEndpointsByPlatformApplicationOutput: TypeAlias = _native.ListEndpointsByPlatformApplicationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListEndpointsByPlatformApplicationOutput/)."""
 ListOriginationNumbersOutput: TypeAlias = _native.ListOriginationNumbersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListOriginationNumbersOutput/)."""
 ListPhoneNumbersOptedOutOutput: TypeAlias = _native.ListPhoneNumbersOptedOutOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPhoneNumbersOptedOutOutput/)."""
 ListPlatformApplicationsOutput: TypeAlias = _native.ListPlatformApplicationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPlatformApplicationsOutput/)."""
 ListSMSSandboxPhoneNumbersOutput: TypeAlias = _native.ListSMSSandboxPhoneNumbersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSMSSandboxPhoneNumbersOutput/)."""
 ListSubscriptionsByTopicOutput: TypeAlias = _native.ListSubscriptionsByTopicOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsByTopicOutput/)."""
 ListSubscriptionsOutput: TypeAlias = _native.ListSubscriptionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTagsForResourceOutput/)."""
 ListTopicsOutput: TypeAlias = _native.ListTopicsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTopicsOutput/)."""
 OptInPhoneNumberOutput: TypeAlias = _native.OptInPhoneNumberOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/OptInPhoneNumberOutput/)."""
 PhoneNumberInformationOutput: TypeAlias = _native.PhoneNumberInformation
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PhoneNumberInformationOutput/)."""
 PlatformApplicationOutput: TypeAlias = _native.PlatformApplication
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PlatformApplicationOutput/)."""
 PublishBatchOutput: TypeAlias = _native.PublishBatchOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchOutput/)."""
 PublishBatchResultEntryOutput: TypeAlias = _native.PublishBatchResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchResultEntryOutput/)."""
 PublishOutput: TypeAlias = _native.PublishOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishOutput/)."""
 SetSMSAttributesOutput: TypeAlias = _native.SetSMSAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetSMSAttributesOutput/)."""
 SmsSandboxPhoneNumber: TypeAlias = _native.SmsSandboxPhoneNumber
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SmsSandboxPhoneNumber-2dfbd3dfb447/)."""
 SubscribeOutput: TypeAlias = _native.SubscribeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SubscribeOutput/)."""
 SubscriptionOutput: TypeAlias = _native.Subscription
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SubscriptionOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TagResourceOutput/)."""
 TopicOutput: TypeAlias = _native.Topic
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TopicOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/UntagResourceOutput/)."""
 VerifySMSSandboxPhoneNumberOutput: TypeAlias = _native.VerifySMSSandboxPhoneNumberOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/VerifySMSSandboxPhoneNumberOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/JSONValue/)."""
 
 LanguageCodeString: TypeAlias = Literal['en-US', 'en-GB', 'es-419', 'es-ES', 'de-DE', 'fr-CA', 'fr-FR', 'it-IT', 'ja-JP', 'pt-BR', 'kr-KR', 'zh-CN', 'zh-TW']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/LanguageCodeString/)."""
 LanguageCodeStringOutput: TypeAlias = LanguageCodeString | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/LanguageCodeStringOutput/)."""
 NumberCapability: TypeAlias = Literal['SMS', 'MMS', 'VOICE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/NumberCapability/)."""
 NumberCapabilityOutput: TypeAlias = NumberCapability | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/NumberCapabilityOutput/)."""
 RouteType: TypeAlias = Literal['Transactional', 'Promotional', 'Premium']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/RouteType/)."""
 RouteTypeOutput: TypeAlias = RouteType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/RouteTypeOutput/)."""
 SMSSandboxPhoneNumberVerificationStatus: TypeAlias = Literal['Pending', 'Verified']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SMSSandboxPhoneNumberVerificationStatus/)."""
 SMSSandboxPhoneNumberVerificationStatusOutput: TypeAlias = SMSSandboxPhoneNumberVerificationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SMSSandboxPhoneNumberVerificationStatusOutput/)."""
 
 AddPermissionInput = TypedDict(
     "AddPermissionInput",
@@ -70,6 +120,7 @@ AddPermissionInput = TypedDict(
     "action_name": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/AddPermissionInput/)."""
 
 BatchResultErrorEntry = TypedDict(
     "BatchResultErrorEntry",
@@ -80,6 +131,7 @@ BatchResultErrorEntry = TypedDict(
     "sender_fault": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/BatchResultErrorEntry/)."""
 
 CheckIfPhoneNumberIsOptedOutInput = TypedDict(
     "CheckIfPhoneNumberIsOptedOutInput",
@@ -87,6 +139,7 @@ CheckIfPhoneNumberIsOptedOutInput = TypedDict(
     "phone_number": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CheckIfPhoneNumberIsOptedOutInput/)."""
 
 ConfirmSubscriptionInput = TypedDict(
     "ConfirmSubscriptionInput",
@@ -96,6 +149,7 @@ ConfirmSubscriptionInput = TypedDict(
     "authenticate_on_unsubscribe": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ConfirmSubscriptionInput/)."""
 
 CreatePlatformApplicationInput = TypedDict(
     "CreatePlatformApplicationInput",
@@ -105,6 +159,7 @@ CreatePlatformApplicationInput = TypedDict(
     "attributes": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformApplicationInput/)."""
 
 CreatePlatformEndpointInput = TypedDict(
     "CreatePlatformEndpointInput",
@@ -115,6 +170,7 @@ CreatePlatformEndpointInput = TypedDict(
     "attributes": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreatePlatformEndpointInput/)."""
 
 CreateSMSSandboxPhoneNumberInput = TypedDict(
     "CreateSMSSandboxPhoneNumberInput",
@@ -123,6 +179,7 @@ CreateSMSSandboxPhoneNumberInput = TypedDict(
     "language_code": NotRequired["LanguageCodeString"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateSMSSandboxPhoneNumberInput/)."""
 
 CreateTopicInput = TypedDict(
     "CreateTopicInput",
@@ -133,6 +190,7 @@ CreateTopicInput = TypedDict(
     "data_protection_policy": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/CreateTopicInput/)."""
 
 DeleteEndpointInput = TypedDict(
     "DeleteEndpointInput",
@@ -140,6 +198,7 @@ DeleteEndpointInput = TypedDict(
     "endpoint_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/DeleteEndpointInput/)."""
 
 DeletePlatformApplicationInput = TypedDict(
     "DeletePlatformApplicationInput",
@@ -147,6 +206,7 @@ DeletePlatformApplicationInput = TypedDict(
     "platform_application_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/DeletePlatformApplicationInput/)."""
 
 DeleteSMSSandboxPhoneNumberInput = TypedDict(
     "DeleteSMSSandboxPhoneNumberInput",
@@ -154,6 +214,7 @@ DeleteSMSSandboxPhoneNumberInput = TypedDict(
     "phone_number": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/DeleteSMSSandboxPhoneNumberInput/)."""
 
 DeleteTopicInput = TypedDict(
     "DeleteTopicInput",
@@ -161,6 +222,7 @@ DeleteTopicInput = TypedDict(
     "topic_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/DeleteTopicInput/)."""
 
 Endpoint = TypedDict(
     "Endpoint",
@@ -169,6 +231,7 @@ Endpoint = TypedDict(
     "attributes": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/Endpoint/)."""
 
 GetDataProtectionPolicyInput = TypedDict(
     "GetDataProtectionPolicyInput",
@@ -176,6 +239,7 @@ GetDataProtectionPolicyInput = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetDataProtectionPolicyInput/)."""
 
 GetEndpointAttributesInput = TypedDict(
     "GetEndpointAttributesInput",
@@ -183,6 +247,7 @@ GetEndpointAttributesInput = TypedDict(
     "endpoint_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetEndpointAttributesInput/)."""
 
 GetPlatformApplicationAttributesInput = TypedDict(
     "GetPlatformApplicationAttributesInput",
@@ -190,6 +255,7 @@ GetPlatformApplicationAttributesInput = TypedDict(
     "platform_application_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetPlatformApplicationAttributesInput/)."""
 
 GetSMSAttributesInput = TypedDict(
     "GetSMSAttributesInput",
@@ -197,12 +263,14 @@ GetSMSAttributesInput = TypedDict(
     "attributes": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSAttributesInput/)."""
 
 GetSMSSandboxAccountStatusInput = TypedDict(
     "GetSMSSandboxAccountStatusInput",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSMSSandboxAccountStatusInput/)."""
 
 GetSubscriptionAttributesInput = TypedDict(
     "GetSubscriptionAttributesInput",
@@ -210,6 +278,7 @@ GetSubscriptionAttributesInput = TypedDict(
     "subscription_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetSubscriptionAttributesInput/)."""
 
 GetTopicAttributesInput = TypedDict(
     "GetTopicAttributesInput",
@@ -217,6 +286,7 @@ GetTopicAttributesInput = TypedDict(
     "topic_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/GetTopicAttributesInput/)."""
 
 ListEndpointsByPlatformApplicationInput = TypedDict(
     "ListEndpointsByPlatformApplicationInput",
@@ -225,6 +295,7 @@ ListEndpointsByPlatformApplicationInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListEndpointsByPlatformApplicationInput/)."""
 
 ListOriginationNumbersRequest = TypedDict(
     "ListOriginationNumbersRequest",
@@ -233,6 +304,7 @@ ListOriginationNumbersRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListOriginationNumbersRequest/)."""
 
 ListPhoneNumbersOptedOutInput = TypedDict(
     "ListPhoneNumbersOptedOutInput",
@@ -240,6 +312,7 @@ ListPhoneNumbersOptedOutInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPhoneNumbersOptedOutInput/)."""
 
 ListPlatformApplicationsInput = TypedDict(
     "ListPlatformApplicationsInput",
@@ -247,6 +320,7 @@ ListPlatformApplicationsInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListPlatformApplicationsInput/)."""
 
 ListSMSSandboxPhoneNumbersInput = TypedDict(
     "ListSMSSandboxPhoneNumbersInput",
@@ -255,6 +329,7 @@ ListSMSSandboxPhoneNumbersInput = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSMSSandboxPhoneNumbersInput/)."""
 
 ListSubscriptionsByTopicInput = TypedDict(
     "ListSubscriptionsByTopicInput",
@@ -263,6 +338,7 @@ ListSubscriptionsByTopicInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsByTopicInput/)."""
 
 ListSubscriptionsInput = TypedDict(
     "ListSubscriptionsInput",
@@ -270,6 +346,7 @@ ListSubscriptionsInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListSubscriptionsInput/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -277,6 +354,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTagsForResourceRequest/)."""
 
 ListTopicsInput = TypedDict(
     "ListTopicsInput",
@@ -284,6 +362,7 @@ ListTopicsInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/ListTopicsInput/)."""
 
 MessageAttributeValue = TypedDict(
     "MessageAttributeValue",
@@ -293,6 +372,7 @@ MessageAttributeValue = TypedDict(
     "binary_value": NotRequired["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/MessageAttributeValue/)."""
 
 OptInPhoneNumberInput = TypedDict(
     "OptInPhoneNumberInput",
@@ -300,6 +380,7 @@ OptInPhoneNumberInput = TypedDict(
     "phone_number": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/OptInPhoneNumberInput/)."""
 
 PhoneNumberInformation = TypedDict(
     "PhoneNumberInformation",
@@ -312,6 +393,7 @@ PhoneNumberInformation = TypedDict(
     "number_capabilities": NotRequired["Sequence[NumberCapability]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PhoneNumberInformation/)."""
 
 PlatformApplication = TypedDict(
     "PlatformApplication",
@@ -320,6 +402,7 @@ PlatformApplication = TypedDict(
     "attributes": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PlatformApplication/)."""
 
 PublishBatchInput = TypedDict(
     "PublishBatchInput",
@@ -328,6 +411,7 @@ PublishBatchInput = TypedDict(
     "publish_batch_request_entries": Required["Sequence[PublishBatchRequestEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchInput/)."""
 
 PublishBatchRequestEntry = TypedDict(
     "PublishBatchRequestEntry",
@@ -341,6 +425,7 @@ PublishBatchRequestEntry = TypedDict(
     "message_group_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchRequestEntry/)."""
 
 PublishBatchResultEntry = TypedDict(
     "PublishBatchResultEntry",
@@ -350,6 +435,7 @@ PublishBatchResultEntry = TypedDict(
     "sequence_number": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishBatchResultEntry/)."""
 
 PublishInput = TypedDict(
     "PublishInput",
@@ -365,6 +451,7 @@ PublishInput = TypedDict(
     "message_group_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PublishInput/)."""
 
 PutDataProtectionPolicyInput = TypedDict(
     "PutDataProtectionPolicyInput",
@@ -373,6 +460,7 @@ PutDataProtectionPolicyInput = TypedDict(
     "data_protection_policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/PutDataProtectionPolicyInput/)."""
 
 RemovePermissionInput = TypedDict(
     "RemovePermissionInput",
@@ -381,6 +469,7 @@ RemovePermissionInput = TypedDict(
     "label": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/RemovePermissionInput/)."""
 
 SMSSandboxPhoneNumber = TypedDict(
     "SMSSandboxPhoneNumber",
@@ -389,6 +478,7 @@ SMSSandboxPhoneNumber = TypedDict(
     "status": NotRequired["SMSSandboxPhoneNumberVerificationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SMSSandboxPhoneNumber-7dca1af95ab3/)."""
 
 SetEndpointAttributesInput = TypedDict(
     "SetEndpointAttributesInput",
@@ -397,6 +487,7 @@ SetEndpointAttributesInput = TypedDict(
     "attributes": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetEndpointAttributesInput/)."""
 
 SetPlatformApplicationAttributesInput = TypedDict(
     "SetPlatformApplicationAttributesInput",
@@ -405,6 +496,7 @@ SetPlatformApplicationAttributesInput = TypedDict(
     "attributes": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetPlatformApplicationAttributesInput/)."""
 
 SetSMSAttributesInput = TypedDict(
     "SetSMSAttributesInput",
@@ -412,6 +504,7 @@ SetSMSAttributesInput = TypedDict(
     "attributes": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetSMSAttributesInput/)."""
 
 SetSubscriptionAttributesInput = TypedDict(
     "SetSubscriptionAttributesInput",
@@ -421,6 +514,7 @@ SetSubscriptionAttributesInput = TypedDict(
     "attribute_value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetSubscriptionAttributesInput/)."""
 
 SetTopicAttributesInput = TypedDict(
     "SetTopicAttributesInput",
@@ -430,6 +524,7 @@ SetTopicAttributesInput = TypedDict(
     "attribute_value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SetTopicAttributesInput/)."""
 
 SubscribeInput = TypedDict(
     "SubscribeInput",
@@ -441,6 +536,7 @@ SubscribeInput = TypedDict(
     "return_subscription_arn": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/SubscribeInput/)."""
 
 Subscription = TypedDict(
     "Subscription",
@@ -452,6 +548,7 @@ Subscription = TypedDict(
     "topic_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/Subscription/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -460,6 +557,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -468,6 +566,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/TagResourceRequest/)."""
 
 Topic = TypedDict(
     "Topic",
@@ -475,6 +574,7 @@ Topic = TypedDict(
     "topic_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/Topic/)."""
 
 UnsubscribeInput = TypedDict(
     "UnsubscribeInput",
@@ -482,6 +582,7 @@ UnsubscribeInput = TypedDict(
     "subscription_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/UnsubscribeInput/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -490,6 +591,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/UntagResourceRequest/)."""
 
 VerifySMSSandboxPhoneNumberInput = TypedDict(
     "VerifySMSSandboxPhoneNumberInput",
@@ -498,3 +600,4 @@ VerifySMSSandboxPhoneNumberInput = TypedDict(
     "one_time_password": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sns/types/VerifySMSSandboxPhoneNumberInput/)."""

@@ -36,7 +36,7 @@ class EventBridgePipesClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[ListPipesOutput]:
-        """Yield each page from list_pipes; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/list_pipes/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:

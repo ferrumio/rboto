@@ -51,7 +51,7 @@ class CloudTrailClientPaginators:
         max_query_results: int | None = None,
         event_data_store_owner_account_id: str | None = None,
     ) -> AsyncIterator[GetQueryResultsOutput]:
-        """Yield each page from get_query_results; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_query_results/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "query_id": query_id,
         }
@@ -79,7 +79,7 @@ class CloudTrailClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListChannelsOutput]:
-        """Yield each page from list_channels; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_channels/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -102,7 +102,7 @@ class CloudTrailClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListEventDataStoresOutput]:
-        """Yield each page from list_event_data_stores; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_event_data_stores/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -126,7 +126,7 @@ class CloudTrailClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListImportFailuresOutput]:
-        """Yield each page from list_import_failures; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_import_failures/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "import_id": import_id,
         }
@@ -152,7 +152,7 @@ class CloudTrailClientPaginators:
         import_status: ImportStatus | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListImportsOutput]:
-        """Yield each page from list_imports; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_imports/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -184,7 +184,7 @@ class CloudTrailClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListInsightsDataOutput]:
-        """Yield each page from list_insights_data; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_insights_data/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "insight_source": insight_source,
             "data_type": data_type,
@@ -224,7 +224,7 @@ class CloudTrailClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListInsightsMetricDataOutput]:
-        """Yield each page from list_insights_metric_data; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_insights_metric_data/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "event_source": event_source,
             "event_name": event_name,
@@ -263,7 +263,7 @@ class CloudTrailClientPaginators:
         end_time: str | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListPublicKeysOutput]:
-        """Yield each page from list_public_keys; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_public_keys/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if start_time is not None:
@@ -292,7 +292,7 @@ class CloudTrailClientPaginators:
         end_time: str | None = None,
         query_status: QueryStatus | None = None,
     ) -> AsyncIterator[ListQueriesOutput]:
-        """Yield each page from list_queries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_queries/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -322,7 +322,7 @@ class CloudTrailClientPaginators:
         resource_id_list: Sequence[str],
         next_token: str | None = None,
     ) -> AsyncIterator[ListTagsOutput]:
-        """Yield each page from list_tags; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_tags/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "resource_id_list": resource_id_list,
         }
@@ -343,7 +343,7 @@ class CloudTrailClientPaginators:
         *,
         next_token: str | None = None,
     ) -> AsyncIterator[ListTrailsOutput]:
-        """Yield each page from list_trails; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_trails/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -368,7 +368,7 @@ class CloudTrailClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[LookupEventsOutput]:
-        """Yield each page from lookup_events; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/lookup_events/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if lookup_attributes is not None:

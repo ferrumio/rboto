@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AliasListEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/AliasListEntryOutput/)."""
     @property
     def alias_name(self) -> str | None: ...
     @property
@@ -31,6 +33,7 @@ class AliasListEntry:
 
 @final
 class CustomKeyStoresListEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomKeyStoresListEntryOutput/)."""
     @property
     def custom_key_store_id(self) -> str | None: ...
     @property
@@ -53,6 +56,7 @@ class CustomKeyStoresListEntry:
 
 @final
 class GrantConstraints:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantConstraintsOutput/)."""
     @property
     def encryption_context_subset(self) -> dict[str, str] | None: ...
     @property
@@ -63,6 +67,7 @@ class GrantConstraints:
 
 @final
 class GrantListEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantListEntryOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -89,6 +94,7 @@ class GrantListEntry:
 
 @final
 class KeyLastUsageData:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyLastUsageDataOutput/)."""
     @property
     def operation(self) -> _types.KeyLastUsageTrackingOperationOutput | None: ...
     @property
@@ -101,6 +107,7 @@ class KeyLastUsageData:
 
 @final
 class KeyListEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyListEntryOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -109,6 +116,7 @@ class KeyListEntry:
 
 @final
 class KeyMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyMetadataOutput/)."""
     @property
     def aws_account_id(self) -> str | None: ...
     @property
@@ -165,6 +173,7 @@ class KeyMetadata:
 
 @final
 class MultiRegionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionConfigurationOutput/)."""
     @property
     def multi_region_key_type(self) -> _types.MultiRegionKeyTypeOutput | None: ...
     @property
@@ -175,6 +184,7 @@ class MultiRegionConfiguration:
 
 @final
 class MultiRegionKey:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/MultiRegionKeyOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -183,6 +193,7 @@ class MultiRegionKey:
 
 @final
 class RotationsListEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotationsListEntryOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -205,6 +216,7 @@ class RotationsListEntry:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/TagOutput/)."""
     @property
     def tag_key(self) -> str: ...
     @property
@@ -213,12 +225,14 @@ class Tag:
 
 @final
 class XksKeyConfigurationType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksKeyConfigurationTypeOutput/)."""
     @property
     def id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class XksProxyConfigurationType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/XksProxyConfigurationTypeOutput/)."""
     @property
     def connectivity(self) -> _types.XksProxyConnectivityTypeOutput | None: ...
     @property
@@ -235,22 +249,26 @@ class XksProxyConfigurationType:
 
 @final
 class CancelKeyDeletionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CancelKeyDeletionOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ConnectCustomKeyStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ConnectCustomKeyStoreOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCustomKeyStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateCustomKeyStoreOutput/)."""
     @property
     def custom_key_store_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateGrantOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateGrantOutput/)."""
     @property
     def grant_token(self) -> str | None: ...
     @property
@@ -259,12 +277,14 @@ class CreateGrantOutput:
 
 @final
 class CreateKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateKeyOutput/)."""
     @property
     def key_metadata(self) -> KeyMetadata | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DecryptOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DecryptOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -279,10 +299,12 @@ class DecryptOutput:
 
 @final
 class DeleteCustomKeyStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeleteCustomKeyStoreOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteImportedKeyMaterialOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeleteImportedKeyMaterialOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -291,6 +313,7 @@ class DeleteImportedKeyMaterialOutput:
 
 @final
 class DeriveSharedSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DeriveSharedSecretOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -305,6 +328,7 @@ class DeriveSharedSecretOutput:
 
 @final
 class DescribeCustomKeyStoresOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DescribeCustomKeyStoresOutput/)."""
     @property
     def custom_key_stores(self) -> list[CustomKeyStoresListEntry] | None: ...
     @property
@@ -315,16 +339,19 @@ class DescribeCustomKeyStoresOutput:
 
 @final
 class DescribeKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DescribeKeyOutput/)."""
     @property
     def key_metadata(self) -> KeyMetadata | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisconnectCustomKeyStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DisconnectCustomKeyStoreOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EncryptOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncryptOutput/)."""
     @property
     def ciphertext_blob(self) -> bytes | None: ...
     @property
@@ -335,6 +362,7 @@ class EncryptOutput:
 
 @final
 class GenerateDataKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyOutput/)."""
     @property
     def ciphertext_blob(self) -> bytes | None: ...
     @property
@@ -349,6 +377,7 @@ class GenerateDataKeyOutput:
 
 @final
 class GenerateDataKeyPairOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyPairOutput/)."""
     @property
     def private_key_ciphertext_blob(self) -> bytes | None: ...
     @property
@@ -367,6 +396,7 @@ class GenerateDataKeyPairOutput:
 
 @final
 class GenerateDataKeyPairWithoutPlaintextOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyPairWithoutPlaintextOutput/)."""
     @property
     def private_key_ciphertext_blob(self) -> bytes | None: ...
     @property
@@ -381,6 +411,7 @@ class GenerateDataKeyPairWithoutPlaintextOutput:
 
 @final
 class GenerateDataKeyWithoutPlaintextOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateDataKeyWithoutPlaintextOutput/)."""
     @property
     def ciphertext_blob(self) -> bytes | None: ...
     @property
@@ -391,6 +422,7 @@ class GenerateDataKeyWithoutPlaintextOutput:
 
 @final
 class GenerateMacOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateMacOutput/)."""
     @property
     def mac(self) -> bytes | None: ...
     @property
@@ -401,6 +433,7 @@ class GenerateMacOutput:
 
 @final
 class GenerateRandomOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GenerateRandomOutput/)."""
     @property
     def plaintext(self) -> bytes | None: ...
     @property
@@ -409,6 +442,7 @@ class GenerateRandomOutput:
 
 @final
 class GetKeyLastUsageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyLastUsageOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -421,6 +455,7 @@ class GetKeyLastUsageOutput:
 
 @final
 class GetKeyPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyPolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     @property
@@ -429,6 +464,7 @@ class GetKeyPolicyOutput:
 
 @final
 class GetKeyRotationStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetKeyRotationStatusOutput/)."""
     @property
     def key_rotation_enabled(self) -> bool: ...
     @property
@@ -443,6 +479,7 @@ class GetKeyRotationStatusOutput:
 
 @final
 class GetParametersForImportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetParametersForImportOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -455,6 +492,7 @@ class GetParametersForImportOutput:
 
 @final
 class GetPublicKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GetPublicKeyOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -475,6 +513,7 @@ class GetPublicKeyOutput:
 
 @final
 class ImportKeyMaterialOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ImportKeyMaterialOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -483,6 +522,7 @@ class ImportKeyMaterialOutput:
 
 @final
 class ListAliasesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListAliasesOutput/)."""
     @property
     def aliases(self) -> list[AliasListEntry] | None: ...
     @property
@@ -493,6 +533,7 @@ class ListAliasesOutput:
 
 @final
 class ListGrantsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListGrantsOutput/)."""
     @property
     def grants(self) -> list[GrantListEntry] | None: ...
     @property
@@ -503,6 +544,7 @@ class ListGrantsOutput:
 
 @final
 class ListKeyPoliciesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeyPoliciesOutput/)."""
     @property
     def policy_names(self) -> list[str] | None: ...
     @property
@@ -513,6 +555,7 @@ class ListKeyPoliciesOutput:
 
 @final
 class ListKeyRotationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeyRotationsOutput/)."""
     @property
     def rotations(self) -> list[RotationsListEntry] | None: ...
     @property
@@ -523,6 +566,7 @@ class ListKeyRotationsOutput:
 
 @final
 class ListKeysOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListKeysOutput/)."""
     @property
     def keys(self) -> list[KeyListEntry] | None: ...
     @property
@@ -533,6 +577,7 @@ class ListKeysOutput:
 
 @final
 class ListResourceTagsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListResourceTagsOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     @property
@@ -543,6 +588,7 @@ class ListResourceTagsOutput:
 
 @final
 class ListRetirableGrantsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ListRetirableGrantsOutput/)."""
     @property
     def grants(self) -> list[GrantListEntry] | None: ...
     @property
@@ -553,6 +599,7 @@ class ListRetirableGrantsOutput:
 
 @final
 class ReEncryptOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ReEncryptOutput/)."""
     @property
     def ciphertext_blob(self) -> bytes | None: ...
     @property
@@ -571,6 +618,7 @@ class ReEncryptOutput:
 
 @final
 class ReplicateKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ReplicateKeyOutput/)."""
     @property
     def replica_key_metadata(self) -> KeyMetadata | None: ...
     @property
@@ -581,12 +629,14 @@ class ReplicateKeyOutput:
 
 @final
 class RotateKeyOnDemandOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/RotateKeyOnDemandOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScheduleKeyDeletionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ScheduleKeyDeletionOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -599,6 +649,7 @@ class ScheduleKeyDeletionOutput:
 
 @final
 class SignOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/SignOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -609,10 +660,12 @@ class SignOutput:
 
 @final
 class UpdateCustomKeyStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/UpdateCustomKeyStoreOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VerifyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/VerifyOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property
@@ -623,6 +676,7 @@ class VerifyOutput:
 
 @final
 class VerifyMacOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/VerifyMacOutput/)."""
     @property
     def key_id(self) -> str | None: ...
     @property

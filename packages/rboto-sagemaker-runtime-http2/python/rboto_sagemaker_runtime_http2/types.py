@@ -9,9 +9,12 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ByteStream/)."""
 ResponseStreamEventReceiver: TypeAlias = _native.ResponseStreamEventReceiver
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEventReceiver/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/JSONValue/)."""
 
 
 InvokeEndpointWithBidirectionalStreamInput = TypedDict(
@@ -24,6 +27,7 @@ InvokeEndpointWithBidirectionalStreamInput = TypedDict(
     "model_query_string": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/InvokeEndpointWithBidirectionalStreamInput/)."""
 
 InvokeEndpointWithBidirectionalStreamOutput = TypedDict(
     "InvokeEndpointWithBidirectionalStreamOutput",
@@ -32,6 +36,7 @@ InvokeEndpointWithBidirectionalStreamOutput = TypedDict(
     "invoked_production_variant": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/InvokeEndpointWithBidirectionalStreamOutput/)."""
 
 RequestPayloadPart = TypedDict(
     "RequestPayloadPart",
@@ -42,9 +47,12 @@ RequestPayloadPart = TypedDict(
     "p": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/RequestPayloadPart/)."""
 
 RequestStreamEventPayloadPart = TypedDict("RequestStreamEventPayloadPart", {"payload_part": Required["RequestPayloadPart"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/RequestStreamEventPayloadPart/)."""
 RequestStreamEvent: TypeAlias = RequestStreamEventPayloadPart
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/RequestStreamEvent/)."""
 
 ResponsePayloadPart = TypedDict(
     "ResponsePayloadPart",
@@ -55,7 +63,11 @@ ResponsePayloadPart = TypedDict(
     "p": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponsePayloadPart/)."""
 
 ResponseStreamEventPayloadPart = TypedDict("ResponseStreamEventPayloadPart", {"payload_part": Required["ResponsePayloadPart"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEventPayloadPart/)."""
 ResponseStreamEventUnknown = TypedDict("ResponseStreamEventUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEventUnknown/)."""
 ResponseStreamEvent: TypeAlias = ResponseStreamEventPayloadPart | ResponseStreamEventUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEvent/)."""

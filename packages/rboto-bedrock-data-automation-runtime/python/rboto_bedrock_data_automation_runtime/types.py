@@ -9,28 +9,49 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/ByteStream/)."""
 GetDataAutomationStatusOutput: TypeAlias = _native.GetDataAutomationStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/GetDataAutomationStatusOutput/)."""
 InvokeDataAutomationAsyncOutput: TypeAlias = _native.InvokeDataAutomationAsyncOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationAsyncOutput/)."""
 InvokeDataAutomationOutput: TypeAlias = _native.InvokeDataAutomationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/ListTagsForResourceOutput/)."""
 OutputConfigurationOutput: TypeAlias = _native.OutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/OutputConfigurationOutput/)."""
 OutputSegmentOutput: TypeAlias = _native.OutputSegment
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/OutputSegmentOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/TagResourceOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/UntagResourceOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/JSONValue/)."""
 
 AutomationJobStatus: TypeAlias = Literal['Created', 'InProgress', 'Success', 'ServiceError', 'ClientError']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/AutomationJobStatus/)."""
 AutomationJobStatusOutput: TypeAlias = AutomationJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/AutomationJobStatusOutput/)."""
 BlueprintStage: TypeAlias = Literal['DEVELOPMENT', 'LIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/BlueprintStage/)."""
 BlueprintStageOutput: TypeAlias = BlueprintStage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/BlueprintStageOutput/)."""
 CustomOutputStatus: TypeAlias = Literal['MATCH', 'NO_MATCH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/CustomOutputStatus/)."""
 CustomOutputStatusOutput: TypeAlias = CustomOutputStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/CustomOutputStatusOutput/)."""
 DataAutomationStage: TypeAlias = Literal['LIVE', 'DEVELOPMENT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/DataAutomationStage/)."""
 DataAutomationStageOutput: TypeAlias = DataAutomationStage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/DataAutomationStageOutput/)."""
 SemanticModality: TypeAlias = Literal['DOCUMENT', 'IMAGE', 'AUDIO', 'VIDEO']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/SemanticModality/)."""
 SemanticModalityOutput: TypeAlias = SemanticModality | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/SemanticModalityOutput/)."""
 
 AssetProcessingConfiguration = TypedDict(
     "AssetProcessingConfiguration",
@@ -38,6 +59,7 @@ AssetProcessingConfiguration = TypedDict(
     "video": NotRequired["VideoAssetProcessingConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/AssetProcessingConfiguration/)."""
 
 Blueprint = TypedDict(
     "Blueprint",
@@ -47,6 +69,7 @@ Blueprint = TypedDict(
     "stage": NotRequired["BlueprintStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/Blueprint/)."""
 
 DataAutomationConfiguration = TypedDict(
     "DataAutomationConfiguration",
@@ -55,6 +78,7 @@ DataAutomationConfiguration = TypedDict(
     "stage": NotRequired["DataAutomationStage"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/DataAutomationConfiguration/)."""
 
 EncryptionConfiguration = TypedDict(
     "EncryptionConfiguration",
@@ -63,6 +87,7 @@ EncryptionConfiguration = TypedDict(
     "kms_encryption_context": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/EncryptionConfiguration/)."""
 
 EventBridgeConfiguration = TypedDict(
     "EventBridgeConfiguration",
@@ -70,6 +95,7 @@ EventBridgeConfiguration = TypedDict(
     "event_bridge_enabled": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/EventBridgeConfiguration/)."""
 
 GetDataAutomationStatusRequest = TypedDict(
     "GetDataAutomationStatusRequest",
@@ -77,6 +103,7 @@ GetDataAutomationStatusRequest = TypedDict(
     "invocation_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/GetDataAutomationStatusRequest/)."""
 
 InputConfiguration = TypedDict(
     "InputConfiguration",
@@ -85,6 +112,7 @@ InputConfiguration = TypedDict(
     "asset_processing_configuration": NotRequired["AssetProcessingConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InputConfiguration/)."""
 
 InvokeDataAutomationAsyncRequest = TypedDict(
     "InvokeDataAutomationAsyncRequest",
@@ -100,6 +128,7 @@ InvokeDataAutomationAsyncRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationAsyncRequest/)."""
 
 InvokeDataAutomationRequest = TypedDict(
     "InvokeDataAutomationRequest",
@@ -112,6 +141,7 @@ InvokeDataAutomationRequest = TypedDict(
     "output_configuration": NotRequired["OutputConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/InvokeDataAutomationRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -119,6 +149,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/ListTagsForResourceRequest/)."""
 
 NotificationConfiguration = TypedDict(
     "NotificationConfiguration",
@@ -126,6 +157,7 @@ NotificationConfiguration = TypedDict(
     "event_bridge_configuration": Required["EventBridgeConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/NotificationConfiguration/)."""
 
 OutputConfiguration = TypedDict(
     "OutputConfiguration",
@@ -133,6 +165,7 @@ OutputConfiguration = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/OutputConfiguration/)."""
 
 OutputSegment = TypedDict(
     "OutputSegment",
@@ -142,6 +175,7 @@ OutputSegment = TypedDict(
     "standard_output": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/OutputSegment/)."""
 
 SyncInputConfiguration = TypedDict(
     "SyncInputConfiguration",
@@ -150,6 +184,7 @@ SyncInputConfiguration = TypedDict(
     "s3_uri": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/SyncInputConfiguration/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -158,6 +193,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -166,6 +202,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/TagResourceRequest/)."""
 
 TimestampSegment = TypedDict(
     "TimestampSegment",
@@ -174,6 +211,7 @@ TimestampSegment = TypedDict(
     "end_time_millis": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/TimestampSegment/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -182,6 +220,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/UntagResourceRequest/)."""
 
 VideoAssetProcessingConfiguration = TypedDict(
     "VideoAssetProcessingConfiguration",
@@ -189,6 +228,9 @@ VideoAssetProcessingConfiguration = TypedDict(
     "segment_configuration": NotRequired["VideoSegmentConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/VideoAssetProcessingConfiguration/)."""
 
 VideoSegmentConfigurationtimestampSegment = TypedDict("VideoSegmentConfigurationtimestampSegment", {"timestamp_segment": Required["TimestampSegment"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/VideoSegmentConfigurationtimestampSegment/)."""
 VideoSegmentConfiguration: TypeAlias = VideoSegmentConfigurationtimestampSegment
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/VideoSegmentConfiguration/)."""

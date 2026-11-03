@@ -23,6 +23,8 @@ from .types import (
 
 
 class BedrockDataAutomationRuntimeClient:
+    """Async BedrockDataAutomationRuntimeClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/)."""
+
     logger_name = "rboto.bedrock-data-automation-runtime"
 
     def __init__(
@@ -55,6 +57,7 @@ class BedrockDataAutomationRuntimeClient:
         *,
         invocation_arn: str,
     ) -> GetDataAutomationStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/operations/get_data_automation_status/)."""
         params: dict[str, object] = {
             "invocation_arn": invocation_arn,
         }
@@ -82,6 +85,7 @@ class BedrockDataAutomationRuntimeClient:
         encryption_configuration: EncryptionConfiguration | None = None,
         output_configuration: OutputConfiguration | None = None,
     ) -> InvokeDataAutomationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/operations/invoke_data_automation/)."""
         params: dict[str, object] = {
             "input_configuration": input_configuration,
             "data_automation_profile_arn": data_automation_profile_arn,
@@ -121,6 +125,7 @@ class BedrockDataAutomationRuntimeClient:
         blueprints: Sequence[Blueprint] | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> InvokeDataAutomationAsyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/operations/invoke_data_automation_async/)."""
         params: dict[str, object] = {
             "input_configuration": input_configuration,
             "output_configuration": output_configuration,
@@ -157,6 +162,7 @@ class BedrockDataAutomationRuntimeClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -180,6 +186,7 @@ class BedrockDataAutomationRuntimeClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -204,6 +211,7 @@ class BedrockDataAutomationRuntimeClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,

@@ -45,6 +45,8 @@ from .paginators import APIGatewayClientPaginators as _Paginators
 
 
 class APIGatewayClient:
+    """Async APIGatewayClient. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/)."""
+
     logger_name = "rboto.api-gateway"
 
     def __init__(
@@ -92,6 +94,7 @@ class APIGatewayClient:
         customer_id: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateApiKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_api_key/)."""
         params: dict[str, object] = {
         }
         if name is not None:
@@ -138,6 +141,7 @@ class APIGatewayClient:
         identity_validation_expression: str | None = None,
         authorizer_result_ttl_in_seconds: int | None = None,
     ) -> CreateAuthorizerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_authorizer/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "name": name,
@@ -180,6 +184,7 @@ class APIGatewayClient:
         base_path: str | None = None,
         stage: str | None = None,
     ) -> CreateBasePathMappingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_base_path_mapping/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
             "rest_api_id": rest_api_id,
@@ -217,6 +222,7 @@ class APIGatewayClient:
         canary_settings: DeploymentCanarySettings | None = None,
         tracing_enabled: bool | None = None,
     ) -> CreateDeploymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_deployment/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -257,6 +263,7 @@ class APIGatewayClient:
         location: DocumentationPartLocation,
         properties: str,
     ) -> CreateDocumentationPartOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_documentation_part/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "location": location,
@@ -284,6 +291,7 @@ class APIGatewayClient:
         stage_name: str | None = None,
         description: str | None = None,
     ) -> CreateDocumentationVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_documentation_version/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "documentation_version": documentation_version,
@@ -326,6 +334,7 @@ class APIGatewayClient:
         policy: str | None = None,
         routing_mode: RoutingMode | None = None,
     ) -> CreateDomainNameOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_domain_name/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
         }
@@ -381,6 +390,7 @@ class APIGatewayClient:
         access_association_source: str,
         tags: dict[str, str] | None = None,
     ) -> CreateDomainNameAccessAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_domain_name_access_association/)."""
         params: dict[str, object] = {
             "domain_name_arn": domain_name_arn,
             "access_association_source_type": access_association_source_type,
@@ -411,6 +421,7 @@ class APIGatewayClient:
         description: str | None = None,
         schema: str | None = None,
     ) -> CreateModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_model/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "name": name,
@@ -442,6 +453,7 @@ class APIGatewayClient:
         validate_request_body: bool | None = None,
         validate_request_parameters: bool | None = None,
     ) -> CreateRequestValidatorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_request_validator/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -472,6 +484,7 @@ class APIGatewayClient:
         parent_id: str,
         path_part: str,
     ) -> CreateResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_resource/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "parent_id": parent_id,
@@ -508,6 +521,7 @@ class APIGatewayClient:
         security_policy: SecurityPolicy | None = None,
         endpoint_access_mode: EndpointAccessMode | None = None,
     ) -> CreateRestApiOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_rest_api/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -564,6 +578,7 @@ class APIGatewayClient:
         tracing_enabled: bool | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateStageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_stage/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -609,6 +624,7 @@ class APIGatewayClient:
         quota: QuotaSettings | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateUsagePlanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_usage_plan/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -643,6 +659,7 @@ class APIGatewayClient:
         key_id: str,
         key_type: str,
     ) -> CreateUsagePlanKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_usage_plan_key/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
             "key_id": key_id,
@@ -670,6 +687,7 @@ class APIGatewayClient:
         description: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateVpcLinkOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_vpc_link/)."""
         params: dict[str, object] = {
             "name": name,
             "target_arns": target_arns,
@@ -697,6 +715,7 @@ class APIGatewayClient:
         *,
         api_key: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_api_key/)."""
         params: dict[str, object] = {
             "api_key": api_key,
         }
@@ -720,6 +739,7 @@ class APIGatewayClient:
         rest_api_id: str,
         authorizer_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_authorizer/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "authorizer_id": authorizer_id,
@@ -745,6 +765,7 @@ class APIGatewayClient:
         base_path: str,
         domain_name_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_base_path_mapping/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
             "base_path": base_path,
@@ -770,6 +791,7 @@ class APIGatewayClient:
         *,
         client_certificate_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_client_certificate/)."""
         params: dict[str, object] = {
             "client_certificate_id": client_certificate_id,
         }
@@ -793,6 +815,7 @@ class APIGatewayClient:
         rest_api_id: str,
         deployment_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_deployment/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "deployment_id": deployment_id,
@@ -817,6 +840,7 @@ class APIGatewayClient:
         rest_api_id: str,
         documentation_part_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_documentation_part/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "documentation_part_id": documentation_part_id,
@@ -841,6 +865,7 @@ class APIGatewayClient:
         rest_api_id: str,
         documentation_version: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_documentation_version/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "documentation_version": documentation_version,
@@ -865,6 +890,7 @@ class APIGatewayClient:
         domain_name: str,
         domain_name_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_domain_name/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
         }
@@ -889,6 +915,7 @@ class APIGatewayClient:
         *,
         domain_name_access_association_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_domain_name_access_association/)."""
         params: dict[str, object] = {
             "domain_name_access_association_arn": domain_name_access_association_arn,
         }
@@ -912,6 +939,7 @@ class APIGatewayClient:
         rest_api_id: str,
         response_type: GatewayResponseType,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_gateway_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "response_type": response_type,
@@ -937,6 +965,7 @@ class APIGatewayClient:
         resource_id: str,
         http_method: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_integration/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -964,6 +993,7 @@ class APIGatewayClient:
         http_method: str,
         status_code: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_integration_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -991,6 +1021,7 @@ class APIGatewayClient:
         resource_id: str,
         http_method: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_method/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -1018,6 +1049,7 @@ class APIGatewayClient:
         http_method: str,
         status_code: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_method_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -1044,6 +1076,7 @@ class APIGatewayClient:
         rest_api_id: str,
         model_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_model/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "model_name": model_name,
@@ -1068,6 +1101,7 @@ class APIGatewayClient:
         rest_api_id: str,
         request_validator_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_request_validator/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "request_validator_id": request_validator_id,
@@ -1092,6 +1126,7 @@ class APIGatewayClient:
         rest_api_id: str,
         resource_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_resource/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -1115,6 +1150,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_rest_api/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1138,6 +1174,7 @@ class APIGatewayClient:
         rest_api_id: str,
         stage_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_stage/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -1161,6 +1198,7 @@ class APIGatewayClient:
         *,
         usage_plan_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_usage_plan/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
@@ -1184,6 +1222,7 @@ class APIGatewayClient:
         usage_plan_id: str,
         key_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_usage_plan_key/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
             "key_id": key_id,
@@ -1207,6 +1246,7 @@ class APIGatewayClient:
         *,
         vpc_link_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/delete_vpc_link/)."""
         params: dict[str, object] = {
             "vpc_link_id": vpc_link_id,
         }
@@ -1230,6 +1270,7 @@ class APIGatewayClient:
         rest_api_id: str,
         stage_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/flush_stage_authorizers_cache/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -1254,6 +1295,7 @@ class APIGatewayClient:
         rest_api_id: str,
         stage_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/flush_stage_cache/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -1278,6 +1320,7 @@ class APIGatewayClient:
         description: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> GenerateClientCertificateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/generate_client_certificate/)."""
         params: dict[str, object] = {
         }
         if description is not None:
@@ -1301,6 +1344,7 @@ class APIGatewayClient:
     async def get_account(
         self,
     ) -> GetAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_account/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("api-gateway", self._interceptors)
@@ -1323,6 +1367,7 @@ class APIGatewayClient:
         api_key: str,
         include_value: bool | None = None,
     ) -> GetApiKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_api_key/)."""
         params: dict[str, object] = {
             "api_key": api_key,
         }
@@ -1351,6 +1396,7 @@ class APIGatewayClient:
         customer_id: str | None = None,
         include_values: bool | None = None,
     ) -> GetApiKeysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_api_keys/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1383,6 +1429,7 @@ class APIGatewayClient:
         rest_api_id: str,
         authorizer_id: str,
     ) -> GetAuthorizerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_authorizer/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "authorizer_id": authorizer_id,
@@ -1408,6 +1455,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetAuthorizersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_authorizers/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1436,6 +1484,7 @@ class APIGatewayClient:
         base_path: str,
         domain_name_id: str | None = None,
     ) -> GetBasePathMappingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_base_path_mapping/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
             "base_path": base_path,
@@ -1464,6 +1513,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetBasePathMappingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_base_path_mappings/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
         }
@@ -1492,6 +1542,7 @@ class APIGatewayClient:
         *,
         client_certificate_id: str,
     ) -> GetClientCertificateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_client_certificate/)."""
         params: dict[str, object] = {
             "client_certificate_id": client_certificate_id,
         }
@@ -1515,6 +1566,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetClientCertificatesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_client_certificates/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1542,6 +1594,7 @@ class APIGatewayClient:
         deployment_id: str,
         embed: Sequence[str] | None = None,
     ) -> GetDeploymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_deployment/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "deployment_id": deployment_id,
@@ -1569,6 +1622,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetDeploymentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_deployments/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1596,6 +1650,7 @@ class APIGatewayClient:
         rest_api_id: str,
         documentation_part_id: str,
     ) -> GetDocumentationPartOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_documentation_part/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "documentation_part_id": documentation_part_id,
@@ -1625,6 +1680,7 @@ class APIGatewayClient:
         limit: int | None = None,
         location_status: LocationStatusType | None = None,
     ) -> GetDocumentationPartsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_documentation_parts/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1660,6 +1716,7 @@ class APIGatewayClient:
         rest_api_id: str,
         documentation_version: str,
     ) -> GetDocumentationVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_documentation_version/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "documentation_version": documentation_version,
@@ -1685,6 +1742,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetDocumentationVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_documentation_versions/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1712,6 +1770,7 @@ class APIGatewayClient:
         domain_name: str,
         domain_name_id: str | None = None,
     ) -> GetDomainNameOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_domain_name/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
         }
@@ -1738,6 +1797,7 @@ class APIGatewayClient:
         limit: int | None = None,
         resource_owner: ResourceOwner | None = None,
     ) -> GetDomainNameAccessAssociationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_domain_name_access_associations/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1767,6 +1827,7 @@ class APIGatewayClient:
         limit: int | None = None,
         resource_owner: ResourceOwner | None = None,
     ) -> GetDomainNamesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_domain_names/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1798,6 +1859,7 @@ class APIGatewayClient:
         parameters: dict[str, str] | None = None,
         accepts: str | None = None,
     ) -> GetExportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_export/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -1827,6 +1889,7 @@ class APIGatewayClient:
         rest_api_id: str,
         response_type: GatewayResponseType,
     ) -> GetGatewayResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_gateway_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "response_type": response_type,
@@ -1852,6 +1915,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetGatewayResponsesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_gateway_responses/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1880,6 +1944,7 @@ class APIGatewayClient:
         resource_id: str,
         http_method: str,
     ) -> GetIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_integration/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -1907,6 +1972,7 @@ class APIGatewayClient:
         http_method: str,
         status_code: str,
     ) -> GetIntegrationResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_integration_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -1934,6 +2000,7 @@ class APIGatewayClient:
         resource_id: str,
         http_method: str,
     ) -> GetMethodOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_method/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -1961,6 +2028,7 @@ class APIGatewayClient:
         http_method: str,
         status_code: str,
     ) -> GetMethodResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_method_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -1988,6 +2056,7 @@ class APIGatewayClient:
         model_name: str,
         flatten: bool | None = None,
     ) -> GetModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_model/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "model_name": model_name,
@@ -2014,6 +2083,7 @@ class APIGatewayClient:
         rest_api_id: str,
         model_name: str,
     ) -> GetModelTemplateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_model_template/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "model_name": model_name,
@@ -2039,6 +2109,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetModelsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_models/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2066,6 +2137,7 @@ class APIGatewayClient:
         rest_api_id: str,
         request_validator_id: str,
     ) -> GetRequestValidatorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_request_validator/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "request_validator_id": request_validator_id,
@@ -2091,6 +2163,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetRequestValidatorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_request_validators/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2119,6 +2192,7 @@ class APIGatewayClient:
         resource_id: str,
         embed: Sequence[str] | None = None,
     ) -> GetResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_resource/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -2147,6 +2221,7 @@ class APIGatewayClient:
         limit: int | None = None,
         embed: Sequence[str] | None = None,
     ) -> GetResourcesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_resources/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2175,6 +2250,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
     ) -> GetRestApiOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_rest_api/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2198,6 +2274,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetRestApisOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_rest_apis/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2226,6 +2303,7 @@ class APIGatewayClient:
         sdk_type: str,
         parameters: dict[str, str] | None = None,
     ) -> GetSdkOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_sdk/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -2252,6 +2330,7 @@ class APIGatewayClient:
         *,
         id: str,
     ) -> GetSdkTypeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_sdk_type/)."""
         params: dict[str, object] = {
             "id": id,
         }
@@ -2275,6 +2354,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetSdkTypesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_sdk_types/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2301,6 +2381,7 @@ class APIGatewayClient:
         rest_api_id: str,
         stage_name: str,
     ) -> GetStageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_stage/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -2325,6 +2406,7 @@ class APIGatewayClient:
         rest_api_id: str,
         deployment_id: str | None = None,
     ) -> GetStagesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_stages/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2351,6 +2433,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetTagsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_tags/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2382,6 +2465,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetUsageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
             "start_date": start_date,
@@ -2412,6 +2496,7 @@ class APIGatewayClient:
         *,
         usage_plan_id: str,
     ) -> GetUsagePlanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage_plan/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
@@ -2435,6 +2520,7 @@ class APIGatewayClient:
         usage_plan_id: str,
         key_id: str,
     ) -> GetUsagePlanKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage_plan_key/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
             "key_id": key_id,
@@ -2461,6 +2547,7 @@ class APIGatewayClient:
         limit: int | None = None,
         name_query: str | None = None,
     ) -> GetUsagePlanKeysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage_plan_keys/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
@@ -2491,6 +2578,7 @@ class APIGatewayClient:
         key_id: str | None = None,
         limit: int | None = None,
     ) -> GetUsagePlansOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage_plans/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2518,6 +2606,7 @@ class APIGatewayClient:
         *,
         vpc_link_id: str,
     ) -> GetVpcLinkOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_vpc_link/)."""
         params: dict[str, object] = {
             "vpc_link_id": vpc_link_id,
         }
@@ -2541,6 +2630,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
     ) -> GetVpcLinksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_vpc_links/)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2568,6 +2658,7 @@ class APIGatewayClient:
         format: ApiKeysFormat,
         fail_on_warnings: bool | None = None,
     ) -> ImportApiKeysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/import_api_keys/)."""
         params: dict[str, object] = {
             "body": body,
             "format": format,
@@ -2596,6 +2687,7 @@ class APIGatewayClient:
         mode: PutMode | None = None,
         fail_on_warnings: bool | None = None,
     ) -> ImportDocumentationPartsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/import_documentation_parts/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "body": body,
@@ -2625,6 +2717,7 @@ class APIGatewayClient:
         fail_on_warnings: bool | None = None,
         parameters: dict[str, str] | None = None,
     ) -> ImportRestApiOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/import_rest_api/)."""
         params: dict[str, object] = {
             "body": body,
         }
@@ -2655,6 +2748,7 @@ class APIGatewayClient:
         response_parameters: dict[str, str] | None = None,
         response_templates: dict[str, str] | None = None,
     ) -> PutGatewayResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/put_gateway_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "response_type": response_type,
@@ -2702,6 +2796,7 @@ class APIGatewayClient:
         response_transfer_mode: ResponseTransferMode | None = None,
         integration_target: str | None = None,
     ) -> PutIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/put_integration/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -2764,6 +2859,7 @@ class APIGatewayClient:
         response_templates: dict[str, str] | None = None,
         content_handling: ContentHandlingStrategy | None = None,
     ) -> PutIntegrationResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/put_integration_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -2807,6 +2903,7 @@ class APIGatewayClient:
         request_validator_id: str | None = None,
         authorization_scopes: Sequence[str] | None = None,
     ) -> PutMethodOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/put_method/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -2851,6 +2948,7 @@ class APIGatewayClient:
         response_parameters: dict[str, bool] | None = None,
         response_models: dict[str, str] | None = None,
     ) -> PutMethodResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/put_method_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -2884,6 +2982,7 @@ class APIGatewayClient:
         fail_on_warnings: bool | None = None,
         parameters: dict[str, str] | None = None,
     ) -> PutRestApiOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/put_rest_api/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "body": body,
@@ -2914,6 +3013,7 @@ class APIGatewayClient:
         domain_name_access_association_arn: str,
         domain_name_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/reject_domain_name_access_association/)."""
         params: dict[str, object] = {
             "domain_name_access_association_arn": domain_name_access_association_arn,
             "domain_name_arn": domain_name_arn,
@@ -2938,6 +3038,7 @@ class APIGatewayClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2968,6 +3069,7 @@ class APIGatewayClient:
         stage_variables: dict[str, str] | None = None,
         additional_context: dict[str, str] | None = None,
     ) -> TestInvokeAuthorizerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/test_invoke_authorizer/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "authorizer_id": authorizer_id,
@@ -3011,6 +3113,7 @@ class APIGatewayClient:
         client_certificate_id: str | None = None,
         stage_variables: dict[str, str] | None = None,
     ) -> TestInvokeMethodOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/test_invoke_method/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -3048,6 +3151,7 @@ class APIGatewayClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -3071,6 +3175,7 @@ class APIGatewayClient:
         *,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateAccountOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_account/)."""
         params: dict[str, object] = {
         }
         if patch_operations is not None:
@@ -3095,6 +3200,7 @@ class APIGatewayClient:
         api_key: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateApiKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_api_key/)."""
         params: dict[str, object] = {
             "api_key": api_key,
         }
@@ -3121,6 +3227,7 @@ class APIGatewayClient:
         authorizer_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateAuthorizerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_authorizer/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "authorizer_id": authorizer_id,
@@ -3149,6 +3256,7 @@ class APIGatewayClient:
         domain_name_id: str | None = None,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateBasePathMappingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_base_path_mapping/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
             "base_path": base_path,
@@ -3177,6 +3285,7 @@ class APIGatewayClient:
         client_certificate_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateClientCertificateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_client_certificate/)."""
         params: dict[str, object] = {
             "client_certificate_id": client_certificate_id,
         }
@@ -3203,6 +3312,7 @@ class APIGatewayClient:
         deployment_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDeploymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_deployment/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "deployment_id": deployment_id,
@@ -3230,6 +3340,7 @@ class APIGatewayClient:
         documentation_part_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDocumentationPartOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_documentation_part/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "documentation_part_id": documentation_part_id,
@@ -3257,6 +3368,7 @@ class APIGatewayClient:
         documentation_version: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDocumentationVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_documentation_version/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "documentation_version": documentation_version,
@@ -3284,6 +3396,7 @@ class APIGatewayClient:
         domain_name_id: str | None = None,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDomainNameOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_domain_name/)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
         }
@@ -3312,6 +3425,7 @@ class APIGatewayClient:
         response_type: GatewayResponseType,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateGatewayResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_gateway_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "response_type": response_type,
@@ -3340,6 +3454,7 @@ class APIGatewayClient:
         http_method: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_integration/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -3370,6 +3485,7 @@ class APIGatewayClient:
         status_code: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateIntegrationResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_integration_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -3400,6 +3516,7 @@ class APIGatewayClient:
         http_method: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateMethodOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_method/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -3430,6 +3547,7 @@ class APIGatewayClient:
         status_code: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateMethodResponseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_method_response/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -3459,6 +3577,7 @@ class APIGatewayClient:
         model_name: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_model/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "model_name": model_name,
@@ -3486,6 +3605,7 @@ class APIGatewayClient:
         request_validator_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateRequestValidatorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_request_validator/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "request_validator_id": request_validator_id,
@@ -3513,6 +3633,7 @@ class APIGatewayClient:
         resource_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_resource/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -3539,6 +3660,7 @@ class APIGatewayClient:
         rest_api_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateRestApiOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_rest_api/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -3565,6 +3687,7 @@ class APIGatewayClient:
         stage_name: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateStageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_stage/)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -3592,6 +3715,7 @@ class APIGatewayClient:
         key_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateUsageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_usage/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
             "key_id": key_id,
@@ -3618,6 +3742,7 @@ class APIGatewayClient:
         usage_plan_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateUsagePlanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_usage_plan/)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
@@ -3643,6 +3768,7 @@ class APIGatewayClient:
         vpc_link_id: str,
         patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateVpcLinkOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/update_vpc_link/)."""
         params: dict[str, object] = {
             "vpc_link_id": vpc_link_id,
         }

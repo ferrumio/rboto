@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AccountDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AccountDetailsOutput/)."""
     @property
     def mail_type(self) -> _types.MailTypeOutput | None: ...
     @property
@@ -33,12 +35,14 @@ class AccountDetails:
 
 @final
 class ArchivingOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ArchivingOptionsOutput/)."""
     @property
     def archive_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BlacklistEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BlacklistEntryOutput/)."""
     @property
     def rbl_name(self) -> str | None: ...
     @property
@@ -49,6 +53,7 @@ class BlacklistEntry:
 
 @final
 class Bounce:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BounceOutput/)."""
     @property
     def bounce_type(self) -> _types.BounceTypeOutput | None: ...
     @property
@@ -59,6 +64,7 @@ class Bounce:
 
 @final
 class BulkEmailEntryResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BulkEmailEntryResultOutput/)."""
     @property
     def status(self) -> _types.BulkEmailStatusOutput | None: ...
     @property
@@ -69,12 +75,14 @@ class BulkEmailEntryResult:
 
 @final
 class CloudWatchDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CloudWatchDestinationOutput/)."""
     @property
     def dimension_configurations(self) -> list[CloudWatchDimensionConfiguration]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CloudWatchDimensionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CloudWatchDimensionConfigurationOutput/)."""
     @property
     def dimension_name(self) -> str: ...
     @property
@@ -85,6 +93,7 @@ class CloudWatchDimensionConfiguration:
 
 @final
 class Complaint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ComplaintOutput/)."""
     @property
     def complaint_sub_type(self) -> str | None: ...
     @property
@@ -93,6 +102,7 @@ class Complaint:
 
 @final
 class Contact:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactOutput/)."""
     @property
     def email_address(self) -> str | None: ...
     @property
@@ -107,6 +117,7 @@ class Contact:
 
 @final
 class ContactList:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactListOutput/)."""
     @property
     def contact_list_name(self) -> str | None: ...
     @property
@@ -115,6 +126,7 @@ class ContactList:
 
 @final
 class ContactListDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ContactListDestinationOutput/)."""
     @property
     def contact_list_name(self) -> str: ...
     @property
@@ -123,6 +135,7 @@ class ContactListDestination:
 
 @final
 class CustomVerificationEmailTemplateMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CustomVerificationEmailTemplateMetadataOutput/)."""
     @property
     def template_name(self) -> str | None: ...
     @property
@@ -137,6 +150,7 @@ class CustomVerificationEmailTemplateMetadata:
 
 @final
 class DailyVolume:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DailyVolumeOutput/)."""
     @property
     def start_date(self) -> str | None: ...
     @property
@@ -147,18 +161,21 @@ class DailyVolume:
 
 @final
 class DashboardAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DashboardAttributesOutput/)."""
     @property
     def engagement_metrics(self) -> _types.FeatureStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DashboardOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DashboardOptionsOutput/)."""
     @property
     def engagement_metrics(self) -> _types.FeatureStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DedicatedIp:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DedicatedIpOutput/)."""
     @property
     def ip(self) -> str: ...
     @property
@@ -171,6 +188,7 @@ class DedicatedIp:
 
 @final
 class DedicatedIpPool:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DedicatedIpPoolOutput/)."""
     @property
     def pool_name(self) -> str: ...
     @property
@@ -179,6 +197,7 @@ class DedicatedIpPool:
 
 @final
 class DeliverabilityTestReport:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityTestReportOutput/)."""
     @property
     def report_id(self) -> str | None: ...
     @property
@@ -195,6 +214,7 @@ class DeliverabilityTestReport:
 
 @final
 class DeliveryOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryOptionsOutput/)."""
     @property
     def tls_policy(self) -> _types.TlsPolicyOutput | None: ...
     @property
@@ -205,6 +225,7 @@ class DeliveryOptions:
 
 @final
 class DkimAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DkimAttributesOutput/)."""
     @property
     def signing_enabled(self) -> bool: ...
     @property
@@ -225,6 +246,7 @@ class DkimAttributes:
 
 @final
 class DomainDeliverabilityCampaign:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainDeliverabilityCampaignOutput/)."""
     @property
     def campaign_id(self) -> str | None: ...
     @property
@@ -257,6 +279,7 @@ class DomainDeliverabilityCampaign:
 
 @final
 class DomainDeliverabilityTrackingOption:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainDeliverabilityTrackingOptionOutput/)."""
     @property
     def domain(self) -> str | None: ...
     @property
@@ -267,6 +290,7 @@ class DomainDeliverabilityTrackingOption:
 
 @final
 class DomainIspPlacement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DomainIspPlacementOutput/)."""
     @property
     def isp_name(self) -> str | None: ...
     @property
@@ -281,6 +305,7 @@ class DomainIspPlacement:
 
 @final
 class EmailAddressInsightsMailboxEvaluations:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsMailboxEvaluationsOutput/)."""
     @property
     def has_valid_syntax(self) -> EmailAddressInsightsVerdict | None: ...
     @property
@@ -297,12 +322,14 @@ class EmailAddressInsightsMailboxEvaluations:
 
 @final
 class EmailAddressInsightsVerdict:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailAddressInsightsVerdictOutput/)."""
     @property
     def confidence_verdict(self) -> _types.EmailAddressInsightsConfidenceVerdictOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EmailInsights:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailInsightsOutput/)."""
     @property
     def destination(self) -> str | None: ...
     @property
@@ -313,6 +340,7 @@ class EmailInsights:
 
 @final
 class EmailTemplateContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailTemplateContentOutput/)."""
     @property
     def subject(self) -> str | None: ...
     @property
@@ -323,6 +351,7 @@ class EmailTemplateContent:
 
 @final
 class EmailTemplateMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EmailTemplateMetadataOutput/)."""
     @property
     def template_name(self) -> str | None: ...
     @property
@@ -331,12 +360,14 @@ class EmailTemplateMetadata:
 
 @final
 class EventBridgeDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventBridgeDestinationOutput/)."""
     @property
     def event_bus_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EventDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventDestinationOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -357,6 +388,7 @@ class EventDestination:
 
 @final
 class EventDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/EventDetailsOutput/)."""
     @property
     def bounce(self) -> Bounce | None: ...
     @property
@@ -365,6 +397,7 @@ class EventDetails:
 
 @final
 class ExportDataSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportDataSourceOutput/)."""
     @property
     def metrics_data_source(self) -> MetricsDataSource | None: ...
     @property
@@ -373,6 +406,7 @@ class ExportDataSource:
 
 @final
 class ExportDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportDestinationOutput/)."""
     @property
     def data_format(self) -> _types.DataFormatOutput: ...
     @property
@@ -381,6 +415,7 @@ class ExportDestination:
 
 @final
 class ExportJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportJobSummaryOutput/)."""
     @property
     def job_id(self) -> str | None: ...
     @property
@@ -395,6 +430,7 @@ class ExportJobSummary:
 
 @final
 class ExportMetric:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportMetricOutput/)."""
     @property
     def name(self) -> _types.MetricOutput | None: ...
     @property
@@ -403,6 +439,7 @@ class ExportMetric:
 
 @final
 class ExportStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ExportStatisticsOutput/)."""
     @property
     def processed_records_count(self) -> int | None: ...
     @property
@@ -411,6 +448,7 @@ class ExportStatistics:
 
 @final
 class FailureInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/FailureInfoOutput/)."""
     @property
     def failed_records_s3_url(self) -> str | None: ...
     @property
@@ -419,18 +457,21 @@ class FailureInfo:
 
 @final
 class GuardianAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GuardianAttributesOutput/)."""
     @property
     def optimized_shared_delivery(self) -> _types.FeatureStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardianOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GuardianOptionsOutput/)."""
     @property
     def optimized_shared_delivery(self) -> _types.FeatureStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class IdentityCertificate:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityCertificateOutput/)."""
     @property
     def from_address(self) -> str | None: ...
     @property
@@ -443,6 +484,7 @@ class IdentityCertificate:
 
 @final
 class IdentityInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IdentityInfoOutput/)."""
     @property
     def identity_type(self) -> _types.IdentityTypeOutput | None: ...
     @property
@@ -455,6 +497,7 @@ class IdentityInfo:
 
 @final
 class ImportDataSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDataSourceOutput/)."""
     @property
     def s3_url(self) -> str: ...
     @property
@@ -463,6 +506,7 @@ class ImportDataSource:
 
 @final
 class ImportDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportDestinationOutput/)."""
     @property
     def suppression_list_destination(self) -> SuppressionListDestination | None: ...
     @property
@@ -471,6 +515,7 @@ class ImportDestination:
 
 @final
 class ImportJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ImportJobSummaryOutput/)."""
     @property
     def job_id(self) -> str | None: ...
     @property
@@ -487,6 +532,7 @@ class ImportJobSummary:
 
 @final
 class InboxPlacementTrackingOption:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/InboxPlacementTrackingOptionOutput/)."""
     @property
     def global_(self) -> bool: ...
     @property
@@ -495,6 +541,7 @@ class InboxPlacementTrackingOption:
 
 @final
 class InsightsEvent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/InsightsEventOutput/)."""
     @property
     def timestamp(self) -> str | None: ...
     @property
@@ -505,6 +552,7 @@ class InsightsEvent:
 
 @final
 class IspPlacement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/IspPlacementOutput/)."""
     @property
     def isp_name(self) -> str | None: ...
     @property
@@ -513,6 +561,7 @@ class IspPlacement:
 
 @final
 class KinesisFirehoseDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/KinesisFirehoseDestinationOutput/)."""
     @property
     def iam_role_arn(self) -> str: ...
     @property
@@ -521,6 +570,7 @@ class KinesisFirehoseDestination:
 
 @final
 class MailFromAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailFromAttributesOutput/)."""
     @property
     def mail_from_domain(self) -> str: ...
     @property
@@ -531,6 +581,7 @@ class MailFromAttributes:
 
 @final
 class MailboxValidation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MailboxValidationOutput/)."""
     @property
     def is_valid(self) -> EmailAddressInsightsVerdict | None: ...
     @property
@@ -539,6 +590,7 @@ class MailboxValidation:
 
 @final
 class MessageInsightsDataSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageInsightsDataSourceOutput/)."""
     @property
     def start_date(self) -> str: ...
     @property
@@ -553,6 +605,7 @@ class MessageInsightsDataSource:
 
 @final
 class MessageInsightsFilters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageInsightsFiltersOutput/)."""
     @property
     def from_email_address(self) -> list[str] | None: ...
     @property
@@ -571,12 +624,14 @@ class MessageInsightsFilters:
 
 @final
 class MessageSecurityOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageSecurityOptionsOutput/)."""
     @property
     def signing_scheme(self) -> _types.SigningSchemeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MessageTag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MessageTagOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -585,6 +640,7 @@ class MessageTag:
 
 @final
 class MetricDataError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDataErrorOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -595,6 +651,7 @@ class MetricDataError:
 
 @final
 class MetricDataResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricDataResultOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -605,6 +662,7 @@ class MetricDataResult:
 
 @final
 class MetricsDataSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MetricsDataSourceOutput/)."""
     @property
     def dimensions(self) -> dict[_types.MetricDimensionNameOutput, list[str]]: ...
     @property
@@ -619,6 +677,7 @@ class MetricsDataSource:
 
 @final
 class MultiRegionEndpoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/MultiRegionEndpointOutput/)."""
     @property
     def endpoint_name(self) -> str | None: ...
     @property
@@ -635,6 +694,7 @@ class MultiRegionEndpoint:
 
 @final
 class OverallVolume:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/OverallVolumeOutput/)."""
     @property
     def volume_statistics(self) -> VolumeStatistics | None: ...
     @property
@@ -645,12 +705,14 @@ class OverallVolume:
 
 @final
 class PinpointDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PinpointDestinationOutput/)."""
     @property
     def application_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PlacementStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PlacementStatisticsOutput/)."""
     @property
     def inbox_percentage(self) -> float | None: ...
     @property
@@ -665,6 +727,7 @@ class PlacementStatistics:
 
 @final
 class PricingAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PricingAttributesOutput/)."""
     @property
     def current_plan(self) -> _types.PricingPlanOutput | None: ...
     @property
@@ -673,6 +736,7 @@ class PricingAttributes:
 
 @final
 class Recommendation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RecommendationOutput/)."""
     @property
     def resource_arn(self) -> str | None: ...
     @property
@@ -691,6 +755,7 @@ class Recommendation:
 
 @final
 class ReputationEntity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationEntityOutput/)."""
     @property
     def reputation_entity_reference(self) -> str | None: ...
     @property
@@ -709,6 +774,7 @@ class ReputationEntity:
 
 @final
 class ReputationOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReputationOptionsOutput/)."""
     @property
     def reputation_metrics_enabled(self) -> bool: ...
     @property
@@ -717,6 +783,7 @@ class ReputationOptions:
 
 @final
 class ResourceTenantMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ResourceTenantMetadataOutput/)."""
     @property
     def tenant_name(self) -> str | None: ...
     @property
@@ -729,6 +796,7 @@ class ResourceTenantMetadata:
 
 @final
 class ReviewDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ReviewDetailsOutput/)."""
     @property
     def status(self) -> _types.ReviewStatusOutput | None: ...
     @property
@@ -737,12 +805,14 @@ class ReviewDetails:
 
 @final
 class Route:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/RouteOutput/)."""
     @property
     def region(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendQuota:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendQuotaOutput/)."""
     @property
     def max24_hour_send(self) -> float: ...
     @property
@@ -753,18 +823,21 @@ class SendQuota:
 
 @final
 class SendingOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingOptionsOutput/)."""
     @property
     def sending_enabled(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SnsDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SnsDestinationOutput/)."""
     @property
     def topic_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SoaRecord:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SoaRecord-e7875dc3367e/)."""
     @property
     def primary_name_server(self) -> str | None: ...
     @property
@@ -775,6 +848,7 @@ class SoaRecord:
 
 @final
 class StatusRecord:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/StatusRecordOutput/)."""
     @property
     def status(self) -> _types.SendingStatusOutput | None: ...
     @property
@@ -785,6 +859,7 @@ class StatusRecord:
 
 @final
 class SuppressedDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationOutput/)."""
     @property
     def email_address(self) -> str: ...
     @property
@@ -799,6 +874,7 @@ class SuppressedDestination:
 
 @final
 class SuppressedDestinationAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationAttributesOutput/)."""
     @property
     def message_id(self) -> str | None: ...
     @property
@@ -807,6 +883,7 @@ class SuppressedDestinationAttributes:
 
 @final
 class SuppressedDestinationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressedDestinationSummaryOutput/)."""
     @property
     def email_address(self) -> str: ...
     @property
@@ -817,6 +894,7 @@ class SuppressedDestinationSummary:
 
 @final
 class SuppressionAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionAttributesOutput/)."""
     @property
     def suppressed_reasons(self) -> list[_types.SuppressionListReasonOutput] | None: ...
     @property
@@ -825,6 +903,7 @@ class SuppressionAttributes:
 
 @final
 class SuppressionConditionThreshold:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConditionThresholdOutput/)."""
     @property
     def condition_threshold_enabled(self) -> _types.FeatureStatusOutput: ...
     @property
@@ -833,18 +912,21 @@ class SuppressionConditionThreshold:
 
 @final
 class SuppressionConfidenceThreshold:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionConfidenceThresholdOutput/)."""
     @property
     def confidence_verdict_threshold(self) -> _types.SuppressionConfidenceVerdictThresholdOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SuppressionListDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionListDestinationOutput/)."""
     @property
     def suppression_list_import_action(self) -> _types.SuppressionListImportActionOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SuppressionOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionOptionsOutput/)."""
     @property
     def suppressed_reasons(self) -> list[_types.SuppressionListReasonOutput] | None: ...
     @property
@@ -855,18 +937,21 @@ class SuppressionOptions:
 
 @final
 class SuppressionValidationAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionValidationAttributesOutput/)."""
     @property
     def condition_threshold(self) -> SuppressionConditionThreshold | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SuppressionValidationOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SuppressionValidationOptionsOutput/)."""
     @property
     def condition_threshold(self) -> SuppressionConditionThreshold | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -875,6 +960,7 @@ class Tag:
 
 @final
 class Tenant:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantOutput/)."""
     @property
     def tenant_name(self) -> str | None: ...
     @property
@@ -893,6 +979,7 @@ class Tenant:
 
 @final
 class TenantInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantInfoOutput/)."""
     @property
     def tenant_name(self) -> str | None: ...
     @property
@@ -907,6 +994,7 @@ class TenantInfo:
 
 @final
 class TenantResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantResourceOutput/)."""
     @property
     def resource_type(self) -> _types.ResourceTypeOutput | None: ...
     @property
@@ -915,6 +1003,7 @@ class TenantResource:
 
 @final
 class TenantSuppressionAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TenantSuppressionAttributesOutput/)."""
     @property
     def suppressed_reasons(self) -> list[_types.SuppressionListReasonOutput] | None: ...
     @property
@@ -923,6 +1012,7 @@ class TenantSuppressionAttributes:
 
 @final
 class Topic:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TopicOutput/)."""
     @property
     def topic_name(self) -> str: ...
     @property
@@ -935,6 +1025,7 @@ class Topic:
 
 @final
 class TopicPreference:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TopicPreferenceOutput/)."""
     @property
     def topic_name(self) -> str: ...
     @property
@@ -943,6 +1034,7 @@ class TopicPreference:
 
 @final
 class TrackingOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TrackingOptionsOutput/)."""
     @property
     def custom_redirect_domain(self) -> str: ...
     @property
@@ -951,6 +1043,7 @@ class TrackingOptions:
 
 @final
 class VdmAttributes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VdmAttributesOutput/)."""
     @property
     def vdm_enabled(self) -> _types.FeatureStatusOutput: ...
     @property
@@ -961,6 +1054,7 @@ class VdmAttributes:
 
 @final
 class VdmOptions:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VdmOptionsOutput/)."""
     @property
     def dashboard_options(self) -> DashboardOptions | None: ...
     @property
@@ -969,6 +1063,7 @@ class VdmOptions:
 
 @final
 class VerificationInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VerificationInfoOutput/)."""
     @property
     def last_checked_timestamp(self) -> str | None: ...
     @property
@@ -981,6 +1076,7 @@ class VerificationInfo:
 
 @final
 class VolumeStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/VolumeStatisticsOutput/)."""
     @property
     def inbox_raw_count(self) -> int | None: ...
     @property
@@ -993,10 +1089,12 @@ class VolumeStatistics:
 
 @final
 class AssociateEmailIdentityCertificateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AssociateEmailIdentityCertificateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BatchGetMetricDataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/BatchGetMetricDataOutput/)."""
     @property
     def results(self) -> list[MetricDataResult] | None: ...
     @property
@@ -1005,34 +1103,42 @@ class BatchGetMetricDataOutput:
 
 @final
 class CancelExportJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CancelExportJobOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateConfigurationSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateConfigurationSetEventDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateConfigurationSetEventDestinationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateContactOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateContactListOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateContactListOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCustomVerificationEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateCustomVerificationEmailTemplateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDedicatedIpPoolOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDedicatedIpPoolOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDeliverabilityTestReportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateDeliverabilityTestReportOutput/)."""
     @property
     def report_id(self) -> str: ...
     @property
@@ -1041,6 +1147,7 @@ class CreateDeliverabilityTestReportOutput:
 
 @final
 class CreateEmailIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityOutput/)."""
     @property
     def identity_type(self) -> _types.IdentityTypeOutput | None: ...
     @property
@@ -1051,26 +1158,31 @@ class CreateEmailIdentityOutput:
 
 @final
 class CreateEmailIdentityPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailIdentityPolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateEmailTemplateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateExportJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateExportJobOutput/)."""
     @property
     def job_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateImportJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateImportJobOutput/)."""
     @property
     def job_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateMultiRegionEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateMultiRegionEndpointOutput/)."""
     @property
     def status(self) -> _types.StatusOutput | None: ...
     @property
@@ -1079,6 +1191,7 @@ class CreateMultiRegionEndpointOutput:
 
 @final
 class CreateTenantOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantOutput/)."""
     @property
     def tenant_name(self) -> str | None: ...
     @property
@@ -1097,68 +1210,84 @@ class CreateTenantOutput:
 
 @final
 class CreateTenantResourceAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/CreateTenantResourceAssociationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteConfigurationSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteConfigurationSetEventDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteConfigurationSetEventDestinationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteContactOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteContactListOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteContactListOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomVerificationEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteCustomVerificationEmailTemplateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDedicatedIpPoolOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteDedicatedIpPoolOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEmailIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEmailIdentityPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailIdentityPolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteEmailTemplateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMultiRegionEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteMultiRegionEndpointOutput/)."""
     @property
     def status(self) -> _types.StatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteSuppressedDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteSuppressedDestinationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTenantOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTenantResourceAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantResourceAssociationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisassociateEmailIdentityCertificateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DisassociateEmailIdentityCertificateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetAccountOutput/)."""
     @property
     def dedicated_ip_auto_warmup_enabled(self) -> bool: ...
     @property
@@ -1181,12 +1310,14 @@ class GetAccountOutput:
 
 @final
 class GetBlacklistReportsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetBlacklistReportsOutput/)."""
     @property
     def blacklist_report(self) -> dict[str, list[BlacklistEntry]]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetConfigurationSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetOutput/)."""
     @property
     def configuration_set_name(self) -> str | None: ...
     @property
@@ -1211,12 +1342,14 @@ class GetConfigurationSetOutput:
 
 @final
 class GetConfigurationSetEventDestinationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetConfigurationSetEventDestinationsOutput/)."""
     @property
     def event_destinations(self) -> list[EventDestination] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetContactOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactOutput/)."""
     @property
     def contact_list_name(self) -> str | None: ...
     @property
@@ -1237,6 +1370,7 @@ class GetContactOutput:
 
 @final
 class GetContactListOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetContactListOutput/)."""
     @property
     def contact_list_name(self) -> str | None: ...
     @property
@@ -1253,6 +1387,7 @@ class GetContactListOutput:
 
 @final
 class GetCustomVerificationEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetCustomVerificationEmailTemplateOutput/)."""
     @property
     def template_name(self) -> str | None: ...
     @property
@@ -1271,18 +1406,21 @@ class GetCustomVerificationEmailTemplateOutput:
 
 @final
 class GetDedicatedIpOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpOutput/)."""
     @property
     def dedicated_ip(self) -> DedicatedIp | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDedicatedIpPoolOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpPoolOutput/)."""
     @property
     def dedicated_ip_pool(self) -> DedicatedIpPool | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDedicatedIpsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDedicatedIpsOutput/)."""
     @property
     def dedicated_ips(self) -> list[DedicatedIp] | None: ...
     @property
@@ -1291,6 +1429,7 @@ class GetDedicatedIpsOutput:
 
 @final
 class GetDeliverabilityDashboardOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityDashboardOptionsOutput/)."""
     @property
     def dashboard_enabled(self) -> bool: ...
     @property
@@ -1305,6 +1444,7 @@ class GetDeliverabilityDashboardOptionsOutput:
 
 @final
 class GetDeliverabilityTestReportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDeliverabilityTestReportOutput/)."""
     @property
     def deliverability_test_report(self) -> DeliverabilityTestReport | None: ...
     @property
@@ -1319,12 +1459,14 @@ class GetDeliverabilityTestReportOutput:
 
 @final
 class GetDomainDeliverabilityCampaignOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainDeliverabilityCampaignOutput/)."""
     @property
     def domain_deliverability_campaign(self) -> DomainDeliverabilityCampaign | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDomainStatisticsReportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetDomainStatisticsReportOutput/)."""
     @property
     def overall_volume(self) -> OverallVolume | None: ...
     @property
@@ -1333,12 +1475,14 @@ class GetDomainStatisticsReportOutput:
 
 @final
 class GetEmailAddressInsightsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailAddressInsightsOutput/)."""
     @property
     def mailbox_validation(self) -> MailboxValidation | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetEmailIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityOutput/)."""
     @property
     def identity_type(self) -> _types.IdentityTypeOutput | None: ...
     @property
@@ -1363,12 +1507,14 @@ class GetEmailIdentityOutput:
 
 @final
 class GetEmailIdentityPoliciesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailIdentityPoliciesOutput/)."""
     @property
     def policies(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetEmailTemplateOutput/)."""
     @property
     def template_name(self) -> str: ...
     @property
@@ -1379,6 +1525,7 @@ class GetEmailTemplateOutput:
 
 @final
 class GetExportJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetExportJobOutput/)."""
     @property
     def job_id(self) -> str | None: ...
     @property
@@ -1401,6 +1548,7 @@ class GetExportJobOutput:
 
 @final
 class GetImportJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetImportJobOutput/)."""
     @property
     def job_id(self) -> str | None: ...
     @property
@@ -1423,6 +1571,7 @@ class GetImportJobOutput:
 
 @final
 class GetMessageInsightsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMessageInsightsOutput/)."""
     @property
     def message_id(self) -> str | None: ...
     @property
@@ -1437,6 +1586,7 @@ class GetMessageInsightsOutput:
 
 @final
 class GetMultiRegionEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetMultiRegionEndpointOutput/)."""
     @property
     def endpoint_name(self) -> str | None: ...
     @property
@@ -1453,24 +1603,28 @@ class GetMultiRegionEndpointOutput:
 
 @final
 class GetReputationEntityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetReputationEntityOutput/)."""
     @property
     def reputation_entity(self) -> ReputationEntity | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetSuppressedDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetSuppressedDestinationOutput/)."""
     @property
     def suppressed_destination(self) -> SuppressedDestination | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetTenantOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/GetTenantOutput/)."""
     @property
     def tenant(self) -> Tenant | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListConfigurationSetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListConfigurationSetsOutput/)."""
     @property
     def configuration_sets(self) -> list[str] | None: ...
     @property
@@ -1479,6 +1633,7 @@ class ListConfigurationSetsOutput:
 
 @final
 class ListContactListsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactListsOutput/)."""
     @property
     def contact_lists(self) -> list[ContactList] | None: ...
     @property
@@ -1487,6 +1642,7 @@ class ListContactListsOutput:
 
 @final
 class ListContactsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListContactsOutput/)."""
     @property
     def contacts(self) -> list[Contact] | None: ...
     @property
@@ -1495,6 +1651,7 @@ class ListContactsOutput:
 
 @final
 class ListCustomVerificationEmailTemplatesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListCustomVerificationEmailTemplatesOutput/)."""
     @property
     def custom_verification_email_templates(self) -> list[CustomVerificationEmailTemplateMetadata] | None: ...
     @property
@@ -1503,6 +1660,7 @@ class ListCustomVerificationEmailTemplatesOutput:
 
 @final
 class ListDedicatedIpPoolsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDedicatedIpPoolsOutput/)."""
     @property
     def dedicated_ip_pools(self) -> list[str] | None: ...
     @property
@@ -1511,6 +1669,7 @@ class ListDedicatedIpPoolsOutput:
 
 @final
 class ListDeliverabilityTestReportsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDeliverabilityTestReportsOutput/)."""
     @property
     def deliverability_test_reports(self) -> list[DeliverabilityTestReport]: ...
     @property
@@ -1519,6 +1678,7 @@ class ListDeliverabilityTestReportsOutput:
 
 @final
 class ListDomainDeliverabilityCampaignsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListDomainDeliverabilityCampaignsOutput/)."""
     @property
     def domain_deliverability_campaigns(self) -> list[DomainDeliverabilityCampaign]: ...
     @property
@@ -1527,6 +1687,7 @@ class ListDomainDeliverabilityCampaignsOutput:
 
 @final
 class ListEmailIdentitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentitiesOutput/)."""
     @property
     def email_identities(self) -> list[IdentityInfo] | None: ...
     @property
@@ -1535,6 +1696,7 @@ class ListEmailIdentitiesOutput:
 
 @final
 class ListEmailIdentityCertificatesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailIdentityCertificatesOutput/)."""
     @property
     def certificates(self) -> list[IdentityCertificate] | None: ...
     @property
@@ -1543,6 +1705,7 @@ class ListEmailIdentityCertificatesOutput:
 
 @final
 class ListEmailTemplatesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListEmailTemplatesOutput/)."""
     @property
     def templates_metadata(self) -> list[EmailTemplateMetadata] | None: ...
     @property
@@ -1551,6 +1714,7 @@ class ListEmailTemplatesOutput:
 
 @final
 class ListExportJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListExportJobsOutput/)."""
     @property
     def export_jobs(self) -> list[ExportJobSummary] | None: ...
     @property
@@ -1559,6 +1723,7 @@ class ListExportJobsOutput:
 
 @final
 class ListImportJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListImportJobsOutput/)."""
     @property
     def import_jobs(self) -> list[ImportJobSummary] | None: ...
     @property
@@ -1567,6 +1732,7 @@ class ListImportJobsOutput:
 
 @final
 class ListMultiRegionEndpointsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListMultiRegionEndpointsOutput/)."""
     @property
     def multi_region_endpoints(self) -> list[MultiRegionEndpoint] | None: ...
     @property
@@ -1575,6 +1741,7 @@ class ListMultiRegionEndpointsOutput:
 
 @final
 class ListRecommendationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListRecommendationsOutput/)."""
     @property
     def recommendations(self) -> list[Recommendation] | None: ...
     @property
@@ -1583,6 +1750,7 @@ class ListRecommendationsOutput:
 
 @final
 class ListReputationEntitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListReputationEntitiesOutput/)."""
     @property
     def reputation_entities(self) -> list[ReputationEntity] | None: ...
     @property
@@ -1591,6 +1759,7 @@ class ListReputationEntitiesOutput:
 
 @final
 class ListResourceTenantsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListResourceTenantsOutput/)."""
     @property
     def resource_tenants(self) -> list[ResourceTenantMetadata] | None: ...
     @property
@@ -1599,6 +1768,7 @@ class ListResourceTenantsOutput:
 
 @final
 class ListSuppressedDestinationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListSuppressedDestinationsOutput/)."""
     @property
     def suppressed_destination_summaries(self) -> list[SuppressedDestinationSummary] | None: ...
     @property
@@ -1607,12 +1777,14 @@ class ListSuppressedDestinationsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListTenantResourcesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantResourcesOutput/)."""
     @property
     def tenant_resources(self) -> list[TenantResource] | None: ...
     @property
@@ -1621,6 +1793,7 @@ class ListTenantResourcesOutput:
 
 @final
 class ListTenantsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/ListTenantsOutput/)."""
     @property
     def tenants(self) -> list[TenantInfo] | None: ...
     @property
@@ -1629,82 +1802,102 @@ class ListTenantsOutput:
 
 @final
 class PutAccountDedicatedIpWarmupAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDedicatedIpWarmupAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountDetailsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDetailsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountPricingAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountPricingAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountSendingAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSendingAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountSuppressionAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountSuppressionAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountVdmAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountVdmAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetArchivingOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetArchivingOptionsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetDeliveryOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetDeliveryOptionsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetReputationOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetReputationOptionsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetSendingOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSendingOptionsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetSuppressionOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetSuppressionOptionsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetTrackingOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetTrackingOptionsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutConfigurationSetVdmOptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetVdmOptionsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDedicatedIpInPoolOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpInPoolOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDedicatedIpPoolScalingAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpPoolScalingAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDedicatedIpWarmupAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDedicatedIpWarmupAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutDeliverabilityDashboardOptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutDeliverabilityDashboardOptionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityConfigurationSetAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityConfigurationSetAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityDkimAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityDkimSigningAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityDkimSigningAttributesOutput/)."""
     @property
     def dkim_status(self) -> _types.DkimStatusOutput | None: ...
     @property
@@ -1715,86 +1908,105 @@ class PutEmailIdentityDkimSigningAttributesOutput:
 
 @final
 class PutEmailIdentityFeedbackAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityFeedbackAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutEmailIdentityMailFromAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutEmailIdentityMailFromAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutSuppressedDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutSuppressedDestinationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutTenantSuppressionAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutTenantSuppressionAttributesOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendBulkEmailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendBulkEmailOutput/)."""
     @property
     def bulk_email_entry_results(self) -> list[BulkEmailEntryResult]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendCustomVerificationEmailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendCustomVerificationEmailOutput/)."""
     @property
     def message_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendEmailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendEmailOutput/)."""
     @property
     def message_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TestRenderEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/TestRenderEmailTemplateOutput/)."""
     @property
     def rendered_template(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateConfigurationSetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateConfigurationSetEventDestinationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateConfigurationSetEventDestinationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateContactOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateContactListOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateContactListOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCustomVerificationEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateCustomVerificationEmailTemplateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateEmailIdentityPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailIdentityPolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateEmailTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateEmailTemplateOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateReputationEntityCustomerManagedStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityCustomerManagedStatusOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateReputationEntityPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/UpdateReputationEntityPolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 

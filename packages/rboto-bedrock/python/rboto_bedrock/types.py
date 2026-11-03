@@ -9,358 +9,709 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AccountEnforcedGuardrailOutputConfigurationOutput: TypeAlias = _native.AccountEnforcedGuardrailOutputConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AccountEnforcedGuardrailOutputConfigurationOutput/)."""
 AdvancedPromptOptimizationInputConfigOutput: TypeAlias = _native.AdvancedPromptOptimizationInputConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationInputConfigOutput/)."""
 AdvancedPromptOptimizationJobSummaryOutput: TypeAlias = _native.AdvancedPromptOptimizationJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationJobSummaryOutput/)."""
 AdvancedPromptOptimizationOutputConfigOutput: TypeAlias = _native.AdvancedPromptOptimizationOutputConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationOutputConfigOutput/)."""
 AgreementAvailabilityOutput: TypeAlias = _native.AgreementAvailability
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AgreementAvailabilityOutput/)."""
 AutomatedReasoningPolicyBuildWorkflowSummaryOutput: TypeAlias = _native.AutomatedReasoningPolicyBuildWorkflowSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowSummaryOutput/)."""
 AutomatedReasoningPolicyDefinitionValueOutput: TypeAlias = _native.AutomatedReasoningPolicyDefinition
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionValueOutput/)."""
 AutomatedReasoningPolicyDefinitionRuleValueOutput: TypeAlias = _native.AutomatedReasoningPolicyDefinitionRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionRuleValueOutput/)."""
 AutomatedReasoningPolicyDefinitionTypeValueValueOutput: TypeAlias = _native.AutomatedReasoningPolicyDefinitionType
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeValueValueOutput/)."""
 AutomatedReasoningPolicyDefinitionTypeValueValueValueOutput: TypeAlias = _native.AutomatedReasoningPolicyDefinitionTypeValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeValueValueValueOutput/)."""
 AutomatedReasoningPolicyDefinitionVariableValueOutput: TypeAlias = _native.AutomatedReasoningPolicyDefinitionVariable
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionVariableValueOutput/)."""
 AutomatedReasoningPolicyScenarioOutput: TypeAlias = _native.AutomatedReasoningPolicyScenario
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyScenarioOutput/)."""
 AutomatedReasoningPolicySummaryOutput: TypeAlias = _native.AutomatedReasoningPolicySummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicySummaryOutput/)."""
 AutomatedReasoningPolicyTestCaseOutput: TypeAlias = _native.AutomatedReasoningPolicyTestCase
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestCaseOutput/)."""
 AutomatedReasoningPolicyTestResultOutput: TypeAlias = _native.AutomatedReasoningPolicyTestResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestResultOutput/)."""
 BatchDeleteAdvancedPromptOptimizationJobErrorOutput: TypeAlias = _native.BatchDeleteAdvancedPromptOptimizationJobError
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobErrorOutput/)."""
 BatchDeleteAdvancedPromptOptimizationJobItemOutput: TypeAlias = _native.BatchDeleteAdvancedPromptOptimizationJobItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobItemOutput/)."""
 BatchDeleteAdvancedPromptOptimizationJobOutput: TypeAlias = _native.BatchDeleteAdvancedPromptOptimizationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobOutput/)."""
 BatchDeleteEvaluationJobErrorOutput: TypeAlias = _native.BatchDeleteEvaluationJobError
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobErrorOutput/)."""
 BatchDeleteEvaluationJobItemOutput: TypeAlias = _native.BatchDeleteEvaluationJobItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobItemOutput/)."""
 BatchDeleteEvaluationJobOutput: TypeAlias = _native.BatchDeleteEvaluationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ByteStream/)."""
 CancelAutomatedReasoningPolicyBuildWorkflowOutput: TypeAlias = _native.CancelAutomatedReasoningPolicyBuildWorkflowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CancelAutomatedReasoningPolicyBuildWorkflowOutput/)."""
 CloudWatchConfigOutput: TypeAlias = _native.CloudWatchConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CloudWatchConfigOutput/)."""
 CreateAdvancedPromptOptimizationJobOutput: TypeAlias = _native.CreateAdvancedPromptOptimizationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAdvancedPromptOptimizationJobOutput/)."""
 CreateAutomatedReasoningPolicyOutput: TypeAlias = _native.CreateAutomatedReasoningPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyOutput/)."""
 CreateAutomatedReasoningPolicyTestCaseOutput: TypeAlias = _native.CreateAutomatedReasoningPolicyTestCaseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyTestCaseOutput/)."""
 CreateAutomatedReasoningPolicyVersionOutput: TypeAlias = _native.CreateAutomatedReasoningPolicyVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyVersionOutput/)."""
 CreateCustomModelDeploymentOutput: TypeAlias = _native.CreateCustomModelDeploymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelDeploymentOutput/)."""
 CreateCustomModelOutput: TypeAlias = _native.CreateCustomModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelOutput/)."""
 CreateEvaluationJobOutput: TypeAlias = _native.CreateEvaluationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateEvaluationJobOutput/)."""
 CreateFoundationModelAgreementOutput: TypeAlias = _native.CreateFoundationModelAgreementOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateFoundationModelAgreementOutput/)."""
 CreateGuardrailOutput: TypeAlias = _native.CreateGuardrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailOutput/)."""
 CreateGuardrailVersionOutput: TypeAlias = _native.CreateGuardrailVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailVersionOutput/)."""
 CreateInferenceProfileOutput: TypeAlias = _native.CreateInferenceProfileOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateInferenceProfileOutput/)."""
 CreateMarketplaceModelEndpointOutput: TypeAlias = _native.CreateMarketplaceModelEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateMarketplaceModelEndpointOutput/)."""
 CreateModelCopyJobOutput: TypeAlias = _native.CreateModelCopyJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCopyJobOutput/)."""
 CreateModelCustomizationJobOutput: TypeAlias = _native.CreateModelCustomizationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCustomizationJobOutput/)."""
 CreateModelImportJobOutput: TypeAlias = _native.CreateModelImportJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelImportJobOutput/)."""
 CreateModelInvocationJobOutput: TypeAlias = _native.CreateModelInvocationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelInvocationJobOutput/)."""
 CreatePromptRouterOutput: TypeAlias = _native.CreatePromptRouterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreatePromptRouterOutput/)."""
 CreateProvisionedModelThroughputOutput: TypeAlias = _native.CreateProvisionedModelThroughputOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateProvisionedModelThroughputOutput/)."""
 CustomModelDeploymentSummaryOutput: TypeAlias = _native.CustomModelDeploymentSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentSummaryOutput/)."""
 CustomModelDeploymentUpdateDetailsOutput: TypeAlias = _native.CustomModelDeploymentUpdateDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentUpdateDetailsOutput/)."""
 CustomModelSummaryOutput: TypeAlias = _native.CustomModelSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelSummaryOutput/)."""
 CustomModelUnitsOutput: TypeAlias = _native.CustomModelUnits
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelUnitsOutput/)."""
 DataProcessingDetailsOutput: TypeAlias = _native.DataProcessingDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataProcessingDetailsOutput/)."""
 DeleteAutomatedReasoningPolicyBuildWorkflowOutput: TypeAlias = _native.DeleteAutomatedReasoningPolicyBuildWorkflowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyBuildWorkflowOutput/)."""
 DeleteAutomatedReasoningPolicyOutput: TypeAlias = _native.DeleteAutomatedReasoningPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyOutput/)."""
 DeleteAutomatedReasoningPolicyTestCaseOutput: TypeAlias = _native.DeleteAutomatedReasoningPolicyTestCaseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyTestCaseOutput/)."""
 DeleteCustomModelDeploymentOutput: TypeAlias = _native.DeleteCustomModelDeploymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelDeploymentOutput/)."""
 DeleteCustomModelOutput: TypeAlias = _native.DeleteCustomModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelOutput/)."""
 DeleteEnforcedGuardrailConfigurationOutput: TypeAlias = _native.DeleteEnforcedGuardrailConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteEnforcedGuardrailConfigurationOutput/)."""
 DeleteFoundationModelAgreementOutput: TypeAlias = _native.DeleteFoundationModelAgreementOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteFoundationModelAgreementOutput/)."""
 DeleteGuardrailOutput: TypeAlias = _native.DeleteGuardrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteGuardrailOutput/)."""
 DeleteImportedModelOutput: TypeAlias = _native.DeleteImportedModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteImportedModelOutput/)."""
 DeleteInferenceProfileOutput: TypeAlias = _native.DeleteInferenceProfileOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteInferenceProfileOutput/)."""
 DeleteMarketplaceModelEndpointOutput: TypeAlias = _native.DeleteMarketplaceModelEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteMarketplaceModelEndpointOutput/)."""
 DeleteModelInvocationLoggingConfigurationOutput: TypeAlias = _native.DeleteModelInvocationLoggingConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteModelInvocationLoggingConfigurationOutput/)."""
 DeletePromptRouterOutput: TypeAlias = _native.DeletePromptRouterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeletePromptRouterOutput/)."""
 DeleteProvisionedModelThroughputOutput: TypeAlias = _native.DeleteProvisionedModelThroughputOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteProvisionedModelThroughputOutput/)."""
 DeleteResourcePolicyOutput: TypeAlias = _native.DeleteResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteResourcePolicyOutput/)."""
 DeregisterMarketplaceModelEndpointOutput: TypeAlias = _native.DeregisterMarketplaceModelEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeregisterMarketplaceModelEndpointOutput/)."""
 DimensionalPriceRateOutput: TypeAlias = _native.DimensionalPriceRate
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DimensionalPriceRateOutput/)."""
 EvaluationInferenceConfigSummaryOutput: TypeAlias = _native.EvaluationInferenceConfigSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigSummaryOutput/)."""
 EvaluationModelConfigSummaryOutput: TypeAlias = _native.EvaluationModelConfigSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigSummaryOutput/)."""
 EvaluationOutputDataConfigOutput: TypeAlias = _native.EvaluationOutputDataConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationOutputDataConfigOutput/)."""
 EvaluationRagConfigSummaryOutput: TypeAlias = _native.EvaluationRagConfigSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationRagConfigSummaryOutput/)."""
 EvaluationSummaryOutput: TypeAlias = _native.EvaluationSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationSummaryOutput/)."""
 ExportAutomatedReasoningPolicyVersionOutput: TypeAlias = _native.ExportAutomatedReasoningPolicyVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExportAutomatedReasoningPolicyVersionOutput/)."""
 FoundationModelDetailsOutput: TypeAlias = _native.FoundationModelDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelDetailsOutput/)."""
 FoundationModelLifecycleOutput: TypeAlias = _native.FoundationModelLifecycle
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelLifecycleOutput/)."""
 FoundationModelSummaryOutput: TypeAlias = _native.FoundationModelSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelSummaryOutput/)."""
 GetAccountDataRetentionOutput: TypeAlias = _native.GetAccountDataRetentionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionOutput/)."""
 GetAdvancedPromptOptimizationJobOutput: TypeAlias = _native.GetAdvancedPromptOptimizationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAdvancedPromptOptimizationJobOutput/)."""
 GetAutomatedReasoningPolicyAnnotationsOutput: TypeAlias = _native.GetAutomatedReasoningPolicyAnnotationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyAnnotationsOutput/)."""
 GetAutomatedReasoningPolicyBuildWorkflowOutput: TypeAlias = _native.GetAutomatedReasoningPolicyBuildWorkflowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowOutput/)."""
 GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput: TypeAlias = _native.GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput/)."""
 GetAutomatedReasoningPolicyNextScenarioOutput: TypeAlias = _native.GetAutomatedReasoningPolicyNextScenarioOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyNextScenarioOutput/)."""
 GetAutomatedReasoningPolicyOutput: TypeAlias = _native.GetAutomatedReasoningPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyOutput/)."""
 GetAutomatedReasoningPolicyTestCaseOutput: TypeAlias = _native.GetAutomatedReasoningPolicyTestCaseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestCaseOutput/)."""
 GetAutomatedReasoningPolicyTestResultOutput: TypeAlias = _native.GetAutomatedReasoningPolicyTestResultOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestResultOutput/)."""
 GetCustomModelDeploymentOutput: TypeAlias = _native.GetCustomModelDeploymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelDeploymentOutput/)."""
 GetCustomModelOutput: TypeAlias = _native.GetCustomModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelOutput/)."""
 GetEvaluationJobOutput: TypeAlias = _native.GetEvaluationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetEvaluationJobOutput/)."""
 GetFoundationModelAvailabilityOutput: TypeAlias = _native.GetFoundationModelAvailabilityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelAvailabilityOutput/)."""
 GetFoundationModelOutput: TypeAlias = _native.GetFoundationModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelOutput/)."""
 GetGuardrailOutput: TypeAlias = _native.GetGuardrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetGuardrailOutput/)."""
 GetImportedModelOutput: TypeAlias = _native.GetImportedModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetImportedModelOutput/)."""
 GetInferenceProfileOutput: TypeAlias = _native.GetInferenceProfileOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetInferenceProfileOutput/)."""
 GetMarketplaceModelEndpointOutput: TypeAlias = _native.GetMarketplaceModelEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetMarketplaceModelEndpointOutput/)."""
 GetModelCopyJobOutput: TypeAlias = _native.GetModelCopyJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCopyJobOutput/)."""
 GetModelCustomizationJobOutput: TypeAlias = _native.GetModelCustomizationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCustomizationJobOutput/)."""
 GetModelImportJobOutput: TypeAlias = _native.GetModelImportJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelImportJobOutput/)."""
 GetModelInvocationJobOutput: TypeAlias = _native.GetModelInvocationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationJobOutput/)."""
 GetModelInvocationLoggingConfigurationOutput: TypeAlias = _native.GetModelInvocationLoggingConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationLoggingConfigurationOutput/)."""
 GetPromptRouterOutput: TypeAlias = _native.GetPromptRouterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetPromptRouterOutput/)."""
 GetProvisionedModelThroughputOutput: TypeAlias = _native.GetProvisionedModelThroughputOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProvisionedModelThroughputOutput/)."""
 GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetResourcePolicyOutput/)."""
 GetUseCaseForModelAccessOutput: TypeAlias = _native.GetUseCaseForModelAccessOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetUseCaseForModelAccessOutput/)."""
 GuardrailAutomatedReasoningPolicyOutput: TypeAlias = _native.GuardrailAutomatedReasoningPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailAutomatedReasoningPolicyOutput/)."""
 GuardrailContentFilterOutput: TypeAlias = _native.GuardrailContentFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilterOutput/)."""
 GuardrailContentFiltersTierOutput: TypeAlias = _native.GuardrailContentFiltersTier
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFiltersTierOutput/)."""
 GuardrailContentPolicyOutput: TypeAlias = _native.GuardrailContentPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentPolicyOutput/)."""
 GuardrailContextualGroundingFilterOutput: TypeAlias = _native.GuardrailContextualGroundingFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingFilterOutput/)."""
 GuardrailContextualGroundingPolicyOutput: TypeAlias = _native.GuardrailContextualGroundingPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingPolicyOutput/)."""
 GuardrailContextualGroundingTierOutput: TypeAlias = _native.GuardrailContextualGroundingTier
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingTierOutput/)."""
 GuardrailCrossRegionDetailsOutput: TypeAlias = _native.GuardrailCrossRegionDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailCrossRegionDetailsOutput/)."""
 GuardrailManagedWordsOutput: TypeAlias = _native.GuardrailManagedWords
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailManagedWordsOutput/)."""
 GuardrailPiiEntityOutput: TypeAlias = _native.GuardrailPiiEntity
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailPiiEntityOutput/)."""
 GuardrailRegexOutput: TypeAlias = _native.GuardrailRegex
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailRegexOutput/)."""
 GuardrailSensitiveInformationPolicyOutput: TypeAlias = _native.GuardrailSensitiveInformationPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSensitiveInformationPolicyOutput/)."""
 GuardrailSummaryOutput: TypeAlias = _native.GuardrailSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSummaryOutput/)."""
 GuardrailTopicOutput: TypeAlias = _native.GuardrailTopic
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicOutput/)."""
 GuardrailTopicPolicyOutput: TypeAlias = _native.GuardrailTopicPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicPolicyOutput/)."""
 GuardrailTopicsTierOutput: TypeAlias = _native.GuardrailTopicsTier
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicsTierOutput/)."""
 GuardrailWordOutput: TypeAlias = _native.GuardrailWord
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordOutput/)."""
 GuardrailWordPolicyOutput: TypeAlias = _native.GuardrailWordPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordPolicyOutput/)."""
 ImportedModelSummaryOutput: TypeAlias = _native.ImportedModelSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ImportedModelSummaryOutput/)."""
 InferenceConfigurationOutput: TypeAlias = _native.InferenceConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceConfigurationOutput/)."""
 InferenceProfileModelOutput: TypeAlias = _native.InferenceProfileModel
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileModelOutput/)."""
 InferenceProfileSummaryOutput: TypeAlias = _native.InferenceProfileSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileSummaryOutput/)."""
 InvocationLogsConfigOutput: TypeAlias = _native.InvocationLogsConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogsConfigOutput/)."""
 LegalTermOutput: TypeAlias = _native.LegalTerm
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LegalTermOutput/)."""
 ListAdvancedPromptOptimizationJobsOutput: TypeAlias = _native.ListAdvancedPromptOptimizationJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAdvancedPromptOptimizationJobsOutput/)."""
 ListAutomatedReasoningPoliciesOutput: TypeAlias = _native.ListAutomatedReasoningPoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPoliciesOutput/)."""
 ListAutomatedReasoningPolicyBuildWorkflowsOutput: TypeAlias = _native.ListAutomatedReasoningPolicyBuildWorkflowsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyBuildWorkflowsOutput/)."""
 ListAutomatedReasoningPolicyTestCasesOutput: TypeAlias = _native.ListAutomatedReasoningPolicyTestCasesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestCasesOutput/)."""
 ListAutomatedReasoningPolicyTestResultsOutput: TypeAlias = _native.ListAutomatedReasoningPolicyTestResultsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestResultsOutput/)."""
 ListCustomModelDeploymentsOutput: TypeAlias = _native.ListCustomModelDeploymentsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelDeploymentsOutput/)."""
 ListCustomModelsOutput: TypeAlias = _native.ListCustomModelsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelsOutput/)."""
 ListEnforcedGuardrailsConfigurationOutput: TypeAlias = _native.ListEnforcedGuardrailsConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEnforcedGuardrailsConfigurationOutput/)."""
 ListEvaluationJobsOutput: TypeAlias = _native.ListEvaluationJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEvaluationJobsOutput/)."""
 ListFoundationModelAgreementOffersOutput: TypeAlias = _native.ListFoundationModelAgreementOffersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelAgreementOffersOutput/)."""
 ListFoundationModelsOutput: TypeAlias = _native.ListFoundationModelsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelsOutput/)."""
 ListGuardrailsOutput: TypeAlias = _native.ListGuardrailsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListGuardrailsOutput/)."""
 ListImportedModelsOutput: TypeAlias = _native.ListImportedModelsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListImportedModelsOutput/)."""
 ListInferenceProfilesOutput: TypeAlias = _native.ListInferenceProfilesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListInferenceProfilesOutput/)."""
 ListMarketplaceModelEndpointsOutput: TypeAlias = _native.ListMarketplaceModelEndpointsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListMarketplaceModelEndpointsOutput/)."""
 ListModelCopyJobsOutput: TypeAlias = _native.ListModelCopyJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCopyJobsOutput/)."""
 ListModelCustomizationJobsOutput: TypeAlias = _native.ListModelCustomizationJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCustomizationJobsOutput/)."""
 ListModelImportJobsOutput: TypeAlias = _native.ListModelImportJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelImportJobsOutput/)."""
 ListModelInvocationJobsOutput: TypeAlias = _native.ListModelInvocationJobsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelInvocationJobsOutput/)."""
 ListPromptRoutersOutput: TypeAlias = _native.ListPromptRoutersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListPromptRoutersOutput/)."""
 ListProvisionedModelThroughputsOutput: TypeAlias = _native.ListProvisionedModelThroughputsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListProvisionedModelThroughputsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTagsForResourceOutput/)."""
 LoggingConfigOutput: TypeAlias = _native.LoggingConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LoggingConfigOutput/)."""
 MarketplaceModelEndpointOutput: TypeAlias = _native.MarketplaceModelEndpoint
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MarketplaceModelEndpointOutput/)."""
 MarketplaceModelEndpointSummaryOutput: TypeAlias = _native.MarketplaceModelEndpointSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MarketplaceModelEndpointSummaryOutput/)."""
 ModelConfigurationOutput: TypeAlias = _native.ModelConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelConfigurationOutput/)."""
 ModelCopyJobSummaryOutput: TypeAlias = _native.ModelCopyJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCopyJobSummaryOutput/)."""
 ModelCustomizationJobSummaryOutput: TypeAlias = _native.ModelCustomizationJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCustomizationJobSummaryOutput/)."""
 ModelEnforcementOutput: TypeAlias = _native.ModelEnforcement
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelEnforcementOutput/)."""
 ModelImportJobSummaryOutput: TypeAlias = _native.ModelImportJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelImportJobSummaryOutput/)."""
 ModelInvocationJobSummaryOutput: TypeAlias = _native.ModelInvocationJobSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobSummaryOutput/)."""
 OfferOutput: TypeAlias = _native.Offer
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OfferOutput/)."""
 OutputDataConfigOutput: TypeAlias = _native.OutputDataConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OutputDataConfigOutput/)."""
 PricingTermOutput: TypeAlias = _native.PricingTerm
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PricingTermOutput/)."""
 PromptRouterSummaryOutput: TypeAlias = _native.PromptRouterSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterSummaryOutput/)."""
 PromptRouterTargetModelOutput: TypeAlias = _native.PromptRouterTargetModel
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterTargetModelOutput/)."""
 ProvisionedModelSummaryOutput: TypeAlias = _native.ProvisionedModelSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProvisionedModelSummaryOutput/)."""
 PutAccountDataRetentionOutput: TypeAlias = _native.PutAccountDataRetentionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionOutput/)."""
 PutEnforcedGuardrailConfigurationOutput: TypeAlias = _native.PutEnforcedGuardrailConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutEnforcedGuardrailConfigurationOutput/)."""
 PutModelInvocationLoggingConfigurationOutput: TypeAlias = _native.PutModelInvocationLoggingConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutModelInvocationLoggingConfigurationOutput/)."""
 PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutResourcePolicyOutput/)."""
 PutUseCaseForModelAccessOutput: TypeAlias = _native.PutUseCaseForModelAccessOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutUseCaseForModelAccessOutput/)."""
 RegisterMarketplaceModelEndpointOutput: TypeAlias = _native.RegisterMarketplaceModelEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RegisterMarketplaceModelEndpointOutput/)."""
 RoutingCriteriaOutput: TypeAlias = _native.RoutingCriteria
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RoutingCriteriaOutput/)."""
 S3ConfigOutput: TypeAlias = _native.S3Config
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3ConfigOutput/)."""
 SelectiveContentGuardingOutput: TypeAlias = _native.SelectiveContentGuarding
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SelectiveContentGuardingOutput/)."""
 StartAutomatedReasoningPolicyBuildWorkflowOutput: TypeAlias = _native.StartAutomatedReasoningPolicyBuildWorkflowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyBuildWorkflowOutput/)."""
 StartAutomatedReasoningPolicyTestWorkflowOutput: TypeAlias = _native.StartAutomatedReasoningPolicyTestWorkflowOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyTestWorkflowOutput/)."""
 StatusDetailsOutput: TypeAlias = _native.StatusDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StatusDetailsOutput/)."""
 StopAdvancedPromptOptimizationJobOutput: TypeAlias = _native.StopAdvancedPromptOptimizationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopAdvancedPromptOptimizationJobOutput/)."""
 StopEvaluationJobOutput: TypeAlias = _native.StopEvaluationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopEvaluationJobOutput/)."""
 StopModelCustomizationJobOutput: TypeAlias = _native.StopModelCustomizationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelCustomizationJobOutput/)."""
 StopModelInvocationJobOutput: TypeAlias = _native.StopModelInvocationJobOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelInvocationJobOutput/)."""
 SupportTermOutput: TypeAlias = _native.SupportTerm
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SupportTermOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TagResourceOutput/)."""
 TermDetailsOutput: TypeAlias = _native.TermDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TermDetailsOutput/)."""
 TrainingDataConfigOutput: TypeAlias = _native.TrainingDataConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingDataConfigOutput/)."""
 TrainingDetailsOutput: TypeAlias = _native.TrainingDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingDetailsOutput/)."""
 TrainingMetricsOutput: TypeAlias = _native.TrainingMetrics
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingMetricsOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UntagResourceOutput/)."""
 UpdateAutomatedReasoningPolicyAnnotationsOutput: TypeAlias = _native.UpdateAutomatedReasoningPolicyAnnotationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyAnnotationsOutput/)."""
 UpdateAutomatedReasoningPolicyOutput: TypeAlias = _native.UpdateAutomatedReasoningPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyOutput/)."""
 UpdateAutomatedReasoningPolicyTestCaseOutput: TypeAlias = _native.UpdateAutomatedReasoningPolicyTestCaseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyTestCaseOutput/)."""
 UpdateCustomModelDeploymentOutput: TypeAlias = _native.UpdateCustomModelDeploymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateCustomModelDeploymentOutput/)."""
 UpdateGuardrailOutput: TypeAlias = _native.UpdateGuardrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateGuardrailOutput/)."""
 UpdateMarketplaceModelEndpointOutput: TypeAlias = _native.UpdateMarketplaceModelEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateMarketplaceModelEndpointOutput/)."""
 UpdateProvisionedModelThroughputOutput: TypeAlias = _native.UpdateProvisionedModelThroughputOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateProvisionedModelThroughputOutput/)."""
 ValidationDataConfigOutput: TypeAlias = _native.ValidationDataConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidationDataConfigOutput/)."""
 ValidationDetailsOutput: TypeAlias = _native.ValidationDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidationDetailsOutput/)."""
 ValidatorOutput: TypeAlias = _native.Validator
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidatorOutput/)."""
 ValidatorMetricOutput: TypeAlias = _native.ValidatorMetric
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidatorMetricOutput/)."""
 ValidityTermOutput: TypeAlias = _native.ValidityTerm
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidityTermOutput/)."""
 VpcConfigValueOutput: TypeAlias = _native.VpcConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VpcConfigValueOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/JSONValue/)."""
 
 AdvancedPromptOptimizationJobStatus: TypeAlias = Literal['InProgress', 'Completed', 'Failed', 'PartiallyCompleted', 'Stopping', 'Stopped', 'Deleting']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationJobStatus/)."""
 AdvancedPromptOptimizationJobStatusOutput: TypeAlias = AdvancedPromptOptimizationJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationJobStatusOutput/)."""
 AgreementStatus: TypeAlias = Literal['AVAILABLE', 'PENDING', 'NOT_AVAILABLE', 'ERROR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AgreementStatus/)."""
 AgreementStatusOutput: TypeAlias = AgreementStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AgreementStatusOutput/)."""
 ApplicationType: TypeAlias = Literal['ModelEvaluation', 'RagEvaluation']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ApplicationType/)."""
 ApplicationTypeOutput: TypeAlias = ApplicationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ApplicationTypeOutput/)."""
 AttributeType: TypeAlias = Literal['STRING', 'NUMBER', 'BOOLEAN', 'STRING_LIST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AttributeType/)."""
 AttributeTypeOutput: TypeAlias = AttributeType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AttributeTypeOutput/)."""
 AuthorizationStatus: TypeAlias = Literal['AUTHORIZED', 'NOT_AUTHORIZED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AuthorizationStatus/)."""
 AuthorizationStatusOutput: TypeAlias = AuthorizationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AuthorizationStatusOutput/)."""
 AutomatedReasoningCheckLogicWarningType: TypeAlias = Literal['ALWAYS_TRUE', 'ALWAYS_FALSE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckLogicWarningType/)."""
 AutomatedReasoningCheckLogicWarningTypeOutput: TypeAlias = AutomatedReasoningCheckLogicWarningType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckLogicWarningTypeOutput/)."""
 AutomatedReasoningCheckResult: TypeAlias = Literal['VALID', 'INVALID', 'SATISFIABLE', 'IMPOSSIBLE', 'TRANSLATION_AMBIGUOUS', 'TOO_COMPLEX', 'NO_TRANSLATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckResult/)."""
 AutomatedReasoningCheckResultOutput: TypeAlias = AutomatedReasoningCheckResult | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckResultOutput/)."""
 AutomatedReasoningPolicyAnnotationStatus: TypeAlias = Literal['APPLIED', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationStatus/)."""
 AutomatedReasoningPolicyAnnotationStatusOutput: TypeAlias = AutomatedReasoningPolicyAnnotationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationStatusOutput/)."""
 AutomatedReasoningPolicyBuildDocumentContentType: TypeAlias = Literal['pdf', 'txt']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildDocumentContentType/)."""
 AutomatedReasoningPolicyBuildDocumentContentTypeOutput: TypeAlias = AutomatedReasoningPolicyBuildDocumentContentType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildDocumentContentTypeOutput/)."""
 AutomatedReasoningPolicyBuildMessageType: TypeAlias = Literal['INFO', 'WARNING', 'ERROR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildMessageType/)."""
 AutomatedReasoningPolicyBuildMessageTypeOutput: TypeAlias = AutomatedReasoningPolicyBuildMessageType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildMessageTypeOutput/)."""
 AutomatedReasoningPolicyBuildResultAssetType: TypeAlias = Literal['BUILD_LOG', 'QUALITY_REPORT', 'POLICY_DEFINITION', 'GENERATED_TEST_CASES', 'POLICY_SCENARIOS', 'FIDELITY_REPORT', 'ASSET_MANIFEST', 'SOURCE_DOCUMENT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetType/)."""
 AutomatedReasoningPolicyBuildResultAssetTypeOutput: TypeAlias = AutomatedReasoningPolicyBuildResultAssetType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetTypeOutput/)."""
 AutomatedReasoningPolicyBuildWorkflowStatus: TypeAlias = Literal['SCHEDULED', 'CANCEL_REQUESTED', 'PREPROCESSING', 'BUILDING', 'TESTING', 'COMPLETED', 'FAILED', 'CANCELLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowStatus/)."""
 AutomatedReasoningPolicyBuildWorkflowStatusOutput: TypeAlias = AutomatedReasoningPolicyBuildWorkflowStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowStatusOutput/)."""
 AutomatedReasoningPolicyBuildWorkflowType: TypeAlias = Literal['INGEST_CONTENT', 'REFINE_POLICY', 'IMPORT_POLICY', 'GENERATE_FIDELITY_REPORT', 'GENERATE_POLICY_SCENARIOS', 'RESOLVE_POLICY_AMBIGUITIES', 'ITERATIVELY_REFINE_POLICY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowType/)."""
 AutomatedReasoningPolicyBuildWorkflowTypeOutput: TypeAlias = AutomatedReasoningPolicyBuildWorkflowType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowTypeOutput/)."""
 AutomatedReasoningPolicyTestRunResult: TypeAlias = Literal['PASSED', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestRunResult/)."""
 AutomatedReasoningPolicyTestRunResultOutput: TypeAlias = AutomatedReasoningPolicyTestRunResult | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestRunResultOutput/)."""
 AutomatedReasoningPolicyTestRunStatus: TypeAlias = Literal['NOT_STARTED', 'SCHEDULED', 'IN_PROGRESS', 'COMPLETED', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestRunStatus/)."""
 AutomatedReasoningPolicyTestRunStatusOutput: TypeAlias = AutomatedReasoningPolicyTestRunStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestRunStatusOutput/)."""
 CommitmentDuration: TypeAlias = Literal['OneMonth', 'SixMonths']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CommitmentDuration/)."""
 CommitmentDurationOutput: TypeAlias = CommitmentDuration | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CommitmentDurationOutput/)."""
 ConfigurationOwner: TypeAlias = Literal['ACCOUNT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ConfigurationOwner/)."""
 ConfigurationOwnerOutput: TypeAlias = ConfigurationOwner | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ConfigurationOwnerOutput/)."""
 CustomModelDeploymentStatus: TypeAlias = Literal['Creating', 'Active', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentStatus/)."""
 CustomModelDeploymentStatusOutput: TypeAlias = CustomModelDeploymentStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentStatusOutput/)."""
 CustomModelDeploymentUpdateStatus: TypeAlias = Literal['Updating', 'UpdateCompleted', 'UpdateFailed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentUpdateStatus/)."""
 CustomModelDeploymentUpdateStatusOutput: TypeAlias = CustomModelDeploymentUpdateStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentUpdateStatusOutput/)."""
 CustomizationType: TypeAlias = Literal['FINE_TUNING', 'CONTINUED_PRE_TRAINING', 'DISTILLATION', 'REINFORCEMENT_FINE_TUNING', 'IMPORTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationType/)."""
 CustomizationTypeOutput: TypeAlias = CustomizationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationTypeOutput/)."""
 DataRetentionMode: TypeAlias = Literal['default', 'none', 'aws_review', 'provider_data_share', 'inherit']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionMode/)."""
 DataRetentionModeOutput: TypeAlias = DataRetentionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataRetentionModeOutput/)."""
 EntitlementAvailability: TypeAlias = Literal['AVAILABLE', 'NOT_AVAILABLE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EntitlementAvailability/)."""
 EntitlementAvailabilityOutput: TypeAlias = EntitlementAvailability | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EntitlementAvailabilityOutput/)."""
 EvaluationJobStatus: TypeAlias = Literal['InProgress', 'Completed', 'Failed', 'Stopping', 'Stopped', 'Deleting']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationJobStatus/)."""
 EvaluationJobStatusOutput: TypeAlias = EvaluationJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationJobStatusOutput/)."""
 EvaluationJobType: TypeAlias = Literal['Human', 'Automated']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationJobType/)."""
 EvaluationJobTypeOutput: TypeAlias = EvaluationJobType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationJobTypeOutput/)."""
 EvaluationTaskType: TypeAlias = Literal['Summarization', 'Classification', 'QuestionAndAnswer', 'Generation', 'Custom']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationTaskType/)."""
 EvaluationTaskTypeOutput: TypeAlias = EvaluationTaskType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationTaskTypeOutput/)."""
 ExternalSourceType: TypeAlias = Literal['S3', 'BYTE_CONTENT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSourceType/)."""
 ExternalSourceTypeOutput: TypeAlias = ExternalSourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSourceTypeOutput/)."""
 FineTuningJobStatus: TypeAlias = Literal['InProgress', 'Completed', 'Failed', 'Stopping', 'Stopped']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FineTuningJobStatus/)."""
 FineTuningJobStatusOutput: TypeAlias = FineTuningJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FineTuningJobStatusOutput/)."""
 FoundationModelLifecycleStatus: TypeAlias = Literal['ACTIVE', 'LEGACY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelLifecycleStatus/)."""
 FoundationModelLifecycleStatusOutput: TypeAlias = FoundationModelLifecycleStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelLifecycleStatusOutput/)."""
 GuardrailContentFilterAction: TypeAlias = Literal['BLOCK', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilterAction/)."""
 GuardrailContentFilterActionOutput: TypeAlias = GuardrailContentFilterAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilterActionOutput/)."""
 GuardrailContentFilterType: TypeAlias = Literal['SEXUAL', 'VIOLENCE', 'HATE', 'INSULTS', 'MISCONDUCT', 'PROMPT_ATTACK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilterType/)."""
 GuardrailContentFilterTypeOutput: TypeAlias = GuardrailContentFilterType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilterTypeOutput/)."""
 GuardrailContentFiltersTierName: TypeAlias = Literal['CLASSIC', 'STANDARD']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFiltersTierName/)."""
 GuardrailContentFiltersTierNameOutput: TypeAlias = GuardrailContentFiltersTierName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFiltersTierNameOutput/)."""
 GuardrailContextualGroundingAction: TypeAlias = Literal['BLOCK', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingAction/)."""
 GuardrailContextualGroundingActionOutput: TypeAlias = GuardrailContextualGroundingAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingActionOutput/)."""
 GuardrailContextualGroundingFilterType: TypeAlias = Literal['GROUNDING', 'RELEVANCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingFilterType/)."""
 GuardrailContextualGroundingFilterTypeOutput: TypeAlias = GuardrailContextualGroundingFilterType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingFilterTypeOutput/)."""
 GuardrailContextualGroundingTierName: TypeAlias = Literal['CLASSIC', 'STANDARD']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingTierName/)."""
 GuardrailContextualGroundingTierNameOutput: TypeAlias = GuardrailContextualGroundingTierName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingTierNameOutput/)."""
 GuardrailFilterStrength: TypeAlias = Literal['NONE', 'LOW', 'MEDIUM', 'HIGH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailFilterStrength/)."""
 GuardrailFilterStrengthOutput: TypeAlias = GuardrailFilterStrength | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailFilterStrengthOutput/)."""
 GuardrailManagedWordsType: TypeAlias = Literal['PROFANITY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailManagedWordsType/)."""
 GuardrailManagedWordsTypeOutput: TypeAlias = GuardrailManagedWordsType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailManagedWordsTypeOutput/)."""
 GuardrailModality: TypeAlias = Literal['TEXT', 'IMAGE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailModality/)."""
 GuardrailModalityOutput: TypeAlias = GuardrailModality | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailModalityOutput/)."""
 GuardrailPiiEntityType: TypeAlias = Literal['ADDRESS', 'AGE', 'AWS_ACCESS_KEY', 'AWS_SECRET_KEY', 'CA_HEALTH_NUMBER', 'CA_SOCIAL_INSURANCE_NUMBER', 'CREDIT_DEBIT_CARD_CVV', 'CREDIT_DEBIT_CARD_EXPIRY', 'CREDIT_DEBIT_CARD_NUMBER', 'DRIVER_ID', 'EMAIL', 'INTERNATIONAL_BANK_ACCOUNT_NUMBER', 'IP_ADDRESS', 'LICENSE_PLATE', 'MAC_ADDRESS', 'NAME', 'PASSWORD', 'PHONE', 'PIN', 'SWIFT_CODE', 'UK_NATIONAL_HEALTH_SERVICE_NUMBER', 'UK_NATIONAL_INSURANCE_NUMBER', 'UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER', 'URL', 'USERNAME', 'US_BANK_ACCOUNT_NUMBER', 'US_BANK_ROUTING_NUMBER', 'US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER', 'US_PASSPORT_NUMBER', 'US_SOCIAL_SECURITY_NUMBER', 'VEHICLE_IDENTIFICATION_NUMBER']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailPiiEntityType/)."""
 GuardrailPiiEntityTypeOutput: TypeAlias = GuardrailPiiEntityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailPiiEntityTypeOutput/)."""
 GuardrailSensitiveInformationAction: TypeAlias = Literal['BLOCK', 'ANONYMIZE', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSensitiveInformationAction/)."""
 GuardrailSensitiveInformationActionOutput: TypeAlias = GuardrailSensitiveInformationAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSensitiveInformationActionOutput/)."""
 GuardrailStatus: TypeAlias = Literal['CREATING', 'UPDATING', 'VERSIONING', 'READY', 'FAILED', 'DELETING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailStatus/)."""
 GuardrailStatusOutput: TypeAlias = GuardrailStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailStatusOutput/)."""
 GuardrailTopicAction: TypeAlias = Literal['BLOCK', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicAction/)."""
 GuardrailTopicActionOutput: TypeAlias = GuardrailTopicAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicActionOutput/)."""
 GuardrailTopicType: TypeAlias = Literal['DENY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicType/)."""
 GuardrailTopicTypeOutput: TypeAlias = GuardrailTopicType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicTypeOutput/)."""
 GuardrailTopicsTierName: TypeAlias = Literal['CLASSIC', 'STANDARD']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicsTierName/)."""
 GuardrailTopicsTierNameOutput: TypeAlias = GuardrailTopicsTierName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicsTierNameOutput/)."""
 GuardrailWordAction: TypeAlias = Literal['BLOCK', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordAction/)."""
 GuardrailWordActionOutput: TypeAlias = GuardrailWordAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordActionOutput/)."""
 InferenceProfileStatus: TypeAlias = Literal['ACTIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileStatus/)."""
 InferenceProfileStatusOutput: TypeAlias = InferenceProfileStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileStatusOutput/)."""
 InferenceProfileType: TypeAlias = Literal['SYSTEM_DEFINED', 'APPLICATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileType/)."""
 InferenceProfileTypeOutput: TypeAlias = InferenceProfileType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileTypeOutput/)."""
 InferenceType: TypeAlias = Literal['ON_DEMAND', 'PROVISIONED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceType/)."""
 InferenceTypeOutput: TypeAlias = InferenceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceTypeOutput/)."""
 InputTags: TypeAlias = Literal['HONOR', 'IGNORE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InputTags/)."""
 InputTagsOutput: TypeAlias = InputTags | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InputTagsOutput/)."""
 JobStatusDetails: TypeAlias = Literal['InProgress', 'Completed', 'Stopping', 'Stopped', 'Failed', 'NotStarted']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/JobStatusDetails/)."""
 JobStatusDetailsOutput: TypeAlias = JobStatusDetails | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/JobStatusDetailsOutput/)."""
 ModelCopyJobStatus: TypeAlias = Literal['InProgress', 'Completed', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCopyJobStatus/)."""
 ModelCopyJobStatusOutput: TypeAlias = ModelCopyJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCopyJobStatusOutput/)."""
 ModelCustomization: TypeAlias = Literal['FINE_TUNING', 'CONTINUED_PRE_TRAINING', 'DISTILLATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCustomization/)."""
 ModelCustomizationOutput: TypeAlias = ModelCustomization | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCustomizationOutput/)."""
 ModelCustomizationJobStatus: TypeAlias = Literal['InProgress', 'Completed', 'Failed', 'Stopping', 'Stopped']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCustomizationJobStatus/)."""
 ModelCustomizationJobStatusOutput: TypeAlias = ModelCustomizationJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCustomizationJobStatusOutput/)."""
 ModelImportJobStatus: TypeAlias = Literal['InProgress', 'Completed', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelImportJobStatus/)."""
 ModelImportJobStatusOutput: TypeAlias = ModelImportJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelImportJobStatusOutput/)."""
 ModelInvocationJobStatus: TypeAlias = Literal['Submitted', 'InProgress', 'Completed', 'Failed', 'Stopping', 'Stopped', 'PartiallyCompleted', 'Expired', 'Validating', 'Scheduled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobStatus/)."""
 ModelInvocationJobStatusOutput: TypeAlias = ModelInvocationJobStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobStatusOutput/)."""
 ModelInvocationType: TypeAlias = Literal['InvokeModel', 'Converse']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationType/)."""
 ModelInvocationTypeOutput: TypeAlias = ModelInvocationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationTypeOutput/)."""
 ModelModality: TypeAlias = Literal['TEXT', 'IMAGE', 'EMBEDDING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelModality/)."""
 ModelModalityOutput: TypeAlias = ModelModality | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelModalityOutput/)."""
 ModelStatus: TypeAlias = Literal['Active', 'Creating', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelStatus/)."""
 ModelStatusOutput: TypeAlias = ModelStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelStatusOutput/)."""
 OfferType: TypeAlias = Literal['ALL', 'PUBLIC']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OfferType/)."""
 OfferTypeOutput: TypeAlias = OfferType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OfferTypeOutput/)."""
 PerformanceConfigLatency: TypeAlias = Literal['standard', 'optimized']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PerformanceConfigLatency/)."""
 PerformanceConfigLatencyOutput: TypeAlias = PerformanceConfigLatency | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PerformanceConfigLatencyOutput/)."""
 PromptRouterStatus: TypeAlias = Literal['AVAILABLE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterStatus/)."""
 PromptRouterStatusOutput: TypeAlias = PromptRouterStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterStatusOutput/)."""
 PromptRouterType: TypeAlias = Literal['custom', 'default']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterType/)."""
 PromptRouterTypeOutput: TypeAlias = PromptRouterType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterTypeOutput/)."""
 ProvisionedModelStatus: TypeAlias = Literal['Creating', 'InService', 'Updating', 'Failed']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProvisionedModelStatus/)."""
 ProvisionedModelStatusOutput: TypeAlias = ProvisionedModelStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProvisionedModelStatusOutput/)."""
 QueryTransformationType: TypeAlias = Literal['QUERY_DECOMPOSITION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/QueryTransformationType/)."""
 QueryTransformationTypeOutput: TypeAlias = QueryTransformationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/QueryTransformationTypeOutput/)."""
 ReasoningEffort: TypeAlias = Literal['low', 'medium', 'high']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ReasoningEffort/)."""
 ReasoningEffortOutput: TypeAlias = ReasoningEffort | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ReasoningEffortOutput/)."""
 RegionAvailability: TypeAlias = Literal['AVAILABLE', 'NOT_AVAILABLE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RegionAvailability/)."""
 RegionAvailabilityOutput: TypeAlias = RegionAvailability | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RegionAvailabilityOutput/)."""
 RerankingMetadataSelectionMode: TypeAlias = Literal['SELECTIVE', 'ALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectionMode/)."""
 RerankingMetadataSelectionModeOutput: TypeAlias = RerankingMetadataSelectionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectionModeOutput/)."""
 RetrieveAndGenerateType: TypeAlias = Literal['KNOWLEDGE_BASE', 'EXTERNAL_SOURCES']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrieveAndGenerateType/)."""
 RetrieveAndGenerateTypeOutput: TypeAlias = RetrieveAndGenerateType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrieveAndGenerateTypeOutput/)."""
 S3InputFormat: TypeAlias = Literal['JSONL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3InputFormat/)."""
 S3InputFormatOutput: TypeAlias = S3InputFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3InputFormatOutput/)."""
 SearchType: TypeAlias = Literal['HYBRID', 'SEMANTIC']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SearchType/)."""
 SearchTypeOutput: TypeAlias = SearchType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SearchTypeOutput/)."""
 SelectiveGuardingMode: TypeAlias = Literal['SELECTIVE', 'COMPREHENSIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SelectiveGuardingMode/)."""
 SelectiveGuardingModeOutput: TypeAlias = SelectiveGuardingMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SelectiveGuardingModeOutput/)."""
 SortByProvisionedModels: TypeAlias = Literal['CreationTime']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortByProvisionedModels/)."""
 SortByProvisionedModelsOutput: TypeAlias = SortByProvisionedModels | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortByProvisionedModelsOutput/)."""
 SortJobsBy: TypeAlias = Literal['CreationTime']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortJobsBy/)."""
 SortJobsByOutput: TypeAlias = SortJobsBy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortJobsByOutput/)."""
 SortModelsBy: TypeAlias = Literal['CreationTime']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortModelsBy/)."""
 SortModelsByOutput: TypeAlias = SortModelsBy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortModelsByOutput/)."""
 SortOrder: TypeAlias = Literal['Ascending', 'Descending']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortOrder/)."""
 SortOrderOutput: TypeAlias = SortOrder | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SortOrderOutput/)."""
 Status: TypeAlias = Literal['REGISTERED', 'INCOMPATIBLE_ENDPOINT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/Status/)."""
 StatusOutput: TypeAlias = Status | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StatusOutput/)."""
 VectorSearchRerankingConfigurationType: TypeAlias = Literal['BEDROCK_RERANKING_MODEL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchRerankingConfigurationType/)."""
 VectorSearchRerankingConfigurationTypeOutput: TypeAlias = VectorSearchRerankingConfigurationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchRerankingConfigurationTypeOutput/)."""
 
 AccountEnforcedGuardrailInferenceInputConfiguration = TypedDict(
     "AccountEnforcedGuardrailInferenceInputConfiguration",
@@ -371,6 +722,7 @@ AccountEnforcedGuardrailInferenceInputConfiguration = TypedDict(
     "model_enforcement": NotRequired["ModelEnforcement"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AccountEnforcedGuardrailInferenceInputConfiguration/)."""
 
 AccountEnforcedGuardrailOutputConfiguration = TypedDict(
     "AccountEnforcedGuardrailOutputConfiguration",
@@ -389,6 +741,7 @@ AccountEnforcedGuardrailOutputConfiguration = TypedDict(
     "model_enforcement": NotRequired["ModelEnforcement"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AccountEnforcedGuardrailOutputConfiguration/)."""
 
 AdvancedPromptOptimizationInputConfig = TypedDict(
     "AdvancedPromptOptimizationInputConfig",
@@ -396,6 +749,7 @@ AdvancedPromptOptimizationInputConfig = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationInputConfig/)."""
 
 AdvancedPromptOptimizationJobSummary = TypedDict(
     "AdvancedPromptOptimizationJobSummary",
@@ -407,6 +761,7 @@ AdvancedPromptOptimizationJobSummary = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationJobSummary/)."""
 
 AdvancedPromptOptimizationOutputConfig = TypedDict(
     "AdvancedPromptOptimizationOutputConfig",
@@ -414,6 +769,7 @@ AdvancedPromptOptimizationOutputConfig = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationOutputConfig/)."""
 
 AgreementAvailability = TypedDict(
     "AgreementAvailability",
@@ -422,6 +778,7 @@ AgreementAvailability = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AgreementAvailability/)."""
 
 AutomatedEvaluationConfig = TypedDict(
     "AutomatedEvaluationConfig",
@@ -431,6 +788,7 @@ AutomatedEvaluationConfig = TypedDict(
     "custom_metric_config": NotRequired["AutomatedEvaluationCustomMetricConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationConfig/)."""
 
 AutomatedEvaluationConfigOutput = TypedDict(
     "AutomatedEvaluationConfigOutput",
@@ -440,6 +798,7 @@ AutomatedEvaluationConfigOutput = TypedDict(
     "custom_metric_config": Required["AutomatedEvaluationCustomMetricConfigOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationConfigOutput/)."""
 
 AutomatedEvaluationCustomMetricConfig = TypedDict(
     "AutomatedEvaluationCustomMetricConfig",
@@ -448,6 +807,7 @@ AutomatedEvaluationCustomMetricConfig = TypedDict(
     "evaluator_model_config": Required["CustomMetricEvaluatorModelConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationCustomMetricConfig/)."""
 
 AutomatedEvaluationCustomMetricConfigOutput = TypedDict(
     "AutomatedEvaluationCustomMetricConfigOutput",
@@ -456,23 +816,38 @@ AutomatedEvaluationCustomMetricConfigOutput = TypedDict(
     "evaluator_model_config": Required["CustomMetricEvaluatorModelConfigOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationCustomMetricConfigOutput/)."""
 
 AutomatedEvaluationCustomMetricSourcecustomMetricDefinition = TypedDict("AutomatedEvaluationCustomMetricSourcecustomMetricDefinition", {"custom_metric_definition": Required["CustomMetricDefinition"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationCustomMetricSourcecustomMetricDefinition/)."""
 AutomatedEvaluationCustomMetricSource: TypeAlias = AutomatedEvaluationCustomMetricSourcecustomMetricDefinition
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationCustomMetricSource/)."""
 
 AutomatedEvaluationCustomMetricSourceOutputcustomMetricDefinition = TypedDict("AutomatedEvaluationCustomMetricSourceOutputcustomMetricDefinition", {"custom_metric_definition": Required["CustomMetricDefinitionOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationCustomMetricSourceOutputcustomMetricDefinition/)."""
 AutomatedEvaluationCustomMetricSourceOutputUnknown = TypedDict("AutomatedEvaluationCustomMetricSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationCustomMetricSourceOutputUnknown/)."""
 AutomatedEvaluationCustomMetricSourceOutput: TypeAlias = AutomatedEvaluationCustomMetricSourceOutputcustomMetricDefinition | AutomatedEvaluationCustomMetricSourceOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedEvaluationCustomMetricSourceOutput/)."""
 
 AutomatedReasoningCheckFindingvalid = TypedDict("AutomatedReasoningCheckFindingvalid", {"valid": Required["AutomatedReasoningCheckValidFinding"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindingvalid/)."""
 AutomatedReasoningCheckFindinginvalid = TypedDict("AutomatedReasoningCheckFindinginvalid", {"invalid": Required["AutomatedReasoningCheckInvalidFinding"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindinginvalid/)."""
 AutomatedReasoningCheckFindingsatisfiable = TypedDict("AutomatedReasoningCheckFindingsatisfiable", {"satisfiable": Required["AutomatedReasoningCheckSatisfiableFinding"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindingsatisfiable/)."""
 AutomatedReasoningCheckFindingimpossible = TypedDict("AutomatedReasoningCheckFindingimpossible", {"impossible": Required["AutomatedReasoningCheckImpossibleFinding"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindingimpossible/)."""
 AutomatedReasoningCheckFindingtranslationAmbiguous = TypedDict("AutomatedReasoningCheckFindingtranslationAmbiguous", {"translation_ambiguous": Required["AutomatedReasoningCheckTranslationAmbiguousFinding"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindingtranslationAmbiguous/)."""
 AutomatedReasoningCheckFindingtooComplex = TypedDict("AutomatedReasoningCheckFindingtooComplex", {"too_complex": Required["AutomatedReasoningCheckTooComplexFinding"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindingtooComplex/)."""
 AutomatedReasoningCheckFindingnoTranslations = TypedDict("AutomatedReasoningCheckFindingnoTranslations", {"no_translations": Required["AutomatedReasoningCheckNoTranslationsFinding"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindingnoTranslations/)."""
 AutomatedReasoningCheckFindingUnknown = TypedDict("AutomatedReasoningCheckFindingUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFindingUnknown/)."""
 AutomatedReasoningCheckFinding: TypeAlias = AutomatedReasoningCheckFindingvalid | AutomatedReasoningCheckFindinginvalid | AutomatedReasoningCheckFindingsatisfiable | AutomatedReasoningCheckFindingimpossible | AutomatedReasoningCheckFindingtranslationAmbiguous | AutomatedReasoningCheckFindingtooComplex | AutomatedReasoningCheckFindingnoTranslations | AutomatedReasoningCheckFindingUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckFinding/)."""
 
 AutomatedReasoningCheckImpossibleFinding = TypedDict(
     "AutomatedReasoningCheckImpossibleFinding",
@@ -482,6 +857,7 @@ AutomatedReasoningCheckImpossibleFinding = TypedDict(
     "logic_warning": Required["AutomatedReasoningCheckLogicWarning | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckImpossibleFinding/)."""
 
 AutomatedReasoningCheckInputTextReference = TypedDict(
     "AutomatedReasoningCheckInputTextReference",
@@ -489,6 +865,7 @@ AutomatedReasoningCheckInputTextReference = TypedDict(
     "text": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckInputTextReference/)."""
 
 AutomatedReasoningCheckInvalidFinding = TypedDict(
     "AutomatedReasoningCheckInvalidFinding",
@@ -498,6 +875,7 @@ AutomatedReasoningCheckInvalidFinding = TypedDict(
     "logic_warning": Required["AutomatedReasoningCheckLogicWarning | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckInvalidFinding/)."""
 
 AutomatedReasoningCheckLogicWarning = TypedDict(
     "AutomatedReasoningCheckLogicWarning",
@@ -507,12 +885,14 @@ AutomatedReasoningCheckLogicWarning = TypedDict(
     "claims": Required["list[AutomatedReasoningLogicStatement] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckLogicWarning/)."""
 
 AutomatedReasoningCheckNoTranslationsFinding = TypedDict(
     "AutomatedReasoningCheckNoTranslationsFinding",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckNoTranslationsFinding/)."""
 
 AutomatedReasoningCheckRule = TypedDict(
     "AutomatedReasoningCheckRule",
@@ -521,6 +901,7 @@ AutomatedReasoningCheckRule = TypedDict(
     "policy_version_arn": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckRule/)."""
 
 AutomatedReasoningCheckSatisfiableFinding = TypedDict(
     "AutomatedReasoningCheckSatisfiableFinding",
@@ -531,6 +912,7 @@ AutomatedReasoningCheckSatisfiableFinding = TypedDict(
     "logic_warning": Required["AutomatedReasoningCheckLogicWarning | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckSatisfiableFinding/)."""
 
 AutomatedReasoningCheckScenario = TypedDict(
     "AutomatedReasoningCheckScenario",
@@ -538,12 +920,14 @@ AutomatedReasoningCheckScenario = TypedDict(
     "statements": Required["list[AutomatedReasoningLogicStatement] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckScenario/)."""
 
 AutomatedReasoningCheckTooComplexFinding = TypedDict(
     "AutomatedReasoningCheckTooComplexFinding",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckTooComplexFinding/)."""
 
 AutomatedReasoningCheckTranslation = TypedDict(
     "AutomatedReasoningCheckTranslation",
@@ -555,6 +939,7 @@ AutomatedReasoningCheckTranslation = TypedDict(
     "confidence": Required["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckTranslation/)."""
 
 AutomatedReasoningCheckTranslationAmbiguousFinding = TypedDict(
     "AutomatedReasoningCheckTranslationAmbiguousFinding",
@@ -563,6 +948,7 @@ AutomatedReasoningCheckTranslationAmbiguousFinding = TypedDict(
     "difference_scenarios": Required["list[AutomatedReasoningCheckScenario] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckTranslationAmbiguousFinding/)."""
 
 AutomatedReasoningCheckTranslationOption = TypedDict(
     "AutomatedReasoningCheckTranslationOption",
@@ -570,6 +956,7 @@ AutomatedReasoningCheckTranslationOption = TypedDict(
     "translations": Required["list[AutomatedReasoningCheckTranslation] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckTranslationOption/)."""
 
 AutomatedReasoningCheckValidFinding = TypedDict(
     "AutomatedReasoningCheckValidFinding",
@@ -580,6 +967,7 @@ AutomatedReasoningCheckValidFinding = TypedDict(
     "logic_warning": Required["AutomatedReasoningCheckLogicWarning | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningCheckValidFinding/)."""
 
 AutomatedReasoningLogicStatement = TypedDict(
     "AutomatedReasoningLogicStatement",
@@ -588,6 +976,7 @@ AutomatedReasoningLogicStatement = TypedDict(
     "natural_language": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningLogicStatement/)."""
 
 AutomatedReasoningPolicyAddRuleAnnotation = TypedDict(
     "AutomatedReasoningPolicyAddRuleAnnotation",
@@ -595,6 +984,7 @@ AutomatedReasoningPolicyAddRuleAnnotation = TypedDict(
     "expression": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddRuleAnnotation/)."""
 
 AutomatedReasoningPolicyAddRuleAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyAddRuleAnnotationOutput",
@@ -602,6 +992,7 @@ AutomatedReasoningPolicyAddRuleAnnotationOutput = TypedDict(
     "expression": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddRuleAnnotationOutput/)."""
 
 AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation = TypedDict(
     "AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation",
@@ -609,6 +1000,7 @@ AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation = TypedDict(
     "natural_language": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation/)."""
 
 AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotationOutput",
@@ -616,6 +1008,7 @@ AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotationOutput = TypedDict(
     "natural_language": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotationOutput/)."""
 
 AutomatedReasoningPolicyAddRuleMutation = TypedDict(
     "AutomatedReasoningPolicyAddRuleMutation",
@@ -623,6 +1016,7 @@ AutomatedReasoningPolicyAddRuleMutation = TypedDict(
     "rule": Required["AutomatedReasoningPolicyDefinitionRuleOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddRuleMutation/)."""
 
 AutomatedReasoningPolicyAddTypeAnnotation = TypedDict(
     "AutomatedReasoningPolicyAddTypeAnnotation",
@@ -632,6 +1026,7 @@ AutomatedReasoningPolicyAddTypeAnnotation = TypedDict(
     "values": Required["Sequence[AutomatedReasoningPolicyDefinitionTypeValue]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddTypeAnnotation/)."""
 
 AutomatedReasoningPolicyAddTypeAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyAddTypeAnnotationOutput",
@@ -641,6 +1036,7 @@ AutomatedReasoningPolicyAddTypeAnnotationOutput = TypedDict(
     "values": Required["list[AutomatedReasoningPolicyDefinitionTypeValueOutput]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddTypeAnnotationOutput/)."""
 
 AutomatedReasoningPolicyAddTypeMutation = TypedDict(
     "AutomatedReasoningPolicyAddTypeMutation",
@@ -648,6 +1044,7 @@ AutomatedReasoningPolicyAddTypeMutation = TypedDict(
     "type": Required["AutomatedReasoningPolicyDefinitionTypeOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddTypeMutation/)."""
 
 AutomatedReasoningPolicyAddTypeValue = TypedDict(
     "AutomatedReasoningPolicyAddTypeValue",
@@ -656,6 +1053,7 @@ AutomatedReasoningPolicyAddTypeValue = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddTypeValue/)."""
 
 AutomatedReasoningPolicyAddTypeValueOutput = TypedDict(
     "AutomatedReasoningPolicyAddTypeValueOutput",
@@ -664,6 +1062,7 @@ AutomatedReasoningPolicyAddTypeValueOutput = TypedDict(
     "description": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddTypeValueOutput/)."""
 
 AutomatedReasoningPolicyAddVariableAnnotation = TypedDict(
     "AutomatedReasoningPolicyAddVariableAnnotation",
@@ -673,6 +1072,7 @@ AutomatedReasoningPolicyAddVariableAnnotation = TypedDict(
     "description": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddVariableAnnotation/)."""
 
 AutomatedReasoningPolicyAddVariableAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyAddVariableAnnotationOutput",
@@ -682,6 +1082,7 @@ AutomatedReasoningPolicyAddVariableAnnotationOutput = TypedDict(
     "description": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddVariableAnnotationOutput/)."""
 
 AutomatedReasoningPolicyAddVariableMutation = TypedDict(
     "AutomatedReasoningPolicyAddVariableMutation",
@@ -689,6 +1090,7 @@ AutomatedReasoningPolicyAddVariableMutation = TypedDict(
     "variable": Required["AutomatedReasoningPolicyDefinitionVariableOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAddVariableMutation/)."""
 
 AutomatedReasoningPolicyAnnotatedChunk = TypedDict(
     "AutomatedReasoningPolicyAnnotatedChunk",
@@ -697,10 +1099,14 @@ AutomatedReasoningPolicyAnnotatedChunk = TypedDict(
     "content": Required["list[AutomatedReasoningPolicyAnnotatedContent]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotatedChunk/)."""
 
 AutomatedReasoningPolicyAnnotatedContentline = TypedDict("AutomatedReasoningPolicyAnnotatedContentline", {"line": Required["AutomatedReasoningPolicyAnnotatedLine"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotatedContentline/)."""
 AutomatedReasoningPolicyAnnotatedContentUnknown = TypedDict("AutomatedReasoningPolicyAnnotatedContentUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotatedContentUnknown/)."""
 AutomatedReasoningPolicyAnnotatedContent: TypeAlias = AutomatedReasoningPolicyAnnotatedContentline | AutomatedReasoningPolicyAnnotatedContentUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotatedContent/)."""
 
 AutomatedReasoningPolicyAnnotatedLine = TypedDict(
     "AutomatedReasoningPolicyAnnotatedLine",
@@ -709,37 +1115,67 @@ AutomatedReasoningPolicyAnnotatedLine = TypedDict(
     "line_text": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotatedLine/)."""
 
 AutomatedReasoningPolicyAnnotationaddType = TypedDict("AutomatedReasoningPolicyAnnotationaddType", {"add_type": Required["AutomatedReasoningPolicyAddTypeAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationaddType/)."""
 AutomatedReasoningPolicyAnnotationupdateType = TypedDict("AutomatedReasoningPolicyAnnotationupdateType", {"update_type": Required["AutomatedReasoningPolicyUpdateTypeAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationupdateType/)."""
 AutomatedReasoningPolicyAnnotationdeleteType = TypedDict("AutomatedReasoningPolicyAnnotationdeleteType", {"delete_type": Required["AutomatedReasoningPolicyDeleteTypeAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationdeleteType/)."""
 AutomatedReasoningPolicyAnnotationaddVariable = TypedDict("AutomatedReasoningPolicyAnnotationaddVariable", {"add_variable": Required["AutomatedReasoningPolicyAddVariableAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationaddVariable/)."""
 AutomatedReasoningPolicyAnnotationupdateVariable = TypedDict("AutomatedReasoningPolicyAnnotationupdateVariable", {"update_variable": Required["AutomatedReasoningPolicyUpdateVariableAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationupdateVariable/)."""
 AutomatedReasoningPolicyAnnotationdeleteVariable = TypedDict("AutomatedReasoningPolicyAnnotationdeleteVariable", {"delete_variable": Required["AutomatedReasoningPolicyDeleteVariableAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationdeleteVariable/)."""
 AutomatedReasoningPolicyAnnotationaddRule = TypedDict("AutomatedReasoningPolicyAnnotationaddRule", {"add_rule": Required["AutomatedReasoningPolicyAddRuleAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationaddRule/)."""
 AutomatedReasoningPolicyAnnotationupdateRule = TypedDict("AutomatedReasoningPolicyAnnotationupdateRule", {"update_rule": Required["AutomatedReasoningPolicyUpdateRuleAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationupdateRule/)."""
 AutomatedReasoningPolicyAnnotationdeleteRule = TypedDict("AutomatedReasoningPolicyAnnotationdeleteRule", {"delete_rule": Required["AutomatedReasoningPolicyDeleteRuleAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationdeleteRule/)."""
 AutomatedReasoningPolicyAnnotationaddRuleFromNaturalLanguage = TypedDict("AutomatedReasoningPolicyAnnotationaddRuleFromNaturalLanguage", {"add_rule_from_natural_language": Required["AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationaddRuleFromNaturalLanguage/)."""
 AutomatedReasoningPolicyAnnotationupdateFromRulesFeedback = TypedDict("AutomatedReasoningPolicyAnnotationupdateFromRulesFeedback", {"update_from_rules_feedback": Required["AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationupdateFromRulesFeedback/)."""
 AutomatedReasoningPolicyAnnotationupdateFromScenarioFeedback = TypedDict("AutomatedReasoningPolicyAnnotationupdateFromScenarioFeedback", {"update_from_scenario_feedback": Required["AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationupdateFromScenarioFeedback/)."""
 AutomatedReasoningPolicyAnnotationingestContent = TypedDict("AutomatedReasoningPolicyAnnotationingestContent", {"ingest_content": Required["AutomatedReasoningPolicyIngestContentAnnotation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationingestContent/)."""
 AutomatedReasoningPolicyAnnotation: TypeAlias = AutomatedReasoningPolicyAnnotationaddType | AutomatedReasoningPolicyAnnotationupdateType | AutomatedReasoningPolicyAnnotationdeleteType | AutomatedReasoningPolicyAnnotationaddVariable | AutomatedReasoningPolicyAnnotationupdateVariable | AutomatedReasoningPolicyAnnotationdeleteVariable | AutomatedReasoningPolicyAnnotationaddRule | AutomatedReasoningPolicyAnnotationupdateRule | AutomatedReasoningPolicyAnnotationdeleteRule | AutomatedReasoningPolicyAnnotationaddRuleFromNaturalLanguage | AutomatedReasoningPolicyAnnotationupdateFromRulesFeedback | AutomatedReasoningPolicyAnnotationupdateFromScenarioFeedback | AutomatedReasoningPolicyAnnotationingestContent
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotation/)."""
 
 AutomatedReasoningPolicyAnnotationOutputaddType = TypedDict("AutomatedReasoningPolicyAnnotationOutputaddType", {"add_type": Required["AutomatedReasoningPolicyAddTypeAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputaddType/)."""
 AutomatedReasoningPolicyAnnotationOutputupdateType = TypedDict("AutomatedReasoningPolicyAnnotationOutputupdateType", {"update_type": Required["AutomatedReasoningPolicyUpdateTypeAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputupdateType/)."""
 AutomatedReasoningPolicyAnnotationOutputdeleteType = TypedDict("AutomatedReasoningPolicyAnnotationOutputdeleteType", {"delete_type": Required["AutomatedReasoningPolicyDeleteTypeAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputdeleteType/)."""
 AutomatedReasoningPolicyAnnotationOutputaddVariable = TypedDict("AutomatedReasoningPolicyAnnotationOutputaddVariable", {"add_variable": Required["AutomatedReasoningPolicyAddVariableAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputaddVariable/)."""
 AutomatedReasoningPolicyAnnotationOutputupdateVariable = TypedDict("AutomatedReasoningPolicyAnnotationOutputupdateVariable", {"update_variable": Required["AutomatedReasoningPolicyUpdateVariableAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputupdateVariable/)."""
 AutomatedReasoningPolicyAnnotationOutputdeleteVariable = TypedDict("AutomatedReasoningPolicyAnnotationOutputdeleteVariable", {"delete_variable": Required["AutomatedReasoningPolicyDeleteVariableAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputdeleteVariable/)."""
 AutomatedReasoningPolicyAnnotationOutputaddRule = TypedDict("AutomatedReasoningPolicyAnnotationOutputaddRule", {"add_rule": Required["AutomatedReasoningPolicyAddRuleAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputaddRule/)."""
 AutomatedReasoningPolicyAnnotationOutputupdateRule = TypedDict("AutomatedReasoningPolicyAnnotationOutputupdateRule", {"update_rule": Required["AutomatedReasoningPolicyUpdateRuleAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputupdateRule/)."""
 AutomatedReasoningPolicyAnnotationOutputdeleteRule = TypedDict("AutomatedReasoningPolicyAnnotationOutputdeleteRule", {"delete_rule": Required["AutomatedReasoningPolicyDeleteRuleAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputdeleteRule/)."""
 AutomatedReasoningPolicyAnnotationOutputaddRuleFromNaturalLanguage = TypedDict("AutomatedReasoningPolicyAnnotationOutputaddRuleFromNaturalLanguage", {"add_rule_from_natural_language": Required["AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputaddRuleFromNaturalLanguage/)."""
 AutomatedReasoningPolicyAnnotationOutputupdateFromRulesFeedback = TypedDict("AutomatedReasoningPolicyAnnotationOutputupdateFromRulesFeedback", {"update_from_rules_feedback": Required["AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputupdateFromRulesFeedback/)."""
 AutomatedReasoningPolicyAnnotationOutputupdateFromScenarioFeedback = TypedDict("AutomatedReasoningPolicyAnnotationOutputupdateFromScenarioFeedback", {"update_from_scenario_feedback": Required["AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputupdateFromScenarioFeedback/)."""
 AutomatedReasoningPolicyAnnotationOutputingestContent = TypedDict("AutomatedReasoningPolicyAnnotationOutputingestContent", {"ingest_content": Required["AutomatedReasoningPolicyIngestContentAnnotationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputingestContent/)."""
 AutomatedReasoningPolicyAnnotationOutputUnknown = TypedDict("AutomatedReasoningPolicyAnnotationOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutputUnknown/)."""
 AutomatedReasoningPolicyAnnotationOutput: TypeAlias = AutomatedReasoningPolicyAnnotationOutputaddType | AutomatedReasoningPolicyAnnotationOutputupdateType | AutomatedReasoningPolicyAnnotationOutputdeleteType | AutomatedReasoningPolicyAnnotationOutputaddVariable | AutomatedReasoningPolicyAnnotationOutputupdateVariable | AutomatedReasoningPolicyAnnotationOutputdeleteVariable | AutomatedReasoningPolicyAnnotationOutputaddRule | AutomatedReasoningPolicyAnnotationOutputupdateRule | AutomatedReasoningPolicyAnnotationOutputdeleteRule | AutomatedReasoningPolicyAnnotationOutputaddRuleFromNaturalLanguage | AutomatedReasoningPolicyAnnotationOutputupdateFromRulesFeedback | AutomatedReasoningPolicyAnnotationOutputupdateFromScenarioFeedback | AutomatedReasoningPolicyAnnotationOutputingestContent | AutomatedReasoningPolicyAnnotationOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAnnotationOutput/)."""
 
 AutomatedReasoningPolicyAtomicStatement = TypedDict(
     "AutomatedReasoningPolicyAtomicStatement",
@@ -749,6 +1185,7 @@ AutomatedReasoningPolicyAtomicStatement = TypedDict(
     "location": Required["AutomatedReasoningPolicyStatementLocation | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyAtomicStatement/)."""
 
 AutomatedReasoningPolicyBuildLog = TypedDict(
     "AutomatedReasoningPolicyBuildLog",
@@ -756,6 +1193,7 @@ AutomatedReasoningPolicyBuildLog = TypedDict(
     "entries": Required["list[AutomatedReasoningPolicyBuildLogEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildLog/)."""
 
 AutomatedReasoningPolicyBuildLogEntry = TypedDict(
     "AutomatedReasoningPolicyBuildLogEntry",
@@ -765,6 +1203,7 @@ AutomatedReasoningPolicyBuildLogEntry = TypedDict(
     "build_steps": Required["list[AutomatedReasoningPolicyBuildStep]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildLogEntry/)."""
 
 AutomatedReasoningPolicyBuildResultAssetManifest = TypedDict(
     "AutomatedReasoningPolicyBuildResultAssetManifest",
@@ -772,6 +1211,7 @@ AutomatedReasoningPolicyBuildResultAssetManifest = TypedDict(
     "entries": Required["list[AutomatedReasoningPolicyBuildResultAssetManifestEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetManifest/)."""
 
 AutomatedReasoningPolicyBuildResultAssetManifestEntry = TypedDict(
     "AutomatedReasoningPolicyBuildResultAssetManifestEntry",
@@ -781,17 +1221,28 @@ AutomatedReasoningPolicyBuildResultAssetManifestEntry = TypedDict(
     "asset_id": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetManifestEntry/)."""
 
 AutomatedReasoningPolicyBuildResultAssetspolicyDefinition = TypedDict("AutomatedReasoningPolicyBuildResultAssetspolicyDefinition", {"policy_definition": Required["AutomatedReasoningPolicyDefinitionOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetspolicyDefinition/)."""
 AutomatedReasoningPolicyBuildResultAssetsqualityReport = TypedDict("AutomatedReasoningPolicyBuildResultAssetsqualityReport", {"quality_report": Required["AutomatedReasoningPolicyDefinitionQualityReport"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetsqualityReport/)."""
 AutomatedReasoningPolicyBuildResultAssetsbuildLog = TypedDict("AutomatedReasoningPolicyBuildResultAssetsbuildLog", {"build_log": Required["AutomatedReasoningPolicyBuildLog"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetsbuildLog/)."""
 AutomatedReasoningPolicyBuildResultAssetsgeneratedTestCases = TypedDict("AutomatedReasoningPolicyBuildResultAssetsgeneratedTestCases", {"generated_test_cases": Required["AutomatedReasoningPolicyGeneratedTestCases"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetsgeneratedTestCases/)."""
 AutomatedReasoningPolicyBuildResultAssetspolicyScenarios = TypedDict("AutomatedReasoningPolicyBuildResultAssetspolicyScenarios", {"policy_scenarios": Required["AutomatedReasoningPolicyScenarios"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetspolicyScenarios/)."""
 AutomatedReasoningPolicyBuildResultAssetsassetManifest = TypedDict("AutomatedReasoningPolicyBuildResultAssetsassetManifest", {"asset_manifest": Required["AutomatedReasoningPolicyBuildResultAssetManifest"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetsassetManifest/)."""
 AutomatedReasoningPolicyBuildResultAssetsdocument = TypedDict("AutomatedReasoningPolicyBuildResultAssetsdocument", {"document": Required["AutomatedReasoningPolicySourceDocument"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetsdocument/)."""
 AutomatedReasoningPolicyBuildResultAssetsfidelityReport = TypedDict("AutomatedReasoningPolicyBuildResultAssetsfidelityReport", {"fidelity_report": Required["AutomatedReasoningPolicyFidelityReport"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetsfidelityReport/)."""
 AutomatedReasoningPolicyBuildResultAssetsUnknown = TypedDict("AutomatedReasoningPolicyBuildResultAssetsUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssetsUnknown/)."""
 AutomatedReasoningPolicyBuildResultAssets: TypeAlias = AutomatedReasoningPolicyBuildResultAssetspolicyDefinition | AutomatedReasoningPolicyBuildResultAssetsqualityReport | AutomatedReasoningPolicyBuildResultAssetsbuildLog | AutomatedReasoningPolicyBuildResultAssetsgeneratedTestCases | AutomatedReasoningPolicyBuildResultAssetspolicyScenarios | AutomatedReasoningPolicyBuildResultAssetsassetManifest | AutomatedReasoningPolicyBuildResultAssetsdocument | AutomatedReasoningPolicyBuildResultAssetsfidelityReport | AutomatedReasoningPolicyBuildResultAssetsUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildResultAssets/)."""
 
 AutomatedReasoningPolicyBuildStep = TypedDict(
     "AutomatedReasoningPolicyBuildStep",
@@ -801,11 +1252,16 @@ AutomatedReasoningPolicyBuildStep = TypedDict(
     "messages": Required["list[AutomatedReasoningPolicyBuildStepMessage]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildStep/)."""
 
 AutomatedReasoningPolicyBuildStepContextplanning = TypedDict("AutomatedReasoningPolicyBuildStepContextplanning", {"planning": Required["AutomatedReasoningPolicyPlanning"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildStepContextplanning/)."""
 AutomatedReasoningPolicyBuildStepContextmutation = TypedDict("AutomatedReasoningPolicyBuildStepContextmutation", {"mutation": Required["AutomatedReasoningPolicyMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildStepContextmutation/)."""
 AutomatedReasoningPolicyBuildStepContextUnknown = TypedDict("AutomatedReasoningPolicyBuildStepContextUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildStepContextUnknown/)."""
 AutomatedReasoningPolicyBuildStepContext: TypeAlias = AutomatedReasoningPolicyBuildStepContextplanning | AutomatedReasoningPolicyBuildStepContextmutation | AutomatedReasoningPolicyBuildStepContextUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildStepContext/)."""
 
 AutomatedReasoningPolicyBuildStepMessage = TypedDict(
     "AutomatedReasoningPolicyBuildStepMessage",
@@ -814,6 +1270,7 @@ AutomatedReasoningPolicyBuildStepMessage = TypedDict(
     "message_type": Required["AutomatedReasoningPolicyBuildMessageTypeOutput"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildStepMessage/)."""
 
 AutomatedReasoningPolicyBuildWorkflowDocument = TypedDict(
     "AutomatedReasoningPolicyBuildWorkflowDocument",
@@ -824,6 +1281,7 @@ AutomatedReasoningPolicyBuildWorkflowDocument = TypedDict(
     "document_description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowDocument/)."""
 
 AutomatedReasoningPolicyBuildWorkflowRepairContent = TypedDict(
     "AutomatedReasoningPolicyBuildWorkflowRepairContent",
@@ -831,6 +1289,7 @@ AutomatedReasoningPolicyBuildWorkflowRepairContent = TypedDict(
     "annotations": Required["Sequence[AutomatedReasoningPolicyAnnotation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowRepairContent/)."""
 
 AutomatedReasoningPolicyBuildWorkflowSource = TypedDict(
     "AutomatedReasoningPolicyBuildWorkflowSource",
@@ -839,6 +1298,7 @@ AutomatedReasoningPolicyBuildWorkflowSource = TypedDict(
     "workflow_content": NotRequired["AutomatedReasoningPolicyWorkflowTypeContent"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowSource/)."""
 
 AutomatedReasoningPolicyBuildWorkflowSummary = TypedDict(
     "AutomatedReasoningPolicyBuildWorkflowSummary",
@@ -851,6 +1311,7 @@ AutomatedReasoningPolicyBuildWorkflowSummary = TypedDict(
     "updated_at": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowSummary/)."""
 
 AutomatedReasoningPolicyDefinition = TypedDict(
     "AutomatedReasoningPolicyDefinition",
@@ -861,6 +1322,7 @@ AutomatedReasoningPolicyDefinition = TypedDict(
     "variables": NotRequired["Sequence[AutomatedReasoningPolicyDefinitionVariable]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinition/)."""
 
 AutomatedReasoningPolicyDefinitionOutput = TypedDict(
     "AutomatedReasoningPolicyDefinitionOutput",
@@ -871,12 +1333,18 @@ AutomatedReasoningPolicyDefinitionOutput = TypedDict(
     "variables": Required["list[AutomatedReasoningPolicyDefinitionVariableOutput] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionOutput/)."""
 
 AutomatedReasoningPolicyDefinitionElementpolicyDefinitionVariable = TypedDict("AutomatedReasoningPolicyDefinitionElementpolicyDefinitionVariable", {"policy_definition_variable": Required["AutomatedReasoningPolicyDefinitionVariableOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionElementpolicyDefinitionVariable/)."""
 AutomatedReasoningPolicyDefinitionElementpolicyDefinitionType = TypedDict("AutomatedReasoningPolicyDefinitionElementpolicyDefinitionType", {"policy_definition_type": Required["AutomatedReasoningPolicyDefinitionTypeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionElementpolicyDefinitionType/)."""
 AutomatedReasoningPolicyDefinitionElementpolicyDefinitionRule = TypedDict("AutomatedReasoningPolicyDefinitionElementpolicyDefinitionRule", {"policy_definition_rule": Required["AutomatedReasoningPolicyDefinitionRuleOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionElementpolicyDefinitionRule/)."""
 AutomatedReasoningPolicyDefinitionElementUnknown = TypedDict("AutomatedReasoningPolicyDefinitionElementUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionElementUnknown/)."""
 AutomatedReasoningPolicyDefinitionElement: TypeAlias = AutomatedReasoningPolicyDefinitionElementpolicyDefinitionVariable | AutomatedReasoningPolicyDefinitionElementpolicyDefinitionType | AutomatedReasoningPolicyDefinitionElementpolicyDefinitionRule | AutomatedReasoningPolicyDefinitionElementUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionElement/)."""
 
 AutomatedReasoningPolicyDefinitionQualityReport = TypedDict(
     "AutomatedReasoningPolicyDefinitionQualityReport",
@@ -891,6 +1359,7 @@ AutomatedReasoningPolicyDefinitionQualityReport = TypedDict(
     "disjoint_rule_sets": Required["list[AutomatedReasoningPolicyDisjointRuleSet]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionQualityReport/)."""
 
 AutomatedReasoningPolicyDefinitionRule = TypedDict(
     "AutomatedReasoningPolicyDefinitionRule",
@@ -900,6 +1369,7 @@ AutomatedReasoningPolicyDefinitionRule = TypedDict(
     "alternate_expression": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionRule/)."""
 
 AutomatedReasoningPolicyDefinitionRuleOutput = TypedDict(
     "AutomatedReasoningPolicyDefinitionRuleOutput",
@@ -909,6 +1379,7 @@ AutomatedReasoningPolicyDefinitionRuleOutput = TypedDict(
     "alternate_expression": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionRuleOutput/)."""
 
 AutomatedReasoningPolicyDefinitionType = TypedDict(
     "AutomatedReasoningPolicyDefinitionType",
@@ -918,6 +1389,7 @@ AutomatedReasoningPolicyDefinitionType = TypedDict(
     "values": Required["Sequence[AutomatedReasoningPolicyDefinitionTypeValue]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionType/)."""
 
 AutomatedReasoningPolicyDefinitionTypeOutput = TypedDict(
     "AutomatedReasoningPolicyDefinitionTypeOutput",
@@ -927,6 +1399,7 @@ AutomatedReasoningPolicyDefinitionTypeOutput = TypedDict(
     "values": Required["list[AutomatedReasoningPolicyDefinitionTypeValueOutput]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeOutput/)."""
 
 AutomatedReasoningPolicyDefinitionTypeValue = TypedDict(
     "AutomatedReasoningPolicyDefinitionTypeValue",
@@ -935,6 +1408,7 @@ AutomatedReasoningPolicyDefinitionTypeValue = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeValue/)."""
 
 AutomatedReasoningPolicyDefinitionTypeValueOutput = TypedDict(
     "AutomatedReasoningPolicyDefinitionTypeValueOutput",
@@ -943,6 +1417,7 @@ AutomatedReasoningPolicyDefinitionTypeValueOutput = TypedDict(
     "description": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeValueOutput/)."""
 
 AutomatedReasoningPolicyDefinitionTypeValuePair = TypedDict(
     "AutomatedReasoningPolicyDefinitionTypeValuePair",
@@ -951,6 +1426,7 @@ AutomatedReasoningPolicyDefinitionTypeValuePair = TypedDict(
     "value_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeValuePair/)."""
 
 AutomatedReasoningPolicyDefinitionVariable = TypedDict(
     "AutomatedReasoningPolicyDefinitionVariable",
@@ -960,6 +1436,7 @@ AutomatedReasoningPolicyDefinitionVariable = TypedDict(
     "description": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionVariable/)."""
 
 AutomatedReasoningPolicyDefinitionVariableOutput = TypedDict(
     "AutomatedReasoningPolicyDefinitionVariableOutput",
@@ -969,6 +1446,7 @@ AutomatedReasoningPolicyDefinitionVariableOutput = TypedDict(
     "description": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionVariableOutput/)."""
 
 AutomatedReasoningPolicyDeleteRuleAnnotation = TypedDict(
     "AutomatedReasoningPolicyDeleteRuleAnnotation",
@@ -976,6 +1454,7 @@ AutomatedReasoningPolicyDeleteRuleAnnotation = TypedDict(
     "rule_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteRuleAnnotation/)."""
 
 AutomatedReasoningPolicyDeleteRuleAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyDeleteRuleAnnotationOutput",
@@ -983,6 +1462,7 @@ AutomatedReasoningPolicyDeleteRuleAnnotationOutput = TypedDict(
     "rule_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteRuleAnnotationOutput/)."""
 
 AutomatedReasoningPolicyDeleteRuleMutation = TypedDict(
     "AutomatedReasoningPolicyDeleteRuleMutation",
@@ -990,6 +1470,7 @@ AutomatedReasoningPolicyDeleteRuleMutation = TypedDict(
     "id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteRuleMutation/)."""
 
 AutomatedReasoningPolicyDeleteTypeAnnotation = TypedDict(
     "AutomatedReasoningPolicyDeleteTypeAnnotation",
@@ -997,6 +1478,7 @@ AutomatedReasoningPolicyDeleteTypeAnnotation = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteTypeAnnotation/)."""
 
 AutomatedReasoningPolicyDeleteTypeAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyDeleteTypeAnnotationOutput",
@@ -1004,6 +1486,7 @@ AutomatedReasoningPolicyDeleteTypeAnnotationOutput = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteTypeAnnotationOutput/)."""
 
 AutomatedReasoningPolicyDeleteTypeMutation = TypedDict(
     "AutomatedReasoningPolicyDeleteTypeMutation",
@@ -1011,6 +1494,7 @@ AutomatedReasoningPolicyDeleteTypeMutation = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteTypeMutation/)."""
 
 AutomatedReasoningPolicyDeleteTypeValue = TypedDict(
     "AutomatedReasoningPolicyDeleteTypeValue",
@@ -1018,6 +1502,7 @@ AutomatedReasoningPolicyDeleteTypeValue = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteTypeValue/)."""
 
 AutomatedReasoningPolicyDeleteTypeValueOutput = TypedDict(
     "AutomatedReasoningPolicyDeleteTypeValueOutput",
@@ -1025,6 +1510,7 @@ AutomatedReasoningPolicyDeleteTypeValueOutput = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteTypeValueOutput/)."""
 
 AutomatedReasoningPolicyDeleteVariableAnnotation = TypedDict(
     "AutomatedReasoningPolicyDeleteVariableAnnotation",
@@ -1032,6 +1518,7 @@ AutomatedReasoningPolicyDeleteVariableAnnotation = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteVariableAnnotation/)."""
 
 AutomatedReasoningPolicyDeleteVariableAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyDeleteVariableAnnotationOutput",
@@ -1039,6 +1526,7 @@ AutomatedReasoningPolicyDeleteVariableAnnotationOutput = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteVariableAnnotationOutput/)."""
 
 AutomatedReasoningPolicyDeleteVariableMutation = TypedDict(
     "AutomatedReasoningPolicyDeleteVariableMutation",
@@ -1046,6 +1534,7 @@ AutomatedReasoningPolicyDeleteVariableMutation = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDeleteVariableMutation/)."""
 
 AutomatedReasoningPolicyDisjointRuleSet = TypedDict(
     "AutomatedReasoningPolicyDisjointRuleSet",
@@ -1054,6 +1543,7 @@ AutomatedReasoningPolicyDisjointRuleSet = TypedDict(
     "rules": Required["list[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDisjointRuleSet/)."""
 
 AutomatedReasoningPolicyFidelityReport = TypedDict(
     "AutomatedReasoningPolicyFidelityReport",
@@ -1065,9 +1555,12 @@ AutomatedReasoningPolicyFidelityReport = TypedDict(
     "document_sources": Required["list[AutomatedReasoningPolicyReportSourceDocument]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyFidelityReport/)."""
 
 AutomatedReasoningPolicyGenerateFidelityReportContentdocuments = TypedDict("AutomatedReasoningPolicyGenerateFidelityReportContentdocuments", {"documents": Required["Sequence[AutomatedReasoningPolicyBuildWorkflowDocument]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyGenerateFidelityReportContentdocuments/)."""
 AutomatedReasoningPolicyGenerateFidelityReportContent: TypeAlias = AutomatedReasoningPolicyGenerateFidelityReportContentdocuments
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyGenerateFidelityReportContent/)."""
 
 AutomatedReasoningPolicyGeneratedTestCase = TypedDict(
     "AutomatedReasoningPolicyGeneratedTestCase",
@@ -1077,6 +1570,7 @@ AutomatedReasoningPolicyGeneratedTestCase = TypedDict(
     "expected_aggregated_findings_result": Required["AutomatedReasoningCheckResultOutput"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyGeneratedTestCase/)."""
 
 AutomatedReasoningPolicyGeneratedTestCases = TypedDict(
     "AutomatedReasoningPolicyGeneratedTestCases",
@@ -1084,6 +1578,7 @@ AutomatedReasoningPolicyGeneratedTestCases = TypedDict(
     "generated_test_cases": Required["list[AutomatedReasoningPolicyGeneratedTestCase]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyGeneratedTestCases/)."""
 
 AutomatedReasoningPolicyIngestContentAnnotation = TypedDict(
     "AutomatedReasoningPolicyIngestContentAnnotation",
@@ -1091,6 +1586,7 @@ AutomatedReasoningPolicyIngestContentAnnotation = TypedDict(
     "content": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyIngestContentAnnotation/)."""
 
 AutomatedReasoningPolicyIngestContentAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyIngestContentAnnotationOutput",
@@ -1098,6 +1594,7 @@ AutomatedReasoningPolicyIngestContentAnnotationOutput = TypedDict(
     "content": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyIngestContentAnnotationOutput/)."""
 
 AutomatedReasoningPolicyIterativeRefinementContent = TypedDict(
     "AutomatedReasoningPolicyIterativeRefinementContent",
@@ -1106,24 +1603,37 @@ AutomatedReasoningPolicyIterativeRefinementContent = TypedDict(
     "feedback": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyIterativeRefinementContent/)."""
 
 AutomatedReasoningPolicyMutationaddType = TypedDict("AutomatedReasoningPolicyMutationaddType", {"add_type": Required["AutomatedReasoningPolicyAddTypeMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationaddType/)."""
 AutomatedReasoningPolicyMutationupdateType = TypedDict("AutomatedReasoningPolicyMutationupdateType", {"update_type": Required["AutomatedReasoningPolicyUpdateTypeMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationupdateType/)."""
 AutomatedReasoningPolicyMutationdeleteType = TypedDict("AutomatedReasoningPolicyMutationdeleteType", {"delete_type": Required["AutomatedReasoningPolicyDeleteTypeMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationdeleteType/)."""
 AutomatedReasoningPolicyMutationaddVariable = TypedDict("AutomatedReasoningPolicyMutationaddVariable", {"add_variable": Required["AutomatedReasoningPolicyAddVariableMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationaddVariable/)."""
 AutomatedReasoningPolicyMutationupdateVariable = TypedDict("AutomatedReasoningPolicyMutationupdateVariable", {"update_variable": Required["AutomatedReasoningPolicyUpdateVariableMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationupdateVariable/)."""
 AutomatedReasoningPolicyMutationdeleteVariable = TypedDict("AutomatedReasoningPolicyMutationdeleteVariable", {"delete_variable": Required["AutomatedReasoningPolicyDeleteVariableMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationdeleteVariable/)."""
 AutomatedReasoningPolicyMutationaddRule = TypedDict("AutomatedReasoningPolicyMutationaddRule", {"add_rule": Required["AutomatedReasoningPolicyAddRuleMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationaddRule/)."""
 AutomatedReasoningPolicyMutationupdateRule = TypedDict("AutomatedReasoningPolicyMutationupdateRule", {"update_rule": Required["AutomatedReasoningPolicyUpdateRuleMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationupdateRule/)."""
 AutomatedReasoningPolicyMutationdeleteRule = TypedDict("AutomatedReasoningPolicyMutationdeleteRule", {"delete_rule": Required["AutomatedReasoningPolicyDeleteRuleMutation"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationdeleteRule/)."""
 AutomatedReasoningPolicyMutationUnknown = TypedDict("AutomatedReasoningPolicyMutationUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutationUnknown/)."""
 AutomatedReasoningPolicyMutation: TypeAlias = AutomatedReasoningPolicyMutationaddType | AutomatedReasoningPolicyMutationupdateType | AutomatedReasoningPolicyMutationdeleteType | AutomatedReasoningPolicyMutationaddVariable | AutomatedReasoningPolicyMutationupdateVariable | AutomatedReasoningPolicyMutationdeleteVariable | AutomatedReasoningPolicyMutationaddRule | AutomatedReasoningPolicyMutationupdateRule | AutomatedReasoningPolicyMutationdeleteRule | AutomatedReasoningPolicyMutationUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyMutation/)."""
 
 AutomatedReasoningPolicyPlanning = TypedDict(
     "AutomatedReasoningPolicyPlanning",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyPlanning/)."""
 
 AutomatedReasoningPolicyReportSourceDocument = TypedDict(
     "AutomatedReasoningPolicyReportSourceDocument",
@@ -1135,6 +1645,7 @@ AutomatedReasoningPolicyReportSourceDocument = TypedDict(
     "document_content": Required["list[AutomatedReasoningPolicyAnnotatedChunk]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyReportSourceDocument/)."""
 
 AutomatedReasoningPolicyRuleReport = TypedDict(
     "AutomatedReasoningPolicyRuleReport",
@@ -1146,6 +1657,7 @@ AutomatedReasoningPolicyRuleReport = TypedDict(
     "accuracy_justification": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyRuleReport/)."""
 
 AutomatedReasoningPolicyScenario = TypedDict(
     "AutomatedReasoningPolicyScenario",
@@ -1156,6 +1668,7 @@ AutomatedReasoningPolicyScenario = TypedDict(
     "rule_ids": Required["list[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyScenario/)."""
 
 AutomatedReasoningPolicyScenarios = TypedDict(
     "AutomatedReasoningPolicyScenarios",
@@ -1163,6 +1676,7 @@ AutomatedReasoningPolicyScenarios = TypedDict(
     "policy_scenarios": Required["list[AutomatedReasoningPolicyScenario]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyScenarios/)."""
 
 AutomatedReasoningPolicySourceDocument = TypedDict(
     "AutomatedReasoningPolicySourceDocument",
@@ -1174,6 +1688,7 @@ AutomatedReasoningPolicySourceDocument = TypedDict(
     "document_hash": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicySourceDocument/)."""
 
 AutomatedReasoningPolicyStatementLocation = TypedDict(
     "AutomatedReasoningPolicyStatementLocation",
@@ -1181,6 +1696,7 @@ AutomatedReasoningPolicyStatementLocation = TypedDict(
     "lines": Required["list[int]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyStatementLocation/)."""
 
 AutomatedReasoningPolicyStatementReference = TypedDict(
     "AutomatedReasoningPolicyStatementReference",
@@ -1189,6 +1705,7 @@ AutomatedReasoningPolicyStatementReference = TypedDict(
     "statement_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyStatementReference/)."""
 
 AutomatedReasoningPolicySummary = TypedDict(
     "AutomatedReasoningPolicySummary",
@@ -1202,6 +1719,7 @@ AutomatedReasoningPolicySummary = TypedDict(
     "updated_at": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicySummary/)."""
 
 AutomatedReasoningPolicyTestCase = TypedDict(
     "AutomatedReasoningPolicyTestCase",
@@ -1215,6 +1733,7 @@ AutomatedReasoningPolicyTestCase = TypedDict(
     "confidence_threshold": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestCase/)."""
 
 AutomatedReasoningPolicyTestResult = TypedDict(
     "AutomatedReasoningPolicyTestResult",
@@ -1228,17 +1747,27 @@ AutomatedReasoningPolicyTestResult = TypedDict(
     "updated_at": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestResult/)."""
 
 AutomatedReasoningPolicyTypeValueAnnotationaddTypeValue = TypedDict("AutomatedReasoningPolicyTypeValueAnnotationaddTypeValue", {"add_type_value": Required["AutomatedReasoningPolicyAddTypeValue"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationaddTypeValue/)."""
 AutomatedReasoningPolicyTypeValueAnnotationupdateTypeValue = TypedDict("AutomatedReasoningPolicyTypeValueAnnotationupdateTypeValue", {"update_type_value": Required["AutomatedReasoningPolicyUpdateTypeValue"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationupdateTypeValue/)."""
 AutomatedReasoningPolicyTypeValueAnnotationdeleteTypeValue = TypedDict("AutomatedReasoningPolicyTypeValueAnnotationdeleteTypeValue", {"delete_type_value": Required["AutomatedReasoningPolicyDeleteTypeValue"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationdeleteTypeValue/)."""
 AutomatedReasoningPolicyTypeValueAnnotation: TypeAlias = AutomatedReasoningPolicyTypeValueAnnotationaddTypeValue | AutomatedReasoningPolicyTypeValueAnnotationupdateTypeValue | AutomatedReasoningPolicyTypeValueAnnotationdeleteTypeValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotation/)."""
 
 AutomatedReasoningPolicyTypeValueAnnotationOutputaddTypeValue = TypedDict("AutomatedReasoningPolicyTypeValueAnnotationOutputaddTypeValue", {"add_type_value": Required["AutomatedReasoningPolicyAddTypeValueOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationOutputaddTypeValue/)."""
 AutomatedReasoningPolicyTypeValueAnnotationOutputupdateTypeValue = TypedDict("AutomatedReasoningPolicyTypeValueAnnotationOutputupdateTypeValue", {"update_type_value": Required["AutomatedReasoningPolicyUpdateTypeValueOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationOutputupdateTypeValue/)."""
 AutomatedReasoningPolicyTypeValueAnnotationOutputdeleteTypeValue = TypedDict("AutomatedReasoningPolicyTypeValueAnnotationOutputdeleteTypeValue", {"delete_type_value": Required["AutomatedReasoningPolicyDeleteTypeValueOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationOutputdeleteTypeValue/)."""
 AutomatedReasoningPolicyTypeValueAnnotationOutputUnknown = TypedDict("AutomatedReasoningPolicyTypeValueAnnotationOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationOutputUnknown/)."""
 AutomatedReasoningPolicyTypeValueAnnotationOutput: TypeAlias = AutomatedReasoningPolicyTypeValueAnnotationOutputaddTypeValue | AutomatedReasoningPolicyTypeValueAnnotationOutputupdateTypeValue | AutomatedReasoningPolicyTypeValueAnnotationOutputdeleteTypeValue | AutomatedReasoningPolicyTypeValueAnnotationOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTypeValueAnnotationOutput/)."""
 
 AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation = TypedDict(
     "AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation",
@@ -1247,6 +1776,7 @@ AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation = TypedDict(
     "feedback": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation/)."""
 
 AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotationOutput",
@@ -1255,6 +1785,7 @@ AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotationOutput = TypedDict(
     "feedback": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotationOutput/)."""
 
 AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation = TypedDict(
     "AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation",
@@ -1264,6 +1795,7 @@ AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation = TypedDict(
     "feedback": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation/)."""
 
 AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotationOutput",
@@ -1273,6 +1805,7 @@ AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotationOutput = TypedDict(
     "feedback": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotationOutput/)."""
 
 AutomatedReasoningPolicyUpdateRuleAnnotation = TypedDict(
     "AutomatedReasoningPolicyUpdateRuleAnnotation",
@@ -1281,6 +1814,7 @@ AutomatedReasoningPolicyUpdateRuleAnnotation = TypedDict(
     "expression": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateRuleAnnotation/)."""
 
 AutomatedReasoningPolicyUpdateRuleAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyUpdateRuleAnnotationOutput",
@@ -1289,6 +1823,7 @@ AutomatedReasoningPolicyUpdateRuleAnnotationOutput = TypedDict(
     "expression": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateRuleAnnotationOutput/)."""
 
 AutomatedReasoningPolicyUpdateRuleMutation = TypedDict(
     "AutomatedReasoningPolicyUpdateRuleMutation",
@@ -1296,6 +1831,7 @@ AutomatedReasoningPolicyUpdateRuleMutation = TypedDict(
     "rule": Required["AutomatedReasoningPolicyDefinitionRuleOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateRuleMutation/)."""
 
 AutomatedReasoningPolicyUpdateTypeAnnotation = TypedDict(
     "AutomatedReasoningPolicyUpdateTypeAnnotation",
@@ -1306,6 +1842,7 @@ AutomatedReasoningPolicyUpdateTypeAnnotation = TypedDict(
     "values": Required["Sequence[AutomatedReasoningPolicyTypeValueAnnotation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateTypeAnnotation/)."""
 
 AutomatedReasoningPolicyUpdateTypeAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyUpdateTypeAnnotationOutput",
@@ -1316,6 +1853,7 @@ AutomatedReasoningPolicyUpdateTypeAnnotationOutput = TypedDict(
     "values": Required["list[AutomatedReasoningPolicyTypeValueAnnotationOutput]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateTypeAnnotationOutput/)."""
 
 AutomatedReasoningPolicyUpdateTypeMutation = TypedDict(
     "AutomatedReasoningPolicyUpdateTypeMutation",
@@ -1323,6 +1861,7 @@ AutomatedReasoningPolicyUpdateTypeMutation = TypedDict(
     "type": Required["AutomatedReasoningPolicyDefinitionTypeOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateTypeMutation/)."""
 
 AutomatedReasoningPolicyUpdateTypeValue = TypedDict(
     "AutomatedReasoningPolicyUpdateTypeValue",
@@ -1332,6 +1871,7 @@ AutomatedReasoningPolicyUpdateTypeValue = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateTypeValue/)."""
 
 AutomatedReasoningPolicyUpdateTypeValueOutput = TypedDict(
     "AutomatedReasoningPolicyUpdateTypeValueOutput",
@@ -1341,6 +1881,7 @@ AutomatedReasoningPolicyUpdateTypeValueOutput = TypedDict(
     "description": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateTypeValueOutput/)."""
 
 AutomatedReasoningPolicyUpdateVariableAnnotation = TypedDict(
     "AutomatedReasoningPolicyUpdateVariableAnnotation",
@@ -1350,6 +1891,7 @@ AutomatedReasoningPolicyUpdateVariableAnnotation = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateVariableAnnotation/)."""
 
 AutomatedReasoningPolicyUpdateVariableAnnotationOutput = TypedDict(
     "AutomatedReasoningPolicyUpdateVariableAnnotationOutput",
@@ -1359,6 +1901,7 @@ AutomatedReasoningPolicyUpdateVariableAnnotationOutput = TypedDict(
     "description": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateVariableAnnotationOutput/)."""
 
 AutomatedReasoningPolicyUpdateVariableMutation = TypedDict(
     "AutomatedReasoningPolicyUpdateVariableMutation",
@@ -1366,6 +1909,7 @@ AutomatedReasoningPolicyUpdateVariableMutation = TypedDict(
     "variable": Required["AutomatedReasoningPolicyDefinitionVariableOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyUpdateVariableMutation/)."""
 
 AutomatedReasoningPolicyVariableReport = TypedDict(
     "AutomatedReasoningPolicyVariableReport",
@@ -1377,12 +1921,18 @@ AutomatedReasoningPolicyVariableReport = TypedDict(
     "accuracy_justification": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyVariableReport/)."""
 
 AutomatedReasoningPolicyWorkflowTypeContentdocuments = TypedDict("AutomatedReasoningPolicyWorkflowTypeContentdocuments", {"documents": Required["Sequence[AutomatedReasoningPolicyBuildWorkflowDocument]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyWorkflowTypeContentdocuments/)."""
 AutomatedReasoningPolicyWorkflowTypeContentpolicyRepairAssets = TypedDict("AutomatedReasoningPolicyWorkflowTypeContentpolicyRepairAssets", {"policy_repair_assets": Required["AutomatedReasoningPolicyBuildWorkflowRepairContent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyWorkflowTypeContentpolicyRepairAssets/)."""
 AutomatedReasoningPolicyWorkflowTypeContentgenerateFidelityReportContent = TypedDict("AutomatedReasoningPolicyWorkflowTypeContentgenerateFidelityReportContent", {"generate_fidelity_report_content": Required["AutomatedReasoningPolicyGenerateFidelityReportContent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyWorkflowTypeContentgenerateFidelityReportContent/)."""
 AutomatedReasoningPolicyWorkflowTypeContentiterativeRefinementContent = TypedDict("AutomatedReasoningPolicyWorkflowTypeContentiterativeRefinementContent", {"iterative_refinement_content": Required["AutomatedReasoningPolicyIterativeRefinementContent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyWorkflowTypeContentiterativeRefinementContent/)."""
 AutomatedReasoningPolicyWorkflowTypeContent: TypeAlias = AutomatedReasoningPolicyWorkflowTypeContentdocuments | AutomatedReasoningPolicyWorkflowTypeContentpolicyRepairAssets | AutomatedReasoningPolicyWorkflowTypeContentgenerateFidelityReportContent | AutomatedReasoningPolicyWorkflowTypeContentiterativeRefinementContent
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyWorkflowTypeContent/)."""
 
 BatchDeleteAdvancedPromptOptimizationJobError = TypedDict(
     "BatchDeleteAdvancedPromptOptimizationJobError",
@@ -1392,6 +1942,7 @@ BatchDeleteAdvancedPromptOptimizationJobError = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobError/)."""
 
 BatchDeleteAdvancedPromptOptimizationJobItem = TypedDict(
     "BatchDeleteAdvancedPromptOptimizationJobItem",
@@ -1400,6 +1951,7 @@ BatchDeleteAdvancedPromptOptimizationJobItem = TypedDict(
     "job_status": Required["AdvancedPromptOptimizationJobStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobItem/)."""
 
 BatchDeleteAdvancedPromptOptimizationJobRequest = TypedDict(
     "BatchDeleteAdvancedPromptOptimizationJobRequest",
@@ -1407,6 +1959,7 @@ BatchDeleteAdvancedPromptOptimizationJobRequest = TypedDict(
     "job_identifiers": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobRequest/)."""
 
 BatchDeleteEvaluationJobError = TypedDict(
     "BatchDeleteEvaluationJobError",
@@ -1416,6 +1969,7 @@ BatchDeleteEvaluationJobError = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobError/)."""
 
 BatchDeleteEvaluationJobItem = TypedDict(
     "BatchDeleteEvaluationJobItem",
@@ -1424,6 +1978,7 @@ BatchDeleteEvaluationJobItem = TypedDict(
     "job_status": Required["EvaluationJobStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobItem/)."""
 
 BatchDeleteEvaluationJobRequest = TypedDict(
     "BatchDeleteEvaluationJobRequest",
@@ -1431,6 +1986,7 @@ BatchDeleteEvaluationJobRequest = TypedDict(
     "job_identifiers": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobRequest/)."""
 
 BedrockEvaluatorModel = TypedDict(
     "BedrockEvaluatorModel",
@@ -1438,6 +1994,7 @@ BedrockEvaluatorModel = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BedrockEvaluatorModel/)."""
 
 BedrockEvaluatorModelOutput = TypedDict(
     "BedrockEvaluatorModelOutput",
@@ -1445,6 +2002,7 @@ BedrockEvaluatorModelOutput = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BedrockEvaluatorModelOutput/)."""
 
 ByteContentDoc = TypedDict(
     "ByteContentDoc",
@@ -1454,6 +2012,7 @@ ByteContentDoc = TypedDict(
     "data": Required["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ByteContentDoc/)."""
 
 ByteContentDocOutput = TypedDict(
     "ByteContentDocOutput",
@@ -1463,6 +2022,7 @@ ByteContentDocOutput = TypedDict(
     "data": Required["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ByteContentDocOutput/)."""
 
 CancelAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "CancelAutomatedReasoningPolicyBuildWorkflowRequest",
@@ -1471,6 +2031,7 @@ CancelAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "build_workflow_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CancelAutomatedReasoningPolicyBuildWorkflowRequest/)."""
 
 CloudWatchConfig = TypedDict(
     "CloudWatchConfig",
@@ -1480,6 +2041,7 @@ CloudWatchConfig = TypedDict(
     "large_data_delivery_s3_config": NotRequired["S3Config"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CloudWatchConfig/)."""
 
 CreateAdvancedPromptOptimizationJobRequest = TypedDict(
     "CreateAdvancedPromptOptimizationJobRequest",
@@ -1494,6 +2056,7 @@ CreateAdvancedPromptOptimizationJobRequest = TypedDict(
     "model_configurations": Required["Sequence[ModelConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAdvancedPromptOptimizationJobRequest/)."""
 
 CreateAutomatedReasoningPolicyRequest = TypedDict(
     "CreateAutomatedReasoningPolicyRequest",
@@ -1506,6 +2069,7 @@ CreateAutomatedReasoningPolicyRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyRequest/)."""
 
 CreateAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "CreateAutomatedReasoningPolicyTestCaseRequest",
@@ -1518,6 +2082,7 @@ CreateAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "confidence_threshold": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyTestCaseRequest/)."""
 
 CreateAutomatedReasoningPolicyVersionRequest = TypedDict(
     "CreateAutomatedReasoningPolicyVersionRequest",
@@ -1528,6 +2093,7 @@ CreateAutomatedReasoningPolicyVersionRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyVersionRequest/)."""
 
 CreateCustomModelDeploymentRequest = TypedDict(
     "CreateCustomModelDeploymentRequest",
@@ -1539,6 +2105,7 @@ CreateCustomModelDeploymentRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelDeploymentRequest/)."""
 
 CreateCustomModelRequest = TypedDict(
     "CreateCustomModelRequest",
@@ -1552,6 +2119,7 @@ CreateCustomModelRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelRequest/)."""
 
 CreateEvaluationJobRequest = TypedDict(
     "CreateEvaluationJobRequest",
@@ -1568,6 +2136,7 @@ CreateEvaluationJobRequest = TypedDict(
     "output_data_config": Required["EvaluationOutputDataConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateEvaluationJobRequest/)."""
 
 CreateFoundationModelAgreementRequest = TypedDict(
     "CreateFoundationModelAgreementRequest",
@@ -1576,6 +2145,7 @@ CreateFoundationModelAgreementRequest = TypedDict(
     "model_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateFoundationModelAgreementRequest/)."""
 
 CreateGuardrailRequest = TypedDict(
     "CreateGuardrailRequest",
@@ -1596,6 +2166,7 @@ CreateGuardrailRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailRequest/)."""
 
 CreateGuardrailVersionRequest = TypedDict(
     "CreateGuardrailVersionRequest",
@@ -1605,6 +2176,7 @@ CreateGuardrailVersionRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailVersionRequest/)."""
 
 CreateInferenceProfileRequest = TypedDict(
     "CreateInferenceProfileRequest",
@@ -1616,6 +2188,7 @@ CreateInferenceProfileRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateInferenceProfileRequest/)."""
 
 CreateMarketplaceModelEndpointRequest = TypedDict(
     "CreateMarketplaceModelEndpointRequest",
@@ -1628,6 +2201,7 @@ CreateMarketplaceModelEndpointRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateMarketplaceModelEndpointRequest/)."""
 
 CreateModelCopyJobRequest = TypedDict(
     "CreateModelCopyJobRequest",
@@ -1639,6 +2213,7 @@ CreateModelCopyJobRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCopyJobRequest/)."""
 
 CreateModelCustomizationJobRequest = TypedDict(
     "CreateModelCustomizationJobRequest",
@@ -1660,6 +2235,7 @@ CreateModelCustomizationJobRequest = TypedDict(
     "customization_config": NotRequired["CustomizationConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCustomizationJobRequest/)."""
 
 CreateModelImportJobRequest = TypedDict(
     "CreateModelImportJobRequest",
@@ -1675,6 +2251,7 @@ CreateModelImportJobRequest = TypedDict(
     "imported_model_kms_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelImportJobRequest/)."""
 
 CreateModelInvocationJobRequest = TypedDict(
     "CreateModelInvocationJobRequest",
@@ -1691,6 +2268,7 @@ CreateModelInvocationJobRequest = TypedDict(
     "model_invocation_type": NotRequired["ModelInvocationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelInvocationJobRequest/)."""
 
 CreatePromptRouterRequest = TypedDict(
     "CreatePromptRouterRequest",
@@ -1704,6 +2282,7 @@ CreatePromptRouterRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreatePromptRouterRequest/)."""
 
 CreateProvisionedModelThroughputRequest = TypedDict(
     "CreateProvisionedModelThroughputRequest",
@@ -1716,6 +2295,7 @@ CreateProvisionedModelThroughputRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateProvisionedModelThroughputRequest/)."""
 
 CustomMetricBedrockEvaluatorModel = TypedDict(
     "CustomMetricBedrockEvaluatorModel",
@@ -1723,6 +2303,7 @@ CustomMetricBedrockEvaluatorModel = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomMetricBedrockEvaluatorModel/)."""
 
 CustomMetricBedrockEvaluatorModelOutput = TypedDict(
     "CustomMetricBedrockEvaluatorModelOutput",
@@ -1730,6 +2311,7 @@ CustomMetricBedrockEvaluatorModelOutput = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomMetricBedrockEvaluatorModelOutput/)."""
 
 CustomMetricDefinition = TypedDict(
     "CustomMetricDefinition",
@@ -1739,6 +2321,7 @@ CustomMetricDefinition = TypedDict(
     "rating_scale": NotRequired["Sequence[RatingScaleItem]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomMetricDefinition/)."""
 
 CustomMetricDefinitionOutput = TypedDict(
     "CustomMetricDefinitionOutput",
@@ -1748,6 +2331,7 @@ CustomMetricDefinitionOutput = TypedDict(
     "rating_scale": Required["list[RatingScaleItemOutput] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomMetricDefinitionOutput/)."""
 
 CustomMetricEvaluatorModelConfig = TypedDict(
     "CustomMetricEvaluatorModelConfig",
@@ -1755,6 +2339,7 @@ CustomMetricEvaluatorModelConfig = TypedDict(
     "bedrock_evaluator_models": Required["Sequence[CustomMetricBedrockEvaluatorModel]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomMetricEvaluatorModelConfig/)."""
 
 CustomMetricEvaluatorModelConfigOutput = TypedDict(
     "CustomMetricEvaluatorModelConfigOutput",
@@ -1762,9 +2347,12 @@ CustomMetricEvaluatorModelConfigOutput = TypedDict(
     "bedrock_evaluator_models": Required["list[CustomMetricBedrockEvaluatorModelOutput]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomMetricEvaluatorModelConfigOutput/)."""
 
 CustomModelDataSourcemodelPackageArnDataSource = TypedDict("CustomModelDataSourcemodelPackageArnDataSource", {"model_package_arn_data_source": Required["ModelPackageArnDataSource"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDataSourcemodelPackageArnDataSource/)."""
 CustomModelDataSource: TypeAlias = CustomModelDataSourcemodelPackageArnDataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDataSource/)."""
 
 CustomModelDeploymentSummary = TypedDict(
     "CustomModelDeploymentSummary",
@@ -1778,6 +2366,7 @@ CustomModelDeploymentSummary = TypedDict(
     "failure_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentSummary/)."""
 
 CustomModelDeploymentUpdateDetails = TypedDict(
     "CustomModelDeploymentUpdateDetails",
@@ -1786,6 +2375,7 @@ CustomModelDeploymentUpdateDetails = TypedDict(
     "update_status": Required["CustomModelDeploymentUpdateStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentUpdateDetails/)."""
 
 CustomModelSummary = TypedDict(
     "CustomModelSummary",
@@ -1800,6 +2390,7 @@ CustomModelSummary = TypedDict(
     "model_status": NotRequired["ModelStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelSummary/)."""
 
 CustomModelUnits = TypedDict(
     "CustomModelUnits",
@@ -1808,15 +2399,23 @@ CustomModelUnits = TypedDict(
     "custom_model_units_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelUnits/)."""
 
 CustomizationConfigdistillationConfig = TypedDict("CustomizationConfigdistillationConfig", {"distillation_config": Required["DistillationConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationConfigdistillationConfig/)."""
 CustomizationConfigrftConfig = TypedDict("CustomizationConfigrftConfig", {"rft_config": Required["RFTConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationConfigrftConfig/)."""
 CustomizationConfig: TypeAlias = CustomizationConfigdistillationConfig | CustomizationConfigrftConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationConfig/)."""
 
 CustomizationConfigOutputdistillationConfig = TypedDict("CustomizationConfigOutputdistillationConfig", {"distillation_config": Required["DistillationConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationConfigOutputdistillationConfig/)."""
 CustomizationConfigOutputrftConfig = TypedDict("CustomizationConfigOutputrftConfig", {"rft_config": Required["RFTConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationConfigOutputrftConfig/)."""
 CustomizationConfigOutputUnknown = TypedDict("CustomizationConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationConfigOutputUnknown/)."""
 CustomizationConfigOutput: TypeAlias = CustomizationConfigOutputdistillationConfig | CustomizationConfigOutputrftConfig | CustomizationConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomizationConfigOutput/)."""
 
 DataProcessingDetails = TypedDict(
     "DataProcessingDetails",
@@ -1826,6 +2425,7 @@ DataProcessingDetails = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataProcessingDetails/)."""
 
 DeleteAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "DeleteAutomatedReasoningPolicyBuildWorkflowRequest",
@@ -1835,6 +2435,7 @@ DeleteAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "last_updated_at": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyBuildWorkflowRequest/)."""
 
 DeleteAutomatedReasoningPolicyRequest = TypedDict(
     "DeleteAutomatedReasoningPolicyRequest",
@@ -1843,6 +2444,7 @@ DeleteAutomatedReasoningPolicyRequest = TypedDict(
     "force": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyRequest/)."""
 
 DeleteAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "DeleteAutomatedReasoningPolicyTestCaseRequest",
@@ -1852,6 +2454,7 @@ DeleteAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "last_updated_at": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyTestCaseRequest/)."""
 
 DeleteCustomModelDeploymentRequest = TypedDict(
     "DeleteCustomModelDeploymentRequest",
@@ -1859,6 +2462,7 @@ DeleteCustomModelDeploymentRequest = TypedDict(
     "custom_model_deployment_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelDeploymentRequest/)."""
 
 DeleteCustomModelRequest = TypedDict(
     "DeleteCustomModelRequest",
@@ -1866,6 +2470,7 @@ DeleteCustomModelRequest = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelRequest/)."""
 
 DeleteEnforcedGuardrailConfigurationRequest = TypedDict(
     "DeleteEnforcedGuardrailConfigurationRequest",
@@ -1873,6 +2478,7 @@ DeleteEnforcedGuardrailConfigurationRequest = TypedDict(
     "config_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteEnforcedGuardrailConfigurationRequest/)."""
 
 DeleteFoundationModelAgreementRequest = TypedDict(
     "DeleteFoundationModelAgreementRequest",
@@ -1880,6 +2486,7 @@ DeleteFoundationModelAgreementRequest = TypedDict(
     "model_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteFoundationModelAgreementRequest/)."""
 
 DeleteGuardrailRequest = TypedDict(
     "DeleteGuardrailRequest",
@@ -1888,6 +2495,7 @@ DeleteGuardrailRequest = TypedDict(
     "guardrail_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteGuardrailRequest/)."""
 
 DeleteImportedModelRequest = TypedDict(
     "DeleteImportedModelRequest",
@@ -1895,6 +2503,7 @@ DeleteImportedModelRequest = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteImportedModelRequest/)."""
 
 DeleteInferenceProfileRequest = TypedDict(
     "DeleteInferenceProfileRequest",
@@ -1902,6 +2511,7 @@ DeleteInferenceProfileRequest = TypedDict(
     "inference_profile_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteInferenceProfileRequest/)."""
 
 DeleteMarketplaceModelEndpointRequest = TypedDict(
     "DeleteMarketplaceModelEndpointRequest",
@@ -1909,12 +2519,14 @@ DeleteMarketplaceModelEndpointRequest = TypedDict(
     "endpoint_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteMarketplaceModelEndpointRequest/)."""
 
 DeleteModelInvocationLoggingConfigurationRequest = TypedDict(
     "DeleteModelInvocationLoggingConfigurationRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteModelInvocationLoggingConfigurationRequest/)."""
 
 DeletePromptRouterRequest = TypedDict(
     "DeletePromptRouterRequest",
@@ -1922,6 +2534,7 @@ DeletePromptRouterRequest = TypedDict(
     "prompt_router_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeletePromptRouterRequest/)."""
 
 DeleteProvisionedModelThroughputRequest = TypedDict(
     "DeleteProvisionedModelThroughputRequest",
@@ -1929,6 +2542,7 @@ DeleteProvisionedModelThroughputRequest = TypedDict(
     "provisioned_model_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteProvisionedModelThroughputRequest/)."""
 
 DeleteResourcePolicyRequest = TypedDict(
     "DeleteResourcePolicyRequest",
@@ -1936,6 +2550,7 @@ DeleteResourcePolicyRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteResourcePolicyRequest/)."""
 
 DeregisterMarketplaceModelEndpointRequest = TypedDict(
     "DeregisterMarketplaceModelEndpointRequest",
@@ -1943,6 +2558,7 @@ DeregisterMarketplaceModelEndpointRequest = TypedDict(
     "endpoint_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeregisterMarketplaceModelEndpointRequest/)."""
 
 DimensionalPriceRate = TypedDict(
     "DimensionalPriceRate",
@@ -1953,6 +2569,7 @@ DimensionalPriceRate = TypedDict(
     "unit": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DimensionalPriceRate/)."""
 
 DistillationConfig = TypedDict(
     "DistillationConfig",
@@ -1960,6 +2577,7 @@ DistillationConfig = TypedDict(
     "teacher_model_config": Required["TeacherModelConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DistillationConfig/)."""
 
 DistillationConfigOutput = TypedDict(
     "DistillationConfigOutput",
@@ -1967,13 +2585,19 @@ DistillationConfigOutput = TypedDict(
     "teacher_model_config": Required["TeacherModelConfigOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DistillationConfigOutput/)."""
 
 EndpointConfigsageMaker = TypedDict("EndpointConfigsageMaker", {"sage_maker": Required["SageMakerEndpoint"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EndpointConfigsageMaker/)."""
 EndpointConfig: TypeAlias = EndpointConfigsageMaker
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EndpointConfig/)."""
 
 EndpointConfigOutputsageMaker = TypedDict("EndpointConfigOutputsageMaker", {"sage_maker": Required["SageMakerEndpointOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EndpointConfigOutputsageMaker/)."""
 EndpointConfigOutputUnknown = TypedDict("EndpointConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EndpointConfigOutputUnknown/)."""
 EndpointConfigOutput: TypeAlias = EndpointConfigOutputsageMaker | EndpointConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EndpointConfigOutput/)."""
 
 EvaluationBedrockModel = TypedDict(
     "EvaluationBedrockModel",
@@ -1983,6 +2607,7 @@ EvaluationBedrockModel = TypedDict(
     "performance_config": NotRequired["PerformanceConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationBedrockModel/)."""
 
 EvaluationBedrockModelOutput = TypedDict(
     "EvaluationBedrockModelOutput",
@@ -1992,15 +2617,23 @@ EvaluationBedrockModelOutput = TypedDict(
     "performance_config": Required["PerformanceConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationBedrockModelOutput/)."""
 
 EvaluationConfigautomated = TypedDict("EvaluationConfigautomated", {"automated": Required["AutomatedEvaluationConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationConfigautomated/)."""
 EvaluationConfighuman = TypedDict("EvaluationConfighuman", {"human": Required["HumanEvaluationConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationConfighuman/)."""
 EvaluationConfig: TypeAlias = EvaluationConfigautomated | EvaluationConfighuman
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationConfig/)."""
 
 EvaluationConfigOutputautomated = TypedDict("EvaluationConfigOutputautomated", {"automated": Required["AutomatedEvaluationConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationConfigOutputautomated/)."""
 EvaluationConfigOutputhuman = TypedDict("EvaluationConfigOutputhuman", {"human": Required["HumanEvaluationConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationConfigOutputhuman/)."""
 EvaluationConfigOutputUnknown = TypedDict("EvaluationConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationConfigOutputUnknown/)."""
 EvaluationConfigOutput: TypeAlias = EvaluationConfigOutputautomated | EvaluationConfigOutputhuman | EvaluationConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationConfigOutput/)."""
 
 EvaluationDataset = TypedDict(
     "EvaluationDataset",
@@ -2009,6 +2642,7 @@ EvaluationDataset = TypedDict(
     "dataset_location": NotRequired["EvaluationDatasetLocation"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDataset/)."""
 
 EvaluationDatasetOutput = TypedDict(
     "EvaluationDatasetOutput",
@@ -2017,13 +2651,19 @@ EvaluationDatasetOutput = TypedDict(
     "dataset_location": Required["EvaluationDatasetLocationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetOutput/)."""
 
 EvaluationDatasetLocations3Uri = TypedDict("EvaluationDatasetLocations3Uri", {"s3_uri": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetLocations3Uri/)."""
 EvaluationDatasetLocation: TypeAlias = EvaluationDatasetLocations3Uri
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetLocation/)."""
 
 EvaluationDatasetLocationOutputs3Uri = TypedDict("EvaluationDatasetLocationOutputs3Uri", {"s3_uri": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetLocationOutputs3Uri/)."""
 EvaluationDatasetLocationOutputUnknown = TypedDict("EvaluationDatasetLocationOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetLocationOutputUnknown/)."""
 EvaluationDatasetLocationOutput: TypeAlias = EvaluationDatasetLocationOutputs3Uri | EvaluationDatasetLocationOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetLocationOutput/)."""
 
 EvaluationDatasetMetricConfig = TypedDict(
     "EvaluationDatasetMetricConfig",
@@ -2033,6 +2673,7 @@ EvaluationDatasetMetricConfig = TypedDict(
     "metric_names": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetMetricConfig/)."""
 
 EvaluationDatasetMetricConfigOutput = TypedDict(
     "EvaluationDatasetMetricConfigOutput",
@@ -2042,15 +2683,23 @@ EvaluationDatasetMetricConfigOutput = TypedDict(
     "metric_names": Required["list[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationDatasetMetricConfigOutput/)."""
 
 EvaluationInferenceConfigmodels = TypedDict("EvaluationInferenceConfigmodels", {"models": Required["Sequence[EvaluationModelConfig]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigmodels/)."""
 EvaluationInferenceConfigragConfigs = TypedDict("EvaluationInferenceConfigragConfigs", {"rag_configs": Required["Sequence[RAGConfig]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigragConfigs/)."""
 EvaluationInferenceConfig: TypeAlias = EvaluationInferenceConfigmodels | EvaluationInferenceConfigragConfigs
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfig/)."""
 
 EvaluationInferenceConfigOutputmodels = TypedDict("EvaluationInferenceConfigOutputmodels", {"models": Required["list[EvaluationModelConfigOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigOutputmodels/)."""
 EvaluationInferenceConfigOutputragConfigs = TypedDict("EvaluationInferenceConfigOutputragConfigs", {"rag_configs": Required["list[RAGConfigOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigOutputragConfigs/)."""
 EvaluationInferenceConfigOutputUnknown = TypedDict("EvaluationInferenceConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigOutputUnknown/)."""
 EvaluationInferenceConfigOutput: TypeAlias = EvaluationInferenceConfigOutputmodels | EvaluationInferenceConfigOutputragConfigs | EvaluationInferenceConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigOutput/)."""
 
 EvaluationInferenceConfigSummary = TypedDict(
     "EvaluationInferenceConfigSummary",
@@ -2059,15 +2708,23 @@ EvaluationInferenceConfigSummary = TypedDict(
     "rag_config_summary": NotRequired["EvaluationRagConfigSummary"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigSummary/)."""
 
 EvaluationModelConfigbedrockModel = TypedDict("EvaluationModelConfigbedrockModel", {"bedrock_model": Required["EvaluationBedrockModel"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigbedrockModel/)."""
 EvaluationModelConfigprecomputedInferenceSource = TypedDict("EvaluationModelConfigprecomputedInferenceSource", {"precomputed_inference_source": Required["EvaluationPrecomputedInferenceSource"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigprecomputedInferenceSource/)."""
 EvaluationModelConfig: TypeAlias = EvaluationModelConfigbedrockModel | EvaluationModelConfigprecomputedInferenceSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfig/)."""
 
 EvaluationModelConfigOutputbedrockModel = TypedDict("EvaluationModelConfigOutputbedrockModel", {"bedrock_model": Required["EvaluationBedrockModelOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigOutputbedrockModel/)."""
 EvaluationModelConfigOutputprecomputedInferenceSource = TypedDict("EvaluationModelConfigOutputprecomputedInferenceSource", {"precomputed_inference_source": Required["EvaluationPrecomputedInferenceSourceOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigOutputprecomputedInferenceSource/)."""
 EvaluationModelConfigOutputUnknown = TypedDict("EvaluationModelConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigOutputUnknown/)."""
 EvaluationModelConfigOutput: TypeAlias = EvaluationModelConfigOutputbedrockModel | EvaluationModelConfigOutputprecomputedInferenceSource | EvaluationModelConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigOutput/)."""
 
 EvaluationModelConfigSummary = TypedDict(
     "EvaluationModelConfigSummary",
@@ -2076,6 +2733,7 @@ EvaluationModelConfigSummary = TypedDict(
     "precomputed_inference_source_identifiers": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigSummary/)."""
 
 EvaluationOutputDataConfig = TypedDict(
     "EvaluationOutputDataConfig",
@@ -2083,6 +2741,7 @@ EvaluationOutputDataConfig = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationOutputDataConfig/)."""
 
 EvaluationPrecomputedInferenceSource = TypedDict(
     "EvaluationPrecomputedInferenceSource",
@@ -2090,6 +2749,7 @@ EvaluationPrecomputedInferenceSource = TypedDict(
     "inference_source_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedInferenceSource/)."""
 
 EvaluationPrecomputedInferenceSourceOutput = TypedDict(
     "EvaluationPrecomputedInferenceSourceOutput",
@@ -2097,15 +2757,23 @@ EvaluationPrecomputedInferenceSourceOutput = TypedDict(
     "inference_source_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedInferenceSourceOutput/)."""
 
 EvaluationPrecomputedRagSourceConfigretrieveSourceConfig = TypedDict("EvaluationPrecomputedRagSourceConfigretrieveSourceConfig", {"retrieve_source_config": Required["EvaluationPrecomputedRetrieveSourceConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRagSourceConfigretrieveSourceConfig/)."""
 EvaluationPrecomputedRagSourceConfigretrieveAndGenerateSourceConfig = TypedDict("EvaluationPrecomputedRagSourceConfigretrieveAndGenerateSourceConfig", {"retrieve_and_generate_source_config": Required["EvaluationPrecomputedRetrieveAndGenerateSourceConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRagSourceConfigretrieveAndGenerateSourceConfig/)."""
 EvaluationPrecomputedRagSourceConfig: TypeAlias = EvaluationPrecomputedRagSourceConfigretrieveSourceConfig | EvaluationPrecomputedRagSourceConfigretrieveAndGenerateSourceConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRagSourceConfig/)."""
 
 EvaluationPrecomputedRagSourceConfigOutputretrieveSourceConfig = TypedDict("EvaluationPrecomputedRagSourceConfigOutputretrieveSourceConfig", {"retrieve_source_config": Required["EvaluationPrecomputedRetrieveSourceConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRagSourceConfigOutputretrieveSourceConfig/)."""
 EvaluationPrecomputedRagSourceConfigOutputretrieveAndGenerateSourceConfig = TypedDict("EvaluationPrecomputedRagSourceConfigOutputretrieveAndGenerateSourceConfig", {"retrieve_and_generate_source_config": Required["EvaluationPrecomputedRetrieveAndGenerateSourceConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRagSourceConfigOutputretrieveAndGenerateSourceConfig/)."""
 EvaluationPrecomputedRagSourceConfigOutputUnknown = TypedDict("EvaluationPrecomputedRagSourceConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRagSourceConfigOutputUnknown/)."""
 EvaluationPrecomputedRagSourceConfigOutput: TypeAlias = EvaluationPrecomputedRagSourceConfigOutputretrieveSourceConfig | EvaluationPrecomputedRagSourceConfigOutputretrieveAndGenerateSourceConfig | EvaluationPrecomputedRagSourceConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRagSourceConfigOutput/)."""
 
 EvaluationPrecomputedRetrieveAndGenerateSourceConfig = TypedDict(
     "EvaluationPrecomputedRetrieveAndGenerateSourceConfig",
@@ -2113,6 +2781,7 @@ EvaluationPrecomputedRetrieveAndGenerateSourceConfig = TypedDict(
     "rag_source_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRetrieveAndGenerateSourceConfig/)."""
 
 EvaluationPrecomputedRetrieveAndGenerateSourceConfigOutput = TypedDict(
     "EvaluationPrecomputedRetrieveAndGenerateSourceConfigOutput",
@@ -2120,6 +2789,7 @@ EvaluationPrecomputedRetrieveAndGenerateSourceConfigOutput = TypedDict(
     "rag_source_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRetrieveAndGenerateSourceConfigOutput/)."""
 
 EvaluationPrecomputedRetrieveSourceConfig = TypedDict(
     "EvaluationPrecomputedRetrieveSourceConfig",
@@ -2127,6 +2797,7 @@ EvaluationPrecomputedRetrieveSourceConfig = TypedDict(
     "rag_source_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRetrieveSourceConfig/)."""
 
 EvaluationPrecomputedRetrieveSourceConfigOutput = TypedDict(
     "EvaluationPrecomputedRetrieveSourceConfigOutput",
@@ -2134,6 +2805,7 @@ EvaluationPrecomputedRetrieveSourceConfigOutput = TypedDict(
     "rag_source_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationPrecomputedRetrieveSourceConfigOutput/)."""
 
 EvaluationRagConfigSummary = TypedDict(
     "EvaluationRagConfigSummary",
@@ -2142,6 +2814,7 @@ EvaluationRagConfigSummary = TypedDict(
     "precomputed_rag_source_identifiers": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationRagConfigSummary/)."""
 
 EvaluationSummary = TypedDict(
     "EvaluationSummary",
@@ -2160,13 +2833,19 @@ EvaluationSummary = TypedDict(
     "application_type": NotRequired["ApplicationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationSummary/)."""
 
 EvaluatorModelConfigbedrockEvaluatorModels = TypedDict("EvaluatorModelConfigbedrockEvaluatorModels", {"bedrock_evaluator_models": Required["Sequence[BedrockEvaluatorModel]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluatorModelConfigbedrockEvaluatorModels/)."""
 EvaluatorModelConfig: TypeAlias = EvaluatorModelConfigbedrockEvaluatorModels
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluatorModelConfig/)."""
 
 EvaluatorModelConfigOutputbedrockEvaluatorModels = TypedDict("EvaluatorModelConfigOutputbedrockEvaluatorModels", {"bedrock_evaluator_models": Required["list[BedrockEvaluatorModelOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluatorModelConfigOutputbedrockEvaluatorModels/)."""
 EvaluatorModelConfigOutputUnknown = TypedDict("EvaluatorModelConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluatorModelConfigOutputUnknown/)."""
 EvaluatorModelConfigOutput: TypeAlias = EvaluatorModelConfigOutputbedrockEvaluatorModels | EvaluatorModelConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluatorModelConfigOutput/)."""
 
 ExportAutomatedReasoningPolicyVersionRequest = TypedDict(
     "ExportAutomatedReasoningPolicyVersionRequest",
@@ -2174,6 +2853,7 @@ ExportAutomatedReasoningPolicyVersionRequest = TypedDict(
     "policy_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExportAutomatedReasoningPolicyVersionRequest/)."""
 
 ExternalSource = TypedDict(
     "ExternalSource",
@@ -2183,6 +2863,7 @@ ExternalSource = TypedDict(
     "byte_content": NotRequired["ByteContentDoc"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSource/)."""
 
 ExternalSourceOutput = TypedDict(
     "ExternalSourceOutput",
@@ -2192,6 +2873,7 @@ ExternalSourceOutput = TypedDict(
     "byte_content": Required["ByteContentDocOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSourceOutput/)."""
 
 ExternalSourcesGenerationConfiguration = TypedDict(
     "ExternalSourcesGenerationConfiguration",
@@ -2202,6 +2884,7 @@ ExternalSourcesGenerationConfiguration = TypedDict(
     "additional_model_request_fields": NotRequired["dict[str, JSONValue]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSourcesGenerationConfiguration/)."""
 
 ExternalSourcesGenerationConfigurationOutput = TypedDict(
     "ExternalSourcesGenerationConfigurationOutput",
@@ -2212,6 +2895,7 @@ ExternalSourcesGenerationConfigurationOutput = TypedDict(
     "additional_model_request_fields": Required["dict[str, JSONValue] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSourcesGenerationConfigurationOutput/)."""
 
 ExternalSourcesRetrieveAndGenerateConfiguration = TypedDict(
     "ExternalSourcesRetrieveAndGenerateConfiguration",
@@ -2221,6 +2905,7 @@ ExternalSourcesRetrieveAndGenerateConfiguration = TypedDict(
     "generation_configuration": NotRequired["ExternalSourcesGenerationConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSourcesRetrieveAndGenerateConfiguration/)."""
 
 ExternalSourcesRetrieveAndGenerateConfigurationOutput = TypedDict(
     "ExternalSourcesRetrieveAndGenerateConfigurationOutput",
@@ -2230,6 +2915,7 @@ ExternalSourcesRetrieveAndGenerateConfigurationOutput = TypedDict(
     "generation_configuration": Required["ExternalSourcesGenerationConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExternalSourcesRetrieveAndGenerateConfigurationOutput/)."""
 
 FieldForReranking = TypedDict(
     "FieldForReranking",
@@ -2237,6 +2923,7 @@ FieldForReranking = TypedDict(
     "field_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FieldForReranking/)."""
 
 FieldForRerankingOutput = TypedDict(
     "FieldForRerankingOutput",
@@ -2244,6 +2931,7 @@ FieldForRerankingOutput = TypedDict(
     "field_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FieldForRerankingOutput/)."""
 
 FilterAttribute = TypedDict(
     "FilterAttribute",
@@ -2252,6 +2940,7 @@ FilterAttribute = TypedDict(
     "value": Required["JSONValue"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FilterAttribute/)."""
 
 FilterAttributeOutput = TypedDict(
     "FilterAttributeOutput",
@@ -2260,6 +2949,7 @@ FilterAttributeOutput = TypedDict(
     "value": Required["JSONValue"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FilterAttributeOutput/)."""
 
 FoundationModelDetails = TypedDict(
     "FoundationModelDetails",
@@ -2276,6 +2966,7 @@ FoundationModelDetails = TypedDict(
     "model_lifecycle": NotRequired["FoundationModelLifecycle"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelDetails/)."""
 
 FoundationModelLifecycle = TypedDict(
     "FoundationModelLifecycle",
@@ -2287,6 +2978,7 @@ FoundationModelLifecycle = TypedDict(
     "public_extended_access_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelLifecycle/)."""
 
 FoundationModelSummary = TypedDict(
     "FoundationModelSummary",
@@ -2303,6 +2995,7 @@ FoundationModelSummary = TypedDict(
     "model_lifecycle": NotRequired["FoundationModelLifecycle"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelSummary/)."""
 
 GenerationConfiguration = TypedDict(
     "GenerationConfiguration",
@@ -2313,6 +3006,7 @@ GenerationConfiguration = TypedDict(
     "additional_model_request_fields": NotRequired["dict[str, JSONValue]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GenerationConfiguration/)."""
 
 GenerationConfigurationOutput = TypedDict(
     "GenerationConfigurationOutput",
@@ -2323,12 +3017,14 @@ GenerationConfigurationOutput = TypedDict(
     "additional_model_request_fields": Required["dict[str, JSONValue] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GenerationConfigurationOutput/)."""
 
 GetAccountDataRetentionRequest = TypedDict(
     "GetAccountDataRetentionRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionRequest/)."""
 
 GetAdvancedPromptOptimizationJobRequest = TypedDict(
     "GetAdvancedPromptOptimizationJobRequest",
@@ -2336,6 +3032,7 @@ GetAdvancedPromptOptimizationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAdvancedPromptOptimizationJobRequest/)."""
 
 GetAutomatedReasoningPolicyAnnotationsRequest = TypedDict(
     "GetAutomatedReasoningPolicyAnnotationsRequest",
@@ -2344,6 +3041,7 @@ GetAutomatedReasoningPolicyAnnotationsRequest = TypedDict(
     "build_workflow_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyAnnotationsRequest/)."""
 
 GetAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "GetAutomatedReasoningPolicyBuildWorkflowRequest",
@@ -2352,6 +3050,7 @@ GetAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "build_workflow_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowRequest/)."""
 
 GetAutomatedReasoningPolicyBuildWorkflowResultAssetsRequest = TypedDict(
     "GetAutomatedReasoningPolicyBuildWorkflowResultAssetsRequest",
@@ -2362,6 +3061,7 @@ GetAutomatedReasoningPolicyBuildWorkflowResultAssetsRequest = TypedDict(
     "asset_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowResultAssetsRequest/)."""
 
 GetAutomatedReasoningPolicyNextScenarioRequest = TypedDict(
     "GetAutomatedReasoningPolicyNextScenarioRequest",
@@ -2370,6 +3070,7 @@ GetAutomatedReasoningPolicyNextScenarioRequest = TypedDict(
     "build_workflow_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyNextScenarioRequest/)."""
 
 GetAutomatedReasoningPolicyRequest = TypedDict(
     "GetAutomatedReasoningPolicyRequest",
@@ -2377,6 +3078,7 @@ GetAutomatedReasoningPolicyRequest = TypedDict(
     "policy_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyRequest/)."""
 
 GetAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "GetAutomatedReasoningPolicyTestCaseRequest",
@@ -2385,6 +3087,7 @@ GetAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "test_case_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestCaseRequest/)."""
 
 GetAutomatedReasoningPolicyTestResultRequest = TypedDict(
     "GetAutomatedReasoningPolicyTestResultRequest",
@@ -2394,6 +3097,7 @@ GetAutomatedReasoningPolicyTestResultRequest = TypedDict(
     "test_case_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestResultRequest/)."""
 
 GetCustomModelDeploymentRequest = TypedDict(
     "GetCustomModelDeploymentRequest",
@@ -2401,6 +3105,7 @@ GetCustomModelDeploymentRequest = TypedDict(
     "custom_model_deployment_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelDeploymentRequest/)."""
 
 GetCustomModelRequest = TypedDict(
     "GetCustomModelRequest",
@@ -2408,6 +3113,7 @@ GetCustomModelRequest = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelRequest/)."""
 
 GetEvaluationJobRequest = TypedDict(
     "GetEvaluationJobRequest",
@@ -2415,6 +3121,7 @@ GetEvaluationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetEvaluationJobRequest/)."""
 
 GetFoundationModelAvailabilityRequest = TypedDict(
     "GetFoundationModelAvailabilityRequest",
@@ -2422,6 +3129,7 @@ GetFoundationModelAvailabilityRequest = TypedDict(
     "model_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelAvailabilityRequest/)."""
 
 GetFoundationModelRequest = TypedDict(
     "GetFoundationModelRequest",
@@ -2429,6 +3137,7 @@ GetFoundationModelRequest = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelRequest/)."""
 
 GetGuardrailRequest = TypedDict(
     "GetGuardrailRequest",
@@ -2437,6 +3146,7 @@ GetGuardrailRequest = TypedDict(
     "guardrail_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetGuardrailRequest/)."""
 
 GetImportedModelRequest = TypedDict(
     "GetImportedModelRequest",
@@ -2444,6 +3154,7 @@ GetImportedModelRequest = TypedDict(
     "model_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetImportedModelRequest/)."""
 
 GetInferenceProfileRequest = TypedDict(
     "GetInferenceProfileRequest",
@@ -2451,6 +3162,7 @@ GetInferenceProfileRequest = TypedDict(
     "inference_profile_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetInferenceProfileRequest/)."""
 
 GetMarketplaceModelEndpointRequest = TypedDict(
     "GetMarketplaceModelEndpointRequest",
@@ -2458,6 +3170,7 @@ GetMarketplaceModelEndpointRequest = TypedDict(
     "endpoint_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetMarketplaceModelEndpointRequest/)."""
 
 GetModelCopyJobRequest = TypedDict(
     "GetModelCopyJobRequest",
@@ -2465,6 +3178,7 @@ GetModelCopyJobRequest = TypedDict(
     "job_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCopyJobRequest/)."""
 
 GetModelCustomizationJobRequest = TypedDict(
     "GetModelCustomizationJobRequest",
@@ -2472,6 +3186,7 @@ GetModelCustomizationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCustomizationJobRequest/)."""
 
 GetModelImportJobRequest = TypedDict(
     "GetModelImportJobRequest",
@@ -2479,6 +3194,7 @@ GetModelImportJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelImportJobRequest/)."""
 
 GetModelInvocationJobRequest = TypedDict(
     "GetModelInvocationJobRequest",
@@ -2486,12 +3202,14 @@ GetModelInvocationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationJobRequest/)."""
 
 GetModelInvocationLoggingConfigurationRequest = TypedDict(
     "GetModelInvocationLoggingConfigurationRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationLoggingConfigurationRequest/)."""
 
 GetPromptRouterRequest = TypedDict(
     "GetPromptRouterRequest",
@@ -2499,6 +3217,7 @@ GetPromptRouterRequest = TypedDict(
     "prompt_router_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetPromptRouterRequest/)."""
 
 GetProvisionedModelThroughputRequest = TypedDict(
     "GetProvisionedModelThroughputRequest",
@@ -2506,6 +3225,7 @@ GetProvisionedModelThroughputRequest = TypedDict(
     "provisioned_model_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProvisionedModelThroughputRequest/)."""
 
 GetResourcePolicyRequest = TypedDict(
     "GetResourcePolicyRequest",
@@ -2513,19 +3233,26 @@ GetResourcePolicyRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetResourcePolicyRequest/)."""
 
 GetUseCaseForModelAccessRequest = TypedDict(
     "GetUseCaseForModelAccessRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetUseCaseForModelAccessRequest/)."""
 
 GraderConfiglambdaGrader = TypedDict("GraderConfiglambdaGrader", {"lambda_grader": Required["LambdaGraderConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GraderConfiglambdaGrader/)."""
 GraderConfig: TypeAlias = GraderConfiglambdaGrader
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GraderConfig/)."""
 
 GraderConfigOutputlambdaGrader = TypedDict("GraderConfigOutputlambdaGrader", {"lambda_grader": Required["LambdaGraderConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GraderConfigOutputlambdaGrader/)."""
 GraderConfigOutputUnknown = TypedDict("GraderConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GraderConfigOutputUnknown/)."""
 GraderConfigOutput: TypeAlias = GraderConfigOutputlambdaGrader | GraderConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GraderConfigOutput/)."""
 
 GuardrailAutomatedReasoningPolicy = TypedDict(
     "GuardrailAutomatedReasoningPolicy",
@@ -2534,6 +3261,7 @@ GuardrailAutomatedReasoningPolicy = TypedDict(
     "confidence_threshold": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailAutomatedReasoningPolicy/)."""
 
 GuardrailAutomatedReasoningPolicyConfig = TypedDict(
     "GuardrailAutomatedReasoningPolicyConfig",
@@ -2542,6 +3270,7 @@ GuardrailAutomatedReasoningPolicyConfig = TypedDict(
     "confidence_threshold": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailAutomatedReasoningPolicyConfig/)."""
 
 GuardrailConfiguration = TypedDict(
     "GuardrailConfiguration",
@@ -2550,6 +3279,7 @@ GuardrailConfiguration = TypedDict(
     "guardrail_version": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailConfiguration/)."""
 
 GuardrailConfigurationOutput = TypedDict(
     "GuardrailConfigurationOutput",
@@ -2558,6 +3288,7 @@ GuardrailConfigurationOutput = TypedDict(
     "guardrail_version": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailConfigurationOutput/)."""
 
 GuardrailContentFilter = TypedDict(
     "GuardrailContentFilter",
@@ -2573,6 +3304,7 @@ GuardrailContentFilter = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilter/)."""
 
 GuardrailContentFilterConfig = TypedDict(
     "GuardrailContentFilterConfig",
@@ -2588,6 +3320,7 @@ GuardrailContentFilterConfig = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilterConfig/)."""
 
 GuardrailContentFiltersTier = TypedDict(
     "GuardrailContentFiltersTier",
@@ -2595,6 +3328,7 @@ GuardrailContentFiltersTier = TypedDict(
     "tier_name": Required["GuardrailContentFiltersTierName"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFiltersTier/)."""
 
 GuardrailContentFiltersTierConfig = TypedDict(
     "GuardrailContentFiltersTierConfig",
@@ -2602,6 +3336,7 @@ GuardrailContentFiltersTierConfig = TypedDict(
     "tier_name": Required["GuardrailContentFiltersTierName"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFiltersTierConfig/)."""
 
 GuardrailContentPolicy = TypedDict(
     "GuardrailContentPolicy",
@@ -2610,6 +3345,7 @@ GuardrailContentPolicy = TypedDict(
     "tier": NotRequired["GuardrailContentFiltersTier"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentPolicy/)."""
 
 GuardrailContentPolicyConfig = TypedDict(
     "GuardrailContentPolicyConfig",
@@ -2618,6 +3354,7 @@ GuardrailContentPolicyConfig = TypedDict(
     "tier_config": NotRequired["GuardrailContentFiltersTierConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentPolicyConfig/)."""
 
 GuardrailContextualGroundingFilter = TypedDict(
     "GuardrailContextualGroundingFilter",
@@ -2628,6 +3365,7 @@ GuardrailContextualGroundingFilter = TypedDict(
     "enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingFilter/)."""
 
 GuardrailContextualGroundingFilterConfig = TypedDict(
     "GuardrailContextualGroundingFilterConfig",
@@ -2638,6 +3376,7 @@ GuardrailContextualGroundingFilterConfig = TypedDict(
     "enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingFilterConfig/)."""
 
 GuardrailContextualGroundingPolicy = TypedDict(
     "GuardrailContextualGroundingPolicy",
@@ -2646,6 +3385,7 @@ GuardrailContextualGroundingPolicy = TypedDict(
     "tier": NotRequired["GuardrailContextualGroundingTier"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingPolicy/)."""
 
 GuardrailContextualGroundingPolicyConfig = TypedDict(
     "GuardrailContextualGroundingPolicyConfig",
@@ -2654,6 +3394,7 @@ GuardrailContextualGroundingPolicyConfig = TypedDict(
     "tier_config": NotRequired["GuardrailContextualGroundingTierConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingPolicyConfig/)."""
 
 GuardrailContextualGroundingTier = TypedDict(
     "GuardrailContextualGroundingTier",
@@ -2661,6 +3402,7 @@ GuardrailContextualGroundingTier = TypedDict(
     "tier_name": Required["GuardrailContextualGroundingTierName"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingTier/)."""
 
 GuardrailContextualGroundingTierConfig = TypedDict(
     "GuardrailContextualGroundingTierConfig",
@@ -2668,6 +3410,7 @@ GuardrailContextualGroundingTierConfig = TypedDict(
     "tier_name": Required["GuardrailContextualGroundingTierName"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingTierConfig/)."""
 
 GuardrailCrossRegionConfig = TypedDict(
     "GuardrailCrossRegionConfig",
@@ -2675,6 +3418,7 @@ GuardrailCrossRegionConfig = TypedDict(
     "guardrail_profile_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailCrossRegionConfig/)."""
 
 GuardrailCrossRegionDetails = TypedDict(
     "GuardrailCrossRegionDetails",
@@ -2683,6 +3427,7 @@ GuardrailCrossRegionDetails = TypedDict(
     "guardrail_profile_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailCrossRegionDetails/)."""
 
 GuardrailManagedWords = TypedDict(
     "GuardrailManagedWords",
@@ -2694,6 +3439,7 @@ GuardrailManagedWords = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailManagedWords/)."""
 
 GuardrailManagedWordsConfig = TypedDict(
     "GuardrailManagedWordsConfig",
@@ -2705,6 +3451,7 @@ GuardrailManagedWordsConfig = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailManagedWordsConfig/)."""
 
 GuardrailPiiEntity = TypedDict(
     "GuardrailPiiEntity",
@@ -2717,6 +3464,7 @@ GuardrailPiiEntity = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailPiiEntity/)."""
 
 GuardrailPiiEntityConfig = TypedDict(
     "GuardrailPiiEntityConfig",
@@ -2729,6 +3477,7 @@ GuardrailPiiEntityConfig = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailPiiEntityConfig/)."""
 
 GuardrailRegex = TypedDict(
     "GuardrailRegex",
@@ -2743,6 +3492,7 @@ GuardrailRegex = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailRegex/)."""
 
 GuardrailRegexConfig = TypedDict(
     "GuardrailRegexConfig",
@@ -2757,6 +3507,7 @@ GuardrailRegexConfig = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailRegexConfig/)."""
 
 GuardrailSensitiveInformationPolicy = TypedDict(
     "GuardrailSensitiveInformationPolicy",
@@ -2765,6 +3516,7 @@ GuardrailSensitiveInformationPolicy = TypedDict(
     "regexes": NotRequired["Sequence[GuardrailRegex]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSensitiveInformationPolicy/)."""
 
 GuardrailSensitiveInformationPolicyConfig = TypedDict(
     "GuardrailSensitiveInformationPolicyConfig",
@@ -2773,6 +3525,7 @@ GuardrailSensitiveInformationPolicyConfig = TypedDict(
     "regexes_config": NotRequired["Sequence[GuardrailRegexConfig]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSensitiveInformationPolicyConfig/)."""
 
 GuardrailSummary = TypedDict(
     "GuardrailSummary",
@@ -2788,6 +3541,7 @@ GuardrailSummary = TypedDict(
     "cross_region_details": NotRequired["GuardrailCrossRegionDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSummary/)."""
 
 GuardrailTopic = TypedDict(
     "GuardrailTopic",
@@ -2802,6 +3556,7 @@ GuardrailTopic = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopic/)."""
 
 GuardrailTopicConfig = TypedDict(
     "GuardrailTopicConfig",
@@ -2816,6 +3571,7 @@ GuardrailTopicConfig = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicConfig/)."""
 
 GuardrailTopicPolicy = TypedDict(
     "GuardrailTopicPolicy",
@@ -2824,6 +3580,7 @@ GuardrailTopicPolicy = TypedDict(
     "tier": NotRequired["GuardrailTopicsTier"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicPolicy/)."""
 
 GuardrailTopicPolicyConfig = TypedDict(
     "GuardrailTopicPolicyConfig",
@@ -2832,6 +3589,7 @@ GuardrailTopicPolicyConfig = TypedDict(
     "tier_config": NotRequired["GuardrailTopicsTierConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicPolicyConfig/)."""
 
 GuardrailTopicsTier = TypedDict(
     "GuardrailTopicsTier",
@@ -2839,6 +3597,7 @@ GuardrailTopicsTier = TypedDict(
     "tier_name": Required["GuardrailTopicsTierName"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicsTier/)."""
 
 GuardrailTopicsTierConfig = TypedDict(
     "GuardrailTopicsTierConfig",
@@ -2846,6 +3605,7 @@ GuardrailTopicsTierConfig = TypedDict(
     "tier_name": Required["GuardrailTopicsTierName"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicsTierConfig/)."""
 
 GuardrailWord = TypedDict(
     "GuardrailWord",
@@ -2857,6 +3617,7 @@ GuardrailWord = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWord/)."""
 
 GuardrailWordConfig = TypedDict(
     "GuardrailWordConfig",
@@ -2868,6 +3629,7 @@ GuardrailWordConfig = TypedDict(
     "output_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordConfig/)."""
 
 GuardrailWordPolicy = TypedDict(
     "GuardrailWordPolicy",
@@ -2876,6 +3638,7 @@ GuardrailWordPolicy = TypedDict(
     "managed_word_lists": NotRequired["Sequence[GuardrailManagedWords]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordPolicy/)."""
 
 GuardrailWordPolicyConfig = TypedDict(
     "GuardrailWordPolicyConfig",
@@ -2884,6 +3647,7 @@ GuardrailWordPolicyConfig = TypedDict(
     "managed_word_lists_config": NotRequired["Sequence[GuardrailManagedWordsConfig]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordPolicyConfig/)."""
 
 HumanEvaluationConfig = TypedDict(
     "HumanEvaluationConfig",
@@ -2893,6 +3657,7 @@ HumanEvaluationConfig = TypedDict(
     "dataset_metric_configs": Required["Sequence[EvaluationDatasetMetricConfig]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/HumanEvaluationConfig/)."""
 
 HumanEvaluationConfigOutput = TypedDict(
     "HumanEvaluationConfigOutput",
@@ -2902,6 +3667,7 @@ HumanEvaluationConfigOutput = TypedDict(
     "dataset_metric_configs": Required["list[EvaluationDatasetMetricConfigOutput]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/HumanEvaluationConfigOutput/)."""
 
 HumanEvaluationCustomMetric = TypedDict(
     "HumanEvaluationCustomMetric",
@@ -2911,6 +3677,7 @@ HumanEvaluationCustomMetric = TypedDict(
     "rating_method": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/HumanEvaluationCustomMetric/)."""
 
 HumanEvaluationCustomMetricOutput = TypedDict(
     "HumanEvaluationCustomMetricOutput",
@@ -2920,6 +3687,7 @@ HumanEvaluationCustomMetricOutput = TypedDict(
     "rating_method": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/HumanEvaluationCustomMetricOutput/)."""
 
 HumanWorkflowConfig = TypedDict(
     "HumanWorkflowConfig",
@@ -2928,6 +3696,7 @@ HumanWorkflowConfig = TypedDict(
     "instructions": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/HumanWorkflowConfig/)."""
 
 HumanWorkflowConfigOutput = TypedDict(
     "HumanWorkflowConfigOutput",
@@ -2936,6 +3705,7 @@ HumanWorkflowConfigOutput = TypedDict(
     "instructions": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/HumanWorkflowConfigOutput/)."""
 
 ImplicitFilterConfiguration = TypedDict(
     "ImplicitFilterConfiguration",
@@ -2944,6 +3714,7 @@ ImplicitFilterConfiguration = TypedDict(
     "model_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ImplicitFilterConfiguration/)."""
 
 ImplicitFilterConfigurationOutput = TypedDict(
     "ImplicitFilterConfigurationOutput",
@@ -2952,6 +3723,7 @@ ImplicitFilterConfigurationOutput = TypedDict(
     "model_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ImplicitFilterConfigurationOutput/)."""
 
 ImportedModelSummary = TypedDict(
     "ImportedModelSummary",
@@ -2963,6 +3735,7 @@ ImportedModelSummary = TypedDict(
     "model_architecture": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ImportedModelSummary/)."""
 
 InferenceConfiguration = TypedDict(
     "InferenceConfiguration",
@@ -2973,6 +3746,7 @@ InferenceConfiguration = TypedDict(
     "stop_sequences": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceConfiguration/)."""
 
 InferenceProfileModel = TypedDict(
     "InferenceProfileModel",
@@ -2980,9 +3754,12 @@ InferenceProfileModel = TypedDict(
     "model_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileModel/)."""
 
 InferenceProfileModelSourcecopyFrom = TypedDict("InferenceProfileModelSourcecopyFrom", {"copy_from": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileModelSourcecopyFrom/)."""
 InferenceProfileModelSource: TypeAlias = InferenceProfileModelSourcecopyFrom
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileModelSource/)."""
 
 InferenceProfileSummary = TypedDict(
     "InferenceProfileSummary",
@@ -2998,13 +3775,19 @@ InferenceProfileSummary = TypedDict(
     "type": Required["InferenceProfileType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileSummary/)."""
 
 InvocationLogSources3Uri = TypedDict("InvocationLogSources3Uri", {"s3_uri": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogSources3Uri/)."""
 InvocationLogSource: TypeAlias = InvocationLogSources3Uri
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogSource/)."""
 
 InvocationLogSourceOutputs3Uri = TypedDict("InvocationLogSourceOutputs3Uri", {"s3_uri": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogSourceOutputs3Uri/)."""
 InvocationLogSourceOutputUnknown = TypedDict("InvocationLogSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogSourceOutputUnknown/)."""
 InvocationLogSourceOutput: TypeAlias = InvocationLogSourceOutputs3Uri | InvocationLogSourceOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogSourceOutput/)."""
 
 InvocationLogsConfig = TypedDict(
     "InvocationLogsConfig",
@@ -3014,6 +3797,7 @@ InvocationLogsConfig = TypedDict(
     "request_metadata_filters": NotRequired["RequestMetadataFilters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogsConfig/)."""
 
 KbInferenceConfig = TypedDict(
     "KbInferenceConfig",
@@ -3021,6 +3805,7 @@ KbInferenceConfig = TypedDict(
     "text_inference_config": NotRequired["TextInferenceConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KbInferenceConfig/)."""
 
 KbInferenceConfigOutput = TypedDict(
     "KbInferenceConfigOutput",
@@ -3028,15 +3813,23 @@ KbInferenceConfigOutput = TypedDict(
     "text_inference_config": Required["TextInferenceConfigOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KbInferenceConfigOutput/)."""
 
 KnowledgeBaseConfigretrieveConfig = TypedDict("KnowledgeBaseConfigretrieveConfig", {"retrieve_config": Required["RetrieveConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseConfigretrieveConfig/)."""
 KnowledgeBaseConfigretrieveAndGenerateConfig = TypedDict("KnowledgeBaseConfigretrieveAndGenerateConfig", {"retrieve_and_generate_config": Required["RetrieveAndGenerateConfiguration"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseConfigretrieveAndGenerateConfig/)."""
 KnowledgeBaseConfig: TypeAlias = KnowledgeBaseConfigretrieveConfig | KnowledgeBaseConfigretrieveAndGenerateConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseConfig/)."""
 
 KnowledgeBaseConfigOutputretrieveConfig = TypedDict("KnowledgeBaseConfigOutputretrieveConfig", {"retrieve_config": Required["RetrieveConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseConfigOutputretrieveConfig/)."""
 KnowledgeBaseConfigOutputretrieveAndGenerateConfig = TypedDict("KnowledgeBaseConfigOutputretrieveAndGenerateConfig", {"retrieve_and_generate_config": Required["RetrieveAndGenerateConfigurationOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseConfigOutputretrieveAndGenerateConfig/)."""
 KnowledgeBaseConfigOutputUnknown = TypedDict("KnowledgeBaseConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseConfigOutputUnknown/)."""
 KnowledgeBaseConfigOutput: TypeAlias = KnowledgeBaseConfigOutputretrieveConfig | KnowledgeBaseConfigOutputretrieveAndGenerateConfig | KnowledgeBaseConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseConfigOutput/)."""
 
 KnowledgeBaseRetrievalConfiguration = TypedDict(
     "KnowledgeBaseRetrievalConfiguration",
@@ -3044,6 +3837,7 @@ KnowledgeBaseRetrievalConfiguration = TypedDict(
     "vector_search_configuration": Required["KnowledgeBaseVectorSearchConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseRetrievalConfiguration/)."""
 
 KnowledgeBaseRetrievalConfigurationOutput = TypedDict(
     "KnowledgeBaseRetrievalConfigurationOutput",
@@ -3051,6 +3845,7 @@ KnowledgeBaseRetrievalConfigurationOutput = TypedDict(
     "vector_search_configuration": Required["KnowledgeBaseVectorSearchConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseRetrievalConfigurationOutput/)."""
 
 KnowledgeBaseRetrieveAndGenerateConfiguration = TypedDict(
     "KnowledgeBaseRetrieveAndGenerateConfiguration",
@@ -3062,6 +3857,7 @@ KnowledgeBaseRetrieveAndGenerateConfiguration = TypedDict(
     "orchestration_configuration": NotRequired["OrchestrationConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseRetrieveAndGenerateConfiguration/)."""
 
 KnowledgeBaseRetrieveAndGenerateConfigurationOutput = TypedDict(
     "KnowledgeBaseRetrieveAndGenerateConfigurationOutput",
@@ -3073,6 +3869,7 @@ KnowledgeBaseRetrieveAndGenerateConfigurationOutput = TypedDict(
     "orchestration_configuration": Required["OrchestrationConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseRetrieveAndGenerateConfigurationOutput/)."""
 
 KnowledgeBaseVectorSearchConfiguration = TypedDict(
     "KnowledgeBaseVectorSearchConfiguration",
@@ -3084,6 +3881,7 @@ KnowledgeBaseVectorSearchConfiguration = TypedDict(
     "reranking_configuration": NotRequired["VectorSearchRerankingConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseVectorSearchConfiguration/)."""
 
 KnowledgeBaseVectorSearchConfigurationOutput = TypedDict(
     "KnowledgeBaseVectorSearchConfigurationOutput",
@@ -3095,6 +3893,7 @@ KnowledgeBaseVectorSearchConfigurationOutput = TypedDict(
     "reranking_configuration": Required["VectorSearchRerankingConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/KnowledgeBaseVectorSearchConfigurationOutput/)."""
 
 LambdaGraderConfig = TypedDict(
     "LambdaGraderConfig",
@@ -3102,6 +3901,7 @@ LambdaGraderConfig = TypedDict(
     "lambda_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LambdaGraderConfig/)."""
 
 LambdaGraderConfigOutput = TypedDict(
     "LambdaGraderConfigOutput",
@@ -3109,6 +3909,7 @@ LambdaGraderConfigOutput = TypedDict(
     "lambda_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LambdaGraderConfigOutput/)."""
 
 LegalTerm = TypedDict(
     "LegalTerm",
@@ -3116,6 +3917,7 @@ LegalTerm = TypedDict(
     "url": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LegalTerm/)."""
 
 ListAdvancedPromptOptimizationJobsRequest = TypedDict(
     "ListAdvancedPromptOptimizationJobsRequest",
@@ -3126,6 +3928,7 @@ ListAdvancedPromptOptimizationJobsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAdvancedPromptOptimizationJobsRequest/)."""
 
 ListAutomatedReasoningPoliciesRequest = TypedDict(
     "ListAutomatedReasoningPoliciesRequest",
@@ -3135,6 +3938,7 @@ ListAutomatedReasoningPoliciesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPoliciesRequest/)."""
 
 ListAutomatedReasoningPolicyBuildWorkflowsRequest = TypedDict(
     "ListAutomatedReasoningPolicyBuildWorkflowsRequest",
@@ -3144,6 +3948,7 @@ ListAutomatedReasoningPolicyBuildWorkflowsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyBuildWorkflowsRequest/)."""
 
 ListAutomatedReasoningPolicyTestCasesRequest = TypedDict(
     "ListAutomatedReasoningPolicyTestCasesRequest",
@@ -3153,6 +3958,7 @@ ListAutomatedReasoningPolicyTestCasesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestCasesRequest/)."""
 
 ListAutomatedReasoningPolicyTestResultsRequest = TypedDict(
     "ListAutomatedReasoningPolicyTestResultsRequest",
@@ -3163,6 +3969,7 @@ ListAutomatedReasoningPolicyTestResultsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestResultsRequest/)."""
 
 ListCustomModelDeploymentsRequest = TypedDict(
     "ListCustomModelDeploymentsRequest",
@@ -3178,6 +3985,7 @@ ListCustomModelDeploymentsRequest = TypedDict(
     "model_arn_equals": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelDeploymentsRequest/)."""
 
 ListCustomModelsRequest = TypedDict(
     "ListCustomModelsRequest",
@@ -3195,6 +4003,7 @@ ListCustomModelsRequest = TypedDict(
     "model_status": NotRequired["ModelStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelsRequest/)."""
 
 ListEnforcedGuardrailsConfigurationRequest = TypedDict(
     "ListEnforcedGuardrailsConfigurationRequest",
@@ -3202,6 +4011,7 @@ ListEnforcedGuardrailsConfigurationRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEnforcedGuardrailsConfigurationRequest/)."""
 
 ListEvaluationJobsRequest = TypedDict(
     "ListEvaluationJobsRequest",
@@ -3217,6 +4027,7 @@ ListEvaluationJobsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEvaluationJobsRequest/)."""
 
 ListFoundationModelAgreementOffersRequest = TypedDict(
     "ListFoundationModelAgreementOffersRequest",
@@ -3225,6 +4036,7 @@ ListFoundationModelAgreementOffersRequest = TypedDict(
     "offer_type": NotRequired["OfferType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelAgreementOffersRequest/)."""
 
 ListFoundationModelsRequest = TypedDict(
     "ListFoundationModelsRequest",
@@ -3235,6 +4047,7 @@ ListFoundationModelsRequest = TypedDict(
     "by_inference_type": NotRequired["InferenceType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelsRequest/)."""
 
 ListGuardrailsRequest = TypedDict(
     "ListGuardrailsRequest",
@@ -3244,6 +4057,7 @@ ListGuardrailsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListGuardrailsRequest/)."""
 
 ListImportedModelsRequest = TypedDict(
     "ListImportedModelsRequest",
@@ -3257,6 +4071,7 @@ ListImportedModelsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListImportedModelsRequest/)."""
 
 ListInferenceProfilesRequest = TypedDict(
     "ListInferenceProfilesRequest",
@@ -3266,6 +4081,7 @@ ListInferenceProfilesRequest = TypedDict(
     "type_equals": NotRequired["InferenceProfileType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListInferenceProfilesRequest/)."""
 
 ListMarketplaceModelEndpointsRequest = TypedDict(
     "ListMarketplaceModelEndpointsRequest",
@@ -3275,6 +4091,7 @@ ListMarketplaceModelEndpointsRequest = TypedDict(
     "model_source_equals": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListMarketplaceModelEndpointsRequest/)."""
 
 ListModelCopyJobsRequest = TypedDict(
     "ListModelCopyJobsRequest",
@@ -3291,6 +4108,7 @@ ListModelCopyJobsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCopyJobsRequest/)."""
 
 ListModelCustomizationJobsRequest = TypedDict(
     "ListModelCustomizationJobsRequest",
@@ -3305,6 +4123,7 @@ ListModelCustomizationJobsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCustomizationJobsRequest/)."""
 
 ListModelImportJobsRequest = TypedDict(
     "ListModelImportJobsRequest",
@@ -3319,6 +4138,7 @@ ListModelImportJobsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelImportJobsRequest/)."""
 
 ListModelInvocationJobsRequest = TypedDict(
     "ListModelInvocationJobsRequest",
@@ -3333,6 +4153,7 @@ ListModelInvocationJobsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelInvocationJobsRequest/)."""
 
 ListPromptRoutersRequest = TypedDict(
     "ListPromptRoutersRequest",
@@ -3342,6 +4163,7 @@ ListPromptRoutersRequest = TypedDict(
     "type": NotRequired["PromptRouterType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListPromptRoutersRequest/)."""
 
 ListProvisionedModelThroughputsRequest = TypedDict(
     "ListProvisionedModelThroughputsRequest",
@@ -3357,6 +4179,7 @@ ListProvisionedModelThroughputsRequest = TypedDict(
     "sort_order": NotRequired["SortOrder"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListProvisionedModelThroughputsRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -3364,6 +4187,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTagsForResourceRequest/)."""
 
 LoggingConfig = TypedDict(
     "LoggingConfig",
@@ -3377,6 +4201,7 @@ LoggingConfig = TypedDict(
     "audio_data_delivery_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LoggingConfig/)."""
 
 MarketplaceModelEndpoint = TypedDict(
     "MarketplaceModelEndpoint",
@@ -3392,6 +4217,7 @@ MarketplaceModelEndpoint = TypedDict(
     "endpoint_status_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MarketplaceModelEndpoint/)."""
 
 MarketplaceModelEndpointSummary = TypedDict(
     "MarketplaceModelEndpointSummary",
@@ -3404,6 +4230,7 @@ MarketplaceModelEndpointSummary = TypedDict(
     "updated_at": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MarketplaceModelEndpointSummary/)."""
 
 MetadataAttributeSchema = TypedDict(
     "MetadataAttributeSchema",
@@ -3413,6 +4240,7 @@ MetadataAttributeSchema = TypedDict(
     "description": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MetadataAttributeSchema/)."""
 
 MetadataAttributeSchemaOutput = TypedDict(
     "MetadataAttributeSchemaOutput",
@@ -3422,6 +4250,7 @@ MetadataAttributeSchemaOutput = TypedDict(
     "description": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MetadataAttributeSchemaOutput/)."""
 
 MetadataConfigurationForReranking = TypedDict(
     "MetadataConfigurationForReranking",
@@ -3430,6 +4259,7 @@ MetadataConfigurationForReranking = TypedDict(
     "selective_mode_configuration": NotRequired["RerankingMetadataSelectiveModeConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MetadataConfigurationForReranking/)."""
 
 MetadataConfigurationForRerankingOutput = TypedDict(
     "MetadataConfigurationForRerankingOutput",
@@ -3438,6 +4268,7 @@ MetadataConfigurationForRerankingOutput = TypedDict(
     "selective_mode_configuration": Required["RerankingMetadataSelectiveModeConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MetadataConfigurationForRerankingOutput/)."""
 
 ModelConfiguration = TypedDict(
     "ModelConfiguration",
@@ -3447,6 +4278,7 @@ ModelConfiguration = TypedDict(
     "additional_model_request_fields": NotRequired["dict[str, JSONValue]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelConfiguration/)."""
 
 ModelCopyJobSummary = TypedDict(
     "ModelCopyJobSummary",
@@ -3464,6 +4296,7 @@ ModelCopyJobSummary = TypedDict(
     "source_model_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCopyJobSummary/)."""
 
 ModelCustomizationJobSummary = TypedDict(
     "ModelCustomizationJobSummary",
@@ -3481,13 +4314,19 @@ ModelCustomizationJobSummary = TypedDict(
     "customization_type": NotRequired["CustomizationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCustomizationJobSummary/)."""
 
 ModelDataSources3DataSource = TypedDict("ModelDataSources3DataSource", {"s3_data_source": Required["S3DataSource"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelDataSources3DataSource/)."""
 ModelDataSource: TypeAlias = ModelDataSources3DataSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelDataSource/)."""
 
 ModelDataSourceOutputs3DataSource = TypedDict("ModelDataSourceOutputs3DataSource", {"s3_data_source": Required["S3DataSourceOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelDataSourceOutputs3DataSource/)."""
 ModelDataSourceOutputUnknown = TypedDict("ModelDataSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelDataSourceOutputUnknown/)."""
 ModelDataSourceOutput: TypeAlias = ModelDataSourceOutputs3DataSource | ModelDataSourceOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelDataSourceOutput/)."""
 
 ModelEnforcement = TypedDict(
     "ModelEnforcement",
@@ -3496,6 +4335,7 @@ ModelEnforcement = TypedDict(
     "excluded_models": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelEnforcement/)."""
 
 ModelImportJobSummary = TypedDict(
     "ModelImportJobSummary",
@@ -3510,20 +4350,31 @@ ModelImportJobSummary = TypedDict(
     "imported_model_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelImportJobSummary/)."""
 
 ModelInvocationJobInputDataConfigs3InputDataConfig = TypedDict("ModelInvocationJobInputDataConfigs3InputDataConfig", {"s3_input_data_config": Required["ModelInvocationJobS3InputDataConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobInputDataConfigs3InputDataConfig/)."""
 ModelInvocationJobInputDataConfig: TypeAlias = ModelInvocationJobInputDataConfigs3InputDataConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobInputDataConfig/)."""
 
 ModelInvocationJobInputDataConfigOutputs3InputDataConfig = TypedDict("ModelInvocationJobInputDataConfigOutputs3InputDataConfig", {"s3_input_data_config": Required["ModelInvocationJobS3InputDataConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobInputDataConfigOutputs3InputDataConfig/)."""
 ModelInvocationJobInputDataConfigOutputUnknown = TypedDict("ModelInvocationJobInputDataConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobInputDataConfigOutputUnknown/)."""
 ModelInvocationJobInputDataConfigOutput: TypeAlias = ModelInvocationJobInputDataConfigOutputs3InputDataConfig | ModelInvocationJobInputDataConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobInputDataConfigOutput/)."""
 
 ModelInvocationJobOutputDataConfigs3OutputDataConfig = TypedDict("ModelInvocationJobOutputDataConfigs3OutputDataConfig", {"s3_output_data_config": Required["ModelInvocationJobS3OutputDataConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobOutputDataConfigs3OutputDataConfig/)."""
 ModelInvocationJobOutputDataConfig: TypeAlias = ModelInvocationJobOutputDataConfigs3OutputDataConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobOutputDataConfig/)."""
 
 ModelInvocationJobOutputDataConfigOutputs3OutputDataConfig = TypedDict("ModelInvocationJobOutputDataConfigOutputs3OutputDataConfig", {"s3_output_data_config": Required["ModelInvocationJobS3OutputDataConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobOutputDataConfigOutputs3OutputDataConfig/)."""
 ModelInvocationJobOutputDataConfigOutputUnknown = TypedDict("ModelInvocationJobOutputDataConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobOutputDataConfigOutputUnknown/)."""
 ModelInvocationJobOutputDataConfigOutput: TypeAlias = ModelInvocationJobOutputDataConfigOutputs3OutputDataConfig | ModelInvocationJobOutputDataConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobOutputDataConfigOutput/)."""
 
 ModelInvocationJobS3InputDataConfig = TypedDict(
     "ModelInvocationJobS3InputDataConfig",
@@ -3533,6 +4384,7 @@ ModelInvocationJobS3InputDataConfig = TypedDict(
     "s3_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobS3InputDataConfig/)."""
 
 ModelInvocationJobS3InputDataConfigOutput = TypedDict(
     "ModelInvocationJobS3InputDataConfigOutput",
@@ -3542,6 +4394,7 @@ ModelInvocationJobS3InputDataConfigOutput = TypedDict(
     "s3_bucket_owner": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobS3InputDataConfigOutput/)."""
 
 ModelInvocationJobS3OutputDataConfig = TypedDict(
     "ModelInvocationJobS3OutputDataConfig",
@@ -3551,6 +4404,7 @@ ModelInvocationJobS3OutputDataConfig = TypedDict(
     "s3_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobS3OutputDataConfig/)."""
 
 ModelInvocationJobS3OutputDataConfigOutput = TypedDict(
     "ModelInvocationJobS3OutputDataConfigOutput",
@@ -3560,6 +4414,7 @@ ModelInvocationJobS3OutputDataConfigOutput = TypedDict(
     "s3_bucket_owner": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobS3OutputDataConfigOutput/)."""
 
 ModelInvocationJobSummary = TypedDict(
     "ModelInvocationJobSummary",
@@ -3586,6 +4441,7 @@ ModelInvocationJobSummary = TypedDict(
     "error_record_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobSummary/)."""
 
 ModelPackageArnDataSource = TypedDict(
     "ModelPackageArnDataSource",
@@ -3593,6 +4449,7 @@ ModelPackageArnDataSource = TypedDict(
     "model_package_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelPackageArnDataSource/)."""
 
 Offer = TypedDict(
     "Offer",
@@ -3602,6 +4459,7 @@ Offer = TypedDict(
     "term_details": Required["TermDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/Offer/)."""
 
 OrchestrationConfiguration = TypedDict(
     "OrchestrationConfiguration",
@@ -3609,6 +4467,7 @@ OrchestrationConfiguration = TypedDict(
     "query_transformation_configuration": Required["QueryTransformationConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OrchestrationConfiguration/)."""
 
 OrchestrationConfigurationOutput = TypedDict(
     "OrchestrationConfigurationOutput",
@@ -3616,6 +4475,7 @@ OrchestrationConfigurationOutput = TypedDict(
     "query_transformation_configuration": Required["QueryTransformationConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OrchestrationConfigurationOutput/)."""
 
 OutputDataConfig = TypedDict(
     "OutputDataConfig",
@@ -3623,6 +4483,7 @@ OutputDataConfig = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OutputDataConfig/)."""
 
 PerformanceConfiguration = TypedDict(
     "PerformanceConfiguration",
@@ -3630,6 +4491,7 @@ PerformanceConfiguration = TypedDict(
     "latency": NotRequired["PerformanceConfigLatency"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PerformanceConfiguration/)."""
 
 PerformanceConfigurationOutput = TypedDict(
     "PerformanceConfigurationOutput",
@@ -3637,6 +4499,7 @@ PerformanceConfigurationOutput = TypedDict(
     "latency": Required["PerformanceConfigLatencyOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PerformanceConfigurationOutput/)."""
 
 PricingTerm = TypedDict(
     "PricingTerm",
@@ -3644,6 +4507,7 @@ PricingTerm = TypedDict(
     "rate_card": Required["Sequence[DimensionalPriceRate]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PricingTerm/)."""
 
 PromptRouterSummary = TypedDict(
     "PromptRouterSummary",
@@ -3660,6 +4524,7 @@ PromptRouterSummary = TypedDict(
     "type": Required["PromptRouterType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterSummary/)."""
 
 PromptRouterTargetModel = TypedDict(
     "PromptRouterTargetModel",
@@ -3667,6 +4532,7 @@ PromptRouterTargetModel = TypedDict(
     "model_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterTargetModel/)."""
 
 PromptTemplate = TypedDict(
     "PromptTemplate",
@@ -3674,6 +4540,7 @@ PromptTemplate = TypedDict(
     "text_prompt_template": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptTemplate/)."""
 
 PromptTemplateOutput = TypedDict(
     "PromptTemplateOutput",
@@ -3681,6 +4548,7 @@ PromptTemplateOutput = TypedDict(
     "text_prompt_template": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptTemplateOutput/)."""
 
 ProvisionedModelSummary = TypedDict(
     "ProvisionedModelSummary",
@@ -3699,6 +4567,7 @@ ProvisionedModelSummary = TypedDict(
     "last_modified_time": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProvisionedModelSummary/)."""
 
 PutAccountDataRetentionRequest = TypedDict(
     "PutAccountDataRetentionRequest",
@@ -3706,6 +4575,7 @@ PutAccountDataRetentionRequest = TypedDict(
     "mode": Required["DataRetentionMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionRequest/)."""
 
 PutEnforcedGuardrailConfigurationRequest = TypedDict(
     "PutEnforcedGuardrailConfigurationRequest",
@@ -3714,6 +4584,7 @@ PutEnforcedGuardrailConfigurationRequest = TypedDict(
     "guardrail_inference_config": Required["AccountEnforcedGuardrailInferenceInputConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutEnforcedGuardrailConfigurationRequest/)."""
 
 PutModelInvocationLoggingConfigurationRequest = TypedDict(
     "PutModelInvocationLoggingConfigurationRequest",
@@ -3721,6 +4592,7 @@ PutModelInvocationLoggingConfigurationRequest = TypedDict(
     "logging_config": Required["LoggingConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutModelInvocationLoggingConfigurationRequest/)."""
 
 PutResourcePolicyRequest = TypedDict(
     "PutResourcePolicyRequest",
@@ -3729,6 +4601,7 @@ PutResourcePolicyRequest = TypedDict(
     "resource_policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutResourcePolicyRequest/)."""
 
 PutUseCaseForModelAccessRequest = TypedDict(
     "PutUseCaseForModelAccessRequest",
@@ -3736,6 +4609,7 @@ PutUseCaseForModelAccessRequest = TypedDict(
     "form_data": Required["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutUseCaseForModelAccessRequest/)."""
 
 QueryTransformationConfiguration = TypedDict(
     "QueryTransformationConfiguration",
@@ -3743,6 +4617,7 @@ QueryTransformationConfiguration = TypedDict(
     "type": Required["QueryTransformationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/QueryTransformationConfiguration/)."""
 
 QueryTransformationConfigurationOutput = TypedDict(
     "QueryTransformationConfigurationOutput",
@@ -3750,15 +4625,23 @@ QueryTransformationConfigurationOutput = TypedDict(
     "type": Required["QueryTransformationTypeOutput"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/QueryTransformationConfigurationOutput/)."""
 
 RAGConfigknowledgeBaseConfig = TypedDict("RAGConfigknowledgeBaseConfig", {"knowledge_base_config": Required["KnowledgeBaseConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RAGConfigknowledgeBaseConfig/)."""
 RAGConfigprecomputedRagSourceConfig = TypedDict("RAGConfigprecomputedRagSourceConfig", {"precomputed_rag_source_config": Required["EvaluationPrecomputedRagSourceConfig"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RAGConfigprecomputedRagSourceConfig/)."""
 RAGConfig: TypeAlias = RAGConfigknowledgeBaseConfig | RAGConfigprecomputedRagSourceConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RAGConfig/)."""
 
 RAGConfigOutputknowledgeBaseConfig = TypedDict("RAGConfigOutputknowledgeBaseConfig", {"knowledge_base_config": Required["KnowledgeBaseConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RAGConfigOutputknowledgeBaseConfig/)."""
 RAGConfigOutputprecomputedRagSourceConfig = TypedDict("RAGConfigOutputprecomputedRagSourceConfig", {"precomputed_rag_source_config": Required["EvaluationPrecomputedRagSourceConfigOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RAGConfigOutputprecomputedRagSourceConfig/)."""
 RAGConfigOutputUnknown = TypedDict("RAGConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RAGConfigOutputUnknown/)."""
 RAGConfigOutput: TypeAlias = RAGConfigOutputknowledgeBaseConfig | RAGConfigOutputprecomputedRagSourceConfig | RAGConfigOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RAGConfigOutput/)."""
 
 RFTConfig = TypedDict(
     "RFTConfig",
@@ -3767,6 +4650,7 @@ RFTConfig = TypedDict(
     "hyper_parameters": NotRequired["RFTHyperParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RFTConfig/)."""
 
 RFTConfigOutput = TypedDict(
     "RFTConfigOutput",
@@ -3775,6 +4659,7 @@ RFTConfigOutput = TypedDict(
     "hyper_parameters": Required["RFTHyperParametersOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RFTConfigOutput/)."""
 
 RFTHyperParameters = TypedDict(
     "RFTHyperParameters",
@@ -3789,6 +4674,7 @@ RFTHyperParameters = TypedDict(
     "eval_interval": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RFTHyperParameters/)."""
 
 RFTHyperParametersOutput = TypedDict(
     "RFTHyperParametersOutput",
@@ -3803,6 +4689,7 @@ RFTHyperParametersOutput = TypedDict(
     "eval_interval": Required["int | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RFTHyperParametersOutput/)."""
 
 RatingScaleItem = TypedDict(
     "RatingScaleItem",
@@ -3811,6 +4698,7 @@ RatingScaleItem = TypedDict(
     "value": Required["RatingScaleItemValue"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItem/)."""
 
 RatingScaleItemOutput = TypedDict(
     "RatingScaleItemOutput",
@@ -3819,15 +4707,23 @@ RatingScaleItemOutput = TypedDict(
     "value": Required["RatingScaleItemValueOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemOutput/)."""
 
 RatingScaleItemValuestringValue = TypedDict("RatingScaleItemValuestringValue", {"string_value": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemValuestringValue/)."""
 RatingScaleItemValuefloatValue = TypedDict("RatingScaleItemValuefloatValue", {"float_value": Required["float"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemValuefloatValue/)."""
 RatingScaleItemValue: TypeAlias = RatingScaleItemValuestringValue | RatingScaleItemValuefloatValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemValue/)."""
 
 RatingScaleItemValueOutputstringValue = TypedDict("RatingScaleItemValueOutputstringValue", {"string_value": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemValueOutputstringValue/)."""
 RatingScaleItemValueOutputfloatValue = TypedDict("RatingScaleItemValueOutputfloatValue", {"float_value": Required["float"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemValueOutputfloatValue/)."""
 RatingScaleItemValueOutputUnknown = TypedDict("RatingScaleItemValueOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemValueOutputUnknown/)."""
 RatingScaleItemValueOutput: TypeAlias = RatingScaleItemValueOutputstringValue | RatingScaleItemValueOutputfloatValue | RatingScaleItemValueOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RatingScaleItemValueOutput/)."""
 
 RegisterMarketplaceModelEndpointRequest = TypedDict(
     "RegisterMarketplaceModelEndpointRequest",
@@ -3836,6 +4732,7 @@ RegisterMarketplaceModelEndpointRequest = TypedDict(
     "model_source_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RegisterMarketplaceModelEndpointRequest/)."""
 
 RequestMetadataBaseFilters = TypedDict(
     "RequestMetadataBaseFilters",
@@ -3844,6 +4741,7 @@ RequestMetadataBaseFilters = TypedDict(
     "not_equals": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataBaseFilters/)."""
 
 RequestMetadataBaseFiltersOutput = TypedDict(
     "RequestMetadataBaseFiltersOutput",
@@ -3852,59 +4750,107 @@ RequestMetadataBaseFiltersOutput = TypedDict(
     "not_equals": Required["dict[str, str] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataBaseFiltersOutput/)."""
 
 RequestMetadataFiltersequals = TypedDict("RequestMetadataFiltersequals", {"equals": Required["dict[str, str]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersequals/)."""
 RequestMetadataFiltersnotEquals = TypedDict("RequestMetadataFiltersnotEquals", {"not_equals": Required["dict[str, str]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersnotEquals/)."""
 RequestMetadataFiltersandAll = TypedDict("RequestMetadataFiltersandAll", {"and_all": Required["Sequence[RequestMetadataBaseFilters]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersandAll/)."""
 RequestMetadataFiltersorAll = TypedDict("RequestMetadataFiltersorAll", {"or_all": Required["Sequence[RequestMetadataBaseFilters]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersorAll/)."""
 RequestMetadataFilters: TypeAlias = RequestMetadataFiltersequals | RequestMetadataFiltersnotEquals | RequestMetadataFiltersandAll | RequestMetadataFiltersorAll
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFilters/)."""
 
 RequestMetadataFiltersOutputequals = TypedDict("RequestMetadataFiltersOutputequals", {"equals": Required["dict[str, str]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersOutputequals/)."""
 RequestMetadataFiltersOutputnotEquals = TypedDict("RequestMetadataFiltersOutputnotEquals", {"not_equals": Required["dict[str, str]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersOutputnotEquals/)."""
 RequestMetadataFiltersOutputandAll = TypedDict("RequestMetadataFiltersOutputandAll", {"and_all": Required["list[RequestMetadataBaseFiltersOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersOutputandAll/)."""
 RequestMetadataFiltersOutputorAll = TypedDict("RequestMetadataFiltersOutputorAll", {"or_all": Required["list[RequestMetadataBaseFiltersOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersOutputorAll/)."""
 RequestMetadataFiltersOutputUnknown = TypedDict("RequestMetadataFiltersOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersOutputUnknown/)."""
 RequestMetadataFiltersOutput: TypeAlias = RequestMetadataFiltersOutputequals | RequestMetadataFiltersOutputnotEquals | RequestMetadataFiltersOutputandAll | RequestMetadataFiltersOutputorAll | RequestMetadataFiltersOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RequestMetadataFiltersOutput/)."""
 
 RerankingMetadataSelectiveModeConfigurationfieldsToInclude = TypedDict("RerankingMetadataSelectiveModeConfigurationfieldsToInclude", {"fields_to_include": Required["Sequence[FieldForReranking]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectiveModeConfigurationfieldsToInclude/)."""
 RerankingMetadataSelectiveModeConfigurationfieldsToExclude = TypedDict("RerankingMetadataSelectiveModeConfigurationfieldsToExclude", {"fields_to_exclude": Required["Sequence[FieldForReranking]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectiveModeConfigurationfieldsToExclude/)."""
 RerankingMetadataSelectiveModeConfiguration: TypeAlias = RerankingMetadataSelectiveModeConfigurationfieldsToInclude | RerankingMetadataSelectiveModeConfigurationfieldsToExclude
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectiveModeConfiguration/)."""
 
 RerankingMetadataSelectiveModeConfigurationOutputfieldsToInclude = TypedDict("RerankingMetadataSelectiveModeConfigurationOutputfieldsToInclude", {"fields_to_include": Required["list[FieldForRerankingOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectiveModeConfigurationOutputfieldsToInclude/)."""
 RerankingMetadataSelectiveModeConfigurationOutputfieldsToExclude = TypedDict("RerankingMetadataSelectiveModeConfigurationOutputfieldsToExclude", {"fields_to_exclude": Required["list[FieldForRerankingOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectiveModeConfigurationOutputfieldsToExclude/)."""
 RerankingMetadataSelectiveModeConfigurationOutputUnknown = TypedDict("RerankingMetadataSelectiveModeConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectiveModeConfigurationOutputUnknown/)."""
 RerankingMetadataSelectiveModeConfigurationOutput: TypeAlias = RerankingMetadataSelectiveModeConfigurationOutputfieldsToInclude | RerankingMetadataSelectiveModeConfigurationOutputfieldsToExclude | RerankingMetadataSelectiveModeConfigurationOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RerankingMetadataSelectiveModeConfigurationOutput/)."""
 
 RetrievalFilterequals = TypedDict("RetrievalFilterequals", {"equals": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterequals/)."""
 RetrievalFilternotEquals = TypedDict("RetrievalFilternotEquals", {"not_equals": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilternotEquals/)."""
 RetrievalFiltergreaterThan = TypedDict("RetrievalFiltergreaterThan", {"greater_than": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFiltergreaterThan/)."""
 RetrievalFiltergreaterThanOrEquals = TypedDict("RetrievalFiltergreaterThanOrEquals", {"greater_than_or_equals": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFiltergreaterThanOrEquals/)."""
 RetrievalFilterlessThan = TypedDict("RetrievalFilterlessThan", {"less_than": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterlessThan/)."""
 RetrievalFilterlessThanOrEquals = TypedDict("RetrievalFilterlessThanOrEquals", {"less_than_or_equals": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterlessThanOrEquals/)."""
 RetrievalFilterin = TypedDict("RetrievalFilterin", {"in": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterin/)."""
 RetrievalFilternotIn = TypedDict("RetrievalFilternotIn", {"not_in": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilternotIn/)."""
 RetrievalFilterstartsWith = TypedDict("RetrievalFilterstartsWith", {"starts_with": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterstartsWith/)."""
 RetrievalFilterlistContains = TypedDict("RetrievalFilterlistContains", {"list_contains": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterlistContains/)."""
 RetrievalFilterstringContains = TypedDict("RetrievalFilterstringContains", {"string_contains": Required["FilterAttribute"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterstringContains/)."""
 RetrievalFilterandAll = TypedDict("RetrievalFilterandAll", {"and_all": Required["Sequence[RetrievalFilter]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterandAll/)."""
 RetrievalFilterorAll = TypedDict("RetrievalFilterorAll", {"or_all": Required["Sequence[RetrievalFilter]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterorAll/)."""
 RetrievalFilter: TypeAlias = RetrievalFilterequals | RetrievalFilternotEquals | RetrievalFiltergreaterThan | RetrievalFiltergreaterThanOrEquals | RetrievalFilterlessThan | RetrievalFilterlessThanOrEquals | RetrievalFilterin | RetrievalFilternotIn | RetrievalFilterstartsWith | RetrievalFilterlistContains | RetrievalFilterstringContains | RetrievalFilterandAll | RetrievalFilterorAll
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilter/)."""
 
 RetrievalFilterOutputequals = TypedDict("RetrievalFilterOutputequals", {"equals": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputequals/)."""
 RetrievalFilterOutputnotEquals = TypedDict("RetrievalFilterOutputnotEquals", {"not_equals": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputnotEquals/)."""
 RetrievalFilterOutputgreaterThan = TypedDict("RetrievalFilterOutputgreaterThan", {"greater_than": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputgreaterThan/)."""
 RetrievalFilterOutputgreaterThanOrEquals = TypedDict("RetrievalFilterOutputgreaterThanOrEquals", {"greater_than_or_equals": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputgreaterThanOrEquals/)."""
 RetrievalFilterOutputlessThan = TypedDict("RetrievalFilterOutputlessThan", {"less_than": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputlessThan/)."""
 RetrievalFilterOutputlessThanOrEquals = TypedDict("RetrievalFilterOutputlessThanOrEquals", {"less_than_or_equals": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputlessThanOrEquals/)."""
 RetrievalFilterOutputin = TypedDict("RetrievalFilterOutputin", {"in": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputin/)."""
 RetrievalFilterOutputnotIn = TypedDict("RetrievalFilterOutputnotIn", {"not_in": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputnotIn/)."""
 RetrievalFilterOutputstartsWith = TypedDict("RetrievalFilterOutputstartsWith", {"starts_with": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputstartsWith/)."""
 RetrievalFilterOutputlistContains = TypedDict("RetrievalFilterOutputlistContains", {"list_contains": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputlistContains/)."""
 RetrievalFilterOutputstringContains = TypedDict("RetrievalFilterOutputstringContains", {"string_contains": Required["FilterAttributeOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputstringContains/)."""
 RetrievalFilterOutputandAll = TypedDict("RetrievalFilterOutputandAll", {"and_all": Required["list[RetrievalFilterOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputandAll/)."""
 RetrievalFilterOutputorAll = TypedDict("RetrievalFilterOutputorAll", {"or_all": Required["list[RetrievalFilterOutput]"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputorAll/)."""
 RetrievalFilterOutputUnknown = TypedDict("RetrievalFilterOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutputUnknown/)."""
 RetrievalFilterOutput: TypeAlias = RetrievalFilterOutputequals | RetrievalFilterOutputnotEquals | RetrievalFilterOutputgreaterThan | RetrievalFilterOutputgreaterThanOrEquals | RetrievalFilterOutputlessThan | RetrievalFilterOutputlessThanOrEquals | RetrievalFilterOutputin | RetrievalFilterOutputnotIn | RetrievalFilterOutputstartsWith | RetrievalFilterOutputlistContains | RetrievalFilterOutputstringContains | RetrievalFilterOutputandAll | RetrievalFilterOutputorAll | RetrievalFilterOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrievalFilterOutput/)."""
 
 RetrieveAndGenerateConfiguration = TypedDict(
     "RetrieveAndGenerateConfiguration",
@@ -3914,6 +4860,7 @@ RetrieveAndGenerateConfiguration = TypedDict(
     "external_sources_configuration": NotRequired["ExternalSourcesRetrieveAndGenerateConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrieveAndGenerateConfiguration/)."""
 
 RetrieveAndGenerateConfigurationOutput = TypedDict(
     "RetrieveAndGenerateConfigurationOutput",
@@ -3923,6 +4870,7 @@ RetrieveAndGenerateConfigurationOutput = TypedDict(
     "external_sources_configuration": Required["ExternalSourcesRetrieveAndGenerateConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrieveAndGenerateConfigurationOutput/)."""
 
 RetrieveConfig = TypedDict(
     "RetrieveConfig",
@@ -3931,6 +4879,7 @@ RetrieveConfig = TypedDict(
     "knowledge_base_retrieval_configuration": Required["KnowledgeBaseRetrievalConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrieveConfig/)."""
 
 RetrieveConfigOutput = TypedDict(
     "RetrieveConfigOutput",
@@ -3939,6 +4888,7 @@ RetrieveConfigOutput = TypedDict(
     "knowledge_base_retrieval_configuration": Required["KnowledgeBaseRetrievalConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RetrieveConfigOutput/)."""
 
 RoutingCriteria = TypedDict(
     "RoutingCriteria",
@@ -3946,6 +4896,7 @@ RoutingCriteria = TypedDict(
     "response_quality_difference": Required["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RoutingCriteria/)."""
 
 S3Config = TypedDict(
     "S3Config",
@@ -3954,6 +4905,7 @@ S3Config = TypedDict(
     "key_prefix": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3Config/)."""
 
 S3DataSource = TypedDict(
     "S3DataSource",
@@ -3961,6 +4913,7 @@ S3DataSource = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3DataSource/)."""
 
 S3DataSourceOutput = TypedDict(
     "S3DataSourceOutput",
@@ -3968,6 +4921,7 @@ S3DataSourceOutput = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3DataSourceOutput/)."""
 
 S3ObjectDoc = TypedDict(
     "S3ObjectDoc",
@@ -3975,6 +4929,7 @@ S3ObjectDoc = TypedDict(
     "uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3ObjectDoc/)."""
 
 S3ObjectDocOutput = TypedDict(
     "S3ObjectDocOutput",
@@ -3982,6 +4937,7 @@ S3ObjectDocOutput = TypedDict(
     "uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3ObjectDocOutput/)."""
 
 SageMakerEndpoint = TypedDict(
     "SageMakerEndpoint",
@@ -3993,6 +4949,7 @@ SageMakerEndpoint = TypedDict(
     "vpc": NotRequired["VpcConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SageMakerEndpoint/)."""
 
 SageMakerEndpointOutput = TypedDict(
     "SageMakerEndpointOutput",
@@ -4004,6 +4961,7 @@ SageMakerEndpointOutput = TypedDict(
     "vpc": Required["VpcConfigOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SageMakerEndpointOutput/)."""
 
 SelectiveContentGuarding = TypedDict(
     "SelectiveContentGuarding",
@@ -4012,6 +4970,7 @@ SelectiveContentGuarding = TypedDict(
     "messages": NotRequired["SelectiveGuardingMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SelectiveContentGuarding/)."""
 
 StartAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "StartAutomatedReasoningPolicyBuildWorkflowRequest",
@@ -4022,6 +4981,7 @@ StartAutomatedReasoningPolicyBuildWorkflowRequest = TypedDict(
     "source_content": Required["AutomatedReasoningPolicyBuildWorkflowSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyBuildWorkflowRequest/)."""
 
 StartAutomatedReasoningPolicyTestWorkflowRequest = TypedDict(
     "StartAutomatedReasoningPolicyTestWorkflowRequest",
@@ -4032,6 +4992,7 @@ StartAutomatedReasoningPolicyTestWorkflowRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyTestWorkflowRequest/)."""
 
 StatusDetails = TypedDict(
     "StatusDetails",
@@ -4041,6 +5002,7 @@ StatusDetails = TypedDict(
     "training_details": NotRequired["TrainingDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StatusDetails/)."""
 
 StopAdvancedPromptOptimizationJobRequest = TypedDict(
     "StopAdvancedPromptOptimizationJobRequest",
@@ -4048,6 +5010,7 @@ StopAdvancedPromptOptimizationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopAdvancedPromptOptimizationJobRequest/)."""
 
 StopEvaluationJobRequest = TypedDict(
     "StopEvaluationJobRequest",
@@ -4055,6 +5018,7 @@ StopEvaluationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopEvaluationJobRequest/)."""
 
 StopModelCustomizationJobRequest = TypedDict(
     "StopModelCustomizationJobRequest",
@@ -4062,6 +5026,7 @@ StopModelCustomizationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelCustomizationJobRequest/)."""
 
 StopModelInvocationJobRequest = TypedDict(
     "StopModelInvocationJobRequest",
@@ -4069,6 +5034,7 @@ StopModelInvocationJobRequest = TypedDict(
     "job_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelInvocationJobRequest/)."""
 
 SupportTerm = TypedDict(
     "SupportTerm",
@@ -4076,6 +5042,7 @@ SupportTerm = TypedDict(
     "refund_policy_description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SupportTerm/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -4084,6 +5051,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -4092,6 +5060,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TagResourceRequest/)."""
 
 TeacherModelConfig = TypedDict(
     "TeacherModelConfig",
@@ -4100,6 +5069,7 @@ TeacherModelConfig = TypedDict(
     "max_response_length_for_inference": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TeacherModelConfig/)."""
 
 TeacherModelConfigOutput = TypedDict(
     "TeacherModelConfigOutput",
@@ -4108,6 +5078,7 @@ TeacherModelConfigOutput = TypedDict(
     "max_response_length_for_inference": Required["int | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TeacherModelConfigOutput/)."""
 
 TermDetails = TypedDict(
     "TermDetails",
@@ -4118,6 +5089,7 @@ TermDetails = TypedDict(
     "validity_term": NotRequired["ValidityTerm"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TermDetails/)."""
 
 TextInferenceConfig = TypedDict(
     "TextInferenceConfig",
@@ -4128,6 +5100,7 @@ TextInferenceConfig = TypedDict(
     "stop_sequences": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TextInferenceConfig/)."""
 
 TextInferenceConfigOutput = TypedDict(
     "TextInferenceConfigOutput",
@@ -4138,6 +5111,7 @@ TextInferenceConfigOutput = TypedDict(
     "stop_sequences": Required["list[str] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TextInferenceConfigOutput/)."""
 
 TrainingDataConfig = TypedDict(
     "TrainingDataConfig",
@@ -4146,6 +5120,7 @@ TrainingDataConfig = TypedDict(
     "invocation_logs_config": NotRequired["InvocationLogsConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingDataConfig/)."""
 
 TrainingDetails = TypedDict(
     "TrainingDetails",
@@ -4155,6 +5130,7 @@ TrainingDetails = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingDetails/)."""
 
 TrainingMetrics = TypedDict(
     "TrainingMetrics",
@@ -4162,6 +5138,7 @@ TrainingMetrics = TypedDict(
     "training_loss": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingMetrics/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -4170,6 +5147,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UntagResourceRequest/)."""
 
 UpdateAutomatedReasoningPolicyAnnotationsRequest = TypedDict(
     "UpdateAutomatedReasoningPolicyAnnotationsRequest",
@@ -4180,6 +5158,7 @@ UpdateAutomatedReasoningPolicyAnnotationsRequest = TypedDict(
     "last_updated_annotation_set_hash": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyAnnotationsRequest/)."""
 
 UpdateAutomatedReasoningPolicyRequest = TypedDict(
     "UpdateAutomatedReasoningPolicyRequest",
@@ -4190,6 +5169,7 @@ UpdateAutomatedReasoningPolicyRequest = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyRequest/)."""
 
 UpdateAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "UpdateAutomatedReasoningPolicyTestCaseRequest",
@@ -4204,6 +5184,7 @@ UpdateAutomatedReasoningPolicyTestCaseRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyTestCaseRequest/)."""
 
 UpdateCustomModelDeploymentRequest = TypedDict(
     "UpdateCustomModelDeploymentRequest",
@@ -4212,6 +5193,7 @@ UpdateCustomModelDeploymentRequest = TypedDict(
     "custom_model_deployment_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateCustomModelDeploymentRequest/)."""
 
 UpdateGuardrailRequest = TypedDict(
     "UpdateGuardrailRequest",
@@ -4231,6 +5213,7 @@ UpdateGuardrailRequest = TypedDict(
     "kms_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateGuardrailRequest/)."""
 
 UpdateMarketplaceModelEndpointRequest = TypedDict(
     "UpdateMarketplaceModelEndpointRequest",
@@ -4240,6 +5223,7 @@ UpdateMarketplaceModelEndpointRequest = TypedDict(
     "client_request_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateMarketplaceModelEndpointRequest/)."""
 
 UpdateProvisionedModelThroughputRequest = TypedDict(
     "UpdateProvisionedModelThroughputRequest",
@@ -4249,6 +5233,7 @@ UpdateProvisionedModelThroughputRequest = TypedDict(
     "desired_model_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateProvisionedModelThroughputRequest/)."""
 
 ValidationDataConfig = TypedDict(
     "ValidationDataConfig",
@@ -4256,6 +5241,7 @@ ValidationDataConfig = TypedDict(
     "validators": Required["Sequence[Validator]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidationDataConfig/)."""
 
 ValidationDetails = TypedDict(
     "ValidationDetails",
@@ -4265,6 +5251,7 @@ ValidationDetails = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidationDetails/)."""
 
 Validator = TypedDict(
     "Validator",
@@ -4272,6 +5259,7 @@ Validator = TypedDict(
     "s3_uri": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/Validator/)."""
 
 ValidatorMetric = TypedDict(
     "ValidatorMetric",
@@ -4279,6 +5267,7 @@ ValidatorMetric = TypedDict(
     "validation_loss": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidatorMetric/)."""
 
 ValidityTerm = TypedDict(
     "ValidityTerm",
@@ -4286,6 +5275,7 @@ ValidityTerm = TypedDict(
     "agreement_duration": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidityTerm/)."""
 
 VectorSearchBedrockRerankingConfiguration = TypedDict(
     "VectorSearchBedrockRerankingConfiguration",
@@ -4295,6 +5285,7 @@ VectorSearchBedrockRerankingConfiguration = TypedDict(
     "metadata_configuration": NotRequired["MetadataConfigurationForReranking"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchBedrockRerankingConfiguration/)."""
 
 VectorSearchBedrockRerankingConfigurationOutput = TypedDict(
     "VectorSearchBedrockRerankingConfigurationOutput",
@@ -4304,6 +5295,7 @@ VectorSearchBedrockRerankingConfigurationOutput = TypedDict(
     "metadata_configuration": Required["MetadataConfigurationForRerankingOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchBedrockRerankingConfigurationOutput/)."""
 
 VectorSearchBedrockRerankingModelConfiguration = TypedDict(
     "VectorSearchBedrockRerankingModelConfiguration",
@@ -4312,6 +5304,7 @@ VectorSearchBedrockRerankingModelConfiguration = TypedDict(
     "additional_model_request_fields": NotRequired["dict[str, JSONValue]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchBedrockRerankingModelConfiguration/)."""
 
 VectorSearchBedrockRerankingModelConfigurationOutput = TypedDict(
     "VectorSearchBedrockRerankingModelConfigurationOutput",
@@ -4320,6 +5313,7 @@ VectorSearchBedrockRerankingModelConfigurationOutput = TypedDict(
     "additional_model_request_fields": Required["dict[str, JSONValue] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchBedrockRerankingModelConfigurationOutput/)."""
 
 VectorSearchRerankingConfiguration = TypedDict(
     "VectorSearchRerankingConfiguration",
@@ -4328,6 +5322,7 @@ VectorSearchRerankingConfiguration = TypedDict(
     "bedrock_reranking_configuration": NotRequired["VectorSearchBedrockRerankingConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchRerankingConfiguration/)."""
 
 VectorSearchRerankingConfigurationOutput = TypedDict(
     "VectorSearchRerankingConfigurationOutput",
@@ -4336,6 +5331,7 @@ VectorSearchRerankingConfigurationOutput = TypedDict(
     "bedrock_reranking_configuration": Required["VectorSearchBedrockRerankingConfigurationOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VectorSearchRerankingConfigurationOutput/)."""
 
 VpcConfig = TypedDict(
     "VpcConfig",
@@ -4344,6 +5340,7 @@ VpcConfig = TypedDict(
     "security_group_ids": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VpcConfig/)."""
 
 VpcConfigOutput = TypedDict(
     "VpcConfigOutput",
@@ -4352,3 +5349,4 @@ VpcConfigOutput = TypedDict(
     "security_group_ids": Required["list[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VpcConfigOutput/)."""

@@ -9,125 +9,243 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AwsVpcConfigurationOutput: TypeAlias = _native.AwsVpcConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/AwsVpcConfigurationOutput/)."""
 BatchArrayPropertiesOutput: TypeAlias = _native.BatchArrayProperties
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchArrayPropertiesOutput/)."""
 BatchContainerOverridesOutput: TypeAlias = _native.BatchContainerOverrides
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchContainerOverridesOutput/)."""
 BatchEnvironmentVariableOutput: TypeAlias = _native.BatchEnvironmentVariable
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchEnvironmentVariableOutput/)."""
 BatchJobDependencyOutput: TypeAlias = _native.BatchJobDependency
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchJobDependencyOutput/)."""
 BatchResourceRequirementOutput: TypeAlias = _native.BatchResourceRequirement
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchResourceRequirementOutput/)."""
 BatchRetryStrategyOutput: TypeAlias = _native.BatchRetryStrategy
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchRetryStrategyOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ByteStream/)."""
 CapacityProviderStrategyItemOutput: TypeAlias = _native.CapacityProviderStrategyItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CapacityProviderStrategyItemOutput/)."""
 CloudwatchLogsLogDestinationOutput: TypeAlias = _native.CloudwatchLogsLogDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CloudwatchLogsLogDestinationOutput/)."""
 CreatePipeOutput: TypeAlias = _native.CreatePipeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CreatePipeOutput/)."""
 DeadLetterConfigOutput: TypeAlias = _native.DeadLetterConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DeadLetterConfigOutput/)."""
 DeletePipeOutput: TypeAlias = _native.DeletePipeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DeletePipeOutput/)."""
 DescribePipeOutput: TypeAlias = _native.DescribePipeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DescribePipeOutput/)."""
 DimensionMappingOutput: TypeAlias = _native.DimensionMapping
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DimensionMappingOutput/)."""
 EcsContainerOverrideOutput: TypeAlias = _native.EcsContainerOverride
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsContainerOverrideOutput/)."""
 EcsEnvironmentFileOutput: TypeAlias = _native.EcsEnvironmentFile
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentFileOutput/)."""
 EcsEnvironmentVariableOutput: TypeAlias = _native.EcsEnvironmentVariable
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentVariableOutput/)."""
 EcsEphemeralStorageOutput: TypeAlias = _native.EcsEphemeralStorage
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEphemeralStorageOutput/)."""
 EcsInferenceAcceleratorOverrideOutput: TypeAlias = _native.EcsInferenceAcceleratorOverride
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsInferenceAcceleratorOverrideOutput/)."""
 EcsResourceRequirementOutput: TypeAlias = _native.EcsResourceRequirement
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsResourceRequirementOutput/)."""
 EcsTaskOverrideOutput: TypeAlias = _native.EcsTaskOverride
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsTaskOverrideOutput/)."""
 FilterOutput: TypeAlias = _native.Filter
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FilterOutput/)."""
 FilterCriteriaOutput: TypeAlias = _native.FilterCriteria
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FilterCriteriaOutput/)."""
 FirehoseLogDestinationOutput: TypeAlias = _native.FirehoseLogDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FirehoseLogDestinationOutput/)."""
 ListPipesOutput: TypeAlias = _native.ListPipesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListPipesOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListTagsForResourceOutput/)."""
 MultiMeasureAttributeMappingOutput: TypeAlias = _native.MultiMeasureAttributeMapping
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MultiMeasureAttributeMappingOutput/)."""
 MultiMeasureMappingOutput: TypeAlias = _native.MultiMeasureMapping
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MultiMeasureMappingOutput/)."""
 NetworkConfigurationOutput: TypeAlias = _native.NetworkConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/NetworkConfigurationOutput/)."""
 PipeOutput: TypeAlias = _native.Pipe
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeOutput/)."""
 PipeEnrichmentHttpParametersOutput: TypeAlias = _native.PipeEnrichmentHttpParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeEnrichmentHttpParametersOutput/)."""
 PipeEnrichmentParametersOutput: TypeAlias = _native.PipeEnrichmentParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeEnrichmentParametersOutput/)."""
 PipeLogConfigurationOutput: TypeAlias = _native.PipeLogConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeLogConfigurationOutput/)."""
 PipeSourceActiveMqBrokerParameters: TypeAlias = _native.PipeSourceActiveMqBrokerParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceActiveMqBrokerParameters-271eb8bb42ee/)."""
 PipeSourceDynamoDbStreamParameters: TypeAlias = _native.PipeSourceDynamoDbStreamParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceDynamoDbStreamParameters-63569b66a33a/)."""
 PipeSourceKinesisStreamParametersOutput: TypeAlias = _native.PipeSourceKinesisStreamParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceKinesisStreamParametersOutput/)."""
 PipeSourceManagedStreamingKafkaParametersOutput: TypeAlias = _native.PipeSourceManagedStreamingKafkaParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceManagedStreamingKafkaParametersOutput/)."""
 PipeSourceParametersOutput: TypeAlias = _native.PipeSourceParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceParametersOutput/)."""
 PipeSourceRabbitMqBrokerParameters: TypeAlias = _native.PipeSourceRabbitMqBrokerParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceRabbitMqBrokerParameters-1317f6d9ad2a/)."""
 PipeSourceSelfManagedKafkaParametersOutput: TypeAlias = _native.PipeSourceSelfManagedKafkaParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceSelfManagedKafkaParametersOutput/)."""
 PipeSourceSqsQueueParametersOutput: TypeAlias = _native.PipeSourceSqsQueueParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceSqsQueueParametersOutput/)."""
 PipeTargetBatchJobParametersOutput: TypeAlias = _native.PipeTargetBatchJobParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetBatchJobParametersOutput/)."""
 PipeTargetCloudWatchLogsParametersOutput: TypeAlias = _native.PipeTargetCloudWatchLogsParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetCloudWatchLogsParametersOutput/)."""
 PipeTargetEcsTaskParametersOutput: TypeAlias = _native.PipeTargetEcsTaskParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetEcsTaskParametersOutput/)."""
 PipeTargetEventBridgeEventBusParametersOutput: TypeAlias = _native.PipeTargetEventBridgeEventBusParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetEventBridgeEventBusParametersOutput/)."""
 PipeTargetHttpParametersOutput: TypeAlias = _native.PipeTargetHttpParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetHttpParametersOutput/)."""
 PipeTargetKinesisStreamParametersOutput: TypeAlias = _native.PipeTargetKinesisStreamParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetKinesisStreamParametersOutput/)."""
 PipeTargetLambdaFunctionParametersOutput: TypeAlias = _native.PipeTargetLambdaFunctionParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetLambdaFunctionParametersOutput/)."""
 PipeTargetParametersOutput: TypeAlias = _native.PipeTargetParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetParametersOutput/)."""
 PipeTargetRedshiftDataParametersOutput: TypeAlias = _native.PipeTargetRedshiftDataParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetRedshiftDataParametersOutput/)."""
 PipeTargetSageMakerPipelineParametersOutput: TypeAlias = _native.PipeTargetSageMakerPipelineParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetSageMakerPipelineParametersOutput/)."""
 PipeTargetSqsQueueParametersOutput: TypeAlias = _native.PipeTargetSqsQueueParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetSqsQueueParametersOutput/)."""
 PipeTargetStateMachineParametersOutput: TypeAlias = _native.PipeTargetStateMachineParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetStateMachineParametersOutput/)."""
 PipeTargetTimestreamParametersOutput: TypeAlias = _native.PipeTargetTimestreamParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetTimestreamParametersOutput/)."""
 PlacementConstraintOutput: TypeAlias = _native.PlacementConstraint
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementConstraintOutput/)."""
 PlacementStrategyOutput: TypeAlias = _native.PlacementStrategy
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementStrategyOutput/)."""
 S3LogDestinationOutput: TypeAlias = _native.S3LogDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/S3LogDestinationOutput/)."""
 SageMakerPipelineParameterOutput: TypeAlias = _native.SageMakerPipelineParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SageMakerPipelineParameterOutput/)."""
 SelfManagedKafkaAccessConfigurationVpcOutput: TypeAlias = _native.SelfManagedKafkaAccessConfigurationVpc
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationVpcOutput/)."""
 SingleMeasureMappingOutput: TypeAlias = _native.SingleMeasureMapping
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SingleMeasureMappingOutput/)."""
 StartPipeOutput: TypeAlias = _native.StartPipeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StartPipeOutput/)."""
 StopPipeOutput: TypeAlias = _native.StopPipeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StopPipeOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TagResourceOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UntagResourceOutput/)."""
 UpdatePipeOutput: TypeAlias = _native.UpdatePipeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/JSONValue/)."""
 
 AssignPublicIp: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/AssignPublicIp/)."""
 AssignPublicIpOutput: TypeAlias = AssignPublicIp | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/AssignPublicIpOutput/)."""
 BatchJobDependencyType: TypeAlias = Literal['N_TO_N', 'SEQUENTIAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchJobDependencyType/)."""
 BatchJobDependencyTypeOutput: TypeAlias = BatchJobDependencyType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchJobDependencyTypeOutput/)."""
 BatchResourceRequirementType: TypeAlias = Literal['GPU', 'MEMORY', 'VCPU']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchResourceRequirementType/)."""
 BatchResourceRequirementTypeOutput: TypeAlias = BatchResourceRequirementType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchResourceRequirementTypeOutput/)."""
 DimensionValueType: TypeAlias = Literal['VARCHAR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DimensionValueType/)."""
 DimensionValueTypeOutput: TypeAlias = DimensionValueType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DimensionValueTypeOutput/)."""
 DynamoDBStreamStartPosition: TypeAlias = Literal['TRIM_HORIZON', 'LATEST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DynamoDBStreamStartPosition/)."""
 DynamoDBStreamStartPositionOutput: TypeAlias = DynamoDBStreamStartPosition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DynamoDBStreamStartPositionOutput/)."""
 EcsEnvironmentFileType: TypeAlias = Literal['s3']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentFileType/)."""
 EcsEnvironmentFileTypeOutput: TypeAlias = EcsEnvironmentFileType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentFileTypeOutput/)."""
 EcsResourceRequirementType: TypeAlias = Literal['GPU', 'InferenceAccelerator']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsResourceRequirementType/)."""
 EcsResourceRequirementTypeOutput: TypeAlias = EcsResourceRequirementType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsResourceRequirementTypeOutput/)."""
 EpochTimeUnit: TypeAlias = Literal['MILLISECONDS', 'SECONDS', 'MICROSECONDS', 'NANOSECONDS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EpochTimeUnit/)."""
 EpochTimeUnitOutput: TypeAlias = EpochTimeUnit | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EpochTimeUnitOutput/)."""
 IncludeExecutionDataOption: TypeAlias = Literal['ALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/IncludeExecutionDataOption/)."""
 IncludeExecutionDataOptionOutput: TypeAlias = IncludeExecutionDataOption | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/IncludeExecutionDataOptionOutput/)."""
 KinesisStreamStartPosition: TypeAlias = Literal['TRIM_HORIZON', 'LATEST', 'AT_TIMESTAMP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/KinesisStreamStartPosition/)."""
 KinesisStreamStartPositionOutput: TypeAlias = KinesisStreamStartPosition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/KinesisStreamStartPositionOutput/)."""
 LaunchType: TypeAlias = Literal['EC2', 'FARGATE', 'EXTERNAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/LaunchType/)."""
 LaunchTypeOutput: TypeAlias = LaunchType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/LaunchTypeOutput/)."""
 LogLevel: TypeAlias = Literal['OFF', 'ERROR', 'INFO', 'TRACE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/LogLevel/)."""
 LogLevelOutput: TypeAlias = LogLevel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/LogLevelOutput/)."""
 MSKStartPosition: TypeAlias = Literal['TRIM_HORIZON', 'LATEST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKStartPosition/)."""
 MSKStartPositionOutput: TypeAlias = MSKStartPosition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKStartPositionOutput/)."""
 MeasureValueType: TypeAlias = Literal['DOUBLE', 'BIGINT', 'VARCHAR', 'BOOLEAN', 'TIMESTAMP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MeasureValueType/)."""
 MeasureValueTypeOutput: TypeAlias = MeasureValueType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MeasureValueTypeOutput/)."""
 OnPartialBatchItemFailureStreams: TypeAlias = Literal['AUTOMATIC_BISECT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/OnPartialBatchItemFailureStreams/)."""
 OnPartialBatchItemFailureStreamsOutput: TypeAlias = OnPartialBatchItemFailureStreams | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/OnPartialBatchItemFailureStreamsOutput/)."""
 PipeState: TypeAlias = Literal['RUNNING', 'STOPPED', 'CREATING', 'UPDATING', 'DELETING', 'STARTING', 'STOPPING', 'CREATE_FAILED', 'UPDATE_FAILED', 'START_FAILED', 'STOP_FAILED', 'DELETE_FAILED', 'CREATE_ROLLBACK_FAILED', 'DELETE_ROLLBACK_FAILED', 'UPDATE_ROLLBACK_FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeState/)."""
 PipeStateOutput: TypeAlias = PipeState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeStateOutput/)."""
 PipeTargetInvocationType: TypeAlias = Literal['REQUEST_RESPONSE', 'FIRE_AND_FORGET']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetInvocationType/)."""
 PipeTargetInvocationTypeOutput: TypeAlias = PipeTargetInvocationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetInvocationTypeOutput/)."""
 PlacementConstraintType: TypeAlias = Literal['distinctInstance', 'memberOf']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementConstraintType/)."""
 PlacementConstraintTypeOutput: TypeAlias = PlacementConstraintType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementConstraintTypeOutput/)."""
 PlacementStrategyType: TypeAlias = Literal['random', 'spread', 'binpack']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementStrategyType/)."""
 PlacementStrategyTypeOutput: TypeAlias = PlacementStrategyType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementStrategyTypeOutput/)."""
 PropagateTags: TypeAlias = Literal['TASK_DEFINITION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PropagateTags/)."""
 PropagateTagsOutput: TypeAlias = PropagateTags | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PropagateTagsOutput/)."""
 RequestedPipeState: TypeAlias = Literal['RUNNING', 'STOPPED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/RequestedPipeState/)."""
 RequestedPipeStateOutput: TypeAlias = RequestedPipeState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/RequestedPipeStateOutput/)."""
 RequestedPipeStateDescribeResponse: TypeAlias = Literal['RUNNING', 'STOPPED', 'DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/RequestedPipeStateDescribeResponse/)."""
 RequestedPipeStateDescribeResponseOutput: TypeAlias = RequestedPipeStateDescribeResponse | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/RequestedPipeStateDescribeResponseOutput/)."""
 S3OutputFormat: TypeAlias = Literal['json', 'plain', 'w3c']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/S3OutputFormat/)."""
 S3OutputFormatOutput: TypeAlias = S3OutputFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/S3OutputFormatOutput/)."""
 SelfManagedKafkaStartPosition: TypeAlias = Literal['TRIM_HORIZON', 'LATEST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaStartPosition/)."""
 SelfManagedKafkaStartPositionOutput: TypeAlias = SelfManagedKafkaStartPosition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaStartPositionOutput/)."""
 TimeFieldType: TypeAlias = Literal['EPOCH', 'TIMESTAMP_FORMAT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TimeFieldType/)."""
 TimeFieldTypeOutput: TypeAlias = TimeFieldType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TimeFieldTypeOutput/)."""
 
 AwsVpcConfiguration = TypedDict(
     "AwsVpcConfiguration",
@@ -137,6 +255,7 @@ AwsVpcConfiguration = TypedDict(
     "assign_public_ip": NotRequired["AssignPublicIp"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/AwsVpcConfiguration/)."""
 
 BatchArrayProperties = TypedDict(
     "BatchArrayProperties",
@@ -144,6 +263,7 @@ BatchArrayProperties = TypedDict(
     "size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchArrayProperties/)."""
 
 BatchContainerOverrides = TypedDict(
     "BatchContainerOverrides",
@@ -154,6 +274,7 @@ BatchContainerOverrides = TypedDict(
     "resource_requirements": NotRequired["Sequence[BatchResourceRequirement]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchContainerOverrides/)."""
 
 BatchEnvironmentVariable = TypedDict(
     "BatchEnvironmentVariable",
@@ -162,6 +283,7 @@ BatchEnvironmentVariable = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchEnvironmentVariable/)."""
 
 BatchJobDependency = TypedDict(
     "BatchJobDependency",
@@ -170,6 +292,7 @@ BatchJobDependency = TypedDict(
     "type": NotRequired["BatchJobDependencyType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchJobDependency/)."""
 
 BatchResourceRequirement = TypedDict(
     "BatchResourceRequirement",
@@ -178,6 +301,7 @@ BatchResourceRequirement = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchResourceRequirement/)."""
 
 BatchRetryStrategy = TypedDict(
     "BatchRetryStrategy",
@@ -185,6 +309,7 @@ BatchRetryStrategy = TypedDict(
     "attempts": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchRetryStrategy/)."""
 
 CapacityProviderStrategyItem = TypedDict(
     "CapacityProviderStrategyItem",
@@ -194,6 +319,7 @@ CapacityProviderStrategyItem = TypedDict(
     "base": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CapacityProviderStrategyItem/)."""
 
 CloudwatchLogsLogDestination = TypedDict(
     "CloudwatchLogsLogDestination",
@@ -201,6 +327,7 @@ CloudwatchLogsLogDestination = TypedDict(
     "log_group_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CloudwatchLogsLogDestination/)."""
 
 CloudwatchLogsLogDestinationParameters = TypedDict(
     "CloudwatchLogsLogDestinationParameters",
@@ -208,6 +335,7 @@ CloudwatchLogsLogDestinationParameters = TypedDict(
     "log_group_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CloudwatchLogsLogDestinationParameters/)."""
 
 CreatePipeRequest = TypedDict(
     "CreatePipeRequest",
@@ -227,6 +355,7 @@ CreatePipeRequest = TypedDict(
     "kms_key_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CreatePipeRequest/)."""
 
 DeadLetterConfig = TypedDict(
     "DeadLetterConfig",
@@ -234,6 +363,7 @@ DeadLetterConfig = TypedDict(
     "arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DeadLetterConfig/)."""
 
 DeletePipeRequest = TypedDict(
     "DeletePipeRequest",
@@ -241,6 +371,7 @@ DeletePipeRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DeletePipeRequest/)."""
 
 DescribePipeRequest = TypedDict(
     "DescribePipeRequest",
@@ -248,6 +379,7 @@ DescribePipeRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DescribePipeRequest/)."""
 
 DimensionMapping = TypedDict(
     "DimensionMapping",
@@ -257,6 +389,7 @@ DimensionMapping = TypedDict(
     "dimension_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DimensionMapping/)."""
 
 EcsContainerOverride = TypedDict(
     "EcsContainerOverride",
@@ -271,6 +404,7 @@ EcsContainerOverride = TypedDict(
     "resource_requirements": NotRequired["Sequence[EcsResourceRequirement]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsContainerOverride/)."""
 
 EcsEnvironmentFile = TypedDict(
     "EcsEnvironmentFile",
@@ -279,6 +413,7 @@ EcsEnvironmentFile = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentFile/)."""
 
 EcsEnvironmentVariable = TypedDict(
     "EcsEnvironmentVariable",
@@ -287,6 +422,7 @@ EcsEnvironmentVariable = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentVariable/)."""
 
 EcsEphemeralStorage = TypedDict(
     "EcsEphemeralStorage",
@@ -294,6 +430,7 @@ EcsEphemeralStorage = TypedDict(
     "size_in_gib": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEphemeralStorage/)."""
 
 EcsInferenceAcceleratorOverride = TypedDict(
     "EcsInferenceAcceleratorOverride",
@@ -302,6 +439,7 @@ EcsInferenceAcceleratorOverride = TypedDict(
     "device_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsInferenceAcceleratorOverride/)."""
 
 EcsResourceRequirement = TypedDict(
     "EcsResourceRequirement",
@@ -310,6 +448,7 @@ EcsResourceRequirement = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsResourceRequirement/)."""
 
 EcsTaskOverride = TypedDict(
     "EcsTaskOverride",
@@ -323,6 +462,7 @@ EcsTaskOverride = TypedDict(
     "task_role_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsTaskOverride/)."""
 
 Filter = TypedDict(
     "Filter",
@@ -330,6 +470,7 @@ Filter = TypedDict(
     "pattern": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/Filter/)."""
 
 FilterCriteria = TypedDict(
     "FilterCriteria",
@@ -337,6 +478,7 @@ FilterCriteria = TypedDict(
     "filters": NotRequired["Sequence[Filter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FilterCriteria/)."""
 
 FirehoseLogDestination = TypedDict(
     "FirehoseLogDestination",
@@ -344,6 +486,7 @@ FirehoseLogDestination = TypedDict(
     "delivery_stream_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FirehoseLogDestination/)."""
 
 FirehoseLogDestinationParameters = TypedDict(
     "FirehoseLogDestinationParameters",
@@ -351,6 +494,7 @@ FirehoseLogDestinationParameters = TypedDict(
     "delivery_stream_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FirehoseLogDestinationParameters/)."""
 
 ListPipesRequest = TypedDict(
     "ListPipesRequest",
@@ -364,6 +508,7 @@ ListPipesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListPipesRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -371,22 +516,35 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListTagsForResourceRequest/)."""
 
 MQBrokerAccessCredentialsBasicAuth = TypedDict("MQBrokerAccessCredentialsBasicAuth", {"basic_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsBasicAuth/)."""
 MQBrokerAccessCredentials: TypeAlias = MQBrokerAccessCredentialsBasicAuth
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentials/)."""
 
 MQBrokerAccessCredentialsOutputBasicAuth = TypedDict("MQBrokerAccessCredentialsOutputBasicAuth", {"basic_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsOutputBasicAuth/)."""
 MQBrokerAccessCredentialsOutputUnknown = TypedDict("MQBrokerAccessCredentialsOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsOutputUnknown/)."""
 MQBrokerAccessCredentialsOutput: TypeAlias = MQBrokerAccessCredentialsOutputBasicAuth | MQBrokerAccessCredentialsOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsOutput/)."""
 
 MSKAccessCredentialsSaslScram512Auth = TypedDict("MSKAccessCredentialsSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsSaslScram512Auth/)."""
 MSKAccessCredentialsClientCertificateTlsAuth = TypedDict("MSKAccessCredentialsClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsClientCertificateTlsAuth/)."""
 MSKAccessCredentials: TypeAlias = MSKAccessCredentialsSaslScram512Auth | MSKAccessCredentialsClientCertificateTlsAuth
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentials/)."""
 
 MSKAccessCredentialsOutputSaslScram512Auth = TypedDict("MSKAccessCredentialsOutputSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutputSaslScram512Auth/)."""
 MSKAccessCredentialsOutputClientCertificateTlsAuth = TypedDict("MSKAccessCredentialsOutputClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutputClientCertificateTlsAuth/)."""
 MSKAccessCredentialsOutputUnknown = TypedDict("MSKAccessCredentialsOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutputUnknown/)."""
 MSKAccessCredentialsOutput: TypeAlias = MSKAccessCredentialsOutputSaslScram512Auth | MSKAccessCredentialsOutputClientCertificateTlsAuth | MSKAccessCredentialsOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutput/)."""
 
 MultiMeasureAttributeMapping = TypedDict(
     "MultiMeasureAttributeMapping",
@@ -396,6 +554,7 @@ MultiMeasureAttributeMapping = TypedDict(
     "multi_measure_attribute_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MultiMeasureAttributeMapping/)."""
 
 MultiMeasureMapping = TypedDict(
     "MultiMeasureMapping",
@@ -404,6 +563,7 @@ MultiMeasureMapping = TypedDict(
     "multi_measure_attribute_mappings": Required["Sequence[MultiMeasureAttributeMapping]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MultiMeasureMapping/)."""
 
 NetworkConfiguration = TypedDict(
     "NetworkConfiguration",
@@ -411,6 +571,7 @@ NetworkConfiguration = TypedDict(
     "awsvpc_configuration": NotRequired["AwsVpcConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/NetworkConfiguration/)."""
 
 Pipe = TypedDict(
     "Pipe",
@@ -427,6 +588,7 @@ Pipe = TypedDict(
     "enrichment": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/Pipe/)."""
 
 PipeEnrichmentHttpParameters = TypedDict(
     "PipeEnrichmentHttpParameters",
@@ -436,6 +598,7 @@ PipeEnrichmentHttpParameters = TypedDict(
     "query_string_parameters": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeEnrichmentHttpParameters/)."""
 
 PipeEnrichmentParameters = TypedDict(
     "PipeEnrichmentParameters",
@@ -444,6 +607,7 @@ PipeEnrichmentParameters = TypedDict(
     "http_parameters": NotRequired["PipeEnrichmentHttpParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeEnrichmentParameters/)."""
 
 PipeLogConfiguration = TypedDict(
     "PipeLogConfiguration",
@@ -455,6 +619,7 @@ PipeLogConfiguration = TypedDict(
     "include_execution_data": NotRequired["Sequence[IncludeExecutionDataOption]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeLogConfiguration/)."""
 
 PipeLogConfigurationParameters = TypedDict(
     "PipeLogConfigurationParameters",
@@ -466,6 +631,7 @@ PipeLogConfigurationParameters = TypedDict(
     "include_execution_data": NotRequired["Sequence[IncludeExecutionDataOption]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeLogConfigurationParameters/)."""
 
 PipeSourceActiveMQBrokerParameters = TypedDict(
     "PipeSourceActiveMQBrokerParameters",
@@ -476,6 +642,7 @@ PipeSourceActiveMQBrokerParameters = TypedDict(
     "maximum_batching_window_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceActiveMQBrokerParameters-83b5472e7085/)."""
 
 PipeSourceDynamoDBStreamParameters = TypedDict(
     "PipeSourceDynamoDBStreamParameters",
@@ -490,6 +657,7 @@ PipeSourceDynamoDBStreamParameters = TypedDict(
     "starting_position": Required["DynamoDBStreamStartPosition"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceDynamoDBStreamParameters-21fed42cbc35/)."""
 
 PipeSourceKinesisStreamParameters = TypedDict(
     "PipeSourceKinesisStreamParameters",
@@ -505,6 +673,7 @@ PipeSourceKinesisStreamParameters = TypedDict(
     "starting_position_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceKinesisStreamParameters/)."""
 
 PipeSourceManagedStreamingKafkaParameters = TypedDict(
     "PipeSourceManagedStreamingKafkaParameters",
@@ -517,6 +686,7 @@ PipeSourceManagedStreamingKafkaParameters = TypedDict(
     "credentials": NotRequired["MSKAccessCredentials"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceManagedStreamingKafkaParameters/)."""
 
 PipeSourceParameters = TypedDict(
     "PipeSourceParameters",
@@ -531,6 +701,7 @@ PipeSourceParameters = TypedDict(
     "self_managed_kafka_parameters": NotRequired["PipeSourceSelfManagedKafkaParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceParameters/)."""
 
 PipeSourceRabbitMQBrokerParameters = TypedDict(
     "PipeSourceRabbitMQBrokerParameters",
@@ -542,6 +713,7 @@ PipeSourceRabbitMQBrokerParameters = TypedDict(
     "maximum_batching_window_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceRabbitMQBrokerParameters-8737abd9d44b/)."""
 
 PipeSourceSelfManagedKafkaParameters = TypedDict(
     "PipeSourceSelfManagedKafkaParameters",
@@ -557,6 +729,7 @@ PipeSourceSelfManagedKafkaParameters = TypedDict(
     "vpc": NotRequired["SelfManagedKafkaAccessConfigurationVpc"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceSelfManagedKafkaParameters/)."""
 
 PipeSourceSqsQueueParameters = TypedDict(
     "PipeSourceSqsQueueParameters",
@@ -565,6 +738,7 @@ PipeSourceSqsQueueParameters = TypedDict(
     "maximum_batching_window_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceSqsQueueParameters/)."""
 
 PipeTargetBatchJobParameters = TypedDict(
     "PipeTargetBatchJobParameters",
@@ -578,6 +752,7 @@ PipeTargetBatchJobParameters = TypedDict(
     "parameters": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetBatchJobParameters/)."""
 
 PipeTargetCloudWatchLogsParameters = TypedDict(
     "PipeTargetCloudWatchLogsParameters",
@@ -586,6 +761,7 @@ PipeTargetCloudWatchLogsParameters = TypedDict(
     "timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetCloudWatchLogsParameters/)."""
 
 PipeTargetEcsTaskParameters = TypedDict(
     "PipeTargetEcsTaskParameters",
@@ -607,6 +783,7 @@ PipeTargetEcsTaskParameters = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetEcsTaskParameters/)."""
 
 PipeTargetEventBridgeEventBusParameters = TypedDict(
     "PipeTargetEventBridgeEventBusParameters",
@@ -618,6 +795,7 @@ PipeTargetEventBridgeEventBusParameters = TypedDict(
     "time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetEventBridgeEventBusParameters/)."""
 
 PipeTargetHttpParameters = TypedDict(
     "PipeTargetHttpParameters",
@@ -627,6 +805,7 @@ PipeTargetHttpParameters = TypedDict(
     "query_string_parameters": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetHttpParameters/)."""
 
 PipeTargetKinesisStreamParameters = TypedDict(
     "PipeTargetKinesisStreamParameters",
@@ -634,6 +813,7 @@ PipeTargetKinesisStreamParameters = TypedDict(
     "partition_key": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetKinesisStreamParameters/)."""
 
 PipeTargetLambdaFunctionParameters = TypedDict(
     "PipeTargetLambdaFunctionParameters",
@@ -641,6 +821,7 @@ PipeTargetLambdaFunctionParameters = TypedDict(
     "invocation_type": NotRequired["PipeTargetInvocationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetLambdaFunctionParameters/)."""
 
 PipeTargetParameters = TypedDict(
     "PipeTargetParameters",
@@ -660,6 +841,7 @@ PipeTargetParameters = TypedDict(
     "timestream_parameters": NotRequired["PipeTargetTimestreamParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetParameters/)."""
 
 PipeTargetRedshiftDataParameters = TypedDict(
     "PipeTargetRedshiftDataParameters",
@@ -672,6 +854,7 @@ PipeTargetRedshiftDataParameters = TypedDict(
     "sqls": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetRedshiftDataParameters/)."""
 
 PipeTargetSageMakerPipelineParameters = TypedDict(
     "PipeTargetSageMakerPipelineParameters",
@@ -679,6 +862,7 @@ PipeTargetSageMakerPipelineParameters = TypedDict(
     "pipeline_parameter_list": NotRequired["Sequence[SageMakerPipelineParameter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetSageMakerPipelineParameters/)."""
 
 PipeTargetSqsQueueParameters = TypedDict(
     "PipeTargetSqsQueueParameters",
@@ -687,6 +871,7 @@ PipeTargetSqsQueueParameters = TypedDict(
     "message_deduplication_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetSqsQueueParameters/)."""
 
 PipeTargetStateMachineParameters = TypedDict(
     "PipeTargetStateMachineParameters",
@@ -694,6 +879,7 @@ PipeTargetStateMachineParameters = TypedDict(
     "invocation_type": NotRequired["PipeTargetInvocationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetStateMachineParameters/)."""
 
 PipeTargetTimestreamParameters = TypedDict(
     "PipeTargetTimestreamParameters",
@@ -708,6 +894,7 @@ PipeTargetTimestreamParameters = TypedDict(
     "multi_measure_mappings": NotRequired["Sequence[MultiMeasureMapping]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetTimestreamParameters/)."""
 
 PlacementConstraint = TypedDict(
     "PlacementConstraint",
@@ -716,6 +903,7 @@ PlacementConstraint = TypedDict(
     "expression": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementConstraint/)."""
 
 PlacementStrategy = TypedDict(
     "PlacementStrategy",
@@ -724,6 +912,7 @@ PlacementStrategy = TypedDict(
     "field": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementStrategy/)."""
 
 S3LogDestination = TypedDict(
     "S3LogDestination",
@@ -734,6 +923,7 @@ S3LogDestination = TypedDict(
     "output_format": NotRequired["S3OutputFormat"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/S3LogDestination/)."""
 
 S3LogDestinationParameters = TypedDict(
     "S3LogDestinationParameters",
@@ -744,6 +934,7 @@ S3LogDestinationParameters = TypedDict(
     "prefix": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/S3LogDestinationParameters/)."""
 
 SageMakerPipelineParameter = TypedDict(
     "SageMakerPipelineParameter",
@@ -752,19 +943,31 @@ SageMakerPipelineParameter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SageMakerPipelineParameter/)."""
 
 SelfManagedKafkaAccessConfigurationCredentialsBasicAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsBasicAuth", {"basic_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsBasicAuth/)."""
 SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth/)."""
 SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth", {"sasl_scram256_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth/)."""
 SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth/)."""
 SelfManagedKafkaAccessConfigurationCredentials: TypeAlias = SelfManagedKafkaAccessConfigurationCredentialsBasicAuth | SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth | SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth | SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentials/)."""
 
 SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth", {"basic_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth/)."""
 SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth/)."""
 SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth", {"sasl_scram256_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth/)."""
 SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth/)."""
 SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown/)."""
 SelfManagedKafkaAccessConfigurationCredentialsOutput: TypeAlias = SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth | SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth | SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth | SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth | SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutput/)."""
 
 SelfManagedKafkaAccessConfigurationVpc = TypedDict(
     "SelfManagedKafkaAccessConfigurationVpc",
@@ -773,6 +976,7 @@ SelfManagedKafkaAccessConfigurationVpc = TypedDict(
     "security_group": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationVpc/)."""
 
 SingleMeasureMapping = TypedDict(
     "SingleMeasureMapping",
@@ -782,6 +986,7 @@ SingleMeasureMapping = TypedDict(
     "measure_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SingleMeasureMapping/)."""
 
 StartPipeRequest = TypedDict(
     "StartPipeRequest",
@@ -789,6 +994,7 @@ StartPipeRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StartPipeRequest/)."""
 
 StopPipeRequest = TypedDict(
     "StopPipeRequest",
@@ -796,6 +1002,7 @@ StopPipeRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StopPipeRequest/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -804,6 +1011,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -812,6 +1020,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TagResourceRequest/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -820,6 +1029,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UntagResourceRequest/)."""
 
 UpdatePipeRequest = TypedDict(
     "UpdatePipeRequest",
@@ -837,6 +1047,7 @@ UpdatePipeRequest = TypedDict(
     "kms_key_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeRequest/)."""
 
 UpdatePipeSourceActiveMQBrokerParameters = TypedDict(
     "UpdatePipeSourceActiveMQBrokerParameters",
@@ -846,6 +1057,7 @@ UpdatePipeSourceActiveMQBrokerParameters = TypedDict(
     "maximum_batching_window_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceActiveMQBrokerParameters/)."""
 
 UpdatePipeSourceDynamoDBStreamParameters = TypedDict(
     "UpdatePipeSourceDynamoDBStreamParameters",
@@ -859,6 +1071,7 @@ UpdatePipeSourceDynamoDBStreamParameters = TypedDict(
     "parallelization_factor": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceDynamoDBStreamParameters/)."""
 
 UpdatePipeSourceKinesisStreamParameters = TypedDict(
     "UpdatePipeSourceKinesisStreamParameters",
@@ -872,6 +1085,7 @@ UpdatePipeSourceKinesisStreamParameters = TypedDict(
     "parallelization_factor": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceKinesisStreamParameters/)."""
 
 UpdatePipeSourceManagedStreamingKafkaParameters = TypedDict(
     "UpdatePipeSourceManagedStreamingKafkaParameters",
@@ -881,6 +1095,7 @@ UpdatePipeSourceManagedStreamingKafkaParameters = TypedDict(
     "maximum_batching_window_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceManagedStreamingKafkaParameters/)."""
 
 UpdatePipeSourceParameters = TypedDict(
     "UpdatePipeSourceParameters",
@@ -895,6 +1110,7 @@ UpdatePipeSourceParameters = TypedDict(
     "self_managed_kafka_parameters": NotRequired["UpdatePipeSourceSelfManagedKafkaParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceParameters/)."""
 
 UpdatePipeSourceRabbitMQBrokerParameters = TypedDict(
     "UpdatePipeSourceRabbitMQBrokerParameters",
@@ -904,6 +1120,7 @@ UpdatePipeSourceRabbitMQBrokerParameters = TypedDict(
     "maximum_batching_window_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceRabbitMQBrokerParameters/)."""
 
 UpdatePipeSourceSelfManagedKafkaParameters = TypedDict(
     "UpdatePipeSourceSelfManagedKafkaParameters",
@@ -915,6 +1132,7 @@ UpdatePipeSourceSelfManagedKafkaParameters = TypedDict(
     "vpc": NotRequired["SelfManagedKafkaAccessConfigurationVpc"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceSelfManagedKafkaParameters/)."""
 
 UpdatePipeSourceSqsQueueParameters = TypedDict(
     "UpdatePipeSourceSqsQueueParameters",
@@ -923,6 +1141,7 @@ UpdatePipeSourceSqsQueueParameters = TypedDict(
     "maximum_batching_window_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceSqsQueueParameters/)."""
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",
@@ -931,3 +1150,4 @@ ValidationExceptionField = TypedDict(
     "message": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ValidationExceptionField/)."""

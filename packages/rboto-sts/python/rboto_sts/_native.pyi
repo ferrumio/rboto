@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AssumedRoleUser:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumedRoleUserOutput/)."""
     @property
     def assumed_role_id(self) -> str: ...
     @property
@@ -25,6 +27,7 @@ class AssumedRoleUser:
 
 @final
 class Credentials:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/CredentialsOutput/)."""
     @property
     def access_key_id(self) -> str: ...
     @property
@@ -37,6 +40,7 @@ class Credentials:
 
 @final
 class FederatedUser:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/FederatedUserOutput/)."""
     @property
     def federated_user_id(self) -> str: ...
     @property
@@ -45,6 +49,7 @@ class FederatedUser:
 
 @final
 class AssumeRoleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -61,6 +66,7 @@ class AssumeRoleOutput:
 
 @final
 class AssumeRoleWithSAMLOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithSAMLOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -87,6 +93,7 @@ class AssumeRoleWithSAMLOutput:
 
 @final
 class AssumeRoleWithWebIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithWebIdentityOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -109,6 +116,7 @@ class AssumeRoleWithWebIdentityOutput:
 
 @final
 class AssumeRootOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRootOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -121,18 +129,21 @@ class AssumeRootOutput:
 
 @final
 class DecodeAuthorizationMessageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/DecodeAuthorizationMessageOutput/)."""
     @property
     def decoded_message(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAccessKeyInfoOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetAccessKeyInfoOutput/)."""
     @property
     def account(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetCallerIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetCallerIdentityOutput/)."""
     @property
     def user_id(self) -> str | None: ...
     @property
@@ -143,6 +154,7 @@ class GetCallerIdentityOutput:
 
 @final
 class GetDelegatedAccessTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetDelegatedAccessTokenOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -153,6 +165,7 @@ class GetDelegatedAccessTokenOutput:
 
 @final
 class GetFederationTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetFederationTokenOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -167,6 +180,7 @@ class GetFederationTokenOutput:
 
 @final
 class GetSessionTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetSessionTokenOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -177,6 +191,7 @@ class GetSessionTokenOutput:
 
 @final
 class GetWebIdentityTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetWebIdentityTokenOutput/)."""
     @property
     def web_identity_token(self) -> str | None: ...
     @property

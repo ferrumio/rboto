@@ -9,58 +9,109 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AwsVpcConfigurationOutput: TypeAlias = _native.AwsVpcConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/AwsVpcConfigurationOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ByteStream/)."""
 CapacityProviderStrategyItemOutput: TypeAlias = _native.CapacityProviderStrategyItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CapacityProviderStrategyItemOutput/)."""
 CreateScheduleGroupOutput: TypeAlias = _native.CreateScheduleGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleGroupOutput/)."""
 CreateScheduleOutput: TypeAlias = _native.CreateScheduleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleOutput/)."""
 DeadLetterConfigOutput: TypeAlias = _native.DeadLetterConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeadLetterConfigOutput/)."""
 DeleteScheduleGroupOutput: TypeAlias = _native.DeleteScheduleGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleGroupOutput/)."""
 DeleteScheduleOutput: TypeAlias = _native.DeleteScheduleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleOutput/)."""
 EcsParametersOutput: TypeAlias = _native.EcsParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EcsParametersOutput/)."""
 EventBridgeParametersOutput: TypeAlias = _native.EventBridgeParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgeParametersOutput/)."""
 FlexibleTimeWindowOutput: TypeAlias = _native.FlexibleTimeWindow
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/FlexibleTimeWindowOutput/)."""
 GetScheduleGroupOutput: TypeAlias = _native.GetScheduleGroupOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleGroupOutput/)."""
 GetScheduleOutput: TypeAlias = _native.GetScheduleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleOutput/)."""
 KinesisParametersOutput: TypeAlias = _native.KinesisParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/KinesisParametersOutput/)."""
 ListScheduleGroupsOutput: TypeAlias = _native.ListScheduleGroupsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListScheduleGroupsOutput/)."""
 ListSchedulesOutput: TypeAlias = _native.ListSchedulesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListSchedulesOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListTagsForResourceOutput/)."""
 NetworkConfigurationOutput: TypeAlias = _native.NetworkConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/NetworkConfigurationOutput/)."""
 PlacementConstraintOutput: TypeAlias = _native.PlacementConstraint
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementConstraintOutput/)."""
 PlacementStrategyOutput: TypeAlias = _native.PlacementStrategy
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementStrategyOutput/)."""
 RetryPolicyOutput: TypeAlias = _native.RetryPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/RetryPolicyOutput/)."""
 SageMakerPipelineParameterOutput: TypeAlias = _native.SageMakerPipelineParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SageMakerPipelineParameterOutput/)."""
 SageMakerPipelineParametersOutput: TypeAlias = _native.SageMakerPipelineParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SageMakerPipelineParametersOutput/)."""
 ScheduleGroupSummaryOutput: TypeAlias = _native.ScheduleGroupSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleGroupSummaryOutput/)."""
 ScheduleSummaryOutput: TypeAlias = _native.ScheduleSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleSummaryOutput/)."""
 SqsParametersOutput: TypeAlias = _native.SqsParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SqsParametersOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TagResourceOutput/)."""
 TargetOutput: TypeAlias = _native.Target
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TargetOutput/)."""
 TargetSummaryOutput: TypeAlias = _native.TargetSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TargetSummaryOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UntagResourceOutput/)."""
 UpdateScheduleOutput: TypeAlias = _native.UpdateScheduleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UpdateScheduleOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/JSONValue/)."""
 
 ActionAfterCompletion: TypeAlias = Literal['NONE', 'DELETE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ActionAfterCompletion/)."""
 ActionAfterCompletionOutput: TypeAlias = ActionAfterCompletion | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ActionAfterCompletionOutput/)."""
 AssignPublicIp: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/AssignPublicIp/)."""
 AssignPublicIpOutput: TypeAlias = AssignPublicIp | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/AssignPublicIpOutput/)."""
 FlexibleTimeWindowMode: TypeAlias = Literal['OFF', 'FLEXIBLE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/FlexibleTimeWindowMode/)."""
 FlexibleTimeWindowModeOutput: TypeAlias = FlexibleTimeWindowMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/FlexibleTimeWindowModeOutput/)."""
 LaunchType: TypeAlias = Literal['EC2', 'FARGATE', 'EXTERNAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/LaunchType/)."""
 LaunchTypeOutput: TypeAlias = LaunchType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/LaunchTypeOutput/)."""
 PlacementConstraintType: TypeAlias = Literal['distinctInstance', 'memberOf']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementConstraintType/)."""
 PlacementConstraintTypeOutput: TypeAlias = PlacementConstraintType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementConstraintTypeOutput/)."""
 PlacementStrategyType: TypeAlias = Literal['random', 'spread', 'binpack']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementStrategyType/)."""
 PlacementStrategyTypeOutput: TypeAlias = PlacementStrategyType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementStrategyTypeOutput/)."""
 PropagateTags: TypeAlias = Literal['TASK_DEFINITION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PropagateTags/)."""
 PropagateTagsOutput: TypeAlias = PropagateTags | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PropagateTagsOutput/)."""
 ScheduleGroupState: TypeAlias = Literal['ACTIVE', 'DELETING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleGroupState/)."""
 ScheduleGroupStateOutput: TypeAlias = ScheduleGroupState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleGroupStateOutput/)."""
 ScheduleState: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleState/)."""
 ScheduleStateOutput: TypeAlias = ScheduleState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleStateOutput/)."""
 
 AwsVpcConfiguration = TypedDict(
     "AwsVpcConfiguration",
@@ -70,6 +121,7 @@ AwsVpcConfiguration = TypedDict(
     "assign_public_ip": NotRequired["AssignPublicIp"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/AwsVpcConfiguration/)."""
 
 CapacityProviderStrategyItem = TypedDict(
     "CapacityProviderStrategyItem",
@@ -79,6 +131,7 @@ CapacityProviderStrategyItem = TypedDict(
     "base": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CapacityProviderStrategyItem/)."""
 
 CreateScheduleGroupInput = TypedDict(
     "CreateScheduleGroupInput",
@@ -88,6 +141,7 @@ CreateScheduleGroupInput = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleGroupInput/)."""
 
 CreateScheduleInput = TypedDict(
     "CreateScheduleInput",
@@ -107,6 +161,7 @@ CreateScheduleInput = TypedDict(
     "action_after_completion": NotRequired["ActionAfterCompletion"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/CreateScheduleInput/)."""
 
 DeadLetterConfig = TypedDict(
     "DeadLetterConfig",
@@ -114,6 +169,7 @@ DeadLetterConfig = TypedDict(
     "arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeadLetterConfig/)."""
 
 DeleteScheduleGroupInput = TypedDict(
     "DeleteScheduleGroupInput",
@@ -122,6 +178,7 @@ DeleteScheduleGroupInput = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleGroupInput/)."""
 
 DeleteScheduleInput = TypedDict(
     "DeleteScheduleInput",
@@ -131,6 +188,7 @@ DeleteScheduleInput = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/DeleteScheduleInput/)."""
 
 EcsParameters = TypedDict(
     "EcsParameters",
@@ -151,6 +209,7 @@ EcsParameters = TypedDict(
     "tags": NotRequired["Sequence[dict[str, str]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EcsParameters/)."""
 
 EventBridgeParameters = TypedDict(
     "EventBridgeParameters",
@@ -159,6 +218,7 @@ EventBridgeParameters = TypedDict(
     "source": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgeParameters/)."""
 
 FlexibleTimeWindow = TypedDict(
     "FlexibleTimeWindow",
@@ -167,6 +227,7 @@ FlexibleTimeWindow = TypedDict(
     "maximum_window_in_minutes": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/FlexibleTimeWindow/)."""
 
 GetScheduleGroupInput = TypedDict(
     "GetScheduleGroupInput",
@@ -174,6 +235,7 @@ GetScheduleGroupInput = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleGroupInput/)."""
 
 GetScheduleInput = TypedDict(
     "GetScheduleInput",
@@ -182,6 +244,7 @@ GetScheduleInput = TypedDict(
     "group_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/GetScheduleInput/)."""
 
 KinesisParameters = TypedDict(
     "KinesisParameters",
@@ -189,6 +252,7 @@ KinesisParameters = TypedDict(
     "partition_key": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/KinesisParameters/)."""
 
 ListScheduleGroupsInput = TypedDict(
     "ListScheduleGroupsInput",
@@ -198,6 +262,7 @@ ListScheduleGroupsInput = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListScheduleGroupsInput/)."""
 
 ListSchedulesInput = TypedDict(
     "ListSchedulesInput",
@@ -209,6 +274,7 @@ ListSchedulesInput = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListSchedulesInput/)."""
 
 ListTagsForResourceInput = TypedDict(
     "ListTagsForResourceInput",
@@ -216,6 +282,7 @@ ListTagsForResourceInput = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ListTagsForResourceInput/)."""
 
 NetworkConfiguration = TypedDict(
     "NetworkConfiguration",
@@ -223,6 +290,7 @@ NetworkConfiguration = TypedDict(
     "awsvpc_configuration": NotRequired["AwsVpcConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/NetworkConfiguration/)."""
 
 PlacementConstraint = TypedDict(
     "PlacementConstraint",
@@ -231,6 +299,7 @@ PlacementConstraint = TypedDict(
     "expression": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementConstraint/)."""
 
 PlacementStrategy = TypedDict(
     "PlacementStrategy",
@@ -239,6 +308,7 @@ PlacementStrategy = TypedDict(
     "field": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/PlacementStrategy/)."""
 
 RetryPolicy = TypedDict(
     "RetryPolicy",
@@ -247,6 +317,7 @@ RetryPolicy = TypedDict(
     "maximum_retry_attempts": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/RetryPolicy/)."""
 
 SageMakerPipelineParameter = TypedDict(
     "SageMakerPipelineParameter",
@@ -255,6 +326,7 @@ SageMakerPipelineParameter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SageMakerPipelineParameter/)."""
 
 SageMakerPipelineParameters = TypedDict(
     "SageMakerPipelineParameters",
@@ -262,6 +334,7 @@ SageMakerPipelineParameters = TypedDict(
     "pipeline_parameter_list": NotRequired["Sequence[SageMakerPipelineParameter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SageMakerPipelineParameters/)."""
 
 ScheduleGroupSummary = TypedDict(
     "ScheduleGroupSummary",
@@ -273,6 +346,7 @@ ScheduleGroupSummary = TypedDict(
     "last_modification_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleGroupSummary/)."""
 
 ScheduleSummary = TypedDict(
     "ScheduleSummary",
@@ -286,6 +360,7 @@ ScheduleSummary = TypedDict(
     "target": NotRequired["TargetSummary"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/ScheduleSummary/)."""
 
 SqsParameters = TypedDict(
     "SqsParameters",
@@ -293,6 +368,7 @@ SqsParameters = TypedDict(
     "message_group_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/SqsParameters/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -301,6 +377,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/Tag/)."""
 
 TagResourceInput = TypedDict(
     "TagResourceInput",
@@ -309,6 +386,7 @@ TagResourceInput = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TagResourceInput/)."""
 
 Target = TypedDict(
     "Target",
@@ -325,6 +403,7 @@ Target = TypedDict(
     "sqs_parameters": NotRequired["SqsParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/Target/)."""
 
 TargetSummary = TypedDict(
     "TargetSummary",
@@ -332,6 +411,7 @@ TargetSummary = TypedDict(
     "arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/TargetSummary/)."""
 
 UntagResourceInput = TypedDict(
     "UntagResourceInput",
@@ -340,6 +420,7 @@ UntagResourceInput = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UntagResourceInput/)."""
 
 UpdateScheduleInput = TypedDict(
     "UpdateScheduleInput",
@@ -359,3 +440,4 @@ UpdateScheduleInput = TypedDict(
     "action_after_completion": NotRequired["ActionAfterCompletion"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/UpdateScheduleInput/)."""

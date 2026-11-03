@@ -66,7 +66,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[DescribeConfigurationTemplatesOutput]:
-        """Yield each page from describe_configuration_templates; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_configuration_templates/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if service is not None:
@@ -98,7 +98,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         delivery_source_names: Sequence[str] | None = None,
     ) -> AsyncIterator[DescribeDeliveriesOutput]:
-        """Yield each page from describe_deliveries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_deliveries/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -124,7 +124,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         names: Sequence[str] | None = None,
     ) -> AsyncIterator[DescribeDeliveryDestinationsOutput]:
-        """Yield each page from describe_delivery_destinations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_delivery_destinations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -150,7 +150,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         resource_arns: Sequence[str] | None = None,
     ) -> AsyncIterator[DescribeDeliverySourcesOutput]:
-        """Yield each page from describe_delivery_sources; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_delivery_sources/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -176,7 +176,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[DescribeDestinationsOutput]:
-        """Yield each page from describe_destinations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_destinations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if destination_name_prefix is not None:
@@ -203,7 +203,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[DescribeExportTasksOutput]:
-        """Yield each page from describe_export_tasks; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_export_tasks/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if task_id is not None:
@@ -236,7 +236,7 @@ class CloudWatchLogsClientPaginators:
         log_group_class: LogGroupClass | None = None,
         log_group_identifiers: Sequence[str] | None = None,
     ) -> AsyncIterator[DescribeLogGroupsOutput]:
-        """Yield each page from describe_log_groups; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_log_groups/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if account_identifiers is not None:
@@ -276,7 +276,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[DescribeLogStreamsOutput]:
-        """Yield each page from describe_log_streams; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_log_streams/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -313,7 +313,7 @@ class CloudWatchLogsClientPaginators:
         metric_name: str | None = None,
         metric_namespace: str | None = None,
     ) -> AsyncIterator[DescribeMetricFiltersOutput]:
-        """Yield each page from describe_metric_filters; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_metric_filters/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -347,7 +347,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         query_language: QueryLanguage | None = None,
     ) -> AsyncIterator[DescribeQueriesOutput]:
-        """Yield each page from describe_queries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_queries/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -378,7 +378,7 @@ class CloudWatchLogsClientPaginators:
         resource_arn: str | None = None,
         policy_scope: PolicyScope | None = None,
     ) -> AsyncIterator[DescribeResourcePoliciesOutput]:
-        """Yield each page from describe_resource_policies; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_resource_policies/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -407,7 +407,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[DescribeSubscriptionFiltersOutput]:
-        """Yield each page from describe_subscription_filters; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_subscription_filters/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
@@ -443,7 +443,7 @@ class CloudWatchLogsClientPaginators:
         interleaved: bool | None = None,
         unmask: bool | None = None,
     ) -> AsyncIterator[FilterLogEventsOutput]:
-        """Yield each page from filter_log_events; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/filter_log_events/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -493,7 +493,7 @@ class CloudWatchLogsClientPaginators:
         start_from_head: bool | None = None,
         unmask: bool | None = None,
     ) -> AsyncIterator[GetLogEventsOutput]:
-        """Yield each page from get_log_events; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_log_events/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "log_stream_name": log_stream_name,
         }
@@ -533,7 +533,7 @@ class CloudWatchLogsClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[GetScheduledQueryHistoryOutput]:
-        """Yield each page from get_scheduled_query_history; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_scheduled_query_history/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "identifier": identifier,
             "start_time": start_time,
@@ -567,7 +567,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[ListAggregateLogGroupSummariesOutput]:
-        """Yield each page from list_aggregate_log_group_summaries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_aggregate_log_group_summaries/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "group_by": group_by,
         }
@@ -603,7 +603,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListAnomaliesOutput]:
-        """Yield each page from list_anomalies; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_anomalies/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if anomaly_detector_arn is not None:
@@ -631,7 +631,7 @@ class CloudWatchLogsClientPaginators:
         limit: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListLogAnomalyDetectorsOutput]:
-        """Yield each page from list_log_anomaly_detectors; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_log_anomaly_detectors/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filter_log_group_arn is not None:
@@ -657,7 +657,7 @@ class CloudWatchLogsClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListLogGroupsForQueryOutput]:
-        """Yield each page from list_log_groups_for_query; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_log_groups_for_query/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "query_id": query_id,
         }
@@ -683,7 +683,7 @@ class CloudWatchLogsClientPaginators:
         state: ScheduledQueryState | None = None,
         schedule_type: ScheduleType | None = None,
     ) -> AsyncIterator[ListScheduledQueriesOutput]:
-        """Yield each page from list_scheduled_queries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_scheduled_queries/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -711,7 +711,7 @@ class CloudWatchLogsClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListSourcesForS3TableIntegrationOutput]:
-        """Yield each page from list_sources_for_s3_table_integration; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_sources_for_s3_table_integration/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "integration_arn": integration_arn,
         }

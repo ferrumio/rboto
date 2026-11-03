@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AccountEnforcedGuardrailOutputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AccountEnforcedGuardrailOutputConfigurationOutput/)."""
     @property
     def config_id(self) -> str | None: ...
     @property
@@ -45,12 +47,14 @@ class AccountEnforcedGuardrailOutputConfiguration:
 
 @final
 class AdvancedPromptOptimizationInputConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationInputConfigOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AdvancedPromptOptimizationJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationJobSummaryOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -65,12 +69,14 @@ class AdvancedPromptOptimizationJobSummary:
 
 @final
 class AdvancedPromptOptimizationOutputConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AdvancedPromptOptimizationOutputConfigOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AgreementAvailability:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AgreementAvailabilityOutput/)."""
     @property
     def status(self) -> _types.AgreementStatusOutput: ...
     @property
@@ -79,6 +85,7 @@ class AgreementAvailability:
 
 @final
 class AutomatedReasoningPolicyBuildWorkflowSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyBuildWorkflowSummaryOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -95,6 +102,7 @@ class AutomatedReasoningPolicyBuildWorkflowSummary:
 
 @final
 class AutomatedReasoningPolicyDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionValueOutput/)."""
     @property
     def version(self) -> str: ...
     @property
@@ -107,6 +115,7 @@ class AutomatedReasoningPolicyDefinition:
 
 @final
 class AutomatedReasoningPolicyDefinitionRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionRuleValueOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -117,6 +126,7 @@ class AutomatedReasoningPolicyDefinitionRule:
 
 @final
 class AutomatedReasoningPolicyDefinitionType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeValueValueOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -127,6 +137,7 @@ class AutomatedReasoningPolicyDefinitionType:
 
 @final
 class AutomatedReasoningPolicyDefinitionTypeValue:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionTypeValueValueValueOutput/)."""
     @property
     def value(self) -> str: ...
     @property
@@ -135,6 +146,7 @@ class AutomatedReasoningPolicyDefinitionTypeValue:
 
 @final
 class AutomatedReasoningPolicyDefinitionVariable:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyDefinitionVariableValueOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -145,6 +157,7 @@ class AutomatedReasoningPolicyDefinitionVariable:
 
 @final
 class AutomatedReasoningPolicyScenario:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyScenarioOutput/)."""
     @property
     def expression(self) -> str: ...
     @property
@@ -157,6 +170,7 @@ class AutomatedReasoningPolicyScenario:
 
 @final
 class AutomatedReasoningPolicySummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicySummaryOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -175,6 +189,7 @@ class AutomatedReasoningPolicySummary:
 
 @final
 class AutomatedReasoningPolicyTestCase:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestCaseOutput/)."""
     @property
     def test_case_id(self) -> str: ...
     @property
@@ -193,6 +208,7 @@ class AutomatedReasoningPolicyTestCase:
 
 @final
 class AutomatedReasoningPolicyTestResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/AutomatedReasoningPolicyTestResultOutput/)."""
     @property
     def test_case(self) -> AutomatedReasoningPolicyTestCase | None: ...
     @property
@@ -211,6 +227,7 @@ class AutomatedReasoningPolicyTestResult:
 
 @final
 class BatchDeleteAdvancedPromptOptimizationJobError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobErrorOutput/)."""
     @property
     def job_identifier(self) -> str: ...
     @property
@@ -221,6 +238,7 @@ class BatchDeleteAdvancedPromptOptimizationJobError:
 
 @final
 class BatchDeleteAdvancedPromptOptimizationJobItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobItemOutput/)."""
     @property
     def job_identifier(self) -> str: ...
     @property
@@ -229,6 +247,7 @@ class BatchDeleteAdvancedPromptOptimizationJobItem:
 
 @final
 class BatchDeleteEvaluationJobError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobErrorOutput/)."""
     @property
     def job_identifier(self) -> str: ...
     @property
@@ -239,6 +258,7 @@ class BatchDeleteEvaluationJobError:
 
 @final
 class BatchDeleteEvaluationJobItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobItemOutput/)."""
     @property
     def job_identifier(self) -> str: ...
     @property
@@ -247,6 +267,7 @@ class BatchDeleteEvaluationJobItem:
 
 @final
 class CloudWatchConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CloudWatchConfigOutput/)."""
     @property
     def log_group_name(self) -> str: ...
     @property
@@ -257,6 +278,7 @@ class CloudWatchConfig:
 
 @final
 class CustomModelDeploymentSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentSummaryOutput/)."""
     @property
     def custom_model_deployment_arn(self) -> str: ...
     @property
@@ -275,6 +297,7 @@ class CustomModelDeploymentSummary:
 
 @final
 class CustomModelDeploymentUpdateDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelDeploymentUpdateDetailsOutput/)."""
     @property
     def model_arn(self) -> str: ...
     @property
@@ -283,6 +306,7 @@ class CustomModelDeploymentUpdateDetails:
 
 @final
 class CustomModelSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelSummaryOutput/)."""
     @property
     def model_arn(self) -> str: ...
     @property
@@ -303,6 +327,7 @@ class CustomModelSummary:
 
 @final
 class CustomModelUnits:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CustomModelUnitsOutput/)."""
     @property
     def custom_model_units_per_model_copy(self) -> int | None: ...
     @property
@@ -311,6 +336,7 @@ class CustomModelUnits:
 
 @final
 class DataProcessingDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DataProcessingDetailsOutput/)."""
     @property
     def status(self) -> _types.JobStatusDetailsOutput | None: ...
     @property
@@ -321,6 +347,7 @@ class DataProcessingDetails:
 
 @final
 class DimensionalPriceRate:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DimensionalPriceRateOutput/)."""
     @property
     def dimension(self) -> str | None: ...
     @property
@@ -333,6 +360,7 @@ class DimensionalPriceRate:
 
 @final
 class EvaluationInferenceConfigSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationInferenceConfigSummaryOutput/)."""
     @property
     def model_config_summary(self) -> EvaluationModelConfigSummary | None: ...
     @property
@@ -341,6 +369,7 @@ class EvaluationInferenceConfigSummary:
 
 @final
 class EvaluationModelConfigSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationModelConfigSummaryOutput/)."""
     @property
     def bedrock_model_identifiers(self) -> list[str] | None: ...
     @property
@@ -349,12 +378,14 @@ class EvaluationModelConfigSummary:
 
 @final
 class EvaluationOutputDataConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationOutputDataConfigOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EvaluationRagConfigSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationRagConfigSummaryOutput/)."""
     @property
     def bedrock_knowledge_base_identifiers(self) -> list[str] | None: ...
     @property
@@ -363,6 +394,7 @@ class EvaluationRagConfigSummary:
 
 @final
 class EvaluationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/EvaluationSummaryOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -391,6 +423,7 @@ class EvaluationSummary:
 
 @final
 class FoundationModelDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelDetailsOutput/)."""
     @property
     def model_arn(self) -> str: ...
     @property
@@ -415,6 +448,7 @@ class FoundationModelDetails:
 
 @final
 class FoundationModelLifecycle:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelLifecycleOutput/)."""
     @property
     def status(self) -> _types.FoundationModelLifecycleStatusOutput: ...
     @property
@@ -429,6 +463,7 @@ class FoundationModelLifecycle:
 
 @final
 class FoundationModelSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/FoundationModelSummaryOutput/)."""
     @property
     def model_arn(self) -> str: ...
     @property
@@ -453,6 +488,7 @@ class FoundationModelSummary:
 
 @final
 class GuardrailAutomatedReasoningPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailAutomatedReasoningPolicyOutput/)."""
     @property
     def policies(self) -> list[str]: ...
     @property
@@ -461,6 +497,7 @@ class GuardrailAutomatedReasoningPolicy:
 
 @final
 class GuardrailContentFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFilterOutput/)."""
     @property
     def type(self) -> _types.GuardrailContentFilterTypeOutput: ...
     @property
@@ -483,12 +520,14 @@ class GuardrailContentFilter:
 
 @final
 class GuardrailContentFiltersTier:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentFiltersTierOutput/)."""
     @property
     def tier_name(self) -> _types.GuardrailContentFiltersTierNameOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailContentPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContentPolicyOutput/)."""
     @property
     def filters(self) -> list[GuardrailContentFilter] | None: ...
     @property
@@ -497,6 +536,7 @@ class GuardrailContentPolicy:
 
 @final
 class GuardrailContextualGroundingFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingFilterOutput/)."""
     @property
     def type(self) -> _types.GuardrailContextualGroundingFilterTypeOutput: ...
     @property
@@ -509,6 +549,7 @@ class GuardrailContextualGroundingFilter:
 
 @final
 class GuardrailContextualGroundingPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingPolicyOutput/)."""
     @property
     def filters(self) -> list[GuardrailContextualGroundingFilter]: ...
     @property
@@ -517,12 +558,14 @@ class GuardrailContextualGroundingPolicy:
 
 @final
 class GuardrailContextualGroundingTier:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailContextualGroundingTierOutput/)."""
     @property
     def tier_name(self) -> _types.GuardrailContextualGroundingTierNameOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailCrossRegionDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailCrossRegionDetailsOutput/)."""
     @property
     def guardrail_profile_id(self) -> str | None: ...
     @property
@@ -531,6 +574,7 @@ class GuardrailCrossRegionDetails:
 
 @final
 class GuardrailManagedWords:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailManagedWordsOutput/)."""
     @property
     def type(self) -> _types.GuardrailManagedWordsTypeOutput: ...
     @property
@@ -545,6 +589,7 @@ class GuardrailManagedWords:
 
 @final
 class GuardrailPiiEntity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailPiiEntityOutput/)."""
     @property
     def type(self) -> _types.GuardrailPiiEntityTypeOutput: ...
     @property
@@ -561,6 +606,7 @@ class GuardrailPiiEntity:
 
 @final
 class GuardrailRegex:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailRegexOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -581,6 +627,7 @@ class GuardrailRegex:
 
 @final
 class GuardrailSensitiveInformationPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSensitiveInformationPolicyOutput/)."""
     @property
     def pii_entities(self) -> list[GuardrailPiiEntity] | None: ...
     @property
@@ -589,6 +636,7 @@ class GuardrailSensitiveInformationPolicy:
 
 @final
 class GuardrailSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailSummaryOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -611,6 +659,7 @@ class GuardrailSummary:
 
 @final
 class GuardrailTopic:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -631,6 +680,7 @@ class GuardrailTopic:
 
 @final
 class GuardrailTopicPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicPolicyOutput/)."""
     @property
     def topics(self) -> list[GuardrailTopic]: ...
     @property
@@ -639,12 +689,14 @@ class GuardrailTopicPolicy:
 
 @final
 class GuardrailTopicsTier:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailTopicsTierOutput/)."""
     @property
     def tier_name(self) -> _types.GuardrailTopicsTierNameOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailWord:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordOutput/)."""
     @property
     def text(self) -> str: ...
     @property
@@ -659,6 +711,7 @@ class GuardrailWord:
 
 @final
 class GuardrailWordPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GuardrailWordPolicyOutput/)."""
     @property
     def words(self) -> list[GuardrailWord] | None: ...
     @property
@@ -667,6 +720,7 @@ class GuardrailWordPolicy:
 
 @final
 class ImportedModelSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ImportedModelSummaryOutput/)."""
     @property
     def model_arn(self) -> str: ...
     @property
@@ -681,6 +735,7 @@ class ImportedModelSummary:
 
 @final
 class InferenceConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceConfigurationOutput/)."""
     @property
     def max_tokens(self) -> int | None: ...
     @property
@@ -693,12 +748,14 @@ class InferenceConfiguration:
 
 @final
 class InferenceProfileModel:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileModelOutput/)."""
     @property
     def model_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InferenceProfileSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InferenceProfileSummaryOutput/)."""
     @property
     def inference_profile_name(self) -> str: ...
     @property
@@ -721,6 +778,7 @@ class InferenceProfileSummary:
 
 @final
 class InvocationLogsConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/InvocationLogsConfigOutput/)."""
     @property
     def use_prompt_response(self) -> bool: ...
     @property
@@ -731,12 +789,14 @@ class InvocationLogsConfig:
 
 @final
 class LegalTerm:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LegalTermOutput/)."""
     @property
     def url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class LoggingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/LoggingConfigOutput/)."""
     @property
     def cloud_watch_config(self) -> CloudWatchConfig | None: ...
     @property
@@ -755,6 +815,7 @@ class LoggingConfig:
 
 @final
 class MarketplaceModelEndpoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MarketplaceModelEndpointOutput/)."""
     @property
     def endpoint_arn(self) -> str: ...
     @property
@@ -777,6 +838,7 @@ class MarketplaceModelEndpoint:
 
 @final
 class MarketplaceModelEndpointSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/MarketplaceModelEndpointSummaryOutput/)."""
     @property
     def endpoint_arn(self) -> str: ...
     @property
@@ -793,6 +855,7 @@ class MarketplaceModelEndpointSummary:
 
 @final
 class ModelConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelConfigurationOutput/)."""
     @property
     def model_id(self) -> str: ...
     @property
@@ -803,6 +866,7 @@ class ModelConfiguration:
 
 @final
 class ModelCopyJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCopyJobSummaryOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -829,6 +893,7 @@ class ModelCopyJobSummary:
 
 @final
 class ModelCustomizationJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelCustomizationJobSummaryOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -855,6 +920,7 @@ class ModelCustomizationJobSummary:
 
 @final
 class ModelEnforcement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelEnforcementOutput/)."""
     @property
     def included_models(self) -> list[str]: ...
     @property
@@ -863,6 +929,7 @@ class ModelEnforcement:
 
 @final
 class ModelImportJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelImportJobSummaryOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -883,6 +950,7 @@ class ModelImportJobSummary:
 
 @final
 class ModelInvocationJobSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ModelInvocationJobSummaryOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -927,6 +995,7 @@ class ModelInvocationJobSummary:
 
 @final
 class Offer:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OfferOutput/)."""
     @property
     def offer_id(self) -> str | None: ...
     @property
@@ -937,18 +1006,21 @@ class Offer:
 
 @final
 class OutputDataConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/OutputDataConfigOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PricingTerm:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PricingTermOutput/)."""
     @property
     def rate_card(self) -> list[DimensionalPriceRate]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PromptRouterSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterSummaryOutput/)."""
     @property
     def prompt_router_name(self) -> str: ...
     @property
@@ -973,12 +1045,14 @@ class PromptRouterSummary:
 
 @final
 class PromptRouterTargetModel:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PromptRouterTargetModelOutput/)."""
     @property
     def model_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ProvisionedModelSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ProvisionedModelSummaryOutput/)."""
     @property
     def provisioned_model_name(self) -> str: ...
     @property
@@ -1007,12 +1081,14 @@ class ProvisionedModelSummary:
 
 @final
 class RoutingCriteria:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RoutingCriteriaOutput/)."""
     @property
     def response_quality_difference(self) -> float: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class S3Config:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/S3ConfigOutput/)."""
     @property
     def bucket_name(self) -> str: ...
     @property
@@ -1021,6 +1097,7 @@ class S3Config:
 
 @final
 class SelectiveContentGuarding:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SelectiveContentGuardingOutput/)."""
     @property
     def system(self) -> _types.SelectiveGuardingModeOutput | None: ...
     @property
@@ -1029,6 +1106,7 @@ class SelectiveContentGuarding:
 
 @final
 class StatusDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StatusDetailsOutput/)."""
     @property
     def validation_details(self) -> ValidationDetails | None: ...
     @property
@@ -1039,12 +1117,14 @@ class StatusDetails:
 
 @final
 class SupportTerm:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/SupportTermOutput/)."""
     @property
     def refund_policy_description(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -1053,6 +1133,7 @@ class Tag:
 
 @final
 class TermDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TermDetailsOutput/)."""
     @property
     def usage_based_pricing_term(self) -> PricingTerm | None: ...
     @property
@@ -1065,6 +1146,7 @@ class TermDetails:
 
 @final
 class TrainingDataConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingDataConfigOutput/)."""
     @property
     def s3_uri(self) -> str | None: ...
     @property
@@ -1073,6 +1155,7 @@ class TrainingDataConfig:
 
 @final
 class TrainingDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingDetailsOutput/)."""
     @property
     def status(self) -> _types.JobStatusDetailsOutput | None: ...
     @property
@@ -1083,18 +1166,21 @@ class TrainingDetails:
 
 @final
 class TrainingMetrics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TrainingMetricsOutput/)."""
     @property
     def training_loss(self) -> float | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidationDataConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidationDataConfigOutput/)."""
     @property
     def validators(self) -> list[Validator]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidationDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidationDetailsOutput/)."""
     @property
     def status(self) -> _types.JobStatusDetailsOutput | None: ...
     @property
@@ -1105,24 +1191,28 @@ class ValidationDetails:
 
 @final
 class Validator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidatorOutput/)."""
     @property
     def s3_uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidatorMetric:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidatorMetricOutput/)."""
     @property
     def validation_loss(self) -> float | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidityTerm:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ValidityTermOutput/)."""
     @property
     def agreement_duration(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VpcConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/VpcConfigValueOutput/)."""
     @property
     def subnet_ids(self) -> list[str]: ...
     @property
@@ -1131,6 +1221,7 @@ class VpcConfig:
 
 @final
 class BatchDeleteAdvancedPromptOptimizationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteAdvancedPromptOptimizationJobOutput/)."""
     @property
     def errors(self) -> list[BatchDeleteAdvancedPromptOptimizationJobError]: ...
     @property
@@ -1139,6 +1230,7 @@ class BatchDeleteAdvancedPromptOptimizationJobOutput:
 
 @final
 class BatchDeleteEvaluationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/BatchDeleteEvaluationJobOutput/)."""
     @property
     def errors(self) -> list[BatchDeleteEvaluationJobError]: ...
     @property
@@ -1147,16 +1239,19 @@ class BatchDeleteEvaluationJobOutput:
 
 @final
 class CancelAutomatedReasoningPolicyBuildWorkflowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CancelAutomatedReasoningPolicyBuildWorkflowOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateAdvancedPromptOptimizationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAdvancedPromptOptimizationJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateAutomatedReasoningPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1175,6 +1270,7 @@ class CreateAutomatedReasoningPolicyOutput:
 
 @final
 class CreateAutomatedReasoningPolicyTestCaseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyTestCaseOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1183,6 +1279,7 @@ class CreateAutomatedReasoningPolicyTestCaseOutput:
 
 @final
 class CreateAutomatedReasoningPolicyVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateAutomatedReasoningPolicyVersionOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1199,30 +1296,35 @@ class CreateAutomatedReasoningPolicyVersionOutput:
 
 @final
 class CreateCustomModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelOutput/)."""
     @property
     def model_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCustomModelDeploymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateCustomModelDeploymentOutput/)."""
     @property
     def custom_model_deployment_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateEvaluationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateEvaluationJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateFoundationModelAgreementOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateFoundationModelAgreementOutput/)."""
     @property
     def model_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateGuardrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailOutput/)."""
     @property
     def guardrail_id(self) -> str: ...
     @property
@@ -1235,6 +1337,7 @@ class CreateGuardrailOutput:
 
 @final
 class CreateGuardrailVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateGuardrailVersionOutput/)."""
     @property
     def guardrail_id(self) -> str: ...
     @property
@@ -1243,6 +1346,7 @@ class CreateGuardrailVersionOutput:
 
 @final
 class CreateInferenceProfileOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateInferenceProfileOutput/)."""
     @property
     def inference_profile_arn(self) -> str: ...
     @property
@@ -1251,118 +1355,143 @@ class CreateInferenceProfileOutput:
 
 @final
 class CreateMarketplaceModelEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateMarketplaceModelEndpointOutput/)."""
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateModelCopyJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCopyJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateModelCustomizationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelCustomizationJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateModelImportJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelImportJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateModelInvocationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateModelInvocationJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreatePromptRouterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreatePromptRouterOutput/)."""
     @property
     def prompt_router_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateProvisionedModelThroughputOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/CreateProvisionedModelThroughputOutput/)."""
     @property
     def provisioned_model_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAutomatedReasoningPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAutomatedReasoningPolicyBuildWorkflowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyBuildWorkflowOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAutomatedReasoningPolicyTestCaseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteAutomatedReasoningPolicyTestCaseOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCustomModelDeploymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteCustomModelDeploymentOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEnforcedGuardrailConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteEnforcedGuardrailConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteFoundationModelAgreementOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteFoundationModelAgreementOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteGuardrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteGuardrailOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteImportedModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteImportedModelOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteInferenceProfileOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteInferenceProfileOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMarketplaceModelEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteMarketplaceModelEndpointOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteModelInvocationLoggingConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteModelInvocationLoggingConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePromptRouterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeletePromptRouterOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteProvisionedModelThroughputOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteProvisionedModelThroughputOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeleteResourcePolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeregisterMarketplaceModelEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/DeregisterMarketplaceModelEndpointOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExportAutomatedReasoningPolicyVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ExportAutomatedReasoningPolicyVersionOutput/)."""
     @property
     def policy_definition(self) -> AutomatedReasoningPolicyDefinition | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAccountDataRetentionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAccountDataRetentionOutput/)."""
     @property
     def mode(self) -> _types.DataRetentionModeOutput: ...
     @property
@@ -1371,6 +1500,7 @@ class GetAccountDataRetentionOutput:
 
 @final
 class GetAdvancedPromptOptimizationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAdvancedPromptOptimizationJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -1397,6 +1527,7 @@ class GetAdvancedPromptOptimizationJobOutput:
 
 @final
 class GetAutomatedReasoningPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1419,6 +1550,7 @@ class GetAutomatedReasoningPolicyOutput:
 
 @final
 class GetAutomatedReasoningPolicyAnnotationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyAnnotationsOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1435,6 +1567,7 @@ class GetAutomatedReasoningPolicyAnnotationsOutput:
 
 @final
 class GetAutomatedReasoningPolicyBuildWorkflowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1457,6 +1590,7 @@ class GetAutomatedReasoningPolicyBuildWorkflowOutput:
 
 @final
 class GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1467,6 +1601,7 @@ class GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput:
 
 @final
 class GetAutomatedReasoningPolicyNextScenarioOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyNextScenarioOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1475,6 +1610,7 @@ class GetAutomatedReasoningPolicyNextScenarioOutput:
 
 @final
 class GetAutomatedReasoningPolicyTestCaseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestCaseOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -1483,12 +1619,14 @@ class GetAutomatedReasoningPolicyTestCaseOutput:
 
 @final
 class GetAutomatedReasoningPolicyTestResultOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetAutomatedReasoningPolicyTestResultOutput/)."""
     @property
     def test_result(self) -> AutomatedReasoningPolicyTestResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetCustomModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelOutput/)."""
     @property
     def model_arn(self) -> str: ...
     @property
@@ -1527,6 +1665,7 @@ class GetCustomModelOutput:
 
 @final
 class GetCustomModelDeploymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetCustomModelDeploymentOutput/)."""
     @property
     def custom_model_deployment_arn(self) -> str: ...
     @property
@@ -1549,6 +1688,7 @@ class GetCustomModelDeploymentOutput:
 
 @final
 class GetEvaluationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetEvaluationJobOutput/)."""
     @property
     def job_name(self) -> str: ...
     @property
@@ -1581,12 +1721,14 @@ class GetEvaluationJobOutput:
 
 @final
 class GetFoundationModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelOutput/)."""
     @property
     def model_details(self) -> FoundationModelDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetFoundationModelAvailabilityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetFoundationModelAvailabilityOutput/)."""
     @property
     def model_id(self) -> str: ...
     @property
@@ -1601,6 +1743,7 @@ class GetFoundationModelAvailabilityOutput:
 
 @final
 class GetGuardrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetGuardrailOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1645,6 +1788,7 @@ class GetGuardrailOutput:
 
 @final
 class GetImportedModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetImportedModelOutput/)."""
     @property
     def model_arn(self) -> str | None: ...
     @property
@@ -1669,6 +1813,7 @@ class GetImportedModelOutput:
 
 @final
 class GetInferenceProfileOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetInferenceProfileOutput/)."""
     @property
     def inference_profile_name(self) -> str: ...
     @property
@@ -1691,12 +1836,14 @@ class GetInferenceProfileOutput:
 
 @final
 class GetMarketplaceModelEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetMarketplaceModelEndpointOutput/)."""
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetModelCopyJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCopyJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -1723,6 +1870,7 @@ class GetModelCopyJobOutput:
 
 @final
 class GetModelCustomizationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelCustomizationJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -1773,6 +1921,7 @@ class GetModelCustomizationJobOutput:
 
 @final
 class GetModelImportJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelImportJobOutput/)."""
     @property
     def job_arn(self) -> str | None: ...
     @property
@@ -1803,6 +1952,7 @@ class GetModelImportJobOutput:
 
 @final
 class GetModelInvocationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property
@@ -1847,12 +1997,14 @@ class GetModelInvocationJobOutput:
 
 @final
 class GetModelInvocationLoggingConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetModelInvocationLoggingConfigurationOutput/)."""
     @property
     def logging_config(self) -> LoggingConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetPromptRouterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetPromptRouterOutput/)."""
     @property
     def prompt_router_name(self) -> str: ...
     @property
@@ -1877,6 +2029,7 @@ class GetPromptRouterOutput:
 
 @final
 class GetProvisionedModelThroughputOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetProvisionedModelThroughputOutput/)."""
     @property
     def model_units(self) -> int: ...
     @property
@@ -1907,18 +2060,21 @@ class GetProvisionedModelThroughputOutput:
 
 @final
 class GetResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetResourcePolicyOutput/)."""
     @property
     def resource_policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetUseCaseForModelAccessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/GetUseCaseForModelAccessOutput/)."""
     @property
     def form_data(self) -> bytes: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListAdvancedPromptOptimizationJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAdvancedPromptOptimizationJobsOutput/)."""
     @property
     def job_summaries(self) -> list[AdvancedPromptOptimizationJobSummary] | None: ...
     @property
@@ -1927,6 +2083,7 @@ class ListAdvancedPromptOptimizationJobsOutput:
 
 @final
 class ListAutomatedReasoningPoliciesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPoliciesOutput/)."""
     @property
     def automated_reasoning_policy_summaries(self) -> list[AutomatedReasoningPolicySummary]: ...
     @property
@@ -1935,6 +2092,7 @@ class ListAutomatedReasoningPoliciesOutput:
 
 @final
 class ListAutomatedReasoningPolicyBuildWorkflowsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyBuildWorkflowsOutput/)."""
     @property
     def automated_reasoning_policy_build_workflow_summaries(self) -> list[AutomatedReasoningPolicyBuildWorkflowSummary]: ...
     @property
@@ -1943,6 +2101,7 @@ class ListAutomatedReasoningPolicyBuildWorkflowsOutput:
 
 @final
 class ListAutomatedReasoningPolicyTestCasesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestCasesOutput/)."""
     @property
     def test_cases(self) -> list[AutomatedReasoningPolicyTestCase]: ...
     @property
@@ -1951,6 +2110,7 @@ class ListAutomatedReasoningPolicyTestCasesOutput:
 
 @final
 class ListAutomatedReasoningPolicyTestResultsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListAutomatedReasoningPolicyTestResultsOutput/)."""
     @property
     def test_results(self) -> list[AutomatedReasoningPolicyTestResult]: ...
     @property
@@ -1959,6 +2119,7 @@ class ListAutomatedReasoningPolicyTestResultsOutput:
 
 @final
 class ListCustomModelDeploymentsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelDeploymentsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1967,6 +2128,7 @@ class ListCustomModelDeploymentsOutput:
 
 @final
 class ListCustomModelsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListCustomModelsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1975,6 +2137,7 @@ class ListCustomModelsOutput:
 
 @final
 class ListEnforcedGuardrailsConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEnforcedGuardrailsConfigurationOutput/)."""
     @property
     def guardrails_config(self) -> list[AccountEnforcedGuardrailOutputConfiguration]: ...
     @property
@@ -1983,6 +2146,7 @@ class ListEnforcedGuardrailsConfigurationOutput:
 
 @final
 class ListEvaluationJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListEvaluationJobsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -1991,6 +2155,7 @@ class ListEvaluationJobsOutput:
 
 @final
 class ListFoundationModelAgreementOffersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelAgreementOffersOutput/)."""
     @property
     def model_id(self) -> str: ...
     @property
@@ -1999,12 +2164,14 @@ class ListFoundationModelAgreementOffersOutput:
 
 @final
 class ListFoundationModelsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListFoundationModelsOutput/)."""
     @property
     def model_summaries(self) -> list[FoundationModelSummary] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListGuardrailsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListGuardrailsOutput/)."""
     @property
     def guardrails(self) -> list[GuardrailSummary]: ...
     @property
@@ -2013,6 +2180,7 @@ class ListGuardrailsOutput:
 
 @final
 class ListImportedModelsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListImportedModelsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2021,6 +2189,7 @@ class ListImportedModelsOutput:
 
 @final
 class ListInferenceProfilesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListInferenceProfilesOutput/)."""
     @property
     def inference_profile_summaries(self) -> list[InferenceProfileSummary] | None: ...
     @property
@@ -2029,6 +2198,7 @@ class ListInferenceProfilesOutput:
 
 @final
 class ListMarketplaceModelEndpointsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListMarketplaceModelEndpointsOutput/)."""
     @property
     def marketplace_model_endpoints(self) -> list[MarketplaceModelEndpointSummary] | None: ...
     @property
@@ -2037,6 +2207,7 @@ class ListMarketplaceModelEndpointsOutput:
 
 @final
 class ListModelCopyJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCopyJobsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2045,6 +2216,7 @@ class ListModelCopyJobsOutput:
 
 @final
 class ListModelCustomizationJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelCustomizationJobsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2053,6 +2225,7 @@ class ListModelCustomizationJobsOutput:
 
 @final
 class ListModelImportJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelImportJobsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2061,6 +2234,7 @@ class ListModelImportJobsOutput:
 
 @final
 class ListModelInvocationJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListModelInvocationJobsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2069,6 +2243,7 @@ class ListModelInvocationJobsOutput:
 
 @final
 class ListPromptRoutersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListPromptRoutersOutput/)."""
     @property
     def prompt_router_summaries(self) -> list[PromptRouterSummary] | None: ...
     @property
@@ -2077,6 +2252,7 @@ class ListPromptRoutersOutput:
 
 @final
 class ListProvisionedModelThroughputsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListProvisionedModelThroughputsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2085,12 +2261,14 @@ class ListProvisionedModelThroughputsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutAccountDataRetentionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutAccountDataRetentionOutput/)."""
     @property
     def mode(self) -> _types.DataRetentionModeOutput: ...
     @property
@@ -2099,6 +2277,7 @@ class PutAccountDataRetentionOutput:
 
 @final
 class PutEnforcedGuardrailConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutEnforcedGuardrailConfigurationOutput/)."""
     @property
     def config_id(self) -> str | None: ...
     @property
@@ -2109,26 +2288,31 @@ class PutEnforcedGuardrailConfigurationOutput:
 
 @final
 class PutModelInvocationLoggingConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutModelInvocationLoggingConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutResourcePolicyOutput/)."""
     @property
     def resource_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutUseCaseForModelAccessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/PutUseCaseForModelAccessOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RegisterMarketplaceModelEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/RegisterMarketplaceModelEndpointOutput/)."""
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartAutomatedReasoningPolicyBuildWorkflowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyBuildWorkflowOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2137,36 +2321,44 @@ class StartAutomatedReasoningPolicyBuildWorkflowOutput:
 
 @final
 class StartAutomatedReasoningPolicyTestWorkflowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StartAutomatedReasoningPolicyTestWorkflowOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopAdvancedPromptOptimizationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopAdvancedPromptOptimizationJobOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopEvaluationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopEvaluationJobOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopModelCustomizationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelCustomizationJobOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopModelInvocationJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/StopModelInvocationJobOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateAutomatedReasoningPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2179,6 +2371,7 @@ class UpdateAutomatedReasoningPolicyOutput:
 
 @final
 class UpdateAutomatedReasoningPolicyAnnotationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyAnnotationsOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2191,6 +2384,7 @@ class UpdateAutomatedReasoningPolicyAnnotationsOutput:
 
 @final
 class UpdateAutomatedReasoningPolicyTestCaseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateAutomatedReasoningPolicyTestCaseOutput/)."""
     @property
     def policy_arn(self) -> str: ...
     @property
@@ -2199,12 +2393,14 @@ class UpdateAutomatedReasoningPolicyTestCaseOutput:
 
 @final
 class UpdateCustomModelDeploymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateCustomModelDeploymentOutput/)."""
     @property
     def custom_model_deployment_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateGuardrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateGuardrailOutput/)."""
     @property
     def guardrail_id(self) -> str: ...
     @property
@@ -2217,12 +2413,14 @@ class UpdateGuardrailOutput:
 
 @final
 class UpdateMarketplaceModelEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateMarketplaceModelEndpointOutput/)."""
     @property
     def marketplace_model_endpoint(self) -> MarketplaceModelEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateProvisionedModelThroughputOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/UpdateProvisionedModelThroughputOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 

@@ -9,193 +9,379 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AccessLogSettingsOutput: TypeAlias = _native.AccessLogSettings
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AccessLogSettingsOutput/)."""
 ApiKey: TypeAlias = _native.ApiKey
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiKey/)."""
 ApiStageOutput: TypeAlias = _native.ApiStage
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiStageOutput/)."""
 Authorizer: TypeAlias = _native.Authorizer
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Authorizer/)."""
 BasePathMapping: TypeAlias = _native.BasePathMapping
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/BasePathMapping/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ByteStream/)."""
 CanarySettingsOutput: TypeAlias = _native.CanarySettings
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CanarySettingsOutput/)."""
 ClientCertificate: TypeAlias = _native.ClientCertificate
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ClientCertificate/)."""
 CreateApiKeyOutput: TypeAlias = _native.CreateApiKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateApiKeyOutput/)."""
 CreateAuthorizerOutput: TypeAlias = _native.CreateAuthorizerOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateAuthorizerOutput/)."""
 CreateBasePathMappingOutput: TypeAlias = _native.CreateBasePathMappingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateBasePathMappingOutput/)."""
 CreateDeploymentOutput: TypeAlias = _native.CreateDeploymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDeploymentOutput/)."""
 CreateDocumentationPartOutput: TypeAlias = _native.CreateDocumentationPartOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationPartOutput/)."""
 CreateDocumentationVersionOutput: TypeAlias = _native.CreateDocumentationVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationVersionOutput/)."""
 CreateDomainNameAccessAssociationOutput: TypeAlias = _native.CreateDomainNameAccessAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameAccessAssociationOutput/)."""
 CreateDomainNameOutput: TypeAlias = _native.CreateDomainNameOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameOutput/)."""
 CreateModelOutput: TypeAlias = _native.CreateModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateModelOutput/)."""
 CreateRequestValidatorOutput: TypeAlias = _native.CreateRequestValidatorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRequestValidatorOutput/)."""
 CreateResourceOutput: TypeAlias = _native.CreateResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateResourceOutput/)."""
 CreateRestApiOutput: TypeAlias = _native.CreateRestApiOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRestApiOutput/)."""
 CreateStageOutput: TypeAlias = _native.CreateStageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateStageOutput/)."""
 CreateUsagePlanKeyOutput: TypeAlias = _native.CreateUsagePlanKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanKeyOutput/)."""
 CreateUsagePlanOutput: TypeAlias = _native.CreateUsagePlanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanOutput/)."""
 CreateVpcLinkOutput: TypeAlias = _native.CreateVpcLinkOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateVpcLinkOutput/)."""
 Deployment: TypeAlias = _native.Deployment
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Deployment/)."""
 DocumentationPart: TypeAlias = _native.DocumentationPart
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationPart/)."""
 DocumentationPartLocationOutput: TypeAlias = _native.DocumentationPartLocation
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationPartLocationOutput/)."""
 DocumentationVersion: TypeAlias = _native.DocumentationVersion
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationVersion/)."""
 DomainName: TypeAlias = _native.DomainName
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DomainName/)."""
 DomainNameAccessAssociation: TypeAlias = _native.DomainNameAccessAssociation
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DomainNameAccessAssociation/)."""
 EndpointConfigurationOutput: TypeAlias = _native.EndpointConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/EndpointConfigurationOutput/)."""
 GatewayResponse: TypeAlias = _native.GatewayResponse
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GatewayResponse/)."""
 GenerateClientCertificateOutput: TypeAlias = _native.GenerateClientCertificateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GenerateClientCertificateOutput/)."""
 GetAccountOutput: TypeAlias = _native.GetAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAccountOutput/)."""
 GetApiKeyOutput: TypeAlias = _native.GetApiKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeyOutput/)."""
 GetApiKeysOutput: TypeAlias = _native.GetApiKeysOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeysOutput/)."""
 GetAuthorizerOutput: TypeAlias = _native.GetAuthorizerOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizerOutput/)."""
 GetAuthorizersOutput: TypeAlias = _native.GetAuthorizersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizersOutput/)."""
 GetBasePathMappingOutput: TypeAlias = _native.GetBasePathMappingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingOutput/)."""
 GetBasePathMappingsOutput: TypeAlias = _native.GetBasePathMappingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingsOutput/)."""
 GetClientCertificateOutput: TypeAlias = _native.GetClientCertificateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificateOutput/)."""
 GetClientCertificatesOutput: TypeAlias = _native.GetClientCertificatesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificatesOutput/)."""
 GetDeploymentOutput: TypeAlias = _native.GetDeploymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentOutput/)."""
 GetDeploymentsOutput: TypeAlias = _native.GetDeploymentsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentsOutput/)."""
 GetDocumentationPartOutput: TypeAlias = _native.GetDocumentationPartOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartOutput/)."""
 GetDocumentationPartsOutput: TypeAlias = _native.GetDocumentationPartsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartsOutput/)."""
 GetDocumentationVersionOutput: TypeAlias = _native.GetDocumentationVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionOutput/)."""
 GetDocumentationVersionsOutput: TypeAlias = _native.GetDocumentationVersionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionsOutput/)."""
 GetDomainNameAccessAssociationsOutput: TypeAlias = _native.GetDomainNameAccessAssociationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameAccessAssociationsOutput/)."""
 GetDomainNameOutput: TypeAlias = _native.GetDomainNameOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameOutput/)."""
 GetDomainNamesOutput: TypeAlias = _native.GetDomainNamesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNamesOutput/)."""
 GetExportOutput: TypeAlias = _native.GetExportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetExportOutput/)."""
 GetGatewayResponseOutput: TypeAlias = _native.GetGatewayResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponseOutput/)."""
 GetGatewayResponsesOutput: TypeAlias = _native.GetGatewayResponsesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponsesOutput/)."""
 GetIntegrationOutput: TypeAlias = _native.GetIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationOutput/)."""
 GetIntegrationResponseOutput: TypeAlias = _native.GetIntegrationResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationResponseOutput/)."""
 GetMethodOutput: TypeAlias = _native.GetMethodOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodOutput/)."""
 GetMethodResponseOutput: TypeAlias = _native.GetMethodResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodResponseOutput/)."""
 GetModelOutput: TypeAlias = _native.GetModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelOutput/)."""
 GetModelTemplateOutput: TypeAlias = _native.GetModelTemplateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelTemplateOutput/)."""
 GetModelsOutput: TypeAlias = _native.GetModelsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelsOutput/)."""
 GetRequestValidatorOutput: TypeAlias = _native.GetRequestValidatorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorOutput/)."""
 GetRequestValidatorsOutput: TypeAlias = _native.GetRequestValidatorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorsOutput/)."""
 GetResourceOutput: TypeAlias = _native.GetResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourceOutput/)."""
 GetResourcesOutput: TypeAlias = _native.GetResourcesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourcesOutput/)."""
 GetRestApiOutput: TypeAlias = _native.GetRestApiOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApiOutput/)."""
 GetRestApisOutput: TypeAlias = _native.GetRestApisOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApisOutput/)."""
 GetSdkOutput: TypeAlias = _native.GetSdkOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkOutput/)."""
 GetSdkTypeOutput: TypeAlias = _native.GetSdkTypeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypeOutput/)."""
 GetSdkTypesOutput: TypeAlias = _native.GetSdkTypesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypesOutput/)."""
 GetStageOutput: TypeAlias = _native.GetStageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStageOutput/)."""
 GetStagesOutput: TypeAlias = _native.GetStagesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStagesOutput/)."""
 GetTagsOutput: TypeAlias = _native.GetTagsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetTagsOutput/)."""
 GetUsageOutput: TypeAlias = _native.GetUsageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsageOutput/)."""
 GetUsagePlanKeyOutput: TypeAlias = _native.GetUsagePlanKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeyOutput/)."""
 GetUsagePlanKeysOutput: TypeAlias = _native.GetUsagePlanKeysOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeysOutput/)."""
 GetUsagePlanOutput: TypeAlias = _native.GetUsagePlanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanOutput/)."""
 GetUsagePlansOutput: TypeAlias = _native.GetUsagePlansOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlansOutput/)."""
 GetVpcLinkOutput: TypeAlias = _native.GetVpcLinkOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinkOutput/)."""
 GetVpcLinksOutput: TypeAlias = _native.GetVpcLinksOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinksOutput/)."""
 ImportApiKeysOutput: TypeAlias = _native.ImportApiKeysOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportApiKeysOutput/)."""
 ImportDocumentationPartsOutput: TypeAlias = _native.ImportDocumentationPartsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportDocumentationPartsOutput/)."""
 ImportRestApiOutput: TypeAlias = _native.ImportRestApiOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportRestApiOutput/)."""
 Integration: TypeAlias = _native.Integration
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Integration/)."""
 IntegrationResponse: TypeAlias = _native.IntegrationResponse
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IntegrationResponse/)."""
 Method: TypeAlias = _native.Method
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Method/)."""
 MethodResponse: TypeAlias = _native.MethodResponse
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodResponse/)."""
 MethodSettingOutput: TypeAlias = _native.MethodSetting
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodSettingOutput/)."""
 MethodSnapshotOutput: TypeAlias = _native.MethodSnapshot
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodSnapshotOutput/)."""
 Model: TypeAlias = _native.Model
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Model/)."""
 MutualTlsAuthenticationOutput: TypeAlias = _native.MutualTlsAuthentication
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MutualTlsAuthenticationOutput/)."""
 PutGatewayResponseOutput: TypeAlias = _native.PutGatewayResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutGatewayResponseOutput/)."""
 PutIntegrationOutput: TypeAlias = _native.PutIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationOutput/)."""
 PutIntegrationResponseOutput: TypeAlias = _native.PutIntegrationResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationResponseOutput/)."""
 PutMethodOutput: TypeAlias = _native.PutMethodOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodOutput/)."""
 PutMethodResponseOutput: TypeAlias = _native.PutMethodResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodResponseOutput/)."""
 PutRestApiOutput: TypeAlias = _native.PutRestApiOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutRestApiOutput/)."""
 QuotaSettingsOutput: TypeAlias = _native.QuotaSettings
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/QuotaSettingsOutput/)."""
 RequestValidator: TypeAlias = _native.RequestValidator
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/RequestValidator/)."""
 Resource: TypeAlias = _native.Resource
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Resource/)."""
 RestApi: TypeAlias = _native.RestApi
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/RestApi/)."""
 SdkConfigurationPropertyOutput: TypeAlias = _native.SdkConfigurationProperty
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SdkConfigurationPropertyOutput/)."""
 SdkType: TypeAlias = _native.SdkType
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SdkType/)."""
 Stage: TypeAlias = _native.Stage
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Stage/)."""
 TestInvokeAuthorizerOutput: TypeAlias = _native.TestInvokeAuthorizerOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeAuthorizerOutput/)."""
 TestInvokeMethodOutput: TypeAlias = _native.TestInvokeMethodOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeMethodOutput/)."""
 ThrottleSettingsOutput: TypeAlias = _native.ThrottleSettings
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ThrottleSettingsOutput/)."""
 TlsConfigOutput: TypeAlias = _native.TlsConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TlsConfigOutput/)."""
 UpdateAccountOutput: TypeAlias = _native.UpdateAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAccountOutput/)."""
 UpdateApiKeyOutput: TypeAlias = _native.UpdateApiKeyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateApiKeyOutput/)."""
 UpdateAuthorizerOutput: TypeAlias = _native.UpdateAuthorizerOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAuthorizerOutput/)."""
 UpdateBasePathMappingOutput: TypeAlias = _native.UpdateBasePathMappingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateBasePathMappingOutput/)."""
 UpdateClientCertificateOutput: TypeAlias = _native.UpdateClientCertificateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateClientCertificateOutput/)."""
 UpdateDeploymentOutput: TypeAlias = _native.UpdateDeploymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDeploymentOutput/)."""
 UpdateDocumentationPartOutput: TypeAlias = _native.UpdateDocumentationPartOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationPartOutput/)."""
 UpdateDocumentationVersionOutput: TypeAlias = _native.UpdateDocumentationVersionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationVersionOutput/)."""
 UpdateDomainNameOutput: TypeAlias = _native.UpdateDomainNameOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDomainNameOutput/)."""
 UpdateGatewayResponseOutput: TypeAlias = _native.UpdateGatewayResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateGatewayResponseOutput/)."""
 UpdateIntegrationOutput: TypeAlias = _native.UpdateIntegrationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationOutput/)."""
 UpdateIntegrationResponseOutput: TypeAlias = _native.UpdateIntegrationResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationResponseOutput/)."""
 UpdateMethodOutput: TypeAlias = _native.UpdateMethodOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodOutput/)."""
 UpdateMethodResponseOutput: TypeAlias = _native.UpdateMethodResponseOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodResponseOutput/)."""
 UpdateModelOutput: TypeAlias = _native.UpdateModelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateModelOutput/)."""
 UpdateRequestValidatorOutput: TypeAlias = _native.UpdateRequestValidatorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRequestValidatorOutput/)."""
 UpdateResourceOutput: TypeAlias = _native.UpdateResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateResourceOutput/)."""
 UpdateRestApiOutput: TypeAlias = _native.UpdateRestApiOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRestApiOutput/)."""
 UpdateStageOutput: TypeAlias = _native.UpdateStageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateStageOutput/)."""
 UpdateUsageOutput: TypeAlias = _native.UpdateUsageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsageOutput/)."""
 UpdateUsagePlanOutput: TypeAlias = _native.UpdateUsagePlanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsagePlanOutput/)."""
 UpdateVpcLinkOutput: TypeAlias = _native.UpdateVpcLinkOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateVpcLinkOutput/)."""
 UsagePlan: TypeAlias = _native.UsagePlan
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UsagePlan/)."""
 UsagePlanKey: TypeAlias = _native.UsagePlanKey
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UsagePlanKey/)."""
 VpcLink: TypeAlias = _native.VpcLink
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/VpcLink/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/JSONValue/)."""
 
 AccessAssociationSourceType: TypeAlias = Literal['VPCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AccessAssociationSourceType/)."""
 AccessAssociationSourceTypeOutput: TypeAlias = AccessAssociationSourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AccessAssociationSourceTypeOutput/)."""
 ApiKeySourceType: TypeAlias = Literal['HEADER', 'AUTHORIZER']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiKeySourceType/)."""
 ApiKeySourceTypeOutput: TypeAlias = ApiKeySourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiKeySourceTypeOutput/)."""
 ApiKeysFormat: TypeAlias = Literal['csv']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiKeysFormat/)."""
 ApiKeysFormatOutput: TypeAlias = ApiKeysFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiKeysFormatOutput/)."""
 ApiStatus: TypeAlias = Literal['UPDATING', 'AVAILABLE', 'PENDING', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiStatus/)."""
 ApiStatusOutput: TypeAlias = ApiStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiStatusOutput/)."""
 AuthorizerType: TypeAlias = Literal['TOKEN', 'REQUEST', 'COGNITO_USER_POOLS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AuthorizerType/)."""
 AuthorizerTypeOutput: TypeAlias = AuthorizerType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AuthorizerTypeOutput/)."""
 CacheClusterSize: TypeAlias = Literal['0.5', '1.6', '6.1', '13.5', '28.4', '58.2', '118', '237']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CacheClusterSize/)."""
 CacheClusterSizeOutput: TypeAlias = CacheClusterSize | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CacheClusterSizeOutput/)."""
 CacheClusterStatus: TypeAlias = Literal['CREATE_IN_PROGRESS', 'AVAILABLE', 'DELETE_IN_PROGRESS', 'NOT_AVAILABLE', 'FLUSH_IN_PROGRESS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CacheClusterStatus/)."""
 CacheClusterStatusOutput: TypeAlias = CacheClusterStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CacheClusterStatusOutput/)."""
 ConnectionType: TypeAlias = Literal['INTERNET', 'VPC_LINK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ConnectionType/)."""
 ConnectionTypeOutput: TypeAlias = ConnectionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ConnectionTypeOutput/)."""
 ContentHandlingStrategy: TypeAlias = Literal['CONVERT_TO_BINARY', 'CONVERT_TO_TEXT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ContentHandlingStrategy/)."""
 ContentHandlingStrategyOutput: TypeAlias = ContentHandlingStrategy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ContentHandlingStrategyOutput/)."""
 DocumentationPartType: TypeAlias = Literal['API', 'AUTHORIZER', 'MODEL', 'RESOURCE', 'METHOD', 'PATH_PARAMETER', 'QUERY_PARAMETER', 'REQUEST_HEADER', 'REQUEST_BODY', 'RESPONSE', 'RESPONSE_HEADER', 'RESPONSE_BODY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationPartType/)."""
 DocumentationPartTypeOutput: TypeAlias = DocumentationPartType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationPartTypeOutput/)."""
 DomainNameStatus: TypeAlias = Literal['AVAILABLE', 'UPDATING', 'PENDING', 'PENDING_CERTIFICATE_REIMPORT', 'PENDING_OWNERSHIP_VERIFICATION', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DomainNameStatus/)."""
 DomainNameStatusOutput: TypeAlias = DomainNameStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DomainNameStatusOutput/)."""
 EndpointAccessMode: TypeAlias = Literal['BASIC', 'STRICT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/EndpointAccessMode/)."""
 EndpointAccessModeOutput: TypeAlias = EndpointAccessMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/EndpointAccessModeOutput/)."""
 EndpointType: TypeAlias = Literal['REGIONAL', 'EDGE', 'PRIVATE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/EndpointType/)."""
 EndpointTypeOutput: TypeAlias = EndpointType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/EndpointTypeOutput/)."""
 GatewayResponseType: TypeAlias = Literal['DEFAULT_4XX', 'DEFAULT_5XX', 'RESOURCE_NOT_FOUND', 'UNAUTHORIZED', 'INVALID_API_KEY', 'ACCESS_DENIED', 'AUTHORIZER_FAILURE', 'AUTHORIZER_CONFIGURATION_ERROR', 'INVALID_SIGNATURE', 'EXPIRED_TOKEN', 'MISSING_AUTHENTICATION_TOKEN', 'INTEGRATION_FAILURE', 'INTEGRATION_TIMEOUT', 'API_CONFIGURATION_ERROR', 'UNSUPPORTED_MEDIA_TYPE', 'BAD_REQUEST_PARAMETERS', 'BAD_REQUEST_BODY', 'REQUEST_TOO_LARGE', 'THROTTLED', 'QUOTA_EXCEEDED', 'WAF_FILTERED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GatewayResponseType/)."""
 GatewayResponseTypeOutput: TypeAlias = GatewayResponseType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GatewayResponseTypeOutput/)."""
 IntegrationType: TypeAlias = Literal['HTTP', 'AWS', 'MOCK', 'HTTP_PROXY', 'AWS_PROXY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IntegrationType/)."""
 IntegrationTypeOutput: TypeAlias = IntegrationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IntegrationTypeOutput/)."""
 IpAddressType: TypeAlias = Literal['ipv4', 'dualstack']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IpAddressType/)."""
 IpAddressTypeOutput: TypeAlias = IpAddressType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IpAddressTypeOutput/)."""
 LocationStatusType: TypeAlias = Literal['DOCUMENTED', 'UNDOCUMENTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/LocationStatusType/)."""
 LocationStatusTypeOutput: TypeAlias = LocationStatusType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/LocationStatusTypeOutput/)."""
 Op: TypeAlias = Literal['add', 'remove', 'replace', 'move', 'copy', 'test']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Op/)."""
 OpOutput: TypeAlias = Op | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/OpOutput/)."""
 PutMode: TypeAlias = Literal['merge', 'overwrite']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMode/)."""
 PutModeOutput: TypeAlias = PutMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutModeOutput/)."""
 QuotaPeriodType: TypeAlias = Literal['DAY', 'WEEK', 'MONTH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/QuotaPeriodType/)."""
 QuotaPeriodTypeOutput: TypeAlias = QuotaPeriodType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/QuotaPeriodTypeOutput/)."""
 ResourceOwner: TypeAlias = Literal['SELF', 'OTHER_ACCOUNTS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ResourceOwner/)."""
 ResourceOwnerOutput: TypeAlias = ResourceOwner | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ResourceOwnerOutput/)."""
 ResponseTransferMode: TypeAlias = Literal['BUFFERED', 'STREAM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ResponseTransferMode/)."""
 ResponseTransferModeOutput: TypeAlias = ResponseTransferMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ResponseTransferModeOutput/)."""
 RoutingMode: TypeAlias = Literal['BASE_PATH_MAPPING_ONLY', 'ROUTING_RULE_ONLY', 'ROUTING_RULE_THEN_BASE_PATH_MAPPING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/RoutingMode/)."""
 RoutingModeOutput: TypeAlias = RoutingMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/RoutingModeOutput/)."""
 SecurityPolicy: TypeAlias = Literal['TLS_1_0', 'TLS_1_2', 'SecurityPolicy_TLS13_1_3_2025_09', 'SecurityPolicy_TLS13_1_3_FIPS_2025_09', 'SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09', 'SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09', 'SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09', 'SecurityPolicy_TLS13_1_2_Ext2_PQ_2025_09', 'SecurityPolicy_TLS13_1_2_Ext2_FIPS_PQ_2025_09', 'SecurityPolicy_TLS13_1_2_PQ_2025_09', 'SecurityPolicy_TLS13_1_2_2021_06', 'SecurityPolicy_TLS13_2025_EDGE', 'SecurityPolicy_TLS12_PFS_2025_EDGE', 'SecurityPolicy_TLS12_2018_EDGE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SecurityPolicy/)."""
 SecurityPolicyOutput: TypeAlias = SecurityPolicy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SecurityPolicyOutput/)."""
 UnauthorizedCacheControlHeaderStrategy: TypeAlias = Literal['FAIL_WITH_403', 'SUCCEED_WITH_RESPONSE_HEADER', 'SUCCEED_WITHOUT_RESPONSE_HEADER']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UnauthorizedCacheControlHeaderStrategy/)."""
 UnauthorizedCacheControlHeaderStrategyOutput: TypeAlias = UnauthorizedCacheControlHeaderStrategy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UnauthorizedCacheControlHeaderStrategyOutput/)."""
 VpcLinkStatus: TypeAlias = Literal['AVAILABLE', 'PENDING', 'DELETING', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/VpcLinkStatus/)."""
 VpcLinkStatusOutput: TypeAlias = VpcLinkStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/VpcLinkStatusOutput/)."""
 
 AccessLogSettings = TypedDict(
     "AccessLogSettings",
@@ -204,6 +390,7 @@ AccessLogSettings = TypedDict(
     "destination_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AccessLogSettings/)."""
 
 ApiStage = TypedDict(
     "ApiStage",
@@ -213,6 +400,7 @@ ApiStage = TypedDict(
     "throttle": NotRequired["dict[str, ThrottleSettings]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiStage/)."""
 
 CanarySettings = TypedDict(
     "CanarySettings",
@@ -223,6 +411,7 @@ CanarySettings = TypedDict(
     "use_stage_cache": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CanarySettings/)."""
 
 CreateApiKeyRequest = TypedDict(
     "CreateApiKeyRequest",
@@ -237,6 +426,7 @@ CreateApiKeyRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateApiKeyRequest/)."""
 
 CreateAuthorizerRequest = TypedDict(
     "CreateAuthorizerRequest",
@@ -253,6 +443,7 @@ CreateAuthorizerRequest = TypedDict(
     "authorizer_result_ttl_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateAuthorizerRequest/)."""
 
 CreateBasePathMappingRequest = TypedDict(
     "CreateBasePathMappingRequest",
@@ -264,6 +455,7 @@ CreateBasePathMappingRequest = TypedDict(
     "stage": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateBasePathMappingRequest/)."""
 
 CreateDeploymentRequest = TypedDict(
     "CreateDeploymentRequest",
@@ -279,6 +471,7 @@ CreateDeploymentRequest = TypedDict(
     "tracing_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDeploymentRequest/)."""
 
 CreateDocumentationPartRequest = TypedDict(
     "CreateDocumentationPartRequest",
@@ -288,6 +481,7 @@ CreateDocumentationPartRequest = TypedDict(
     "properties": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationPartRequest/)."""
 
 CreateDocumentationVersionRequest = TypedDict(
     "CreateDocumentationVersionRequest",
@@ -298,6 +492,7 @@ CreateDocumentationVersionRequest = TypedDict(
     "description": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationVersionRequest/)."""
 
 CreateDomainNameAccessAssociationRequest = TypedDict(
     "CreateDomainNameAccessAssociationRequest",
@@ -308,6 +503,7 @@ CreateDomainNameAccessAssociationRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameAccessAssociationRequest/)."""
 
 CreateDomainNameRequest = TypedDict(
     "CreateDomainNameRequest",
@@ -330,6 +526,7 @@ CreateDomainNameRequest = TypedDict(
     "routing_mode": NotRequired["RoutingMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameRequest/)."""
 
 CreateModelRequest = TypedDict(
     "CreateModelRequest",
@@ -341,6 +538,7 @@ CreateModelRequest = TypedDict(
     "content_type": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateModelRequest/)."""
 
 CreateRequestValidatorRequest = TypedDict(
     "CreateRequestValidatorRequest",
@@ -351,6 +549,7 @@ CreateRequestValidatorRequest = TypedDict(
     "validate_request_parameters": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRequestValidatorRequest/)."""
 
 CreateResourceRequest = TypedDict(
     "CreateResourceRequest",
@@ -360,6 +559,7 @@ CreateResourceRequest = TypedDict(
     "path_part": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateResourceRequest/)."""
 
 CreateRestApiRequest = TypedDict(
     "CreateRestApiRequest",
@@ -379,6 +579,7 @@ CreateRestApiRequest = TypedDict(
     "endpoint_access_mode": NotRequired["EndpointAccessMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRestApiRequest/)."""
 
 CreateStageRequest = TypedDict(
     "CreateStageRequest",
@@ -396,6 +597,7 @@ CreateStageRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateStageRequest/)."""
 
 CreateUsagePlanKeyRequest = TypedDict(
     "CreateUsagePlanKeyRequest",
@@ -405,6 +607,7 @@ CreateUsagePlanKeyRequest = TypedDict(
     "key_type": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanKeyRequest/)."""
 
 CreateUsagePlanRequest = TypedDict(
     "CreateUsagePlanRequest",
@@ -417,6 +620,7 @@ CreateUsagePlanRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanRequest/)."""
 
 CreateVpcLinkRequest = TypedDict(
     "CreateVpcLinkRequest",
@@ -427,6 +631,7 @@ CreateVpcLinkRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateVpcLinkRequest/)."""
 
 DeleteApiKeyRequest = TypedDict(
     "DeleteApiKeyRequest",
@@ -434,6 +639,7 @@ DeleteApiKeyRequest = TypedDict(
     "api_key": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteApiKeyRequest/)."""
 
 DeleteAuthorizerRequest = TypedDict(
     "DeleteAuthorizerRequest",
@@ -442,6 +648,7 @@ DeleteAuthorizerRequest = TypedDict(
     "authorizer_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteAuthorizerRequest/)."""
 
 DeleteBasePathMappingRequest = TypedDict(
     "DeleteBasePathMappingRequest",
@@ -451,6 +658,7 @@ DeleteBasePathMappingRequest = TypedDict(
     "base_path": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteBasePathMappingRequest/)."""
 
 DeleteClientCertificateRequest = TypedDict(
     "DeleteClientCertificateRequest",
@@ -458,6 +666,7 @@ DeleteClientCertificateRequest = TypedDict(
     "client_certificate_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteClientCertificateRequest/)."""
 
 DeleteDeploymentRequest = TypedDict(
     "DeleteDeploymentRequest",
@@ -466,6 +675,7 @@ DeleteDeploymentRequest = TypedDict(
     "deployment_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteDeploymentRequest/)."""
 
 DeleteDocumentationPartRequest = TypedDict(
     "DeleteDocumentationPartRequest",
@@ -474,6 +684,7 @@ DeleteDocumentationPartRequest = TypedDict(
     "documentation_part_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteDocumentationPartRequest/)."""
 
 DeleteDocumentationVersionRequest = TypedDict(
     "DeleteDocumentationVersionRequest",
@@ -482,6 +693,7 @@ DeleteDocumentationVersionRequest = TypedDict(
     "documentation_version": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteDocumentationVersionRequest/)."""
 
 DeleteDomainNameAccessAssociationRequest = TypedDict(
     "DeleteDomainNameAccessAssociationRequest",
@@ -489,6 +701,7 @@ DeleteDomainNameAccessAssociationRequest = TypedDict(
     "domain_name_access_association_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteDomainNameAccessAssociationRequest/)."""
 
 DeleteDomainNameRequest = TypedDict(
     "DeleteDomainNameRequest",
@@ -497,6 +710,7 @@ DeleteDomainNameRequest = TypedDict(
     "domain_name_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteDomainNameRequest/)."""
 
 DeleteGatewayResponseRequest = TypedDict(
     "DeleteGatewayResponseRequest",
@@ -505,6 +719,7 @@ DeleteGatewayResponseRequest = TypedDict(
     "response_type": Required["GatewayResponseType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteGatewayResponseRequest/)."""
 
 DeleteIntegrationRequest = TypedDict(
     "DeleteIntegrationRequest",
@@ -514,6 +729,7 @@ DeleteIntegrationRequest = TypedDict(
     "http_method": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteIntegrationRequest/)."""
 
 DeleteIntegrationResponseRequest = TypedDict(
     "DeleteIntegrationResponseRequest",
@@ -524,6 +740,7 @@ DeleteIntegrationResponseRequest = TypedDict(
     "status_code": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteIntegrationResponseRequest/)."""
 
 DeleteMethodRequest = TypedDict(
     "DeleteMethodRequest",
@@ -533,6 +750,7 @@ DeleteMethodRequest = TypedDict(
     "http_method": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteMethodRequest/)."""
 
 DeleteMethodResponseRequest = TypedDict(
     "DeleteMethodResponseRequest",
@@ -543,6 +761,7 @@ DeleteMethodResponseRequest = TypedDict(
     "status_code": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteMethodResponseRequest/)."""
 
 DeleteModelRequest = TypedDict(
     "DeleteModelRequest",
@@ -551,6 +770,7 @@ DeleteModelRequest = TypedDict(
     "model_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteModelRequest/)."""
 
 DeleteRequestValidatorRequest = TypedDict(
     "DeleteRequestValidatorRequest",
@@ -559,6 +779,7 @@ DeleteRequestValidatorRequest = TypedDict(
     "request_validator_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteRequestValidatorRequest/)."""
 
 DeleteResourceRequest = TypedDict(
     "DeleteResourceRequest",
@@ -567,6 +788,7 @@ DeleteResourceRequest = TypedDict(
     "resource_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteResourceRequest/)."""
 
 DeleteRestApiRequest = TypedDict(
     "DeleteRestApiRequest",
@@ -574,6 +796,7 @@ DeleteRestApiRequest = TypedDict(
     "rest_api_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteRestApiRequest/)."""
 
 DeleteStageRequest = TypedDict(
     "DeleteStageRequest",
@@ -582,6 +805,7 @@ DeleteStageRequest = TypedDict(
     "stage_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteStageRequest/)."""
 
 DeleteUsagePlanKeyRequest = TypedDict(
     "DeleteUsagePlanKeyRequest",
@@ -590,6 +814,7 @@ DeleteUsagePlanKeyRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteUsagePlanKeyRequest/)."""
 
 DeleteUsagePlanRequest = TypedDict(
     "DeleteUsagePlanRequest",
@@ -597,6 +822,7 @@ DeleteUsagePlanRequest = TypedDict(
     "usage_plan_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteUsagePlanRequest/)."""
 
 DeleteVpcLinkRequest = TypedDict(
     "DeleteVpcLinkRequest",
@@ -604,6 +830,7 @@ DeleteVpcLinkRequest = TypedDict(
     "vpc_link_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeleteVpcLinkRequest/)."""
 
 DeploymentCanarySettings = TypedDict(
     "DeploymentCanarySettings",
@@ -613,6 +840,7 @@ DeploymentCanarySettings = TypedDict(
     "use_stage_cache": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DeploymentCanarySettings/)."""
 
 DocumentationPartLocation = TypedDict(
     "DocumentationPartLocation",
@@ -624,6 +852,7 @@ DocumentationPartLocation = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationPartLocation/)."""
 
 EndpointConfiguration = TypedDict(
     "EndpointConfiguration",
@@ -633,6 +862,7 @@ EndpointConfiguration = TypedDict(
     "vpc_endpoint_ids": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/EndpointConfiguration/)."""
 
 FlushStageAuthorizersCacheRequest = TypedDict(
     "FlushStageAuthorizersCacheRequest",
@@ -641,6 +871,7 @@ FlushStageAuthorizersCacheRequest = TypedDict(
     "stage_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/FlushStageAuthorizersCacheRequest/)."""
 
 FlushStageCacheRequest = TypedDict(
     "FlushStageCacheRequest",
@@ -649,6 +880,7 @@ FlushStageCacheRequest = TypedDict(
     "stage_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/FlushStageCacheRequest/)."""
 
 GenerateClientCertificateRequest = TypedDict(
     "GenerateClientCertificateRequest",
@@ -657,12 +889,14 @@ GenerateClientCertificateRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GenerateClientCertificateRequest/)."""
 
 GetAccountRequest = TypedDict(
     "GetAccountRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAccountRequest/)."""
 
 GetApiKeyRequest = TypedDict(
     "GetApiKeyRequest",
@@ -671,6 +905,7 @@ GetApiKeyRequest = TypedDict(
     "include_value": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeyRequest/)."""
 
 GetApiKeysRequest = TypedDict(
     "GetApiKeysRequest",
@@ -682,6 +917,7 @@ GetApiKeysRequest = TypedDict(
     "include_values": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeysRequest/)."""
 
 GetAuthorizerRequest = TypedDict(
     "GetAuthorizerRequest",
@@ -690,6 +926,7 @@ GetAuthorizerRequest = TypedDict(
     "authorizer_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizerRequest/)."""
 
 GetAuthorizersRequest = TypedDict(
     "GetAuthorizersRequest",
@@ -699,6 +936,7 @@ GetAuthorizersRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizersRequest/)."""
 
 GetBasePathMappingRequest = TypedDict(
     "GetBasePathMappingRequest",
@@ -708,6 +946,7 @@ GetBasePathMappingRequest = TypedDict(
     "base_path": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingRequest/)."""
 
 GetBasePathMappingsRequest = TypedDict(
     "GetBasePathMappingsRequest",
@@ -718,6 +957,7 @@ GetBasePathMappingsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingsRequest/)."""
 
 GetClientCertificateRequest = TypedDict(
     "GetClientCertificateRequest",
@@ -725,6 +965,7 @@ GetClientCertificateRequest = TypedDict(
     "client_certificate_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificateRequest/)."""
 
 GetClientCertificatesRequest = TypedDict(
     "GetClientCertificatesRequest",
@@ -733,6 +974,7 @@ GetClientCertificatesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificatesRequest/)."""
 
 GetDeploymentRequest = TypedDict(
     "GetDeploymentRequest",
@@ -742,6 +984,7 @@ GetDeploymentRequest = TypedDict(
     "embed": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentRequest/)."""
 
 GetDeploymentsRequest = TypedDict(
     "GetDeploymentsRequest",
@@ -751,6 +994,7 @@ GetDeploymentsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentsRequest/)."""
 
 GetDocumentationPartRequest = TypedDict(
     "GetDocumentationPartRequest",
@@ -759,6 +1003,7 @@ GetDocumentationPartRequest = TypedDict(
     "documentation_part_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartRequest/)."""
 
 GetDocumentationPartsRequest = TypedDict(
     "GetDocumentationPartsRequest",
@@ -772,6 +1017,7 @@ GetDocumentationPartsRequest = TypedDict(
     "location_status": NotRequired["LocationStatusType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartsRequest/)."""
 
 GetDocumentationVersionRequest = TypedDict(
     "GetDocumentationVersionRequest",
@@ -780,6 +1026,7 @@ GetDocumentationVersionRequest = TypedDict(
     "documentation_version": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionRequest/)."""
 
 GetDocumentationVersionsRequest = TypedDict(
     "GetDocumentationVersionsRequest",
@@ -789,6 +1036,7 @@ GetDocumentationVersionsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionsRequest/)."""
 
 GetDomainNameAccessAssociationsRequest = TypedDict(
     "GetDomainNameAccessAssociationsRequest",
@@ -798,6 +1046,7 @@ GetDomainNameAccessAssociationsRequest = TypedDict(
     "resource_owner": NotRequired["ResourceOwner"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameAccessAssociationsRequest/)."""
 
 GetDomainNameRequest = TypedDict(
     "GetDomainNameRequest",
@@ -806,6 +1055,7 @@ GetDomainNameRequest = TypedDict(
     "domain_name_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameRequest/)."""
 
 GetDomainNamesRequest = TypedDict(
     "GetDomainNamesRequest",
@@ -815,6 +1065,7 @@ GetDomainNamesRequest = TypedDict(
     "resource_owner": NotRequired["ResourceOwner"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNamesRequest/)."""
 
 GetExportRequest = TypedDict(
     "GetExportRequest",
@@ -826,6 +1077,7 @@ GetExportRequest = TypedDict(
     "accepts": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetExportRequest/)."""
 
 GetGatewayResponseRequest = TypedDict(
     "GetGatewayResponseRequest",
@@ -834,6 +1086,7 @@ GetGatewayResponseRequest = TypedDict(
     "response_type": Required["GatewayResponseType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponseRequest/)."""
 
 GetGatewayResponsesRequest = TypedDict(
     "GetGatewayResponsesRequest",
@@ -843,6 +1096,7 @@ GetGatewayResponsesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponsesRequest/)."""
 
 GetIntegrationRequest = TypedDict(
     "GetIntegrationRequest",
@@ -852,6 +1106,7 @@ GetIntegrationRequest = TypedDict(
     "http_method": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationRequest/)."""
 
 GetIntegrationResponseRequest = TypedDict(
     "GetIntegrationResponseRequest",
@@ -862,6 +1117,7 @@ GetIntegrationResponseRequest = TypedDict(
     "status_code": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationResponseRequest/)."""
 
 GetMethodRequest = TypedDict(
     "GetMethodRequest",
@@ -871,6 +1127,7 @@ GetMethodRequest = TypedDict(
     "http_method": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodRequest/)."""
 
 GetMethodResponseRequest = TypedDict(
     "GetMethodResponseRequest",
@@ -881,6 +1138,7 @@ GetMethodResponseRequest = TypedDict(
     "status_code": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodResponseRequest/)."""
 
 GetModelRequest = TypedDict(
     "GetModelRequest",
@@ -890,6 +1148,7 @@ GetModelRequest = TypedDict(
     "flatten": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelRequest/)."""
 
 GetModelTemplateRequest = TypedDict(
     "GetModelTemplateRequest",
@@ -898,6 +1157,7 @@ GetModelTemplateRequest = TypedDict(
     "model_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelTemplateRequest/)."""
 
 GetModelsRequest = TypedDict(
     "GetModelsRequest",
@@ -907,6 +1167,7 @@ GetModelsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelsRequest/)."""
 
 GetRequestValidatorRequest = TypedDict(
     "GetRequestValidatorRequest",
@@ -915,6 +1176,7 @@ GetRequestValidatorRequest = TypedDict(
     "request_validator_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorRequest/)."""
 
 GetRequestValidatorsRequest = TypedDict(
     "GetRequestValidatorsRequest",
@@ -924,6 +1186,7 @@ GetRequestValidatorsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorsRequest/)."""
 
 GetResourceRequest = TypedDict(
     "GetResourceRequest",
@@ -933,6 +1196,7 @@ GetResourceRequest = TypedDict(
     "embed": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourceRequest/)."""
 
 GetResourcesRequest = TypedDict(
     "GetResourcesRequest",
@@ -943,6 +1207,7 @@ GetResourcesRequest = TypedDict(
     "embed": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourcesRequest/)."""
 
 GetRestApiRequest = TypedDict(
     "GetRestApiRequest",
@@ -950,6 +1215,7 @@ GetRestApiRequest = TypedDict(
     "rest_api_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApiRequest/)."""
 
 GetRestApisRequest = TypedDict(
     "GetRestApisRequest",
@@ -958,6 +1224,7 @@ GetRestApisRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApisRequest/)."""
 
 GetSdkRequest = TypedDict(
     "GetSdkRequest",
@@ -968,6 +1235,7 @@ GetSdkRequest = TypedDict(
     "parameters": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkRequest/)."""
 
 GetSdkTypeRequest = TypedDict(
     "GetSdkTypeRequest",
@@ -975,6 +1243,7 @@ GetSdkTypeRequest = TypedDict(
     "id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypeRequest/)."""
 
 GetSdkTypesRequest = TypedDict(
     "GetSdkTypesRequest",
@@ -983,6 +1252,7 @@ GetSdkTypesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypesRequest/)."""
 
 GetStageRequest = TypedDict(
     "GetStageRequest",
@@ -991,6 +1261,7 @@ GetStageRequest = TypedDict(
     "stage_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStageRequest/)."""
 
 GetStagesRequest = TypedDict(
     "GetStagesRequest",
@@ -999,6 +1270,7 @@ GetStagesRequest = TypedDict(
     "deployment_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStagesRequest/)."""
 
 GetTagsRequest = TypedDict(
     "GetTagsRequest",
@@ -1008,6 +1280,7 @@ GetTagsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetTagsRequest/)."""
 
 GetUsagePlanKeyRequest = TypedDict(
     "GetUsagePlanKeyRequest",
@@ -1016,6 +1289,7 @@ GetUsagePlanKeyRequest = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeyRequest/)."""
 
 GetUsagePlanKeysRequest = TypedDict(
     "GetUsagePlanKeysRequest",
@@ -1026,6 +1300,7 @@ GetUsagePlanKeysRequest = TypedDict(
     "name_query": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeysRequest/)."""
 
 GetUsagePlanRequest = TypedDict(
     "GetUsagePlanRequest",
@@ -1033,6 +1308,7 @@ GetUsagePlanRequest = TypedDict(
     "usage_plan_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanRequest/)."""
 
 GetUsagePlansRequest = TypedDict(
     "GetUsagePlansRequest",
@@ -1042,6 +1318,7 @@ GetUsagePlansRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlansRequest/)."""
 
 GetUsageRequest = TypedDict(
     "GetUsageRequest",
@@ -1054,6 +1331,7 @@ GetUsageRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsageRequest/)."""
 
 GetVpcLinkRequest = TypedDict(
     "GetVpcLinkRequest",
@@ -1061,6 +1339,7 @@ GetVpcLinkRequest = TypedDict(
     "vpc_link_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinkRequest/)."""
 
 GetVpcLinksRequest = TypedDict(
     "GetVpcLinksRequest",
@@ -1069,6 +1348,7 @@ GetVpcLinksRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinksRequest/)."""
 
 ImportApiKeysRequest = TypedDict(
     "ImportApiKeysRequest",
@@ -1078,6 +1358,7 @@ ImportApiKeysRequest = TypedDict(
     "fail_on_warnings": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportApiKeysRequest/)."""
 
 ImportDocumentationPartsRequest = TypedDict(
     "ImportDocumentationPartsRequest",
@@ -1088,6 +1369,7 @@ ImportDocumentationPartsRequest = TypedDict(
     "body": Required["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportDocumentationPartsRequest/)."""
 
 ImportRestApiRequest = TypedDict(
     "ImportRestApiRequest",
@@ -1097,6 +1379,7 @@ ImportRestApiRequest = TypedDict(
     "body": Required["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportRestApiRequest/)."""
 
 MethodSetting = TypedDict(
     "MethodSetting",
@@ -1113,6 +1396,7 @@ MethodSetting = TypedDict(
     "unauthorized_cache_control_header_strategy": NotRequired["UnauthorizedCacheControlHeaderStrategy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodSetting/)."""
 
 MethodSnapshot = TypedDict(
     "MethodSnapshot",
@@ -1121,6 +1405,7 @@ MethodSnapshot = TypedDict(
     "api_key_required": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodSnapshot/)."""
 
 MutualTlsAuthentication = TypedDict(
     "MutualTlsAuthentication",
@@ -1130,6 +1415,7 @@ MutualTlsAuthentication = TypedDict(
     "truststore_warnings": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MutualTlsAuthentication/)."""
 
 MutualTlsAuthenticationInput = TypedDict(
     "MutualTlsAuthenticationInput",
@@ -1138,6 +1424,7 @@ MutualTlsAuthenticationInput = TypedDict(
     "truststore_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MutualTlsAuthenticationInput/)."""
 
 PatchOperation = TypedDict(
     "PatchOperation",
@@ -1148,6 +1435,7 @@ PatchOperation = TypedDict(
     "from": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PatchOperation/)."""
 
 PutGatewayResponseRequest = TypedDict(
     "PutGatewayResponseRequest",
@@ -1159,6 +1447,7 @@ PutGatewayResponseRequest = TypedDict(
     "response_templates": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutGatewayResponseRequest/)."""
 
 PutIntegrationRequest = TypedDict(
     "PutIntegrationRequest",
@@ -1184,6 +1473,7 @@ PutIntegrationRequest = TypedDict(
     "integration_target": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationRequest/)."""
 
 PutIntegrationResponseRequest = TypedDict(
     "PutIntegrationResponseRequest",
@@ -1198,6 +1488,7 @@ PutIntegrationResponseRequest = TypedDict(
     "content_handling": NotRequired["ContentHandlingStrategy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationResponseRequest/)."""
 
 PutMethodRequest = TypedDict(
     "PutMethodRequest",
@@ -1215,6 +1506,7 @@ PutMethodRequest = TypedDict(
     "authorization_scopes": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodRequest/)."""
 
 PutMethodResponseRequest = TypedDict(
     "PutMethodResponseRequest",
@@ -1227,6 +1519,7 @@ PutMethodResponseRequest = TypedDict(
     "response_models": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodResponseRequest/)."""
 
 PutRestApiRequest = TypedDict(
     "PutRestApiRequest",
@@ -1238,6 +1531,7 @@ PutRestApiRequest = TypedDict(
     "body": Required["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutRestApiRequest/)."""
 
 QuotaSettings = TypedDict(
     "QuotaSettings",
@@ -1247,6 +1541,7 @@ QuotaSettings = TypedDict(
     "period": NotRequired["QuotaPeriodType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/QuotaSettings/)."""
 
 RejectDomainNameAccessAssociationRequest = TypedDict(
     "RejectDomainNameAccessAssociationRequest",
@@ -1255,6 +1550,7 @@ RejectDomainNameAccessAssociationRequest = TypedDict(
     "domain_name_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/RejectDomainNameAccessAssociationRequest/)."""
 
 SdkConfigurationProperty = TypedDict(
     "SdkConfigurationProperty",
@@ -1266,6 +1562,7 @@ SdkConfigurationProperty = TypedDict(
     "default_value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SdkConfigurationProperty/)."""
 
 StageKey = TypedDict(
     "StageKey",
@@ -1274,6 +1571,7 @@ StageKey = TypedDict(
     "stage_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/StageKey/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -1282,6 +1580,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TagResourceRequest/)."""
 
 TestInvokeAuthorizerRequest = TypedDict(
     "TestInvokeAuthorizerRequest",
@@ -1296,6 +1595,7 @@ TestInvokeAuthorizerRequest = TypedDict(
     "additional_context": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeAuthorizerRequest/)."""
 
 TestInvokeMethodRequest = TypedDict(
     "TestInvokeMethodRequest",
@@ -1311,6 +1611,7 @@ TestInvokeMethodRequest = TypedDict(
     "stage_variables": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeMethodRequest/)."""
 
 ThrottleSettings = TypedDict(
     "ThrottleSettings",
@@ -1319,6 +1620,7 @@ ThrottleSettings = TypedDict(
     "rate_limit": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ThrottleSettings/)."""
 
 TlsConfig = TypedDict(
     "TlsConfig",
@@ -1326,6 +1628,7 @@ TlsConfig = TypedDict(
     "insecure_skip_verification": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TlsConfig/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -1334,6 +1637,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UntagResourceRequest/)."""
 
 UpdateAccountRequest = TypedDict(
     "UpdateAccountRequest",
@@ -1341,6 +1645,7 @@ UpdateAccountRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAccountRequest/)."""
 
 UpdateApiKeyRequest = TypedDict(
     "UpdateApiKeyRequest",
@@ -1349,6 +1654,7 @@ UpdateApiKeyRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateApiKeyRequest/)."""
 
 UpdateAuthorizerRequest = TypedDict(
     "UpdateAuthorizerRequest",
@@ -1358,6 +1664,7 @@ UpdateAuthorizerRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAuthorizerRequest/)."""
 
 UpdateBasePathMappingRequest = TypedDict(
     "UpdateBasePathMappingRequest",
@@ -1368,6 +1675,7 @@ UpdateBasePathMappingRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateBasePathMappingRequest/)."""
 
 UpdateClientCertificateRequest = TypedDict(
     "UpdateClientCertificateRequest",
@@ -1376,6 +1684,7 @@ UpdateClientCertificateRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateClientCertificateRequest/)."""
 
 UpdateDeploymentRequest = TypedDict(
     "UpdateDeploymentRequest",
@@ -1385,6 +1694,7 @@ UpdateDeploymentRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDeploymentRequest/)."""
 
 UpdateDocumentationPartRequest = TypedDict(
     "UpdateDocumentationPartRequest",
@@ -1394,6 +1704,7 @@ UpdateDocumentationPartRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationPartRequest/)."""
 
 UpdateDocumentationVersionRequest = TypedDict(
     "UpdateDocumentationVersionRequest",
@@ -1403,6 +1714,7 @@ UpdateDocumentationVersionRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationVersionRequest/)."""
 
 UpdateDomainNameRequest = TypedDict(
     "UpdateDomainNameRequest",
@@ -1412,6 +1724,7 @@ UpdateDomainNameRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDomainNameRequest/)."""
 
 UpdateGatewayResponseRequest = TypedDict(
     "UpdateGatewayResponseRequest",
@@ -1421,6 +1734,7 @@ UpdateGatewayResponseRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateGatewayResponseRequest/)."""
 
 UpdateIntegrationRequest = TypedDict(
     "UpdateIntegrationRequest",
@@ -1431,6 +1745,7 @@ UpdateIntegrationRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationRequest/)."""
 
 UpdateIntegrationResponseRequest = TypedDict(
     "UpdateIntegrationResponseRequest",
@@ -1442,6 +1757,7 @@ UpdateIntegrationResponseRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationResponseRequest/)."""
 
 UpdateMethodRequest = TypedDict(
     "UpdateMethodRequest",
@@ -1452,6 +1768,7 @@ UpdateMethodRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodRequest/)."""
 
 UpdateMethodResponseRequest = TypedDict(
     "UpdateMethodResponseRequest",
@@ -1463,6 +1780,7 @@ UpdateMethodResponseRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodResponseRequest/)."""
 
 UpdateModelRequest = TypedDict(
     "UpdateModelRequest",
@@ -1472,6 +1790,7 @@ UpdateModelRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateModelRequest/)."""
 
 UpdateRequestValidatorRequest = TypedDict(
     "UpdateRequestValidatorRequest",
@@ -1481,6 +1800,7 @@ UpdateRequestValidatorRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRequestValidatorRequest/)."""
 
 UpdateResourceRequest = TypedDict(
     "UpdateResourceRequest",
@@ -1490,6 +1810,7 @@ UpdateResourceRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateResourceRequest/)."""
 
 UpdateRestApiRequest = TypedDict(
     "UpdateRestApiRequest",
@@ -1498,6 +1819,7 @@ UpdateRestApiRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRestApiRequest/)."""
 
 UpdateStageRequest = TypedDict(
     "UpdateStageRequest",
@@ -1507,6 +1829,7 @@ UpdateStageRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateStageRequest/)."""
 
 UpdateUsagePlanRequest = TypedDict(
     "UpdateUsagePlanRequest",
@@ -1515,6 +1838,7 @@ UpdateUsagePlanRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsagePlanRequest/)."""
 
 UpdateUsageRequest = TypedDict(
     "UpdateUsageRequest",
@@ -1524,6 +1848,7 @@ UpdateUsageRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsageRequest/)."""
 
 UpdateVpcLinkRequest = TypedDict(
     "UpdateVpcLinkRequest",
@@ -1532,3 +1857,4 @@ UpdateVpcLinkRequest = TypedDict(
     "patch_operations": NotRequired["Sequence[PatchOperation]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateVpcLinkRequest/)."""
