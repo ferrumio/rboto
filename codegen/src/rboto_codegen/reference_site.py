@@ -45,6 +45,13 @@ def prepare(root: Path) -> None:
         f"Source version: `{version}`. "
         "This website can be ahead of your installed package.\n",
     ]
+    waiters = [
+        "# Waiter catalog\n",
+        f"Source version: `{version}`. Only validated definitions are exposed. "
+        "This website can be ahead of your installed package.\n",
+        "| Client | Waiter | Polling operation | Default delay |",
+        "|---|---|---|---|",
+    ]
     for descriptor in list_services():
         generator = ServiceGenerator(
             descriptor, root / "codegen/models" / f"{descriptor.service_id}.json", root,
@@ -54,7 +61,14 @@ def prepare(root: Path) -> None:
             raise ValueError(f"Case-insensitive reference path collision: {descriptor.service_id}")
         write_reference(destination / descriptor.service_id, files)
         index.append(f"- [{descriptor.public_name}]({descriptor.service_id}/index.md)")
+        waiters.extend(
+            f"| `{descriptor.client_class}` | "
+            f"[`{item.name}`]({descriptor.service_id}/operations/{item.operation}.md#waiters) | "
+            f"`{item.operation}` | {item.delay} s |"
+            for item in generator.waiters
+        )
     (destination / "services.md").write_text("\n".join(index) + "\n")
+    (destination / "waiters.md").write_text("\n".join(waiters) + "\n")
     check_links(destination)
 
 

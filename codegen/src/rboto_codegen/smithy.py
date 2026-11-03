@@ -8,7 +8,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-from .model import Pagination, ServiceDescriptor
+from .model import Pagination, ServiceDescriptor, Waiter
+from .waiter_metadata import parse_waiters
 
 
 @dataclass(frozen=True, slots=True)
@@ -46,6 +47,7 @@ class SmithyOperation:
     errors: tuple[str, ...]
     documentation: str
     pagination: Pagination | None = None
+    waiters: tuple[Waiter, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -267,6 +269,9 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
                 errors=errors,
                 documentation=str(operation_traits.get("smithy.api#documentation", "")),
                 pagination=pagination,
+                waiters=parse_waiters(
+                    operation_traits.get("smithy.waiters#waitable", {}), name,
+                ),
             )
         )
 

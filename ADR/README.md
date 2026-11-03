@@ -39,6 +39,8 @@ separate from the public documentation under `docs/`.
 - [ADR-0022: Publish the package family with a PyPI API token](0022-pypi-token-publishing.md)
 - [ADR-0023: Website operation references and docstring links](0023-generated-operation-references.md)
 - [ADR-0024: Bound and configure per-service runtime workers](0024-runtime-worker-policy.md)
+- [ADR-0025: Share native output nodes](0025-shared-native-output-nodes.md)
+- [ADR-0026: Generate typed async waiters](0026-typed-async-waiters.md)
 
 ## Creating an ADR
 

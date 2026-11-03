@@ -53,6 +53,7 @@ from .services import (
 )
 from .session import Session
 from .types import UnknownEnumValue
+from .waiters import WaiterConfig
 
 if TYPE_CHECKING:
     from rboto_api_gateway import APIGatewayClient
@@ -108,6 +109,7 @@ __all__ = [
     "operation_context",
     "Session",
     "UnknownEnumValue",
+    "WaiterConfig",
     "APIGatewayClient",
     "BedrockClient",
     "BedrockAgentClient",

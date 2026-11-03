@@ -76,6 +76,22 @@ See [configuration](https://ferrumio.github.io/rboto/guides/configuration/),
 [errors](https://ferrumio.github.io/rboto/guides/errors/), and
 [streaming](https://ferrumio.github.io/rboto/guides/streaming/).
 
+## Waiters
+
+Use `await client.waiters.name(...)` to wait for a resource state. Each waiter accepts
+the polling operation's typed arguments plus `waiter_config: WaiterConfig | None`.
+Import `WaiterConfig` from `rboto` to set the poll delay, maximum attempts, or overall
+timeout. See the [waiter guide](https://ferrumio.github.io/rboto/guides/waiters/).
+
+| Waiter | Polling operation |
+|---|---|
+| [`contributor_insights_enabled`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_contributor_insights/#waiters) | `describe_contributor_insights` |
+| [`export_completed`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_export/#waiters) | `describe_export` |
+| [`import_completed`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_import/#waiters) | `describe_import` |
+| [`kinesis_streaming_destination_active`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_kinesis_streaming_destination/#waiters) | `describe_kinesis_streaming_destination` |
+| [`table_exists`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_table/#waiters) | `describe_table` |
+| [`table_not_exists`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_table/#waiters) | `describe_table` |
+
 ## Operations
 
 The [operation reference](https://ferrumio.github.io/rboto/reference/dynamodb/)

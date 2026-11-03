@@ -77,6 +77,22 @@ See [configuration](https://ferrumio.github.io/rboto/guides/configuration/),
 [errors](https://ferrumio.github.io/rboto/guides/errors/), and
 [streaming](https://ferrumio.github.io/rboto/guides/streaming/).
 
+## Waiters
+
+Use `await client.waiters.name(...)` to wait for a resource state. Each waiter accepts
+the polling operation's typed arguments plus `waiter_config: WaiterConfig | None`.
+Import `WaiterConfig` from `rboto` to set the poll delay, maximum attempts, or overall
+timeout. See the [waiter guide](https://ferrumio.github.io/rboto/guides/waiters/).
+
+| Waiter | Polling operation |
+|---|---|
+| [`function_active`](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_configuration/#waiters) | `get_function_configuration` |
+| [`function_active_v2`](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function/#waiters) | `get_function` |
+| [`function_exists`](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function/#waiters) | `get_function` |
+| [`function_updated`](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_configuration/#waiters) | `get_function_configuration` |
+| [`function_updated_v2`](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function/#waiters) | `get_function` |
+| [`published_version_active`](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_configuration/#waiters) | `get_function_configuration` |
+
 ## Operations
 
 The [operation reference](https://ferrumio.github.io/rboto/reference/lambda/)

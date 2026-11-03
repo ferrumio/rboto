@@ -88,6 +88,7 @@ from .services import sts as sts
 from .services import transcribe_streaming as transcribe_streaming
 from .session import Session as Session
 from .types import UnknownEnumValue as UnknownEnumValue
+from .waiters import WaiterConfig as WaiterConfig
 
 __version__: str
 __all__: list[str]

@@ -70,6 +70,8 @@ from .types import (
 )
 from .paginators import LambdaClientPaginators as _Paginators
 
+from .waiters import LambdaClientWaiters as _Waiters
+
 
 
 class LambdaClient:
@@ -100,6 +102,7 @@ class LambdaClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._waiters: _Waiters | None = None
         self._paginators: _Paginators | None = None
 
     @property
@@ -108,6 +111,14 @@ class LambdaClient:
         if self._paginators is None:
             self._paginators = _Paginators(self)
         return self._paginators
+
+
+    @property
+    def waiters(self) -> _Waiters:
+        """Typed async waiters. See [guide](https://ferrumio.github.io/rboto/guides/waiters/)."""
+        if self._waiters is None:
+            self._waiters = _Waiters(self)
+        return self._waiters
 
 
     async def add_layer_version_permission(
