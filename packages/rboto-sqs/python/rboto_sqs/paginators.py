@@ -29,7 +29,7 @@ class SQSClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListDeadLetterSourceQueuesOutput]:
-        """Yield each page from list_dead_letter_source_queues; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/list_dead_letter_source_queues/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -54,7 +54,7 @@ class SQSClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListQueuesOutput]:
-        """Yield each page from list_queues; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/list_queues/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if queue_name_prefix is not None:

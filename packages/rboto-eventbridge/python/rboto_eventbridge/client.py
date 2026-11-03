@@ -37,6 +37,8 @@ from .paginators import EventBridgeClientPaginators as _Paginators
 
 
 class EventBridgeClient:
+    """Async EventBridgeClient. See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/)."""
+
     logger_name = "rboto.eventbridge"
 
     def __init__(
@@ -77,6 +79,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/activate_event_source/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -99,6 +102,7 @@ class EventBridgeClient:
         *,
         replay_name: str,
     ) -> CancelReplayOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/cancel_replay/)."""
         params: dict[str, object] = {
             "replay_name": replay_name,
         }
@@ -126,6 +130,7 @@ class EventBridgeClient:
         description: str | None = None,
         invocation_rate_limit_per_second: int | None = None,
     ) -> CreateApiDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/create_api_destination/)."""
         params: dict[str, object] = {
             "name": name,
             "connection_arn": connection_arn,
@@ -160,6 +165,7 @@ class EventBridgeClient:
         retention_days: int | None = None,
         kms_key_identifier: str | None = None,
     ) -> CreateArchiveOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/create_archive/)."""
         params: dict[str, object] = {
             "archive_name": archive_name,
             "event_source_arn": event_source_arn,
@@ -196,6 +202,7 @@ class EventBridgeClient:
         invocation_connectivity_parameters: ConnectivityResourceParameters | None = None,
         kms_key_identifier: str | None = None,
     ) -> CreateConnectionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/create_connection/)."""
         params: dict[str, object] = {
             "name": name,
             "authorization_type": authorization_type,
@@ -231,6 +238,7 @@ class EventBridgeClient:
         replication_config: ReplicationConfig | None = None,
         role_arn: str | None = None,
     ) -> CreateEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/create_endpoint/)."""
         params: dict[str, object] = {
             "name": name,
             "routing_config": routing_config,
@@ -267,6 +275,7 @@ class EventBridgeClient:
         log_config: LogConfig | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateEventBusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/create_event_bus/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -302,6 +311,7 @@ class EventBridgeClient:
         name: str,
         account: str,
     ) -> CreatePartnerEventSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/create_partner_event_source/)."""
         params: dict[str, object] = {
             "name": name,
             "account": account,
@@ -325,6 +335,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/deactivate_event_source/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -347,6 +358,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DeauthorizeConnectionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/deauthorize_connection/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -369,6 +381,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DeleteApiDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/delete_api_destination/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -391,6 +404,7 @@ class EventBridgeClient:
         *,
         archive_name: str,
     ) -> DeleteArchiveOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/delete_archive/)."""
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
@@ -413,6 +427,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DeleteConnectionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/delete_connection/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -435,6 +450,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DeleteEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/delete_endpoint/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -457,6 +473,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/delete_event_bus/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -480,6 +497,7 @@ class EventBridgeClient:
         name: str,
         account: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/delete_partner_event_source/)."""
         params: dict[str, object] = {
             "name": name,
             "account": account,
@@ -505,6 +523,7 @@ class EventBridgeClient:
         event_bus_name: str | None = None,
         force: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/delete_rule/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -531,6 +550,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DescribeApiDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_api_destination/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -553,6 +573,7 @@ class EventBridgeClient:
         *,
         archive_name: str,
     ) -> DescribeArchiveOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_archive/)."""
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
@@ -575,6 +596,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DescribeConnectionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_connection/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -598,6 +620,7 @@ class EventBridgeClient:
         name: str,
         home_region: str | None = None,
     ) -> DescribeEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_endpoint/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -622,6 +645,7 @@ class EventBridgeClient:
         *,
         name: str | None = None,
     ) -> DescribeEventBusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_event_bus/)."""
         params: dict[str, object] = {
         }
         if name is not None:
@@ -645,6 +669,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DescribeEventSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_event_source/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -667,6 +692,7 @@ class EventBridgeClient:
         *,
         name: str,
     ) -> DescribePartnerEventSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_partner_event_source/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -689,6 +715,7 @@ class EventBridgeClient:
         *,
         replay_name: str,
     ) -> DescribeReplayOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_replay/)."""
         params: dict[str, object] = {
             "replay_name": replay_name,
         }
@@ -712,6 +739,7 @@ class EventBridgeClient:
         name: str,
         event_bus_name: str | None = None,
     ) -> DescribeRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/describe_rule/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -737,6 +765,7 @@ class EventBridgeClient:
         name: str,
         event_bus_name: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/disable_rule/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -762,6 +791,7 @@ class EventBridgeClient:
         name: str,
         event_bus_name: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/enable_rule/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -789,6 +819,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListApiDestinationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_api_destinations/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -822,6 +853,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListArchivesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_archives/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -856,6 +888,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListConnectionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_connections/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -888,6 +921,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListEndpointsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_endpoints/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -919,6 +953,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListEventBusesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_event_buses/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -948,6 +983,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListEventSourcesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_event_sources/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -977,6 +1013,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListPartnerEventSourceAccountsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_partner_event_source_accounts/)."""
         params: dict[str, object] = {
             "event_source_name": event_source_name,
         }
@@ -1005,6 +1042,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListPartnerEventSourcesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_partner_event_sources/)."""
         params: dict[str, object] = {
             "name_prefix": name_prefix,
         }
@@ -1035,6 +1073,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListReplaysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_replays/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -1069,6 +1108,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListRuleNamesByTargetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_rule_names_by_target/)."""
         params: dict[str, object] = {
             "target_arn": target_arn,
         }
@@ -1100,6 +1140,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListRulesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_rules/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -1129,6 +1170,7 @@ class EventBridgeClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1154,6 +1196,7 @@ class EventBridgeClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListTargetsByRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_targets_by_rule/)."""
         params: dict[str, object] = {
             "rule": rule,
         }
@@ -1183,6 +1226,7 @@ class EventBridgeClient:
         entries: Sequence[PutEventsRequestEntry],
         endpoint_id: str | None = None,
     ) -> PutEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/put_events/)."""
         params: dict[str, object] = {
             "entries": entries,
         }
@@ -1207,6 +1251,7 @@ class EventBridgeClient:
         *,
         entries: Sequence[PutPartnerEventsRequestEntry],
     ) -> PutPartnerEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/put_partner_events/)."""
         params: dict[str, object] = {
             "entries": entries,
         }
@@ -1234,6 +1279,7 @@ class EventBridgeClient:
         condition: Condition | None = None,
         policy: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/put_permission/)."""
         params: dict[str, object] = {
         }
         if event_bus_name is not None:
@@ -1274,6 +1320,7 @@ class EventBridgeClient:
         tags: Sequence[Tag] | None = None,
         event_bus_name: str | None = None,
     ) -> PutRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/put_rule/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1312,6 +1359,7 @@ class EventBridgeClient:
         targets: Sequence[Target],
         event_bus_name: str | None = None,
     ) -> PutTargetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/put_targets/)."""
         params: dict[str, object] = {
             "rule": rule,
             "targets": targets,
@@ -1339,6 +1387,7 @@ class EventBridgeClient:
         remove_all_permissions: bool | None = None,
         event_bus_name: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/remove_permission/)."""
         params: dict[str, object] = {
         }
         if statement_id is not None:
@@ -1369,6 +1418,7 @@ class EventBridgeClient:
         event_bus_name: str | None = None,
         force: bool | None = None,
     ) -> RemoveTargetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/remove_targets/)."""
         params: dict[str, object] = {
             "rule": rule,
             "ids": ids,
@@ -1401,6 +1451,7 @@ class EventBridgeClient:
         destination: ReplayDestination,
         description: str | None = None,
     ) -> StartReplayOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/start_replay/)."""
         params: dict[str, object] = {
             "replay_name": replay_name,
             "event_source_arn": event_source_arn,
@@ -1430,6 +1481,7 @@ class EventBridgeClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -1454,6 +1506,7 @@ class EventBridgeClient:
         event_pattern: str,
         event: str,
     ) -> TestEventPatternOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/test_event_pattern/)."""
         params: dict[str, object] = {
             "event_pattern": event_pattern,
             "event": event,
@@ -1478,6 +1531,7 @@ class EventBridgeClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -1506,6 +1560,7 @@ class EventBridgeClient:
         http_method: ApiDestinationHttpMethod | None = None,
         invocation_rate_limit_per_second: int | None = None,
     ) -> UpdateApiDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/update_api_destination/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1542,6 +1597,7 @@ class EventBridgeClient:
         retention_days: int | None = None,
         kms_key_identifier: str | None = None,
     ) -> UpdateArchiveOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/update_archive/)."""
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
@@ -1577,6 +1633,7 @@ class EventBridgeClient:
         invocation_connectivity_parameters: ConnectivityResourceParameters | None = None,
         kms_key_identifier: str | None = None,
     ) -> UpdateConnectionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/update_connection/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1614,6 +1671,7 @@ class EventBridgeClient:
         event_buses: Sequence[EndpointEventBus] | None = None,
         role_arn: str | None = None,
     ) -> UpdateEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/update_endpoint/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1650,6 +1708,7 @@ class EventBridgeClient:
         dead_letter_config: DeadLetterConfig | None = None,
         log_config: LogConfig | None = None,
     ) -> UpdateEventBusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/update_event_bus/)."""
         params: dict[str, object] = {
         }
         if name is not None:

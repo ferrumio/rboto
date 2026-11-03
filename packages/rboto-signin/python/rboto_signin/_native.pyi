@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AccessToken:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessTokenOutput/)."""
     @property
     def access_key_id(self) -> str: ...
     @property
@@ -27,6 +29,7 @@ class AccessToken:
 
 @final
 class CreateOAuth2TokenResponseBody:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenResponseBodyOutput/)."""
     @property
     def access_token(self) -> AccessToken | None: ...
     @property
@@ -41,6 +44,7 @@ class CreateOAuth2TokenResponseBody:
 
 @final
 class PermissionStatementSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PermissionStatementSummaryOutput/)."""
     @property
     def sid(self) -> str: ...
     @property
@@ -49,6 +53,7 @@ class PermissionStatementSummary:
 
 @final
 class PolicyStatement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PolicyStatementOutput/)."""
     @property
     def effect(self) -> str | None: ...
     @property
@@ -63,6 +68,7 @@ class PolicyStatement:
 
 @final
 class SigninResourceBasedPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SigninResourceBasedPolicyOutput/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -71,12 +77,14 @@ class SigninResourceBasedPolicy:
 
 @final
 class CreateOAuth2TokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenOutput/)."""
     @property
     def token_output(self) -> CreateOAuth2TokenResponseBody | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateOAuth2TokenWithIAMOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithIAMOutput/)."""
     @property
     def access_token(self) -> str: ...
     @property
@@ -87,6 +95,7 @@ class CreateOAuth2TokenWithIAMOutput:
 
 @final
 class DeleteConsoleAuthorizationConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteConsoleAuthorizationConfigurationOutput/)."""
     @property
     def target_id(self) -> str: ...
     @property
@@ -97,10 +106,12 @@ class DeleteConsoleAuthorizationConfigurationOutput:
 
 @final
 class DeleteResourcePermissionStatementOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteResourcePermissionStatementOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetConsoleAuthorizationConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetConsoleAuthorizationConfigurationOutput/)."""
     @property
     def target_id(self) -> str: ...
     @property
@@ -111,12 +122,14 @@ class GetConsoleAuthorizationConfigurationOutput:
 
 @final
 class GetResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetResourcePolicyOutput/)."""
     @property
     def signin_resource_based_policy(self) -> SigninResourceBasedPolicy | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class IntrospectOAuth2TokenWithIAMOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/IntrospectOAuth2TokenWithIAMOutput/)."""
     @property
     def active(self) -> bool: ...
     @property
@@ -149,6 +162,7 @@ class IntrospectOAuth2TokenWithIAMOutput:
 
 @final
 class ListResourcePermissionStatementsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ListResourcePermissionStatementsOutput/)."""
     @property
     def permission_statements(self) -> list[PermissionStatementSummary]: ...
     @property
@@ -157,6 +171,7 @@ class ListResourcePermissionStatementsOutput:
 
 @final
 class PutConsoleAuthorizationConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutConsoleAuthorizationConfigurationOutput/)."""
     @property
     def target_id(self) -> str: ...
     @property
@@ -167,12 +182,14 @@ class PutConsoleAuthorizationConfigurationOutput:
 
 @final
 class PutResourcePermissionStatementOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutResourcePermissionStatementOutput/)."""
     @property
     def statement_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RevokeOAuth2TokenWithIAMOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokeOAuth2TokenWithIAMOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 

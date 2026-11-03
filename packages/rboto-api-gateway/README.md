@@ -77,6 +77,10 @@ See [configuration](https://ferrumio.github.io/rboto/guides/configuration/),
 
 ## Operations
 
+The [operation reference](https://ferrumio.github.io/rboto/reference/api-gateway/)
+documents arguments, nested types, Output fields, errors and pagination.
+Method and type docstrings link to their reference pages.
+
 This is the complete operation catalog for this generated package. “Required arguments”
 lists arguments without defaults in the Python signature. Service-side conditions may
 require additional arguments. Each method links to its complete signature, including

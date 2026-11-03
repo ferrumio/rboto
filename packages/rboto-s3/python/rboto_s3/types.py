@@ -9,340 +9,673 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AbacStatusOutput: TypeAlias = _native.AbacStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbacStatusOutput/)."""
 AbortIncompleteMultipartUploadOutput: TypeAlias = _native.AbortIncompleteMultipartUpload
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbortIncompleteMultipartUploadOutput/)."""
 AbortMultipartUploadOutput: TypeAlias = _native.AbortMultipartUploadOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbortMultipartUploadOutput/)."""
 AccessControlTranslationOutput: TypeAlias = _native.AccessControlTranslation
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AccessControlTranslationOutput/)."""
 AnalyticsConfigurationOutput: TypeAlias = _native.AnalyticsConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsConfigurationOutput/)."""
 AnalyticsExportDestinationOutput: TypeAlias = _native.AnalyticsExportDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsExportDestinationOutput/)."""
 AnalyticsS3BucketDestinationOutput: TypeAlias = _native.AnalyticsS3BucketDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsS3BucketDestinationOutput/)."""
 AnnotationEntryOutput: TypeAlias = _native.AnnotationEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationEntryOutput/)."""
 AnnotationTableConfigurationResultOutput: TypeAlias = _native.AnnotationTableConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationTableConfigurationResultOutput/)."""
 BlockedEncryptionTypesOutput: TypeAlias = _native.BlockedEncryptionTypes
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BlockedEncryptionTypesOutput/)."""
 BucketOutput: TypeAlias = _native.Bucket
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ByteStream/)."""
 ChecksumOutput: TypeAlias = _native.Checksum
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumOutput/)."""
 CommonPrefixOutput: TypeAlias = _native.CommonPrefix
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CommonPrefixOutput/)."""
 CompleteMultipartUploadOutput: TypeAlias = _native.CompleteMultipartUploadOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CompleteMultipartUploadOutput/)."""
 ConditionOutput: TypeAlias = _native.Condition
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ConditionOutput/)."""
 CopyObjectOutput: TypeAlias = _native.CopyObjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyObjectOutput/)."""
 CopyObjectResultOutput: TypeAlias = _native.CopyObjectResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyObjectResultOutput/)."""
 CopyPartResultOutput: TypeAlias = _native.CopyPartResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyPartResultOutput/)."""
 CorsRule: TypeAlias = _native.CorsRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CorsRule-c4401385815d/)."""
 CreateBucketOutput: TypeAlias = _native.CreateBucketOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateBucketOutput/)."""
 CreateMultipartUploadOutput: TypeAlias = _native.CreateMultipartUploadOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateMultipartUploadOutput/)."""
 CreateSessionOutput: TypeAlias = _native.CreateSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateSessionOutput/)."""
 DefaultRetentionOutput: TypeAlias = _native.DefaultRetention
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DefaultRetentionOutput/)."""
 DeleteMarkerEntryOutput: TypeAlias = _native.DeleteMarkerEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerEntryOutput/)."""
 DeleteMarkerReplicationOutput: TypeAlias = _native.DeleteMarkerReplication
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerReplicationOutput/)."""
 DeleteObjectAnnotationOutput: TypeAlias = _native.DeleteObjectAnnotationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectAnnotationOutput/)."""
 DeleteObjectOutput: TypeAlias = _native.DeleteObjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectOutput/)."""
 DeleteObjectTaggingOutput: TypeAlias = _native.DeleteObjectTaggingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectTaggingOutput/)."""
 DeleteObjectsOutput: TypeAlias = _native.DeleteObjectsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectsOutput/)."""
 DeletedObjectOutput: TypeAlias = _native.DeletedObject
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeletedObjectOutput/)."""
 DestinationOutput: TypeAlias = _native.Destination
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DestinationOutput/)."""
 DestinationResultOutput: TypeAlias = _native.DestinationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DestinationResultOutput/)."""
 EncryptionConfigurationOutput: TypeAlias = _native.EncryptionConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncryptionConfigurationOutput/)."""
 ErrorOutput: TypeAlias = _native.Error
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorOutput/)."""
 ErrorDetailsOutput: TypeAlias = _native.ErrorDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorDetailsOutput/)."""
 ErrorDocumentOutput: TypeAlias = _native.ErrorDocument
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorDocumentOutput/)."""
 EventBridgeConfigurationOutput: TypeAlias = _native.EventBridgeConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EventBridgeConfigurationOutput/)."""
 EventHoldDurationOutput: TypeAlias = _native.EventHoldDuration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EventHoldDurationOutput/)."""
 ExistingObjectReplicationOutput: TypeAlias = _native.ExistingObjectReplication
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExistingObjectReplicationOutput/)."""
 FilterRuleOutput: TypeAlias = _native.FilterRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/FilterRuleOutput/)."""
 GetBucketAbacOutput: TypeAlias = _native.GetBucketAbacOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAbacOutput/)."""
 GetBucketAccelerateConfigurationOutput: TypeAlias = _native.GetBucketAccelerateConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAccelerateConfigurationOutput/)."""
 GetBucketAclOutput: TypeAlias = _native.GetBucketAclOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAclOutput/)."""
 GetBucketAnalyticsConfigurationOutput: TypeAlias = _native.GetBucketAnalyticsConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAnalyticsConfigurationOutput/)."""
 GetBucketCorsOutput: TypeAlias = _native.GetBucketCorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketCorsOutput/)."""
 GetBucketEncryptionOutput: TypeAlias = _native.GetBucketEncryptionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketEncryptionOutput/)."""
 GetBucketIntelligentTieringConfigurationOutput: TypeAlias = _native.GetBucketIntelligentTieringConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketIntelligentTieringConfigurationOutput/)."""
 GetBucketInventoryConfigurationOutput: TypeAlias = _native.GetBucketInventoryConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketInventoryConfigurationOutput/)."""
 GetBucketLifecycleConfigurationOutput: TypeAlias = _native.GetBucketLifecycleConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLifecycleConfigurationOutput/)."""
 GetBucketLocationOutput: TypeAlias = _native.GetBucketLocationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLocationOutput/)."""
 GetBucketLoggingOutput: TypeAlias = _native.GetBucketLoggingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLoggingOutput/)."""
 GetBucketMetadataConfigurationOutput: TypeAlias = _native.GetBucketMetadataConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataConfigurationOutput/)."""
 GetBucketMetadataConfigurationResultOutput: TypeAlias = _native.GetBucketMetadataConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataConfigurationResultOutput/)."""
 GetBucketMetadataTableConfigurationOutput: TypeAlias = _native.GetBucketMetadataTableConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataTableConfigurationOutput/)."""
 GetBucketMetadataTableConfigurationResultOutput: TypeAlias = _native.GetBucketMetadataTableConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataTableConfigurationResultOutput/)."""
 GetBucketMetricsConfigurationOutput: TypeAlias = _native.GetBucketMetricsConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetricsConfigurationOutput/)."""
 GetBucketNotificationConfigurationOutput: TypeAlias = _native.GetBucketNotificationConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketNotificationConfigurationOutput/)."""
 GetBucketOwnershipControlsOutput: TypeAlias = _native.GetBucketOwnershipControlsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketOwnershipControlsOutput/)."""
 GetBucketPolicyOutput: TypeAlias = _native.GetBucketPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketPolicyOutput/)."""
 GetBucketPolicyStatusOutput: TypeAlias = _native.GetBucketPolicyStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketPolicyStatusOutput/)."""
 GetBucketReplicationOutput: TypeAlias = _native.GetBucketReplicationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketReplicationOutput/)."""
 GetBucketRequestPaymentOutput: TypeAlias = _native.GetBucketRequestPaymentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketRequestPaymentOutput/)."""
 GetBucketTaggingOutput: TypeAlias = _native.GetBucketTaggingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketTaggingOutput/)."""
 GetBucketVersioningOutput: TypeAlias = _native.GetBucketVersioningOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketVersioningOutput/)."""
 GetBucketWebsiteOutput: TypeAlias = _native.GetBucketWebsiteOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketWebsiteOutput/)."""
 GetObjectAclOutput: TypeAlias = _native.GetObjectAclOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAclOutput/)."""
 GetObjectAnnotationOutput: TypeAlias = _native.GetObjectAnnotationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAnnotationOutput/)."""
 GetObjectAttributesOutput: TypeAlias = _native.GetObjectAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAttributesOutput/)."""
 GetObjectAttributesPartsOutput: TypeAlias = _native.GetObjectAttributesParts
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAttributesPartsOutput/)."""
 GetObjectLegalHoldOutput: TypeAlias = _native.GetObjectLegalHoldOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectLegalHoldOutput/)."""
 GetObjectLockConfigurationOutput: TypeAlias = _native.GetObjectLockConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectLockConfigurationOutput/)."""
 GetObjectOutput: TypeAlias = _native.GetObjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectOutput/)."""
 GetObjectRetentionOutput: TypeAlias = _native.GetObjectRetentionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectRetentionOutput/)."""
 GetObjectTaggingOutput: TypeAlias = _native.GetObjectTaggingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectTaggingOutput/)."""
 GetObjectTorrentOutput: TypeAlias = _native.GetObjectTorrentOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectTorrentOutput/)."""
 GetPublicAccessBlockOutput: TypeAlias = _native.GetPublicAccessBlockOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetPublicAccessBlockOutput/)."""
 GrantOutput: TypeAlias = _native.Grant
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GrantOutput/)."""
 GranteeOutput: TypeAlias = _native.Grantee
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GranteeOutput/)."""
 HeadBucketOutput: TypeAlias = _native.HeadBucketOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/HeadBucketOutput/)."""
 HeadObjectOutput: TypeAlias = _native.HeadObjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/HeadObjectOutput/)."""
 IndexDocumentOutput: TypeAlias = _native.IndexDocument
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IndexDocumentOutput/)."""
 InitiatorOutput: TypeAlias = _native.Initiator
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InitiatorOutput/)."""
 IntelligentTieringAndOperatorOutput: TypeAlias = _native.IntelligentTieringAndOperator
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringAndOperatorOutput/)."""
 IntelligentTieringConfigurationOutput: TypeAlias = _native.IntelligentTieringConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringConfigurationOutput/)."""
 IntelligentTieringFilterOutput: TypeAlias = _native.IntelligentTieringFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringFilterOutput/)."""
 InventoryConfigurationOutput: TypeAlias = _native.InventoryConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryConfigurationOutput/)."""
 InventoryDestinationOutput: TypeAlias = _native.InventoryDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryDestinationOutput/)."""
 InventoryEncryptionOutput: TypeAlias = _native.InventoryEncryption
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryEncryptionOutput/)."""
 InventoryFilterOutput: TypeAlias = _native.InventoryFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryFilterOutput/)."""
 InventoryS3BucketDestinationOutput: TypeAlias = _native.InventoryS3BucketDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryS3BucketDestinationOutput/)."""
 InventoryScheduleOutput: TypeAlias = _native.InventorySchedule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryScheduleOutput/)."""
 InventoryTableConfigurationResultOutput: TypeAlias = _native.InventoryTableConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryTableConfigurationResultOutput/)."""
 JournalTableConfigurationResultOutput: TypeAlias = _native.JournalTableConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JournalTableConfigurationResultOutput/)."""
 LambdaFunctionConfigurationOutput: TypeAlias = _native.LambdaFunctionConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LambdaFunctionConfigurationOutput/)."""
 LifecycleExpirationOutput: TypeAlias = _native.LifecycleExpiration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleExpirationOutput/)."""
 LifecycleRuleOutput: TypeAlias = _native.LifecycleRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleOutput/)."""
 LifecycleRuleAndOperatorOutput: TypeAlias = _native.LifecycleRuleAndOperator
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleAndOperatorOutput/)."""
 LifecycleRuleFilterOutput: TypeAlias = _native.LifecycleRuleFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleFilterOutput/)."""
 ListBucketAnalyticsConfigurationsOutput: TypeAlias = _native.ListBucketAnalyticsConfigurationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketAnalyticsConfigurationsOutput/)."""
 ListBucketIntelligentTieringConfigurationsOutput: TypeAlias = _native.ListBucketIntelligentTieringConfigurationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketIntelligentTieringConfigurationsOutput/)."""
 ListBucketInventoryConfigurationsOutput: TypeAlias = _native.ListBucketInventoryConfigurationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketInventoryConfigurationsOutput/)."""
 ListBucketMetricsConfigurationsOutput: TypeAlias = _native.ListBucketMetricsConfigurationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketMetricsConfigurationsOutput/)."""
 ListBucketsOutput: TypeAlias = _native.ListBucketsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketsOutput/)."""
 ListDirectoryBucketsOutput: TypeAlias = _native.ListDirectoryBucketsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListDirectoryBucketsOutput/)."""
 ListMultipartUploadsOutput: TypeAlias = _native.ListMultipartUploadsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListMultipartUploadsOutput/)."""
 ListObjectAnnotationsOutput: TypeAlias = _native.ListObjectAnnotationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectAnnotationsOutput/)."""
 ListObjectVersionsOutput: TypeAlias = _native.ListObjectVersionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectVersionsOutput/)."""
 ListObjectsOutput: TypeAlias = _native.ListObjectsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectsOutput/)."""
 ListObjectsV2Output: TypeAlias = _native.ListObjectsV2Output
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectsV2Output/)."""
 ListPartsOutput: TypeAlias = _native.ListPartsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListPartsOutput/)."""
 LoggingEnabledOutput: TypeAlias = _native.LoggingEnabled
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LoggingEnabledOutput/)."""
 MetadataConfigurationResultOutput: TypeAlias = _native.MetadataConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataConfigurationResultOutput/)."""
 MetadataTableConfigurationResultOutput: TypeAlias = _native.MetadataTableConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataTableConfigurationResultOutput/)."""
 MetricsOutput: TypeAlias = _native.Metrics
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsOutput/)."""
 MetricsConfigurationOutput: TypeAlias = _native.MetricsConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsConfigurationOutput/)."""
 MultipartUploadOutput: TypeAlias = _native.MultipartUpload
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MultipartUploadOutput/)."""
 NoncurrentVersionExpirationOutput: TypeAlias = _native.NoncurrentVersionExpiration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NoncurrentVersionExpirationOutput/)."""
 NoncurrentVersionTransitionOutput: TypeAlias = _native.NoncurrentVersionTransition
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NoncurrentVersionTransitionOutput/)."""
 NotificationConfigurationFilterOutput: TypeAlias = _native.NotificationConfigurationFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NotificationConfigurationFilterOutput/)."""
 ObjectOutput: TypeAlias = _native.Object
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectOutput/)."""
 ObjectLockConfigurationOutput: TypeAlias = _native.ObjectLockConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockConfigurationOutput/)."""
 ObjectLockLegalHoldOutput: TypeAlias = _native.ObjectLockLegalHold
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockLegalHoldOutput/)."""
 ObjectLockRetentionOutput: TypeAlias = _native.ObjectLockRetention
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRetentionOutput/)."""
 ObjectLockRuleOutput: TypeAlias = _native.ObjectLockRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRuleOutput/)."""
 ObjectPartOutput: TypeAlias = _native.ObjectPart
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectPartOutput/)."""
 ObjectVersionOutput: TypeAlias = _native.ObjectVersion
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectVersionOutput/)."""
 OwnerOutput: TypeAlias = _native.Owner
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnerOutput/)."""
 OwnershipControlsOutput: TypeAlias = _native.OwnershipControls
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnershipControlsOutput/)."""
 OwnershipControlsRuleOutput: TypeAlias = _native.OwnershipControlsRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnershipControlsRuleOutput/)."""
 PartOutput: TypeAlias = _native.Part
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PartOutput/)."""
 PartitionedPrefixOutput: TypeAlias = _native.PartitionedPrefix
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PartitionedPrefixOutput/)."""
 PolicyStatusOutput: TypeAlias = _native.PolicyStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PolicyStatusOutput/)."""
 PublicAccessBlockConfigurationOutput: TypeAlias = _native.PublicAccessBlockConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PublicAccessBlockConfigurationOutput/)."""
 PutBucketLifecycleConfigurationOutput: TypeAlias = _native.PutBucketLifecycleConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketLifecycleConfigurationOutput/)."""
 PutObjectAclOutput: TypeAlias = _native.PutObjectAclOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectAclOutput/)."""
 PutObjectAnnotationOutput: TypeAlias = _native.PutObjectAnnotationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectAnnotationOutput/)."""
 PutObjectLegalHoldOutput: TypeAlias = _native.PutObjectLegalHoldOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectLegalHoldOutput/)."""
 PutObjectLockConfigurationOutput: TypeAlias = _native.PutObjectLockConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectLockConfigurationOutput/)."""
 PutObjectOutput: TypeAlias = _native.PutObjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectOutput/)."""
 PutObjectRetentionOutput: TypeAlias = _native.PutObjectRetentionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectRetentionOutput/)."""
 PutObjectTaggingOutput: TypeAlias = _native.PutObjectTaggingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectTaggingOutput/)."""
 QueueConfigurationOutput: TypeAlias = _native.QueueConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/QueueConfigurationOutput/)."""
 RecordExpirationOutput: TypeAlias = _native.RecordExpiration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RecordExpirationOutput/)."""
 RedirectOutput: TypeAlias = _native.Redirect
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RedirectOutput/)."""
 RedirectAllRequestsToOutput: TypeAlias = _native.RedirectAllRequestsTo
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RedirectAllRequestsToOutput/)."""
 RenameObjectOutput: TypeAlias = _native.RenameObjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RenameObjectOutput/)."""
 ReplicaModificationsOutput: TypeAlias = _native.ReplicaModifications
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicaModificationsOutput/)."""
 ReplicationConfigurationOutput: TypeAlias = _native.ReplicationConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationConfigurationOutput/)."""
 ReplicationRuleOutput: TypeAlias = _native.ReplicationRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleOutput/)."""
 ReplicationRuleAndOperatorOutput: TypeAlias = _native.ReplicationRuleAndOperator
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleAndOperatorOutput/)."""
 ReplicationRuleFilterOutput: TypeAlias = _native.ReplicationRuleFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleFilterOutput/)."""
 ReplicationTimeOutput: TypeAlias = _native.ReplicationTime
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeOutput/)."""
 ReplicationTimeValueOutput: TypeAlias = _native.ReplicationTimeValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeValueOutput/)."""
 RestoreObjectOutput: TypeAlias = _native.RestoreObjectOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreObjectOutput/)."""
 RestoreStatusOutput: TypeAlias = _native.RestoreStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreStatusOutput/)."""
 RoutingRuleOutput: TypeAlias = _native.RoutingRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RoutingRuleOutput/)."""
 S3KeyFilterOutput: TypeAlias = _native.S3KeyFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3KeyFilterOutput/)."""
 S3TablesDestinationResultOutput: TypeAlias = _native.S3TablesDestinationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3TablesDestinationResultOutput/)."""
 SelectObjectContentEventStreamReceiver: TypeAlias = _native.SelectObjectContentEventStreamReceiver
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamReceiver/)."""
 ServerSideEncryptionByDefaultOutput: TypeAlias = _native.ServerSideEncryptionByDefault
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionByDefaultOutput/)."""
 ServerSideEncryptionConfigurationOutput: TypeAlias = _native.ServerSideEncryptionConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionConfigurationOutput/)."""
 ServerSideEncryptionRuleOutput: TypeAlias = _native.ServerSideEncryptionRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionRuleOutput/)."""
 SessionCredentialsOutput: TypeAlias = _native.SessionCredentials
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SessionCredentialsOutput/)."""
 SimplePrefixOutput: TypeAlias = _native.SimplePrefix
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SimplePrefixOutput/)."""
 SourceSelectionCriteriaOutput: TypeAlias = _native.SourceSelectionCriteria
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SourceSelectionCriteriaOutput/)."""
 SseKmsEncryptedObjectsOutput: TypeAlias = _native.SseKmsEncryptedObjects
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SseKmsEncryptedObjectsOutput/)."""
 Ssekms: TypeAlias = _native.Ssekms
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Ssekms-ade979796abe/)."""
 Sses3: TypeAlias = _native.Sses3
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Sses3-0226a0c5333c/)."""
 StorageClassAnalysisOutput: TypeAlias = _native.StorageClassAnalysis
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysisOutput/)."""
 StorageClassAnalysisDataExportOutput: TypeAlias = _native.StorageClassAnalysisDataExport
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysisDataExportOutput/)."""
 TagValueOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TagValueOutput/)."""
 TargetGrantOutput: TypeAlias = _native.TargetGrant
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TargetGrantOutput/)."""
 TargetObjectKeyFormatOutput: TypeAlias = _native.TargetObjectKeyFormat
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TargetObjectKeyFormatOutput/)."""
 TieringOutput: TypeAlias = _native.Tiering
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TieringOutput/)."""
 TopicConfigurationOutput: TypeAlias = _native.TopicConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TopicConfigurationOutput/)."""
 TransitionOutput: TypeAlias = _native.Transition
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TransitionOutput/)."""
 UpdateObjectEncryptionOutput: TypeAlias = _native.UpdateObjectEncryptionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UpdateObjectEncryptionOutput/)."""
 UploadPartCopyOutput: TypeAlias = _native.UploadPartCopyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartCopyOutput/)."""
 UploadPartOutput: TypeAlias = _native.UploadPartOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JSONValue/)."""
 
 AnalyticsS3ExportFileFormat: TypeAlias = Literal['CSV']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsS3ExportFileFormat/)."""
 AnalyticsS3ExportFileFormatOutput: TypeAlias = AnalyticsS3ExportFileFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsS3ExportFileFormatOutput/)."""
 AnnotationConfigurationState: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationConfigurationState/)."""
 AnnotationConfigurationStateOutput: TypeAlias = AnnotationConfigurationState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationConfigurationStateOutput/)."""
 AnnotationDirective: TypeAlias = Literal['COPY', 'EXCLUDE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationDirective/)."""
 AnnotationDirectiveOutput: TypeAlias = AnnotationDirective | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationDirectiveOutput/)."""
 ArchiveStatus: TypeAlias = Literal['ARCHIVE_ACCESS', 'DEEP_ARCHIVE_ACCESS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ArchiveStatus/)."""
 ArchiveStatusOutput: TypeAlias = ArchiveStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ArchiveStatusOutput/)."""
 BucketAbacStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketAbacStatus/)."""
 BucketAbacStatusOutput: TypeAlias = BucketAbacStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketAbacStatusOutput/)."""
 BucketAccelerateStatus: TypeAlias = Literal['Enabled', 'Suspended']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketAccelerateStatus/)."""
 BucketAccelerateStatusOutput: TypeAlias = BucketAccelerateStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketAccelerateStatusOutput/)."""
 BucketCannedACL: TypeAlias = Literal['private', 'public-read', 'public-read-write', 'authenticated-read']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketCannedACL/)."""
 BucketCannedACLOutput: TypeAlias = BucketCannedACL | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketCannedACLOutput/)."""
 BucketLocationConstraint: TypeAlias = Literal['af-south-1', 'ap-east-1', 'ap-east-2', 'ap-northeast-1', 'ap-northeast-2', 'ap-northeast-3', 'ap-south-1', 'ap-south-2', 'ap-southeast-1', 'ap-southeast-2', 'ap-southeast-3', 'ap-southeast-4', 'ap-southeast-5', 'ap-southeast-6', 'ap-southeast-7', 'ca-central-1', 'ca-west-1', 'cn-north-1', 'cn-northwest-1', 'EU', 'eu-central-1', 'eu-central-2', 'eu-north-1', 'eu-south-1', 'eu-south-2', 'eu-west-1', 'eu-west-2', 'eu-west-3', 'il-central-1', 'me-central-1', 'me-south-1', 'mx-central-1', 'sa-east-1', 'us-east-2', 'us-gov-east-1', 'us-gov-west-1', 'us-west-1', 'us-west-2']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketLocationConstraint/)."""
 BucketLocationConstraintOutput: TypeAlias = BucketLocationConstraint | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketLocationConstraintOutput/)."""
 BucketLogsPermission: TypeAlias = Literal['FULL_CONTROL', 'READ', 'WRITE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketLogsPermission/)."""
 BucketLogsPermissionOutput: TypeAlias = BucketLogsPermission | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketLogsPermissionOutput/)."""
 BucketNamespace: TypeAlias = Literal['account-regional', 'global']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketNamespace/)."""
 BucketNamespaceOutput: TypeAlias = BucketNamespace | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketNamespaceOutput/)."""
 BucketType: TypeAlias = Literal['Directory']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketType/)."""
 BucketTypeOutput: TypeAlias = BucketType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketTypeOutput/)."""
 BucketVersioningStatus: TypeAlias = Literal['Enabled', 'Suspended']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketVersioningStatus/)."""
 BucketVersioningStatusOutput: TypeAlias = BucketVersioningStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketVersioningStatusOutput/)."""
 ChecksumAlgorithm: TypeAlias = Literal['CRC32', 'CRC32C', 'SHA1', 'SHA256', 'CRC64NVME', 'SHA512', 'MD5', 'XXHASH64', 'XXHASH3', 'XXHASH128']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumAlgorithm/)."""
 ChecksumAlgorithmOutput: TypeAlias = ChecksumAlgorithm | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumAlgorithmOutput/)."""
 ChecksumMode: TypeAlias = Literal['ENABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumMode/)."""
 ChecksumModeOutput: TypeAlias = ChecksumMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumModeOutput/)."""
 ChecksumType: TypeAlias = Literal['COMPOSITE', 'FULL_OBJECT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumType/)."""
 ChecksumTypeOutput: TypeAlias = ChecksumType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumTypeOutput/)."""
 CompressionType: TypeAlias = Literal['NONE', 'GZIP', 'BZIP2']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CompressionType/)."""
 CompressionTypeOutput: TypeAlias = CompressionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CompressionTypeOutput/)."""
 DataRedundancy: TypeAlias = Literal['SingleAvailabilityZone', 'SingleLocalZone']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DataRedundancy/)."""
 DataRedundancyOutput: TypeAlias = DataRedundancy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DataRedundancyOutput/)."""
 DeleteMarkerReplicationStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerReplicationStatus/)."""
 DeleteMarkerReplicationStatusOutput: TypeAlias = DeleteMarkerReplicationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerReplicationStatusOutput/)."""
 EncodingType: TypeAlias = Literal['url']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncodingType/)."""
 EncodingTypeOutput: TypeAlias = EncodingType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncodingTypeOutput/)."""
 EncryptionType: TypeAlias = Literal['NONE', 'SSE-C']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncryptionType/)."""
 EncryptionTypeOutput: TypeAlias = EncryptionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncryptionTypeOutput/)."""
 Event: TypeAlias = Literal['s3:ReducedRedundancyLostObject', 's3:ObjectCreated:*', 's3:ObjectCreated:Put', 's3:ObjectCreated:Post', 's3:ObjectCreated:Copy', 's3:ObjectCreated:CompleteMultipartUpload', 's3:ObjectRemoved:*', 's3:ObjectRemoved:Delete', 's3:ObjectRemoved:DeleteMarkerCreated', 's3:ObjectRestore:*', 's3:ObjectRestore:Post', 's3:ObjectRestore:Completed', 's3:Replication:*', 's3:Replication:OperationFailedReplication', 's3:Replication:OperationNotTracked', 's3:Replication:OperationMissedThreshold', 's3:Replication:OperationReplicatedAfterThreshold', 's3:ObjectRestore:Delete', 's3:LifecycleTransition', 's3:IntelligentTiering', 's3:ObjectAcl:Put', 's3:LifecycleExpiration:*', 's3:LifecycleExpiration:Delete', 's3:LifecycleExpiration:DeleteMarkerCreated', 's3:ObjectTagging:*', 's3:ObjectTagging:Put', 's3:ObjectTagging:Delete', 's3:ObjectAnnotation:*', 's3:ObjectAnnotation:Put', 's3:ObjectAnnotation:Delete', 's3:ObjectRetention:Put']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Event/)."""
 EventOutput: TypeAlias = Event | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EventOutput/)."""
 ExistingObjectReplicationStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExistingObjectReplicationStatus/)."""
 ExistingObjectReplicationStatusOutput: TypeAlias = ExistingObjectReplicationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExistingObjectReplicationStatusOutput/)."""
 ExpirationState: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExpirationState/)."""
 ExpirationStateOutput: TypeAlias = ExpirationState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExpirationStateOutput/)."""
 ExpirationStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExpirationStatus/)."""
 ExpirationStatusOutput: TypeAlias = ExpirationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExpirationStatusOutput/)."""
 ExpressionType: TypeAlias = Literal['SQL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExpressionType/)."""
 ExpressionTypeOutput: TypeAlias = ExpressionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExpressionTypeOutput/)."""
 FileHeaderInfo: TypeAlias = Literal['USE', 'IGNORE', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/FileHeaderInfo/)."""
 FileHeaderInfoOutput: TypeAlias = FileHeaderInfo | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/FileHeaderInfoOutput/)."""
 FilterRuleName: TypeAlias = Literal['prefix', 'suffix']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/FilterRuleName/)."""
 FilterRuleNameOutput: TypeAlias = FilterRuleName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/FilterRuleNameOutput/)."""
 IntelligentTieringAccessTier: TypeAlias = Literal['ARCHIVE_ACCESS', 'DEEP_ARCHIVE_ACCESS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringAccessTier/)."""
 IntelligentTieringAccessTierOutput: TypeAlias = IntelligentTieringAccessTier | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringAccessTierOutput/)."""
 IntelligentTieringStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringStatus/)."""
 IntelligentTieringStatusOutput: TypeAlias = IntelligentTieringStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringStatusOutput/)."""
 InventoryConfigurationState: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryConfigurationState/)."""
 InventoryConfigurationStateOutput: TypeAlias = InventoryConfigurationState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryConfigurationStateOutput/)."""
 InventoryFormat: TypeAlias = Literal['CSV', 'ORC', 'Parquet']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryFormat/)."""
 InventoryFormatOutput: TypeAlias = InventoryFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryFormatOutput/)."""
 InventoryFrequency: TypeAlias = Literal['Daily', 'Weekly']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryFrequency/)."""
 InventoryFrequencyOutput: TypeAlias = InventoryFrequency | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryFrequencyOutput/)."""
 InventoryIncludedObjectVersions: TypeAlias = Literal['All', 'Current']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryIncludedObjectVersions/)."""
 InventoryIncludedObjectVersionsOutput: TypeAlias = InventoryIncludedObjectVersions | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryIncludedObjectVersionsOutput/)."""
 InventoryOptionalField: TypeAlias = Literal['Size', 'LastModifiedDate', 'StorageClass', 'ETag', 'IsMultipartUploaded', 'ReplicationStatus', 'EncryptionStatus', 'ObjectLockRetainUntilDate', 'ObjectLockMode', 'ObjectLockLegalHoldStatus', 'ObjectLockEventHoldStatus', 'ObjectLockEventHoldDuration', 'IntelligentTieringAccessTier', 'BucketKeyStatus', 'ChecksumAlgorithm', 'ObjectAccessControlList', 'ObjectOwner', 'LifecycleExpirationDate', 'IntelligentTieringReferenceDate']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryOptionalField/)."""
 InventoryOptionalFieldOutput: TypeAlias = InventoryOptionalField | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryOptionalFieldOutput/)."""
 JSONType: TypeAlias = Literal['DOCUMENT', 'LINES']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JSONType/)."""
 JSONTypeOutput: TypeAlias = JSONType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JSONTypeOutput/)."""
 LocationType: TypeAlias = Literal['AvailabilityZone', 'LocalZone']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LocationType/)."""
 LocationTypeOutput: TypeAlias = LocationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LocationTypeOutput/)."""
 MFADelete: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MFADelete/)."""
 MFADeleteOutput: TypeAlias = MFADelete | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MFADeleteOutput/)."""
 MFADeleteStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MFADeleteStatus/)."""
 MFADeleteStatusOutput: TypeAlias = MFADeleteStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MFADeleteStatusOutput/)."""
 MetadataDirective: TypeAlias = Literal['COPY', 'REPLACE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataDirective/)."""
 MetadataDirectiveOutput: TypeAlias = MetadataDirective | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataDirectiveOutput/)."""
 MetricsStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsStatus/)."""
 MetricsStatusOutput: TypeAlias = MetricsStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsStatusOutput/)."""
 ObjectAttributes: TypeAlias = Literal['ETag', 'Checksum', 'ObjectParts', 'StorageClass', 'ObjectSize']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectAttributes/)."""
 ObjectAttributesOutput: TypeAlias = ObjectAttributes | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectAttributesOutput/)."""
 ObjectCannedACL: TypeAlias = Literal['private', 'public-read', 'public-read-write', 'authenticated-read', 'aws-exec-read', 'bucket-owner-read', 'bucket-owner-full-control']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectCannedACL/)."""
 ObjectCannedACLOutput: TypeAlias = ObjectCannedACL | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectCannedACLOutput/)."""
 ObjectLockEnabled: TypeAlias = Literal['Enabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockEnabled/)."""
 ObjectLockEnabledOutput: TypeAlias = ObjectLockEnabled | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockEnabledOutput/)."""
 ObjectLockEventHold: TypeAlias = Literal['ON', 'OFF']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockEventHold/)."""
 ObjectLockEventHoldOutput: TypeAlias = ObjectLockEventHold | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockEventHoldOutput/)."""
 ObjectLockLegalHoldStatus: TypeAlias = Literal['ON', 'OFF']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockLegalHoldStatus/)."""
 ObjectLockLegalHoldStatusOutput: TypeAlias = ObjectLockLegalHoldStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockLegalHoldStatusOutput/)."""
 ObjectLockMode: TypeAlias = Literal['GOVERNANCE', 'COMPLIANCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockMode/)."""
 ObjectLockModeOutput: TypeAlias = ObjectLockMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockModeOutput/)."""
 ObjectLockRetentionMode: TypeAlias = Literal['GOVERNANCE', 'COMPLIANCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRetentionMode/)."""
 ObjectLockRetentionModeOutput: TypeAlias = ObjectLockRetentionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRetentionModeOutput/)."""
 ObjectOwnership: TypeAlias = Literal['BucketOwnerPreferred', 'ObjectWriter', 'BucketOwnerEnforced']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectOwnership/)."""
 ObjectOwnershipOutput: TypeAlias = ObjectOwnership | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectOwnershipOutput/)."""
 ObjectStorageClass: TypeAlias = Literal['STANDARD', 'REDUCED_REDUNDANCY', 'GLACIER', 'STANDARD_IA', 'ONEZONE_IA', 'INTELLIGENT_TIERING', 'DEEP_ARCHIVE', 'OUTPOSTS', 'GLACIER_IR', 'SNOW', 'EXPRESS_ONEZONE', 'FSX_OPENZFS', 'FSX_ONTAP', 'AWS_BACKUP_WARM', 'AWS_BACKUP_LOW_COST_WARM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectStorageClass/)."""
 ObjectStorageClassOutput: TypeAlias = ObjectStorageClass | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectStorageClassOutput/)."""
 ObjectVersionStorageClass: TypeAlias = Literal['STANDARD']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectVersionStorageClass/)."""
 ObjectVersionStorageClassOutput: TypeAlias = ObjectVersionStorageClass | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectVersionStorageClassOutput/)."""
 OptionalObjectAttributes: TypeAlias = Literal['RestoreStatus']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OptionalObjectAttributes/)."""
 OptionalObjectAttributesOutput: TypeAlias = OptionalObjectAttributes | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OptionalObjectAttributesOutput/)."""
 OwnerOverride: TypeAlias = Literal['Destination']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnerOverride/)."""
 OwnerOverrideOutput: TypeAlias = OwnerOverride | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnerOverrideOutput/)."""
 PartitionDateSource: TypeAlias = Literal['EventTime', 'DeliveryTime']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PartitionDateSource/)."""
 PartitionDateSourceOutput: TypeAlias = PartitionDateSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PartitionDateSourceOutput/)."""
 Payer: TypeAlias = Literal['Requester', 'BucketOwner']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Payer/)."""
 PayerOutput: TypeAlias = Payer | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PayerOutput/)."""
 Permission: TypeAlias = Literal['FULL_CONTROL', 'WRITE', 'WRITE_ACP', 'READ', 'READ_ACP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Permission/)."""
 PermissionOutput: TypeAlias = Permission | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PermissionOutput/)."""
 Protocol: TypeAlias = Literal['http', 'https']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Protocol/)."""
 ProtocolOutput: TypeAlias = Protocol | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ProtocolOutput/)."""
 QuoteFields: TypeAlias = Literal['ALWAYS', 'ASNEEDED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/QuoteFields/)."""
 QuoteFieldsOutput: TypeAlias = QuoteFields | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/QuoteFieldsOutput/)."""
 ReplicaModificationsStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicaModificationsStatus/)."""
 ReplicaModificationsStatusOutput: TypeAlias = ReplicaModificationsStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicaModificationsStatusOutput/)."""
 ReplicationRuleStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleStatus/)."""
 ReplicationRuleStatusOutput: TypeAlias = ReplicationRuleStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleStatusOutput/)."""
 ReplicationStatus: TypeAlias = Literal['COMPLETE', 'PENDING', 'FAILED', 'REPLICA', 'COMPLETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationStatus/)."""
 ReplicationStatusOutput: TypeAlias = ReplicationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationStatusOutput/)."""
 ReplicationTimeStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeStatus/)."""
 ReplicationTimeStatusOutput: TypeAlias = ReplicationTimeStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeStatusOutput/)."""
 RequestCharged: TypeAlias = Literal['requester']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RequestCharged/)."""
 RequestChargedOutput: TypeAlias = RequestCharged | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RequestChargedOutput/)."""
 RequestPayer: TypeAlias = Literal['requester']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RequestPayer/)."""
 RequestPayerOutput: TypeAlias = RequestPayer | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RequestPayerOutput/)."""
 RestoreRequestType: TypeAlias = Literal['SELECT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreRequestType/)."""
 RestoreRequestTypeOutput: TypeAlias = RestoreRequestType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreRequestTypeOutput/)."""
 S3TablesBucketType: TypeAlias = Literal['aws', 'customer']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3TablesBucketType/)."""
 S3TablesBucketTypeOutput: TypeAlias = S3TablesBucketType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3TablesBucketTypeOutput/)."""
 ServerSideEncryption: TypeAlias = Literal['AES256', 'aws:fsx', 'aws:backup', 'aws:kms', 'aws:kms:dsse']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryption/)."""
 ServerSideEncryptionOutput: TypeAlias = ServerSideEncryption | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionOutput/)."""
 SessionMode: TypeAlias = Literal['ReadOnly', 'ReadWrite']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SessionMode/)."""
 SessionModeOutput: TypeAlias = SessionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SessionModeOutput/)."""
 SseKmsEncryptedObjectsStatus: TypeAlias = Literal['Enabled', 'Disabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SseKmsEncryptedObjectsStatus/)."""
 SseKmsEncryptedObjectsStatusOutput: TypeAlias = SseKmsEncryptedObjectsStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SseKmsEncryptedObjectsStatusOutput/)."""
 StorageClass: TypeAlias = Literal['STANDARD', 'REDUCED_REDUNDANCY', 'STANDARD_IA', 'ONEZONE_IA', 'INTELLIGENT_TIERING', 'GLACIER', 'DEEP_ARCHIVE', 'OUTPOSTS', 'GLACIER_IR', 'SNOW', 'EXPRESS_ONEZONE', 'FSX_OPENZFS', 'FSX_ONTAP', 'AWS_BACKUP_WARM', 'AWS_BACKUP_LOW_COST_WARM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClass/)."""
 StorageClassOutput: TypeAlias = StorageClass | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassOutput/)."""
 StorageClassAnalysisSchemaVersion: TypeAlias = Literal['V_1']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysisSchemaVersion/)."""
 StorageClassAnalysisSchemaVersionOutput: TypeAlias = StorageClassAnalysisSchemaVersion | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysisSchemaVersionOutput/)."""
 TableSseAlgorithm: TypeAlias = Literal['aws:kms', 'AES256']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TableSseAlgorithm/)."""
 TableSseAlgorithmOutput: TypeAlias = TableSseAlgorithm | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TableSseAlgorithmOutput/)."""
 TaggingDirective: TypeAlias = Literal['COPY', 'REPLACE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TaggingDirective/)."""
 TaggingDirectiveOutput: TypeAlias = TaggingDirective | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TaggingDirectiveOutput/)."""
 Tier: TypeAlias = Literal['Standard', 'Bulk', 'Expedited']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Tier/)."""
 TierOutput: TypeAlias = Tier | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TierOutput/)."""
 TransitionDefaultMinimumObjectSize: TypeAlias = Literal['varies_by_storage_class', 'all_storage_classes_128K']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TransitionDefaultMinimumObjectSize/)."""
 TransitionDefaultMinimumObjectSizeOutput: TypeAlias = TransitionDefaultMinimumObjectSize | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TransitionDefaultMinimumObjectSizeOutput/)."""
 TransitionStorageClass: TypeAlias = Literal['GLACIER', 'STANDARD_IA', 'ONEZONE_IA', 'INTELLIGENT_TIERING', 'DEEP_ARCHIVE', 'GLACIER_IR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TransitionStorageClass/)."""
 TransitionStorageClassOutput: TypeAlias = TransitionStorageClass | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TransitionStorageClassOutput/)."""
 Type: TypeAlias = Literal['CanonicalUser', 'AmazonCustomerByEmail', 'Group']
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Type/)."""
 TypeOutput: TypeAlias = Type | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TypeOutput/)."""
 
 AbacStatus = TypedDict(
     "AbacStatus",
@@ -350,6 +683,7 @@ AbacStatus = TypedDict(
     "status": NotRequired["BucketAbacStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbacStatus/)."""
 
 AbortIncompleteMultipartUpload = TypedDict(
     "AbortIncompleteMultipartUpload",
@@ -357,6 +691,7 @@ AbortIncompleteMultipartUpload = TypedDict(
     "days_after_initiation": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbortIncompleteMultipartUpload/)."""
 
 AbortMultipartUploadRequest = TypedDict(
     "AbortMultipartUploadRequest",
@@ -369,6 +704,7 @@ AbortMultipartUploadRequest = TypedDict(
     "if_match_initiated_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbortMultipartUploadRequest/)."""
 
 AccelerateConfiguration = TypedDict(
     "AccelerateConfiguration",
@@ -376,6 +712,7 @@ AccelerateConfiguration = TypedDict(
     "status": NotRequired["BucketAccelerateStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AccelerateConfiguration/)."""
 
 AccessControlPolicy = TypedDict(
     "AccessControlPolicy",
@@ -384,6 +721,7 @@ AccessControlPolicy = TypedDict(
     "owner": NotRequired["Owner"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AccessControlPolicy/)."""
 
 AccessControlTranslation = TypedDict(
     "AccessControlTranslation",
@@ -391,6 +729,7 @@ AccessControlTranslation = TypedDict(
     "owner": Required["OwnerOverride"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AccessControlTranslation/)."""
 
 AnalyticsAndOperator = TypedDict(
     "AnalyticsAndOperator",
@@ -399,6 +738,7 @@ AnalyticsAndOperator = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsAndOperator/)."""
 
 AnalyticsAndOperatorOutput = TypedDict(
     "AnalyticsAndOperatorOutput",
@@ -407,6 +747,7 @@ AnalyticsAndOperatorOutput = TypedDict(
     "tags": Required["list[TagOutput] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsAndOperatorOutput/)."""
 
 AnalyticsConfiguration = TypedDict(
     "AnalyticsConfiguration",
@@ -416,6 +757,7 @@ AnalyticsConfiguration = TypedDict(
     "storage_class_analysis": Required["StorageClassAnalysis"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsConfiguration/)."""
 
 AnalyticsExportDestination = TypedDict(
     "AnalyticsExportDestination",
@@ -423,17 +765,27 @@ AnalyticsExportDestination = TypedDict(
     "s3_bucket_destination": Required["AnalyticsS3BucketDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsExportDestination/)."""
 
 AnalyticsFilterPrefix = TypedDict("AnalyticsFilterPrefix", {"prefix": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterPrefix/)."""
 AnalyticsFilterTag = TypedDict("AnalyticsFilterTag", {"tag": Required["Tag"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterTag/)."""
 AnalyticsFilterAnd = TypedDict("AnalyticsFilterAnd", {"and": Required["AnalyticsAndOperator"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterAnd/)."""
 AnalyticsFilter: TypeAlias = AnalyticsFilterPrefix | AnalyticsFilterTag | AnalyticsFilterAnd
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilter/)."""
 
 AnalyticsFilterOutputPrefix = TypedDict("AnalyticsFilterOutputPrefix", {"prefix": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputPrefix/)."""
 AnalyticsFilterOutputTag = TypedDict("AnalyticsFilterOutputTag", {"tag": Required["TagOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputTag/)."""
 AnalyticsFilterOutputAnd = TypedDict("AnalyticsFilterOutputAnd", {"and": Required["AnalyticsAndOperatorOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputAnd/)."""
 AnalyticsFilterOutputUnknown = TypedDict("AnalyticsFilterOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputUnknown/)."""
 AnalyticsFilterOutput: TypeAlias = AnalyticsFilterOutputPrefix | AnalyticsFilterOutputTag | AnalyticsFilterOutputAnd | AnalyticsFilterOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutput/)."""
 
 AnalyticsS3BucketDestination = TypedDict(
     "AnalyticsS3BucketDestination",
@@ -444,6 +796,7 @@ AnalyticsS3BucketDestination = TypedDict(
     "prefix": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsS3BucketDestination/)."""
 
 AnnotationEntry = TypedDict(
     "AnnotationEntry",
@@ -456,6 +809,7 @@ AnnotationEntry = TypedDict(
     "replication_status": NotRequired["ReplicationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationEntry/)."""
 
 AnnotationTableConfiguration = TypedDict(
     "AnnotationTableConfiguration",
@@ -465,6 +819,7 @@ AnnotationTableConfiguration = TypedDict(
     "role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationTableConfiguration/)."""
 
 AnnotationTableConfigurationResult = TypedDict(
     "AnnotationTableConfigurationResult",
@@ -477,6 +832,7 @@ AnnotationTableConfigurationResult = TypedDict(
     "role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationTableConfigurationResult/)."""
 
 AnnotationTableConfigurationUpdates = TypedDict(
     "AnnotationTableConfigurationUpdates",
@@ -486,6 +842,7 @@ AnnotationTableConfigurationUpdates = TypedDict(
     "role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationTableConfigurationUpdates/)."""
 
 BlockedEncryptionTypes = TypedDict(
     "BlockedEncryptionTypes",
@@ -493,6 +850,7 @@ BlockedEncryptionTypes = TypedDict(
     "encryption_type": NotRequired["Sequence[EncryptionType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BlockedEncryptionTypes/)."""
 
 Bucket = TypedDict(
     "Bucket",
@@ -503,6 +861,7 @@ Bucket = TypedDict(
     "bucket_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Bucket/)."""
 
 BucketInfo = TypedDict(
     "BucketInfo",
@@ -511,6 +870,7 @@ BucketInfo = TypedDict(
     "type": NotRequired["BucketType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketInfo/)."""
 
 BucketLifecycleConfiguration = TypedDict(
     "BucketLifecycleConfiguration",
@@ -518,6 +878,7 @@ BucketLifecycleConfiguration = TypedDict(
     "rules": Required["Sequence[LifecycleRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketLifecycleConfiguration/)."""
 
 BucketLoggingStatus = TypedDict(
     "BucketLoggingStatus",
@@ -525,6 +886,7 @@ BucketLoggingStatus = TypedDict(
     "logging_enabled": NotRequired["LoggingEnabled"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketLoggingStatus/)."""
 
 CORSConfiguration = TypedDict(
     "CORSConfiguration",
@@ -532,6 +894,7 @@ CORSConfiguration = TypedDict(
     "cors_rules": Required["Sequence[CORSRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CORSConfiguration/)."""
 
 CORSRule = TypedDict(
     "CORSRule",
@@ -544,6 +907,7 @@ CORSRule = TypedDict(
     "max_age_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CORSRule-d6a684412649/)."""
 
 CSVInput = TypedDict(
     "CSVInput",
@@ -557,6 +921,7 @@ CSVInput = TypedDict(
     "allow_quoted_record_delimiter": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CSVInput/)."""
 
 CSVOutput = TypedDict(
     "CSVOutput",
@@ -568,6 +933,7 @@ CSVOutput = TypedDict(
     "quote_character": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CSVOutput/)."""
 
 Checksum = TypedDict(
     "Checksum",
@@ -585,6 +951,7 @@ Checksum = TypedDict(
     "checksum_type": NotRequired["ChecksumType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Checksum/)."""
 
 CommonPrefix = TypedDict(
     "CommonPrefix",
@@ -592,6 +959,7 @@ CommonPrefix = TypedDict(
     "prefix": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CommonPrefix/)."""
 
 CompleteMultipartUploadRequest = TypedDict(
     "CompleteMultipartUploadRequest",
@@ -621,6 +989,7 @@ CompleteMultipartUploadRequest = TypedDict(
     "sse_customer_key_md5": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CompleteMultipartUploadRequest/)."""
 
 CompletedMultipartUpload = TypedDict(
     "CompletedMultipartUpload",
@@ -628,6 +997,7 @@ CompletedMultipartUpload = TypedDict(
     "parts": NotRequired["Sequence[CompletedPart]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CompletedMultipartUpload/)."""
 
 CompletedPart = TypedDict(
     "CompletedPart",
@@ -646,6 +1016,7 @@ CompletedPart = TypedDict(
     "part_number": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CompletedPart/)."""
 
 Condition = TypedDict(
     "Condition",
@@ -654,12 +1025,14 @@ Condition = TypedDict(
     "key_prefix_equals": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Condition/)."""
 
 ContinuationEvent = TypedDict(
     "ContinuationEvent",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ContinuationEvent/)."""
 
 CopyObjectRequest = TypedDict(
     "CopyObjectRequest",
@@ -713,6 +1086,7 @@ CopyObjectRequest = TypedDict(
     "expected_source_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyObjectRequest/)."""
 
 CopyObjectResult = TypedDict(
     "CopyObjectResult",
@@ -732,6 +1106,7 @@ CopyObjectResult = TypedDict(
     "checksum_xxhash128": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyObjectResult/)."""
 
 CopyPartResult = TypedDict(
     "CopyPartResult",
@@ -750,6 +1125,7 @@ CopyPartResult = TypedDict(
     "checksum_xxhash128": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyPartResult/)."""
 
 CreateBucketConfiguration = TypedDict(
     "CreateBucketConfiguration",
@@ -760,6 +1136,7 @@ CreateBucketConfiguration = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateBucketConfiguration/)."""
 
 CreateBucketMetadataConfigurationRequest = TypedDict(
     "CreateBucketMetadataConfigurationRequest",
@@ -771,6 +1148,7 @@ CreateBucketMetadataConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateBucketMetadataConfigurationRequest/)."""
 
 CreateBucketMetadataTableConfigurationRequest = TypedDict(
     "CreateBucketMetadataTableConfigurationRequest",
@@ -782,6 +1160,7 @@ CreateBucketMetadataTableConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateBucketMetadataTableConfigurationRequest/)."""
 
 CreateBucketRequest = TypedDict(
     "CreateBucketRequest",
@@ -799,6 +1178,7 @@ CreateBucketRequest = TypedDict(
     "bucket_namespace": NotRequired["BucketNamespace"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateBucketRequest/)."""
 
 CreateMultipartUploadRequest = TypedDict(
     "CreateMultipartUploadRequest",
@@ -839,6 +1219,7 @@ CreateMultipartUploadRequest = TypedDict(
     "checksum_type": NotRequired["ChecksumType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateMultipartUploadRequest/)."""
 
 CreateSessionRequest = TypedDict(
     "CreateSessionRequest",
@@ -851,6 +1232,7 @@ CreateSessionRequest = TypedDict(
     "bucket_key_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateSessionRequest/)."""
 
 DefaultRetention = TypedDict(
     "DefaultRetention",
@@ -861,6 +1243,7 @@ DefaultRetention = TypedDict(
     "default_event_hold": NotRequired["EventHoldDuration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DefaultRetention/)."""
 
 Delete = TypedDict(
     "Delete",
@@ -869,6 +1252,7 @@ Delete = TypedDict(
     "quiet": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Delete/)."""
 
 DeleteBucketAnalyticsConfigurationRequest = TypedDict(
     "DeleteBucketAnalyticsConfigurationRequest",
@@ -878,6 +1262,7 @@ DeleteBucketAnalyticsConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketAnalyticsConfigurationRequest/)."""
 
 DeleteBucketCorsRequest = TypedDict(
     "DeleteBucketCorsRequest",
@@ -886,6 +1271,7 @@ DeleteBucketCorsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketCorsRequest/)."""
 
 DeleteBucketEncryptionRequest = TypedDict(
     "DeleteBucketEncryptionRequest",
@@ -894,6 +1280,7 @@ DeleteBucketEncryptionRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketEncryptionRequest/)."""
 
 DeleteBucketIntelligentTieringConfigurationRequest = TypedDict(
     "DeleteBucketIntelligentTieringConfigurationRequest",
@@ -903,6 +1290,7 @@ DeleteBucketIntelligentTieringConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketIntelligentTieringConfigurationRequest/)."""
 
 DeleteBucketInventoryConfigurationRequest = TypedDict(
     "DeleteBucketInventoryConfigurationRequest",
@@ -912,6 +1300,7 @@ DeleteBucketInventoryConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketInventoryConfigurationRequest/)."""
 
 DeleteBucketLifecycleRequest = TypedDict(
     "DeleteBucketLifecycleRequest",
@@ -920,6 +1309,7 @@ DeleteBucketLifecycleRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketLifecycleRequest/)."""
 
 DeleteBucketMetadataConfigurationRequest = TypedDict(
     "DeleteBucketMetadataConfigurationRequest",
@@ -928,6 +1318,7 @@ DeleteBucketMetadataConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketMetadataConfigurationRequest/)."""
 
 DeleteBucketMetadataTableConfigurationRequest = TypedDict(
     "DeleteBucketMetadataTableConfigurationRequest",
@@ -936,6 +1327,7 @@ DeleteBucketMetadataTableConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketMetadataTableConfigurationRequest/)."""
 
 DeleteBucketMetricsConfigurationRequest = TypedDict(
     "DeleteBucketMetricsConfigurationRequest",
@@ -945,6 +1337,7 @@ DeleteBucketMetricsConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketMetricsConfigurationRequest/)."""
 
 DeleteBucketOwnershipControlsRequest = TypedDict(
     "DeleteBucketOwnershipControlsRequest",
@@ -953,6 +1346,7 @@ DeleteBucketOwnershipControlsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketOwnershipControlsRequest/)."""
 
 DeleteBucketPolicyRequest = TypedDict(
     "DeleteBucketPolicyRequest",
@@ -961,6 +1355,7 @@ DeleteBucketPolicyRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketPolicyRequest/)."""
 
 DeleteBucketReplicationRequest = TypedDict(
     "DeleteBucketReplicationRequest",
@@ -969,6 +1364,7 @@ DeleteBucketReplicationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketReplicationRequest/)."""
 
 DeleteBucketRequest = TypedDict(
     "DeleteBucketRequest",
@@ -977,6 +1373,7 @@ DeleteBucketRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketRequest/)."""
 
 DeleteBucketTaggingRequest = TypedDict(
     "DeleteBucketTaggingRequest",
@@ -985,6 +1382,7 @@ DeleteBucketTaggingRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketTaggingRequest/)."""
 
 DeleteBucketWebsiteRequest = TypedDict(
     "DeleteBucketWebsiteRequest",
@@ -993,6 +1391,7 @@ DeleteBucketWebsiteRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteBucketWebsiteRequest/)."""
 
 DeleteMarkerEntry = TypedDict(
     "DeleteMarkerEntry",
@@ -1004,6 +1403,7 @@ DeleteMarkerEntry = TypedDict(
     "last_modified": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerEntry/)."""
 
 DeleteMarkerReplication = TypedDict(
     "DeleteMarkerReplication",
@@ -1011,6 +1411,7 @@ DeleteMarkerReplication = TypedDict(
     "status": NotRequired["DeleteMarkerReplicationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerReplication/)."""
 
 DeleteObjectAnnotationRequest = TypedDict(
     "DeleteObjectAnnotationRequest",
@@ -1024,6 +1425,7 @@ DeleteObjectAnnotationRequest = TypedDict(
     "object_if_match": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectAnnotationRequest/)."""
 
 DeleteObjectRequest = TypedDict(
     "DeleteObjectRequest",
@@ -1040,6 +1442,7 @@ DeleteObjectRequest = TypedDict(
     "if_match_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectRequest/)."""
 
 DeleteObjectTaggingRequest = TypedDict(
     "DeleteObjectTaggingRequest",
@@ -1050,6 +1453,7 @@ DeleteObjectTaggingRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectTaggingRequest/)."""
 
 DeleteObjectsRequest = TypedDict(
     "DeleteObjectsRequest",
@@ -1063,6 +1467,7 @@ DeleteObjectsRequest = TypedDict(
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectsRequest/)."""
 
 DeletePublicAccessBlockRequest = TypedDict(
     "DeletePublicAccessBlockRequest",
@@ -1071,6 +1476,7 @@ DeletePublicAccessBlockRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeletePublicAccessBlockRequest/)."""
 
 DeletedObject = TypedDict(
     "DeletedObject",
@@ -1081,6 +1487,7 @@ DeletedObject = TypedDict(
     "delete_marker_version_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeletedObject/)."""
 
 Destination = TypedDict(
     "Destination",
@@ -1094,6 +1501,7 @@ Destination = TypedDict(
     "metrics": NotRequired["Metrics"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Destination/)."""
 
 DestinationResult = TypedDict(
     "DestinationResult",
@@ -1103,6 +1511,7 @@ DestinationResult = TypedDict(
     "table_namespace": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DestinationResult/)."""
 
 Encryption = TypedDict(
     "Encryption",
@@ -1112,6 +1521,7 @@ Encryption = TypedDict(
     "kms_context": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Encryption/)."""
 
 EncryptionConfiguration = TypedDict(
     "EncryptionConfiguration",
@@ -1119,12 +1529,14 @@ EncryptionConfiguration = TypedDict(
     "replica_kms_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncryptionConfiguration/)."""
 
 EndEvent = TypedDict(
     "EndEvent",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EndEvent/)."""
 
 Error = TypedDict(
     "Error",
@@ -1135,6 +1547,7 @@ Error = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Error/)."""
 
 ErrorDetails = TypedDict(
     "ErrorDetails",
@@ -1143,6 +1556,7 @@ ErrorDetails = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorDetails/)."""
 
 ErrorDocument = TypedDict(
     "ErrorDocument",
@@ -1150,12 +1564,14 @@ ErrorDocument = TypedDict(
     "key": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorDocument/)."""
 
 EventBridgeConfiguration = TypedDict(
     "EventBridgeConfiguration",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EventBridgeConfiguration/)."""
 
 EventHoldDuration = TypedDict(
     "EventHoldDuration",
@@ -1164,6 +1580,7 @@ EventHoldDuration = TypedDict(
     "years": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EventHoldDuration/)."""
 
 ExistingObjectReplication = TypedDict(
     "ExistingObjectReplication",
@@ -1171,6 +1588,7 @@ ExistingObjectReplication = TypedDict(
     "status": Required["ExistingObjectReplicationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExistingObjectReplication/)."""
 
 FilterRule = TypedDict(
     "FilterRule",
@@ -1179,6 +1597,7 @@ FilterRule = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/FilterRule/)."""
 
 GetBucketAbacRequest = TypedDict(
     "GetBucketAbacRequest",
@@ -1187,6 +1606,7 @@ GetBucketAbacRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAbacRequest/)."""
 
 GetBucketAccelerateConfigurationRequest = TypedDict(
     "GetBucketAccelerateConfigurationRequest",
@@ -1196,6 +1616,7 @@ GetBucketAccelerateConfigurationRequest = TypedDict(
     "request_payer": NotRequired["RequestPayer"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAccelerateConfigurationRequest/)."""
 
 GetBucketAclRequest = TypedDict(
     "GetBucketAclRequest",
@@ -1204,6 +1625,7 @@ GetBucketAclRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAclRequest/)."""
 
 GetBucketAnalyticsConfigurationRequest = TypedDict(
     "GetBucketAnalyticsConfigurationRequest",
@@ -1213,6 +1635,7 @@ GetBucketAnalyticsConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAnalyticsConfigurationRequest/)."""
 
 GetBucketCorsRequest = TypedDict(
     "GetBucketCorsRequest",
@@ -1221,6 +1644,7 @@ GetBucketCorsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketCorsRequest/)."""
 
 GetBucketEncryptionRequest = TypedDict(
     "GetBucketEncryptionRequest",
@@ -1229,6 +1653,7 @@ GetBucketEncryptionRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketEncryptionRequest/)."""
 
 GetBucketIntelligentTieringConfigurationRequest = TypedDict(
     "GetBucketIntelligentTieringConfigurationRequest",
@@ -1238,6 +1663,7 @@ GetBucketIntelligentTieringConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketIntelligentTieringConfigurationRequest/)."""
 
 GetBucketInventoryConfigurationRequest = TypedDict(
     "GetBucketInventoryConfigurationRequest",
@@ -1247,6 +1673,7 @@ GetBucketInventoryConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketInventoryConfigurationRequest/)."""
 
 GetBucketLifecycleConfigurationRequest = TypedDict(
     "GetBucketLifecycleConfigurationRequest",
@@ -1255,6 +1682,7 @@ GetBucketLifecycleConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLifecycleConfigurationRequest/)."""
 
 GetBucketLocationRequest = TypedDict(
     "GetBucketLocationRequest",
@@ -1263,6 +1691,7 @@ GetBucketLocationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLocationRequest/)."""
 
 GetBucketLoggingRequest = TypedDict(
     "GetBucketLoggingRequest",
@@ -1271,6 +1700,7 @@ GetBucketLoggingRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLoggingRequest/)."""
 
 GetBucketMetadataConfigurationRequest = TypedDict(
     "GetBucketMetadataConfigurationRequest",
@@ -1279,6 +1709,7 @@ GetBucketMetadataConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataConfigurationRequest/)."""
 
 GetBucketMetadataConfigurationResult = TypedDict(
     "GetBucketMetadataConfigurationResult",
@@ -1286,6 +1717,7 @@ GetBucketMetadataConfigurationResult = TypedDict(
     "metadata_configuration_result": Required["MetadataConfigurationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataConfigurationResult/)."""
 
 GetBucketMetadataTableConfigurationRequest = TypedDict(
     "GetBucketMetadataTableConfigurationRequest",
@@ -1294,6 +1726,7 @@ GetBucketMetadataTableConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataTableConfigurationRequest/)."""
 
 GetBucketMetadataTableConfigurationResult = TypedDict(
     "GetBucketMetadataTableConfigurationResult",
@@ -1303,6 +1736,7 @@ GetBucketMetadataTableConfigurationResult = TypedDict(
     "error": NotRequired["ErrorDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataTableConfigurationResult/)."""
 
 GetBucketMetricsConfigurationRequest = TypedDict(
     "GetBucketMetricsConfigurationRequest",
@@ -1312,6 +1746,7 @@ GetBucketMetricsConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetricsConfigurationRequest/)."""
 
 GetBucketNotificationConfigurationRequest = TypedDict(
     "GetBucketNotificationConfigurationRequest",
@@ -1320,6 +1755,7 @@ GetBucketNotificationConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketNotificationConfigurationRequest/)."""
 
 GetBucketOwnershipControlsRequest = TypedDict(
     "GetBucketOwnershipControlsRequest",
@@ -1328,6 +1764,7 @@ GetBucketOwnershipControlsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketOwnershipControlsRequest/)."""
 
 GetBucketPolicyRequest = TypedDict(
     "GetBucketPolicyRequest",
@@ -1336,6 +1773,7 @@ GetBucketPolicyRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketPolicyRequest/)."""
 
 GetBucketPolicyStatusRequest = TypedDict(
     "GetBucketPolicyStatusRequest",
@@ -1344,6 +1782,7 @@ GetBucketPolicyStatusRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketPolicyStatusRequest/)."""
 
 GetBucketReplicationRequest = TypedDict(
     "GetBucketReplicationRequest",
@@ -1352,6 +1791,7 @@ GetBucketReplicationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketReplicationRequest/)."""
 
 GetBucketRequestPaymentRequest = TypedDict(
     "GetBucketRequestPaymentRequest",
@@ -1360,6 +1800,7 @@ GetBucketRequestPaymentRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketRequestPaymentRequest/)."""
 
 GetBucketTaggingRequest = TypedDict(
     "GetBucketTaggingRequest",
@@ -1368,6 +1809,7 @@ GetBucketTaggingRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketTaggingRequest/)."""
 
 GetBucketVersioningRequest = TypedDict(
     "GetBucketVersioningRequest",
@@ -1376,6 +1818,7 @@ GetBucketVersioningRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketVersioningRequest/)."""
 
 GetBucketWebsiteRequest = TypedDict(
     "GetBucketWebsiteRequest",
@@ -1384,6 +1827,7 @@ GetBucketWebsiteRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketWebsiteRequest/)."""
 
 GetObjectAclRequest = TypedDict(
     "GetObjectAclRequest",
@@ -1395,6 +1839,7 @@ GetObjectAclRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAclRequest/)."""
 
 GetObjectAnnotationRequest = TypedDict(
     "GetObjectAnnotationRequest",
@@ -1408,6 +1853,7 @@ GetObjectAnnotationRequest = TypedDict(
     "checksum_mode": NotRequired["ChecksumMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAnnotationRequest/)."""
 
 GetObjectAttributesParts = TypedDict(
     "GetObjectAttributesParts",
@@ -1420,6 +1866,7 @@ GetObjectAttributesParts = TypedDict(
     "parts": NotRequired["Sequence[ObjectPart]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAttributesParts/)."""
 
 GetObjectAttributesRequest = TypedDict(
     "GetObjectAttributesRequest",
@@ -1437,6 +1884,7 @@ GetObjectAttributesRequest = TypedDict(
     "object_attributes": Required["Sequence[ObjectAttributes]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAttributesRequest/)."""
 
 GetObjectLegalHoldRequest = TypedDict(
     "GetObjectLegalHoldRequest",
@@ -1448,6 +1896,7 @@ GetObjectLegalHoldRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectLegalHoldRequest/)."""
 
 GetObjectLockConfigurationRequest = TypedDict(
     "GetObjectLockConfigurationRequest",
@@ -1456,6 +1905,7 @@ GetObjectLockConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectLockConfigurationRequest/)."""
 
 GetObjectRequest = TypedDict(
     "GetObjectRequest",
@@ -1483,6 +1933,7 @@ GetObjectRequest = TypedDict(
     "checksum_mode": NotRequired["ChecksumMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectRequest/)."""
 
 GetObjectRetentionRequest = TypedDict(
     "GetObjectRetentionRequest",
@@ -1494,6 +1945,7 @@ GetObjectRetentionRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectRetentionRequest/)."""
 
 GetObjectTaggingRequest = TypedDict(
     "GetObjectTaggingRequest",
@@ -1505,6 +1957,7 @@ GetObjectTaggingRequest = TypedDict(
     "request_payer": NotRequired["RequestPayer"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectTaggingRequest/)."""
 
 GetObjectTorrentRequest = TypedDict(
     "GetObjectTorrentRequest",
@@ -1515,6 +1968,7 @@ GetObjectTorrentRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectTorrentRequest/)."""
 
 GetPublicAccessBlockRequest = TypedDict(
     "GetPublicAccessBlockRequest",
@@ -1523,6 +1977,7 @@ GetPublicAccessBlockRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetPublicAccessBlockRequest/)."""
 
 GlacierJobParameters = TypedDict(
     "GlacierJobParameters",
@@ -1530,6 +1985,7 @@ GlacierJobParameters = TypedDict(
     "tier": Required["Tier"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GlacierJobParameters/)."""
 
 Grant = TypedDict(
     "Grant",
@@ -1538,6 +1994,7 @@ Grant = TypedDict(
     "permission": NotRequired["Permission"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Grant/)."""
 
 Grantee = TypedDict(
     "Grantee",
@@ -1549,6 +2006,7 @@ Grantee = TypedDict(
     "type": Required["Type"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Grantee/)."""
 
 HeadBucketRequest = TypedDict(
     "HeadBucketRequest",
@@ -1557,6 +2015,7 @@ HeadBucketRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/HeadBucketRequest/)."""
 
 HeadObjectRequest = TypedDict(
     "HeadObjectRequest",
@@ -1584,6 +2043,7 @@ HeadObjectRequest = TypedDict(
     "checksum_mode": NotRequired["ChecksumMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/HeadObjectRequest/)."""
 
 IndexDocument = TypedDict(
     "IndexDocument",
@@ -1591,6 +2051,7 @@ IndexDocument = TypedDict(
     "suffix": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IndexDocument/)."""
 
 Initiator = TypedDict(
     "Initiator",
@@ -1599,6 +2060,7 @@ Initiator = TypedDict(
     "display_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Initiator/)."""
 
 InputSerialization = TypedDict(
     "InputSerialization",
@@ -1609,6 +2071,7 @@ InputSerialization = TypedDict(
     "parquet": NotRequired["ParquetInput"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InputSerialization/)."""
 
 IntelligentTieringAndOperator = TypedDict(
     "IntelligentTieringAndOperator",
@@ -1617,6 +2080,7 @@ IntelligentTieringAndOperator = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringAndOperator/)."""
 
 IntelligentTieringConfiguration = TypedDict(
     "IntelligentTieringConfiguration",
@@ -1627,6 +2091,7 @@ IntelligentTieringConfiguration = TypedDict(
     "tierings": Required["Sequence[Tiering]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringConfiguration/)."""
 
 IntelligentTieringFilter = TypedDict(
     "IntelligentTieringFilter",
@@ -1636,6 +2101,7 @@ IntelligentTieringFilter = TypedDict(
     "and": NotRequired["IntelligentTieringAndOperator"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringFilter/)."""
 
 InventoryConfiguration = TypedDict(
     "InventoryConfiguration",
@@ -1649,6 +2115,7 @@ InventoryConfiguration = TypedDict(
     "schedule": Required["InventorySchedule"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryConfiguration/)."""
 
 InventoryDestination = TypedDict(
     "InventoryDestination",
@@ -1656,6 +2123,7 @@ InventoryDestination = TypedDict(
     "s3_bucket_destination": Required["InventoryS3BucketDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryDestination/)."""
 
 InventoryEncryption = TypedDict(
     "InventoryEncryption",
@@ -1664,6 +2132,7 @@ InventoryEncryption = TypedDict(
     "ssekms": NotRequired["SSEKMS"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryEncryption/)."""
 
 InventoryFilter = TypedDict(
     "InventoryFilter",
@@ -1671,6 +2140,7 @@ InventoryFilter = TypedDict(
     "prefix": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryFilter/)."""
 
 InventoryS3BucketDestination = TypedDict(
     "InventoryS3BucketDestination",
@@ -1682,6 +2152,7 @@ InventoryS3BucketDestination = TypedDict(
     "encryption": NotRequired["InventoryEncryption"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryS3BucketDestination/)."""
 
 InventorySchedule = TypedDict(
     "InventorySchedule",
@@ -1689,6 +2160,7 @@ InventorySchedule = TypedDict(
     "frequency": Required["InventoryFrequency"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventorySchedule/)."""
 
 InventoryTableConfiguration = TypedDict(
     "InventoryTableConfiguration",
@@ -1697,6 +2169,7 @@ InventoryTableConfiguration = TypedDict(
     "encryption_configuration": NotRequired["MetadataTableEncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryTableConfiguration/)."""
 
 InventoryTableConfigurationResult = TypedDict(
     "InventoryTableConfigurationResult",
@@ -1708,6 +2181,7 @@ InventoryTableConfigurationResult = TypedDict(
     "table_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryTableConfigurationResult/)."""
 
 InventoryTableConfigurationUpdates = TypedDict(
     "InventoryTableConfigurationUpdates",
@@ -1716,6 +2190,7 @@ InventoryTableConfigurationUpdates = TypedDict(
     "encryption_configuration": NotRequired["MetadataTableEncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryTableConfigurationUpdates/)."""
 
 JSONInput = TypedDict(
     "JSONInput",
@@ -1723,6 +2198,7 @@ JSONInput = TypedDict(
     "type": NotRequired["JSONType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JSONInput/)."""
 
 JSONOutput = TypedDict(
     "JSONOutput",
@@ -1730,6 +2206,7 @@ JSONOutput = TypedDict(
     "record_delimiter": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JSONOutput/)."""
 
 JournalTableConfiguration = TypedDict(
     "JournalTableConfiguration",
@@ -1738,6 +2215,7 @@ JournalTableConfiguration = TypedDict(
     "encryption_configuration": NotRequired["MetadataTableEncryptionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JournalTableConfiguration/)."""
 
 JournalTableConfigurationResult = TypedDict(
     "JournalTableConfigurationResult",
@@ -1749,6 +2227,7 @@ JournalTableConfigurationResult = TypedDict(
     "record_expiration": Required["RecordExpiration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JournalTableConfigurationResult/)."""
 
 JournalTableConfigurationUpdates = TypedDict(
     "JournalTableConfigurationUpdates",
@@ -1756,6 +2235,7 @@ JournalTableConfigurationUpdates = TypedDict(
     "record_expiration": Required["RecordExpiration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JournalTableConfigurationUpdates/)."""
 
 LambdaFunctionConfiguration = TypedDict(
     "LambdaFunctionConfiguration",
@@ -1766,6 +2246,7 @@ LambdaFunctionConfiguration = TypedDict(
     "filter": NotRequired["NotificationConfigurationFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LambdaFunctionConfiguration/)."""
 
 LifecycleExpiration = TypedDict(
     "LifecycleExpiration",
@@ -1775,6 +2256,7 @@ LifecycleExpiration = TypedDict(
     "expired_object_delete_marker": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleExpiration/)."""
 
 LifecycleRule = TypedDict(
     "LifecycleRule",
@@ -1790,6 +2272,7 @@ LifecycleRule = TypedDict(
     "abort_incomplete_multipart_upload": NotRequired["AbortIncompleteMultipartUpload"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRule/)."""
 
 LifecycleRuleAndOperator = TypedDict(
     "LifecycleRuleAndOperator",
@@ -1800,6 +2283,7 @@ LifecycleRuleAndOperator = TypedDict(
     "object_size_less_than": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleAndOperator/)."""
 
 LifecycleRuleFilter = TypedDict(
     "LifecycleRuleFilter",
@@ -1811,6 +2295,7 @@ LifecycleRuleFilter = TypedDict(
     "and": NotRequired["LifecycleRuleAndOperator"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleFilter/)."""
 
 ListBucketAnalyticsConfigurationsRequest = TypedDict(
     "ListBucketAnalyticsConfigurationsRequest",
@@ -1820,6 +2305,7 @@ ListBucketAnalyticsConfigurationsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketAnalyticsConfigurationsRequest/)."""
 
 ListBucketIntelligentTieringConfigurationsRequest = TypedDict(
     "ListBucketIntelligentTieringConfigurationsRequest",
@@ -1829,6 +2315,7 @@ ListBucketIntelligentTieringConfigurationsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketIntelligentTieringConfigurationsRequest/)."""
 
 ListBucketInventoryConfigurationsRequest = TypedDict(
     "ListBucketInventoryConfigurationsRequest",
@@ -1838,6 +2325,7 @@ ListBucketInventoryConfigurationsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketInventoryConfigurationsRequest/)."""
 
 ListBucketMetricsConfigurationsRequest = TypedDict(
     "ListBucketMetricsConfigurationsRequest",
@@ -1847,6 +2335,7 @@ ListBucketMetricsConfigurationsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketMetricsConfigurationsRequest/)."""
 
 ListBucketsRequest = TypedDict(
     "ListBucketsRequest",
@@ -1857,6 +2346,7 @@ ListBucketsRequest = TypedDict(
     "bucket_region": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketsRequest/)."""
 
 ListDirectoryBucketsRequest = TypedDict(
     "ListDirectoryBucketsRequest",
@@ -1865,6 +2355,7 @@ ListDirectoryBucketsRequest = TypedDict(
     "max_directory_buckets": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListDirectoryBucketsRequest/)."""
 
 ListMultipartUploadsRequest = TypedDict(
     "ListMultipartUploadsRequest",
@@ -1880,6 +2371,7 @@ ListMultipartUploadsRequest = TypedDict(
     "request_payer": NotRequired["RequestPayer"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListMultipartUploadsRequest/)."""
 
 ListObjectAnnotationsRequest = TypedDict(
     "ListObjectAnnotationsRequest",
@@ -1894,6 +2386,7 @@ ListObjectAnnotationsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectAnnotationsRequest/)."""
 
 ListObjectVersionsRequest = TypedDict(
     "ListObjectVersionsRequest",
@@ -1910,6 +2403,7 @@ ListObjectVersionsRequest = TypedDict(
     "optional_object_attributes": NotRequired["Sequence[OptionalObjectAttributes]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectVersionsRequest/)."""
 
 ListObjectsRequest = TypedDict(
     "ListObjectsRequest",
@@ -1925,6 +2419,7 @@ ListObjectsRequest = TypedDict(
     "optional_object_attributes": NotRequired["Sequence[OptionalObjectAttributes]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectsRequest/)."""
 
 ListObjectsV2Request = TypedDict(
     "ListObjectsV2Request",
@@ -1942,6 +2437,7 @@ ListObjectsV2Request = TypedDict(
     "optional_object_attributes": NotRequired["Sequence[OptionalObjectAttributes]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectsV2Request/)."""
 
 ListPartsRequest = TypedDict(
     "ListPartsRequest",
@@ -1958,6 +2454,7 @@ ListPartsRequest = TypedDict(
     "sse_customer_key_md5": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListPartsRequest/)."""
 
 LocationInfo = TypedDict(
     "LocationInfo",
@@ -1966,6 +2463,7 @@ LocationInfo = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LocationInfo/)."""
 
 LoggingEnabled = TypedDict(
     "LoggingEnabled",
@@ -1976,6 +2474,7 @@ LoggingEnabled = TypedDict(
     "target_object_key_format": NotRequired["TargetObjectKeyFormat"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LoggingEnabled/)."""
 
 MetadataConfiguration = TypedDict(
     "MetadataConfiguration",
@@ -1985,6 +2484,7 @@ MetadataConfiguration = TypedDict(
     "annotation_table_configuration": NotRequired["AnnotationTableConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataConfiguration/)."""
 
 MetadataConfigurationResult = TypedDict(
     "MetadataConfigurationResult",
@@ -1995,6 +2495,7 @@ MetadataConfigurationResult = TypedDict(
     "annotation_table_configuration_result": NotRequired["AnnotationTableConfigurationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataConfigurationResult/)."""
 
 MetadataEntry = TypedDict(
     "MetadataEntry",
@@ -2003,6 +2504,7 @@ MetadataEntry = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataEntry/)."""
 
 MetadataTableConfiguration = TypedDict(
     "MetadataTableConfiguration",
@@ -2010,6 +2512,7 @@ MetadataTableConfiguration = TypedDict(
     "s3_tables_destination": Required["S3TablesDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataTableConfiguration/)."""
 
 MetadataTableConfigurationResult = TypedDict(
     "MetadataTableConfigurationResult",
@@ -2017,6 +2520,7 @@ MetadataTableConfigurationResult = TypedDict(
     "s3_tables_destination_result": Required["S3TablesDestinationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataTableConfigurationResult/)."""
 
 MetadataTableEncryptionConfiguration = TypedDict(
     "MetadataTableEncryptionConfiguration",
@@ -2025,6 +2529,7 @@ MetadataTableEncryptionConfiguration = TypedDict(
     "kms_key_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataTableEncryptionConfiguration/)."""
 
 Metrics = TypedDict(
     "Metrics",
@@ -2033,6 +2538,7 @@ Metrics = TypedDict(
     "event_threshold": NotRequired["ReplicationTimeValue"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Metrics/)."""
 
 MetricsAndOperator = TypedDict(
     "MetricsAndOperator",
@@ -2042,6 +2548,7 @@ MetricsAndOperator = TypedDict(
     "access_point_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsAndOperator/)."""
 
 MetricsAndOperatorOutput = TypedDict(
     "MetricsAndOperatorOutput",
@@ -2051,6 +2558,7 @@ MetricsAndOperatorOutput = TypedDict(
     "access_point_arn": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsAndOperatorOutput/)."""
 
 MetricsConfiguration = TypedDict(
     "MetricsConfiguration",
@@ -2059,19 +2567,31 @@ MetricsConfiguration = TypedDict(
     "filter": NotRequired["MetricsFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsConfiguration/)."""
 
 MetricsFilterPrefix = TypedDict("MetricsFilterPrefix", {"prefix": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterPrefix/)."""
 MetricsFilterTag = TypedDict("MetricsFilterTag", {"tag": Required["Tag"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterTag/)."""
 MetricsFilterAccessPointArn = TypedDict("MetricsFilterAccessPointArn", {"access_point_arn": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterAccessPointArn/)."""
 MetricsFilterAnd = TypedDict("MetricsFilterAnd", {"and": Required["MetricsAndOperator"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterAnd/)."""
 MetricsFilter: TypeAlias = MetricsFilterPrefix | MetricsFilterTag | MetricsFilterAccessPointArn | MetricsFilterAnd
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilter/)."""
 
 MetricsFilterOutputPrefix = TypedDict("MetricsFilterOutputPrefix", {"prefix": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputPrefix/)."""
 MetricsFilterOutputTag = TypedDict("MetricsFilterOutputTag", {"tag": Required["TagOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputTag/)."""
 MetricsFilterOutputAccessPointArn = TypedDict("MetricsFilterOutputAccessPointArn", {"access_point_arn": Required["str"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputAccessPointArn/)."""
 MetricsFilterOutputAnd = TypedDict("MetricsFilterOutputAnd", {"and": Required["MetricsAndOperatorOutput"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputAnd/)."""
 MetricsFilterOutputUnknown = TypedDict("MetricsFilterOutputUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputUnknown/)."""
 MetricsFilterOutput: TypeAlias = MetricsFilterOutputPrefix | MetricsFilterOutputTag | MetricsFilterOutputAccessPointArn | MetricsFilterOutputAnd | MetricsFilterOutputUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutput/)."""
 
 MultipartUpload = TypedDict(
     "MultipartUpload",
@@ -2086,6 +2606,7 @@ MultipartUpload = TypedDict(
     "checksum_type": NotRequired["ChecksumType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MultipartUpload/)."""
 
 NoncurrentVersionExpiration = TypedDict(
     "NoncurrentVersionExpiration",
@@ -2094,6 +2615,7 @@ NoncurrentVersionExpiration = TypedDict(
     "newer_noncurrent_versions": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NoncurrentVersionExpiration/)."""
 
 NoncurrentVersionTransition = TypedDict(
     "NoncurrentVersionTransition",
@@ -2103,6 +2625,7 @@ NoncurrentVersionTransition = TypedDict(
     "newer_noncurrent_versions": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NoncurrentVersionTransition/)."""
 
 NotificationConfiguration = TypedDict(
     "NotificationConfiguration",
@@ -2113,6 +2636,7 @@ NotificationConfiguration = TypedDict(
     "event_bridge_configuration": NotRequired["EventBridgeConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NotificationConfiguration/)."""
 
 NotificationConfigurationFilter = TypedDict(
     "NotificationConfigurationFilter",
@@ -2120,6 +2644,7 @@ NotificationConfigurationFilter = TypedDict(
     "key": NotRequired["S3KeyFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NotificationConfigurationFilter/)."""
 
 Object = TypedDict(
     "Object",
@@ -2135,9 +2660,12 @@ Object = TypedDict(
     "restore_status": NotRequired["RestoreStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Object/)."""
 
 ObjectEncryptionSSEKMS = TypedDict("ObjectEncryptionSSEKMS", {"ssekms": Required["SSEKMSEncryption"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectEncryptionSSEKMS/)."""
 ObjectEncryption: TypeAlias = ObjectEncryptionSSEKMS
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectEncryption/)."""
 
 ObjectIdentifier = TypedDict(
     "ObjectIdentifier",
@@ -2149,6 +2677,7 @@ ObjectIdentifier = TypedDict(
     "size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectIdentifier/)."""
 
 ObjectLockConfiguration = TypedDict(
     "ObjectLockConfiguration",
@@ -2157,6 +2686,7 @@ ObjectLockConfiguration = TypedDict(
     "rule": NotRequired["ObjectLockRule"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockConfiguration/)."""
 
 ObjectLockLegalHold = TypedDict(
     "ObjectLockLegalHold",
@@ -2164,6 +2694,7 @@ ObjectLockLegalHold = TypedDict(
     "status": NotRequired["ObjectLockLegalHoldStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockLegalHold/)."""
 
 ObjectLockRetention = TypedDict(
     "ObjectLockRetention",
@@ -2174,6 +2705,7 @@ ObjectLockRetention = TypedDict(
     "event_hold_duration": NotRequired["EventHoldDuration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRetention/)."""
 
 ObjectLockRule = TypedDict(
     "ObjectLockRule",
@@ -2181,6 +2713,7 @@ ObjectLockRule = TypedDict(
     "default_retention": NotRequired["DefaultRetention"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRule/)."""
 
 ObjectPart = TypedDict(
     "ObjectPart",
@@ -2199,6 +2732,7 @@ ObjectPart = TypedDict(
     "checksum_xxhash128": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectPart/)."""
 
 ObjectVersion = TypedDict(
     "ObjectVersion",
@@ -2216,6 +2750,7 @@ ObjectVersion = TypedDict(
     "restore_status": NotRequired["RestoreStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectVersion/)."""
 
 OutputLocation = TypedDict(
     "OutputLocation",
@@ -2223,6 +2758,7 @@ OutputLocation = TypedDict(
     "s3": NotRequired["S3Location"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OutputLocation/)."""
 
 OutputSerialization = TypedDict(
     "OutputSerialization",
@@ -2231,6 +2767,7 @@ OutputSerialization = TypedDict(
     "json": NotRequired["JSONOutput"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OutputSerialization/)."""
 
 Owner = TypedDict(
     "Owner",
@@ -2239,6 +2776,7 @@ Owner = TypedDict(
     "id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Owner/)."""
 
 OwnershipControls = TypedDict(
     "OwnershipControls",
@@ -2246,6 +2784,7 @@ OwnershipControls = TypedDict(
     "rules": Required["Sequence[OwnershipControlsRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnershipControls/)."""
 
 OwnershipControlsRule = TypedDict(
     "OwnershipControlsRule",
@@ -2253,12 +2792,14 @@ OwnershipControlsRule = TypedDict(
     "object_ownership": Required["ObjectOwnership"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnershipControlsRule/)."""
 
 ParquetInput = TypedDict(
     "ParquetInput",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ParquetInput/)."""
 
 Part = TypedDict(
     "Part",
@@ -2279,6 +2820,7 @@ Part = TypedDict(
     "checksum_xxhash128": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Part/)."""
 
 PartitionedPrefix = TypedDict(
     "PartitionedPrefix",
@@ -2286,6 +2828,7 @@ PartitionedPrefix = TypedDict(
     "partition_date_source": NotRequired["PartitionDateSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PartitionedPrefix/)."""
 
 PolicyStatus = TypedDict(
     "PolicyStatus",
@@ -2293,6 +2836,7 @@ PolicyStatus = TypedDict(
     "is_public": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PolicyStatus/)."""
 
 Progress = TypedDict(
     "Progress",
@@ -2302,6 +2846,7 @@ Progress = TypedDict(
     "bytes_returned": Required["int | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Progress/)."""
 
 ProgressEvent = TypedDict(
     "ProgressEvent",
@@ -2309,6 +2854,7 @@ ProgressEvent = TypedDict(
     "details": Required["Progress | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ProgressEvent/)."""
 
 PublicAccessBlockConfiguration = TypedDict(
     "PublicAccessBlockConfiguration",
@@ -2319,6 +2865,7 @@ PublicAccessBlockConfiguration = TypedDict(
     "restrict_public_buckets": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PublicAccessBlockConfiguration/)."""
 
 PutBucketAbacRequest = TypedDict(
     "PutBucketAbacRequest",
@@ -2330,6 +2877,7 @@ PutBucketAbacRequest = TypedDict(
     "abac_status": Required["AbacStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketAbacRequest/)."""
 
 PutBucketAccelerateConfigurationRequest = TypedDict(
     "PutBucketAccelerateConfigurationRequest",
@@ -2340,6 +2888,7 @@ PutBucketAccelerateConfigurationRequest = TypedDict(
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketAccelerateConfigurationRequest/)."""
 
 PutBucketAclRequest = TypedDict(
     "PutBucketAclRequest",
@@ -2357,6 +2906,7 @@ PutBucketAclRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketAclRequest/)."""
 
 PutBucketAnalyticsConfigurationRequest = TypedDict(
     "PutBucketAnalyticsConfigurationRequest",
@@ -2367,6 +2917,7 @@ PutBucketAnalyticsConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketAnalyticsConfigurationRequest/)."""
 
 PutBucketCorsRequest = TypedDict(
     "PutBucketCorsRequest",
@@ -2378,6 +2929,7 @@ PutBucketCorsRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketCorsRequest/)."""
 
 PutBucketEncryptionRequest = TypedDict(
     "PutBucketEncryptionRequest",
@@ -2389,6 +2941,7 @@ PutBucketEncryptionRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketEncryptionRequest/)."""
 
 PutBucketIntelligentTieringConfigurationRequest = TypedDict(
     "PutBucketIntelligentTieringConfigurationRequest",
@@ -2399,6 +2952,7 @@ PutBucketIntelligentTieringConfigurationRequest = TypedDict(
     "intelligent_tiering_configuration": Required["IntelligentTieringConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketIntelligentTieringConfigurationRequest/)."""
 
 PutBucketInventoryConfigurationRequest = TypedDict(
     "PutBucketInventoryConfigurationRequest",
@@ -2409,6 +2963,7 @@ PutBucketInventoryConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketInventoryConfigurationRequest/)."""
 
 PutBucketLifecycleConfigurationRequest = TypedDict(
     "PutBucketLifecycleConfigurationRequest",
@@ -2420,6 +2975,7 @@ PutBucketLifecycleConfigurationRequest = TypedDict(
     "transition_default_minimum_object_size": NotRequired["TransitionDefaultMinimumObjectSize"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketLifecycleConfigurationRequest/)."""
 
 PutBucketLoggingRequest = TypedDict(
     "PutBucketLoggingRequest",
@@ -2431,6 +2987,7 @@ PutBucketLoggingRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketLoggingRequest/)."""
 
 PutBucketMetricsConfigurationRequest = TypedDict(
     "PutBucketMetricsConfigurationRequest",
@@ -2441,6 +2998,7 @@ PutBucketMetricsConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketMetricsConfigurationRequest/)."""
 
 PutBucketNotificationConfigurationRequest = TypedDict(
     "PutBucketNotificationConfigurationRequest",
@@ -2451,6 +3009,7 @@ PutBucketNotificationConfigurationRequest = TypedDict(
     "skip_destination_validation": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketNotificationConfigurationRequest/)."""
 
 PutBucketOwnershipControlsRequest = TypedDict(
     "PutBucketOwnershipControlsRequest",
@@ -2462,6 +3021,7 @@ PutBucketOwnershipControlsRequest = TypedDict(
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketOwnershipControlsRequest/)."""
 
 PutBucketPolicyRequest = TypedDict(
     "PutBucketPolicyRequest",
@@ -2474,6 +3034,7 @@ PutBucketPolicyRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketPolicyRequest/)."""
 
 PutBucketReplicationRequest = TypedDict(
     "PutBucketReplicationRequest",
@@ -2486,6 +3047,7 @@ PutBucketReplicationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketReplicationRequest/)."""
 
 PutBucketRequestPaymentRequest = TypedDict(
     "PutBucketRequestPaymentRequest",
@@ -2497,6 +3059,7 @@ PutBucketRequestPaymentRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketRequestPaymentRequest/)."""
 
 PutBucketTaggingRequest = TypedDict(
     "PutBucketTaggingRequest",
@@ -2508,6 +3071,7 @@ PutBucketTaggingRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketTaggingRequest/)."""
 
 PutBucketVersioningRequest = TypedDict(
     "PutBucketVersioningRequest",
@@ -2520,6 +3084,7 @@ PutBucketVersioningRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketVersioningRequest/)."""
 
 PutBucketWebsiteRequest = TypedDict(
     "PutBucketWebsiteRequest",
@@ -2531,6 +3096,7 @@ PutBucketWebsiteRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketWebsiteRequest/)."""
 
 PutObjectAclRequest = TypedDict(
     "PutObjectAclRequest",
@@ -2551,6 +3117,7 @@ PutObjectAclRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectAclRequest/)."""
 
 PutObjectAnnotationRequest = TypedDict(
     "PutObjectAnnotationRequest",
@@ -2577,6 +3144,7 @@ PutObjectAnnotationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectAnnotationRequest/)."""
 
 PutObjectLegalHoldRequest = TypedDict(
     "PutObjectLegalHoldRequest",
@@ -2591,6 +3159,7 @@ PutObjectLegalHoldRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectLegalHoldRequest/)."""
 
 PutObjectLockConfigurationRequest = TypedDict(
     "PutObjectLockConfigurationRequest",
@@ -2604,6 +3173,7 @@ PutObjectLockConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectLockConfigurationRequest/)."""
 
 PutObjectRequest = TypedDict(
     "PutObjectRequest",
@@ -2659,6 +3229,7 @@ PutObjectRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectRequest/)."""
 
 PutObjectRetentionRequest = TypedDict(
     "PutObjectRetentionRequest",
@@ -2674,6 +3245,7 @@ PutObjectRetentionRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectRetentionRequest/)."""
 
 PutObjectTaggingRequest = TypedDict(
     "PutObjectTaggingRequest",
@@ -2688,6 +3260,7 @@ PutObjectTaggingRequest = TypedDict(
     "request_payer": NotRequired["RequestPayer"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectTaggingRequest/)."""
 
 PutPublicAccessBlockRequest = TypedDict(
     "PutPublicAccessBlockRequest",
@@ -2699,6 +3272,7 @@ PutPublicAccessBlockRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutPublicAccessBlockRequest/)."""
 
 QueueConfiguration = TypedDict(
     "QueueConfiguration",
@@ -2709,6 +3283,7 @@ QueueConfiguration = TypedDict(
     "filter": NotRequired["NotificationConfigurationFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/QueueConfiguration/)."""
 
 RecordExpiration = TypedDict(
     "RecordExpiration",
@@ -2717,6 +3292,7 @@ RecordExpiration = TypedDict(
     "days": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RecordExpiration/)."""
 
 RecordsEvent = TypedDict(
     "RecordsEvent",
@@ -2724,6 +3300,7 @@ RecordsEvent = TypedDict(
     "payload": Required["bytes | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RecordsEvent/)."""
 
 Redirect = TypedDict(
     "Redirect",
@@ -2735,6 +3312,7 @@ Redirect = TypedDict(
     "replace_key_with": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Redirect/)."""
 
 RedirectAllRequestsTo = TypedDict(
     "RedirectAllRequestsTo",
@@ -2743,6 +3321,7 @@ RedirectAllRequestsTo = TypedDict(
     "protocol": NotRequired["Protocol"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RedirectAllRequestsTo/)."""
 
 RenameObjectRequest = TypedDict(
     "RenameObjectRequest",
@@ -2761,6 +3340,7 @@ RenameObjectRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RenameObjectRequest/)."""
 
 ReplicaModifications = TypedDict(
     "ReplicaModifications",
@@ -2768,6 +3348,7 @@ ReplicaModifications = TypedDict(
     "status": Required["ReplicaModificationsStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicaModifications/)."""
 
 ReplicationConfiguration = TypedDict(
     "ReplicationConfiguration",
@@ -2776,6 +3357,7 @@ ReplicationConfiguration = TypedDict(
     "rules": Required["Sequence[ReplicationRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationConfiguration/)."""
 
 ReplicationRule = TypedDict(
     "ReplicationRule",
@@ -2791,6 +3373,7 @@ ReplicationRule = TypedDict(
     "delete_marker_replication": NotRequired["DeleteMarkerReplication"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRule/)."""
 
 ReplicationRuleAndOperator = TypedDict(
     "ReplicationRuleAndOperator",
@@ -2799,6 +3382,7 @@ ReplicationRuleAndOperator = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleAndOperator/)."""
 
 ReplicationRuleFilter = TypedDict(
     "ReplicationRuleFilter",
@@ -2808,6 +3392,7 @@ ReplicationRuleFilter = TypedDict(
     "and": NotRequired["ReplicationRuleAndOperator"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleFilter/)."""
 
 ReplicationTime = TypedDict(
     "ReplicationTime",
@@ -2816,6 +3401,7 @@ ReplicationTime = TypedDict(
     "time": Required["ReplicationTimeValue"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTime/)."""
 
 ReplicationTimeValue = TypedDict(
     "ReplicationTimeValue",
@@ -2823,6 +3409,7 @@ ReplicationTimeValue = TypedDict(
     "minutes": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeValue/)."""
 
 RequestPaymentConfiguration = TypedDict(
     "RequestPaymentConfiguration",
@@ -2830,6 +3417,7 @@ RequestPaymentConfiguration = TypedDict(
     "payer": Required["Payer"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RequestPaymentConfiguration/)."""
 
 RequestProgress = TypedDict(
     "RequestProgress",
@@ -2837,6 +3425,7 @@ RequestProgress = TypedDict(
     "enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RequestProgress/)."""
 
 RestoreObjectRequest = TypedDict(
     "RestoreObjectRequest",
@@ -2850,6 +3439,7 @@ RestoreObjectRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreObjectRequest/)."""
 
 RestoreRequest = TypedDict(
     "RestoreRequest",
@@ -2863,6 +3453,7 @@ RestoreRequest = TypedDict(
     "output_location": NotRequired["OutputLocation"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreRequest/)."""
 
 RestoreStatus = TypedDict(
     "RestoreStatus",
@@ -2871,6 +3462,7 @@ RestoreStatus = TypedDict(
     "restore_expiry_date": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreStatus/)."""
 
 RoutingRule = TypedDict(
     "RoutingRule",
@@ -2879,6 +3471,7 @@ RoutingRule = TypedDict(
     "redirect": Required["Redirect"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RoutingRule/)."""
 
 S3KeyFilter = TypedDict(
     "S3KeyFilter",
@@ -2886,6 +3479,7 @@ S3KeyFilter = TypedDict(
     "filter_rules": NotRequired["Sequence[FilterRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3KeyFilter/)."""
 
 S3Location = TypedDict(
     "S3Location",
@@ -2900,6 +3494,7 @@ S3Location = TypedDict(
     "storage_class": NotRequired["StorageClass"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3Location/)."""
 
 S3TablesDestination = TypedDict(
     "S3TablesDestination",
@@ -2908,6 +3503,7 @@ S3TablesDestination = TypedDict(
     "table_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3TablesDestination/)."""
 
 S3TablesDestinationResult = TypedDict(
     "S3TablesDestinationResult",
@@ -2918,6 +3514,7 @@ S3TablesDestinationResult = TypedDict(
     "table_namespace": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3TablesDestinationResult/)."""
 
 SSEKMS = TypedDict(
     "SSEKMS",
@@ -2925,6 +3522,7 @@ SSEKMS = TypedDict(
     "key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SSEKMS-ea42a5134cb9/)."""
 
 SSEKMSEncryption = TypedDict(
     "SSEKMSEncryption",
@@ -2933,12 +3531,14 @@ SSEKMSEncryption = TypedDict(
     "bucket_key_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SSEKMSEncryption/)."""
 
 SSES3 = TypedDict(
     "SSES3",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SSES3-c6b6562966ad/)."""
 
 ScanRange = TypedDict(
     "ScanRange",
@@ -2947,14 +3547,22 @@ ScanRange = TypedDict(
     "end": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ScanRange/)."""
 
 SelectObjectContentEventStreamRecords = TypedDict("SelectObjectContentEventStreamRecords", {"records": Required["RecordsEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamRecords/)."""
 SelectObjectContentEventStreamStats = TypedDict("SelectObjectContentEventStreamStats", {"stats": Required["StatsEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamStats/)."""
 SelectObjectContentEventStreamProgress = TypedDict("SelectObjectContentEventStreamProgress", {"progress": Required["ProgressEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamProgress/)."""
 SelectObjectContentEventStreamCont = TypedDict("SelectObjectContentEventStreamCont", {"cont": Required["ContinuationEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamCont/)."""
 SelectObjectContentEventStreamEnd = TypedDict("SelectObjectContentEventStreamEnd", {"end": Required["EndEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamEnd/)."""
 SelectObjectContentEventStreamUnknown = TypedDict("SelectObjectContentEventStreamUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamUnknown/)."""
 SelectObjectContentEventStream: TypeAlias = SelectObjectContentEventStreamRecords | SelectObjectContentEventStreamStats | SelectObjectContentEventStreamProgress | SelectObjectContentEventStreamCont | SelectObjectContentEventStreamEnd | SelectObjectContentEventStreamUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStream/)."""
 
 SelectObjectContentOutput = TypedDict(
     "SelectObjectContentOutput",
@@ -2962,6 +3570,7 @@ SelectObjectContentOutput = TypedDict(
     "payload": Required["AsyncIterator[SelectObjectContentEventStream]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentOutput/)."""
 
 SelectObjectContentRequest = TypedDict(
     "SelectObjectContentRequest",
@@ -2980,6 +3589,7 @@ SelectObjectContentRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentRequest/)."""
 
 SelectParameters = TypedDict(
     "SelectParameters",
@@ -2990,6 +3600,7 @@ SelectParameters = TypedDict(
     "output_serialization": Required["OutputSerialization"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectParameters/)."""
 
 ServerSideEncryptionByDefault = TypedDict(
     "ServerSideEncryptionByDefault",
@@ -2998,6 +3609,7 @@ ServerSideEncryptionByDefault = TypedDict(
     "kms_master_key_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionByDefault/)."""
 
 ServerSideEncryptionConfiguration = TypedDict(
     "ServerSideEncryptionConfiguration",
@@ -3005,6 +3617,7 @@ ServerSideEncryptionConfiguration = TypedDict(
     "rules": Required["Sequence[ServerSideEncryptionRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionConfiguration/)."""
 
 ServerSideEncryptionRule = TypedDict(
     "ServerSideEncryptionRule",
@@ -3014,6 +3627,7 @@ ServerSideEncryptionRule = TypedDict(
     "blocked_encryption_types": NotRequired["BlockedEncryptionTypes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionRule/)."""
 
 SessionCredentials = TypedDict(
     "SessionCredentials",
@@ -3024,12 +3638,14 @@ SessionCredentials = TypedDict(
     "expiration": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SessionCredentials/)."""
 
 SimplePrefix = TypedDict(
     "SimplePrefix",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SimplePrefix/)."""
 
 SourceSelectionCriteria = TypedDict(
     "SourceSelectionCriteria",
@@ -3038,6 +3654,7 @@ SourceSelectionCriteria = TypedDict(
     "replica_modifications": NotRequired["ReplicaModifications"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SourceSelectionCriteria/)."""
 
 SseKmsEncryptedObjects = TypedDict(
     "SseKmsEncryptedObjects",
@@ -3045,6 +3662,7 @@ SseKmsEncryptedObjects = TypedDict(
     "status": Required["SseKmsEncryptedObjectsStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SseKmsEncryptedObjects/)."""
 
 Stats = TypedDict(
     "Stats",
@@ -3054,6 +3672,7 @@ Stats = TypedDict(
     "bytes_returned": Required["int | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Stats/)."""
 
 StatsEvent = TypedDict(
     "StatsEvent",
@@ -3061,6 +3680,7 @@ StatsEvent = TypedDict(
     "details": Required["Stats | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StatsEvent/)."""
 
 StorageClassAnalysis = TypedDict(
     "StorageClassAnalysis",
@@ -3068,6 +3688,7 @@ StorageClassAnalysis = TypedDict(
     "data_export": NotRequired["StorageClassAnalysisDataExport"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysis/)."""
 
 StorageClassAnalysisDataExport = TypedDict(
     "StorageClassAnalysisDataExport",
@@ -3076,6 +3697,7 @@ StorageClassAnalysisDataExport = TypedDict(
     "destination": Required["AnalyticsExportDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysisDataExport/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -3084,6 +3706,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Tag/)."""
 
 TagOutput = TypedDict(
     "TagOutput",
@@ -3092,6 +3715,7 @@ TagOutput = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TagOutput/)."""
 
 Tagging = TypedDict(
     "Tagging",
@@ -3099,6 +3723,7 @@ Tagging = TypedDict(
     "tag_set": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Tagging/)."""
 
 TargetGrant = TypedDict(
     "TargetGrant",
@@ -3107,6 +3732,7 @@ TargetGrant = TypedDict(
     "permission": NotRequired["BucketLogsPermission"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TargetGrant/)."""
 
 TargetObjectKeyFormat = TypedDict(
     "TargetObjectKeyFormat",
@@ -3115,6 +3741,7 @@ TargetObjectKeyFormat = TypedDict(
     "partitioned_prefix": NotRequired["PartitionedPrefix"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TargetObjectKeyFormat/)."""
 
 Tiering = TypedDict(
     "Tiering",
@@ -3123,6 +3750,7 @@ Tiering = TypedDict(
     "access_tier": Required["IntelligentTieringAccessTier"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Tiering/)."""
 
 TopicConfiguration = TypedDict(
     "TopicConfiguration",
@@ -3133,6 +3761,7 @@ TopicConfiguration = TypedDict(
     "filter": NotRequired["NotificationConfigurationFilter"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TopicConfiguration/)."""
 
 Transition = TypedDict(
     "Transition",
@@ -3142,6 +3771,7 @@ Transition = TypedDict(
     "storage_class": NotRequired["TransitionStorageClass"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Transition/)."""
 
 UpdateBucketMetadataAnnotationTableConfigurationRequest = TypedDict(
     "UpdateBucketMetadataAnnotationTableConfigurationRequest",
@@ -3153,6 +3783,7 @@ UpdateBucketMetadataAnnotationTableConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UpdateBucketMetadataAnnotationTableConfigurationRequest/)."""
 
 UpdateBucketMetadataInventoryTableConfigurationRequest = TypedDict(
     "UpdateBucketMetadataInventoryTableConfigurationRequest",
@@ -3164,6 +3795,7 @@ UpdateBucketMetadataInventoryTableConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UpdateBucketMetadataInventoryTableConfigurationRequest/)."""
 
 UpdateBucketMetadataJournalTableConfigurationRequest = TypedDict(
     "UpdateBucketMetadataJournalTableConfigurationRequest",
@@ -3175,6 +3807,7 @@ UpdateBucketMetadataJournalTableConfigurationRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UpdateBucketMetadataJournalTableConfigurationRequest/)."""
 
 UpdateObjectEncryptionRequest = TypedDict(
     "UpdateObjectEncryptionRequest",
@@ -3189,6 +3822,7 @@ UpdateObjectEncryptionRequest = TypedDict(
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UpdateObjectEncryptionRequest/)."""
 
 UploadPartCopyRequest = TypedDict(
     "UploadPartCopyRequest",
@@ -3214,6 +3848,7 @@ UploadPartCopyRequest = TypedDict(
     "expected_source_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartCopyRequest/)."""
 
 UploadPartRequest = TypedDict(
     "UploadPartRequest",
@@ -3243,6 +3878,7 @@ UploadPartRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartRequest/)."""
 
 VersioningConfiguration = TypedDict(
     "VersioningConfiguration",
@@ -3251,6 +3887,7 @@ VersioningConfiguration = TypedDict(
     "status": NotRequired["BucketVersioningStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/VersioningConfiguration/)."""
 
 WebsiteConfiguration = TypedDict(
     "WebsiteConfiguration",
@@ -3261,6 +3898,7 @@ WebsiteConfiguration = TypedDict(
     "routing_rules": NotRequired["Sequence[RoutingRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/WebsiteConfiguration/)."""
 
 WriteGetObjectResponseRequest = TypedDict(
     "WriteGetObjectResponseRequest",
@@ -3313,3 +3951,4 @@ WriteGetObjectResponseRequest = TypedDict(
     "bucket_key_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/s3/types/WriteGetObjectResponseRequest/)."""

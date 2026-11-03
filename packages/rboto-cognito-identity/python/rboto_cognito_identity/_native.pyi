@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class CognitoIdentityProvider:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CognitoIdentityProviderOutput/)."""
     @property
     def provider_name(self) -> str | None: ...
     @property
@@ -27,6 +29,7 @@ class CognitoIdentityProvider:
 
 @final
 class Credentials:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CredentialsOutput/)."""
     @property
     def access_key_id(self) -> str | None: ...
     @property
@@ -39,6 +42,7 @@ class Credentials:
 
 @final
 class IdentityDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/IdentityDescription/)."""
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -51,6 +55,7 @@ class IdentityDescription:
 
 @final
 class IdentityPoolShortDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/IdentityPoolShortDescriptionOutput/)."""
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -59,6 +64,7 @@ class IdentityPoolShortDescription:
 
 @final
 class MappingRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MappingRuleOutput/)."""
     @property
     def claim(self) -> str: ...
     @property
@@ -71,6 +77,7 @@ class MappingRule:
 
 @final
 class RoleMapping:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RoleMappingOutput/)."""
     @property
     def type(self) -> _types.RoleMappingTypeOutput: ...
     @property
@@ -81,12 +88,14 @@ class RoleMapping:
 
 @final
 class RulesConfigurationType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RulesConfigurationTypeOutput/)."""
     @property
     def rules(self) -> list[MappingRule]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UnprocessedIdentityId:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UnprocessedIdentityIdOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -95,6 +104,7 @@ class UnprocessedIdentityId:
 
 @final
 class CreateIdentityPoolOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CreateIdentityPoolOutput/)."""
     @property
     def identity_pool_id(self) -> str: ...
     @property
@@ -119,12 +129,14 @@ class CreateIdentityPoolOutput:
 
 @final
 class DeleteIdentitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DeleteIdentitiesOutput/)."""
     @property
     def unprocessed_identity_ids(self) -> list[UnprocessedIdentityId] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -137,6 +149,7 @@ class DescribeIdentityOutput:
 
 @final
 class DescribeIdentityPoolOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityPoolOutput/)."""
     @property
     def identity_pool_id(self) -> str: ...
     @property
@@ -161,6 +174,7 @@ class DescribeIdentityPoolOutput:
 
 @final
 class GetCredentialsForIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetCredentialsForIdentityOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -169,12 +183,14 @@ class GetCredentialsForIdentityOutput:
 
 @final
 class GetIdOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetIdentityPoolRolesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdentityPoolRolesOutput/)."""
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -185,6 +201,7 @@ class GetIdentityPoolRolesOutput:
 
 @final
 class GetOpenIdTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -193,6 +210,7 @@ class GetOpenIdTokenOutput:
 
 @final
 class GetOpenIdTokenForDeveloperIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenForDeveloperIdentityOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -201,6 +219,7 @@ class GetOpenIdTokenForDeveloperIdentityOutput:
 
 @final
 class GetPrincipalTagAttributeMapOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetPrincipalTagAttributeMapOutput/)."""
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -213,6 +232,7 @@ class GetPrincipalTagAttributeMapOutput:
 
 @final
 class ListIdentitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentitiesOutput/)."""
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -223,6 +243,7 @@ class ListIdentitiesOutput:
 
 @final
 class ListIdentityPoolsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentityPoolsOutput/)."""
     @property
     def identity_pools(self) -> list[IdentityPoolShortDescription] | None: ...
     @property
@@ -231,12 +252,14 @@ class ListIdentityPoolsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class LookupDeveloperIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/LookupDeveloperIdentityOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     @property
@@ -247,12 +270,14 @@ class LookupDeveloperIdentityOutput:
 
 @final
 class MergeDeveloperIdentitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MergeDeveloperIdentitiesOutput/)."""
     @property
     def identity_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SetPrincipalTagAttributeMapOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/SetPrincipalTagAttributeMapOutput/)."""
     @property
     def identity_pool_id(self) -> str | None: ...
     @property
@@ -265,14 +290,17 @@ class SetPrincipalTagAttributeMapOutput:
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateIdentityPoolOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UpdateIdentityPoolOutput/)."""
     @property
     def identity_pool_id(self) -> str: ...
     @property

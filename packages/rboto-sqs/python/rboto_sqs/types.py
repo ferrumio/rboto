@@ -9,36 +9,65 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 BatchResultErrorEntryOutput: TypeAlias = _native.BatchResultErrorEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/BatchResultErrorEntryOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ByteStream/)."""
 CancelMessageMoveTaskOutput: TypeAlias = _native.CancelMessageMoveTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CancelMessageMoveTaskOutput/)."""
 ChangeMessageVisibilityBatchOutput: TypeAlias = _native.ChangeMessageVisibilityBatchOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchOutput/)."""
 ChangeMessageVisibilityBatchResultEntryOutput: TypeAlias = _native.ChangeMessageVisibilityBatchResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchResultEntryOutput/)."""
 CreateQueueOutput: TypeAlias = _native.CreateQueueOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CreateQueueOutput/)."""
 DeleteMessageBatchOutput: TypeAlias = _native.DeleteMessageBatchOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchOutput/)."""
 DeleteMessageBatchResultEntryOutput: TypeAlias = _native.DeleteMessageBatchResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchResultEntryOutput/)."""
 GetQueueAttributesOutput: TypeAlias = _native.GetQueueAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueAttributesOutput/)."""
 GetQueueUrlOutput: TypeAlias = _native.GetQueueUrlOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueUrlOutput/)."""
 ListDeadLetterSourceQueuesOutput: TypeAlias = _native.ListDeadLetterSourceQueuesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListDeadLetterSourceQueuesOutput/)."""
 ListMessageMoveTasksOutput: TypeAlias = _native.ListMessageMoveTasksOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListMessageMoveTasksOutput/)."""
 ListMessageMoveTasksResultEntryOutput: TypeAlias = _native.ListMessageMoveTasksResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListMessageMoveTasksResultEntryOutput/)."""
 ListQueueTagsOutput: TypeAlias = _native.ListQueueTagsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueueTagsOutput/)."""
 ListQueuesOutput: TypeAlias = _native.ListQueuesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueuesOutput/)."""
 MessageOutput: TypeAlias = _native.Message
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageOutput/)."""
 MessageAttributeValueOutput: TypeAlias = _native.MessageAttributeValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageAttributeValueOutput/)."""
 ReceiveMessageOutput: TypeAlias = _native.ReceiveMessageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ReceiveMessageOutput/)."""
 SendMessageBatchOutput: TypeAlias = _native.SendMessageBatchOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchOutput/)."""
 SendMessageBatchResultEntryOutput: TypeAlias = _native.SendMessageBatchResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchResultEntryOutput/)."""
 SendMessageOutput: TypeAlias = _native.SendMessageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageOutput/)."""
 StartMessageMoveTaskOutput: TypeAlias = _native.StartMessageMoveTaskOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/StartMessageMoveTaskOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/JSONValue/)."""
 
 MessageSystemAttributeName: TypeAlias = Literal['All', 'SenderId', 'SentTimestamp', 'ApproximateReceiveCount', 'ApproximateFirstReceiveTimestamp', 'SequenceNumber', 'MessageDeduplicationId', 'MessageGroupId', 'AWSTraceHeader', 'DeadLetterQueueSourceArn']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageSystemAttributeName/)."""
 MessageSystemAttributeNameOutput: TypeAlias = MessageSystemAttributeName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageSystemAttributeNameOutput/)."""
 MessageSystemAttributeNameForSends: TypeAlias = Literal['AWSTraceHeader']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageSystemAttributeNameForSends/)."""
 MessageSystemAttributeNameForSendsOutput: TypeAlias = MessageSystemAttributeNameForSends | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageSystemAttributeNameForSendsOutput/)."""
 QueueAttributeName: TypeAlias = Literal['All', 'Policy', 'VisibilityTimeout', 'MaximumMessageSize', 'MessageRetentionPeriod', 'ApproximateNumberOfMessages', 'ApproximateNumberOfMessagesNotVisible', 'CreatedTimestamp', 'LastModifiedTimestamp', 'QueueArn', 'ApproximateNumberOfMessagesDelayed', 'DelaySeconds', 'ReceiveMessageWaitTimeSeconds', 'RedrivePolicy', 'FifoQueue', 'ContentBasedDeduplication', 'KmsMasterKeyId', 'KmsDataKeyReusePeriodSeconds', 'DeduplicationScope', 'FifoThroughputLimit', 'RedriveAllowPolicy', 'SqsManagedSseEnabled']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/QueueAttributeName/)."""
 QueueAttributeNameOutput: TypeAlias = QueueAttributeName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/QueueAttributeNameOutput/)."""
 
 AddPermissionRequest = TypedDict(
     "AddPermissionRequest",
@@ -49,6 +78,7 @@ AddPermissionRequest = TypedDict(
     "actions": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/AddPermissionRequest/)."""
 
 BatchResultErrorEntry = TypedDict(
     "BatchResultErrorEntry",
@@ -59,6 +89,7 @@ BatchResultErrorEntry = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/BatchResultErrorEntry/)."""
 
 CancelMessageMoveTaskRequest = TypedDict(
     "CancelMessageMoveTaskRequest",
@@ -66,6 +97,7 @@ CancelMessageMoveTaskRequest = TypedDict(
     "task_handle": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CancelMessageMoveTaskRequest/)."""
 
 ChangeMessageVisibilityBatchRequest = TypedDict(
     "ChangeMessageVisibilityBatchRequest",
@@ -74,6 +106,7 @@ ChangeMessageVisibilityBatchRequest = TypedDict(
     "entries": Required["Sequence[ChangeMessageVisibilityBatchRequestEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchRequest/)."""
 
 ChangeMessageVisibilityBatchRequestEntry = TypedDict(
     "ChangeMessageVisibilityBatchRequestEntry",
@@ -83,6 +116,7 @@ ChangeMessageVisibilityBatchRequestEntry = TypedDict(
     "visibility_timeout": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchRequestEntry/)."""
 
 ChangeMessageVisibilityBatchResultEntry = TypedDict(
     "ChangeMessageVisibilityBatchResultEntry",
@@ -90,6 +124,7 @@ ChangeMessageVisibilityBatchResultEntry = TypedDict(
     "id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityBatchResultEntry/)."""
 
 ChangeMessageVisibilityRequest = TypedDict(
     "ChangeMessageVisibilityRequest",
@@ -99,6 +134,7 @@ ChangeMessageVisibilityRequest = TypedDict(
     "visibility_timeout": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ChangeMessageVisibilityRequest/)."""
 
 CreateQueueRequest = TypedDict(
     "CreateQueueRequest",
@@ -108,6 +144,7 @@ CreateQueueRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/CreateQueueRequest/)."""
 
 DeleteMessageBatchRequest = TypedDict(
     "DeleteMessageBatchRequest",
@@ -116,6 +153,7 @@ DeleteMessageBatchRequest = TypedDict(
     "entries": Required["Sequence[DeleteMessageBatchRequestEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchRequest/)."""
 
 DeleteMessageBatchRequestEntry = TypedDict(
     "DeleteMessageBatchRequestEntry",
@@ -124,6 +162,7 @@ DeleteMessageBatchRequestEntry = TypedDict(
     "receipt_handle": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchRequestEntry/)."""
 
 DeleteMessageBatchResultEntry = TypedDict(
     "DeleteMessageBatchResultEntry",
@@ -131,6 +170,7 @@ DeleteMessageBatchResultEntry = TypedDict(
     "id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageBatchResultEntry/)."""
 
 DeleteMessageRequest = TypedDict(
     "DeleteMessageRequest",
@@ -139,6 +179,7 @@ DeleteMessageRequest = TypedDict(
     "receipt_handle": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteMessageRequest/)."""
 
 DeleteQueueRequest = TypedDict(
     "DeleteQueueRequest",
@@ -146,6 +187,7 @@ DeleteQueueRequest = TypedDict(
     "queue_url": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/DeleteQueueRequest/)."""
 
 GetQueueAttributesRequest = TypedDict(
     "GetQueueAttributesRequest",
@@ -154,6 +196,7 @@ GetQueueAttributesRequest = TypedDict(
     "attribute_names": NotRequired["Sequence[QueueAttributeName]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueAttributesRequest/)."""
 
 GetQueueUrlRequest = TypedDict(
     "GetQueueUrlRequest",
@@ -162,6 +205,7 @@ GetQueueUrlRequest = TypedDict(
     "queue_owner_aws_account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/GetQueueUrlRequest/)."""
 
 ListDeadLetterSourceQueuesRequest = TypedDict(
     "ListDeadLetterSourceQueuesRequest",
@@ -171,6 +215,7 @@ ListDeadLetterSourceQueuesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListDeadLetterSourceQueuesRequest/)."""
 
 ListMessageMoveTasksRequest = TypedDict(
     "ListMessageMoveTasksRequest",
@@ -179,6 +224,7 @@ ListMessageMoveTasksRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListMessageMoveTasksRequest/)."""
 
 ListMessageMoveTasksResultEntry = TypedDict(
     "ListMessageMoveTasksResultEntry",
@@ -194,6 +240,7 @@ ListMessageMoveTasksResultEntry = TypedDict(
     "started_timestamp": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListMessageMoveTasksResultEntry/)."""
 
 ListQueueTagsRequest = TypedDict(
     "ListQueueTagsRequest",
@@ -201,6 +248,7 @@ ListQueueTagsRequest = TypedDict(
     "queue_url": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueueTagsRequest/)."""
 
 ListQueuesRequest = TypedDict(
     "ListQueuesRequest",
@@ -210,6 +258,7 @@ ListQueuesRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ListQueuesRequest/)."""
 
 Message = TypedDict(
     "Message",
@@ -223,6 +272,7 @@ Message = TypedDict(
     "message_attributes": NotRequired["dict[str, MessageAttributeValue]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/Message/)."""
 
 MessageAttributeValue = TypedDict(
     "MessageAttributeValue",
@@ -234,6 +284,7 @@ MessageAttributeValue = TypedDict(
     "data_type": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageAttributeValue/)."""
 
 MessageSystemAttributeValue = TypedDict(
     "MessageSystemAttributeValue",
@@ -245,6 +296,7 @@ MessageSystemAttributeValue = TypedDict(
     "data_type": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/MessageSystemAttributeValue/)."""
 
 PurgeQueueRequest = TypedDict(
     "PurgeQueueRequest",
@@ -252,6 +304,7 @@ PurgeQueueRequest = TypedDict(
     "queue_url": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/PurgeQueueRequest/)."""
 
 ReceiveMessageRequest = TypedDict(
     "ReceiveMessageRequest",
@@ -266,6 +319,7 @@ ReceiveMessageRequest = TypedDict(
     "receive_request_attempt_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/ReceiveMessageRequest/)."""
 
 RemovePermissionRequest = TypedDict(
     "RemovePermissionRequest",
@@ -274,6 +328,7 @@ RemovePermissionRequest = TypedDict(
     "label": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/RemovePermissionRequest/)."""
 
 SendMessageBatchRequest = TypedDict(
     "SendMessageBatchRequest",
@@ -282,6 +337,7 @@ SendMessageBatchRequest = TypedDict(
     "entries": Required["Sequence[SendMessageBatchRequestEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchRequest/)."""
 
 SendMessageBatchRequestEntry = TypedDict(
     "SendMessageBatchRequestEntry",
@@ -295,6 +351,7 @@ SendMessageBatchRequestEntry = TypedDict(
     "message_group_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchRequestEntry/)."""
 
 SendMessageBatchResultEntry = TypedDict(
     "SendMessageBatchResultEntry",
@@ -307,6 +364,7 @@ SendMessageBatchResultEntry = TypedDict(
     "sequence_number": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageBatchResultEntry/)."""
 
 SendMessageRequest = TypedDict(
     "SendMessageRequest",
@@ -320,6 +378,7 @@ SendMessageRequest = TypedDict(
     "message_group_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SendMessageRequest/)."""
 
 SetQueueAttributesRequest = TypedDict(
     "SetQueueAttributesRequest",
@@ -328,6 +387,7 @@ SetQueueAttributesRequest = TypedDict(
     "attributes": Required["dict[QueueAttributeName, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/SetQueueAttributesRequest/)."""
 
 StartMessageMoveTaskRequest = TypedDict(
     "StartMessageMoveTaskRequest",
@@ -337,6 +397,7 @@ StartMessageMoveTaskRequest = TypedDict(
     "max_number_of_messages_per_second": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/StartMessageMoveTaskRequest/)."""
 
 TagQueueRequest = TypedDict(
     "TagQueueRequest",
@@ -345,6 +406,7 @@ TagQueueRequest = TypedDict(
     "tags": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/TagQueueRequest/)."""
 
 UntagQueueRequest = TypedDict(
     "UntagQueueRequest",
@@ -353,3 +415,4 @@ UntagQueueRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sqs/types/UntagQueueRequest/)."""

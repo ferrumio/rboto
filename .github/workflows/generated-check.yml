@@ -8,6 +8,7 @@ on:
       - "codegen/**"
       - "crates/**"
       - "packages/**"
+      - "examples/clients/**"
       - "Cargo.toml"
       - "Cargo.lock"
       - ".github/workflows/generated-check.yml"
@@ -17,6 +18,7 @@ on:
       - "codegen/**"
       - "crates/**"
       - "packages/**"
+      - "examples/clients/**"
 
 permissions:
   contents: read
@@ -47,7 +49,9 @@ jobs:
           cargo fmt --all
 
       - name: Require a clean generated diff
-        run: git diff --exit-code
+        run: |
+          git diff --exit-code
+          test -z "$(git ls-files --others --exclude-standard)"
 
       - name: Compile generated workspace
         run: cargo check --workspace --locked

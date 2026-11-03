@@ -24,6 +24,8 @@ from .paginators import EventBridgePipesClientPaginators as _Paginators
 
 
 class EventBridgePipesClient:
+    """Async EventBridgePipesClient. See [reference](https://ferrumio.github.io/rboto/reference/pipes/)."""
+
     logger_name = "rboto.pipes"
 
     def __init__(
@@ -76,6 +78,7 @@ class EventBridgePipesClient:
         log_configuration: PipeLogConfigurationParameters | None = None,
         kms_key_identifier: str | None = None,
     ) -> CreatePipeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/create_pipe/)."""
         params: dict[str, object] = {
             "name": name,
             "source": source,
@@ -119,6 +122,7 @@ class EventBridgePipesClient:
         *,
         name: str,
     ) -> DeletePipeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/delete_pipe/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -141,6 +145,7 @@ class EventBridgePipesClient:
         *,
         name: str,
     ) -> DescribePipeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/describe_pipe/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -169,6 +174,7 @@ class EventBridgePipesClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListPipesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/list_pipes/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -204,6 +210,7 @@ class EventBridgePipesClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -226,6 +233,7 @@ class EventBridgePipesClient:
         *,
         name: str,
     ) -> StartPipeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/start_pipe/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -248,6 +256,7 @@ class EventBridgePipesClient:
         *,
         name: str,
     ) -> StopPipeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/stop_pipe/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -271,6 +280,7 @@ class EventBridgePipesClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -295,6 +305,7 @@ class EventBridgePipesClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -328,6 +339,7 @@ class EventBridgePipesClient:
         log_configuration: PipeLogConfigurationParameters | None = None,
         kms_key_identifier: str | None = None,
     ) -> UpdatePipeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/pipes/operations/update_pipe/)."""
         params: dict[str, object] = {
             "name": name,
             "role_arn": role_arn,

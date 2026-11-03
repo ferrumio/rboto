@@ -38,6 +38,8 @@ from .paginators import CloudTrailClientPaginators as _Paginators
 
 
 class CloudTrailClient:
+    """Async CloudTrailClient. See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/)."""
+
     logger_name = "rboto.cloudtrail"
 
     def __init__(
@@ -79,6 +81,7 @@ class CloudTrailClient:
         resource_id: str,
         tags_list: Sequence[Tag],
     ) -> AddTagsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/add_tags/)."""
         params: dict[str, object] = {
             "resource_id": resource_id,
             "tags_list": tags_list,
@@ -104,6 +107,7 @@ class CloudTrailClient:
         event_data_store: str | None = None,
         event_data_store_owner_account_id: str | None = None,
     ) -> CancelQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/cancel_query/)."""
         params: dict[str, object] = {
             "query_id": query_id,
         }
@@ -133,6 +137,7 @@ class CloudTrailClient:
         destinations: Sequence[Destination],
         tags: Sequence[Tag] | None = None,
     ) -> CreateChannelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/create_channel/)."""
         params: dict[str, object] = {
             "name": name,
             "source": source,
@@ -163,6 +168,7 @@ class CloudTrailClient:
         termination_protection_enabled: bool | None = None,
         widgets: Sequence[RequestWidget] | None = None,
     ) -> CreateDashboardOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/create_dashboard/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -202,6 +208,7 @@ class CloudTrailClient:
         start_ingestion: bool | None = None,
         billing_mode: BillingMode | None = None,
     ) -> CreateEventDataStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/create_event_data_store/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -254,6 +261,7 @@ class CloudTrailClient:
         tags_list: Sequence[Tag] | None = None,
         recursive_logging: bool | None = None,
     ) -> CreateTrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/create_trail/)."""
         params: dict[str, object] = {
             "name": name,
             "s3_bucket_name": s3_bucket_name,
@@ -299,6 +307,7 @@ class CloudTrailClient:
         *,
         channel: str,
     ) -> DeleteChannelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/delete_channel/)."""
         params: dict[str, object] = {
             "channel": channel,
         }
@@ -321,6 +330,7 @@ class CloudTrailClient:
         *,
         dashboard_id: str,
     ) -> DeleteDashboardOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/delete_dashboard/)."""
         params: dict[str, object] = {
             "dashboard_id": dashboard_id,
         }
@@ -343,6 +353,7 @@ class CloudTrailClient:
         *,
         event_data_store: str,
     ) -> DeleteEventDataStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/delete_event_data_store/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -365,6 +376,7 @@ class CloudTrailClient:
         *,
         resource_arn: str,
     ) -> DeleteResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -387,6 +399,7 @@ class CloudTrailClient:
         *,
         name: str,
     ) -> DeleteTrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/delete_trail/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -409,6 +422,7 @@ class CloudTrailClient:
         *,
         delegated_admin_account_id: str,
     ) -> DeregisterOrganizationDelegatedAdminOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/deregister_organization_delegated_admin/)."""
         params: dict[str, object] = {
             "delegated_admin_account_id": delegated_admin_account_id,
         }
@@ -435,6 +449,7 @@ class CloudTrailClient:
         refresh_id: str | None = None,
         event_data_store_owner_account_id: str | None = None,
     ) -> DescribeQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/describe_query/)."""
         params: dict[str, object] = {
         }
         if event_data_store is not None:
@@ -467,6 +482,7 @@ class CloudTrailClient:
         trail_name_list: Sequence[str] | None = None,
         include_shadow_trails: bool | None = None,
     ) -> DescribeTrailsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/describe_trails/)."""
         params: dict[str, object] = {
         }
         if trail_name_list is not None:
@@ -492,6 +508,7 @@ class CloudTrailClient:
         *,
         event_data_store: str,
     ) -> DisableFederationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/disable_federation/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -515,6 +532,7 @@ class CloudTrailClient:
         event_data_store: str,
         federation_role_arn: str,
     ) -> EnableFederationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/enable_federation/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
             "federation_role_arn": federation_role_arn,
@@ -539,6 +557,7 @@ class CloudTrailClient:
         event_data_stores: Sequence[str],
         prompt: str,
     ) -> GenerateQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/generate_query/)."""
         params: dict[str, object] = {
             "event_data_stores": event_data_stores,
             "prompt": prompt,
@@ -562,6 +581,7 @@ class CloudTrailClient:
         *,
         channel: str,
     ) -> GetChannelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_channel/)."""
         params: dict[str, object] = {
             "channel": channel,
         }
@@ -584,6 +604,7 @@ class CloudTrailClient:
         *,
         dashboard_id: str,
     ) -> GetDashboardOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_dashboard/)."""
         params: dict[str, object] = {
             "dashboard_id": dashboard_id,
         }
@@ -607,6 +628,7 @@ class CloudTrailClient:
         trail_name: str | None = None,
         event_data_store: str | None = None,
     ) -> GetEventConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_event_configuration/)."""
         params: dict[str, object] = {
         }
         if trail_name is not None:
@@ -632,6 +654,7 @@ class CloudTrailClient:
         *,
         event_data_store: str,
     ) -> GetEventDataStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_event_data_store/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -654,6 +677,7 @@ class CloudTrailClient:
         *,
         trail_name: str,
     ) -> GetEventSelectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_event_selectors/)."""
         params: dict[str, object] = {
             "trail_name": trail_name,
         }
@@ -676,6 +700,7 @@ class CloudTrailClient:
         *,
         import_id: str,
     ) -> GetImportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_import/)."""
         params: dict[str, object] = {
             "import_id": import_id,
         }
@@ -699,6 +724,7 @@ class CloudTrailClient:
         trail_name: str | None = None,
         event_data_store: str | None = None,
     ) -> GetInsightSelectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_insight_selectors/)."""
         params: dict[str, object] = {
         }
         if trail_name is not None:
@@ -728,6 +754,7 @@ class CloudTrailClient:
         max_query_results: int | None = None,
         event_data_store_owner_account_id: str | None = None,
     ) -> GetQueryResultsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_query_results/)."""
         params: dict[str, object] = {
             "query_id": query_id,
         }
@@ -758,6 +785,7 @@ class CloudTrailClient:
         *,
         resource_arn: str,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -780,6 +808,7 @@ class CloudTrailClient:
         *,
         name: str,
     ) -> GetTrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_trail/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -802,6 +831,7 @@ class CloudTrailClient:
         *,
         name: str,
     ) -> GetTrailStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/get_trail_status/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -825,6 +855,7 @@ class CloudTrailClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListChannelsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_channels/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -853,6 +884,7 @@ class CloudTrailClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDashboardsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_dashboards/)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -883,6 +915,7 @@ class CloudTrailClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListEventDataStoresOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_event_data_stores/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -910,6 +943,7 @@ class CloudTrailClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListImportFailuresOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_import_failures/)."""
         params: dict[str, object] = {
             "import_id": import_id,
         }
@@ -939,6 +973,7 @@ class CloudTrailClient:
         import_status: ImportStatus | None = None,
         next_token: str | None = None,
     ) -> ListImportsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_imports/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -974,6 +1009,7 @@ class CloudTrailClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListInsightsDataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_insights_data/)."""
         params: dict[str, object] = {
             "insight_source": insight_source,
             "data_type": data_type,
@@ -1017,6 +1053,7 @@ class CloudTrailClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListInsightsMetricDataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_insights_metric_data/)."""
         params: dict[str, object] = {
             "event_source": event_source,
             "event_name": event_name,
@@ -1059,6 +1096,7 @@ class CloudTrailClient:
         end_time: str | None = None,
         next_token: str | None = None,
     ) -> ListPublicKeysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_public_keys/)."""
         params: dict[str, object] = {
         }
         if start_time is not None:
@@ -1091,6 +1129,7 @@ class CloudTrailClient:
         end_time: str | None = None,
         query_status: QueryStatus | None = None,
     ) -> ListQueriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_queries/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -1124,6 +1163,7 @@ class CloudTrailClient:
         resource_id_list: Sequence[str],
         next_token: str | None = None,
     ) -> ListTagsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_tags/)."""
         params: dict[str, object] = {
             "resource_id_list": resource_id_list,
         }
@@ -1148,6 +1188,7 @@ class CloudTrailClient:
         *,
         next_token: str | None = None,
     ) -> ListTrailsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/list_trails/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1176,6 +1217,7 @@ class CloudTrailClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> LookupEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/lookup_events/)."""
         params: dict[str, object] = {
         }
         if lookup_attributes is not None:
@@ -1213,6 +1255,7 @@ class CloudTrailClient:
         context_key_selectors: Sequence[ContextKeySelector] | None = None,
         aggregation_configurations: Sequence[AggregationConfiguration] | None = None,
     ) -> PutEventConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/put_event_configuration/)."""
         params: dict[str, object] = {
         }
         if trail_name is not None:
@@ -1246,6 +1289,7 @@ class CloudTrailClient:
         event_selectors: Sequence[EventSelector] | None = None,
         advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
     ) -> PutEventSelectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/put_event_selectors/)."""
         params: dict[str, object] = {
             "trail_name": trail_name,
         }
@@ -1275,6 +1319,7 @@ class CloudTrailClient:
         event_data_store: str | None = None,
         insights_destination: str | None = None,
     ) -> PutInsightSelectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/put_insight_selectors/)."""
         params: dict[str, object] = {
             "insight_selectors": insight_selectors,
         }
@@ -1304,6 +1349,7 @@ class CloudTrailClient:
         resource_arn: str,
         resource_policy: str,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "resource_policy": resource_policy,
@@ -1327,6 +1373,7 @@ class CloudTrailClient:
         *,
         member_account_id: str,
     ) -> RegisterOrganizationDelegatedAdminOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/register_organization_delegated_admin/)."""
         params: dict[str, object] = {
             "member_account_id": member_account_id,
         }
@@ -1350,6 +1397,7 @@ class CloudTrailClient:
         resource_id: str,
         tags_list: Sequence[Tag],
     ) -> RemoveTagsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/remove_tags/)."""
         params: dict[str, object] = {
             "resource_id": resource_id,
             "tags_list": tags_list,
@@ -1373,6 +1421,7 @@ class CloudTrailClient:
         *,
         event_data_store: str,
     ) -> RestoreEventDataStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/restore_event_data_store/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -1397,6 +1446,7 @@ class CloudTrailClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> SearchSampleQueriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/search_sample_queries/)."""
         params: dict[str, object] = {
             "search_phrase": search_phrase,
         }
@@ -1424,6 +1474,7 @@ class CloudTrailClient:
         dashboard_id: str,
         query_parameter_values: dict[str, str] | None = None,
     ) -> StartDashboardRefreshOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/start_dashboard_refresh/)."""
         params: dict[str, object] = {
             "dashboard_id": dashboard_id,
         }
@@ -1448,6 +1499,7 @@ class CloudTrailClient:
         *,
         event_data_store: str,
     ) -> StartEventDataStoreIngestionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/start_event_data_store_ingestion/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -1474,6 +1526,7 @@ class CloudTrailClient:
         end_event_time: str | None = None,
         import_id: str | None = None,
     ) -> StartImportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/start_import/)."""
         params: dict[str, object] = {
         }
         if destinations is not None:
@@ -1505,6 +1558,7 @@ class CloudTrailClient:
         *,
         name: str,
     ) -> StartLoggingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/start_logging/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1531,6 +1585,7 @@ class CloudTrailClient:
         query_parameters: Sequence[str] | None = None,
         event_data_store_owner_account_id: str | None = None,
     ) -> StartQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/start_query/)."""
         params: dict[str, object] = {
         }
         if query_statement is not None:
@@ -1562,6 +1617,7 @@ class CloudTrailClient:
         *,
         event_data_store: str,
     ) -> StopEventDataStoreIngestionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/stop_event_data_store_ingestion/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -1584,6 +1640,7 @@ class CloudTrailClient:
         *,
         import_id: str,
     ) -> StopImportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/stop_import/)."""
         params: dict[str, object] = {
             "import_id": import_id,
         }
@@ -1606,6 +1663,7 @@ class CloudTrailClient:
         *,
         name: str,
     ) -> StopLoggingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/stop_logging/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1630,6 +1688,7 @@ class CloudTrailClient:
         destinations: Sequence[Destination] | None = None,
         name: str | None = None,
     ) -> UpdateChannelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/update_channel/)."""
         params: dict[str, object] = {
             "channel": channel,
         }
@@ -1659,6 +1718,7 @@ class CloudTrailClient:
         refresh_schedule: RefreshSchedule | None = None,
         termination_protection_enabled: bool | None = None,
     ) -> UpdateDashboardOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/update_dashboard/)."""
         params: dict[str, object] = {
             "dashboard_id": dashboard_id,
         }
@@ -1695,6 +1755,7 @@ class CloudTrailClient:
         kms_key_id: str | None = None,
         billing_mode: BillingMode | None = None,
     ) -> UpdateEventDataStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/update_event_data_store/)."""
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
@@ -1744,6 +1805,7 @@ class CloudTrailClient:
         is_organization_trail: bool | None = None,
         recursive_logging: bool | None = None,
     ) -> UpdateTrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/operations/update_trail/)."""
         params: dict[str, object] = {
             "name": name,
         }

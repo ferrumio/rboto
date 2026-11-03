@@ -27,7 +27,7 @@ class SignInClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListResourcePermissionStatementsOutput]:
-        """Yield each page from list_resource_permission_statements; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/list_resource_permission_statements/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:

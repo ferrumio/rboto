@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class ApiErrorType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ApiErrorType-1f10314cdd97/)."""
     @property
     def secret_id(self) -> str | None: ...
     @property
@@ -27,6 +29,7 @@ class ApiErrorType:
 
 @final
 class ExternalSecretRotationMetadataItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ExternalSecretRotationMetadataItemOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -35,6 +38,7 @@ class ExternalSecretRotationMetadataItem:
 
 @final
 class ReplicationStatusType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicationStatusTypeOutput/)."""
     @property
     def region(self) -> str | None: ...
     @property
@@ -49,6 +53,7 @@ class ReplicationStatusType:
 
 @final
 class RotationRulesType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RotationRulesTypeOutput/)."""
     @property
     def automatically_after_days(self) -> int | None: ...
     @property
@@ -59,6 +64,7 @@ class RotationRulesType:
 
 @final
 class SecretListEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretListEntryOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -103,6 +109,7 @@ class SecretListEntry:
 
 @final
 class SecretValueEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretValueEntryOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -121,6 +128,7 @@ class SecretValueEntry:
 
 @final
 class SecretVersionsListEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SecretVersionsListEntryOutput/)."""
     @property
     def version_id(self) -> str | None: ...
     @property
@@ -135,6 +143,7 @@ class SecretVersionsListEntry:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/TagOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -143,6 +152,7 @@ class Tag:
 
 @final
 class ValidationErrorsEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ValidationErrorsEntryOutput/)."""
     @property
     def check_name(self) -> str | None: ...
     @property
@@ -151,6 +161,7 @@ class ValidationErrorsEntry:
 
 @final
 class BatchGetSecretValueOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/BatchGetSecretValueOutput/)."""
     @property
     def secret_values(self) -> list[SecretValueEntry] | None: ...
     @property
@@ -161,6 +172,7 @@ class BatchGetSecretValueOutput:
 
 @final
 class CancelRotateSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CancelRotateSecretOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -171,6 +183,7 @@ class CancelRotateSecretOutput:
 
 @final
 class CreateSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CreateSecretOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -183,6 +196,7 @@ class CreateSecretOutput:
 
 @final
 class DeleteResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteResourcePolicyOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -191,6 +205,7 @@ class DeleteResourcePolicyOutput:
 
 @final
 class DeleteSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteSecretOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -201,6 +216,7 @@ class DeleteSecretOutput:
 
 @final
 class DescribeSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DescribeSecretOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -247,12 +263,14 @@ class DescribeSecretOutput:
 
 @final
 class GetRandomPasswordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetRandomPasswordOutput/)."""
     @property
     def random_password(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetResourcePolicyOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -263,6 +281,7 @@ class GetResourcePolicyOutput:
 
 @final
 class GetSecretValueOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetSecretValueOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -281,6 +300,7 @@ class GetSecretValueOutput:
 
 @final
 class ListSecretVersionIdsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretVersionIdsOutput/)."""
     @property
     def versions(self) -> list[SecretVersionsListEntry] | None: ...
     @property
@@ -293,6 +313,7 @@ class ListSecretVersionIdsOutput:
 
 @final
 class ListSecretsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretsOutput/)."""
     @property
     def secret_list(self) -> list[SecretListEntry] | None: ...
     @property
@@ -301,6 +322,7 @@ class ListSecretsOutput:
 
 @final
 class PutResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutResourcePolicyOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -309,6 +331,7 @@ class PutResourcePolicyOutput:
 
 @final
 class PutSecretValueOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/PutSecretValueOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -321,6 +344,7 @@ class PutSecretValueOutput:
 
 @final
 class RemoveRegionsFromReplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RemoveRegionsFromReplicationOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -329,6 +353,7 @@ class RemoveRegionsFromReplicationOutput:
 
 @final
 class ReplicateSecretToRegionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicateSecretToRegionsOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -337,6 +362,7 @@ class ReplicateSecretToRegionsOutput:
 
 @final
 class RestoreSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RestoreSecretOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -345,6 +371,7 @@ class RestoreSecretOutput:
 
 @final
 class RotateSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RotateSecretOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -355,12 +382,14 @@ class RotateSecretOutput:
 
 @final
 class StopReplicationToReplicaOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StopReplicationToReplicaOutput/)."""
     @property
     def arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateSecretOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -371,6 +400,7 @@ class UpdateSecretOutput:
 
 @final
 class UpdateSecretVersionStageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/UpdateSecretVersionStageOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -379,6 +409,7 @@ class UpdateSecretVersionStageOutput:
 
 @final
 class ValidateResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ValidateResourcePolicyOutput/)."""
     @property
     def policy_validation_passed(self) -> bool: ...
     @property

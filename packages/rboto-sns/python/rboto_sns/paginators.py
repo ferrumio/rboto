@@ -34,7 +34,7 @@ class SNSClientPaginators:
         platform_application_arn: str,
         next_token: str | None = None,
     ) -> AsyncIterator[ListEndpointsByPlatformApplicationOutput]:
-        """Yield each page from list_endpoints_by_platform_application; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_endpoints_by_platform_application/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
         }
@@ -56,7 +56,7 @@ class SNSClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListOriginationNumbersOutput]:
-        """Yield each page from list_origination_numbers; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_origination_numbers/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -78,7 +78,7 @@ class SNSClientPaginators:
         *,
         next_token: str | None = None,
     ) -> AsyncIterator[ListPhoneNumbersOptedOutOutput]:
-        """Yield each page from list_phone_numbers_opted_out; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_phone_numbers_opted_out/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -98,7 +98,7 @@ class SNSClientPaginators:
         *,
         next_token: str | None = None,
     ) -> AsyncIterator[ListPlatformApplicationsOutput]:
-        """Yield each page from list_platform_applications; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_platform_applications/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -119,7 +119,7 @@ class SNSClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListSMSSandboxPhoneNumbersOutput]:
-        """Yield each page from list_sms_sandbox_phone_numbers; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_sms_sandbox_phone_numbers/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -141,7 +141,7 @@ class SNSClientPaginators:
         *,
         next_token: str | None = None,
     ) -> AsyncIterator[ListSubscriptionsOutput]:
-        """Yield each page from list_subscriptions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_subscriptions/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -162,7 +162,7 @@ class SNSClientPaginators:
         topic_arn: str,
         next_token: str | None = None,
     ) -> AsyncIterator[ListSubscriptionsByTopicOutput]:
-        """Yield each page from list_subscriptions_by_topic; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_subscriptions_by_topic/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "topic_arn": topic_arn,
         }
@@ -183,7 +183,7 @@ class SNSClientPaginators:
         *,
         next_token: str | None = None,
     ) -> AsyncIterator[ListTopicsOutput]:
-        """Yield each page from list_topics; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sns/operations/list_topics/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:

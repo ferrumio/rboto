@@ -9,150 +9,293 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AddTagsOutput: TypeAlias = _native.AddTagsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AddTagsOutput/)."""
 AdvancedEventSelectorOutput: TypeAlias = _native.AdvancedEventSelector
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AdvancedEventSelectorOutput/)."""
 AdvancedFieldSelectorOutput: TypeAlias = _native.AdvancedFieldSelector
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AdvancedFieldSelectorOutput/)."""
 AggregationConfigurationOutput: TypeAlias = _native.AggregationConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AggregationConfigurationOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ByteStream/)."""
 CancelQueryOutput: TypeAlias = _native.CancelQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CancelQueryOutput/)."""
 ChannelOutput: TypeAlias = _native.Channel
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ChannelOutput/)."""
 ContextKeySelectorOutput: TypeAlias = _native.ContextKeySelector
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ContextKeySelectorOutput/)."""
 CreateChannelOutput: TypeAlias = _native.CreateChannelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateChannelOutput/)."""
 CreateDashboardOutput: TypeAlias = _native.CreateDashboardOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateDashboardOutput/)."""
 CreateEventDataStoreOutput: TypeAlias = _native.CreateEventDataStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateEventDataStoreOutput/)."""
 CreateTrailOutput: TypeAlias = _native.CreateTrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateTrailOutput/)."""
 DashboardDetailOutput: TypeAlias = _native.DashboardDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DashboardDetailOutput/)."""
 DataResourceOutput: TypeAlias = _native.DataResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DataResourceOutput/)."""
 DeleteChannelOutput: TypeAlias = _native.DeleteChannelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteChannelOutput/)."""
 DeleteDashboardOutput: TypeAlias = _native.DeleteDashboardOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteDashboardOutput/)."""
 DeleteEventDataStoreOutput: TypeAlias = _native.DeleteEventDataStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteEventDataStoreOutput/)."""
 DeleteResourcePolicyOutput: TypeAlias = _native.DeleteResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteResourcePolicyOutput/)."""
 DeleteTrailOutput: TypeAlias = _native.DeleteTrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteTrailOutput/)."""
 DeregisterOrganizationDelegatedAdminOutput: TypeAlias = _native.DeregisterOrganizationDelegatedAdminOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeregisterOrganizationDelegatedAdminOutput/)."""
 DescribeQueryOutput: TypeAlias = _native.DescribeQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DescribeQueryOutput/)."""
 DescribeTrailsOutput: TypeAlias = _native.DescribeTrailsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DescribeTrailsOutput/)."""
 DestinationOutput: TypeAlias = _native.Destination
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DestinationOutput/)."""
 DisableFederationOutput: TypeAlias = _native.DisableFederationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DisableFederationOutput/)."""
 EnableFederationOutput: TypeAlias = _native.EnableFederationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EnableFederationOutput/)."""
 EventOutput: TypeAlias = _native.Event
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventOutput/)."""
 EventDataStoreOutput: TypeAlias = _native.EventDataStore
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventDataStoreOutput/)."""
 EventSelectorOutput: TypeAlias = _native.EventSelector
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventSelectorOutput/)."""
 GenerateQueryOutput: TypeAlias = _native.GenerateQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GenerateQueryOutput/)."""
 GetChannelOutput: TypeAlias = _native.GetChannelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetChannelOutput/)."""
 GetDashboardOutput: TypeAlias = _native.GetDashboardOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetDashboardOutput/)."""
 GetEventConfigurationOutput: TypeAlias = _native.GetEventConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventConfigurationOutput/)."""
 GetEventDataStoreOutput: TypeAlias = _native.GetEventDataStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventDataStoreOutput/)."""
 GetEventSelectorsOutput: TypeAlias = _native.GetEventSelectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventSelectorsOutput/)."""
 GetImportOutput: TypeAlias = _native.GetImportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetImportOutput/)."""
 GetInsightSelectorsOutput: TypeAlias = _native.GetInsightSelectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetInsightSelectorsOutput/)."""
 GetQueryResultsOutput: TypeAlias = _native.GetQueryResultsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetQueryResultsOutput/)."""
 GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetResourcePolicyOutput/)."""
 GetTrailOutput: TypeAlias = _native.GetTrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetTrailOutput/)."""
 GetTrailStatusOutput: TypeAlias = _native.GetTrailStatusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetTrailStatusOutput/)."""
 ImportFailureListItemOutput: TypeAlias = _native.ImportFailureListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportFailureListItemOutput/)."""
 ImportSourceOutput: TypeAlias = _native.ImportSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportSourceOutput/)."""
 ImportStatisticsOutput: TypeAlias = _native.ImportStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportStatisticsOutput/)."""
 ImportsListItemOutput: TypeAlias = _native.ImportsListItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportsListItemOutput/)."""
 IngestionStatusOutput: TypeAlias = _native.IngestionStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/IngestionStatusOutput/)."""
 InsightSelectorOutput: TypeAlias = _native.InsightSelector
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/InsightSelectorOutput/)."""
 ListChannelsOutput: TypeAlias = _native.ListChannelsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListChannelsOutput/)."""
 ListDashboardsOutput: TypeAlias = _native.ListDashboardsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListDashboardsOutput/)."""
 ListEventDataStoresOutput: TypeAlias = _native.ListEventDataStoresOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListEventDataStoresOutput/)."""
 ListImportFailuresOutput: TypeAlias = _native.ListImportFailuresOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListImportFailuresOutput/)."""
 ListImportsOutput: TypeAlias = _native.ListImportsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListImportsOutput/)."""
 ListInsightsDataOutput: TypeAlias = _native.ListInsightsDataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsDataOutput/)."""
 ListInsightsMetricDataOutput: TypeAlias = _native.ListInsightsMetricDataOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsMetricDataOutput/)."""
 ListPublicKeysOutput: TypeAlias = _native.ListPublicKeysOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListPublicKeysOutput/)."""
 ListQueriesOutput: TypeAlias = _native.ListQueriesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListQueriesOutput/)."""
 ListTagsOutput: TypeAlias = _native.ListTagsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListTagsOutput/)."""
 ListTrailsOutput: TypeAlias = _native.ListTrailsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListTrailsOutput/)."""
 LookupEventsOutput: TypeAlias = _native.LookupEventsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/LookupEventsOutput/)."""
 PartitionKeyOutput: TypeAlias = _native.PartitionKey
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PartitionKeyOutput/)."""
 PublicKeyOutput: TypeAlias = _native.PublicKey
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PublicKeyOutput/)."""
 PutEventConfigurationOutput: TypeAlias = _native.PutEventConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutEventConfigurationOutput/)."""
 PutEventSelectorsOutput: TypeAlias = _native.PutEventSelectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutEventSelectorsOutput/)."""
 PutInsightSelectorsOutput: TypeAlias = _native.PutInsightSelectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutInsightSelectorsOutput/)."""
 PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutResourcePolicyOutput/)."""
 QueryOutput: TypeAlias = _native.Query
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryOutput/)."""
 QueryStatisticsOutput: TypeAlias = _native.QueryStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatisticsOutput/)."""
 QueryStatisticsForDescribeQueryOutput: TypeAlias = _native.QueryStatisticsForDescribeQuery
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatisticsForDescribeQueryOutput/)."""
 RefreshScheduleOutput: TypeAlias = _native.RefreshSchedule
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleOutput/)."""
 RefreshScheduleFrequencyOutput: TypeAlias = _native.RefreshScheduleFrequency
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleFrequencyOutput/)."""
 RegisterOrganizationDelegatedAdminOutput: TypeAlias = _native.RegisterOrganizationDelegatedAdminOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RegisterOrganizationDelegatedAdminOutput/)."""
 RemoveTagsOutput: TypeAlias = _native.RemoveTagsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RemoveTagsOutput/)."""
 ResourceOutput: TypeAlias = _native.Resource
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ResourceOutput/)."""
 ResourceTagOutput: TypeAlias = _native.ResourceTag
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ResourceTagOutput/)."""
 RestoreEventDataStoreOutput: TypeAlias = _native.RestoreEventDataStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RestoreEventDataStoreOutput/)."""
 S3ImportSourceOutput: TypeAlias = _native.S3ImportSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/S3ImportSourceOutput/)."""
 SearchSampleQueriesOutput: TypeAlias = _native.SearchSampleQueriesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SearchSampleQueriesOutput/)."""
 SearchSampleQueriesSearchResultOutput: TypeAlias = _native.SearchSampleQueriesSearchResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SearchSampleQueriesSearchResultOutput/)."""
 SourceConfigOutput: TypeAlias = _native.SourceConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SourceConfigOutput/)."""
 StartDashboardRefreshOutput: TypeAlias = _native.StartDashboardRefreshOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartDashboardRefreshOutput/)."""
 StartEventDataStoreIngestionOutput: TypeAlias = _native.StartEventDataStoreIngestionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartEventDataStoreIngestionOutput/)."""
 StartImportOutput: TypeAlias = _native.StartImportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartImportOutput/)."""
 StartLoggingOutput: TypeAlias = _native.StartLoggingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartLoggingOutput/)."""
 StartQueryOutput: TypeAlias = _native.StartQueryOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartQueryOutput/)."""
 StopEventDataStoreIngestionOutput: TypeAlias = _native.StopEventDataStoreIngestionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopEventDataStoreIngestionOutput/)."""
 StopImportOutput: TypeAlias = _native.StopImportOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopImportOutput/)."""
 StopLoggingOutput: TypeAlias = _native.StopLoggingOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopLoggingOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TagOutput/)."""
 TrailOutput: TypeAlias = _native.Trail
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TrailOutput/)."""
 TrailInfoOutput: TypeAlias = _native.TrailInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TrailInfoOutput/)."""
 UpdateChannelOutput: TypeAlias = _native.UpdateChannelOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateChannelOutput/)."""
 UpdateDashboardOutput: TypeAlias = _native.UpdateDashboardOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateDashboardOutput/)."""
 UpdateEventDataStoreOutput: TypeAlias = _native.UpdateEventDataStoreOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateEventDataStoreOutput/)."""
 UpdateTrailOutput: TypeAlias = _native.UpdateTrailOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateTrailOutput/)."""
 WidgetOutput: TypeAlias = _native.Widget
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/WidgetOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/JSONValue/)."""
 
 BillingMode: TypeAlias = Literal['EXTENDABLE_RETENTION_PRICING', 'FIXED_RETENTION_PRICING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/BillingMode/)."""
 BillingModeOutput: TypeAlias = BillingMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/BillingModeOutput/)."""
 DashboardStatus: TypeAlias = Literal['CREATING', 'CREATED', 'UPDATING', 'UPDATED', 'DELETING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DashboardStatus/)."""
 DashboardStatusOutput: TypeAlias = DashboardStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DashboardStatusOutput/)."""
 DashboardType: TypeAlias = Literal['MANAGED', 'CUSTOM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DashboardType/)."""
 DashboardTypeOutput: TypeAlias = DashboardType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DashboardTypeOutput/)."""
 DeliveryStatus: TypeAlias = Literal['SUCCESS', 'FAILED', 'FAILED_SIGNING_FILE', 'PENDING', 'RESOURCE_NOT_FOUND', 'ACCESS_DENIED', 'ACCESS_DENIED_SIGNING_FILE', 'CANCELLED', 'UNKNOWN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeliveryStatus/)."""
 DeliveryStatusOutput: TypeAlias = DeliveryStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeliveryStatusOutput/)."""
 DestinationType: TypeAlias = Literal['EVENT_DATA_STORE', 'AWS_SERVICE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DestinationType/)."""
 DestinationTypeOutput: TypeAlias = DestinationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DestinationTypeOutput/)."""
 EventCategory: TypeAlias = Literal['insight']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventCategory/)."""
 EventCategoryOutput: TypeAlias = EventCategory | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventCategoryOutput/)."""
 EventCategoryAggregation: TypeAlias = Literal['Data']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventCategoryAggregation/)."""
 EventCategoryAggregationOutput: TypeAlias = EventCategoryAggregation | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventCategoryAggregationOutput/)."""
 EventDataStoreStatus: TypeAlias = Literal['CREATED', 'ENABLED', 'PENDING_DELETION', 'STARTING_INGESTION', 'STOPPING_INGESTION', 'STOPPED_INGESTION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventDataStoreStatus/)."""
 EventDataStoreStatusOutput: TypeAlias = EventDataStoreStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventDataStoreStatusOutput/)."""
 FederationStatus: TypeAlias = Literal['ENABLING', 'ENABLED', 'DISABLING', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/FederationStatus/)."""
 FederationStatusOutput: TypeAlias = FederationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/FederationStatusOutput/)."""
 ImportFailureStatus: TypeAlias = Literal['FAILED', 'RETRY', 'SUCCEEDED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportFailureStatus/)."""
 ImportFailureStatusOutput: TypeAlias = ImportFailureStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportFailureStatusOutput/)."""
 ImportStatus: TypeAlias = Literal['INITIALIZING', 'IN_PROGRESS', 'FAILED', 'STOPPED', 'COMPLETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportStatus/)."""
 ImportStatusOutput: TypeAlias = ImportStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportStatusOutput/)."""
 InsightType: TypeAlias = Literal['ApiCallRateInsight', 'ApiErrorRateInsight']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/InsightType/)."""
 InsightTypeOutput: TypeAlias = InsightType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/InsightTypeOutput/)."""
 InsightsMetricDataType: TypeAlias = Literal['FillWithZeros', 'NonZeroData']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/InsightsMetricDataType/)."""
 InsightsMetricDataTypeOutput: TypeAlias = InsightsMetricDataType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/InsightsMetricDataTypeOutput/)."""
 ListInsightsDataDimensionKey: TypeAlias = Literal['EventId', 'EventName', 'EventSource']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsDataDimensionKey/)."""
 ListInsightsDataDimensionKeyOutput: TypeAlias = ListInsightsDataDimensionKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsDataDimensionKeyOutput/)."""
 ListInsightsDataType: TypeAlias = Literal['InsightsEvents']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsDataType/)."""
 ListInsightsDataTypeOutput: TypeAlias = ListInsightsDataType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsDataTypeOutput/)."""
 LookupAttributeKey: TypeAlias = Literal['EventId', 'EventName', 'ReadOnly', 'Username', 'ResourceType', 'ResourceName', 'EventSource', 'AccessKeyId']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/LookupAttributeKey/)."""
 LookupAttributeKeyOutput: TypeAlias = LookupAttributeKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/LookupAttributeKeyOutput/)."""
 MaxEventSize: TypeAlias = Literal['Standard', 'Large']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/MaxEventSize/)."""
 MaxEventSizeOutput: TypeAlias = MaxEventSize | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/MaxEventSizeOutput/)."""
 QueryStatus: TypeAlias = Literal['QUEUED', 'RUNNING', 'FINISHED', 'FAILED', 'CANCELLED', 'TIMED_OUT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatus/)."""
 QueryStatusOutput: TypeAlias = QueryStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatusOutput/)."""
 ReadWriteType: TypeAlias = Literal['ReadOnly', 'WriteOnly', 'All']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ReadWriteType/)."""
 ReadWriteTypeOutput: TypeAlias = ReadWriteType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ReadWriteTypeOutput/)."""
 RefreshScheduleFrequencyUnit: TypeAlias = Literal['HOURS', 'DAYS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleFrequencyUnit/)."""
 RefreshScheduleFrequencyUnitOutput: TypeAlias = RefreshScheduleFrequencyUnit | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleFrequencyUnitOutput/)."""
 RefreshScheduleStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleStatus/)."""
 RefreshScheduleStatusOutput: TypeAlias = RefreshScheduleStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleStatusOutput/)."""
 SourceEventCategory: TypeAlias = Literal['Management', 'Data']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SourceEventCategory/)."""
 SourceEventCategoryOutput: TypeAlias = SourceEventCategory | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SourceEventCategoryOutput/)."""
 Template: TypeAlias = Literal['API_ACTIVITY', 'RESOURCE_ACCESS', 'USER_ACTIONS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Template/)."""
 TemplateOutput: TypeAlias = Template | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TemplateOutput/)."""
 Type: TypeAlias = Literal['TagContext', 'RequestContext']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Type/)."""
 TypeOutput: TypeAlias = Type | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TypeOutput/)."""
 
 AddTagsRequest = TypedDict(
     "AddTagsRequest",
@@ -161,6 +304,7 @@ AddTagsRequest = TypedDict(
     "tags_list": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AddTagsRequest/)."""
 
 AdvancedEventSelector = TypedDict(
     "AdvancedEventSelector",
@@ -169,6 +313,7 @@ AdvancedEventSelector = TypedDict(
     "field_selectors": Required["Sequence[AdvancedFieldSelector]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AdvancedEventSelector/)."""
 
 AdvancedFieldSelector = TypedDict(
     "AdvancedFieldSelector",
@@ -182,6 +327,7 @@ AdvancedFieldSelector = TypedDict(
     "not_ends_with": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AdvancedFieldSelector/)."""
 
 AggregationConfiguration = TypedDict(
     "AggregationConfiguration",
@@ -190,6 +336,7 @@ AggregationConfiguration = TypedDict(
     "event_category": Required["EventCategoryAggregation"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AggregationConfiguration/)."""
 
 CancelQueryRequest = TypedDict(
     "CancelQueryRequest",
@@ -199,6 +346,7 @@ CancelQueryRequest = TypedDict(
     "event_data_store_owner_account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CancelQueryRequest/)."""
 
 Channel = TypedDict(
     "Channel",
@@ -207,6 +355,7 @@ Channel = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Channel/)."""
 
 ContextKeySelector = TypedDict(
     "ContextKeySelector",
@@ -215,6 +364,7 @@ ContextKeySelector = TypedDict(
     "equals": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ContextKeySelector/)."""
 
 CreateChannelRequest = TypedDict(
     "CreateChannelRequest",
@@ -225,6 +375,7 @@ CreateChannelRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateChannelRequest/)."""
 
 CreateDashboardRequest = TypedDict(
     "CreateDashboardRequest",
@@ -236,6 +387,7 @@ CreateDashboardRequest = TypedDict(
     "widgets": NotRequired["Sequence[RequestWidget]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateDashboardRequest/)."""
 
 CreateEventDataStoreRequest = TypedDict(
     "CreateEventDataStoreRequest",
@@ -252,6 +404,7 @@ CreateEventDataStoreRequest = TypedDict(
     "billing_mode": NotRequired["BillingMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateEventDataStoreRequest/)."""
 
 CreateTrailRequest = TypedDict(
     "CreateTrailRequest",
@@ -271,6 +424,7 @@ CreateTrailRequest = TypedDict(
     "recursive_logging": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateTrailRequest/)."""
 
 DashboardDetail = TypedDict(
     "DashboardDetail",
@@ -279,6 +433,7 @@ DashboardDetail = TypedDict(
     "type": NotRequired["DashboardType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DashboardDetail/)."""
 
 DataResource = TypedDict(
     "DataResource",
@@ -287,6 +442,7 @@ DataResource = TypedDict(
     "values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DataResource/)."""
 
 DeleteChannelRequest = TypedDict(
     "DeleteChannelRequest",
@@ -294,6 +450,7 @@ DeleteChannelRequest = TypedDict(
     "channel": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteChannelRequest/)."""
 
 DeleteDashboardRequest = TypedDict(
     "DeleteDashboardRequest",
@@ -301,6 +458,7 @@ DeleteDashboardRequest = TypedDict(
     "dashboard_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteDashboardRequest/)."""
 
 DeleteEventDataStoreRequest = TypedDict(
     "DeleteEventDataStoreRequest",
@@ -308,6 +466,7 @@ DeleteEventDataStoreRequest = TypedDict(
     "event_data_store": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteEventDataStoreRequest/)."""
 
 DeleteResourcePolicyRequest = TypedDict(
     "DeleteResourcePolicyRequest",
@@ -315,6 +474,7 @@ DeleteResourcePolicyRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteResourcePolicyRequest/)."""
 
 DeleteTrailRequest = TypedDict(
     "DeleteTrailRequest",
@@ -322,6 +482,7 @@ DeleteTrailRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteTrailRequest/)."""
 
 DeregisterOrganizationDelegatedAdminRequest = TypedDict(
     "DeregisterOrganizationDelegatedAdminRequest",
@@ -329,6 +490,7 @@ DeregisterOrganizationDelegatedAdminRequest = TypedDict(
     "delegated_admin_account_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeregisterOrganizationDelegatedAdminRequest/)."""
 
 DescribeQueryRequest = TypedDict(
     "DescribeQueryRequest",
@@ -340,6 +502,7 @@ DescribeQueryRequest = TypedDict(
     "event_data_store_owner_account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DescribeQueryRequest/)."""
 
 DescribeTrailsRequest = TypedDict(
     "DescribeTrailsRequest",
@@ -348,6 +511,7 @@ DescribeTrailsRequest = TypedDict(
     "include_shadow_trails": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DescribeTrailsRequest/)."""
 
 Destination = TypedDict(
     "Destination",
@@ -356,6 +520,7 @@ Destination = TypedDict(
     "location": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Destination/)."""
 
 DisableFederationRequest = TypedDict(
     "DisableFederationRequest",
@@ -363,6 +528,7 @@ DisableFederationRequest = TypedDict(
     "event_data_store": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DisableFederationRequest/)."""
 
 EnableFederationRequest = TypedDict(
     "EnableFederationRequest",
@@ -371,6 +537,7 @@ EnableFederationRequest = TypedDict(
     "federation_role_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EnableFederationRequest/)."""
 
 Event = TypedDict(
     "Event",
@@ -386,6 +553,7 @@ Event = TypedDict(
     "cloud_trail_event": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Event/)."""
 
 EventDataStore = TypedDict(
     "EventDataStore",
@@ -402,6 +570,7 @@ EventDataStore = TypedDict(
     "updated_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventDataStore/)."""
 
 EventSelector = TypedDict(
     "EventSelector",
@@ -412,6 +581,7 @@ EventSelector = TypedDict(
     "exclude_management_event_sources": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventSelector/)."""
 
 GenerateQueryRequest = TypedDict(
     "GenerateQueryRequest",
@@ -420,6 +590,7 @@ GenerateQueryRequest = TypedDict(
     "prompt": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GenerateQueryRequest/)."""
 
 GetChannelRequest = TypedDict(
     "GetChannelRequest",
@@ -427,6 +598,7 @@ GetChannelRequest = TypedDict(
     "channel": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetChannelRequest/)."""
 
 GetDashboardRequest = TypedDict(
     "GetDashboardRequest",
@@ -434,6 +606,7 @@ GetDashboardRequest = TypedDict(
     "dashboard_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetDashboardRequest/)."""
 
 GetEventConfigurationRequest = TypedDict(
     "GetEventConfigurationRequest",
@@ -442,6 +615,7 @@ GetEventConfigurationRequest = TypedDict(
     "event_data_store": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventConfigurationRequest/)."""
 
 GetEventDataStoreRequest = TypedDict(
     "GetEventDataStoreRequest",
@@ -449,6 +623,7 @@ GetEventDataStoreRequest = TypedDict(
     "event_data_store": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventDataStoreRequest/)."""
 
 GetEventSelectorsRequest = TypedDict(
     "GetEventSelectorsRequest",
@@ -456,6 +631,7 @@ GetEventSelectorsRequest = TypedDict(
     "trail_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventSelectorsRequest/)."""
 
 GetImportRequest = TypedDict(
     "GetImportRequest",
@@ -463,6 +639,7 @@ GetImportRequest = TypedDict(
     "import_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetImportRequest/)."""
 
 GetInsightSelectorsRequest = TypedDict(
     "GetInsightSelectorsRequest",
@@ -471,6 +648,7 @@ GetInsightSelectorsRequest = TypedDict(
     "event_data_store": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetInsightSelectorsRequest/)."""
 
 GetQueryResultsRequest = TypedDict(
     "GetQueryResultsRequest",
@@ -482,6 +660,7 @@ GetQueryResultsRequest = TypedDict(
     "event_data_store_owner_account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetQueryResultsRequest/)."""
 
 GetResourcePolicyRequest = TypedDict(
     "GetResourcePolicyRequest",
@@ -489,6 +668,7 @@ GetResourcePolicyRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetResourcePolicyRequest/)."""
 
 GetTrailRequest = TypedDict(
     "GetTrailRequest",
@@ -496,6 +676,7 @@ GetTrailRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetTrailRequest/)."""
 
 GetTrailStatusRequest = TypedDict(
     "GetTrailStatusRequest",
@@ -503,6 +684,7 @@ GetTrailStatusRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetTrailStatusRequest/)."""
 
 ImportFailureListItem = TypedDict(
     "ImportFailureListItem",
@@ -514,6 +696,7 @@ ImportFailureListItem = TypedDict(
     "last_updated_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportFailureListItem/)."""
 
 ImportSource = TypedDict(
     "ImportSource",
@@ -521,6 +704,7 @@ ImportSource = TypedDict(
     "s3": Required["S3ImportSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportSource/)."""
 
 ImportStatistics = TypedDict(
     "ImportStatistics",
@@ -532,6 +716,7 @@ ImportStatistics = TypedDict(
     "failed_entries": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportStatistics/)."""
 
 ImportsListItem = TypedDict(
     "ImportsListItem",
@@ -543,6 +728,7 @@ ImportsListItem = TypedDict(
     "updated_timestamp": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportsListItem/)."""
 
 IngestionStatus = TypedDict(
     "IngestionStatus",
@@ -554,6 +740,7 @@ IngestionStatus = TypedDict(
     "latest_ingestion_attempt_event_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/IngestionStatus/)."""
 
 InsightSelector = TypedDict(
     "InsightSelector",
@@ -562,6 +749,7 @@ InsightSelector = TypedDict(
     "event_categories": NotRequired["Sequence[SourceEventCategory]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/InsightSelector/)."""
 
 ListChannelsRequest = TypedDict(
     "ListChannelsRequest",
@@ -570,6 +758,7 @@ ListChannelsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListChannelsRequest/)."""
 
 ListDashboardsRequest = TypedDict(
     "ListDashboardsRequest",
@@ -580,6 +769,7 @@ ListDashboardsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListDashboardsRequest/)."""
 
 ListEventDataStoresRequest = TypedDict(
     "ListEventDataStoresRequest",
@@ -588,6 +778,7 @@ ListEventDataStoresRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListEventDataStoresRequest/)."""
 
 ListImportFailuresRequest = TypedDict(
     "ListImportFailuresRequest",
@@ -597,6 +788,7 @@ ListImportFailuresRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListImportFailuresRequest/)."""
 
 ListImportsRequest = TypedDict(
     "ListImportsRequest",
@@ -607,6 +799,7 @@ ListImportsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListImportsRequest/)."""
 
 ListInsightsDataRequest = TypedDict(
     "ListInsightsDataRequest",
@@ -620,6 +813,7 @@ ListInsightsDataRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsDataRequest/)."""
 
 ListInsightsMetricDataRequest = TypedDict(
     "ListInsightsMetricDataRequest",
@@ -637,6 +831,7 @@ ListInsightsMetricDataRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsMetricDataRequest/)."""
 
 ListPublicKeysRequest = TypedDict(
     "ListPublicKeysRequest",
@@ -646,6 +841,7 @@ ListPublicKeysRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListPublicKeysRequest/)."""
 
 ListQueriesRequest = TypedDict(
     "ListQueriesRequest",
@@ -658,6 +854,7 @@ ListQueriesRequest = TypedDict(
     "query_status": NotRequired["QueryStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListQueriesRequest/)."""
 
 ListTagsRequest = TypedDict(
     "ListTagsRequest",
@@ -666,6 +863,7 @@ ListTagsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListTagsRequest/)."""
 
 ListTrailsRequest = TypedDict(
     "ListTrailsRequest",
@@ -673,6 +871,7 @@ ListTrailsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListTrailsRequest/)."""
 
 LookupAttribute = TypedDict(
     "LookupAttribute",
@@ -681,6 +880,7 @@ LookupAttribute = TypedDict(
     "attribute_value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/LookupAttribute/)."""
 
 LookupEventsRequest = TypedDict(
     "LookupEventsRequest",
@@ -693,6 +893,7 @@ LookupEventsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/LookupEventsRequest/)."""
 
 PartitionKey = TypedDict(
     "PartitionKey",
@@ -701,6 +902,7 @@ PartitionKey = TypedDict(
     "type": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PartitionKey/)."""
 
 PublicKey = TypedDict(
     "PublicKey",
@@ -711,6 +913,7 @@ PublicKey = TypedDict(
     "fingerprint": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PublicKey/)."""
 
 PutEventConfigurationRequest = TypedDict(
     "PutEventConfigurationRequest",
@@ -722,6 +925,7 @@ PutEventConfigurationRequest = TypedDict(
     "aggregation_configurations": NotRequired["Sequence[AggregationConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutEventConfigurationRequest/)."""
 
 PutEventSelectorsRequest = TypedDict(
     "PutEventSelectorsRequest",
@@ -731,6 +935,7 @@ PutEventSelectorsRequest = TypedDict(
     "advanced_event_selectors": NotRequired["Sequence[AdvancedEventSelector]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutEventSelectorsRequest/)."""
 
 PutInsightSelectorsRequest = TypedDict(
     "PutInsightSelectorsRequest",
@@ -741,6 +946,7 @@ PutInsightSelectorsRequest = TypedDict(
     "insights_destination": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutInsightSelectorsRequest/)."""
 
 PutResourcePolicyRequest = TypedDict(
     "PutResourcePolicyRequest",
@@ -749,6 +955,7 @@ PutResourcePolicyRequest = TypedDict(
     "resource_policy": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutResourcePolicyRequest/)."""
 
 Query = TypedDict(
     "Query",
@@ -758,6 +965,7 @@ Query = TypedDict(
     "creation_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Query/)."""
 
 QueryStatistics = TypedDict(
     "QueryStatistics",
@@ -767,6 +975,7 @@ QueryStatistics = TypedDict(
     "bytes_scanned": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatistics/)."""
 
 QueryStatisticsForDescribeQuery = TypedDict(
     "QueryStatisticsForDescribeQuery",
@@ -778,6 +987,7 @@ QueryStatisticsForDescribeQuery = TypedDict(
     "creation_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatisticsForDescribeQuery/)."""
 
 RefreshSchedule = TypedDict(
     "RefreshSchedule",
@@ -787,6 +997,7 @@ RefreshSchedule = TypedDict(
     "time_of_day": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshSchedule/)."""
 
 RefreshScheduleFrequency = TypedDict(
     "RefreshScheduleFrequency",
@@ -795,6 +1006,7 @@ RefreshScheduleFrequency = TypedDict(
     "value": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleFrequency/)."""
 
 RegisterOrganizationDelegatedAdminRequest = TypedDict(
     "RegisterOrganizationDelegatedAdminRequest",
@@ -802,6 +1014,7 @@ RegisterOrganizationDelegatedAdminRequest = TypedDict(
     "member_account_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RegisterOrganizationDelegatedAdminRequest/)."""
 
 RemoveTagsRequest = TypedDict(
     "RemoveTagsRequest",
@@ -810,6 +1023,7 @@ RemoveTagsRequest = TypedDict(
     "tags_list": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RemoveTagsRequest/)."""
 
 RequestWidget = TypedDict(
     "RequestWidget",
@@ -819,6 +1033,7 @@ RequestWidget = TypedDict(
     "view_properties": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RequestWidget/)."""
 
 Resource = TypedDict(
     "Resource",
@@ -827,6 +1042,7 @@ Resource = TypedDict(
     "resource_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Resource/)."""
 
 ResourceTag = TypedDict(
     "ResourceTag",
@@ -835,6 +1051,7 @@ ResourceTag = TypedDict(
     "tags_list": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ResourceTag/)."""
 
 RestoreEventDataStoreRequest = TypedDict(
     "RestoreEventDataStoreRequest",
@@ -842,6 +1059,7 @@ RestoreEventDataStoreRequest = TypedDict(
     "event_data_store": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RestoreEventDataStoreRequest/)."""
 
 S3ImportSource = TypedDict(
     "S3ImportSource",
@@ -851,6 +1069,7 @@ S3ImportSource = TypedDict(
     "s3_bucket_access_role_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/S3ImportSource/)."""
 
 SearchSampleQueriesRequest = TypedDict(
     "SearchSampleQueriesRequest",
@@ -860,6 +1079,7 @@ SearchSampleQueriesRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SearchSampleQueriesRequest/)."""
 
 SearchSampleQueriesSearchResult = TypedDict(
     "SearchSampleQueriesSearchResult",
@@ -870,6 +1090,7 @@ SearchSampleQueriesSearchResult = TypedDict(
     "relevance": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SearchSampleQueriesSearchResult/)."""
 
 SourceConfig = TypedDict(
     "SourceConfig",
@@ -878,6 +1099,7 @@ SourceConfig = TypedDict(
     "advanced_event_selectors": NotRequired["Sequence[AdvancedEventSelector]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SourceConfig/)."""
 
 StartDashboardRefreshRequest = TypedDict(
     "StartDashboardRefreshRequest",
@@ -886,6 +1108,7 @@ StartDashboardRefreshRequest = TypedDict(
     "query_parameter_values": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartDashboardRefreshRequest/)."""
 
 StartEventDataStoreIngestionRequest = TypedDict(
     "StartEventDataStoreIngestionRequest",
@@ -893,6 +1116,7 @@ StartEventDataStoreIngestionRequest = TypedDict(
     "event_data_store": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartEventDataStoreIngestionRequest/)."""
 
 StartImportRequest = TypedDict(
     "StartImportRequest",
@@ -904,6 +1128,7 @@ StartImportRequest = TypedDict(
     "import_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartImportRequest/)."""
 
 StartLoggingRequest = TypedDict(
     "StartLoggingRequest",
@@ -911,6 +1136,7 @@ StartLoggingRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartLoggingRequest/)."""
 
 StartQueryRequest = TypedDict(
     "StartQueryRequest",
@@ -922,6 +1148,7 @@ StartQueryRequest = TypedDict(
     "event_data_store_owner_account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartQueryRequest/)."""
 
 StopEventDataStoreIngestionRequest = TypedDict(
     "StopEventDataStoreIngestionRequest",
@@ -929,6 +1156,7 @@ StopEventDataStoreIngestionRequest = TypedDict(
     "event_data_store": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopEventDataStoreIngestionRequest/)."""
 
 StopImportRequest = TypedDict(
     "StopImportRequest",
@@ -936,6 +1164,7 @@ StopImportRequest = TypedDict(
     "import_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopImportRequest/)."""
 
 StopLoggingRequest = TypedDict(
     "StopLoggingRequest",
@@ -943,6 +1172,7 @@ StopLoggingRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopLoggingRequest/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -951,6 +1181,7 @@ Tag = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Tag/)."""
 
 Trail = TypedDict(
     "Trail",
@@ -974,6 +1205,7 @@ Trail = TypedDict(
     "recursive_logging": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Trail/)."""
 
 TrailInfo = TypedDict(
     "TrailInfo",
@@ -983,6 +1215,7 @@ TrailInfo = TypedDict(
     "home_region": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TrailInfo/)."""
 
 UpdateChannelRequest = TypedDict(
     "UpdateChannelRequest",
@@ -992,6 +1225,7 @@ UpdateChannelRequest = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateChannelRequest/)."""
 
 UpdateDashboardRequest = TypedDict(
     "UpdateDashboardRequest",
@@ -1002,6 +1236,7 @@ UpdateDashboardRequest = TypedDict(
     "termination_protection_enabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateDashboardRequest/)."""
 
 UpdateEventDataStoreRequest = TypedDict(
     "UpdateEventDataStoreRequest",
@@ -1017,6 +1252,7 @@ UpdateEventDataStoreRequest = TypedDict(
     "billing_mode": NotRequired["BillingMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateEventDataStoreRequest/)."""
 
 UpdateTrailRequest = TypedDict(
     "UpdateTrailRequest",
@@ -1035,6 +1271,7 @@ UpdateTrailRequest = TypedDict(
     "recursive_logging": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateTrailRequest/)."""
 
 Widget = TypedDict(
     "Widget",
@@ -1045,3 +1282,4 @@ Widget = TypedDict(
     "view_properties": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/Widget/)."""

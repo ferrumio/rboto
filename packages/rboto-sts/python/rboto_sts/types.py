@@ -9,22 +9,38 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AssumeRoleOutput: TypeAlias = _native.AssumeRoleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleOutput/)."""
 AssumeRoleWithSAMLOutput: TypeAlias = _native.AssumeRoleWithSAMLOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithSAMLOutput/)."""
 AssumeRoleWithWebIdentityOutput: TypeAlias = _native.AssumeRoleWithWebIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithWebIdentityOutput/)."""
 AssumeRootOutput: TypeAlias = _native.AssumeRootOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRootOutput/)."""
 AssumedRoleUserOutput: TypeAlias = _native.AssumedRoleUser
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumedRoleUserOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/ByteStream/)."""
 CredentialsOutput: TypeAlias = _native.Credentials
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/CredentialsOutput/)."""
 DecodeAuthorizationMessageOutput: TypeAlias = _native.DecodeAuthorizationMessageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/DecodeAuthorizationMessageOutput/)."""
 FederatedUserOutput: TypeAlias = _native.FederatedUser
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/FederatedUserOutput/)."""
 GetAccessKeyInfoOutput: TypeAlias = _native.GetAccessKeyInfoOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetAccessKeyInfoOutput/)."""
 GetCallerIdentityOutput: TypeAlias = _native.GetCallerIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetCallerIdentityOutput/)."""
 GetDelegatedAccessTokenOutput: TypeAlias = _native.GetDelegatedAccessTokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetDelegatedAccessTokenOutput/)."""
 GetFederationTokenOutput: TypeAlias = _native.GetFederationTokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetFederationTokenOutput/)."""
 GetSessionTokenOutput: TypeAlias = _native.GetSessionTokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetSessionTokenOutput/)."""
 GetWebIdentityTokenOutput: TypeAlias = _native.GetWebIdentityTokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetWebIdentityTokenOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/JSONValue/)."""
 
 
 AssumeRoleRequest = TypedDict(
@@ -45,6 +61,7 @@ AssumeRoleRequest = TypedDict(
     "minimum_session_token_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleRequest/)."""
 
 AssumeRoleWithSAMLRequest = TypedDict(
     "AssumeRoleWithSAMLRequest",
@@ -58,6 +75,7 @@ AssumeRoleWithSAMLRequest = TypedDict(
     "minimum_session_token_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithSAMLRequest/)."""
 
 AssumeRoleWithWebIdentityRequest = TypedDict(
     "AssumeRoleWithWebIdentityRequest",
@@ -72,6 +90,7 @@ AssumeRoleWithWebIdentityRequest = TypedDict(
     "minimum_session_token_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRoleWithWebIdentityRequest/)."""
 
 AssumeRootRequest = TypedDict(
     "AssumeRootRequest",
@@ -82,6 +101,7 @@ AssumeRootRequest = TypedDict(
     "minimum_session_token_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumeRootRequest/)."""
 
 AssumedRoleUser = TypedDict(
     "AssumedRoleUser",
@@ -90,6 +110,7 @@ AssumedRoleUser = TypedDict(
     "arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/AssumedRoleUser/)."""
 
 Credentials = TypedDict(
     "Credentials",
@@ -100,6 +121,7 @@ Credentials = TypedDict(
     "expiration": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/Credentials/)."""
 
 DecodeAuthorizationMessageRequest = TypedDict(
     "DecodeAuthorizationMessageRequest",
@@ -107,6 +129,7 @@ DecodeAuthorizationMessageRequest = TypedDict(
     "encoded_message": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/DecodeAuthorizationMessageRequest/)."""
 
 FederatedUser = TypedDict(
     "FederatedUser",
@@ -115,6 +138,7 @@ FederatedUser = TypedDict(
     "arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/FederatedUser/)."""
 
 GetAccessKeyInfoRequest = TypedDict(
     "GetAccessKeyInfoRequest",
@@ -122,12 +146,14 @@ GetAccessKeyInfoRequest = TypedDict(
     "access_key_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetAccessKeyInfoRequest/)."""
 
 GetCallerIdentityRequest = TypedDict(
     "GetCallerIdentityRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetCallerIdentityRequest/)."""
 
 GetDelegatedAccessTokenRequest = TypedDict(
     "GetDelegatedAccessTokenRequest",
@@ -135,6 +161,7 @@ GetDelegatedAccessTokenRequest = TypedDict(
     "trade_in_token": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetDelegatedAccessTokenRequest/)."""
 
 GetFederationTokenRequest = TypedDict(
     "GetFederationTokenRequest",
@@ -147,6 +174,7 @@ GetFederationTokenRequest = TypedDict(
     "minimum_session_token_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetFederationTokenRequest/)."""
 
 GetSessionTokenRequest = TypedDict(
     "GetSessionTokenRequest",
@@ -157,6 +185,7 @@ GetSessionTokenRequest = TypedDict(
     "minimum_session_token_size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetSessionTokenRequest/)."""
 
 GetWebIdentityTokenRequest = TypedDict(
     "GetWebIdentityTokenRequest",
@@ -167,6 +196,7 @@ GetWebIdentityTokenRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetWebIdentityTokenRequest/)."""
 
 PolicyDescriptorType = TypedDict(
     "PolicyDescriptorType",
@@ -174,6 +204,7 @@ PolicyDescriptorType = TypedDict(
     "arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/PolicyDescriptorType/)."""
 
 ProvidedContext = TypedDict(
     "ProvidedContext",
@@ -182,6 +213,7 @@ ProvidedContext = TypedDict(
     "context_assertion": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/ProvidedContext/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -190,3 +222,4 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/Tag/)."""

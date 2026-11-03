@@ -45,7 +45,7 @@ class BedrockAgentCoreClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListABTestsOutput]:
-        """Yield each page from list_ab_tests; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_ab_tests/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -69,7 +69,7 @@ class BedrockAgentCoreClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListActorsOutput]:
-        """Yield each page from list_actors; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_actors/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -93,7 +93,7 @@ class BedrockAgentCoreClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListBatchEvaluationsOutput]:
-        """Yield each page from list_batch_evaluations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_batch_evaluations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -121,7 +121,7 @@ class BedrockAgentCoreClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListEventsOutput]:
-        """Yield each page from list_events; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_events/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "session_id": session_id,
@@ -153,7 +153,7 @@ class BedrockAgentCoreClientPaginators:
         filter: ExtractionJobFilterInput | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListMemoryExtractionJobsOutput]:
-        """Yield each page from list_memory_extraction_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_memory_extraction_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -184,7 +184,7 @@ class BedrockAgentCoreClientPaginators:
         next_token: str | None = None,
         metadata_filters: Sequence[MemoryMetadataFilterExpression] | None = None,
     ) -> AsyncIterator[ListMemoryRecordsOutput]:
-        """Yield each page from list_memory_records; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_memory_records/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -220,7 +220,7 @@ class BedrockAgentCoreClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListPaymentInstrumentsOutput]:
-        """Yield each page from list_payment_instruments; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_payment_instruments/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
         }
@@ -253,7 +253,7 @@ class BedrockAgentCoreClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListPaymentSessionsOutput]:
-        """Yield each page from list_payment_sessions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_payment_sessions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
         }
@@ -282,7 +282,7 @@ class BedrockAgentCoreClientPaginators:
         next_token: str | None = None,
         status_filter: RecommendationStatus | None = None,
     ) -> AsyncIterator[ListRecommendationsOutput]:
-        """Yield each page from list_recommendations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_recommendations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -310,7 +310,7 @@ class BedrockAgentCoreClientPaginators:
         next_token: str | None = None,
         filter: SessionFilter | None = None,
     ) -> AsyncIterator[ListSessionsOutput]:
-        """Yield each page from list_sessions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_sessions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "actor_id": actor_id,
@@ -341,7 +341,7 @@ class BedrockAgentCoreClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[RetrieveMemoryRecordsOutput]:
-        """Yield each page from retrieve_memory_records; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/retrieve_memory_records/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "search_criteria": search_criteria,

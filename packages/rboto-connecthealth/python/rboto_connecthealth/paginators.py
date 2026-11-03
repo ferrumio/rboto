@@ -32,7 +32,7 @@ class ConnectHealthClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListDomainsOutput]:
-        """Yield each page from list_domains; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/list_domains/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if status is not None:
@@ -58,7 +58,7 @@ class ConnectHealthClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListSubscriptionsOutput]:
-        """Yield each page from list_subscriptions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/operations/list_subscriptions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "domain_id": domain_id,
         }

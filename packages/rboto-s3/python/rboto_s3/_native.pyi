@@ -11,36 +11,42 @@ from .types import SelectObjectContentOutput
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class SelectObjectContentEventStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.SelectObjectContentEventStream]: ...
     def __anext__(self) -> Awaitable[_types.SelectObjectContentEventStream]: ...
 
 
 @final
 class AbacStatus:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbacStatusOutput/)."""
     @property
     def status(self) -> _types.BucketAbacStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AbortIncompleteMultipartUpload:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbortIncompleteMultipartUploadOutput/)."""
     @property
     def days_after_initiation(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AccessControlTranslation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AccessControlTranslationOutput/)."""
     @property
     def owner(self) -> _types.OwnerOverrideOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AnalyticsConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsConfigurationOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -51,12 +57,14 @@ class AnalyticsConfiguration:
 
 @final
 class AnalyticsExportDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsExportDestinationOutput/)."""
     @property
     def s3_bucket_destination(self) -> AnalyticsS3BucketDestination | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AnalyticsS3BucketDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsS3BucketDestinationOutput/)."""
     @property
     def format(self) -> _types.AnalyticsS3ExportFileFormatOutput: ...
     @property
@@ -69,6 +77,7 @@ class AnalyticsS3BucketDestination:
 
 @final
 class AnnotationEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationEntryOutput/)."""
     @property
     def annotation_name(self) -> str: ...
     @property
@@ -85,6 +94,7 @@ class AnnotationEntry:
 
 @final
 class AnnotationTableConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnnotationTableConfigurationResultOutput/)."""
     @property
     def configuration_state(self) -> _types.AnnotationConfigurationStateOutput: ...
     @property
@@ -101,12 +111,14 @@ class AnnotationTableConfigurationResult:
 
 @final
 class BlockedEncryptionTypes:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BlockedEncryptionTypesOutput/)."""
     @property
     def encryption_type(self) -> list[_types.EncryptionTypeOutput] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Bucket:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/BucketOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -119,6 +131,7 @@ class Bucket:
 
 @final
 class Checksum:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ChecksumOutput/)."""
     @property
     def checksum_crc32(self) -> str | None: ...
     @property
@@ -145,12 +158,14 @@ class Checksum:
 
 @final
 class CommonPrefix:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CommonPrefixOutput/)."""
     @property
     def prefix(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Condition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ConditionOutput/)."""
     @property
     def http_error_code_returned_equals(self) -> str | None: ...
     @property
@@ -159,6 +174,7 @@ class Condition:
 
 @final
 class CopyObjectResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyObjectResultOutput/)."""
     @property
     def e_tag(self) -> str | None: ...
     @property
@@ -189,6 +205,7 @@ class CopyObjectResult:
 
 @final
 class CopyPartResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyPartResultOutput/)."""
     @property
     def e_tag(self) -> str | None: ...
     @property
@@ -217,6 +234,7 @@ class CopyPartResult:
 
 @final
 class CorsRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CorsRule-c4401385815d/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -233,6 +251,7 @@ class CorsRule:
 
 @final
 class DefaultRetention:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DefaultRetentionOutput/)."""
     @property
     def mode(self) -> _types.ObjectLockRetentionModeOutput | None: ...
     @property
@@ -245,6 +264,7 @@ class DefaultRetention:
 
 @final
 class DeleteMarkerEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerEntryOutput/)."""
     @property
     def owner(self) -> Owner | None: ...
     @property
@@ -259,12 +279,14 @@ class DeleteMarkerEntry:
 
 @final
 class DeleteMarkerReplication:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteMarkerReplicationOutput/)."""
     @property
     def status(self) -> _types.DeleteMarkerReplicationStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletedObject:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeletedObjectOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -277,6 +299,7 @@ class DeletedObject:
 
 @final
 class Destination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DestinationOutput/)."""
     @property
     def bucket(self) -> str: ...
     @property
@@ -295,6 +318,7 @@ class Destination:
 
 @final
 class DestinationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DestinationResultOutput/)."""
     @property
     def table_bucket_type(self) -> _types.S3TablesBucketTypeOutput | None: ...
     @property
@@ -305,12 +329,14 @@ class DestinationResult:
 
 @final
 class EncryptionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EncryptionConfigurationOutput/)."""
     @property
     def replica_kms_key_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Error:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -323,6 +349,7 @@ class Error:
 
 @final
 class ErrorDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorDetailsOutput/)."""
     @property
     def error_code(self) -> str | None: ...
     @property
@@ -331,16 +358,19 @@ class ErrorDetails:
 
 @final
 class ErrorDocument:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ErrorDocumentOutput/)."""
     @property
     def key(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EventBridgeConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EventBridgeConfigurationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EventHoldDuration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/EventHoldDurationOutput/)."""
     @property
     def days(self) -> int | None: ...
     @property
@@ -349,12 +379,14 @@ class EventHoldDuration:
 
 @final
 class ExistingObjectReplication:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ExistingObjectReplicationOutput/)."""
     @property
     def status(self) -> _types.ExistingObjectReplicationStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FilterRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/FilterRuleOutput/)."""
     @property
     def name(self) -> _types.FilterRuleNameOutput | None: ...
     @property
@@ -363,12 +395,14 @@ class FilterRule:
 
 @final
 class GetBucketMetadataConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataConfigurationResultOutput/)."""
     @property
     def metadata_configuration_result(self) -> MetadataConfigurationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketMetadataTableConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataTableConfigurationResultOutput/)."""
     @property
     def metadata_table_configuration_result(self) -> MetadataTableConfigurationResult | None: ...
     @property
@@ -379,6 +413,7 @@ class GetBucketMetadataTableConfigurationResult:
 
 @final
 class GetObjectAttributesParts:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAttributesPartsOutput/)."""
     @property
     def total_parts_count(self) -> int | None: ...
     @property
@@ -395,6 +430,7 @@ class GetObjectAttributesParts:
 
 @final
 class Grant:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GrantOutput/)."""
     @property
     def grantee(self) -> Grantee | None: ...
     @property
@@ -403,6 +439,7 @@ class Grant:
 
 @final
 class Grantee:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GranteeOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -417,12 +454,14 @@ class Grantee:
 
 @final
 class IndexDocument:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IndexDocumentOutput/)."""
     @property
     def suffix(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Initiator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InitiatorOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -431,6 +470,7 @@ class Initiator:
 
 @final
 class IntelligentTieringAndOperator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringAndOperatorOutput/)."""
     @property
     def prefix(self) -> str | None: ...
     @property
@@ -439,6 +479,7 @@ class IntelligentTieringAndOperator:
 
 @final
 class IntelligentTieringConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringConfigurationOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -451,6 +492,7 @@ class IntelligentTieringConfiguration:
 
 @final
 class IntelligentTieringFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringFilterOutput/)."""
     @property
     def prefix(self) -> str | None: ...
     @property
@@ -461,6 +503,7 @@ class IntelligentTieringFilter:
 
 @final
 class InventoryConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryConfigurationOutput/)."""
     @property
     def destination(self) -> InventoryDestination | None: ...
     @property
@@ -479,12 +522,14 @@ class InventoryConfiguration:
 
 @final
 class InventoryDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryDestinationOutput/)."""
     @property
     def s3_bucket_destination(self) -> InventoryS3BucketDestination | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InventoryEncryption:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryEncryptionOutput/)."""
     @property
     def sses3(self) -> Sses3 | None: ...
     @property
@@ -493,12 +538,14 @@ class InventoryEncryption:
 
 @final
 class InventoryFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryFilterOutput/)."""
     @property
     def prefix(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InventoryS3BucketDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryS3BucketDestinationOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -513,12 +560,14 @@ class InventoryS3BucketDestination:
 
 @final
 class InventorySchedule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryScheduleOutput/)."""
     @property
     def frequency(self) -> _types.InventoryFrequencyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InventoryTableConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InventoryTableConfigurationResultOutput/)."""
     @property
     def configuration_state(self) -> _types.InventoryConfigurationStateOutput: ...
     @property
@@ -533,6 +582,7 @@ class InventoryTableConfigurationResult:
 
 @final
 class JournalTableConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/JournalTableConfigurationResultOutput/)."""
     @property
     def table_status(self) -> str: ...
     @property
@@ -547,6 +597,7 @@ class JournalTableConfigurationResult:
 
 @final
 class LambdaFunctionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LambdaFunctionConfigurationOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -559,6 +610,7 @@ class LambdaFunctionConfiguration:
 
 @final
 class LifecycleExpiration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleExpirationOutput/)."""
     @property
     def date(self) -> str | None: ...
     @property
@@ -569,6 +621,7 @@ class LifecycleExpiration:
 
 @final
 class LifecycleRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleOutput/)."""
     @property
     def expiration(self) -> LifecycleExpiration | None: ...
     @property
@@ -591,6 +644,7 @@ class LifecycleRule:
 
 @final
 class LifecycleRuleAndOperator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleAndOperatorOutput/)."""
     @property
     def prefix(self) -> str | None: ...
     @property
@@ -603,6 +657,7 @@ class LifecycleRuleAndOperator:
 
 @final
 class LifecycleRuleFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LifecycleRuleFilterOutput/)."""
     @property
     def prefix(self) -> str | None: ...
     @property
@@ -617,6 +672,7 @@ class LifecycleRuleFilter:
 
 @final
 class LoggingEnabled:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/LoggingEnabledOutput/)."""
     @property
     def target_bucket(self) -> str: ...
     @property
@@ -629,6 +685,7 @@ class LoggingEnabled:
 
 @final
 class MetadataConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataConfigurationResultOutput/)."""
     @property
     def destination_result(self) -> DestinationResult | None: ...
     @property
@@ -641,12 +698,14 @@ class MetadataConfigurationResult:
 
 @final
 class MetadataTableConfigurationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetadataTableConfigurationResultOutput/)."""
     @property
     def s3_tables_destination_result(self) -> S3TablesDestinationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Metrics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsOutput/)."""
     @property
     def status(self) -> _types.MetricsStatusOutput: ...
     @property
@@ -655,6 +714,7 @@ class Metrics:
 
 @final
 class MetricsConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsConfigurationOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -663,6 +723,7 @@ class MetricsConfiguration:
 
 @final
 class MultipartUpload:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MultipartUploadOutput/)."""
     @property
     def upload_id(self) -> str | None: ...
     @property
@@ -683,6 +744,7 @@ class MultipartUpload:
 
 @final
 class NoncurrentVersionExpiration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NoncurrentVersionExpirationOutput/)."""
     @property
     def noncurrent_days(self) -> int | None: ...
     @property
@@ -691,6 +753,7 @@ class NoncurrentVersionExpiration:
 
 @final
 class NoncurrentVersionTransition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NoncurrentVersionTransitionOutput/)."""
     @property
     def noncurrent_days(self) -> int | None: ...
     @property
@@ -701,12 +764,14 @@ class NoncurrentVersionTransition:
 
 @final
 class NotificationConfigurationFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/NotificationConfigurationFilterOutput/)."""
     @property
     def key(self) -> S3KeyFilter | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Object:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -729,6 +794,7 @@ class Object:
 
 @final
 class ObjectLockConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockConfigurationOutput/)."""
     @property
     def object_lock_enabled(self) -> _types.ObjectLockEnabledOutput | None: ...
     @property
@@ -737,12 +803,14 @@ class ObjectLockConfiguration:
 
 @final
 class ObjectLockLegalHold:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockLegalHoldOutput/)."""
     @property
     def status(self) -> _types.ObjectLockLegalHoldStatusOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ObjectLockRetention:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRetentionOutput/)."""
     @property
     def mode(self) -> _types.ObjectLockRetentionModeOutput | None: ...
     @property
@@ -755,12 +823,14 @@ class ObjectLockRetention:
 
 @final
 class ObjectLockRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectLockRuleOutput/)."""
     @property
     def default_retention(self) -> DefaultRetention | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ObjectPart:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectPartOutput/)."""
     @property
     def part_number(self) -> int | None: ...
     @property
@@ -789,6 +859,7 @@ class ObjectPart:
 
 @final
 class ObjectVersion:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectVersionOutput/)."""
     @property
     def e_tag(self) -> str | None: ...
     @property
@@ -815,6 +886,7 @@ class ObjectVersion:
 
 @final
 class Owner:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnerOutput/)."""
     @property
     def display_name(self) -> str | None: ...
     @property
@@ -823,18 +895,21 @@ class Owner:
 
 @final
 class OwnershipControls:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnershipControlsOutput/)."""
     @property
     def rules(self) -> list[OwnershipControlsRule]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OwnershipControlsRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/OwnershipControlsRuleOutput/)."""
     @property
     def object_ownership(self) -> _types.ObjectOwnershipOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Part:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PartOutput/)."""
     @property
     def part_number(self) -> int | None: ...
     @property
@@ -867,18 +942,21 @@ class Part:
 
 @final
 class PartitionedPrefix:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PartitionedPrefixOutput/)."""
     @property
     def partition_date_source(self) -> _types.PartitionDateSourceOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PolicyStatus:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PolicyStatusOutput/)."""
     @property
     def is_public(self) -> bool | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PublicAccessBlockConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PublicAccessBlockConfigurationOutput/)."""
     @property
     def block_public_acls(self) -> bool | None: ...
     @property
@@ -891,6 +969,7 @@ class PublicAccessBlockConfiguration:
 
 @final
 class QueueConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/QueueConfigurationOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -903,6 +982,7 @@ class QueueConfiguration:
 
 @final
 class RecordExpiration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RecordExpirationOutput/)."""
     @property
     def expiration(self) -> _types.ExpirationStateOutput: ...
     @property
@@ -911,6 +991,7 @@ class RecordExpiration:
 
 @final
 class Redirect:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RedirectOutput/)."""
     @property
     def host_name(self) -> str | None: ...
     @property
@@ -925,6 +1006,7 @@ class Redirect:
 
 @final
 class RedirectAllRequestsTo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RedirectAllRequestsToOutput/)."""
     @property
     def host_name(self) -> str: ...
     @property
@@ -933,12 +1015,14 @@ class RedirectAllRequestsTo:
 
 @final
 class ReplicaModifications:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicaModificationsOutput/)."""
     @property
     def status(self) -> _types.ReplicaModificationsStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ReplicationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationConfigurationOutput/)."""
     @property
     def role(self) -> str: ...
     @property
@@ -947,6 +1031,7 @@ class ReplicationConfiguration:
 
 @final
 class ReplicationRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -969,6 +1054,7 @@ class ReplicationRule:
 
 @final
 class ReplicationRuleAndOperator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleAndOperatorOutput/)."""
     @property
     def prefix(self) -> str | None: ...
     @property
@@ -977,6 +1063,7 @@ class ReplicationRuleAndOperator:
 
 @final
 class ReplicationRuleFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationRuleFilterOutput/)."""
     @property
     def prefix(self) -> str | None: ...
     @property
@@ -987,6 +1074,7 @@ class ReplicationRuleFilter:
 
 @final
 class ReplicationTime:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeOutput/)."""
     @property
     def status(self) -> _types.ReplicationTimeStatusOutput: ...
     @property
@@ -995,12 +1083,14 @@ class ReplicationTime:
 
 @final
 class ReplicationTimeValue:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ReplicationTimeValueOutput/)."""
     @property
     def minutes(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RestoreStatus:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreStatusOutput/)."""
     @property
     def is_restore_in_progress(self) -> bool | None: ...
     @property
@@ -1009,6 +1099,7 @@ class RestoreStatus:
 
 @final
 class RoutingRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RoutingRuleOutput/)."""
     @property
     def condition(self) -> Condition | None: ...
     @property
@@ -1017,12 +1108,14 @@ class RoutingRule:
 
 @final
 class S3KeyFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3KeyFilterOutput/)."""
     @property
     def filter_rules(self) -> list[FilterRule] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class S3TablesDestinationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/S3TablesDestinationResultOutput/)."""
     @property
     def table_bucket_arn(self) -> str: ...
     @property
@@ -1035,6 +1128,7 @@ class S3TablesDestinationResult:
 
 @final
 class ServerSideEncryptionByDefault:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionByDefaultOutput/)."""
     @property
     def sse_algorithm(self) -> _types.ServerSideEncryptionOutput: ...
     @property
@@ -1043,12 +1137,14 @@ class ServerSideEncryptionByDefault:
 
 @final
 class ServerSideEncryptionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionConfigurationOutput/)."""
     @property
     def rules(self) -> list[ServerSideEncryptionRule]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ServerSideEncryptionRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ServerSideEncryptionRuleOutput/)."""
     @property
     def apply_server_side_encryption_by_default(self) -> ServerSideEncryptionByDefault | None: ...
     @property
@@ -1059,6 +1155,7 @@ class ServerSideEncryptionRule:
 
 @final
 class SessionCredentials:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SessionCredentialsOutput/)."""
     @property
     def access_key_id(self) -> str: ...
     @property
@@ -1071,10 +1168,12 @@ class SessionCredentials:
 
 @final
 class SimplePrefix:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SimplePrefixOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SourceSelectionCriteria:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SourceSelectionCriteriaOutput/)."""
     @property
     def sse_kms_encrypted_objects(self) -> SseKmsEncryptedObjects | None: ...
     @property
@@ -1083,28 +1182,33 @@ class SourceSelectionCriteria:
 
 @final
 class SseKmsEncryptedObjects:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SseKmsEncryptedObjectsOutput/)."""
     @property
     def status(self) -> _types.SseKmsEncryptedObjectsStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Ssekms:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Ssekms-ade979796abe/)."""
     @property
     def key_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Sses3:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Sses3-0226a0c5333c/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StorageClassAnalysis:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysisOutput/)."""
     @property
     def data_export(self) -> StorageClassAnalysisDataExport | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StorageClassAnalysisDataExport:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/StorageClassAnalysisDataExportOutput/)."""
     @property
     def output_schema_version(self) -> _types.StorageClassAnalysisSchemaVersionOutput: ...
     @property
@@ -1113,6 +1217,7 @@ class StorageClassAnalysisDataExport:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TagValueOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -1121,6 +1226,7 @@ class Tag:
 
 @final
 class TargetGrant:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TargetGrantOutput/)."""
     @property
     def grantee(self) -> Grantee | None: ...
     @property
@@ -1129,6 +1235,7 @@ class TargetGrant:
 
 @final
 class TargetObjectKeyFormat:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TargetObjectKeyFormatOutput/)."""
     @property
     def simple_prefix(self) -> SimplePrefix | None: ...
     @property
@@ -1137,6 +1244,7 @@ class TargetObjectKeyFormat:
 
 @final
 class Tiering:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TieringOutput/)."""
     @property
     def days(self) -> int: ...
     @property
@@ -1145,6 +1253,7 @@ class Tiering:
 
 @final
 class TopicConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TopicConfigurationOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1157,6 +1266,7 @@ class TopicConfiguration:
 
 @final
 class Transition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/TransitionOutput/)."""
     @property
     def date(self) -> str | None: ...
     @property
@@ -1167,12 +1277,14 @@ class Transition:
 
 @final
 class AbortMultipartUploadOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AbortMultipartUploadOutput/)."""
     @property
     def request_charged(self) -> _types.RequestChargedOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CompleteMultipartUploadOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CompleteMultipartUploadOutput/)."""
     @property
     def location(self) -> str | None: ...
     @property
@@ -1219,6 +1331,7 @@ class CompleteMultipartUploadOutput:
 
 @final
 class CopyObjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CopyObjectOutput/)."""
     @property
     def copy_object_result(self) -> CopyObjectResult | None: ...
     @property
@@ -1245,6 +1358,7 @@ class CopyObjectOutput:
 
 @final
 class CreateBucketOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateBucketOutput/)."""
     @property
     def location(self) -> str | None: ...
     @property
@@ -1253,6 +1367,7 @@ class CreateBucketOutput:
 
 @final
 class CreateMultipartUploadOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateMultipartUploadOutput/)."""
     @property
     def abort_date(self) -> str | None: ...
     @property
@@ -1285,6 +1400,7 @@ class CreateMultipartUploadOutput:
 
 @final
 class CreateSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/CreateSessionOutput/)."""
     @property
     def server_side_encryption(self) -> _types.ServerSideEncryptionOutput | None: ...
     @property
@@ -1299,6 +1415,7 @@ class CreateSessionOutput:
 
 @final
 class DeleteObjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectOutput/)."""
     @property
     def delete_marker(self) -> bool | None: ...
     @property
@@ -1309,6 +1426,7 @@ class DeleteObjectOutput:
 
 @final
 class DeleteObjectAnnotationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectAnnotationOutput/)."""
     @property
     def object_version_id(self) -> str | None: ...
     @property
@@ -1317,12 +1435,14 @@ class DeleteObjectAnnotationOutput:
 
 @final
 class DeleteObjectTaggingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectTaggingOutput/)."""
     @property
     def version_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteObjectsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/DeleteObjectsOutput/)."""
     @property
     def deleted(self) -> list[DeletedObject] | None: ...
     @property
@@ -1333,12 +1453,14 @@ class DeleteObjectsOutput:
 
 @final
 class GetBucketAbacOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAbacOutput/)."""
     @property
     def abac_status(self) -> AbacStatus | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketAccelerateConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAccelerateConfigurationOutput/)."""
     @property
     def status(self) -> _types.BucketAccelerateStatusOutput | None: ...
     @property
@@ -1347,6 +1469,7 @@ class GetBucketAccelerateConfigurationOutput:
 
 @final
 class GetBucketAclOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAclOutput/)."""
     @property
     def owner(self) -> Owner | None: ...
     @property
@@ -1355,36 +1478,42 @@ class GetBucketAclOutput:
 
 @final
 class GetBucketAnalyticsConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketAnalyticsConfigurationOutput/)."""
     @property
     def analytics_configuration(self) -> AnalyticsConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketCorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketCorsOutput/)."""
     @property
     def cors_rules(self) -> list[CorsRule] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketEncryptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketEncryptionOutput/)."""
     @property
     def server_side_encryption_configuration(self) -> ServerSideEncryptionConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketIntelligentTieringConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketIntelligentTieringConfigurationOutput/)."""
     @property
     def intelligent_tiering_configuration(self) -> IntelligentTieringConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketInventoryConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketInventoryConfigurationOutput/)."""
     @property
     def inventory_configuration(self) -> InventoryConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketLifecycleConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLifecycleConfigurationOutput/)."""
     @property
     def rules(self) -> list[LifecycleRule] | None: ...
     @property
@@ -1393,36 +1522,42 @@ class GetBucketLifecycleConfigurationOutput:
 
 @final
 class GetBucketLocationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLocationOutput/)."""
     @property
     def location_constraint(self) -> _types.BucketLocationConstraintOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketLoggingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketLoggingOutput/)."""
     @property
     def logging_enabled(self) -> LoggingEnabled | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketMetadataConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataConfigurationOutput/)."""
     @property
     def get_bucket_metadata_configuration_result(self) -> GetBucketMetadataConfigurationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketMetadataTableConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetadataTableConfigurationOutput/)."""
     @property
     def get_bucket_metadata_table_configuration_result(self) -> GetBucketMetadataTableConfigurationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketMetricsConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketMetricsConfigurationOutput/)."""
     @property
     def metrics_configuration(self) -> MetricsConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketNotificationConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketNotificationConfigurationOutput/)."""
     @property
     def topic_configurations(self) -> list[TopicConfiguration] | None: ...
     @property
@@ -1435,42 +1570,49 @@ class GetBucketNotificationConfigurationOutput:
 
 @final
 class GetBucketOwnershipControlsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketOwnershipControlsOutput/)."""
     @property
     def ownership_controls(self) -> OwnershipControls | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketPolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketPolicyStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketPolicyStatusOutput/)."""
     @property
     def policy_status(self) -> PolicyStatus | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketReplicationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketReplicationOutput/)."""
     @property
     def replication_configuration(self) -> ReplicationConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketRequestPaymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketRequestPaymentOutput/)."""
     @property
     def payer(self) -> _types.PayerOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketTaggingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketTaggingOutput/)."""
     @property
     def tag_set(self) -> list[Tag]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetBucketVersioningOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketVersioningOutput/)."""
     @property
     def status(self) -> _types.BucketVersioningStatusOutput | None: ...
     @property
@@ -1479,6 +1621,7 @@ class GetBucketVersioningOutput:
 
 @final
 class GetBucketWebsiteOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetBucketWebsiteOutput/)."""
     @property
     def redirect_all_requests_to(self) -> RedirectAllRequestsTo | None: ...
     @property
@@ -1491,6 +1634,7 @@ class GetBucketWebsiteOutput:
 
 @final
 class GetObjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectOutput/)."""
     @property
     def body(self) -> ByteStream: ...
     @property
@@ -1589,6 +1733,7 @@ class GetObjectOutput:
 
 @final
 class GetObjectAclOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAclOutput/)."""
     @property
     def owner(self) -> Owner | None: ...
     @property
@@ -1599,6 +1744,7 @@ class GetObjectAclOutput:
 
 @final
 class GetObjectAnnotationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAnnotationOutput/)."""
     @property
     def annotation_payload(self) -> ByteStream: ...
     @property
@@ -1641,6 +1787,7 @@ class GetObjectAnnotationOutput:
 
 @final
 class GetObjectAttributesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectAttributesOutput/)."""
     @property
     def delete_marker(self) -> bool | None: ...
     @property
@@ -1663,24 +1810,28 @@ class GetObjectAttributesOutput:
 
 @final
 class GetObjectLegalHoldOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectLegalHoldOutput/)."""
     @property
     def legal_hold(self) -> ObjectLockLegalHold | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetObjectLockConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectLockConfigurationOutput/)."""
     @property
     def object_lock_configuration(self) -> ObjectLockConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetObjectRetentionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectRetentionOutput/)."""
     @property
     def retention(self) -> ObjectLockRetention | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetObjectTaggingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectTaggingOutput/)."""
     @property
     def version_id(self) -> str | None: ...
     @property
@@ -1689,6 +1840,7 @@ class GetObjectTaggingOutput:
 
 @final
 class GetObjectTorrentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetObjectTorrentOutput/)."""
     @property
     def body(self) -> ByteStream: ...
     @property
@@ -1697,12 +1849,14 @@ class GetObjectTorrentOutput:
 
 @final
 class GetPublicAccessBlockOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/GetPublicAccessBlockOutput/)."""
     @property
     def public_access_block_configuration(self) -> PublicAccessBlockConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class HeadBucketOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/HeadBucketOutput/)."""
     @property
     def bucket_arn(self) -> str | None: ...
     @property
@@ -1717,6 +1871,7 @@ class HeadBucketOutput:
 
 @final
 class HeadObjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/HeadObjectOutput/)."""
     @property
     def delete_marker(self) -> bool | None: ...
     @property
@@ -1815,6 +1970,7 @@ class HeadObjectOutput:
 
 @final
 class ListBucketAnalyticsConfigurationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketAnalyticsConfigurationsOutput/)."""
     @property
     def is_truncated(self) -> bool | None: ...
     @property
@@ -1827,6 +1983,7 @@ class ListBucketAnalyticsConfigurationsOutput:
 
 @final
 class ListBucketIntelligentTieringConfigurationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketIntelligentTieringConfigurationsOutput/)."""
     @property
     def is_truncated(self) -> bool | None: ...
     @property
@@ -1839,6 +1996,7 @@ class ListBucketIntelligentTieringConfigurationsOutput:
 
 @final
 class ListBucketInventoryConfigurationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketInventoryConfigurationsOutput/)."""
     @property
     def continuation_token(self) -> str | None: ...
     @property
@@ -1851,6 +2009,7 @@ class ListBucketInventoryConfigurationsOutput:
 
 @final
 class ListBucketMetricsConfigurationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketMetricsConfigurationsOutput/)."""
     @property
     def is_truncated(self) -> bool | None: ...
     @property
@@ -1863,6 +2022,7 @@ class ListBucketMetricsConfigurationsOutput:
 
 @final
 class ListBucketsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListBucketsOutput/)."""
     @property
     def buckets(self) -> list[Bucket] | None: ...
     @property
@@ -1875,6 +2035,7 @@ class ListBucketsOutput:
 
 @final
 class ListDirectoryBucketsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListDirectoryBucketsOutput/)."""
     @property
     def buckets(self) -> list[Bucket] | None: ...
     @property
@@ -1883,6 +2044,7 @@ class ListDirectoryBucketsOutput:
 
 @final
 class ListMultipartUploadsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListMultipartUploadsOutput/)."""
     @property
     def bucket(self) -> str | None: ...
     @property
@@ -1913,6 +2075,7 @@ class ListMultipartUploadsOutput:
 
 @final
 class ListObjectAnnotationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectAnnotationsOutput/)."""
     @property
     def annotations(self) -> list[AnnotationEntry] | None: ...
     @property
@@ -1937,6 +2100,7 @@ class ListObjectAnnotationsOutput:
 
 @final
 class ListObjectVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectVersionsOutput/)."""
     @property
     def is_truncated(self) -> bool | None: ...
     @property
@@ -1969,6 +2133,7 @@ class ListObjectVersionsOutput:
 
 @final
 class ListObjectsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectsOutput/)."""
     @property
     def is_truncated(self) -> bool | None: ...
     @property
@@ -1995,6 +2160,7 @@ class ListObjectsOutput:
 
 @final
 class ListObjectsV2Output:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListObjectsV2Output/)."""
     @property
     def is_truncated(self) -> bool | None: ...
     @property
@@ -2025,6 +2191,7 @@ class ListObjectsV2Output:
 
 @final
 class ListPartsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ListPartsOutput/)."""
     @property
     def abort_date(self) -> str | None: ...
     @property
@@ -2061,12 +2228,14 @@ class ListPartsOutput:
 
 @final
 class PutBucketLifecycleConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutBucketLifecycleConfigurationOutput/)."""
     @property
     def transition_default_minimum_object_size(self) -> _types.TransitionDefaultMinimumObjectSizeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutObjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectOutput/)."""
     @property
     def expiration(self) -> str | None: ...
     @property
@@ -2115,12 +2284,14 @@ class PutObjectOutput:
 
 @final
 class PutObjectAclOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectAclOutput/)."""
     @property
     def request_charged(self) -> _types.RequestChargedOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutObjectAnnotationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectAnnotationOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -2159,34 +2330,40 @@ class PutObjectAnnotationOutput:
 
 @final
 class PutObjectLegalHoldOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectLegalHoldOutput/)."""
     @property
     def request_charged(self) -> _types.RequestChargedOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutObjectLockConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectLockConfigurationOutput/)."""
     @property
     def request_charged(self) -> _types.RequestChargedOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutObjectRetentionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectRetentionOutput/)."""
     @property
     def request_charged(self) -> _types.RequestChargedOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutObjectTaggingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/PutObjectTaggingOutput/)."""
     @property
     def version_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RenameObjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RenameObjectOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RestoreObjectOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/RestoreObjectOutput/)."""
     @property
     def request_charged(self) -> _types.RequestChargedOutput | None: ...
     @property
@@ -2195,12 +2372,14 @@ class RestoreObjectOutput:
 
 @final
 class UpdateObjectEncryptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UpdateObjectEncryptionOutput/)."""
     @property
     def request_charged(self) -> _types.RequestChargedOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UploadPartOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartOutput/)."""
     @property
     def server_side_encryption(self) -> _types.ServerSideEncryptionOutput | None: ...
     @property
@@ -2239,6 +2418,7 @@ class UploadPartOutput:
 
 @final
 class UploadPartCopyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/UploadPartCopyOutput/)."""
     @property
     def copy_source_version_id(self) -> str | None: ...
     @property

@@ -73,6 +73,8 @@ from .paginators import LambdaClientPaginators as _Paginators
 
 
 class LambdaClient:
+    """Async LambdaClient. See [reference](https://ferrumio.github.io/rboto/reference/lambda/)."""
+
     logger_name = "rboto.lambda"
 
     def __init__(
@@ -119,6 +121,7 @@ class LambdaClient:
         organization_id: str | None = None,
         revision_id: str | None = None,
     ) -> AddLayerVersionPermissionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/add_layer_version_permission/)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
             "version_number": version_number,
@@ -160,6 +163,7 @@ class LambdaClient:
         revision_id: str | None = None,
         principal_org_id: str | None = None,
     ) -> AddPermissionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/add_permission/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "statement_id": statement_id,
@@ -204,6 +208,7 @@ class LambdaClient:
         updates: Sequence[OperationUpdate] | None = None,
         client_token: str | None = None,
     ) -> CheckpointDurableExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/checkpoint_durable_execution/)."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
             "checkpoint_token": checkpoint_token,
@@ -235,6 +240,7 @@ class LambdaClient:
         description: str | None = None,
         routing_config: AliasRoutingConfiguration | None = None,
     ) -> CreateAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/create_alias/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "name": name,
@@ -271,6 +277,7 @@ class LambdaClient:
         propagate_tags: PropagateTags | None = None,
         telemetry_config: CapacityProviderTelemetryConfig | None = None,
     ) -> CreateCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/create_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
             "vpc_config": vpc_config,
@@ -310,6 +317,7 @@ class LambdaClient:
         code_signing_policies: CodeSigningPolicies | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateCodeSigningConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/create_code_signing_config/)."""
         params: dict[str, object] = {
             "allowed_publishers": allowed_publishers,
         }
@@ -365,6 +373,7 @@ class LambdaClient:
         document_db_event_source_config: DocumentDBEventSourceConfig | None = None,
         provisioned_poller_config: ProvisionedPollerConfig | None = None,
     ) -> CreateEventSourceMappingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/create_event_source_mapping/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -468,6 +477,7 @@ class LambdaClient:
         capacity_provider_config: CapacityProviderConfig | None = None,
         durable_config: DurableConfig | None = None,
     ) -> CreateFunctionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/create_function/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "role": role,
@@ -546,6 +556,7 @@ class LambdaClient:
         cors: Cors | None = None,
         invoke_mode: InvokeMode | None = None,
     ) -> CreateFunctionUrlConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/create_function_url_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "auth_type": auth_type,
@@ -576,6 +587,7 @@ class LambdaClient:
         function_name: str,
         name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_alias/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "name": name,
@@ -599,6 +611,7 @@ class LambdaClient:
         *,
         capacity_provider_name: str,
     ) -> DeleteCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -621,6 +634,7 @@ class LambdaClient:
         *,
         code_signing_config_arn: str,
     ) -> DeleteCodeSigningConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_code_signing_config/)."""
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -643,6 +657,7 @@ class LambdaClient:
         *,
         uuid: str,
     ) -> DeleteEventSourceMappingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_event_source_mapping/)."""
         params: dict[str, object] = {
             "uuid": uuid,
         }
@@ -666,6 +681,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> DeleteFunctionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_function/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -690,6 +706,7 @@ class LambdaClient:
         *,
         function_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_function_code_signing_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -712,6 +729,7 @@ class LambdaClient:
         *,
         function_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_function_concurrency/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -735,6 +753,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_function_event_invoke_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -760,6 +779,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_function_url_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -785,6 +805,7 @@ class LambdaClient:
         layer_name: str,
         version_number: int,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_layer_version/)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
             "version_number": version_number,
@@ -809,6 +830,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_provisioned_concurrency_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -833,6 +855,7 @@ class LambdaClient:
         resource_arn: str,
         revision_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -855,6 +878,7 @@ class LambdaClient:
     async def get_account_settings(
         self,
     ) -> GetAccountSettingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_account_settings/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("lambda", self._interceptors)
@@ -877,6 +901,7 @@ class LambdaClient:
         function_name: str,
         name: str,
     ) -> GetAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_alias/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "name": name,
@@ -900,6 +925,7 @@ class LambdaClient:
         *,
         capacity_provider_name: str,
     ) -> GetCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -922,6 +948,7 @@ class LambdaClient:
         *,
         code_signing_config_arn: str,
     ) -> GetCodeSigningConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_code_signing_config/)."""
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -945,6 +972,7 @@ class LambdaClient:
         durable_execution_arn: str,
         include_execution_data: bool | None = None,
     ) -> GetDurableExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_durable_execution/)."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
         }
@@ -973,6 +1001,7 @@ class LambdaClient:
         marker: str | None = None,
         reverse_order: bool | None = None,
     ) -> GetDurableExecutionHistoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_durable_execution_history/)."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
         }
@@ -1006,6 +1035,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> GetDurableExecutionStateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_durable_execution_state/)."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
             "checkpoint_token": checkpoint_token,
@@ -1033,6 +1063,7 @@ class LambdaClient:
         *,
         uuid: str,
     ) -> GetEventSourceMappingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_event_source_mapping/)."""
         params: dict[str, object] = {
             "uuid": uuid,
         }
@@ -1056,6 +1087,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> GetFunctionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1080,6 +1112,7 @@ class LambdaClient:
         *,
         function_name: str,
     ) -> GetFunctionCodeSigningConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_code_signing_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1102,6 +1135,7 @@ class LambdaClient:
         *,
         function_name: str,
     ) -> GetFunctionConcurrencyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_concurrency/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1125,6 +1159,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> GetFunctionConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_configuration/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1150,6 +1185,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> GetFunctionEventInvokeConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_event_invoke_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1174,6 +1210,7 @@ class LambdaClient:
         *,
         function_name: str,
     ) -> GetFunctionRecursionConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_recursion_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1197,6 +1234,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str,
     ) -> GetFunctionScalingConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_scaling_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -1221,6 +1259,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> GetFunctionUrlConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_function_url_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1246,6 +1285,7 @@ class LambdaClient:
         layer_name: str,
         version_number: int,
     ) -> GetLayerVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_layer_version/)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
             "version_number": version_number,
@@ -1269,6 +1309,7 @@ class LambdaClient:
         *,
         arn: str,
     ) -> GetLayerVersionByArnOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_layer_version_by_arn/)."""
         params: dict[str, object] = {
             "arn": arn,
         }
@@ -1292,6 +1333,7 @@ class LambdaClient:
         layer_name: str,
         version_number: int,
     ) -> GetLayerVersionPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_layer_version_policy/)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
             "version_number": version_number,
@@ -1316,6 +1358,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> GetPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_policy/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1341,6 +1384,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str,
     ) -> GetProvisionedConcurrencyConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_provisioned_concurrency_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -1364,6 +1408,7 @@ class LambdaClient:
         *,
         resource_arn: str,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1387,6 +1432,7 @@ class LambdaClient:
         function_name: str,
         qualifier: str | None = None,
     ) -> GetRuntimeManagementConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_runtime_management_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1418,6 +1464,7 @@ class LambdaClient:
         qualifier: str | None = None,
         tenant_id: str | None = None,
     ) -> InvokeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/invoke/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1455,6 +1502,7 @@ class LambdaClient:
         function_name: str,
         invoke_args: bytes,
     ) -> InvokeAsyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/invoke_async/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "invoke_args": invoke_args,
@@ -1484,6 +1532,7 @@ class LambdaClient:
         tenant_id: str | None = None,
         invocation_type: ResponseStreamingInvocationType | None = None,
     ) -> InvokeWithResponseStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/invoke_with_response_stream/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1521,6 +1570,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListAliasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_aliases/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1551,6 +1601,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListCapacityProvidersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_capacity_providers/)."""
         params: dict[str, object] = {
         }
         if state is not None:
@@ -1579,6 +1630,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListCodeSigningConfigsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_code_signing_configs/)."""
         params: dict[str, object] = {
         }
         if marker is not None:
@@ -1612,6 +1664,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListDurableExecutionsByFunctionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_durable_executions_by_function/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1653,6 +1706,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListEventSourceMappingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_event_source_mappings/)."""
         params: dict[str, object] = {
         }
         if event_source_arn is not None:
@@ -1684,6 +1738,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListFunctionEventInvokeConfigsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_function_event_invoke_configs/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1712,6 +1767,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListFunctionUrlConfigsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_function_url_configs/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1740,6 +1796,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListFunctionVersionsByCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_function_versions_by_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -1769,6 +1826,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListFunctionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_functions/)."""
         params: dict[str, object] = {
         }
         if master_region is not None:
@@ -1800,6 +1858,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListFunctionsByCodeSigningConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_functions_by_code_signing_config/)."""
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -1830,6 +1889,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListLayerVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_layer_versions/)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
         }
@@ -1863,6 +1923,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListLayersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_layers/)."""
         params: dict[str, object] = {
         }
         if compatible_architecture is not None:
@@ -1894,6 +1955,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListProvisionedConcurrencyConfigsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_provisioned_concurrency_configs/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1920,6 +1982,7 @@ class LambdaClient:
         *,
         resource: str,
     ) -> ListTagsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_tags/)."""
         params: dict[str, object] = {
             "resource": resource,
         }
@@ -1944,6 +2007,7 @@ class LambdaClient:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> ListVersionsByFunctionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_versions_by_function/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -1975,6 +2039,7 @@ class LambdaClient:
         compatible_runtimes: Sequence[Runtime] | None = None,
         license_info: str | None = None,
     ) -> PublishLayerVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/publish_layer_version/)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
             "content": content,
@@ -2010,6 +2075,7 @@ class LambdaClient:
         revision_id: str | None = None,
         publish_to: FunctionVersionLatestPublished | None = None,
     ) -> PublishVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/publish_version/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -2041,6 +2107,7 @@ class LambdaClient:
         code_signing_config_arn: str,
         function_name: str,
     ) -> PutFunctionCodeSigningConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_function_code_signing_config/)."""
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
             "function_name": function_name,
@@ -2065,6 +2132,7 @@ class LambdaClient:
         function_name: str,
         reserved_concurrent_executions: int,
     ) -> PutFunctionConcurrencyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_function_concurrency/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "reserved_concurrent_executions": reserved_concurrent_executions,
@@ -2092,6 +2160,7 @@ class LambdaClient:
         maximum_event_age_in_seconds: int | None = None,
         destination_config: DestinationConfig | None = None,
     ) -> PutFunctionEventInvokeConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_function_event_invoke_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -2123,6 +2192,7 @@ class LambdaClient:
         function_name: str,
         recursive_loop: RecursiveLoop,
     ) -> PutFunctionRecursionConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_function_recursion_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "recursive_loop": recursive_loop,
@@ -2148,6 +2218,7 @@ class LambdaClient:
         qualifier: str,
         function_scaling_config: FunctionScalingConfig | None = None,
     ) -> PutFunctionScalingConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_function_scaling_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -2175,6 +2246,7 @@ class LambdaClient:
         qualifier: str,
         provisioned_concurrent_executions: int,
     ) -> PutProvisionedConcurrencyConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_provisioned_concurrency_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "qualifier": qualifier,
@@ -2201,6 +2273,7 @@ class LambdaClient:
         policy: str,
         revision_id: str | None = None,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy": policy,
@@ -2229,6 +2302,7 @@ class LambdaClient:
         qualifier: str | None = None,
         runtime_version_arn: str | None = None,
     ) -> PutRuntimeManagementConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/put_runtime_management_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "update_runtime_on": update_runtime_on,
@@ -2259,6 +2333,7 @@ class LambdaClient:
         statement_id: str,
         revision_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/remove_layer_version_permission/)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
             "version_number": version_number,
@@ -2288,6 +2363,7 @@ class LambdaClient:
         qualifier: str | None = None,
         revision_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/remove_permission/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "statement_id": statement_id,
@@ -2316,6 +2392,7 @@ class LambdaClient:
         callback_id: str,
         error: ErrorObject | None = None,
     ) -> SendDurableExecutionCallbackFailureOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/send_durable_execution_callback_failure/)."""
         params: dict[str, object] = {
             "callback_id": callback_id,
         }
@@ -2340,6 +2417,7 @@ class LambdaClient:
         *,
         callback_id: str,
     ) -> SendDurableExecutionCallbackHeartbeatOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/send_durable_execution_callback_heartbeat/)."""
         params: dict[str, object] = {
             "callback_id": callback_id,
         }
@@ -2363,6 +2441,7 @@ class LambdaClient:
         callback_id: str,
         result: bytes | None = None,
     ) -> SendDurableExecutionCallbackSuccessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/send_durable_execution_callback_success/)."""
         params: dict[str, object] = {
             "callback_id": callback_id,
         }
@@ -2388,6 +2467,7 @@ class LambdaClient:
         durable_execution_arn: str,
         error: ErrorObject | None = None,
     ) -> StopDurableExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/stop_durable_execution/)."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
         }
@@ -2413,6 +2493,7 @@ class LambdaClient:
         resource: str,
         tags: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource": resource,
             "tags": tags,
@@ -2437,6 +2518,7 @@ class LambdaClient:
         resource: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource": resource,
             "tag_keys": tag_keys,
@@ -2465,6 +2547,7 @@ class LambdaClient:
         routing_config: AliasRoutingConfiguration | None = None,
         revision_id: str | None = None,
     ) -> UpdateAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_alias/)."""
         params: dict[str, object] = {
             "function_name": function_name,
             "name": name,
@@ -2499,6 +2582,7 @@ class LambdaClient:
         propagate_tags: PropagateTags | None = None,
         telemetry_config: CapacityProviderTelemetryConfig | None = None,
     ) -> UpdateCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -2530,6 +2614,7 @@ class LambdaClient:
         allowed_publishers: AllowedPublishers | None = None,
         code_signing_policies: CodeSigningPolicies | None = None,
     ) -> UpdateCodeSigningConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_code_signing_config/)."""
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -2579,6 +2664,7 @@ class LambdaClient:
         document_db_event_source_config: DocumentDBEventSourceConfig | None = None,
         provisioned_poller_config: ProvisionedPollerConfig | None = None,
     ) -> UpdateEventSourceMappingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_event_source_mapping/)."""
         params: dict[str, object] = {
             "uuid": uuid,
         }
@@ -2655,6 +2741,7 @@ class LambdaClient:
         revision_id: str | None = None,
         source_kms_key_arn: str | None = None,
     ) -> UpdateFunctionCodeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_function_code/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -2721,6 +2808,7 @@ class LambdaClient:
         capacity_provider_config: CapacityProviderConfig | None = None,
         durable_config: DurableConfig | None = None,
     ) -> UpdateFunctionConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_function_configuration/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -2787,6 +2875,7 @@ class LambdaClient:
         maximum_event_age_in_seconds: int | None = None,
         destination_config: DestinationConfig | None = None,
     ) -> UpdateFunctionEventInvokeConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_function_event_invoke_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -2821,6 +2910,7 @@ class LambdaClient:
         cors: Cors | None = None,
         invoke_mode: InvokeMode | None = None,
     ) -> UpdateFunctionUrlConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_function_url_config/)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }

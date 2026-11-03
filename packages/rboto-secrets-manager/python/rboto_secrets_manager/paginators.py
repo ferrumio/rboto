@@ -36,7 +36,7 @@ class SecretsManagerClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[BatchGetSecretValueOutput]:
-        """Yield each page from batch_get_secret_value; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/batch_get_secret_value/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if secret_id_list is not None:
@@ -65,7 +65,7 @@ class SecretsManagerClientPaginators:
         next_token: str | None = None,
         include_deprecated: bool | None = None,
     ) -> AsyncIterator[ListSecretVersionIdsOutput]:
-        """Yield each page from list_secret_version_ids; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/list_secret_version_ids/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -95,7 +95,7 @@ class SecretsManagerClientPaginators:
         sort_order: SortOrderType | None = None,
         sort_by: SortByType | None = None,
     ) -> AsyncIterator[ListSecretsOutput]:
-        """Yield each page from list_secrets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/list_secrets/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if include_planned_deletion is not None:

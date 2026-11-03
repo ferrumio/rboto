@@ -17,6 +17,8 @@ from .types import (
 
 
 class SageMakerRuntimeHTTP2Client:
+    """Async SageMakerRuntimeHTTP2Client. See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/)."""
+
     logger_name = "rboto.sagemaker-runtime-http2"
 
     def __init__(
@@ -53,6 +55,7 @@ class SageMakerRuntimeHTTP2Client:
         model_invocation_path: str | None = None,
         model_query_string: str | None = None,
     ) -> InvokeEndpointWithBidirectionalStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/operations/invoke_endpoint_with_bidirectional_stream/)."""
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
             "body": body,

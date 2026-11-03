@@ -11,26 +11,31 @@ from .types import ConverseStreamOutput, InvokeModelWithBidirectionalStreamOutpu
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class ConverseStreamOutputReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamOutputReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.ConverseStreamEventOutput]: ...
     def __anext__(self) -> Awaitable[_types.ConverseStreamEventOutput]: ...
 @final
 class InvokeModelWithBidirectionalStreamOutputReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelWithBidirectionalStreamOutputReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.InvokeModelWithBidirectionalStreamEventOutput]: ...
     def __anext__(self) -> Awaitable[_types.InvokeModelWithBidirectionalStreamEventOutput]: ...
 @final
 class ResponseStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ResponseStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.ResponseStream]: ...
     def __anext__(self) -> Awaitable[_types.ResponseStream]: ...
 
 
 @final
 class AppliedGuardrailDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AppliedGuardrailDetailsOutput/)."""
     @property
     def guardrail_id(self) -> str | None: ...
     @property
@@ -45,6 +50,7 @@ class AppliedGuardrailDetails:
 
 @final
 class AsyncInvokeSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AsyncInvokeSummaryOutput/)."""
     @property
     def invocation_arn(self) -> str: ...
     @property
@@ -67,6 +73,7 @@ class AsyncInvokeSummary:
 
 @final
 class CacheDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CacheDetailOutput/)."""
     @property
     def ttl(self) -> _types.CacheTTLOutput: ...
     @property
@@ -75,12 +82,14 @@ class CacheDetail:
 
 @final
 class ConverseMetrics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseMetricsOutput/)."""
     @property
     def latency_ms(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ConverseTrace:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseTraceOutput/)."""
     @property
     def guardrail(self) -> GuardrailTraceAssessment | None: ...
     @property
@@ -89,6 +98,7 @@ class ConverseTrace:
 
 @final
 class GuardrailAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAssessmentOutput/)."""
     @property
     def topic_policy(self) -> GuardrailTopicPolicyAssessment | None: ...
     @property
@@ -109,18 +119,21 @@ class GuardrailAssessment:
 
 @final
 class GuardrailAutomatedReasoningPolicyAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningPolicyAssessmentOutput/)."""
     @property
     def findings(self) -> list[_types.GuardrailAutomatedReasoningFinding] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailChecksContentFilterResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksContentFilterResultOutput/)."""
     @property
     def results(self) -> list[GuardrailChecksContentFilterResultEntry]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailChecksContentFilterResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksContentFilterResultEntryOutput/)."""
     @property
     def category(self) -> _types.GuardrailChecksContentFilterCategoryOutput: ...
     @property
@@ -129,18 +142,21 @@ class GuardrailChecksContentFilterResultEntry:
 
 @final
 class GuardrailChecksContentFilterUsage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksContentFilterUsageOutput/)."""
     @property
     def text_units(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailChecksPromptAttackResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksPromptAttackResultOutput/)."""
     @property
     def results(self) -> list[GuardrailChecksPromptAttackResultEntry]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailChecksPromptAttackResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksPromptAttackResultEntryOutput/)."""
     @property
     def category(self) -> _types.GuardrailChecksPromptAttackCategoryOutput: ...
     @property
@@ -149,12 +165,14 @@ class GuardrailChecksPromptAttackResultEntry:
 
 @final
 class GuardrailChecksPromptAttackUsage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksPromptAttackUsageOutput/)."""
     @property
     def text_units(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailChecksResults:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksResultsOutput/)."""
     @property
     def content_filter(self) -> GuardrailChecksContentFilterResult | None: ...
     @property
@@ -165,6 +183,7 @@ class GuardrailChecksResults:
 
 @final
 class GuardrailChecksSensitiveInformationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksSensitiveInformationResultOutput/)."""
     @property
     def results(self) -> list[GuardrailChecksSensitiveInformationResultEntry]: ...
     @property
@@ -173,6 +192,7 @@ class GuardrailChecksSensitiveInformationResult:
 
 @final
 class GuardrailChecksSensitiveInformationResultEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksSensitiveInformationResultEntryOutput/)."""
     @property
     def type(self) -> _types.GuardrailChecksSensitiveInformationEntityTypeOutput: ...
     @property
@@ -189,12 +209,14 @@ class GuardrailChecksSensitiveInformationResultEntry:
 
 @final
 class GuardrailChecksSensitiveInformationUsage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksSensitiveInformationUsageOutput/)."""
     @property
     def text_units(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailChecksUsageResults:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksUsageResultsOutput/)."""
     @property
     def content_filter(self) -> GuardrailChecksContentFilterUsage | None: ...
     @property
@@ -205,6 +227,7 @@ class GuardrailChecksUsageResults:
 
 @final
 class GuardrailContentFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContentFilterOutput/)."""
     @property
     def type(self) -> _types.GuardrailContentFilterTypeOutput: ...
     @property
@@ -219,12 +242,14 @@ class GuardrailContentFilter:
 
 @final
 class GuardrailContentPolicyAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContentPolicyAssessmentOutput/)."""
     @property
     def filters(self) -> list[GuardrailContentFilter]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailContextualGroundingFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContextualGroundingFilterOutput/)."""
     @property
     def type(self) -> _types.GuardrailContextualGroundingFilterTypeOutput: ...
     @property
@@ -239,12 +264,14 @@ class GuardrailContextualGroundingFilter:
 
 @final
 class GuardrailContextualGroundingPolicyAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContextualGroundingPolicyAssessmentOutput/)."""
     @property
     def filters(self) -> list[GuardrailContextualGroundingFilter] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailCoverage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailCoverageOutput/)."""
     @property
     def text_characters(self) -> GuardrailTextCharactersCoverage | None: ...
     @property
@@ -253,6 +280,7 @@ class GuardrailCoverage:
 
 @final
 class GuardrailCustomWord:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailCustomWordOutput/)."""
     @property
     def match(self) -> str: ...
     @property
@@ -263,6 +291,7 @@ class GuardrailCustomWord:
 
 @final
 class GuardrailImageCoverage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailImageCoverageOutput/)."""
     @property
     def guarded(self) -> int | None: ...
     @property
@@ -271,6 +300,7 @@ class GuardrailImageCoverage:
 
 @final
 class GuardrailInvocationMetrics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailInvocationMetricsOutput/)."""
     @property
     def guardrail_processing_latency(self) -> int | None: ...
     @property
@@ -281,6 +311,7 @@ class GuardrailInvocationMetrics:
 
 @final
 class GuardrailManagedWord:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailManagedWordOutput/)."""
     @property
     def match(self) -> str: ...
     @property
@@ -293,12 +324,14 @@ class GuardrailManagedWord:
 
 @final
 class GuardrailOutputContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailOutputContentOutput/)."""
     @property
     def text(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailPiiEntityFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailPiiEntityFilterOutput/)."""
     @property
     def match(self) -> str: ...
     @property
@@ -311,6 +344,7 @@ class GuardrailPiiEntityFilter:
 
 @final
 class GuardrailRegexFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailRegexFilterOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -325,6 +359,7 @@ class GuardrailRegexFilter:
 
 @final
 class GuardrailSensitiveInformationPolicyAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailSensitiveInformationPolicyAssessmentOutput/)."""
     @property
     def pii_entities(self) -> list[GuardrailPiiEntityFilter]: ...
     @property
@@ -333,6 +368,7 @@ class GuardrailSensitiveInformationPolicyAssessment:
 
 @final
 class GuardrailTextCharactersCoverage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailTextCharactersCoverageOutput/)."""
     @property
     def guarded(self) -> int | None: ...
     @property
@@ -341,6 +377,7 @@ class GuardrailTextCharactersCoverage:
 
 @final
 class GuardrailTopic:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailTopicOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -353,12 +390,14 @@ class GuardrailTopic:
 
 @final
 class GuardrailTopicPolicyAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailTopicPolicyAssessmentOutput/)."""
     @property
     def topics(self) -> list[GuardrailTopic]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GuardrailTraceAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailTraceAssessmentOutput/)."""
     @property
     def model_output(self) -> list[str] | None: ...
     @property
@@ -371,6 +410,7 @@ class GuardrailTraceAssessment:
 
 @final
 class GuardrailUsage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailUsageOutput/)."""
     @property
     def topic_policy_units(self) -> int: ...
     @property
@@ -393,6 +433,7 @@ class GuardrailUsage:
 
 @final
 class GuardrailWordPolicyAssessment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailWordPolicyAssessmentOutput/)."""
     @property
     def custom_words(self) -> list[GuardrailCustomWord]: ...
     @property
@@ -401,24 +442,28 @@ class GuardrailWordPolicyAssessment:
 
 @final
 class PerformanceConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/PerformanceConfigurationValueOutput/)."""
     @property
     def latency(self) -> _types.PerformanceConfigLatencyOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PromptRouterTrace:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/PromptRouterTraceOutput/)."""
     @property
     def invoked_model_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ServiceTier:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ServiceTierValueOutput/)."""
     @property
     def type(self) -> _types.ServiceTierTypeOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TokenUsage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/TokenUsageOutput/)."""
     @property
     def input_tokens(self) -> int: ...
     @property
@@ -435,6 +480,7 @@ class TokenUsage:
 
 @final
 class ApplyGuardrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ApplyGuardrailOutput/)."""
     @property
     def usage(self) -> GuardrailUsage | None: ...
     @property
@@ -451,6 +497,7 @@ class ApplyGuardrailOutput:
 
 @final
 class ConverseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseOutput/)."""
     @property
     def output(self) -> _types.ConverseValueOutput | None: ...
     @property
@@ -471,12 +518,14 @@ class ConverseOutput:
 
 @final
 class CountTokensOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CountTokensOutput/)."""
     @property
     def input_tokens(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAsyncInvokeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GetAsyncInvokeOutput/)."""
     @property
     def invocation_arn(self) -> str: ...
     @property
@@ -499,6 +548,7 @@ class GetAsyncInvokeOutput:
 
 @final
 class InvokeGuardrailChecksOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeGuardrailChecksOutput/)."""
     @property
     def results(self) -> GuardrailChecksResults | None: ...
     @property
@@ -507,6 +557,7 @@ class InvokeGuardrailChecksOutput:
 
 @final
 class InvokeModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelOutput/)."""
     @property
     def body(self) -> bytes: ...
     @property
@@ -519,6 +570,7 @@ class InvokeModelOutput:
 
 @final
 class ListAsyncInvokesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ListAsyncInvokesOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -527,6 +579,7 @@ class ListAsyncInvokesOutput:
 
 @final
 class StartAsyncInvokeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/StartAsyncInvokeOutput/)."""
     @property
     def invocation_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...

@@ -120,7 +120,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeActivationsOutput]:
-        """Yield each page from describe_activations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_activations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -148,7 +148,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeAssociationExecutionTargetsOutput]:
-        """Yield each page from describe_association_execution_targets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_association_execution_targets/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "association_id": association_id,
             "execution_id": execution_id,
@@ -177,7 +177,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeAssociationExecutionsOutput]:
-        """Yield each page from describe_association_executions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_association_executions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -204,7 +204,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeAutomationExecutionsOutput]:
-        """Yield each page from describe_automation_executions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_automation_executions/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -232,7 +232,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         reverse_order: bool | None = None,
     ) -> AsyncIterator[DescribeAutomationStepExecutionsOutput]:
-        """Yield each page from describe_automation_step_executions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_automation_step_executions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
@@ -261,7 +261,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeAvailablePatchesOutput]:
-        """Yield each page from describe_available_patches; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_available_patches/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -287,7 +287,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeEffectiveInstanceAssociationsOutput]:
-        """Yield each page from describe_effective_instance_associations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_effective_instance_associations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -312,7 +312,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeEffectivePatchesForPatchBaselineOutput]:
-        """Yield each page from describe_effective_patches_for_patch_baseline; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_effective_patches_for_patch_baseline/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -337,7 +337,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeInstanceAssociationsStatusOutput]:
-        """Yield each page from describe_instance_associations_status; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_associations_status/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -363,7 +363,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeInstanceInformationOutput]:
-        """Yield each page from describe_instance_information; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_information/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if instance_information_filter_list is not None:
@@ -391,7 +391,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[DescribeInstancePatchStatesOutput]:
-        """Yield each page from describe_instance_patch_states; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_patch_states/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "instance_ids": instance_ids,
         }
@@ -417,7 +417,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[DescribeInstancePatchStatesForPatchGroupOutput]:
-        """Yield each page from describe_instance_patch_states_for_patch_group; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_patch_states_for_patch_group/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
@@ -445,7 +445,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[DescribeInstancePatchesOutput]:
-        """Yield each page from describe_instance_patches; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_patches/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -473,7 +473,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeInstancePropertiesOutput]:
-        """Yield each page from describe_instance_properties; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_properties/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if instance_property_filter_list is not None:
@@ -501,7 +501,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[DescribeInventoryDeletionsOutput]:
-        """Yield each page from describe_inventory_deletions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_inventory_deletions/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if deletion_id is not None:
@@ -529,7 +529,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowExecutionTaskInvocationsOutput]:
-        """Yield each page from describe_maintenance_window_execution_task_invocations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_execution_task_invocations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
             "task_id": task_id,
@@ -558,7 +558,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowExecutionTasksOutput]:
-        """Yield each page from describe_maintenance_window_execution_tasks; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_execution_tasks/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
@@ -586,7 +586,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowExecutionsOutput]:
-        """Yield each page from describe_maintenance_window_executions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_executions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -616,7 +616,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowScheduleOutput]:
-        """Yield each page from describe_maintenance_window_schedule; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_schedule/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if window_id is not None:
@@ -649,7 +649,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowTargetsOutput]:
-        """Yield each page from describe_maintenance_window_targets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_targets/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -677,7 +677,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowTasksOutput]:
-        """Yield each page from describe_maintenance_window_tasks; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_tasks/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -704,7 +704,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowsOutput]:
-        """Yield each page from describe_maintenance_windows; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_windows/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -731,7 +731,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeMaintenanceWindowsForTargetOutput]:
-        """Yield each page from describe_maintenance_windows_for_target; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_windows_for_target/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "targets": targets,
             "resource_type": resource_type,
@@ -757,7 +757,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeOpsItemsOutput]:
-        """Yield each page from describe_ops_items; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_ops_items/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if ops_item_filters is not None:
@@ -785,7 +785,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         shared: bool | None = None,
     ) -> AsyncIterator[DescribeParametersOutput]:
-        """Yield each page from describe_parameters; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_parameters/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -815,7 +815,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribePatchBaselinesOutput]:
-        """Yield each page from describe_patch_baselines; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_patch_baselines/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -841,7 +841,7 @@ class SSMClientPaginators:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribePatchGroupsOutput]:
-        """Yield each page from describe_patch_groups; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_patch_groups/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -869,7 +869,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribePatchPropertiesOutput]:
-        """Yield each page from describe_patch_properties; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_patch_properties/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "operating_system": operating_system,
             "property": property,
@@ -898,7 +898,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         filters: Sequence[SessionFilter] | None = None,
     ) -> AsyncIterator[DescribeSessionsOutput]:
-        """Yield each page from describe_sessions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_sessions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "state": state,
         }
@@ -927,7 +927,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[GetInventoryOutput]:
-        """Yield each page from get_inventory; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_inventory/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -959,7 +959,7 @@ class SSMClientPaginators:
         aggregator: bool | None = None,
         sub_type: bool | None = None,
     ) -> AsyncIterator[GetInventorySchemaOutput]:
-        """Yield each page from get_inventory_schema; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_inventory_schema/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if type_name is not None:
@@ -992,7 +992,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[GetOpsSummaryOutput]:
-        """Yield each page from get_ops_summary; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_ops_summary/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if sync_name is not None:
@@ -1025,7 +1025,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[GetParameterHistoryOutput]:
-        """Yield each page from get_parameter_history; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_parameter_history/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1055,7 +1055,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[GetParametersByPathOutput]:
-        """Yield each page from get_parameters_by_path; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_parameters_by_path/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "path": path,
         }
@@ -1086,7 +1086,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[GetResourcePoliciesOutput]:
-        """Yield each page from get_resource_policies; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_resource_policies/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1111,7 +1111,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListAssociationVersionsOutput]:
-        """Yield each page from list_association_versions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_association_versions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -1136,7 +1136,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListAssociationsOutput]:
-        """Yield each page from list_associations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_associations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if association_filter_list is not None:
@@ -1162,7 +1162,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         filters: Sequence[CloudConnectorFilter] | None = None,
     ) -> AsyncIterator[ListCloudConnectorsOutput]:
-        """Yield each page from list_cloud_connectors; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_cloud_connectors/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1191,7 +1191,7 @@ class SSMClientPaginators:
         filters: Sequence[CommandFilter] | None = None,
         details: bool | None = None,
     ) -> AsyncIterator[ListCommandInvocationsOutput]:
-        """Yield each page from list_command_invocations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_command_invocations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if command_id is not None:
@@ -1225,7 +1225,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         filters: Sequence[CommandFilter] | None = None,
     ) -> AsyncIterator[ListCommandsOutput]:
-        """Yield each page from list_commands; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_commands/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if command_id is not None:
@@ -1257,7 +1257,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListComplianceItemsOutput]:
-        """Yield each page from list_compliance_items; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_compliance_items/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1287,7 +1287,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListComplianceSummariesOutput]:
-        """Yield each page from list_compliance_summaries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_compliance_summaries/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1313,7 +1313,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListDocumentVersionsOutput]:
-        """Yield each page from list_document_versions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_document_versions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1339,7 +1339,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListDocumentsOutput]:
-        """Yield each page from list_documents; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_documents/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if document_filter_list is not None:
@@ -1368,7 +1368,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListNodesOutput]:
-        """Yield each page from list_nodes; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_nodes/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if sync_name is not None:
@@ -1398,7 +1398,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListNodesSummaryOutput]:
-        """Yield each page from list_nodes_summary; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_nodes_summary/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "aggregators": aggregators,
         }
@@ -1427,7 +1427,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListOpsItemEventsOutput]:
-        """Yield each page from list_ops_item_events; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_ops_item_events/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1454,7 +1454,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListOpsItemRelatedItemsOutput]:
-        """Yield each page from list_ops_item_related_items; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_ops_item_related_items/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if ops_item_id is not None:
@@ -1482,7 +1482,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListOpsMetadataOutput]:
-        """Yield each page from list_ops_metadata; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_ops_metadata/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1508,7 +1508,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListResourceComplianceSummariesOutput]:
-        """Yield each page from list_resource_compliance_summaries; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_resource_compliance_summaries/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1534,7 +1534,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListResourceDataSyncOutput]:
-        """Yield each page from list_resource_data_sync; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_resource_data_sync/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if sync_type is not None:
@@ -1560,7 +1560,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ValidateCloudConnectorOutput]:
-        """Yield each page from validate_cloud_connector; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/validate_cloud_connector/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }

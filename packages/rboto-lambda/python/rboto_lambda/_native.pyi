@@ -11,18 +11,21 @@ from .types import InvokeWithResponseStreamOutput
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class InvokeWithResponseStreamResponseEventReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamResponseEventReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.InvokeWithResponseStreamResponseEvent]: ...
     def __anext__(self) -> Awaitable[_types.InvokeWithResponseStreamResponseEvent]: ...
 
 
 @final
 class AccountLimit:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AccountLimitOutput/)."""
     @property
     def total_code_size(self) -> int: ...
     @property
@@ -37,6 +40,7 @@ class AccountLimit:
 
 @final
 class AccountUsage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AccountUsageOutput/)."""
     @property
     def total_code_size(self) -> int: ...
     @property
@@ -45,6 +49,7 @@ class AccountUsage:
 
 @final
 class AliasConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AliasConfiguration/)."""
     @property
     def alias_arn(self) -> str | None: ...
     @property
@@ -61,18 +66,21 @@ class AliasConfiguration:
 
 @final
 class AliasRoutingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AliasRoutingConfigurationOutput/)."""
     @property
     def additional_version_weights(self) -> dict[str, float] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AllowedPublishers:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AllowedPublishersOutput/)."""
     @property
     def signing_profile_version_arns(self) -> list[str]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AmazonManagedKafkaEventSourceConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AmazonManagedKafkaEventSourceConfigOutput/)."""
     @property
     def consumer_group_id(self) -> str | None: ...
     @property
@@ -81,6 +89,7 @@ class AmazonManagedKafkaEventSourceConfig:
 
 @final
 class CallbackDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CallbackDetailsOutput/)."""
     @property
     def callback_id(self) -> str | None: ...
     @property
@@ -91,12 +100,14 @@ class CallbackDetails:
 
 @final
 class CallbackFailedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CallbackFailedDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CallbackStartedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CallbackStartedDetailsOutput/)."""
     @property
     def callback_id(self) -> str: ...
     @property
@@ -107,18 +118,21 @@ class CallbackStartedDetails:
 
 @final
 class CallbackSucceededDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CallbackSucceededDetailsOutput/)."""
     @property
     def result(self) -> EventResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CallbackTimedOutDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CallbackTimedOutDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CapacityProvider:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderOutput/)."""
     @property
     def capacity_provider_arn(self) -> str: ...
     @property
@@ -143,12 +157,14 @@ class CapacityProvider:
 
 @final
 class CapacityProviderConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderConfigOutput/)."""
     @property
     def lambda_managed_instances_capacity_provider_config(self) -> LambdaManagedInstancesCapacityProviderConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CapacityProviderLoggingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderLoggingConfigOutput/)."""
     @property
     def system_log_level(self) -> _types.SystemLogLevelOutput | None: ...
     @property
@@ -157,12 +173,14 @@ class CapacityProviderLoggingConfig:
 
 @final
 class CapacityProviderPermissionsConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderPermissionsConfigOutput/)."""
     @property
     def capacity_provider_operator_role_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CapacityProviderScalingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderScalingConfigOutput/)."""
     @property
     def max_v_cpu_count(self) -> int | None: ...
     @property
@@ -173,12 +191,14 @@ class CapacityProviderScalingConfig:
 
 @final
 class CapacityProviderTelemetryConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderTelemetryConfigOutput/)."""
     @property
     def logging_config(self) -> CapacityProviderLoggingConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CapacityProviderVpcConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderVpcConfigOutput/)."""
     @property
     def subnet_ids(self) -> list[str]: ...
     @property
@@ -187,6 +207,7 @@ class CapacityProviderVpcConfig:
 
 @final
 class ChainedInvokeDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ChainedInvokeDetailsOutput/)."""
     @property
     def result(self) -> str | None: ...
     @property
@@ -195,12 +216,14 @@ class ChainedInvokeDetails:
 
 @final
 class ChainedInvokeFailedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ChainedInvokeFailedDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ChainedInvokeStartedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ChainedInvokeStartedDetailsOutput/)."""
     @property
     def function_name(self) -> str: ...
     @property
@@ -215,24 +238,28 @@ class ChainedInvokeStartedDetails:
 
 @final
 class ChainedInvokeStoppedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ChainedInvokeStoppedDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ChainedInvokeSucceededDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ChainedInvokeSucceededDetailsOutput/)."""
     @property
     def result(self) -> EventResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ChainedInvokeTimedOutDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ChainedInvokeTimedOutDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CheckpointUpdatedExecutionState:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CheckpointUpdatedExecutionStateOutput/)."""
     @property
     def operations(self) -> list[Operation] | None: ...
     @property
@@ -241,6 +268,7 @@ class CheckpointUpdatedExecutionState:
 
 @final
 class CodeSigningConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeSigningConfigOutput/)."""
     @property
     def code_signing_config_id(self) -> str: ...
     @property
@@ -257,18 +285,21 @@ class CodeSigningConfig:
 
 @final
 class CodeSigningPolicies:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeSigningPoliciesOutput/)."""
     @property
     def untrusted_artifact_on_deployment(self) -> _types.CodeSigningPolicyOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Concurrency:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/Concurrency/)."""
     @property
     def reserved_concurrent_executions(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ContextDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ContextDetailsOutput/)."""
     @property
     def replay_children(self) -> bool | None: ...
     @property
@@ -279,22 +310,26 @@ class ContextDetails:
 
 @final
 class ContextFailedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ContextFailedDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ContextStartedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ContextStartedDetailsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ContextSucceededDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ContextSucceededDetailsOutput/)."""
     @property
     def result(self) -> EventResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Cors:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CorsOutput/)."""
     @property
     def allow_credentials(self) -> bool | None: ...
     @property
@@ -311,12 +346,14 @@ class Cors:
 
 @final
 class DeadLetterConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeadLetterConfigOutput/)."""
     @property
     def target_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DestinationConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DestinationConfigOutput/)."""
     @property
     def on_success(self) -> OnSuccess | None: ...
     @property
@@ -325,6 +362,7 @@ class DestinationConfig:
 
 @final
 class DocumentDbEventSourceConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DocumentDbEventSourceConfig-9ff10c699a94/)."""
     @property
     def database_name(self) -> str | None: ...
     @property
@@ -335,6 +373,7 @@ class DocumentDbEventSourceConfig:
 
 @final
 class DurableConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DurableConfigOutput/)."""
     @property
     def kms_key_arn(self) -> str | None: ...
     @property
@@ -345,6 +384,7 @@ class DurableConfig:
 
 @final
 class EnvironmentError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EnvironmentErrorOutput/)."""
     @property
     def error_code(self) -> str | None: ...
     @property
@@ -353,6 +393,7 @@ class EnvironmentError:
 
 @final
 class EnvironmentResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EnvironmentResponseOutput/)."""
     @property
     def variables(self) -> dict[str, str] | None: ...
     @property
@@ -361,12 +402,14 @@ class EnvironmentResponse:
 
 @final
 class EphemeralStorage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EphemeralStorageOutput/)."""
     @property
     def size(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ErrorObject:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ErrorObjectOutput/)."""
     @property
     def error_message(self) -> str | None: ...
     @property
@@ -379,6 +422,7 @@ class ErrorObject:
 
 @final
 class Event:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventOutput/)."""
     @property
     def event_type(self) -> _types.EventTypeOutput | None: ...
     @property
@@ -445,6 +489,7 @@ class Event:
 
 @final
 class EventError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventErrorOutput/)."""
     @property
     def payload(self) -> ErrorObject | None: ...
     @property
@@ -453,6 +498,7 @@ class EventError:
 
 @final
 class EventInput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventInputOutput/)."""
     @property
     def payload(self) -> str | None: ...
     @property
@@ -461,6 +507,7 @@ class EventInput:
 
 @final
 class EventResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventResultOutput/)."""
     @property
     def payload(self) -> str | None: ...
     @property
@@ -469,6 +516,7 @@ class EventResult:
 
 @final
 class EventSourceMappingConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventSourceMappingConfiguration/)."""
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -539,18 +587,21 @@ class EventSourceMappingConfiguration:
 
 @final
 class EventSourceMappingLoggingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventSourceMappingLoggingConfigOutput/)."""
     @property
     def system_log_level(self) -> _types.EventSourceMappingSystemLogLevelOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EventSourceMappingMetricsConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EventSourceMappingMetricsConfigOutput/)."""
     @property
     def metrics(self) -> list[_types.EventSourceMappingMetricOutput] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Execution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionOutput/)."""
     @property
     def durable_execution_arn(self) -> str: ...
     @property
@@ -569,18 +620,21 @@ class Execution:
 
 @final
 class ExecutionDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionDetailsOutput/)."""
     @property
     def input_payload(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExecutionFailedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionFailedDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExecutionStartedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionStartedDetailsOutput/)."""
     @property
     def input(self) -> EventInput | None: ...
     @property
@@ -589,24 +643,28 @@ class ExecutionStartedDetails:
 
 @final
 class ExecutionStoppedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionStoppedDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExecutionSucceededDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionSucceededDetailsOutput/)."""
     @property
     def result(self) -> EventResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExecutionTimedOutDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ExecutionTimedOutDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FileSystemConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FileSystemConfigOutput/)."""
     @property
     def arn(self) -> str: ...
     @property
@@ -617,18 +675,21 @@ class FileSystemConfig:
 
 @final
 class Filter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FilterOutput/)."""
     @property
     def pattern(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FilterCriteria:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FilterCriteriaOutput/)."""
     @property
     def filters(self) -> list[Filter] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FilterCriteriaError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FilterCriteriaErrorOutput/)."""
     @property
     def error_code(self) -> str | None: ...
     @property
@@ -637,6 +698,7 @@ class FilterCriteriaError:
 
 @final
 class FunctionCodeLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionCodeLocationOutput/)."""
     @property
     def repository_type(self) -> str | None: ...
     @property
@@ -655,6 +717,7 @@ class FunctionCodeLocation:
 
 @final
 class FunctionCodeLocationError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionCodeLocationErrorOutput/)."""
     @property
     def error_code(self) -> str | None: ...
     @property
@@ -663,6 +726,7 @@ class FunctionCodeLocationError:
 
 @final
 class FunctionConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionConfiguration/)."""
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -747,6 +811,7 @@ class FunctionConfiguration:
 
 @final
 class FunctionEventInvokeConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionEventInvokeConfig/)."""
     @property
     def last_modified(self) -> str | None: ...
     @property
@@ -761,6 +826,7 @@ class FunctionEventInvokeConfig:
 
 @final
 class FunctionScalingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionScalingConfigOutput/)."""
     @property
     def min_execution_environments(self) -> int | None: ...
     @property
@@ -769,6 +835,7 @@ class FunctionScalingConfig:
 
 @final
 class FunctionUrlConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionUrlConfigOutput/)."""
     @property
     def function_url(self) -> str: ...
     @property
@@ -787,6 +854,7 @@ class FunctionUrlConfig:
 
 @final
 class FunctionVersionsByCapacityProviderListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionVersionsByCapacityProviderListItemOutput/)."""
     @property
     def function_arn(self) -> str: ...
     @property
@@ -795,6 +863,7 @@ class FunctionVersionsByCapacityProviderListItem:
 
 @final
 class ImageConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ImageConfigOutput/)."""
     @property
     def entry_point(self) -> list[str] | None: ...
     @property
@@ -805,6 +874,7 @@ class ImageConfig:
 
 @final
 class ImageConfigError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ImageConfigErrorOutput/)."""
     @property
     def error_code(self) -> str | None: ...
     @property
@@ -813,6 +883,7 @@ class ImageConfigError:
 
 @final
 class ImageConfigResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ImageConfigResponseOutput/)."""
     @property
     def image_config(self) -> ImageConfig | None: ...
     @property
@@ -821,6 +892,7 @@ class ImageConfigResponse:
 
 @final
 class InstanceRequirements:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InstanceRequirementsOutput/)."""
     @property
     def architectures(self) -> list[_types.ArchitectureOutput] | None: ...
     @property
@@ -831,6 +903,7 @@ class InstanceRequirements:
 
 @final
 class InvocationCompletedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvocationCompletedDetailsOutput/)."""
     @property
     def start_timestamp(self) -> str: ...
     @property
@@ -843,6 +916,7 @@ class InvocationCompletedDetails:
 
 @final
 class KafkaSchemaRegistryAccessConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KafkaSchemaRegistryAccessConfigOutput/)."""
     @property
     def type(self) -> _types.KafkaSchemaRegistryAuthTypeOutput | None: ...
     @property
@@ -851,6 +925,7 @@ class KafkaSchemaRegistryAccessConfig:
 
 @final
 class KafkaSchemaRegistryConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KafkaSchemaRegistryConfigOutput/)."""
     @property
     def schema_registry_uri(self) -> str | None: ...
     @property
@@ -863,12 +938,14 @@ class KafkaSchemaRegistryConfig:
 
 @final
 class KafkaSchemaValidationConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KafkaSchemaValidationConfigOutput/)."""
     @property
     def attribute(self) -> _types.KafkaSchemaValidationAttributeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class LambdaManagedInstancesCapacityProviderConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LambdaManagedInstancesCapacityProviderConfigOutput/)."""
     @property
     def capacity_provider_arn(self) -> str: ...
     @property
@@ -879,6 +956,7 @@ class LambdaManagedInstancesCapacityProviderConfig:
 
 @final
 class Layer:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LayerOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -891,6 +969,7 @@ class Layer:
 
 @final
 class LayerVersionContentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LayerVersionContentValueOutput/)."""
     @property
     def location(self) -> str | None: ...
     @property
@@ -907,6 +986,7 @@ class LayerVersionContentOutput:
 
 @final
 class LayerVersionsListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LayerVersionsListItemOutput/)."""
     @property
     def layer_version_arn(self) -> str | None: ...
     @property
@@ -925,6 +1005,7 @@ class LayerVersionsListItem:
 
 @final
 class LayersListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LayersListItemOutput/)."""
     @property
     def layer_name(self) -> str | None: ...
     @property
@@ -935,6 +1016,7 @@ class LayersListItem:
 
 @final
 class LoggingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LoggingConfigOutput/)."""
     @property
     def log_format(self) -> _types.LogFormatOutput | None: ...
     @property
@@ -947,18 +1029,21 @@ class LoggingConfig:
 
 @final
 class OnFailure:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/OnFailureOutput/)."""
     @property
     def destination(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OnSuccess:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/OnSuccessOutput/)."""
     @property
     def destination(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Operation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/OperationOutput/)."""
     @property
     def id(self) -> str: ...
     @property
@@ -991,6 +1076,7 @@ class Operation:
 
 @final
 class PropagateTags:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PropagateTagsOutput/)."""
     @property
     def mode(self) -> _types.PropagateTagsModeOutput | None: ...
     @property
@@ -999,6 +1085,7 @@ class PropagateTags:
 
 @final
 class ProvisionedConcurrencyConfigListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ProvisionedConcurrencyConfigListItemOutput/)."""
     @property
     def function_arn(self) -> str | None: ...
     @property
@@ -1017,6 +1104,7 @@ class ProvisionedConcurrencyConfigListItem:
 
 @final
 class ProvisionedPollerConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ProvisionedPollerConfigOutput/)."""
     @property
     def minimum_pollers(self) -> int | None: ...
     @property
@@ -1027,6 +1115,7 @@ class ProvisionedPollerConfig:
 
 @final
 class ResolvedS3Object:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResolvedS3ObjectOutput/)."""
     @property
     def s3_bucket(self) -> str | None: ...
     @property
@@ -1037,6 +1126,7 @@ class ResolvedS3Object:
 
 @final
 class RetryDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RetryDetailsOutput/)."""
     @property
     def current_attempt(self) -> int: ...
     @property
@@ -1045,6 +1135,7 @@ class RetryDetails:
 
 @final
 class RuntimeVersionConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RuntimeVersionConfigOutput/)."""
     @property
     def runtime_version_arn(self) -> str | None: ...
     @property
@@ -1053,6 +1144,7 @@ class RuntimeVersionConfig:
 
 @final
 class RuntimeVersionError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RuntimeVersionErrorOutput/)."""
     @property
     def error_code(self) -> str | None: ...
     @property
@@ -1061,24 +1153,28 @@ class RuntimeVersionError:
 
 @final
 class S3FilesConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/S3FilesConfigOutput/)."""
     @property
     def direct_s3_read(self) -> _types.DirectS3ReadOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScalingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ScalingConfigOutput/)."""
     @property
     def maximum_concurrency(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SelfManagedEventSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SelfManagedEventSourceOutput/)."""
     @property
     def endpoints(self) -> dict[_types.EndPointTypeOutput, list[str]] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SelfManagedKafkaEventSourceConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SelfManagedKafkaEventSourceConfigOutput/)."""
     @property
     def consumer_group_id(self) -> str | None: ...
     @property
@@ -1087,6 +1183,7 @@ class SelfManagedKafkaEventSourceConfig:
 
 @final
 class SnapStartResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SnapStartResponseOutput/)."""
     @property
     def apply_on(self) -> _types.SnapStartApplyOnOutput | None: ...
     @property
@@ -1095,6 +1192,7 @@ class SnapStartResponse:
 
 @final
 class SourceAccessConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SourceAccessConfigurationOutput/)."""
     @property
     def type(self) -> _types.SourceAccessTypeOutput | None: ...
     @property
@@ -1103,6 +1201,7 @@ class SourceAccessConfiguration:
 
 @final
 class StepDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StepDetailsOutput/)."""
     @property
     def attempt(self) -> int: ...
     @property
@@ -1115,6 +1214,7 @@ class StepDetails:
 
 @final
 class StepFailedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StepFailedDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     @property
@@ -1123,10 +1223,12 @@ class StepFailedDetails:
 
 @final
 class StepStartedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StepStartedDetailsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StepSucceededDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StepSucceededDetailsOutput/)."""
     @property
     def result(self) -> EventResult | None: ...
     @property
@@ -1135,6 +1237,7 @@ class StepSucceededDetails:
 
 @final
 class TagsError:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TagsErrorOutput/)."""
     @property
     def error_code(self) -> str: ...
     @property
@@ -1143,6 +1246,7 @@ class TagsError:
 
 @final
 class TargetTrackingScalingPolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TargetTrackingScalingPolicyOutput/)."""
     @property
     def predefined_metric_type(self) -> _types.CapacityProviderPredefinedMetricTypeOutput: ...
     @property
@@ -1151,24 +1255,28 @@ class TargetTrackingScalingPolicy:
 
 @final
 class TenancyConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TenancyConfigOutput/)."""
     @property
     def tenant_isolation_mode(self) -> _types.TenantIsolationModeOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TraceHeader:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TraceHeaderOutput/)."""
     @property
     def x_amzn_trace_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TracingConfigResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TracingConfigResponseOutput/)."""
     @property
     def mode(self) -> _types.TracingModeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class VpcConfigResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/VpcConfigResponseOutput/)."""
     @property
     def subnet_ids(self) -> list[str] | None: ...
     @property
@@ -1181,18 +1289,21 @@ class VpcConfigResponse:
 
 @final
 class WaitCancelledDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/WaitCancelledDetailsOutput/)."""
     @property
     def error(self) -> EventError | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class WaitDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/WaitDetailsOutput/)."""
     @property
     def scheduled_end_timestamp(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class WaitStartedDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/WaitStartedDetailsOutput/)."""
     @property
     def duration(self) -> int: ...
     @property
@@ -1201,12 +1312,14 @@ class WaitStartedDetails:
 
 @final
 class WaitSucceededDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/WaitSucceededDetailsOutput/)."""
     @property
     def duration(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AddLayerVersionPermissionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AddLayerVersionPermissionOutput/)."""
     @property
     def statement(self) -> str | None: ...
     @property
@@ -1215,12 +1328,14 @@ class AddLayerVersionPermissionOutput:
 
 @final
 class AddPermissionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AddPermissionOutput/)."""
     @property
     def statement(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CheckpointDurableExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CheckpointDurableExecutionOutput/)."""
     @property
     def checkpoint_token(self) -> str | None: ...
     @property
@@ -1229,6 +1344,7 @@ class CheckpointDurableExecutionOutput:
 
 @final
 class CreateAliasOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateAliasOutput/)."""
     @property
     def alias_arn(self) -> str | None: ...
     @property
@@ -1245,18 +1361,21 @@ class CreateAliasOutput:
 
 @final
 class CreateCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateCapacityProviderOutput/)."""
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateCodeSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateCodeSigningConfigOutput/)."""
     @property
     def code_signing_config(self) -> CodeSigningConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateEventSourceMappingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateEventSourceMappingOutput/)."""
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -1327,6 +1446,7 @@ class CreateEventSourceMappingOutput:
 
 @final
 class CreateFunctionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateFunctionOutput/)."""
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -1411,6 +1531,7 @@ class CreateFunctionOutput:
 
 @final
 class CreateFunctionUrlConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CreateFunctionUrlConfigOutput/)."""
     @property
     def function_url(self) -> str: ...
     @property
@@ -1427,16 +1548,19 @@ class CreateFunctionUrlConfigOutput:
 
 @final
 class DeleteCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteCapacityProviderOutput/)."""
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCodeSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteCodeSigningConfigOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEventSourceMappingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteEventSourceMappingOutput/)."""
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -1507,12 +1631,14 @@ class DeleteEventSourceMappingOutput:
 
 @final
 class DeleteFunctionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DeleteFunctionOutput/)."""
     @property
     def status_code(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAccountSettingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetAccountSettingsOutput/)."""
     @property
     def account_limit(self) -> AccountLimit | None: ...
     @property
@@ -1521,6 +1647,7 @@ class GetAccountSettingsOutput:
 
 @final
 class GetAliasOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetAliasOutput/)."""
     @property
     def alias_arn(self) -> str | None: ...
     @property
@@ -1537,18 +1664,21 @@ class GetAliasOutput:
 
 @final
 class GetCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetCapacityProviderOutput/)."""
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetCodeSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetCodeSigningConfigOutput/)."""
     @property
     def code_signing_config(self) -> CodeSigningConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetDurableExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetDurableExecutionOutput/)."""
     @property
     def durable_execution_arn(self) -> str: ...
     @property
@@ -1579,6 +1709,7 @@ class GetDurableExecutionOutput:
 
 @final
 class GetDurableExecutionHistoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetDurableExecutionHistoryOutput/)."""
     @property
     def events(self) -> list[Event]: ...
     @property
@@ -1587,6 +1718,7 @@ class GetDurableExecutionHistoryOutput:
 
 @final
 class GetDurableExecutionStateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetDurableExecutionStateOutput/)."""
     @property
     def operations(self) -> list[Operation]: ...
     @property
@@ -1595,6 +1727,7 @@ class GetDurableExecutionStateOutput:
 
 @final
 class GetEventSourceMappingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetEventSourceMappingOutput/)."""
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -1665,6 +1798,7 @@ class GetEventSourceMappingOutput:
 
 @final
 class GetFunctionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionOutput/)."""
     @property
     def configuration(self) -> FunctionConfiguration | None: ...
     @property
@@ -1679,6 +1813,7 @@ class GetFunctionOutput:
 
 @final
 class GetFunctionCodeSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionCodeSigningConfigOutput/)."""
     @property
     def code_signing_config_arn(self) -> str: ...
     @property
@@ -1687,12 +1822,14 @@ class GetFunctionCodeSigningConfigOutput:
 
 @final
 class GetFunctionConcurrencyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionConcurrencyOutput/)."""
     @property
     def reserved_concurrent_executions(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetFunctionConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionConfigurationOutput/)."""
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -1777,6 +1914,7 @@ class GetFunctionConfigurationOutput:
 
 @final
 class GetFunctionEventInvokeConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionEventInvokeConfigOutput/)."""
     @property
     def last_modified(self) -> str | None: ...
     @property
@@ -1791,12 +1929,14 @@ class GetFunctionEventInvokeConfigOutput:
 
 @final
 class GetFunctionRecursionConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionRecursionConfigOutput/)."""
     @property
     def recursive_loop(self) -> _types.RecursiveLoopOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetFunctionScalingConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionScalingConfigOutput/)."""
     @property
     def function_arn(self) -> str | None: ...
     @property
@@ -1807,6 +1947,7 @@ class GetFunctionScalingConfigOutput:
 
 @final
 class GetFunctionUrlConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetFunctionUrlConfigOutput/)."""
     @property
     def function_url(self) -> str: ...
     @property
@@ -1825,6 +1966,7 @@ class GetFunctionUrlConfigOutput:
 
 @final
 class GetLayerVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetLayerVersionOutput/)."""
     @property
     def content(self) -> LayerVersionContentOutput | None: ...
     @property
@@ -1847,6 +1989,7 @@ class GetLayerVersionOutput:
 
 @final
 class GetLayerVersionByArnOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetLayerVersionByArnOutput/)."""
     @property
     def content(self) -> LayerVersionContentOutput | None: ...
     @property
@@ -1869,6 +2012,7 @@ class GetLayerVersionByArnOutput:
 
 @final
 class GetLayerVersionPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetLayerVersionPolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     @property
@@ -1877,6 +2021,7 @@ class GetLayerVersionPolicyOutput:
 
 @final
 class GetPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetPolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     @property
@@ -1885,6 +2030,7 @@ class GetPolicyOutput:
 
 @final
 class GetProvisionedConcurrencyConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetProvisionedConcurrencyConfigOutput/)."""
     @property
     def requested_provisioned_concurrent_executions(self) -> int | None: ...
     @property
@@ -1901,6 +2047,7 @@ class GetProvisionedConcurrencyConfigOutput:
 
 @final
 class GetResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetResourcePolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     @property
@@ -1909,6 +2056,7 @@ class GetResourcePolicyOutput:
 
 @final
 class GetRuntimeManagementConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/GetRuntimeManagementConfigOutput/)."""
     @property
     def update_runtime_on(self) -> _types.UpdateRuntimeOnOutput | None: ...
     @property
@@ -1919,6 +2067,7 @@ class GetRuntimeManagementConfigOutput:
 
 @final
 class InvokeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeOutput/)."""
     @property
     def status_code(self) -> int: ...
     @property
@@ -1935,12 +2084,14 @@ class InvokeOutput:
 
 @final
 class InvokeAsyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeAsyncOutput/)."""
     @property
     def status(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListAliasesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListAliasesOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -1949,6 +2100,7 @@ class ListAliasesOutput:
 
 @final
 class ListCapacityProvidersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListCapacityProvidersOutput/)."""
     @property
     def capacity_providers(self) -> list[CapacityProvider]: ...
     @property
@@ -1957,6 +2109,7 @@ class ListCapacityProvidersOutput:
 
 @final
 class ListCodeSigningConfigsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListCodeSigningConfigsOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -1965,6 +2118,7 @@ class ListCodeSigningConfigsOutput:
 
 @final
 class ListDurableExecutionsByFunctionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListDurableExecutionsByFunctionOutput/)."""
     @property
     def durable_executions(self) -> list[Execution] | None: ...
     @property
@@ -1973,6 +2127,7 @@ class ListDurableExecutionsByFunctionOutput:
 
 @final
 class ListEventSourceMappingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListEventSourceMappingsOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -1981,6 +2136,7 @@ class ListEventSourceMappingsOutput:
 
 @final
 class ListFunctionEventInvokeConfigsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionEventInvokeConfigsOutput/)."""
     @property
     def function_event_invoke_configs(self) -> list[FunctionEventInvokeConfig] | None: ...
     @property
@@ -1989,6 +2145,7 @@ class ListFunctionEventInvokeConfigsOutput:
 
 @final
 class ListFunctionUrlConfigsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionUrlConfigsOutput/)."""
     @property
     def function_url_configs(self) -> list[FunctionUrlConfig]: ...
     @property
@@ -1997,6 +2154,7 @@ class ListFunctionUrlConfigsOutput:
 
 @final
 class ListFunctionVersionsByCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionVersionsByCapacityProviderOutput/)."""
     @property
     def capacity_provider_arn(self) -> str: ...
     @property
@@ -2007,6 +2165,7 @@ class ListFunctionVersionsByCapacityProviderOutput:
 
 @final
 class ListFunctionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionsOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2015,6 +2174,7 @@ class ListFunctionsOutput:
 
 @final
 class ListFunctionsByCodeSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListFunctionsByCodeSigningConfigOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2023,6 +2183,7 @@ class ListFunctionsByCodeSigningConfigOutput:
 
 @final
 class ListLayerVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListLayerVersionsOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2031,6 +2192,7 @@ class ListLayerVersionsOutput:
 
 @final
 class ListLayersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListLayersOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2039,6 +2201,7 @@ class ListLayersOutput:
 
 @final
 class ListProvisionedConcurrencyConfigsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListProvisionedConcurrencyConfigsOutput/)."""
     @property
     def provisioned_concurrency_configs(self) -> list[ProvisionedConcurrencyConfigListItem] | None: ...
     @property
@@ -2047,12 +2210,14 @@ class ListProvisionedConcurrencyConfigsOutput:
 
 @final
 class ListTagsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListTagsOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListVersionsByFunctionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ListVersionsByFunctionOutput/)."""
     @property
     def next_marker(self) -> str | None: ...
     @property
@@ -2061,6 +2226,7 @@ class ListVersionsByFunctionOutput:
 
 @final
 class PublishLayerVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PublishLayerVersionOutput/)."""
     @property
     def content(self) -> LayerVersionContentOutput | None: ...
     @property
@@ -2083,6 +2249,7 @@ class PublishLayerVersionOutput:
 
 @final
 class PublishVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PublishVersionOutput/)."""
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -2167,6 +2334,7 @@ class PublishVersionOutput:
 
 @final
 class PutFunctionCodeSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionCodeSigningConfigOutput/)."""
     @property
     def code_signing_config_arn(self) -> str: ...
     @property
@@ -2175,12 +2343,14 @@ class PutFunctionCodeSigningConfigOutput:
 
 @final
 class PutFunctionConcurrencyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionConcurrencyOutput/)."""
     @property
     def reserved_concurrent_executions(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutFunctionEventInvokeConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionEventInvokeConfigOutput/)."""
     @property
     def last_modified(self) -> str | None: ...
     @property
@@ -2195,18 +2365,21 @@ class PutFunctionEventInvokeConfigOutput:
 
 @final
 class PutFunctionRecursionConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionRecursionConfigOutput/)."""
     @property
     def recursive_loop(self) -> _types.RecursiveLoopOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutFunctionScalingConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutFunctionScalingConfigOutput/)."""
     @property
     def function_state(self) -> _types.StateOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutProvisionedConcurrencyConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutProvisionedConcurrencyConfigOutput/)."""
     @property
     def requested_provisioned_concurrent_executions(self) -> int | None: ...
     @property
@@ -2223,6 +2396,7 @@ class PutProvisionedConcurrencyConfigOutput:
 
 @final
 class PutResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutResourcePolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     @property
@@ -2231,6 +2405,7 @@ class PutResourcePolicyOutput:
 
 @final
 class PutRuntimeManagementConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutRuntimeManagementConfigOutput/)."""
     @property
     def update_runtime_on(self) -> _types.UpdateRuntimeOnOutput: ...
     @property
@@ -2241,24 +2416,29 @@ class PutRuntimeManagementConfigOutput:
 
 @final
 class SendDurableExecutionCallbackFailureOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SendDurableExecutionCallbackFailureOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendDurableExecutionCallbackHeartbeatOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SendDurableExecutionCallbackHeartbeatOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendDurableExecutionCallbackSuccessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SendDurableExecutionCallbackSuccessOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopDurableExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StopDurableExecutionOutput/)."""
     @property
     def stop_timestamp(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateAliasOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateAliasOutput/)."""
     @property
     def alias_arn(self) -> str | None: ...
     @property
@@ -2275,18 +2455,21 @@ class UpdateAliasOutput:
 
 @final
 class UpdateCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateCapacityProviderOutput/)."""
     @property
     def capacity_provider(self) -> CapacityProvider | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCodeSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateCodeSigningConfigOutput/)."""
     @property
     def code_signing_config(self) -> CodeSigningConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateEventSourceMappingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateEventSourceMappingOutput/)."""
     @property
     def uuid(self) -> str | None: ...
     @property
@@ -2357,6 +2540,7 @@ class UpdateEventSourceMappingOutput:
 
 @final
 class UpdateFunctionCodeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionCodeOutput/)."""
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -2441,6 +2625,7 @@ class UpdateFunctionCodeOutput:
 
 @final
 class UpdateFunctionConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionConfigurationOutput/)."""
     @property
     def function_name(self) -> str | None: ...
     @property
@@ -2525,6 +2710,7 @@ class UpdateFunctionConfigurationOutput:
 
 @final
 class UpdateFunctionEventInvokeConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionEventInvokeConfigOutput/)."""
     @property
     def last_modified(self) -> str | None: ...
     @property
@@ -2539,6 +2725,7 @@ class UpdateFunctionEventInvokeConfigOutput:
 
 @final
 class UpdateFunctionUrlConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UpdateFunctionUrlConfigOutput/)."""
     @property
     def function_url(self) -> str: ...
     @property

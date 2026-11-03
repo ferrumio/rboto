@@ -56,6 +56,8 @@ from .paginators import CloudWatchLogsClientPaginators as _Paginators
 
 
 class CloudWatchLogsClient:
+    """Async CloudWatchLogsClient. See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/)."""
+
     logger_name = "rboto.cloudwatch-logs"
 
     def __init__(
@@ -98,6 +100,7 @@ class CloudWatchLogsClient:
         log_group_name: str | None = None,
         resource_identifier: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/associate_kms_key/)."""
         params: dict[str, object] = {
             "kms_key_id": kms_key_id,
         }
@@ -125,6 +128,7 @@ class CloudWatchLogsClient:
         integration_arn: str,
         data_source: DataSource,
     ) -> AssociateSourceToS3TableIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/associate_source_to_s3_table_integration/)."""
         params: dict[str, object] = {
             "integration_arn": integration_arn,
             "data_source": data_source,
@@ -148,6 +152,7 @@ class CloudWatchLogsClient:
         *,
         task_id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/cancel_export_task/)."""
         params: dict[str, object] = {
             "task_id": task_id,
         }
@@ -170,6 +175,7 @@ class CloudWatchLogsClient:
         *,
         import_id: str,
     ) -> CancelImportTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/cancel_import_task/)."""
         params: dict[str, object] = {
             "import_id": import_id,
         }
@@ -197,6 +203,7 @@ class CloudWatchLogsClient:
         s3_delivery_configuration: S3DeliveryConfiguration | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateDeliveryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_delivery/)."""
         params: dict[str, object] = {
             "delivery_source_name": delivery_source_name,
             "delivery_destination_arn": delivery_destination_arn,
@@ -234,6 +241,7 @@ class CloudWatchLogsClient:
         log_stream_name_prefix: str | None = None,
         destination_prefix: str | None = None,
     ) -> CreateExportTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_export_task/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "from": from_,
@@ -267,6 +275,7 @@ class CloudWatchLogsClient:
         import_role_arn: str,
         import_filter: ImportFilter | None = None,
     ) -> CreateImportTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_import_task/)."""
         params: dict[str, object] = {
             "import_source_arn": import_source_arn,
             "import_role_arn": import_role_arn,
@@ -298,6 +307,7 @@ class CloudWatchLogsClient:
         anomaly_visibility_time: int | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateLogAnomalyDetectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_log_anomaly_detector/)."""
         params: dict[str, object] = {
             "log_group_arn_list": log_group_arn_list,
         }
@@ -336,6 +346,7 @@ class CloudWatchLogsClient:
         log_group_class: LogGroupClass | None = None,
         deletion_protection_enabled: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_log_group/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
@@ -367,6 +378,7 @@ class CloudWatchLogsClient:
         log_group_name: str,
         log_stream_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_log_stream/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "log_stream_name": log_stream_name,
@@ -395,6 +407,7 @@ class CloudWatchLogsClient:
         kms_key_id: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateLookupTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_lookup_table/)."""
         params: dict[str, object] = {
             "lookup_table_name": lookup_table_name,
         }
@@ -441,6 +454,7 @@ class CloudWatchLogsClient:
         state: ScheduledQueryState | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateScheduledQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/create_scheduled_query/)."""
         params: dict[str, object] = {
             "name": name,
             "query_language": query_language,
@@ -488,6 +502,7 @@ class CloudWatchLogsClient:
         policy_name: str,
         policy_type: PolicyType,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_account_policy/)."""
         params: dict[str, object] = {
             "policy_name": policy_name,
             "policy_type": policy_type,
@@ -511,6 +526,7 @@ class CloudWatchLogsClient:
         *,
         log_group_identifier: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_data_protection_policy/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
@@ -533,6 +549,7 @@ class CloudWatchLogsClient:
         *,
         id: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_delivery/)."""
         params: dict[str, object] = {
             "id": id,
         }
@@ -555,6 +572,7 @@ class CloudWatchLogsClient:
         *,
         name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_delivery_destination/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -577,6 +595,7 @@ class CloudWatchLogsClient:
         *,
         delivery_destination_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_delivery_destination_policy/)."""
         params: dict[str, object] = {
             "delivery_destination_name": delivery_destination_name,
         }
@@ -599,6 +618,7 @@ class CloudWatchLogsClient:
         *,
         name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_delivery_source/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -621,6 +641,7 @@ class CloudWatchLogsClient:
         *,
         destination_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_destination/)."""
         params: dict[str, object] = {
             "destination_name": destination_name,
         }
@@ -643,6 +664,7 @@ class CloudWatchLogsClient:
         *,
         log_group_identifier: str,
     ) -> DeleteIndexPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_index_policy/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
@@ -666,6 +688,7 @@ class CloudWatchLogsClient:
         integration_name: str,
         force: bool | None = None,
     ) -> DeleteIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_integration/)."""
         params: dict[str, object] = {
             "integration_name": integration_name,
         }
@@ -690,6 +713,7 @@ class CloudWatchLogsClient:
         *,
         anomaly_detector_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_log_anomaly_detector/)."""
         params: dict[str, object] = {
             "anomaly_detector_arn": anomaly_detector_arn,
         }
@@ -712,6 +736,7 @@ class CloudWatchLogsClient:
         *,
         log_group_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_log_group/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
@@ -735,6 +760,7 @@ class CloudWatchLogsClient:
         log_group_name: str,
         log_stream_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_log_stream/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "log_stream_name": log_stream_name,
@@ -758,6 +784,7 @@ class CloudWatchLogsClient:
         *,
         lookup_table_arn: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_lookup_table/)."""
         params: dict[str, object] = {
             "lookup_table_arn": lookup_table_arn,
         }
@@ -781,6 +808,7 @@ class CloudWatchLogsClient:
         log_group_name: str,
         filter_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_metric_filter/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "filter_name": filter_name,
@@ -804,6 +832,7 @@ class CloudWatchLogsClient:
         *,
         query_definition_id: str,
     ) -> DeleteQueryDefinitionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_query_definition/)."""
         params: dict[str, object] = {
             "query_definition_id": query_definition_id,
         }
@@ -828,6 +857,7 @@ class CloudWatchLogsClient:
         resource_arn: str | None = None,
         expected_revision_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
         }
         if policy_name is not None:
@@ -855,6 +885,7 @@ class CloudWatchLogsClient:
         *,
         log_group_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_retention_policy/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
@@ -877,6 +908,7 @@ class CloudWatchLogsClient:
         *,
         identifier: str,
     ) -> DeleteScheduledQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_scheduled_query/)."""
         params: dict[str, object] = {
             "identifier": identifier,
         }
@@ -900,6 +932,7 @@ class CloudWatchLogsClient:
         log_group_name: str,
         filter_name: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_subscription_filter/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "filter_name": filter_name,
@@ -924,6 +957,7 @@ class CloudWatchLogsClient:
         log_group_identifier: str,
         vpc_endpoint_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_syslog_configuration/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
@@ -948,6 +982,7 @@ class CloudWatchLogsClient:
         *,
         log_group_identifier: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_transformer/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
@@ -973,6 +1008,7 @@ class CloudWatchLogsClient:
         account_identifiers: Sequence[str] | None = None,
         next_token: str | None = None,
     ) -> DescribeAccountPoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_account_policies/)."""
         params: dict[str, object] = {
             "policy_type": policy_type,
         }
@@ -1006,6 +1042,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> DescribeConfigurationTemplatesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_configuration_templates/)."""
         params: dict[str, object] = {
         }
         if service is not None:
@@ -1041,6 +1078,7 @@ class CloudWatchLogsClient:
         limit: int | None = None,
         delivery_source_names: Sequence[str] | None = None,
     ) -> DescribeDeliveriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_deliveries/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1070,6 +1108,7 @@ class CloudWatchLogsClient:
         limit: int | None = None,
         names: Sequence[str] | None = None,
     ) -> DescribeDeliveryDestinationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_delivery_destinations/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1099,6 +1138,7 @@ class CloudWatchLogsClient:
         limit: int | None = None,
         resource_arns: Sequence[str] | None = None,
     ) -> DescribeDeliverySourcesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_delivery_sources/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1128,6 +1168,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> DescribeDestinationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_destinations/)."""
         params: dict[str, object] = {
         }
         if destination_name_prefix is not None:
@@ -1158,6 +1199,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> DescribeExportTasksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_export_tasks/)."""
         params: dict[str, object] = {
         }
         if task_id is not None:
@@ -1189,6 +1231,7 @@ class CloudWatchLogsClient:
         index_categories: Sequence[IndexCategory] | None = None,
         next_token: str | None = None,
     ) -> DescribeFieldIndexesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_field_indexes/)."""
         params: dict[str, object] = {
             "log_group_identifiers": log_group_identifiers,
         }
@@ -1218,6 +1261,7 @@ class CloudWatchLogsClient:
         limit: int | None = None,
         next_token: str | None = None,
     ) -> DescribeImportTaskBatchesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_import_task_batches/)."""
         params: dict[str, object] = {
             "import_id": import_id,
         }
@@ -1250,6 +1294,7 @@ class CloudWatchLogsClient:
         limit: int | None = None,
         next_token: str | None = None,
     ) -> DescribeImportTasksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_import_tasks/)."""
         params: dict[str, object] = {
         }
         if import_id is not None:
@@ -1282,6 +1327,7 @@ class CloudWatchLogsClient:
         log_group_identifiers: Sequence[str],
         next_token: str | None = None,
     ) -> DescribeIndexPoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_index_policies/)."""
         params: dict[str, object] = {
             "log_group_identifiers": log_group_identifiers,
         }
@@ -1313,6 +1359,7 @@ class CloudWatchLogsClient:
         log_group_class: LogGroupClass | None = None,
         log_group_identifiers: Sequence[str] | None = None,
     ) -> DescribeLogGroupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_log_groups/)."""
         params: dict[str, object] = {
         }
         if account_identifiers is not None:
@@ -1356,6 +1403,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> DescribeLogStreamsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_log_streams/)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -1393,6 +1441,7 @@ class CloudWatchLogsClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeLookupTablesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_lookup_tables/)."""
         params: dict[str, object] = {
         }
         if lookup_table_name_prefix is not None:
@@ -1425,6 +1474,7 @@ class CloudWatchLogsClient:
         metric_name: str | None = None,
         metric_namespace: str | None = None,
     ) -> DescribeMetricFiltersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_metric_filters/)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -1462,6 +1512,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         query_language: QueryLanguage | None = None,
     ) -> DescribeQueriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_queries/)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -1496,6 +1547,7 @@ class CloudWatchLogsClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeQueryDefinitionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_query_definitions/)."""
         params: dict[str, object] = {
         }
         if query_language is not None:
@@ -1528,6 +1580,7 @@ class CloudWatchLogsClient:
         resource_arn: str | None = None,
         policy_scope: PolicyScope | None = None,
     ) -> DescribeResourcePoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_resource_policies/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1560,6 +1613,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> DescribeSubscriptionFiltersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/describe_subscription_filters/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
@@ -1589,6 +1643,7 @@ class CloudWatchLogsClient:
         log_group_name: str | None = None,
         resource_identifier: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/disassociate_kms_key/)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -1614,6 +1669,7 @@ class CloudWatchLogsClient:
         *,
         identifier: str,
     ) -> DisassociateSourceFromS3TableIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/disassociate_source_from_s3_table_integration/)."""
         params: dict[str, object] = {
             "identifier": identifier,
         }
@@ -1647,6 +1703,7 @@ class CloudWatchLogsClient:
         interleaved: bool | None = None,
         unmask: bool | None = None,
     ) -> FilterLogEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/filter_log_events/)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -1692,6 +1749,7 @@ class CloudWatchLogsClient:
         *,
         log_group_identifier: str,
     ) -> GetDataProtectionPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_data_protection_policy/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
@@ -1714,6 +1772,7 @@ class CloudWatchLogsClient:
         *,
         id: str,
     ) -> GetDeliveryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_delivery/)."""
         params: dict[str, object] = {
             "id": id,
         }
@@ -1736,6 +1795,7 @@ class CloudWatchLogsClient:
         *,
         name: str,
     ) -> GetDeliveryDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_delivery_destination/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1758,6 +1818,7 @@ class CloudWatchLogsClient:
         *,
         delivery_destination_name: str,
     ) -> GetDeliveryDestinationPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_delivery_destination_policy/)."""
         params: dict[str, object] = {
             "delivery_destination_name": delivery_destination_name,
         }
@@ -1780,6 +1841,7 @@ class CloudWatchLogsClient:
         *,
         name: str,
     ) -> GetDeliverySourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_delivery_source/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1802,6 +1864,7 @@ class CloudWatchLogsClient:
         *,
         integration_name: str,
     ) -> GetIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_integration/)."""
         params: dict[str, object] = {
             "integration_name": integration_name,
         }
@@ -1824,6 +1887,7 @@ class CloudWatchLogsClient:
         *,
         anomaly_detector_arn: str,
     ) -> GetLogAnomalyDetectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_log_anomaly_detector/)."""
         params: dict[str, object] = {
             "anomaly_detector_arn": anomaly_detector_arn,
         }
@@ -1854,6 +1918,7 @@ class CloudWatchLogsClient:
         start_from_head: bool | None = None,
         unmask: bool | None = None,
     ) -> GetLogEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_log_events/)."""
         params: dict[str, object] = {
             "log_stream_name": log_stream_name,
         }
@@ -1893,6 +1958,7 @@ class CloudWatchLogsClient:
         data_source_name: str,
         data_source_type: str,
     ) -> GetLogFieldsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_log_fields/)."""
         params: dict[str, object] = {
             "data_source_name": data_source_name,
             "data_source_type": data_source_type,
@@ -1918,6 +1984,7 @@ class CloudWatchLogsClient:
         time: int | None = None,
         log_group_identifier: str | None = None,
     ) -> GetLogGroupFieldsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_log_group_fields/)."""
         params: dict[str, object] = {
         }
         if log_group_name is not None:
@@ -1946,6 +2013,7 @@ class CloudWatchLogsClient:
         log_object_pointer: str,
         unmask: bool | None = None,
     ) -> GetLogObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_log_object/)."""
         params: dict[str, object] = {
             "log_object_pointer": log_object_pointer,
         }
@@ -1971,6 +2039,7 @@ class CloudWatchLogsClient:
         log_record_pointer: str,
         unmask: bool | None = None,
     ) -> GetLogRecordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_log_record/)."""
         params: dict[str, object] = {
             "log_record_pointer": log_record_pointer,
         }
@@ -1995,6 +2064,7 @@ class CloudWatchLogsClient:
         *,
         lookup_table_arn: str,
     ) -> GetLookupTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_lookup_table/)."""
         params: dict[str, object] = {
             "lookup_table_arn": lookup_table_arn,
         }
@@ -2019,6 +2089,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         max_items: int | None = None,
     ) -> GetQueryResultsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_query_results/)."""
         params: dict[str, object] = {
             "query_id": query_id,
         }
@@ -2045,6 +2116,7 @@ class CloudWatchLogsClient:
         *,
         identifier: str,
     ) -> GetScheduledQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_scheduled_query/)."""
         params: dict[str, object] = {
             "identifier": identifier,
         }
@@ -2072,6 +2144,7 @@ class CloudWatchLogsClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> GetScheduledQueryHistoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_scheduled_query_history/)."""
         params: dict[str, object] = {
             "identifier": identifier,
             "start_time": start_time,
@@ -2100,6 +2173,7 @@ class CloudWatchLogsClient:
     async def get_storage_tier_policy(
         self,
     ) -> GetStorageTierPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_storage_tier_policy/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
@@ -2121,6 +2195,7 @@ class CloudWatchLogsClient:
         *,
         log_group_identifier: str,
     ) -> GetTransformerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/get_transformer/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
@@ -2150,6 +2225,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListAggregateLogGroupSummariesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_aggregate_log_group_summaries/)."""
         params: dict[str, object] = {
             "group_by": group_by,
         }
@@ -2189,6 +2265,7 @@ class CloudWatchLogsClient:
         limit: int | None = None,
         next_token: str | None = None,
     ) -> ListAnomaliesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_anomalies/)."""
         params: dict[str, object] = {
         }
         if anomaly_detector_arn is not None:
@@ -2220,6 +2297,7 @@ class CloudWatchLogsClient:
         integration_type: IntegrationType | None = None,
         integration_status: IntegrationStatus | None = None,
     ) -> ListIntegrationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_integrations/)."""
         params: dict[str, object] = {
         }
         if integration_name_prefix is not None:
@@ -2249,6 +2327,7 @@ class CloudWatchLogsClient:
         limit: int | None = None,
         next_token: str | None = None,
     ) -> ListLogAnomalyDetectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_log_anomaly_detectors/)."""
         params: dict[str, object] = {
         }
         if filter_log_group_arn is not None:
@@ -2284,6 +2363,7 @@ class CloudWatchLogsClient:
         field_index_names: Sequence[str] | None = None,
         log_group_tags: Sequence[TagFilter] | None = None,
     ) -> ListLogGroupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_log_groups/)."""
         params: dict[str, object] = {
         }
         if log_group_name_pattern is not None:
@@ -2325,6 +2405,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListLogGroupsForQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_log_groups_for_query/)."""
         params: dict[str, object] = {
             "query_id": query_id,
         }
@@ -2354,6 +2435,7 @@ class CloudWatchLogsClient:
         state: ScheduledQueryState | None = None,
         schedule_type: ScheduleType | None = None,
     ) -> ListScheduledQueriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_scheduled_queries/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2385,6 +2467,7 @@ class CloudWatchLogsClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListSourcesForS3TableIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_sources_for_s3_table_integration/)."""
         params: dict[str, object] = {
             "integration_arn": integration_arn,
         }
@@ -2414,6 +2497,7 @@ class CloudWatchLogsClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListSyslogConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_syslog_configurations/)."""
         params: dict[str, object] = {
         }
         if log_group_identifier is not None:
@@ -2443,6 +2527,7 @@ class CloudWatchLogsClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2465,6 +2550,7 @@ class CloudWatchLogsClient:
         *,
         log_group_name: str,
     ) -> ListTagsLogGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/list_tags_log_group/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
@@ -2491,6 +2577,7 @@ class CloudWatchLogsClient:
         scope: Scope | None = None,
         selection_criteria: str | None = None,
     ) -> PutAccountPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_account_policy/)."""
         params: dict[str, object] = {
             "policy_name": policy_name,
             "policy_document": policy_document,
@@ -2520,6 +2607,7 @@ class CloudWatchLogsClient:
         log_group_identifier: str,
         bearer_token_authentication_enabled: bool,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_bearer_token_authentication/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
             "bearer_token_authentication_enabled": bearer_token_authentication_enabled,
@@ -2544,6 +2632,7 @@ class CloudWatchLogsClient:
         log_group_identifier: str,
         policy_document: str,
     ) -> PutDataProtectionPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_data_protection_policy/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
             "policy_document": policy_document,
@@ -2572,6 +2661,7 @@ class CloudWatchLogsClient:
         role_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> PutDeliveryDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_delivery_destination/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2605,6 +2695,7 @@ class CloudWatchLogsClient:
         delivery_destination_name: str,
         delivery_destination_policy: str,
     ) -> PutDeliveryDestinationPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_delivery_destination_policy/)."""
         params: dict[str, object] = {
             "delivery_destination_name": delivery_destination_name,
             "delivery_destination_policy": delivery_destination_policy,
@@ -2632,6 +2723,7 @@ class CloudWatchLogsClient:
         tags: dict[str, str] | None = None,
         delivery_source_configuration: dict[str, str] | None = None,
     ) -> PutDeliverySourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_delivery_source/)."""
         params: dict[str, object] = {
             "name": name,
             "resource_arn": resource_arn,
@@ -2663,6 +2755,7 @@ class CloudWatchLogsClient:
         role_arn: str,
         tags: dict[str, str] | None = None,
     ) -> PutDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_destination/)."""
         params: dict[str, object] = {
             "destination_name": destination_name,
             "target_arn": target_arn,
@@ -2691,6 +2784,7 @@ class CloudWatchLogsClient:
         access_policy: str,
         force_update: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_destination_policy/)."""
         params: dict[str, object] = {
             "destination_name": destination_name,
             "access_policy": access_policy,
@@ -2717,6 +2811,7 @@ class CloudWatchLogsClient:
         log_group_identifier: str,
         policy_document: str,
     ) -> PutIndexPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_index_policy/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
             "policy_document": policy_document,
@@ -2742,6 +2837,7 @@ class CloudWatchLogsClient:
         resource_config: ResourceConfig,
         integration_type: IntegrationType,
     ) -> PutIntegrationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_integration/)."""
         params: dict[str, object] = {
             "integration_name": integration_name,
             "resource_config": resource_config,
@@ -2770,6 +2866,7 @@ class CloudWatchLogsClient:
         sequence_token: str | None = None,
         entity: Entity | None = None,
     ) -> PutLogEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_log_events/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "log_stream_name": log_stream_name,
@@ -2799,6 +2896,7 @@ class CloudWatchLogsClient:
         log_group_identifier: str,
         deletion_protection_enabled: bool,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_log_group_deletion_protection/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
             "deletion_protection_enabled": deletion_protection_enabled,
@@ -2828,6 +2926,7 @@ class CloudWatchLogsClient:
         field_selection_criteria: str | None = None,
         emit_system_field_dimensions: Sequence[str] | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_metric_filter/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "filter_name": filter_name,
@@ -2865,6 +2964,7 @@ class CloudWatchLogsClient:
         client_token: str | None = None,
         parameters: Sequence[QueryParameter] | None = None,
     ) -> PutQueryDefinitionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_query_definition/)."""
         params: dict[str, object] = {
             "name": name,
             "query_string": query_string,
@@ -2901,6 +3001,7 @@ class CloudWatchLogsClient:
         resource_arn: str | None = None,
         expected_revision_id: str | None = None,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_resource_policy/)."""
         params: dict[str, object] = {
         }
         if policy_name is not None:
@@ -2931,6 +3032,7 @@ class CloudWatchLogsClient:
         log_group_name: str,
         retention_in_days: int,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_retention_policy/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "retention_in_days": retention_in_days,
@@ -2954,6 +3056,7 @@ class CloudWatchLogsClient:
         *,
         storage_tier: StorageTier,
     ) -> PutStorageTierPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_storage_tier_policy/)."""
         params: dict[str, object] = {
             "storage_tier": storage_tier,
         }
@@ -2984,6 +3087,7 @@ class CloudWatchLogsClient:
         field_selection_criteria: str | None = None,
         emit_system_fields: Sequence[str] | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_subscription_filter/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "filter_name": filter_name,
@@ -3020,6 +3124,7 @@ class CloudWatchLogsClient:
         log_group_identifier: str,
         vpc_endpoint_id: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_syslog_configuration/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
@@ -3045,6 +3150,7 @@ class CloudWatchLogsClient:
         log_group_identifier: str,
         transformer_config: Sequence[Processor],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_transformer/)."""
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
             "transformer_config": transformer_config,
@@ -3071,6 +3177,7 @@ class CloudWatchLogsClient:
         log_stream_name_prefixes: Sequence[str] | None = None,
         log_event_filter_pattern: str | None = None,
     ) -> StartLiveTailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/start_live_tail/)."""
         params: dict[str, object] = {
             "log_group_identifiers": log_group_identifiers,
         }
@@ -3106,6 +3213,7 @@ class CloudWatchLogsClient:
         log_group_identifiers: Sequence[str] | None = None,
         limit: int | None = None,
     ) -> StartQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/start_query/)."""
         params: dict[str, object] = {
             "start_time": start_time,
             "end_time": end_time,
@@ -3140,6 +3248,7 @@ class CloudWatchLogsClient:
         *,
         query_id: str,
     ) -> StopQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/stop_query/)."""
         params: dict[str, object] = {
             "query_id": query_id,
         }
@@ -3163,6 +3272,7 @@ class CloudWatchLogsClient:
         log_group_name: str,
         tags: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/tag_log_group/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "tags": tags,
@@ -3187,6 +3297,7 @@ class CloudWatchLogsClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -3211,6 +3322,7 @@ class CloudWatchLogsClient:
         filter_pattern: str,
         log_event_messages: Sequence[str],
     ) -> TestMetricFilterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/test_metric_filter/)."""
         params: dict[str, object] = {
             "filter_pattern": filter_pattern,
             "log_event_messages": log_event_messages,
@@ -3235,6 +3347,7 @@ class CloudWatchLogsClient:
         transformer_config: Sequence[Processor],
         log_event_messages: Sequence[str],
     ) -> TestTransformerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/test_transformer/)."""
         params: dict[str, object] = {
             "transformer_config": transformer_config,
             "log_event_messages": log_event_messages,
@@ -3259,6 +3372,7 @@ class CloudWatchLogsClient:
         log_group_name: str,
         tags: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/untag_log_group/)."""
         params: dict[str, object] = {
             "log_group_name": log_group_name,
             "tags": tags,
@@ -3283,6 +3397,7 @@ class CloudWatchLogsClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -3311,6 +3426,7 @@ class CloudWatchLogsClient:
         suppression_period: SuppressionPeriod | None = None,
         baseline: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/update_anomaly/)."""
         params: dict[str, object] = {
             "anomaly_detector_arn": anomaly_detector_arn,
         }
@@ -3346,6 +3462,7 @@ class CloudWatchLogsClient:
         field_delimiter: str | None = None,
         s3_delivery_configuration: S3DeliveryConfiguration | None = None,
     ) -> UpdateDeliveryConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/update_delivery_configuration/)."""
         params: dict[str, object] = {
             "id": id,
         }
@@ -3378,6 +3495,7 @@ class CloudWatchLogsClient:
         filter_pattern: str | None = None,
         anomaly_visibility_time: int | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/update_log_anomaly_detector/)."""
         params: dict[str, object] = {
             "anomaly_detector_arn": anomaly_detector_arn,
             "enabled": enabled,
@@ -3411,6 +3529,7 @@ class CloudWatchLogsClient:
         query_id: str | None = None,
         kms_key_id: str | None = None,
     ) -> UpdateLookupTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/update_lookup_table/)."""
         params: dict[str, object] = {
             "lookup_table_arn": lookup_table_arn,
         }
@@ -3454,6 +3573,7 @@ class CloudWatchLogsClient:
         schedule_end_time: int | None = None,
         state: ScheduledQueryState | None = None,
     ) -> UpdateScheduledQueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/update_scheduled_query/)."""
         params: dict[str, object] = {
             "identifier": identifier,
             "query_language": query_language,

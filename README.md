@@ -136,6 +136,8 @@ with both. Static typing does not replace service-side validation.
 
 See [types and responses](docs/guides/types.md) for unions and streaming outputs,
 or [Pydantic and dataclasses](docs/guides/models.md) for application-defined models.
+The [operation reference](https://ferrumio.github.io/rboto/reference/) documents
+signatures, nested types and Output fields. Method and type docstrings link to these pages.
 
 ## Choose your clients
 

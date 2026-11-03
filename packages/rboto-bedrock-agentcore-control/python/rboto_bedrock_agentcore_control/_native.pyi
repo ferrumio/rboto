@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,12 +18,14 @@ class ByteStream:
 
 @final
 class A2aDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/A2aDescriptorOutput/)."""
     @property
     def agent_card(self) -> AgentCardDefinition | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AgentCardDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/AgentCardDefinitionOutput/)."""
     @property
     def schema_version(self) -> str | None: ...
     @property
@@ -31,6 +34,7 @@ class AgentCardDefinition:
 
 @final
 class AgentRuntime:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/AgentRuntimeOutput/)."""
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -49,6 +53,7 @@ class AgentRuntime:
 
 @final
 class AgentRuntimeEndpoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/AgentRuntimeEndpointOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -73,6 +78,7 @@ class AgentRuntimeEndpoint:
 
 @final
 class AgentRuntimeVersionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/AgentRuntimeVersionSummaryOutput/)."""
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -83,6 +89,7 @@ class AgentRuntimeVersionSummary:
 
 @final
 class AgentSkillsDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/AgentSkillsDescriptorOutput/)."""
     @property
     def skill_md(self) -> SkillMdDefinition | None: ...
     @property
@@ -91,6 +98,7 @@ class AgentSkillsDescriptor:
 
 @final
 class ApiKeyCredentialProviderItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ApiKeyCredentialProviderItemOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -103,12 +111,14 @@ class ApiKeyCredentialProviderItem:
 
 @final
 class ApprovalConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ApprovalConfigurationOutput/)."""
     @property
     def auto_approval(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BrowserEnterprisePolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/BrowserEnterprisePolicyOutput/)."""
     @property
     def location(self) -> _types.ResourceLocationOutput | None: ...
     @property
@@ -117,6 +127,7 @@ class BrowserEnterprisePolicy:
 
 @final
 class BrowserNetworkConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/BrowserNetworkConfigurationOutput/)."""
     @property
     def network_mode(self) -> _types.BrowserNetworkModeOutput: ...
     @property
@@ -125,6 +136,7 @@ class BrowserNetworkConfiguration:
 
 @final
 class BrowserProfileSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/BrowserProfileSummaryOutput/)."""
     @property
     def profile_id(self) -> str: ...
     @property
@@ -149,12 +161,14 @@ class BrowserProfileSummary:
 
 @final
 class BrowserSigningConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/BrowserSigningConfigValueOutput/)."""
     @property
     def enabled(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BrowserSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/BrowserSummaryOutput/)."""
     @property
     def browser_id(self) -> str: ...
     @property
@@ -173,12 +187,14 @@ class BrowserSummary:
 
 @final
 class CapacityProviderConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CapacityProviderConfigurationOutput/)."""
     @property
     def capacity_provider_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CapacityProviderSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CapacityProviderSummaryOutput/)."""
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -193,12 +209,14 @@ class CapacityProviderSummary:
 
 @final
 class Certificate:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CertificateOutput/)."""
     @property
     def location(self) -> _types.CertificateLocationOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CloudWatchOutputConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CloudWatchOutputConfigOutput/)."""
     @property
     def log_group_name(self) -> str: ...
     @property
@@ -209,12 +227,14 @@ class CloudWatchOutputConfig:
 
 @final
 class ClusteringConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ClusteringConfigOutput/)."""
     @property
     def frequencies(self) -> list[_types.ClusteringFrequencyOutput]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CodeInterpreterNetworkConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CodeInterpreterNetworkConfigurationOutput/)."""
     @property
     def network_mode(self) -> _types.CodeInterpreterNetworkModeOutput: ...
     @property
@@ -223,6 +243,7 @@ class CodeInterpreterNetworkConfiguration:
 
 @final
 class CodeInterpreterSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CodeInterpreterSummaryOutput/)."""
     @property
     def code_interpreter_id(self) -> str: ...
     @property
@@ -241,12 +262,14 @@ class CodeInterpreterSummary:
 
 @final
 class ComponentConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ComponentConfigurationOutput/)."""
     @property
     def configuration(self) -> JSONValue: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ConfigurationBundleSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ConfigurationBundleSummaryOutput/)."""
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -261,6 +284,7 @@ class ConfigurationBundleSummary:
 
 @final
 class ConfigurationBundleVersionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ConfigurationBundleVersionSummaryOutput/)."""
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -275,6 +299,7 @@ class ConfigurationBundleVersionSummary:
 
 @final
 class ConsentPortalIdpConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ConsentPortalIdpConfigOutput/)."""
     @property
     def credential_provider_arn(self) -> str: ...
     @property
@@ -285,6 +310,7 @@ class ConsentPortalIdpConfig:
 
 @final
 class ConsentPortalSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ConsentPortalSourceOutput/)."""
     @property
     def identifier(self) -> str: ...
     @property
@@ -293,6 +319,7 @@ class ConsentPortalSource:
 
 @final
 class ConsentPortalSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ConsentPortalSummaryOutput/)."""
     @property
     def sources(self) -> list[ConsentPortalSource]: ...
     @property
@@ -315,6 +342,7 @@ class ConsentPortalSummary:
 
 @final
 class CredentialProviderConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CredentialProviderConfigurationOutput/)."""
     @property
     def credential_provider_type(self) -> _types.CredentialProviderTypeOutput: ...
     @property
@@ -323,18 +351,21 @@ class CredentialProviderConfiguration:
 
 @final
 class CustomDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CustomDescriptorOutput/)."""
     @property
     def inline_content(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CustomTransformConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CustomTransformConfigurationOutput/)."""
     @property
     def lambda_(self) -> LambdaTransformConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DatasetSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DatasetSummaryOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -359,6 +390,7 @@ class DatasetSummary:
 
 @final
 class DatasetVersionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DatasetVersionSummaryOutput/)."""
     @property
     def dataset_version(self) -> str: ...
     @property
@@ -369,6 +401,7 @@ class DatasetVersionSummary:
 
 @final
 class Descriptors:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DescriptorsOutput/)."""
     @property
     def mcp(self) -> McpDescriptor | None: ...
     @property
@@ -381,6 +414,7 @@ class Descriptors:
 
 @final
 class EvaluatorSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/EvaluatorSummaryOutput/)."""
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -409,6 +443,7 @@ class EvaluatorSummary:
 
 @final
 class Filter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/FilterOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -419,6 +454,7 @@ class Filter:
 
 @final
 class Finding:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/FindingOutput/)."""
     @property
     def type(self) -> _types.FindingTypeOutput | None: ...
     @property
@@ -427,6 +463,7 @@ class Finding:
 
 @final
 class FromUrlSynchronizationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/FromUrlSynchronizationConfigurationOutput/)."""
     @property
     def url(self) -> str: ...
     @property
@@ -435,6 +472,7 @@ class FromUrlSynchronizationConfiguration:
 
 @final
 class GatewayInterceptorConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GatewayInterceptorConfigurationOutput/)."""
     @property
     def interceptor(self) -> _types.InterceptorConfigurationOutput | None: ...
     @property
@@ -445,6 +483,7 @@ class GatewayInterceptorConfiguration:
 
 @final
 class GatewayPolicyEngineConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GatewayPolicyEngineConfigurationOutput/)."""
     @property
     def arn(self) -> str: ...
     @property
@@ -453,6 +492,7 @@ class GatewayPolicyEngineConfiguration:
 
 @final
 class GatewayRateLimitDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GatewayRateLimitDetailOutput/)."""
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -473,6 +513,7 @@ class GatewayRateLimitDetail:
 
 @final
 class GatewayRuleDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GatewayRuleDetailOutput/)."""
     @property
     def rule_id(self) -> str: ...
     @property
@@ -497,6 +538,7 @@ class GatewayRuleDetail:
 
 @final
 class GatewaySummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GatewaySummaryOutput/)."""
     @property
     def gateway_id(self) -> str: ...
     @property
@@ -517,6 +559,7 @@ class GatewaySummary:
 
 @final
 class GatewayTarget:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GatewayTargetOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -555,6 +598,7 @@ class GatewayTarget:
 
 @final
 class Harness:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/HarnessOutput/)."""
     @property
     def harness_id(self) -> str: ...
     @property
@@ -607,6 +651,7 @@ class Harness:
 
 @final
 class HarnessEndpoint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/HarnessEndpointOutput/)."""
     @property
     def harness_id(self) -> str: ...
     @property
@@ -633,6 +678,7 @@ class HarnessEndpoint:
 
 @final
 class HarnessSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/HarnessSummaryOutput/)."""
     @property
     def harness_id(self) -> str: ...
     @property
@@ -651,6 +697,7 @@ class HarnessSummary:
 
 @final
 class HarnessTool:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/HarnessToolOutput/)."""
     @property
     def type(self) -> _types.HarnessToolTypeOutput: ...
     @property
@@ -661,6 +708,7 @@ class HarnessTool:
 
 @final
 class HarnessTruncationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/HarnessTruncationConfigurationOutput/)."""
     @property
     def strategy(self) -> _types.HarnessTruncationStrategyOutput: ...
     @property
@@ -669,6 +717,7 @@ class HarnessTruncationConfiguration:
 
 @final
 class HarnessVersionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/HarnessVersionSummaryOutput/)."""
     @property
     def harness_id(self) -> str: ...
     @property
@@ -689,6 +738,7 @@ class HarnessVersionSummary:
 
 @final
 class IndexedKey:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/IndexedKeyOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -697,12 +747,14 @@ class IndexedKey:
 
 @final
 class Insight:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/InsightOutput/)."""
     @property
     def insight_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InterceptorInputConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/InterceptorInputConfigurationOutput/)."""
     @property
     def pass_request_headers(self) -> bool: ...
     @property
@@ -711,12 +763,14 @@ class InterceptorInputConfiguration:
 
 @final
 class InterceptorPayloadFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/InterceptorPayloadFilterOutput/)."""
     @property
     def exclude(self) -> list[_types.InterceptorPayloadExclusionSelectorOutput]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InvocationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/InvocationConfigurationOutput/)."""
     @property
     def topic_arn(self) -> str: ...
     @property
@@ -725,6 +779,7 @@ class InvocationConfiguration:
 
 @final
 class KmsConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/KmsConfigurationOutput/)."""
     @property
     def key_type(self) -> _types.KeyTypeOutput: ...
     @property
@@ -733,12 +788,14 @@ class KmsConfiguration:
 
 @final
 class LambdaTransformConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/LambdaTransformConfigurationOutput/)."""
     @property
     def arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class LifecycleConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/LifecycleConfigurationValueOutput/)."""
     @property
     def idle_runtime_session_timeout(self) -> int | None: ...
     @property
@@ -747,6 +804,7 @@ class LifecycleConfiguration:
 
 @final
 class LimitEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/LimitEntryOutput/)."""
     @property
     def dimensions(self) -> dict[str, str]: ...
     @property
@@ -759,6 +817,7 @@ class LimitEntry:
 
 @final
 class ManagedResourceDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ManagedResourceDetailsOutput/)."""
     @property
     def domain(self) -> str | None: ...
     @property
@@ -769,6 +828,7 @@ class ManagedResourceDetails:
 
 @final
 class McpDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/McpDescriptorOutput/)."""
     @property
     def server(self) -> ServerDefinition | None: ...
     @property
@@ -777,6 +837,7 @@ class McpDescriptor:
 
 @final
 class Memory:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/MemoryOutput/)."""
     @property
     def arn(self) -> str: ...
     @property
@@ -813,12 +874,14 @@ class Memory:
 
 @final
 class MemoryRecordSchema:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/MemoryRecordSchemaValueOutput/)."""
     @property
     def metadata_schema(self) -> list[MetadataSchemaEntry] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MemoryStrategy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/MemoryStrategyOutput/)."""
     @property
     def strategy_id(self) -> str: ...
     @property
@@ -847,6 +910,7 @@ class MemoryStrategy:
 
 @final
 class MemorySummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/MemorySummaryOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -863,6 +927,7 @@ class MemorySummary:
 
 @final
 class MetadataConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/MetadataConfigurationOutput/)."""
     @property
     def allowed_request_headers(self) -> list[str] | None: ...
     @property
@@ -873,6 +938,7 @@ class MetadataConfiguration:
 
 @final
 class MetadataSchemaEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/MetadataSchemaEntryValueOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -885,6 +951,7 @@ class MetadataSchemaEntry:
 
 @final
 class NamespaceKeyEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/NamespaceKeyEntryOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -893,6 +960,7 @@ class NamespaceKeyEntry:
 
 @final
 class NamespaceKeyValidation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/NamespaceKeyValidationOutput/)."""
     @property
     def allowed_values(self) -> list[str] | None: ...
     @property
@@ -901,6 +969,7 @@ class NamespaceKeyValidation:
 
 @final
 class NetworkConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/NetworkConfigurationValueOutput/)."""
     @property
     def network_mode(self) -> _types.NetworkModeOutput: ...
     @property
@@ -909,6 +978,7 @@ class NetworkConfiguration:
 
 @final
 class Oauth2CredentialProviderItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/Oauth2CredentialProviderItemOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -923,6 +993,7 @@ class Oauth2CredentialProviderItem:
 
 @final
 class OnlineEvaluationConfigSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/OnlineEvaluationConfigSummaryOutput/)."""
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -949,12 +1020,14 @@ class OnlineEvaluationConfigSummary:
 
 @final
 class OutputConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/OutputConfigOutput/)."""
     @property
     def cloud_watch_config(self) -> CloudWatchOutputConfig | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PaymentConnectorSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PaymentConnectorSummaryOutput/)."""
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -971,6 +1044,7 @@ class PaymentConnectorSummary:
 
 @final
 class PaymentCredentialProviderItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PaymentCredentialProviderItemOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -985,6 +1059,7 @@ class PaymentCredentialProviderItem:
 
 @final
 class PaymentManagerSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PaymentManagerSummaryOutput/)."""
     @property
     def payment_manager_arn(self) -> str: ...
     @property
@@ -1009,12 +1084,14 @@ class PaymentManagerSummary:
 
 @final
 class PermissionsConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PermissionsConfigurationOutput/)."""
     @property
     def capacity_provider_operator_role_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Policy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PolicyOutput/)."""
     @property
     def policy_id(self) -> str: ...
     @property
@@ -1041,6 +1118,7 @@ class Policy:
 
 @final
 class PolicyEngine:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PolicyEngineOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -1063,6 +1141,7 @@ class PolicyEngine:
 
 @final
 class PolicyEngineSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PolicyEngineSummaryOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -1081,6 +1160,7 @@ class PolicyEngineSummary:
 
 @final
 class PolicyGeneration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PolicyGenerationOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -1105,6 +1185,7 @@ class PolicyGeneration:
 
 @final
 class PolicyGenerationAsset:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PolicyGenerationAssetOutput/)."""
     @property
     def policy_generation_asset_id(self) -> str: ...
     @property
@@ -1117,6 +1198,7 @@ class PolicyGenerationAsset:
 
 @final
 class PolicyGenerationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PolicyGenerationSummaryOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -1139,6 +1221,7 @@ class PolicyGenerationSummary:
 
 @final
 class PolicySummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PolicySummaryOutput/)."""
     @property
     def policy_id(self) -> str: ...
     @property
@@ -1159,12 +1242,14 @@ class PolicySummary:
 
 @final
 class ProtocolConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ProtocolConfigurationOutput/)."""
     @property
     def server_protocol(self) -> _types.ServerProtocolOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RateConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RateConfigOutput/)."""
     @property
     def rate(self) -> float: ...
     @property
@@ -1173,6 +1258,7 @@ class RateConfig:
 
 @final
 class RecordingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RecordingConfigOutput/)."""
     @property
     def enabled(self) -> bool: ...
     @property
@@ -1181,6 +1267,7 @@ class RecordingConfig:
 
 @final
 class RegistryRecordCredentialProviderConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RegistryRecordCredentialProviderConfigurationOutput/)."""
     @property
     def credential_provider_type(self) -> _types.RegistryRecordCredentialProviderTypeOutput: ...
     @property
@@ -1189,6 +1276,7 @@ class RegistryRecordCredentialProviderConfiguration:
 
 @final
 class RegistryRecordSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RegistryRecordSummaryOutput/)."""
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -1213,6 +1301,7 @@ class RegistryRecordSummary:
 
 @final
 class RegistrySummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RegistrySummaryOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1235,6 +1324,7 @@ class RegistrySummary:
 
 @final
 class Rule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RuleOutput/)."""
     @property
     def sampling_config(self) -> SamplingConfig | None: ...
     @property
@@ -1245,12 +1335,14 @@ class Rule:
 
 @final
 class RuntimeMetadataConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RuntimeMetadataConfigurationOutput/)."""
     @property
     def require_mmdsv2(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class S3Location:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/S3LocationValueOutput/)."""
     @property
     def bucket(self) -> str: ...
     @property
@@ -1261,18 +1353,21 @@ class S3Location:
 
 @final
 class SamplingConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SamplingConfigOutput/)."""
     @property
     def sampling_percentage(self) -> float: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Secret:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SecretOutput/)."""
     @property
     def secret_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SelfManagedConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SelfManagedConfigurationOutput/)."""
     @property
     def trigger_conditions(self) -> list[_types.TriggerCondition]: ...
     @property
@@ -1283,6 +1378,7 @@ class SelfManagedConfiguration:
 
 @final
 class ServerDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ServerDefinitionOutput/)."""
     @property
     def schema_version(self) -> str | None: ...
     @property
@@ -1291,12 +1387,14 @@ class ServerDefinition:
 
 @final
 class SessionConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SessionConfigOutput/)."""
     @property
     def session_timeout_minutes(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SkillDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SkillDefinitionOutput/)."""
     @property
     def schema_version(self) -> str | None: ...
     @property
@@ -1305,12 +1403,14 @@ class SkillDefinition:
 
 @final
 class SkillMdDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SkillMdDefinitionOutput/)."""
     @property
     def inline_content(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StrategyConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/StrategyConfigurationOutput/)."""
     @property
     def type(self) -> _types.OverrideTypeOutput | None: ...
     @property
@@ -1325,24 +1425,28 @@ class StrategyConfiguration:
 
 @final
 class StreamDeliveryResources:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/StreamDeliveryResourcesOutput/)."""
     @property
     def resources(self) -> list[_types.StreamDeliveryResourceOutput]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SynchronizationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SynchronizationConfigurationOutput/)."""
     @property
     def from_url(self) -> FromUrlSynchronizationConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SystemManagedBlock:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SystemManagedBlockOutput/)."""
     @property
     def managed_by(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TargetSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/TargetSummaryOutput/)."""
     @property
     def target_id(self) -> str: ...
     @property
@@ -1369,6 +1473,7 @@ class TargetSummary:
 
 @final
 class ToolsDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ToolsDefinitionOutput/)."""
     @property
     def protocol_version(self) -> str | None: ...
     @property
@@ -1377,6 +1482,7 @@ class ToolsDefinition:
 
 @final
 class VersionCreatedBySource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/VersionCreatedBySourceOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1385,6 +1491,7 @@ class VersionCreatedBySource:
 
 @final
 class VersionLineageMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/VersionLineageMetadataOutput/)."""
     @property
     def parent_version_ids(self) -> list[str] | None: ...
     @property
@@ -1397,6 +1504,7 @@ class VersionLineageMetadata:
 
 @final
 class VpcConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/VpcConfigValueOutput/)."""
     @property
     def security_groups(self) -> list[str]: ...
     @property
@@ -1407,18 +1515,21 @@ class VpcConfig:
 
 @final
 class WafConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/WafConfigurationOutput/)."""
     @property
     def failure_mode(self) -> _types.WafFailureModeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class WorkloadIdentityDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/WorkloadIdentityDetailsOutput/)."""
     @property
     def workload_identity_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class WorkloadIdentityType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/WorkloadIdentityTypeOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1427,6 +1538,7 @@ class WorkloadIdentityType:
 
 @final
 class AddDatasetExamplesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/AddDatasetExamplesOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -1443,12 +1555,14 @@ class AddDatasetExamplesOutput:
 
 @final
 class BatchPutGatewayRateLimitsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/BatchPutGatewayRateLimitsOutput/)."""
     @property
     def rate_limits(self) -> list[GatewayRateLimitDetail]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateAgentRuntimeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateAgentRuntimeOutput/)."""
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -1465,6 +1579,7 @@ class CreateAgentRuntimeOutput:
 
 @final
 class CreateAgentRuntimeEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateAgentRuntimeEndpointOutput/)."""
     @property
     def target_version(self) -> str: ...
     @property
@@ -1483,6 +1598,7 @@ class CreateAgentRuntimeEndpointOutput:
 
 @final
 class CreateApiKeyCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateApiKeyCredentialProviderOutput/)."""
     @property
     def api_key_secret_arn(self) -> Secret | None: ...
     @property
@@ -1497,6 +1613,7 @@ class CreateApiKeyCredentialProviderOutput:
 
 @final
 class CreateBrowserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateBrowserOutput/)."""
     @property
     def browser_id(self) -> str: ...
     @property
@@ -1509,6 +1626,7 @@ class CreateBrowserOutput:
 
 @final
 class CreateBrowserProfileOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateBrowserProfileOutput/)."""
     @property
     def profile_id(self) -> str: ...
     @property
@@ -1521,6 +1639,7 @@ class CreateBrowserProfileOutput:
 
 @final
 class CreateCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateCapacityProviderOutput/)."""
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -1533,6 +1652,7 @@ class CreateCapacityProviderOutput:
 
 @final
 class CreateCodeInterpreterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateCodeInterpreterOutput/)."""
     @property
     def code_interpreter_id(self) -> str: ...
     @property
@@ -1545,6 +1665,7 @@ class CreateCodeInterpreterOutput:
 
 @final
 class CreateConfigurationBundleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateConfigurationBundleOutput/)."""
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -1557,6 +1678,7 @@ class CreateConfigurationBundleOutput:
 
 @final
 class CreateConsentPortalOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateConsentPortalOutput/)."""
     @property
     def sources(self) -> list[ConsentPortalSource]: ...
     @property
@@ -1585,6 +1707,7 @@ class CreateConsentPortalOutput:
 
 @final
 class CreateDatasetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateDatasetOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -1597,6 +1720,7 @@ class CreateDatasetOutput:
 
 @final
 class CreateDatasetVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateDatasetVersionOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -1611,6 +1735,7 @@ class CreateDatasetVersionOutput:
 
 @final
 class CreateEvaluatorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateEvaluatorOutput/)."""
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -1623,6 +1748,7 @@ class CreateEvaluatorOutput:
 
 @final
 class CreateGatewayOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -1671,6 +1797,7 @@ class CreateGatewayOutput:
 
 @final
 class CreateGatewayRateLimitOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayRateLimitOutput/)."""
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -1691,6 +1818,7 @@ class CreateGatewayRateLimitOutput:
 
 @final
 class CreateGatewayRuleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayRuleOutput/)."""
     @property
     def rule_id(self) -> str: ...
     @property
@@ -1713,6 +1841,7 @@ class CreateGatewayRuleOutput:
 
 @final
 class CreateGatewayTargetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateGatewayTargetOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -1751,24 +1880,28 @@ class CreateGatewayTargetOutput:
 
 @final
 class CreateHarnessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateHarnessOutput/)."""
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateHarnessEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateHarnessEndpointOutput/)."""
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateMemoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateMemoryOutput/)."""
     @property
     def memory(self) -> Memory | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateOauth2CredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateOauth2CredentialProviderOutput/)."""
     @property
     def client_secret_arn(self) -> Secret | None: ...
     @property
@@ -1789,6 +1922,7 @@ class CreateOauth2CredentialProviderOutput:
 
 @final
 class CreateOnlineEvaluationConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateOnlineEvaluationConfigOutput/)."""
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -1807,6 +1941,7 @@ class CreateOnlineEvaluationConfigOutput:
 
 @final
 class CreatePaymentConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePaymentConnectorOutput/)."""
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -1827,6 +1962,7 @@ class CreatePaymentConnectorOutput:
 
 @final
 class CreatePaymentCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePaymentCredentialProviderOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1839,6 +1975,7 @@ class CreatePaymentCredentialProviderOutput:
 
 @final
 class CreatePaymentManagerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePaymentManagerOutput/)."""
     @property
     def payment_manager_arn(self) -> str: ...
     @property
@@ -1865,6 +2002,7 @@ class CreatePaymentManagerOutput:
 
 @final
 class CreatePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePolicyOutput/)."""
     @property
     def policy_id(self) -> str: ...
     @property
@@ -1891,6 +2029,7 @@ class CreatePolicyOutput:
 
 @final
 class CreatePolicyEngineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreatePolicyEngineOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -1913,12 +2052,14 @@ class CreatePolicyEngineOutput:
 
 @final
 class CreateRegistryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateRegistryOutput/)."""
     @property
     def registry_arn(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateRegistryRecordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateRegistryRecordOutput/)."""
     @property
     def record_arn(self) -> str: ...
     @property
@@ -1927,6 +2068,7 @@ class CreateRegistryRecordOutput:
 
 @final
 class CreateWorkloadIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/CreateWorkloadIdentityOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1937,6 +2079,7 @@ class CreateWorkloadIdentityOutput:
 
 @final
 class DeleteAgentRuntimeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteAgentRuntimeOutput/)."""
     @property
     def status(self) -> _types.AgentRuntimeStatusOutput: ...
     @property
@@ -1947,6 +2090,7 @@ class DeleteAgentRuntimeOutput:
 
 @final
 class DeleteAgentRuntimeEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteAgentRuntimeEndpointOutput/)."""
     @property
     def status(self) -> _types.AgentRuntimeEndpointStatusOutput: ...
     @property
@@ -1957,10 +2101,12 @@ class DeleteAgentRuntimeEndpointOutput:
 
 @final
 class DeleteApiKeyCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteApiKeyCredentialProviderOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteBrowserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteBrowserOutput/)."""
     @property
     def browser_id(self) -> str: ...
     @property
@@ -1971,6 +2117,7 @@ class DeleteBrowserOutput:
 
 @final
 class DeleteBrowserProfileOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteBrowserProfileOutput/)."""
     @property
     def profile_id(self) -> str: ...
     @property
@@ -1985,6 +2132,7 @@ class DeleteBrowserProfileOutput:
 
 @final
 class DeleteCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteCapacityProviderOutput/)."""
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -1993,6 +2141,7 @@ class DeleteCapacityProviderOutput:
 
 @final
 class DeleteCodeInterpreterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteCodeInterpreterOutput/)."""
     @property
     def code_interpreter_id(self) -> str: ...
     @property
@@ -2003,6 +2152,7 @@ class DeleteCodeInterpreterOutput:
 
 @final
 class DeleteConfigurationBundleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteConfigurationBundleOutput/)."""
     @property
     def bundle_arn(self) -> str | None: ...
     @property
@@ -2013,10 +2163,12 @@ class DeleteConfigurationBundleOutput:
 
 @final
 class DeleteConsentPortalOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteConsentPortalOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDatasetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteDatasetOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -2031,6 +2183,7 @@ class DeleteDatasetOutput:
 
 @final
 class DeleteDatasetExamplesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteDatasetExamplesOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -2045,6 +2198,7 @@ class DeleteDatasetExamplesOutput:
 
 @final
 class DeleteEvaluatorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteEvaluatorOutput/)."""
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -2055,6 +2209,7 @@ class DeleteEvaluatorOutput:
 
 @final
 class DeleteGatewayOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayOutput/)."""
     @property
     def gateway_id(self) -> str: ...
     @property
@@ -2065,6 +2220,7 @@ class DeleteGatewayOutput:
 
 @final
 class DeleteGatewayRateLimitOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayRateLimitOutput/)."""
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -2073,6 +2229,7 @@ class DeleteGatewayRateLimitOutput:
 
 @final
 class DeleteGatewayRuleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayRuleOutput/)."""
     @property
     def rule_id(self) -> str: ...
     @property
@@ -2081,6 +2238,7 @@ class DeleteGatewayRuleOutput:
 
 @final
 class DeleteGatewayTargetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteGatewayTargetOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -2093,18 +2251,21 @@ class DeleteGatewayTargetOutput:
 
 @final
 class DeleteHarnessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteHarnessOutput/)."""
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteHarnessEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteHarnessEndpointOutput/)."""
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMemoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteMemoryOutput/)."""
     @property
     def memory_id(self) -> str: ...
     @property
@@ -2113,10 +2274,12 @@ class DeleteMemoryOutput:
 
 @final
 class DeleteOauth2CredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteOauth2CredentialProviderOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteOnlineEvaluationConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteOnlineEvaluationConfigOutput/)."""
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -2127,6 +2290,7 @@ class DeleteOnlineEvaluationConfigOutput:
 
 @final
 class DeletePaymentConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePaymentConnectorOutput/)."""
     @property
     def status(self) -> _types.PaymentConnectorStatusOutput: ...
     @property
@@ -2135,10 +2299,12 @@ class DeletePaymentConnectorOutput:
 
 @final
 class DeletePaymentCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePaymentCredentialProviderOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePaymentManagerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePaymentManagerOutput/)."""
     @property
     def status(self) -> _types.PaymentManagerStatusOutput: ...
     @property
@@ -2147,6 +2313,7 @@ class DeletePaymentManagerOutput:
 
 @final
 class DeletePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePolicyOutput/)."""
     @property
     def policy_id(self) -> str: ...
     @property
@@ -2173,6 +2340,7 @@ class DeletePolicyOutput:
 
 @final
 class DeletePolicyEngineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeletePolicyEngineOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -2195,24 +2363,29 @@ class DeletePolicyEngineOutput:
 
 @final
 class DeleteRegistryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteRegistryOutput/)."""
     @property
     def status(self) -> _types.RegistryStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteRegistryRecordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteRegistryRecordOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteResourcePolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteWorkloadIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/DeleteWorkloadIdentityOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAgentRuntimeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetAgentRuntimeOutput/)."""
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -2261,6 +2434,7 @@ class GetAgentRuntimeOutput:
 
 @final
 class GetAgentRuntimeEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetAgentRuntimeEndpointOutput/)."""
     @property
     def live_version(self) -> str | None: ...
     @property
@@ -2287,6 +2461,7 @@ class GetAgentRuntimeEndpointOutput:
 
 @final
 class GetApiKeyCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetApiKeyCredentialProviderOutput/)."""
     @property
     def api_key_secret_arn(self) -> Secret | None: ...
     @property
@@ -2305,6 +2480,7 @@ class GetApiKeyCredentialProviderOutput:
 
 @final
 class GetBrowserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetBrowserOutput/)."""
     @property
     def browser_id(self) -> str: ...
     @property
@@ -2339,6 +2515,7 @@ class GetBrowserOutput:
 
 @final
 class GetBrowserProfileOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetBrowserProfileOutput/)."""
     @property
     def profile_id(self) -> str: ...
     @property
@@ -2363,6 +2540,7 @@ class GetBrowserProfileOutput:
 
 @final
 class GetCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetCapacityProviderOutput/)."""
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -2389,6 +2567,7 @@ class GetCapacityProviderOutput:
 
 @final
 class GetCodeInterpreterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetCodeInterpreterOutput/)."""
     @property
     def code_interpreter_id(self) -> str: ...
     @property
@@ -2417,6 +2596,7 @@ class GetCodeInterpreterOutput:
 
 @final
 class GetConfigurationBundleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetConfigurationBundleOutput/)."""
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -2441,6 +2621,7 @@ class GetConfigurationBundleOutput:
 
 @final
 class GetConfigurationBundleVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetConfigurationBundleVersionOutput/)."""
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -2465,6 +2646,7 @@ class GetConfigurationBundleVersionOutput:
 
 @final
 class GetConsentPortalOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetConsentPortalOutput/)."""
     @property
     def sources(self) -> list[ConsentPortalSource]: ...
     @property
@@ -2493,6 +2675,7 @@ class GetConsentPortalOutput:
 
 @final
 class GetDatasetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetDatasetOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -2529,6 +2712,7 @@ class GetDatasetOutput:
 
 @final
 class GetEvaluatorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetEvaluatorOutput/)."""
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -2559,6 +2743,7 @@ class GetEvaluatorOutput:
 
 @final
 class GetGatewayOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -2607,6 +2792,7 @@ class GetGatewayOutput:
 
 @final
 class GetGatewayRateLimitOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayRateLimitOutput/)."""
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -2627,6 +2813,7 @@ class GetGatewayRateLimitOutput:
 
 @final
 class GetGatewayRuleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayRuleOutput/)."""
     @property
     def rule_id(self) -> str: ...
     @property
@@ -2651,6 +2838,7 @@ class GetGatewayRuleOutput:
 
 @final
 class GetGatewayTargetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetGatewayTargetOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -2689,24 +2877,28 @@ class GetGatewayTargetOutput:
 
 @final
 class GetHarnessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetHarnessOutput/)."""
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetHarnessEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetHarnessEndpointOutput/)."""
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetMemoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetMemoryOutput/)."""
     @property
     def memory(self) -> Memory | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetOauth2CredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetOauth2CredentialProviderOutput/)."""
     @property
     def client_secret_arn(self) -> Secret | None: ...
     @property
@@ -2735,6 +2927,7 @@ class GetOauth2CredentialProviderOutput:
 
 @final
 class GetOnlineEvaluationConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetOnlineEvaluationConfigOutput/)."""
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -2771,6 +2964,7 @@ class GetOnlineEvaluationConfigOutput:
 
 @final
 class GetPaymentConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPaymentConnectorOutput/)."""
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -2797,6 +2991,7 @@ class GetPaymentConnectorOutput:
 
 @final
 class GetPaymentCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPaymentCredentialProviderOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -2815,6 +3010,7 @@ class GetPaymentCredentialProviderOutput:
 
 @final
 class GetPaymentManagerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPaymentManagerOutput/)."""
     @property
     def payment_manager_arn(self) -> str: ...
     @property
@@ -2845,6 +3041,7 @@ class GetPaymentManagerOutput:
 
 @final
 class GetPolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyOutput/)."""
     @property
     def policy_id(self) -> str: ...
     @property
@@ -2871,6 +3068,7 @@ class GetPolicyOutput:
 
 @final
 class GetPolicyEngineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyEngineOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -2893,6 +3091,7 @@ class GetPolicyEngineOutput:
 
 @final
 class GetPolicyEngineSummaryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyEngineSummaryOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -2911,6 +3110,7 @@ class GetPolicyEngineSummaryOutput:
 
 @final
 class GetPolicyGenerationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyGenerationOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -2935,6 +3135,7 @@ class GetPolicyGenerationOutput:
 
 @final
 class GetPolicyGenerationSummaryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicyGenerationSummaryOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -2957,6 +3158,7 @@ class GetPolicyGenerationSummaryOutput:
 
 @final
 class GetPolicySummaryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetPolicySummaryOutput/)."""
     @property
     def policy_id(self) -> str: ...
     @property
@@ -2977,6 +3179,7 @@ class GetPolicySummaryOutput:
 
 @final
 class GetRegistryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetRegistryOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -3003,6 +3206,7 @@ class GetRegistryOutput:
 
 @final
 class GetRegistryRecordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetRegistryRecordOutput/)."""
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -3035,12 +3239,14 @@ class GetRegistryRecordOutput:
 
 @final
 class GetResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetResourcePolicyOutput/)."""
     @property
     def policy(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetTokenVaultOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetTokenVaultOutput/)."""
     @property
     def token_vault_id(self) -> str: ...
     @property
@@ -3051,6 +3257,7 @@ class GetTokenVaultOutput:
 
 @final
 class GetWorkloadIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/GetWorkloadIdentityOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -3065,6 +3272,7 @@ class GetWorkloadIdentityOutput:
 
 @final
 class ListAgentRuntimeEndpointsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimeEndpointsOutput/)."""
     @property
     def runtime_endpoints(self) -> list[AgentRuntimeEndpoint]: ...
     @property
@@ -3073,6 +3281,7 @@ class ListAgentRuntimeEndpointsOutput:
 
 @final
 class ListAgentRuntimeVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimeVersionsOutput/)."""
     @property
     def agent_runtimes(self) -> list[AgentRuntime]: ...
     @property
@@ -3081,6 +3290,7 @@ class ListAgentRuntimeVersionsOutput:
 
 @final
 class ListAgentRuntimeVersionsByCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimeVersionsByCapacityProviderOutput/)."""
     @property
     def agent_runtimes(self) -> list[AgentRuntimeVersionSummary]: ...
     @property
@@ -3089,6 +3299,7 @@ class ListAgentRuntimeVersionsByCapacityProviderOutput:
 
 @final
 class ListAgentRuntimesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListAgentRuntimesOutput/)."""
     @property
     def agent_runtimes(self) -> list[AgentRuntime]: ...
     @property
@@ -3097,6 +3308,7 @@ class ListAgentRuntimesOutput:
 
 @final
 class ListApiKeyCredentialProvidersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListApiKeyCredentialProvidersOutput/)."""
     @property
     def credential_providers(self) -> list[ApiKeyCredentialProviderItem]: ...
     @property
@@ -3105,6 +3317,7 @@ class ListApiKeyCredentialProvidersOutput:
 
 @final
 class ListBrowserProfilesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListBrowserProfilesOutput/)."""
     @property
     def profile_summaries(self) -> list[BrowserProfileSummary]: ...
     @property
@@ -3113,6 +3326,7 @@ class ListBrowserProfilesOutput:
 
 @final
 class ListBrowsersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListBrowsersOutput/)."""
     @property
     def browser_summaries(self) -> list[BrowserSummary]: ...
     @property
@@ -3121,6 +3335,7 @@ class ListBrowsersOutput:
 
 @final
 class ListCapacityProvidersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListCapacityProvidersOutput/)."""
     @property
     def capacity_providers(self) -> list[CapacityProviderSummary]: ...
     @property
@@ -3129,6 +3344,7 @@ class ListCapacityProvidersOutput:
 
 @final
 class ListCodeInterpretersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListCodeInterpretersOutput/)."""
     @property
     def code_interpreter_summaries(self) -> list[CodeInterpreterSummary]: ...
     @property
@@ -3137,6 +3353,7 @@ class ListCodeInterpretersOutput:
 
 @final
 class ListConfigurationBundleVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListConfigurationBundleVersionsOutput/)."""
     @property
     def versions(self) -> list[ConfigurationBundleVersionSummary]: ...
     @property
@@ -3145,6 +3362,7 @@ class ListConfigurationBundleVersionsOutput:
 
 @final
 class ListConfigurationBundlesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListConfigurationBundlesOutput/)."""
     @property
     def bundles(self) -> list[ConfigurationBundleSummary]: ...
     @property
@@ -3153,6 +3371,7 @@ class ListConfigurationBundlesOutput:
 
 @final
 class ListConsentPortalsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListConsentPortalsOutput/)."""
     @property
     def consent_portals(self) -> list[ConsentPortalSummary]: ...
     @property
@@ -3161,6 +3380,7 @@ class ListConsentPortalsOutput:
 
 @final
 class ListDatasetExamplesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListDatasetExamplesOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -3175,6 +3395,7 @@ class ListDatasetExamplesOutput:
 
 @final
 class ListDatasetVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListDatasetVersionsOutput/)."""
     @property
     def versions(self) -> list[DatasetVersionSummary]: ...
     @property
@@ -3183,6 +3404,7 @@ class ListDatasetVersionsOutput:
 
 @final
 class ListDatasetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListDatasetsOutput/)."""
     @property
     def datasets(self) -> list[DatasetSummary]: ...
     @property
@@ -3191,6 +3413,7 @@ class ListDatasetsOutput:
 
 @final
 class ListEvaluatorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListEvaluatorsOutput/)."""
     @property
     def evaluators(self) -> list[EvaluatorSummary]: ...
     @property
@@ -3199,6 +3422,7 @@ class ListEvaluatorsOutput:
 
 @final
 class ListGatewayRateLimitsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewayRateLimitsOutput/)."""
     @property
     def rate_limits(self) -> list[GatewayRateLimitDetail]: ...
     @property
@@ -3207,6 +3431,7 @@ class ListGatewayRateLimitsOutput:
 
 @final
 class ListGatewayRulesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewayRulesOutput/)."""
     @property
     def gateway_rules(self) -> list[GatewayRuleDetail]: ...
     @property
@@ -3215,6 +3440,7 @@ class ListGatewayRulesOutput:
 
 @final
 class ListGatewayTargetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewayTargetsOutput/)."""
     @property
     def items(self) -> list[TargetSummary]: ...
     @property
@@ -3223,6 +3449,7 @@ class ListGatewayTargetsOutput:
 
 @final
 class ListGatewaysOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListGatewaysOutput/)."""
     @property
     def items(self) -> list[GatewaySummary]: ...
     @property
@@ -3231,6 +3458,7 @@ class ListGatewaysOutput:
 
 @final
 class ListHarnessEndpointsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListHarnessEndpointsOutput/)."""
     @property
     def endpoints(self) -> list[HarnessEndpoint]: ...
     @property
@@ -3239,6 +3467,7 @@ class ListHarnessEndpointsOutput:
 
 @final
 class ListHarnessVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListHarnessVersionsOutput/)."""
     @property
     def harness_versions(self) -> list[HarnessVersionSummary]: ...
     @property
@@ -3247,6 +3476,7 @@ class ListHarnessVersionsOutput:
 
 @final
 class ListHarnessesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListHarnessesOutput/)."""
     @property
     def harnesses(self) -> list[HarnessSummary]: ...
     @property
@@ -3255,6 +3485,7 @@ class ListHarnessesOutput:
 
 @final
 class ListMemoriesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListMemoriesOutput/)."""
     @property
     def memories(self) -> list[MemorySummary]: ...
     @property
@@ -3263,6 +3494,7 @@ class ListMemoriesOutput:
 
 @final
 class ListOauth2CredentialProvidersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListOauth2CredentialProvidersOutput/)."""
     @property
     def credential_providers(self) -> list[Oauth2CredentialProviderItem]: ...
     @property
@@ -3271,6 +3503,7 @@ class ListOauth2CredentialProvidersOutput:
 
 @final
 class ListOnlineEvaluationConfigsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListOnlineEvaluationConfigsOutput/)."""
     @property
     def online_evaluation_configs(self) -> list[OnlineEvaluationConfigSummary]: ...
     @property
@@ -3279,6 +3512,7 @@ class ListOnlineEvaluationConfigsOutput:
 
 @final
 class ListPaymentConnectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPaymentConnectorsOutput/)."""
     @property
     def payment_connectors(self) -> list[PaymentConnectorSummary]: ...
     @property
@@ -3287,6 +3521,7 @@ class ListPaymentConnectorsOutput:
 
 @final
 class ListPaymentCredentialProvidersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPaymentCredentialProvidersOutput/)."""
     @property
     def credential_providers(self) -> list[PaymentCredentialProviderItem]: ...
     @property
@@ -3295,6 +3530,7 @@ class ListPaymentCredentialProvidersOutput:
 
 @final
 class ListPaymentManagersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPaymentManagersOutput/)."""
     @property
     def payment_managers(self) -> list[PaymentManagerSummary]: ...
     @property
@@ -3303,6 +3539,7 @@ class ListPaymentManagersOutput:
 
 @final
 class ListPoliciesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPoliciesOutput/)."""
     @property
     def policies(self) -> list[Policy]: ...
     @property
@@ -3311,6 +3548,7 @@ class ListPoliciesOutput:
 
 @final
 class ListPolicyEngineSummariesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyEngineSummariesOutput/)."""
     @property
     def policy_engines(self) -> list[PolicyEngineSummary]: ...
     @property
@@ -3319,6 +3557,7 @@ class ListPolicyEngineSummariesOutput:
 
 @final
 class ListPolicyEnginesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyEnginesOutput/)."""
     @property
     def policy_engines(self) -> list[PolicyEngine]: ...
     @property
@@ -3327,6 +3566,7 @@ class ListPolicyEnginesOutput:
 
 @final
 class ListPolicyGenerationAssetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyGenerationAssetsOutput/)."""
     @property
     def policy_generation_assets(self) -> list[PolicyGenerationAsset] | None: ...
     @property
@@ -3335,6 +3575,7 @@ class ListPolicyGenerationAssetsOutput:
 
 @final
 class ListPolicyGenerationSummariesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyGenerationSummariesOutput/)."""
     @property
     def policy_generations(self) -> list[PolicyGenerationSummary]: ...
     @property
@@ -3343,6 +3584,7 @@ class ListPolicyGenerationSummariesOutput:
 
 @final
 class ListPolicyGenerationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicyGenerationsOutput/)."""
     @property
     def policy_generations(self) -> list[PolicyGeneration]: ...
     @property
@@ -3351,6 +3593,7 @@ class ListPolicyGenerationsOutput:
 
 @final
 class ListPolicySummariesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListPolicySummariesOutput/)."""
     @property
     def policies(self) -> list[PolicySummary]: ...
     @property
@@ -3359,6 +3602,7 @@ class ListPolicySummariesOutput:
 
 @final
 class ListRegistriesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListRegistriesOutput/)."""
     @property
     def registries(self) -> list[RegistrySummary]: ...
     @property
@@ -3367,6 +3611,7 @@ class ListRegistriesOutput:
 
 @final
 class ListRegistryRecordsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListRegistryRecordsOutput/)."""
     @property
     def registry_records(self) -> list[RegistryRecordSummary]: ...
     @property
@@ -3375,12 +3620,14 @@ class ListRegistryRecordsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListWorkloadIdentitiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ListWorkloadIdentitiesOutput/)."""
     @property
     def workload_identities(self) -> list[WorkloadIdentityType]: ...
     @property
@@ -3389,12 +3636,14 @@ class ListWorkloadIdentitiesOutput:
 
 @final
 class PutResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/PutResourcePolicyOutput/)."""
     @property
     def policy(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RotatePaymentConnectorCredentialsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/RotatePaymentConnectorCredentialsOutput/)."""
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -3407,6 +3656,7 @@ class RotatePaymentConnectorCredentialsOutput:
 
 @final
 class SetTokenVaultCMKOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SetTokenVaultCMKOutput/)."""
     @property
     def token_vault_id(self) -> str: ...
     @property
@@ -3417,6 +3667,7 @@ class SetTokenVaultCMKOutput:
 
 @final
 class StartPolicyGenerationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/StartPolicyGenerationOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -3441,6 +3692,7 @@ class StartPolicyGenerationOutput:
 
 @final
 class SubmitRegistryRecordForApprovalOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SubmitRegistryRecordForApprovalOutput/)."""
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -3455,20 +3707,24 @@ class SubmitRegistryRecordForApprovalOutput:
 
 @final
 class SynchronizeGatewayTargetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SynchronizeGatewayTargetsOutput/)."""
     @property
     def targets(self) -> list[GatewayTarget] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateAgentRuntimeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateAgentRuntimeOutput/)."""
     @property
     def agent_runtime_arn(self) -> str: ...
     @property
@@ -3487,6 +3743,7 @@ class UpdateAgentRuntimeOutput:
 
 @final
 class UpdateAgentRuntimeEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateAgentRuntimeEndpointOutput/)."""
     @property
     def live_version(self) -> str | None: ...
     @property
@@ -3505,6 +3762,7 @@ class UpdateAgentRuntimeEndpointOutput:
 
 @final
 class UpdateApiKeyCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateApiKeyCredentialProviderOutput/)."""
     @property
     def api_key_secret_arn(self) -> Secret | None: ...
     @property
@@ -3523,6 +3781,7 @@ class UpdateApiKeyCredentialProviderOutput:
 
 @final
 class UpdateCapacityProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateCapacityProviderOutput/)."""
     @property
     def capacity_provider_id(self) -> str: ...
     @property
@@ -3539,6 +3798,7 @@ class UpdateCapacityProviderOutput:
 
 @final
 class UpdateConfigurationBundleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateConfigurationBundleOutput/)."""
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -3551,6 +3811,7 @@ class UpdateConfigurationBundleOutput:
 
 @final
 class UpdateConsentPortalOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateConsentPortalOutput/)."""
     @property
     def sources(self) -> list[ConsentPortalSource]: ...
     @property
@@ -3579,6 +3840,7 @@ class UpdateConsentPortalOutput:
 
 @final
 class UpdateDatasetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateDatasetOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -3589,6 +3851,7 @@ class UpdateDatasetOutput:
 
 @final
 class UpdateDatasetExamplesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateDatasetExamplesOutput/)."""
     @property
     def dataset_arn(self) -> str: ...
     @property
@@ -3603,6 +3866,7 @@ class UpdateDatasetExamplesOutput:
 
 @final
 class UpdateEvaluatorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateEvaluatorOutput/)."""
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -3615,6 +3879,7 @@ class UpdateEvaluatorOutput:
 
 @final
 class UpdateGatewayOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -3663,6 +3928,7 @@ class UpdateGatewayOutput:
 
 @final
 class UpdateGatewayRateLimitOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayRateLimitOutput/)."""
     @property
     def rate_limit_id(self) -> str: ...
     @property
@@ -3683,6 +3949,7 @@ class UpdateGatewayRateLimitOutput:
 
 @final
 class UpdateGatewayRuleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayRuleOutput/)."""
     @property
     def rule_id(self) -> str: ...
     @property
@@ -3707,6 +3974,7 @@ class UpdateGatewayRuleOutput:
 
 @final
 class UpdateGatewayTargetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateGatewayTargetOutput/)."""
     @property
     def gateway_arn(self) -> str: ...
     @property
@@ -3745,24 +4013,28 @@ class UpdateGatewayTargetOutput:
 
 @final
 class UpdateHarnessOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateHarnessOutput/)."""
     @property
     def harness(self) -> Harness | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateHarnessEndpointOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateHarnessEndpointOutput/)."""
     @property
     def endpoint(self) -> HarnessEndpoint | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMemoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateMemoryOutput/)."""
     @property
     def memory(self) -> Memory | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateOauth2CredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateOauth2CredentialProviderOutput/)."""
     @property
     def client_secret_arn(self) -> Secret | None: ...
     @property
@@ -3789,6 +4061,7 @@ class UpdateOauth2CredentialProviderOutput:
 
 @final
 class UpdateOnlineEvaluationConfigOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateOnlineEvaluationConfigOutput/)."""
     @property
     def online_evaluation_config_arn(self) -> str: ...
     @property
@@ -3805,6 +4078,7 @@ class UpdateOnlineEvaluationConfigOutput:
 
 @final
 class UpdatePaymentConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePaymentConnectorOutput/)."""
     @property
     def payment_connector_id(self) -> str: ...
     @property
@@ -3825,6 +4099,7 @@ class UpdatePaymentConnectorOutput:
 
 @final
 class UpdatePaymentCredentialProviderOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePaymentCredentialProviderOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -3841,6 +4116,7 @@ class UpdatePaymentCredentialProviderOutput:
 
 @final
 class UpdatePaymentManagerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePaymentManagerOutput/)."""
     @property
     def payment_manager_arn(self) -> str: ...
     @property
@@ -3863,6 +4139,7 @@ class UpdatePaymentManagerOutput:
 
 @final
 class UpdatePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePolicyOutput/)."""
     @property
     def policy_id(self) -> str: ...
     @property
@@ -3889,6 +4166,7 @@ class UpdatePolicyOutput:
 
 @final
 class UpdatePolicyEngineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdatePolicyEngineOutput/)."""
     @property
     def policy_engine_id(self) -> str: ...
     @property
@@ -3911,6 +4189,7 @@ class UpdatePolicyEngineOutput:
 
 @final
 class UpdateRegistryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateRegistryOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -3937,6 +4216,7 @@ class UpdateRegistryOutput:
 
 @final
 class UpdateRegistryRecordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateRegistryRecordOutput/)."""
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -3969,6 +4249,7 @@ class UpdateRegistryRecordOutput:
 
 @final
 class UpdateRegistryRecordStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateRegistryRecordStatusOutput/)."""
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -3985,6 +4266,7 @@ class UpdateRegistryRecordStatusOutput:
 
 @final
 class UpdateWorkloadIdentityOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/UpdateWorkloadIdentityOutput/)."""
     @property
     def name(self) -> str: ...
     @property

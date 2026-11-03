@@ -78,6 +78,8 @@ from .paginators import S3ClientPaginators as _Paginators
 
 
 class S3Client:
+    """Async S3Client. See [reference](https://ferrumio.github.io/rboto/reference/s3/)."""
+
     logger_name = "rboto.s3"
 
     def __init__(
@@ -123,6 +125,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         if_match_initiated_time: str | None = None,
     ) -> AbortMultipartUploadOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/abort_multipart_upload/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -175,6 +178,7 @@ class S3Client:
         sse_customer_key: str | None = None,
         sse_customer_key_md5: str | None = None,
     ) -> CompleteMultipartUploadOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/complete_multipart_upload/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -285,6 +289,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         expected_source_bucket_owner: str | None = None,
     ) -> CopyObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/copy_object/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "copy_source": copy_source,
@@ -407,6 +412,7 @@ class S3Client:
         object_ownership: ObjectOwnership | None = None,
         bucket_namespace: BucketNamespace | None = None,
     ) -> CreateBucketOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/create_bucket/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -453,6 +459,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/create_bucket_metadata_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "metadata_configuration": metadata_configuration,
@@ -486,6 +493,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/create_bucket_metadata_table_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "metadata_table_configuration": metadata_table_configuration,
@@ -548,6 +556,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         checksum_type: ChecksumType | None = None,
     ) -> CreateMultipartUploadOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/create_multipart_upload/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -640,6 +649,7 @@ class S3Client:
         ssekms_encryption_context: str | None = None,
         bucket_key_enabled: bool | None = None,
     ) -> CreateSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/create_session/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -673,6 +683,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -699,6 +710,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_analytics_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -725,6 +737,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_cors/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -750,6 +763,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_encryption/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -776,6 +790,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_intelligent_tiering_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -803,6 +818,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_inventory_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -829,6 +845,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_lifecycle/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -854,6 +871,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_metadata_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -879,6 +897,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_metadata_table_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -905,6 +924,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_metrics_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -931,6 +951,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_ownership_controls/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -956,6 +977,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_policy/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -981,6 +1003,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_replication/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1006,6 +1029,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_tagging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1031,6 +1055,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_bucket_website/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1064,6 +1089,7 @@ class S3Client:
         if_match_last_modified_time: str | None = None,
         if_match_size: int | None = None,
     ) -> DeleteObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_object/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -1109,6 +1135,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         object_if_match: str | None = None,
     ) -> DeleteObjectAnnotationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_object_annotation/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -1144,6 +1171,7 @@ class S3Client:
         version_id: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> DeleteObjectTaggingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_object_tagging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -1177,6 +1205,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         checksum_algorithm: ChecksumAlgorithm | None = None,
     ) -> DeleteObjectsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_objects/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "delete": delete,
@@ -1211,6 +1240,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/delete_public_access_block/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1236,6 +1266,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketAbacOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_abac/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1262,6 +1293,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         request_payer: RequestPayer | None = None,
     ) -> GetBucketAccelerateConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_accelerate_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1289,6 +1321,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketAclOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_acl/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1315,6 +1348,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketAnalyticsConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_analytics_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -1341,6 +1375,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketCorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_cors/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1366,6 +1401,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketEncryptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_encryption/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1392,6 +1428,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketIntelligentTieringConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_intelligent_tiering_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -1419,6 +1456,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketInventoryConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_inventory_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -1445,6 +1483,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketLifecycleConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_lifecycle_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1470,6 +1509,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketLocationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_location/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1495,6 +1535,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketLoggingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_logging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1520,6 +1561,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketMetadataConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_metadata_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1545,6 +1587,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketMetadataTableConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_metadata_table_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1571,6 +1614,7 @@ class S3Client:
         id: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketMetricsConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_metrics_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -1597,6 +1641,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketNotificationConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_notification_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1622,6 +1667,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketOwnershipControlsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_ownership_controls/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1647,6 +1693,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_policy/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1672,6 +1719,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketPolicyStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_policy_status/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1697,6 +1745,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketReplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_replication/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1722,6 +1771,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketRequestPaymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_request_payment/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1747,6 +1797,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketTaggingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_tagging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1772,6 +1823,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketVersioningOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_versioning/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1797,6 +1849,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetBucketWebsiteOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_bucket_website/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -1841,6 +1894,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         checksum_mode: ChecksumMode | None = None,
     ) -> GetObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -1906,6 +1960,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> GetObjectAclOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_acl/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -1941,6 +1996,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         checksum_mode: ChecksumMode | None = None,
     ) -> GetObjectAnnotationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_annotation/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -1983,6 +2039,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> GetObjectAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_attributes/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2027,6 +2084,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> GetObjectLegalHoldOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_legal_hold/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2057,6 +2115,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetObjectLockConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_lock_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2085,6 +2144,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> GetObjectRetentionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_retention/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2118,6 +2178,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         request_payer: RequestPayer | None = None,
     ) -> GetObjectTaggingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_tagging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2150,6 +2211,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> GetObjectTorrentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_object_torrent/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2178,6 +2240,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> GetPublicAccessBlockOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/get_public_access_block/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2203,6 +2266,7 @@ class S3Client:
         bucket: str,
         expected_bucket_owner: str | None = None,
     ) -> HeadBucketOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/head_bucket/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2247,6 +2311,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         checksum_mode: ChecksumMode | None = None,
     ) -> HeadObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/head_object/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2310,6 +2375,7 @@ class S3Client:
         continuation_token: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> ListBucketAnalyticsConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_bucket_analytics_configurations/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2338,6 +2404,7 @@ class S3Client:
         continuation_token: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> ListBucketIntelligentTieringConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_bucket_intelligent_tiering_configurations/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2366,6 +2433,7 @@ class S3Client:
         continuation_token: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> ListBucketInventoryConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_bucket_inventory_configurations/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2394,6 +2462,7 @@ class S3Client:
         continuation_token: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> ListBucketMetricsConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_bucket_metrics_configurations/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2423,6 +2492,7 @@ class S3Client:
         prefix: str | None = None,
         bucket_region: str | None = None,
     ) -> ListBucketsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_buckets/)."""
         params: dict[str, object] = {
         }
         if max_buckets is not None:
@@ -2453,6 +2523,7 @@ class S3Client:
         continuation_token: str | None = None,
         max_directory_buckets: int | None = None,
     ) -> ListDirectoryBucketsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_directory_buckets/)."""
         params: dict[str, object] = {
         }
         if continuation_token is not None:
@@ -2486,6 +2557,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         request_payer: RequestPayer | None = None,
     ) -> ListMultipartUploadsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_multipart_uploads/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2531,6 +2603,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> ListObjectAnnotationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_object_annotations/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2575,6 +2648,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> ListObjectVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_object_versions/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2623,6 +2697,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> ListObjectsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_objects/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2671,6 +2746,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> ListObjectsV2Output:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_objects_v2/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2722,6 +2798,7 @@ class S3Client:
         sse_customer_key: str | None = None,
         sse_customer_key_md5: str | None = None,
     ) -> ListPartsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/list_parts/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -2764,6 +2841,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_abac/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "abac_status": abac_status,
@@ -2796,6 +2874,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         checksum_algorithm: ChecksumAlgorithm | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_accelerate_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "accelerate_configuration": accelerate_configuration,
@@ -2833,6 +2912,7 @@ class S3Client:
         grant_write_acp: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_acl/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -2878,6 +2958,7 @@ class S3Client:
         analytics_configuration: AnalyticsConfiguration,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_analytics_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -2908,6 +2989,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_cors/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "cors_configuration": cors_configuration,
@@ -2941,6 +3023,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_encryption/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "server_side_encryption_configuration": server_side_encryption_configuration,
@@ -2973,6 +3056,7 @@ class S3Client:
         intelligent_tiering_configuration: IntelligentTieringConfiguration,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_intelligent_tiering_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -3002,6 +3086,7 @@ class S3Client:
         inventory_configuration: InventoryConfiguration,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_inventory_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -3032,6 +3117,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         transition_default_minimum_object_size: TransitionDefaultMinimumObjectSize | None = None,
     ) -> PutBucketLifecycleConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_lifecycle_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -3066,6 +3152,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_logging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "bucket_logging_status": bucket_logging_status,
@@ -3098,6 +3185,7 @@ class S3Client:
         metrics_configuration: MetricsConfiguration,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_metrics_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "id": id,
@@ -3127,6 +3215,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         skip_destination_validation: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_notification_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "notification_configuration": notification_configuration,
@@ -3158,6 +3247,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         checksum_algorithm: ChecksumAlgorithm | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_ownership_controls/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "ownership_controls": ownership_controls,
@@ -3192,6 +3282,7 @@ class S3Client:
         confirm_remove_self_bucket_access: bool | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_policy/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "policy": policy,
@@ -3228,6 +3319,7 @@ class S3Client:
         token: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_replication/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "replication_configuration": replication_configuration,
@@ -3263,6 +3355,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_request_payment/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "request_payment_configuration": request_payment_configuration,
@@ -3296,6 +3389,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_tagging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "tagging": tagging,
@@ -3330,6 +3424,7 @@ class S3Client:
         mfa: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_versioning/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "versioning_configuration": versioning_configuration,
@@ -3365,6 +3460,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_bucket_website/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "website_configuration": website_configuration,
@@ -3442,6 +3538,7 @@ class S3Client:
         object_lock_event_hold_duration_years: int | None = None,
         expected_bucket_owner: str | None = None,
     ) -> PutObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_object/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3572,6 +3669,7 @@ class S3Client:
         version_id: str | None = None,
         expected_bucket_owner: str | None = None,
     ) -> PutObjectAclOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_object_acl/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3638,6 +3736,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> PutObjectAnnotationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_object_annotation/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3702,6 +3801,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> PutObjectLegalHoldOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_object_legal_hold/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3743,6 +3843,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> PutObjectLockConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_object_lock_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
         }
@@ -3785,6 +3886,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> PutObjectRetentionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_object_retention/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3829,6 +3931,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         request_payer: RequestPayer | None = None,
     ) -> PutObjectTaggingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_object_tagging/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3867,6 +3970,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/put_public_access_block/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "public_access_block_configuration": public_access_block_configuration,
@@ -3907,6 +4011,7 @@ class S3Client:
         source_if_unmodified_since: str | None = None,
         client_token: str | None = None,
     ) -> RenameObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/rename_object/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3955,6 +4060,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> RestoreObjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/restore_object/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -3999,6 +4105,7 @@ class S3Client:
         scan_range: ScanRange | None = None,
         expected_bucket_owner: str | None = None,
     ) -> SelectObjectContentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/select_object_content/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -4042,6 +4149,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/update_bucket_metadata_annotation_table_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "annotation_table_configuration": annotation_table_configuration,
@@ -4075,6 +4183,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/update_bucket_metadata_inventory_table_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "inventory_table_configuration": inventory_table_configuration,
@@ -4108,6 +4217,7 @@ class S3Client:
         checksum_algorithm: ChecksumAlgorithm | None = None,
         expected_bucket_owner: str | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/update_bucket_metadata_journal_table_configuration/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "journal_table_configuration": journal_table_configuration,
@@ -4144,6 +4254,7 @@ class S3Client:
         content_md5: str | None = None,
         checksum_algorithm: ChecksumAlgorithm | None = None,
     ) -> UpdateObjectEncryptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/update_object_encryption/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -4200,6 +4311,7 @@ class S3Client:
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
     ) -> UploadPartOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/upload_part/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "key": key,
@@ -4281,6 +4393,7 @@ class S3Client:
         expected_bucket_owner: str | None = None,
         expected_source_bucket_owner: str | None = None,
     ) -> UploadPartCopyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/upload_part_copy/)."""
         params: dict[str, object] = {
             "bucket": bucket,
             "copy_source": copy_source,
@@ -4380,6 +4493,7 @@ class S3Client:
         version_id: str | None = None,
         bucket_key_enabled: bool | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/s3/operations/write_get_object_response/)."""
         params: dict[str, object] = {
             "request_route": request_route,
             "request_token": request_token,

@@ -29,7 +29,7 @@ class {{ client_class }}Paginators:
 {% if method.parameters %}        *,
 {% for parameter in method.parameters %}        {{ parameter.name }}: {{ parameter.annotation }}{% if not parameter.required %} | None = None{% endif %},
 {% endfor %}{% endif %}    ) -> AsyncIterator[{{ method.output }}]:
-        """Yield each page from {{ method.name }}; requests start on iteration."""
+        """Yield pages lazily. See [reference]({{ method.documentation_url }}#pagination-and-streaming)."""
         params: dict[str, object] = {
 {% for parameter in method.parameters %}{% if parameter.required %}            "{{ parameter.name }}": {{ parameter.name }},
 {% endif %}{% endfor %}        }

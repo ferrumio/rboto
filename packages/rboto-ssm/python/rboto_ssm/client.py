@@ -109,6 +109,8 @@ from .paginators import SSMClientPaginators as _Paginators
 
 
 class SSMClient:
+    """Async SSMClient. See [reference](https://ferrumio.github.io/rboto/reference/ssm/)."""
+
     logger_name = "rboto.ssm"
 
     def __init__(
@@ -151,6 +153,7 @@ class SSMClient:
         resource_id: str,
         tags: Sequence[Tag],
     ) -> AddTagsToResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/add_tags_to_resource/)."""
         params: dict[str, object] = {
             "resource_type": resource_type,
             "resource_id": resource_id,
@@ -178,6 +181,7 @@ class SSMClient:
         resource_type: str,
         resource_uri: str,
     ) -> AssociateOpsItemRelatedItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/associate_ops_item_related_item/)."""
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
             "association_type": association_type,
@@ -204,6 +208,7 @@ class SSMClient:
         command_id: str,
         instance_ids: Sequence[str] | None = None,
     ) -> CancelCommandOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/cancel_command/)."""
         params: dict[str, object] = {
             "command_id": command_id,
         }
@@ -228,6 +233,7 @@ class SSMClient:
         *,
         window_execution_id: str,
     ) -> CancelMaintenanceWindowExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/cancel_maintenance_window_execution/)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
@@ -256,6 +262,7 @@ class SSMClient:
         tags: Sequence[Tag] | None = None,
         registration_metadata: Sequence[RegistrationMetadataItem] | None = None,
     ) -> CreateActivationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_activation/)."""
         params: dict[str, object] = {
             "iam_role": iam_role,
         }
@@ -311,6 +318,7 @@ class SSMClient:
         alarm_configuration: AlarmConfiguration | None = None,
         association_dispatch_assume_role: str | None = None,
     ) -> CreateAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_association/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -376,6 +384,7 @@ class SSMClient:
         entries: Sequence[CreateAssociationBatchRequestEntry],
         association_dispatch_assume_role: str | None = None,
     ) -> CreateAssociationBatchOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_association_batch/)."""
         params: dict[str, object] = {
             "entries": entries,
         }
@@ -405,6 +414,7 @@ class SSMClient:
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateCloudConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_cloud_connector/)."""
         params: dict[str, object] = {
             "display_name": display_name,
             "role_arn": role_arn,
@@ -443,6 +453,7 @@ class SSMClient:
         target_type: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateDocumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_document/)."""
         params: dict[str, object] = {
             "content": content,
             "name": name,
@@ -493,6 +504,7 @@ class SSMClient:
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_maintenance_window/)."""
         params: dict[str, object] = {
             "name": name,
             "schedule": schedule,
@@ -548,6 +560,7 @@ class SSMClient:
         planned_end_time: str | None = None,
         account_id: str | None = None,
     ) -> CreateOpsItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_ops_item/)."""
         params: dict[str, object] = {
             "description": description,
             "source": source,
@@ -600,6 +613,7 @@ class SSMClient:
         metadata: dict[str, MetadataValue] | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateOpsMetadataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_ops_metadata/)."""
         params: dict[str, object] = {
             "resource_id": resource_id,
         }
@@ -639,6 +653,7 @@ class SSMClient:
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreatePatchBaselineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_patch_baseline/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -690,6 +705,7 @@ class SSMClient:
         sync_type: str | None = None,
         sync_source: ResourceDataSyncSource | None = None,
     ) -> CreateResourceDataSyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_resource_data_sync/)."""
         params: dict[str, object] = {
             "sync_name": sync_name,
         }
@@ -718,6 +734,7 @@ class SSMClient:
         *,
         activation_id: str,
     ) -> DeleteActivationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_activation/)."""
         params: dict[str, object] = {
             "activation_id": activation_id,
         }
@@ -742,6 +759,7 @@ class SSMClient:
         instance_id: str | None = None,
         association_id: str | None = None,
     ) -> DeleteAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_association/)."""
         params: dict[str, object] = {
         }
         if name is not None:
@@ -769,6 +787,7 @@ class SSMClient:
         *,
         cloud_connector_id: str,
     ) -> DeleteCloudConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_cloud_connector/)."""
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
@@ -794,6 +813,7 @@ class SSMClient:
         version_name: str | None = None,
         force: bool | None = None,
     ) -> DeleteDocumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_document/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -825,6 +845,7 @@ class SSMClient:
         dry_run: bool | None = None,
         client_token: str | None = None,
     ) -> DeleteInventoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_inventory/)."""
         params: dict[str, object] = {
             "type_name": type_name,
         }
@@ -853,6 +874,7 @@ class SSMClient:
         *,
         window_id: str,
     ) -> DeleteMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_maintenance_window/)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -875,6 +897,7 @@ class SSMClient:
         *,
         ops_item_id: str,
     ) -> DeleteOpsItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_ops_item/)."""
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
         }
@@ -897,6 +920,7 @@ class SSMClient:
         *,
         ops_metadata_arn: str,
     ) -> DeleteOpsMetadataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_ops_metadata/)."""
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
         }
@@ -919,6 +943,7 @@ class SSMClient:
         *,
         name: str,
     ) -> DeleteParameterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_parameter/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -941,6 +966,7 @@ class SSMClient:
         *,
         names: Sequence[str],
     ) -> DeleteParametersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_parameters/)."""
         params: dict[str, object] = {
             "names": names,
         }
@@ -963,6 +989,7 @@ class SSMClient:
         *,
         baseline_id: str,
     ) -> DeletePatchBaselineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_patch_baseline/)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -986,6 +1013,7 @@ class SSMClient:
         sync_name: str,
         sync_type: str | None = None,
     ) -> DeleteResourceDataSyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_resource_data_sync/)."""
         params: dict[str, object] = {
             "sync_name": sync_name,
         }
@@ -1013,6 +1041,7 @@ class SSMClient:
         policy_hash: str,
         deletion_mode: DeletionMode | None = None,
     ) -> DeleteResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy_id": policy_id,
@@ -1039,6 +1068,7 @@ class SSMClient:
         *,
         instance_id: str,
     ) -> DeregisterManagedInstanceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/deregister_managed_instance/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1062,6 +1092,7 @@ class SSMClient:
         baseline_id: str,
         patch_group: str,
     ) -> DeregisterPatchBaselineForPatchGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/deregister_patch_baseline_for_patch_group/)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
             "patch_group": patch_group,
@@ -1087,6 +1118,7 @@ class SSMClient:
         window_target_id: str,
         safe: bool | None = None,
     ) -> DeregisterTargetFromMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/deregister_target_from_maintenance_window/)."""
         params: dict[str, object] = {
             "window_id": window_id,
             "window_target_id": window_target_id,
@@ -1113,6 +1145,7 @@ class SSMClient:
         window_id: str,
         window_task_id: str,
     ) -> DeregisterTaskFromMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/deregister_task_from_maintenance_window/)."""
         params: dict[str, object] = {
             "window_id": window_id,
             "window_task_id": window_task_id,
@@ -1138,6 +1171,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeActivationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_activations/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1168,6 +1202,7 @@ class SSMClient:
         association_id: str | None = None,
         association_version: str | None = None,
     ) -> DescribeAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_association/)."""
         params: dict[str, object] = {
         }
         if name is not None:
@@ -1201,6 +1236,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAssociationExecutionTargetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_association_execution_targets/)."""
         params: dict[str, object] = {
             "association_id": association_id,
             "execution_id": execution_id,
@@ -1233,6 +1269,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAssociationExecutionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_association_executions/)."""
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -1263,6 +1300,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAutomationExecutionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_automation_executions/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1294,6 +1332,7 @@ class SSMClient:
         max_results: int | None = None,
         reverse_order: bool | None = None,
     ) -> DescribeAutomationStepExecutionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_automation_step_executions/)."""
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
@@ -1326,6 +1365,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAvailablePatchesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_available_patches/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1355,6 +1395,7 @@ class SSMClient:
         document_version: str | None = None,
         version_name: str | None = None,
     ) -> DescribeDocumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_document/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1384,6 +1425,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeDocumentPermissionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_document_permission/)."""
         params: dict[str, object] = {
             "name": name,
             "permission_type": permission_type,
@@ -1413,6 +1455,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeEffectiveInstanceAssociationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_effective_instance_associations/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1441,6 +1484,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeEffectivePatchesForPatchBaselineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_effective_patches_for_patch_baseline/)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -1469,6 +1513,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeInstanceAssociationsStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_associations_status/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1498,6 +1543,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeInstanceInformationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_information/)."""
         params: dict[str, object] = {
         }
         if instance_information_filter_list is not None:
@@ -1529,6 +1575,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> DescribeInstancePatchStatesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_patch_states/)."""
         params: dict[str, object] = {
             "instance_ids": instance_ids,
         }
@@ -1558,6 +1605,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> DescribeInstancePatchStatesForPatchGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_patch_states_for_patch_group/)."""
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
@@ -1589,6 +1637,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> DescribeInstancePatchesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_patches/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1620,6 +1669,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeInstancePropertiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_instance_properties/)."""
         params: dict[str, object] = {
         }
         if instance_property_filter_list is not None:
@@ -1651,6 +1701,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> DescribeInventoryDeletionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_inventory_deletions/)."""
         params: dict[str, object] = {
         }
         if deletion_id is not None:
@@ -1682,6 +1733,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowExecutionTaskInvocationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_execution_task_invocations/)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
             "task_id": task_id,
@@ -1714,6 +1766,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowExecutionTasksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_execution_tasks/)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
@@ -1745,6 +1798,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowExecutionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_executions/)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -1778,6 +1832,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowScheduleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_schedule/)."""
         params: dict[str, object] = {
         }
         if window_id is not None:
@@ -1814,6 +1869,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowTargetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_targets/)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -1845,6 +1901,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowTasksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_window_tasks/)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -1875,6 +1932,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_windows/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1905,6 +1963,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowsForTargetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_maintenance_windows_for_target/)."""
         params: dict[str, object] = {
             "targets": targets,
             "resource_type": resource_type,
@@ -1934,6 +1993,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeOpsItemsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_ops_items/)."""
         params: dict[str, object] = {
         }
         if ops_item_filters is not None:
@@ -1965,6 +2025,7 @@ class SSMClient:
         next_token: str | None = None,
         shared: bool | None = None,
     ) -> DescribeParametersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_parameters/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1998,6 +2059,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribePatchBaselinesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_patch_baselines/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -2025,6 +2087,7 @@ class SSMClient:
         *,
         patch_group: str,
     ) -> DescribePatchGroupStateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_patch_group_state/)."""
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
@@ -2049,6 +2112,7 @@ class SSMClient:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
     ) -> DescribePatchGroupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_patch_groups/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2080,6 +2144,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribePatchPropertiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_patch_properties/)."""
         params: dict[str, object] = {
             "operating_system": operating_system,
             "property": property,
@@ -2112,6 +2177,7 @@ class SSMClient:
         next_token: str | None = None,
         filters: Sequence[SessionFilter] | None = None,
     ) -> DescribeSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/describe_sessions/)."""
         params: dict[str, object] = {
             "state": state,
         }
@@ -2141,6 +2207,7 @@ class SSMClient:
         ops_item_id: str,
         association_id: str,
     ) -> DisassociateOpsItemRelatedItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/disassociate_ops_item_related_item/)."""
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
             "association_id": association_id,
@@ -2164,6 +2231,7 @@ class SSMClient:
         *,
         access_request_id: str,
     ) -> GetAccessTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_access_token/)."""
         params: dict[str, object] = {
             "access_request_id": access_request_id,
         }
@@ -2186,6 +2254,7 @@ class SSMClient:
         *,
         automation_execution_id: str,
     ) -> GetAutomationExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_automation_execution/)."""
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
@@ -2209,6 +2278,7 @@ class SSMClient:
         calendar_names: Sequence[str],
         at_time: str | None = None,
     ) -> GetCalendarStateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_calendar_state/)."""
         params: dict[str, object] = {
             "calendar_names": calendar_names,
         }
@@ -2233,6 +2303,7 @@ class SSMClient:
         *,
         cloud_connector_id: str,
     ) -> GetCloudConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_cloud_connector/)."""
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
@@ -2257,6 +2328,7 @@ class SSMClient:
         instance_id: str,
         plugin_name: str | None = None,
     ) -> GetCommandInvocationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_command_invocation/)."""
         params: dict[str, object] = {
             "command_id": command_id,
             "instance_id": instance_id,
@@ -2282,6 +2354,7 @@ class SSMClient:
         *,
         target: str,
     ) -> GetConnectionStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_connection_status/)."""
         params: dict[str, object] = {
             "target": target,
         }
@@ -2304,6 +2377,7 @@ class SSMClient:
         *,
         operating_system: OperatingSystem | None = None,
     ) -> GetDefaultPatchBaselineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_default_patch_baseline/)."""
         params: dict[str, object] = {
         }
         if operating_system is not None:
@@ -2330,6 +2404,7 @@ class SSMClient:
         baseline_override: BaselineOverride | None = None,
         use_s3_dual_stack_endpoint: bool | None = None,
     ) -> GetDeployablePatchSnapshotForInstanceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_deployable_patch_snapshot_for_instance/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
             "snapshot_id": snapshot_id,
@@ -2360,6 +2435,7 @@ class SSMClient:
         document_version: str | None = None,
         document_format: DocumentFormat | None = None,
     ) -> GetDocumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_document/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2388,6 +2464,7 @@ class SSMClient:
         *,
         execution_preview_id: str,
     ) -> GetExecutionPreviewOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_execution_preview/)."""
         params: dict[str, object] = {
             "execution_preview_id": execution_preview_id,
         }
@@ -2414,6 +2491,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> GetInventoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_inventory/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -2449,6 +2527,7 @@ class SSMClient:
         aggregator: bool | None = None,
         sub_type: bool | None = None,
     ) -> GetInventorySchemaOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_inventory_schema/)."""
         params: dict[str, object] = {
         }
         if type_name is not None:
@@ -2480,6 +2559,7 @@ class SSMClient:
         *,
         window_id: str,
     ) -> GetMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_maintenance_window/)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -2502,6 +2582,7 @@ class SSMClient:
         *,
         window_execution_id: str,
     ) -> GetMaintenanceWindowExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_maintenance_window_execution/)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
@@ -2525,6 +2606,7 @@ class SSMClient:
         window_execution_id: str,
         task_id: str,
     ) -> GetMaintenanceWindowExecutionTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_maintenance_window_execution_task/)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
             "task_id": task_id,
@@ -2550,6 +2632,7 @@ class SSMClient:
         task_id: str,
         invocation_id: str,
     ) -> GetMaintenanceWindowExecutionTaskInvocationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_maintenance_window_execution_task_invocation/)."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
             "task_id": task_id,
@@ -2575,6 +2658,7 @@ class SSMClient:
         window_id: str,
         window_task_id: str,
     ) -> GetMaintenanceWindowTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_maintenance_window_task/)."""
         params: dict[str, object] = {
             "window_id": window_id,
             "window_task_id": window_task_id,
@@ -2599,6 +2683,7 @@ class SSMClient:
         ops_item_id: str,
         ops_item_arn: str | None = None,
     ) -> GetOpsItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_ops_item/)."""
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
         }
@@ -2625,6 +2710,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> GetOpsMetadataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_ops_metadata/)."""
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
         }
@@ -2656,6 +2742,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> GetOpsSummaryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_ops_summary/)."""
         params: dict[str, object] = {
         }
         if sync_name is not None:
@@ -2690,6 +2777,7 @@ class SSMClient:
         name: str,
         with_decryption: bool | None = None,
     ) -> GetParameterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_parameter/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2717,6 +2805,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> GetParameterHistoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_parameter_history/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2746,6 +2835,7 @@ class SSMClient:
         names: Sequence[str],
         with_decryption: bool | None = None,
     ) -> GetParametersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_parameters/)."""
         params: dict[str, object] = {
             "names": names,
         }
@@ -2775,6 +2865,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> GetParametersByPathOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_parameters_by_path/)."""
         params: dict[str, object] = {
             "path": path,
         }
@@ -2807,6 +2898,7 @@ class SSMClient:
         *,
         baseline_id: str,
     ) -> GetPatchBaselineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_patch_baseline/)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -2830,6 +2922,7 @@ class SSMClient:
         patch_group: str,
         operating_system: OperatingSystem | None = None,
     ) -> GetPatchBaselineForPatchGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_patch_baseline_for_patch_group/)."""
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
@@ -2856,6 +2949,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> GetResourcePoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_resource_policies/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2882,6 +2976,7 @@ class SSMClient:
         *,
         setting_id: str,
     ) -> GetServiceSettingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/get_service_setting/)."""
         params: dict[str, object] = {
             "setting_id": setting_id,
         }
@@ -2906,6 +3001,7 @@ class SSMClient:
         labels: Sequence[str],
         parameter_version: int | None = None,
     ) -> LabelParameterVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/label_parameter_version/)."""
         params: dict[str, object] = {
             "name": name,
             "labels": labels,
@@ -2933,6 +3029,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAssociationVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_association_versions/)."""
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -2961,6 +3058,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAssociationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_associations/)."""
         params: dict[str, object] = {
         }
         if association_filter_list is not None:
@@ -2990,6 +3088,7 @@ class SSMClient:
         next_token: str | None = None,
         filters: Sequence[CloudConnectorFilter] | None = None,
     ) -> ListCloudConnectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_cloud_connectors/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3022,6 +3121,7 @@ class SSMClient:
         filters: Sequence[CommandFilter] | None = None,
         details: bool | None = None,
     ) -> ListCommandInvocationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_command_invocations/)."""
         params: dict[str, object] = {
         }
         if command_id is not None:
@@ -3059,6 +3159,7 @@ class SSMClient:
         next_token: str | None = None,
         filters: Sequence[CommandFilter] | None = None,
     ) -> ListCommandsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_commands/)."""
         params: dict[str, object] = {
         }
         if command_id is not None:
@@ -3094,6 +3195,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListComplianceItemsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_compliance_items/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3127,6 +3229,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListComplianceSummariesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_compliance_summaries/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3158,6 +3261,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDocumentMetadataHistoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_document_metadata_history/)."""
         params: dict[str, object] = {
             "name": name,
             "metadata": metadata,
@@ -3189,6 +3293,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDocumentVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_document_versions/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -3218,6 +3323,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDocumentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_documents/)."""
         params: dict[str, object] = {
         }
         if document_filter_list is not None:
@@ -3251,6 +3357,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListInventoryEntriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_inventory_entries/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
             "type_name": type_name,
@@ -3283,6 +3390,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListNodesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_nodes/)."""
         params: dict[str, object] = {
         }
         if sync_name is not None:
@@ -3316,6 +3424,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListNodesSummaryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_nodes_summary/)."""
         params: dict[str, object] = {
             "aggregators": aggregators,
         }
@@ -3348,6 +3457,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListOpsItemEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_ops_item_events/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3378,6 +3488,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListOpsItemRelatedItemsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_ops_item_related_items/)."""
         params: dict[str, object] = {
         }
         if ops_item_id is not None:
@@ -3409,6 +3520,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListOpsMetadataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_ops_metadata/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3438,6 +3550,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListResourceComplianceSummariesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_resource_compliance_summaries/)."""
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3467,6 +3580,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListResourceDataSyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_resource_data_sync/)."""
         params: dict[str, object] = {
         }
         if sync_type is not None:
@@ -3495,6 +3609,7 @@ class SSMClient:
         resource_type: ResourceTypeForTagging,
         resource_id: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_type": resource_type,
             "resource_id": resource_id,
@@ -3522,6 +3637,7 @@ class SSMClient:
         account_ids_to_remove: Sequence[str] | None = None,
         shared_document_version: str | None = None,
     ) -> ModifyDocumentPermissionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/modify_document_permission/)."""
         params: dict[str, object] = {
             "name": name,
             "permission_type": permission_type,
@@ -3557,6 +3673,7 @@ class SSMClient:
         item_content_hash: str | None = None,
         upload_type: ComplianceUploadType | None = None,
     ) -> PutComplianceItemsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/put_compliance_items/)."""
         params: dict[str, object] = {
             "resource_id": resource_id,
             "resource_type": resource_type,
@@ -3588,6 +3705,7 @@ class SSMClient:
         instance_id: str,
         items: Sequence[InventoryItem],
     ) -> PutInventoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/put_inventory/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
             "items": items,
@@ -3621,6 +3739,7 @@ class SSMClient:
         policies: str | None = None,
         data_type: str | None = None,
     ) -> PutParameterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/put_parameter/)."""
         params: dict[str, object] = {
             "name": name,
             "value": value,
@@ -3665,6 +3784,7 @@ class SSMClient:
         policy_id: str | None = None,
         policy_hash: str | None = None,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy": policy,
@@ -3692,6 +3812,7 @@ class SSMClient:
         *,
         baseline_id: str,
     ) -> RegisterDefaultPatchBaselineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/register_default_patch_baseline/)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -3715,6 +3836,7 @@ class SSMClient:
         baseline_id: str,
         patch_group: str,
     ) -> RegisterPatchBaselineForPatchGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/register_patch_baseline_for_patch_group/)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
             "patch_group": patch_group,
@@ -3744,6 +3866,7 @@ class SSMClient:
         description: str | None = None,
         client_token: str | None = None,
     ) -> RegisterTargetWithMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/register_target_with_maintenance_window/)."""
         params: dict[str, object] = {
             "window_id": window_id,
             "resource_type": resource_type,
@@ -3791,6 +3914,7 @@ class SSMClient:
         cutoff_behavior: MaintenanceWindowTaskCutoffBehavior | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
     ) -> RegisterTaskWithMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/register_task_with_maintenance_window/)."""
         params: dict[str, object] = {
             "window_id": window_id,
             "task_arn": task_arn,
@@ -3843,6 +3967,7 @@ class SSMClient:
         resource_id: str,
         tag_keys: Sequence[str],
     ) -> RemoveTagsFromResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/remove_tags_from_resource/)."""
         params: dict[str, object] = {
             "resource_type": resource_type,
             "resource_id": resource_id,
@@ -3867,6 +3992,7 @@ class SSMClient:
         *,
         setting_id: str,
     ) -> ResetServiceSettingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/reset_service_setting/)."""
         params: dict[str, object] = {
             "setting_id": setting_id,
         }
@@ -3889,6 +4015,7 @@ class SSMClient:
         *,
         session_id: str,
     ) -> ResumeSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/resume_session/)."""
         params: dict[str, object] = {
             "session_id": session_id,
         }
@@ -3913,6 +4040,7 @@ class SSMClient:
         signal_type: SignalType,
         payload: dict[str, Sequence[str]] | None = None,
     ) -> SendAutomationSignalOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/send_automation_signal/)."""
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
             "signal_type": signal_type,
@@ -3955,6 +4083,7 @@ class SSMClient:
         cloud_watch_output_config: CloudWatchOutputConfig | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
     ) -> SendCommandOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/send_command/)."""
         params: dict[str, object] = {
             "document_name": document_name,
         }
@@ -4013,6 +4142,7 @@ class SSMClient:
         targets: Sequence[Target],
         tags: Sequence[Tag] | None = None,
     ) -> StartAccessRequestOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/start_access_request/)."""
         params: dict[str, object] = {
             "reason": reason,
             "targets": targets,
@@ -4038,6 +4168,7 @@ class SSMClient:
         *,
         association_ids: Sequence[str],
     ) -> StartAssociationsOnceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/start_associations_once/)."""
         params: dict[str, object] = {
             "association_ids": association_ids,
         }
@@ -4073,6 +4204,7 @@ class SSMClient:
         alarm_configuration: AlarmConfiguration | None = None,
         target_locations_url: str | None = None,
     ) -> StartAutomationExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/start_automation_execution/)."""
         params: dict[str, object] = {
             "document_name": document_name,
         }
@@ -4131,6 +4263,7 @@ class SSMClient:
         scheduled_end_time: str | None = None,
         change_details: str | None = None,
     ) -> StartChangeRequestExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/start_change_request_execution/)."""
         params: dict[str, object] = {
             "document_name": document_name,
             "runbooks": runbooks,
@@ -4174,6 +4307,7 @@ class SSMClient:
         document_version: str | None = None,
         execution_inputs: ExecutionInputs | None = None,
     ) -> StartExecutionPreviewOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/start_execution_preview/)."""
         params: dict[str, object] = {
             "document_name": document_name,
         }
@@ -4203,6 +4337,7 @@ class SSMClient:
         reason: str | None = None,
         parameters: dict[str, Sequence[str]] | None = None,
     ) -> StartSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/start_session/)."""
         params: dict[str, object] = {
             "target": target,
         }
@@ -4232,6 +4367,7 @@ class SSMClient:
         automation_execution_id: str,
         type: StopType | None = None,
     ) -> StopAutomationExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/stop_automation_execution/)."""
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
@@ -4256,6 +4392,7 @@ class SSMClient:
         *,
         session_id: str,
     ) -> TerminateSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/terminate_session/)."""
         params: dict[str, object] = {
             "session_id": session_id,
         }
@@ -4280,6 +4417,7 @@ class SSMClient:
         parameter_version: int,
         labels: Sequence[str],
     ) -> UnlabelParameterVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/unlabel_parameter_version/)."""
         params: dict[str, object] = {
             "name": name,
             "parameter_version": parameter_version,
@@ -4325,6 +4463,7 @@ class SSMClient:
         alarm_configuration: AlarmConfiguration | None = None,
         association_dispatch_assume_role: str | None = None,
     ) -> UpdateAssociationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_association/)."""
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -4391,6 +4530,7 @@ class SSMClient:
         instance_id: str,
         association_status: AssociationStatus,
     ) -> UpdateAssociationStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_association_status/)."""
         params: dict[str, object] = {
             "name": name,
             "instance_id": instance_id,
@@ -4418,6 +4558,7 @@ class SSMClient:
         configuration: CloudConnectorConfiguration | None = None,
         description: str | None = None,
     ) -> UpdateCloudConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_cloud_connector/)."""
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
@@ -4453,6 +4594,7 @@ class SSMClient:
         document_format: DocumentFormat | None = None,
         target_type: str | None = None,
     ) -> UpdateDocumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_document/)."""
         params: dict[str, object] = {
             "content": content,
             "name": name,
@@ -4489,6 +4631,7 @@ class SSMClient:
         name: str,
         document_version: str,
     ) -> UpdateDocumentDefaultVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_document_default_version/)."""
         params: dict[str, object] = {
             "name": name,
             "document_version": document_version,
@@ -4514,6 +4657,7 @@ class SSMClient:
         document_reviews: DocumentReviews,
         document_version: str | None = None,
     ) -> UpdateDocumentMetadataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_document_metadata/)."""
         params: dict[str, object] = {
             "name": name,
             "document_reviews": document_reviews,
@@ -4551,6 +4695,7 @@ class SSMClient:
         enabled: bool | None = None,
         replace: bool | None = None,
     ) -> UpdateMaintenanceWindowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_maintenance_window/)."""
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -4603,6 +4748,7 @@ class SSMClient:
         description: str | None = None,
         replace: bool | None = None,
     ) -> UpdateMaintenanceWindowTargetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_maintenance_window_target/)."""
         params: dict[str, object] = {
             "window_id": window_id,
             "window_target_id": window_target_id,
@@ -4651,6 +4797,7 @@ class SSMClient:
         cutoff_behavior: MaintenanceWindowTaskCutoffBehavior | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
     ) -> UpdateMaintenanceWindowTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_maintenance_window_task/)."""
         params: dict[str, object] = {
             "window_id": window_id,
             "window_task_id": window_task_id,
@@ -4703,6 +4850,7 @@ class SSMClient:
         instance_id: str,
         iam_role: str,
     ) -> UpdateManagedInstanceRoleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_managed_instance_role/)."""
         params: dict[str, object] = {
             "instance_id": instance_id,
             "iam_role": iam_role,
@@ -4741,6 +4889,7 @@ class SSMClient:
         planned_end_time: str | None = None,
         ops_item_arn: str | None = None,
     ) -> UpdateOpsItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_ops_item/)."""
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
         }
@@ -4795,6 +4944,7 @@ class SSMClient:
         metadata_to_update: dict[str, MetadataValue] | None = None,
         keys_to_delete: Sequence[str] | None = None,
     ) -> UpdateOpsMetadataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_ops_metadata/)."""
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
         }
@@ -4833,6 +4983,7 @@ class SSMClient:
         available_security_updates_compliance_status: PatchComplianceStatus | None = None,
         replace: bool | None = None,
     ) -> UpdatePatchBaselineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_patch_baseline/)."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -4881,6 +5032,7 @@ class SSMClient:
         sync_type: str,
         sync_source: ResourceDataSyncSource,
     ) -> UpdateResourceDataSyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_resource_data_sync/)."""
         params: dict[str, object] = {
             "sync_name": sync_name,
             "sync_type": sync_type,
@@ -4906,6 +5058,7 @@ class SSMClient:
         setting_id: str,
         setting_value: str,
     ) -> UpdateServiceSettingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_service_setting/)."""
         params: dict[str, object] = {
             "setting_id": setting_id,
             "setting_value": setting_value,
@@ -4931,6 +5084,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ValidateCloudConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/validate_cloud_connector/)."""
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }

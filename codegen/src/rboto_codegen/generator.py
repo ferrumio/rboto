@@ -11,6 +11,7 @@ from .documentation import render_service_readme
 from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
 from .pagination import resolve_pagination
+from .reference import document_types, package_version, reference_url, render_reference
 from .registry import list_services
 from .rust_crate import RustField, RustOperation, RustType, parse_crate
 from .smithy import SmithyMember, SmithyShape, load_model, to_snake_case
@@ -331,7 +332,10 @@ class ServiceGenerator:
         _write_generated(paths.py_typed, "")
         _write_generated(paths.rust_runtime, self._render_rust_runtime())
         _write_generated(paths.rust, self._render_rust())
-        _write_generated(paths.types, self._render_python_types())
+        types_source, stub_source = document_types(
+            self._render_python_types(), self._render_native_stub(), self.descriptor.service_id,
+        )
+        _write_generated(paths.types, types_source)
         client_source = self._render_python_client()
         _write_generated(paths.client, client_source)
         if self.pagination:
@@ -345,9 +349,20 @@ class ServiceGenerator:
                 tuple(item.operation for item in self.pagination),
             ),
         )
-        _write_generated(paths.native_stub, self._render_native_stub())
-        _write_generated(paths.exceptions, self._render_exceptions())
+        exceptions_source = self._render_exceptions()
+        _write_generated(paths.native_stub, stub_source)
+        _write_generated(paths.exceptions, exceptions_source)
         return paths
+
+    def render_reference(self) -> dict[str, str]:
+        """Render website pages from source models and freshly rendered contracts."""
+        return render_reference(
+            self.descriptor, self.service, package_version(self.repository_root),
+            self._render_python_client(), self._render_python_types(),
+            self._render_native_stub(), self._render_exceptions(), self.pagination,
+            (self.repository_root / "examples/clients"
+             / f"{self.descriptor.python_name}.py").read_text(),
+        )
 
     def _next(self, prefix: str) -> str:
         self._counter += 1
@@ -1639,6 +1654,9 @@ class ServiceGenerator:
             "parameters": parameters,
             "output": output,
             "native_output": native_output,
+            "documentation_url": reference_url(
+                self.descriptor.service_id, f"operations/{operation_name}/",
+            ),
         }
 
     def _render_python_client(self, *, paginators: bool = False) -> str:
@@ -1688,6 +1706,7 @@ class ServiceGenerator:
                 client_class=self.descriptor.client_class,
                 native_client_class=self.descriptor.native_class,
                 service_id=self.descriptor.service_id,
+                documentation_url=reference_url(self.descriptor.service_id),
                 sequence_type=self._sequence_type,
                 pagination={
                     item.operation: {

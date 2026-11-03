@@ -39,7 +39,7 @@ class KMSClientPaginators:
         limit: int | None = None,
         marker: str | None = None,
     ) -> AsyncIterator[DescribeCustomKeyStoresOutput]:
-        """Yield each page from describe_custom_key_stores; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/describe_custom_key_stores/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if custom_key_store_id is not None:
@@ -67,7 +67,7 @@ class KMSClientPaginators:
         limit: int | None = None,
         marker: str | None = None,
     ) -> AsyncIterator[ListAliasesOutput]:
-        """Yield each page from list_aliases; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_aliases/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if key_id is not None:
@@ -96,7 +96,7 @@ class KMSClientPaginators:
         grantee_principal: str | None = None,
         grantee_service_principal: str | None = None,
     ) -> AsyncIterator[ListGrantsOutput]:
-        """Yield each page from list_grants; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_grants/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -127,7 +127,7 @@ class KMSClientPaginators:
         limit: int | None = None,
         marker: str | None = None,
     ) -> AsyncIterator[ListKeyPoliciesOutput]:
-        """Yield each page from list_key_policies; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_key_policies/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -153,7 +153,7 @@ class KMSClientPaginators:
         limit: int | None = None,
         marker: str | None = None,
     ) -> AsyncIterator[ListKeyRotationsOutput]:
-        """Yield each page from list_key_rotations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_key_rotations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -179,7 +179,7 @@ class KMSClientPaginators:
         limit: int | None = None,
         marker: str | None = None,
     ) -> AsyncIterator[ListKeysOutput]:
-        """Yield each page from list_keys; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_keys/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if limit is not None:
@@ -203,7 +203,7 @@ class KMSClientPaginators:
         limit: int | None = None,
         marker: str | None = None,
     ) -> AsyncIterator[ListResourceTagsOutput]:
-        """Yield each page from list_resource_tags; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_resource_tags/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -229,7 +229,7 @@ class KMSClientPaginators:
         retiring_principal: str | None = None,
         retiring_service_principal: str | None = None,
     ) -> AsyncIterator[ListRetirableGrantsOutput]:
-        """Yield each page from list_retirable_grants; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_retirable_grants/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if limit is not None:

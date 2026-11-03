@@ -9,6 +9,7 @@ nav = [
     { "Getting started" = "getting-started.md" },
     { "Async-only" = "guides/async-only.md" },
     { "Clients" = "clients.md" },
+    { "Operation reference" = "reference.md" },
     { "Using rboto" = [
         { "Configuration and credentials" = "guides/configuration.md" },
         { "Types and responses" = "guides/types.md" },

@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AdvancedEventSelector:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AdvancedEventSelectorOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -25,6 +27,7 @@ class AdvancedEventSelector:
 
 @final
 class AdvancedFieldSelector:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AdvancedFieldSelectorOutput/)."""
     @property
     def field(self) -> str: ...
     @property
@@ -43,6 +46,7 @@ class AdvancedFieldSelector:
 
 @final
 class AggregationConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AggregationConfigurationOutput/)."""
     @property
     def templates(self) -> list[_types.TemplateOutput]: ...
     @property
@@ -51,6 +55,7 @@ class AggregationConfiguration:
 
 @final
 class Channel:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ChannelOutput/)."""
     @property
     def channel_arn(self) -> str | None: ...
     @property
@@ -59,6 +64,7 @@ class Channel:
 
 @final
 class ContextKeySelector:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ContextKeySelectorOutput/)."""
     @property
     def type(self) -> _types.TypeOutput: ...
     @property
@@ -67,6 +73,7 @@ class ContextKeySelector:
 
 @final
 class DashboardDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DashboardDetailOutput/)."""
     @property
     def dashboard_arn(self) -> str | None: ...
     @property
@@ -75,6 +82,7 @@ class DashboardDetail:
 
 @final
 class DataResource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DataResourceOutput/)."""
     @property
     def type(self) -> str | None: ...
     @property
@@ -83,6 +91,7 @@ class DataResource:
 
 @final
 class Destination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DestinationOutput/)."""
     @property
     def type(self) -> _types.DestinationTypeOutput: ...
     @property
@@ -91,6 +100,7 @@ class Destination:
 
 @final
 class Event:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventOutput/)."""
     @property
     def event_id(self) -> str | None: ...
     @property
@@ -113,6 +123,7 @@ class Event:
 
 @final
 class EventDataStore:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventDataStoreOutput/)."""
     @property
     def event_data_store_arn(self) -> str | None: ...
     @property
@@ -137,6 +148,7 @@ class EventDataStore:
 
 @final
 class EventSelector:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EventSelectorOutput/)."""
     @property
     def read_write_type(self) -> _types.ReadWriteTypeOutput | None: ...
     @property
@@ -149,6 +161,7 @@ class EventSelector:
 
 @final
 class ImportFailureListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportFailureListItemOutput/)."""
     @property
     def location(self) -> str | None: ...
     @property
@@ -163,12 +176,14 @@ class ImportFailureListItem:
 
 @final
 class ImportSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportSourceOutput/)."""
     @property
     def s3(self) -> S3ImportSource | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ImportStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportStatisticsOutput/)."""
     @property
     def prefixes_found(self) -> int | None: ...
     @property
@@ -183,6 +198,7 @@ class ImportStatistics:
 
 @final
 class ImportsListItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ImportsListItemOutput/)."""
     @property
     def import_id(self) -> str | None: ...
     @property
@@ -197,6 +213,7 @@ class ImportsListItem:
 
 @final
 class IngestionStatus:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/IngestionStatusOutput/)."""
     @property
     def latest_ingestion_success_time(self) -> str | None: ...
     @property
@@ -211,6 +228,7 @@ class IngestionStatus:
 
 @final
 class InsightSelector:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/InsightSelectorOutput/)."""
     @property
     def insight_type(self) -> _types.InsightTypeOutput | None: ...
     @property
@@ -219,6 +237,7 @@ class InsightSelector:
 
 @final
 class PartitionKey:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PartitionKeyOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -227,6 +246,7 @@ class PartitionKey:
 
 @final
 class PublicKey:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PublicKeyOutput/)."""
     @property
     def value(self) -> bytes | None: ...
     @property
@@ -239,6 +259,7 @@ class PublicKey:
 
 @final
 class Query:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryOutput/)."""
     @property
     def query_id(self) -> str | None: ...
     @property
@@ -249,6 +270,7 @@ class Query:
 
 @final
 class QueryStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatisticsOutput/)."""
     @property
     def results_count(self) -> int | None: ...
     @property
@@ -259,6 +281,7 @@ class QueryStatistics:
 
 @final
 class QueryStatisticsForDescribeQuery:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/QueryStatisticsForDescribeQueryOutput/)."""
     @property
     def events_matched(self) -> int | None: ...
     @property
@@ -273,6 +296,7 @@ class QueryStatisticsForDescribeQuery:
 
 @final
 class RefreshSchedule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleOutput/)."""
     @property
     def frequency(self) -> RefreshScheduleFrequency | None: ...
     @property
@@ -283,6 +307,7 @@ class RefreshSchedule:
 
 @final
 class RefreshScheduleFrequency:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RefreshScheduleFrequencyOutput/)."""
     @property
     def unit(self) -> _types.RefreshScheduleFrequencyUnitOutput | None: ...
     @property
@@ -291,6 +316,7 @@ class RefreshScheduleFrequency:
 
 @final
 class Resource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ResourceOutput/)."""
     @property
     def resource_type(self) -> str | None: ...
     @property
@@ -299,6 +325,7 @@ class Resource:
 
 @final
 class ResourceTag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ResourceTagOutput/)."""
     @property
     def resource_id(self) -> str | None: ...
     @property
@@ -307,6 +334,7 @@ class ResourceTag:
 
 @final
 class S3ImportSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/S3ImportSourceOutput/)."""
     @property
     def s3_location_uri(self) -> str: ...
     @property
@@ -317,6 +345,7 @@ class S3ImportSource:
 
 @final
 class SearchSampleQueriesSearchResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SearchSampleQueriesSearchResultOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -329,6 +358,7 @@ class SearchSampleQueriesSearchResult:
 
 @final
 class SourceConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SourceConfigOutput/)."""
     @property
     def apply_to_all_regions(self) -> bool | None: ...
     @property
@@ -337,6 +367,7 @@ class SourceConfig:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -345,6 +376,7 @@ class Tag:
 
 @final
 class Trail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TrailOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -383,6 +415,7 @@ class Trail:
 
 @final
 class TrailInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/TrailInfoOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -393,6 +426,7 @@ class TrailInfo:
 
 @final
 class Widget:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/WidgetOutput/)."""
     @property
     def query_alias(self) -> str | None: ...
     @property
@@ -405,10 +439,12 @@ class Widget:
 
 @final
 class AddTagsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/AddTagsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CancelQueryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CancelQueryOutput/)."""
     @property
     def query_id(self) -> str: ...
     @property
@@ -419,6 +455,7 @@ class CancelQueryOutput:
 
 @final
 class CreateChannelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateChannelOutput/)."""
     @property
     def channel_arn(self) -> str | None: ...
     @property
@@ -433,6 +470,7 @@ class CreateChannelOutput:
 
 @final
 class CreateDashboardOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateDashboardOutput/)."""
     @property
     def dashboard_arn(self) -> str | None: ...
     @property
@@ -451,6 +489,7 @@ class CreateDashboardOutput:
 
 @final
 class CreateEventDataStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateEventDataStoreOutput/)."""
     @property
     def event_data_store_arn(self) -> str | None: ...
     @property
@@ -481,6 +520,7 @@ class CreateEventDataStoreOutput:
 
 @final
 class CreateTrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/CreateTrailOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -513,30 +553,37 @@ class CreateTrailOutput:
 
 @final
 class DeleteChannelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteChannelOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDashboardOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteDashboardOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteEventDataStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteEventDataStoreOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteResourcePolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteTrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeleteTrailOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeregisterOrganizationDelegatedAdminOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DeregisterOrganizationDelegatedAdminOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeQueryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DescribeQueryOutput/)."""
     @property
     def query_id(self) -> str | None: ...
     @property
@@ -559,12 +606,14 @@ class DescribeQueryOutput:
 
 @final
 class DescribeTrailsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DescribeTrailsOutput/)."""
     @property
     def trail_list(self) -> list[Trail] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DisableFederationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/DisableFederationOutput/)."""
     @property
     def event_data_store_arn(self) -> str | None: ...
     @property
@@ -573,6 +622,7 @@ class DisableFederationOutput:
 
 @final
 class EnableFederationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/EnableFederationOutput/)."""
     @property
     def event_data_store_arn(self) -> str | None: ...
     @property
@@ -583,6 +633,7 @@ class EnableFederationOutput:
 
 @final
 class GenerateQueryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GenerateQueryOutput/)."""
     @property
     def query_statement(self) -> str | None: ...
     @property
@@ -593,6 +644,7 @@ class GenerateQueryOutput:
 
 @final
 class GetChannelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetChannelOutput/)."""
     @property
     def channel_arn(self) -> str | None: ...
     @property
@@ -609,6 +661,7 @@ class GetChannelOutput:
 
 @final
 class GetDashboardOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetDashboardOutput/)."""
     @property
     def dashboard_arn(self) -> str | None: ...
     @property
@@ -633,6 +686,7 @@ class GetDashboardOutput:
 
 @final
 class GetEventConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventConfigurationOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -647,6 +701,7 @@ class GetEventConfigurationOutput:
 
 @final
 class GetEventDataStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventDataStoreOutput/)."""
     @property
     def event_data_store_arn(self) -> str | None: ...
     @property
@@ -681,6 +736,7 @@ class GetEventDataStoreOutput:
 
 @final
 class GetEventSelectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetEventSelectorsOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -691,6 +747,7 @@ class GetEventSelectorsOutput:
 
 @final
 class GetImportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetImportOutput/)."""
     @property
     def import_id(self) -> str | None: ...
     @property
@@ -713,6 +770,7 @@ class GetImportOutput:
 
 @final
 class GetInsightSelectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetInsightSelectorsOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -725,6 +783,7 @@ class GetInsightSelectorsOutput:
 
 @final
 class GetQueryResultsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetQueryResultsOutput/)."""
     @property
     def query_status(self) -> _types.QueryStatusOutput | None: ...
     @property
@@ -739,6 +798,7 @@ class GetQueryResultsOutput:
 
 @final
 class GetResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetResourcePolicyOutput/)."""
     @property
     def resource_arn(self) -> str | None: ...
     @property
@@ -749,12 +809,14 @@ class GetResourcePolicyOutput:
 
 @final
 class GetTrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetTrailOutput/)."""
     @property
     def trail(self) -> Trail | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetTrailStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/GetTrailStatusOutput/)."""
     @property
     def is_logging(self) -> bool | None: ...
     @property
@@ -793,6 +855,7 @@ class GetTrailStatusOutput:
 
 @final
 class ListChannelsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListChannelsOutput/)."""
     @property
     def channels(self) -> list[Channel] | None: ...
     @property
@@ -801,6 +864,7 @@ class ListChannelsOutput:
 
 @final
 class ListDashboardsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListDashboardsOutput/)."""
     @property
     def dashboards(self) -> list[DashboardDetail] | None: ...
     @property
@@ -809,6 +873,7 @@ class ListDashboardsOutput:
 
 @final
 class ListEventDataStoresOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListEventDataStoresOutput/)."""
     @property
     def event_data_stores(self) -> list[EventDataStore] | None: ...
     @property
@@ -817,6 +882,7 @@ class ListEventDataStoresOutput:
 
 @final
 class ListImportFailuresOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListImportFailuresOutput/)."""
     @property
     def failures(self) -> list[ImportFailureListItem] | None: ...
     @property
@@ -825,6 +891,7 @@ class ListImportFailuresOutput:
 
 @final
 class ListImportsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListImportsOutput/)."""
     @property
     def imports(self) -> list[ImportsListItem] | None: ...
     @property
@@ -833,6 +900,7 @@ class ListImportsOutput:
 
 @final
 class ListInsightsDataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsDataOutput/)."""
     @property
     def events(self) -> list[Event] | None: ...
     @property
@@ -841,6 +909,7 @@ class ListInsightsDataOutput:
 
 @final
 class ListInsightsMetricDataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListInsightsMetricDataOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -861,6 +930,7 @@ class ListInsightsMetricDataOutput:
 
 @final
 class ListPublicKeysOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListPublicKeysOutput/)."""
     @property
     def public_key_list(self) -> list[PublicKey] | None: ...
     @property
@@ -869,6 +939,7 @@ class ListPublicKeysOutput:
 
 @final
 class ListQueriesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListQueriesOutput/)."""
     @property
     def queries(self) -> list[Query] | None: ...
     @property
@@ -877,6 +948,7 @@ class ListQueriesOutput:
 
 @final
 class ListTagsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListTagsOutput/)."""
     @property
     def resource_tag_list(self) -> list[ResourceTag] | None: ...
     @property
@@ -885,6 +957,7 @@ class ListTagsOutput:
 
 @final
 class ListTrailsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/ListTrailsOutput/)."""
     @property
     def trails(self) -> list[TrailInfo] | None: ...
     @property
@@ -893,6 +966,7 @@ class ListTrailsOutput:
 
 @final
 class LookupEventsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/LookupEventsOutput/)."""
     @property
     def events(self) -> list[Event] | None: ...
     @property
@@ -901,6 +975,7 @@ class LookupEventsOutput:
 
 @final
 class PutEventConfigurationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutEventConfigurationOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -915,6 +990,7 @@ class PutEventConfigurationOutput:
 
 @final
 class PutEventSelectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutEventSelectorsOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -925,6 +1001,7 @@ class PutEventSelectorsOutput:
 
 @final
 class PutInsightSelectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutInsightSelectorsOutput/)."""
     @property
     def trail_arn(self) -> str | None: ...
     @property
@@ -937,6 +1014,7 @@ class PutInsightSelectorsOutput:
 
 @final
 class PutResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/PutResourcePolicyOutput/)."""
     @property
     def resource_arn(self) -> str | None: ...
     @property
@@ -947,14 +1025,17 @@ class PutResourcePolicyOutput:
 
 @final
 class RegisterOrganizationDelegatedAdminOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RegisterOrganizationDelegatedAdminOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RemoveTagsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RemoveTagsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RestoreEventDataStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/RestoreEventDataStoreOutput/)."""
     @property
     def event_data_store_arn(self) -> str | None: ...
     @property
@@ -983,6 +1064,7 @@ class RestoreEventDataStoreOutput:
 
 @final
 class SearchSampleQueriesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/SearchSampleQueriesOutput/)."""
     @property
     def search_results(self) -> list[SearchSampleQueriesSearchResult] | None: ...
     @property
@@ -991,16 +1073,19 @@ class SearchSampleQueriesOutput:
 
 @final
 class StartDashboardRefreshOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartDashboardRefreshOutput/)."""
     @property
     def refresh_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartEventDataStoreIngestionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartEventDataStoreIngestionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartImportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartImportOutput/)."""
     @property
     def import_id(self) -> str | None: ...
     @property
@@ -1021,10 +1106,12 @@ class StartImportOutput:
 
 @final
 class StartLoggingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartLoggingOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartQueryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StartQueryOutput/)."""
     @property
     def query_id(self) -> str | None: ...
     @property
@@ -1033,10 +1120,12 @@ class StartQueryOutput:
 
 @final
 class StopEventDataStoreIngestionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopEventDataStoreIngestionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StopImportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopImportOutput/)."""
     @property
     def import_id(self) -> str | None: ...
     @property
@@ -1059,10 +1148,12 @@ class StopImportOutput:
 
 @final
 class StopLoggingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/StopLoggingOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateChannelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateChannelOutput/)."""
     @property
     def channel_arn(self) -> str | None: ...
     @property
@@ -1075,6 +1166,7 @@ class UpdateChannelOutput:
 
 @final
 class UpdateDashboardOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateDashboardOutput/)."""
     @property
     def dashboard_arn(self) -> str | None: ...
     @property
@@ -1095,6 +1187,7 @@ class UpdateDashboardOutput:
 
 @final
 class UpdateEventDataStoreOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateEventDataStoreOutput/)."""
     @property
     def event_data_store_arn(self) -> str | None: ...
     @property
@@ -1127,6 +1220,7 @@ class UpdateEventDataStoreOutput:
 
 @final
 class UpdateTrailOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudtrail/types/UpdateTrailOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property

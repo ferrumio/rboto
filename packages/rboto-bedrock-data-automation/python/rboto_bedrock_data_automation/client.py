@@ -41,6 +41,8 @@ from .paginators import BedrockDataAutomationClientPaginators as _Paginators
 
 
 class BedrockDataAutomationClient:
+    """Async BedrockDataAutomationClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/)."""
+
     logger_name = "rboto.bedrock-data-automation"
 
     def __init__(
@@ -84,6 +86,7 @@ class BedrockDataAutomationClient:
         target_stage: BlueprintStage,
         client_token: str | None = None,
     ) -> CopyBlueprintStageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/copy_blueprint_stage/)."""
         params: dict[str, object] = {
             "blueprint_arn": blueprint_arn,
             "source_stage": source_stage,
@@ -116,6 +119,7 @@ class BedrockDataAutomationClient:
         encryption_configuration: EncryptionConfiguration | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateBlueprintOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/create_blueprint/)."""
         params: dict[str, object] = {
             "blueprint_name": blueprint_name,
             "type": type,
@@ -149,6 +153,7 @@ class BedrockDataAutomationClient:
         blueprint_arn: str,
         client_token: str | None = None,
     ) -> CreateBlueprintVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/create_blueprint_version/)."""
         params: dict[str, object] = {
             "blueprint_arn": blueprint_arn,
         }
@@ -177,6 +182,7 @@ class BedrockDataAutomationClient:
         encryption_configuration: EncryptionConfiguration | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateDataAutomationLibraryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/create_data_automation_library/)."""
         params: dict[str, object] = {
             "library_name": library_name,
         }
@@ -217,6 +223,7 @@ class BedrockDataAutomationClient:
         encryption_configuration: EncryptionConfiguration | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateDataAutomationProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/create_data_automation_project/)."""
         params: dict[str, object] = {
             "project_name": project_name,
             "standard_output_configuration": standard_output_configuration,
@@ -259,6 +266,7 @@ class BedrockDataAutomationClient:
         blueprint_arn: str,
         blueprint_version: str | None = None,
     ) -> DeleteBlueprintOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/delete_blueprint/)."""
         params: dict[str, object] = {
             "blueprint_arn": blueprint_arn,
         }
@@ -283,6 +291,7 @@ class BedrockDataAutomationClient:
         *,
         library_arn: str,
     ) -> DeleteDataAutomationLibraryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/delete_data_automation_library/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
         }
@@ -305,6 +314,7 @@ class BedrockDataAutomationClient:
         *,
         project_arn: str,
     ) -> DeleteDataAutomationProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/delete_data_automation_project/)."""
         params: dict[str, object] = {
             "project_arn": project_arn,
         }
@@ -329,6 +339,7 @@ class BedrockDataAutomationClient:
         blueprint_version: str | None = None,
         blueprint_stage: BlueprintStage | None = None,
     ) -> GetBlueprintOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/get_blueprint/)."""
         params: dict[str, object] = {
             "blueprint_arn": blueprint_arn,
         }
@@ -355,6 +366,7 @@ class BedrockDataAutomationClient:
         *,
         invocation_arn: str,
     ) -> GetBlueprintOptimizationStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/get_blueprint_optimization_status/)."""
         params: dict[str, object] = {
             "invocation_arn": invocation_arn,
         }
@@ -377,6 +389,7 @@ class BedrockDataAutomationClient:
         *,
         library_arn: str,
     ) -> GetDataAutomationLibraryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/get_data_automation_library/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
         }
@@ -401,6 +414,7 @@ class BedrockDataAutomationClient:
         entity_type: EntityType,
         entity_id: str,
     ) -> GetDataAutomationLibraryEntityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/get_data_automation_library_entity/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
             "entity_type": entity_type,
@@ -426,6 +440,7 @@ class BedrockDataAutomationClient:
         library_arn: str,
         job_arn: str,
     ) -> GetDataAutomationLibraryIngestionJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/get_data_automation_library_ingestion_job/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
             "job_arn": job_arn,
@@ -450,6 +465,7 @@ class BedrockDataAutomationClient:
         project_arn: str,
         project_stage: DataAutomationProjectStage | None = None,
     ) -> GetDataAutomationProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/get_data_automation_project/)."""
         params: dict[str, object] = {
             "project_arn": project_arn,
         }
@@ -479,6 +495,7 @@ class BedrockDataAutomationClient:
         encryption_configuration: EncryptionConfiguration | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> InvokeBlueprintOptimizationAsyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/invoke_blueprint_optimization_async/)."""
         params: dict[str, object] = {
             "blueprint": blueprint,
             "samples": samples,
@@ -515,6 +532,7 @@ class BedrockDataAutomationClient:
         notification_configuration: NotificationConfiguration | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> InvokeDataAutomationLibraryIngestionJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/invoke_data_automation_library_ingestion_job/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
             "input_configuration": input_configuration,
@@ -552,6 +570,7 @@ class BedrockDataAutomationClient:
         next_token: str | None = None,
         project_filter: DataAutomationProjectFilter | None = None,
     ) -> ListBlueprintsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_blueprints/)."""
         params: dict[str, object] = {
         }
         if blueprint_arn is not None:
@@ -587,6 +606,7 @@ class BedrockDataAutomationClient:
         next_token: str | None = None,
         project_filter: DataAutomationProjectFilter | None = None,
     ) -> ListDataAutomationLibrariesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_libraries/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -617,6 +637,7 @@ class BedrockDataAutomationClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDataAutomationLibraryEntitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_library_entities/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
             "entity_type": entity_type,
@@ -646,6 +667,7 @@ class BedrockDataAutomationClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDataAutomationLibraryIngestionJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_library_ingestion_jobs/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
         }
@@ -677,6 +699,7 @@ class BedrockDataAutomationClient:
         resource_owner: ResourceOwner | None = None,
         library_filter: DataAutomationLibraryFilter | None = None,
     ) -> ListDataAutomationProjectsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_data_automation_projects/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -710,6 +733,7 @@ class BedrockDataAutomationClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -733,6 +757,7 @@ class BedrockDataAutomationClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -757,6 +782,7 @@ class BedrockDataAutomationClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -783,6 +809,7 @@ class BedrockDataAutomationClient:
         blueprint_stage: BlueprintStage | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
     ) -> UpdateBlueprintOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/update_blueprint/)."""
         params: dict[str, object] = {
             "blueprint_arn": blueprint_arn,
             "schema": schema,
@@ -812,6 +839,7 @@ class BedrockDataAutomationClient:
         library_description: str | None = None,
         client_token: str | None = None,
     ) -> UpdateDataAutomationLibraryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/update_data_automation_library/)."""
         params: dict[str, object] = {
             "library_arn": library_arn,
         }
@@ -845,6 +873,7 @@ class BedrockDataAutomationClient:
         data_automation_library_configuration: DataAutomationLibraryConfiguration | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
     ) -> UpdateDataAutomationProjectOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/operations/update_data_automation_project/)."""
         params: dict[str, object] = {
             "project_arn": project_arn,
             "standard_output_configuration": standard_output_configuration,

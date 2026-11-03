@@ -75,6 +75,8 @@ from .paginators import BedrockClientPaginators as _Paginators
 
 
 class BedrockClient:
+    """Async BedrockClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock/)."""
+
     logger_name = "rboto.bedrock"
 
     def __init__(
@@ -115,6 +117,7 @@ class BedrockClient:
         *,
         job_identifiers: Sequence[str],
     ) -> BatchDeleteAdvancedPromptOptimizationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/batch_delete_advanced_prompt_optimization_job/)."""
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
         }
@@ -137,6 +140,7 @@ class BedrockClient:
         *,
         job_identifiers: Sequence[str],
     ) -> BatchDeleteEvaluationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/batch_delete_evaluation_job/)."""
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
         }
@@ -160,6 +164,7 @@ class BedrockClient:
         policy_arn: str,
         build_workflow_id: str,
     ) -> CancelAutomatedReasoningPolicyBuildWorkflowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/cancel_automated_reasoning_policy_build_workflow/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -190,6 +195,7 @@ class BedrockClient:
         encryption_key_arn: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateAdvancedPromptOptimizationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_advanced_prompt_optimization_job/)."""
         params: dict[str, object] = {
             "job_name": job_name,
             "input_config": input_config,
@@ -228,6 +234,7 @@ class BedrockClient:
         kms_key_id: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateAutomatedReasoningPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_automated_reasoning_policy/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -265,6 +272,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         confidence_threshold: float | None = None,
     ) -> CreateAutomatedReasoningPolicyTestCaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_automated_reasoning_policy_test_case/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "guard_content": guard_content,
@@ -298,6 +306,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateAutomatedReasoningPolicyVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_automated_reasoning_policy_version/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "last_updated_definition_hash": last_updated_definition_hash,
@@ -331,6 +340,7 @@ class BedrockClient:
         model_tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateCustomModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_custom_model/)."""
         params: dict[str, object] = {
             "model_name": model_name,
         }
@@ -369,6 +379,7 @@ class BedrockClient:
         tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateCustomModelDeploymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_custom_model_deployment/)."""
         params: dict[str, object] = {
             "model_deployment_name": model_deployment_name,
             "model_arn": model_arn,
@@ -407,6 +418,7 @@ class BedrockClient:
         job_tags: Sequence[Tag] | None = None,
         application_type: ApplicationType | None = None,
     ) -> CreateEvaluationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_evaluation_job/)."""
         params: dict[str, object] = {
             "job_name": job_name,
             "role_arn": role_arn,
@@ -444,6 +456,7 @@ class BedrockClient:
         offer_token: str,
         model_id: str,
     ) -> CreateFoundationModelAgreementOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_foundation_model_agreement/)."""
         params: dict[str, object] = {
             "offer_token": offer_token,
             "model_id": model_id,
@@ -480,6 +493,7 @@ class BedrockClient:
         tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateGuardrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_guardrail/)."""
         params: dict[str, object] = {
             "name": name,
             "blocked_input_messaging": blocked_input_messaging,
@@ -528,6 +542,7 @@ class BedrockClient:
         description: str | None = None,
         client_request_token: str | None = None,
     ) -> CreateGuardrailVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_guardrail_version/)."""
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
         }
@@ -558,6 +573,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateInferenceProfileOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_inference_profile/)."""
         params: dict[str, object] = {
             "inference_profile_name": inference_profile_name,
             "model_source": model_source,
@@ -592,6 +608,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateMarketplaceModelEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_marketplace_model_endpoint/)."""
         params: dict[str, object] = {
             "model_source_identifier": model_source_identifier,
             "endpoint_config": endpoint_config,
@@ -626,6 +643,7 @@ class BedrockClient:
         target_model_tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateModelCopyJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_model_copy_job/)."""
         params: dict[str, object] = {
             "source_model_arn": source_model_arn,
             "target_model_name": target_model_name,
@@ -669,6 +687,7 @@ class BedrockClient:
         vpc_config: VpcConfig | None = None,
         customization_config: CustomizationConfig | None = None,
     ) -> CreateModelCustomizationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_model_customization_job/)."""
         params: dict[str, object] = {
             "job_name": job_name,
             "custom_model_name": custom_model_name,
@@ -722,6 +741,7 @@ class BedrockClient:
         vpc_config: VpcConfig | None = None,
         imported_model_kms_key_id: str | None = None,
     ) -> CreateModelImportJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_model_import_job/)."""
         params: dict[str, object] = {
             "job_name": job_name,
             "imported_model_name": imported_model_name,
@@ -766,6 +786,7 @@ class BedrockClient:
         tags: Sequence[Tag] | None = None,
         model_invocation_type: ModelInvocationType | None = None,
     ) -> CreateModelInvocationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_model_invocation_job/)."""
         params: dict[str, object] = {
             "job_name": job_name,
             "role_arn": role_arn,
@@ -808,6 +829,7 @@ class BedrockClient:
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreatePromptRouterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_prompt_router/)."""
         params: dict[str, object] = {
             "prompt_router_name": prompt_router_name,
             "models": models,
@@ -844,6 +866,7 @@ class BedrockClient:
         commitment_duration: CommitmentDuration | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateProvisionedModelThroughputOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/create_provisioned_model_throughput/)."""
         params: dict[str, object] = {
             "model_units": model_units,
             "provisioned_model_name": provisioned_model_name,
@@ -875,6 +898,7 @@ class BedrockClient:
         policy_arn: str,
         force: bool | None = None,
     ) -> DeleteAutomatedReasoningPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_automated_reasoning_policy/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -901,6 +925,7 @@ class BedrockClient:
         build_workflow_id: str,
         last_updated_at: str,
     ) -> DeleteAutomatedReasoningPolicyBuildWorkflowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_automated_reasoning_policy_build_workflow/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -927,6 +952,7 @@ class BedrockClient:
         test_case_id: str,
         last_updated_at: str,
     ) -> DeleteAutomatedReasoningPolicyTestCaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_automated_reasoning_policy_test_case/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "test_case_id": test_case_id,
@@ -951,6 +977,7 @@ class BedrockClient:
         *,
         model_identifier: str,
     ) -> DeleteCustomModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_custom_model/)."""
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -973,6 +1000,7 @@ class BedrockClient:
         *,
         custom_model_deployment_identifier: str,
     ) -> DeleteCustomModelDeploymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_custom_model_deployment/)."""
         params: dict[str, object] = {
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
         }
@@ -995,6 +1023,7 @@ class BedrockClient:
         *,
         config_id: str,
     ) -> DeleteEnforcedGuardrailConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_enforced_guardrail_configuration/)."""
         params: dict[str, object] = {
             "config_id": config_id,
         }
@@ -1017,6 +1046,7 @@ class BedrockClient:
         *,
         model_id: str,
     ) -> DeleteFoundationModelAgreementOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_foundation_model_agreement/)."""
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -1040,6 +1070,7 @@ class BedrockClient:
         guardrail_identifier: str,
         guardrail_version: str | None = None,
     ) -> DeleteGuardrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_guardrail/)."""
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
         }
@@ -1064,6 +1095,7 @@ class BedrockClient:
         *,
         model_identifier: str,
     ) -> DeleteImportedModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_imported_model/)."""
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1086,6 +1118,7 @@ class BedrockClient:
         *,
         inference_profile_identifier: str,
     ) -> DeleteInferenceProfileOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_inference_profile/)."""
         params: dict[str, object] = {
             "inference_profile_identifier": inference_profile_identifier,
         }
@@ -1108,6 +1141,7 @@ class BedrockClient:
         *,
         endpoint_arn: str,
     ) -> DeleteMarketplaceModelEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_marketplace_model_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -1128,6 +1162,7 @@ class BedrockClient:
     async def delete_model_invocation_logging_configuration(
         self,
     ) -> DeleteModelInvocationLoggingConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_model_invocation_logging_configuration/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1149,6 +1184,7 @@ class BedrockClient:
         *,
         prompt_router_arn: str,
     ) -> DeletePromptRouterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_prompt_router/)."""
         params: dict[str, object] = {
             "prompt_router_arn": prompt_router_arn,
         }
@@ -1171,6 +1207,7 @@ class BedrockClient:
         *,
         provisioned_model_id: str,
     ) -> DeleteProvisionedModelThroughputOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_provisioned_model_throughput/)."""
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }
@@ -1193,6 +1230,7 @@ class BedrockClient:
         *,
         resource_arn: str,
     ) -> DeleteResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1215,6 +1253,7 @@ class BedrockClient:
         *,
         endpoint_arn: str,
     ) -> DeregisterMarketplaceModelEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/deregister_marketplace_model_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -1237,6 +1276,7 @@ class BedrockClient:
         *,
         policy_arn: str,
     ) -> ExportAutomatedReasoningPolicyVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/export_automated_reasoning_policy_version/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1257,6 +1297,7 @@ class BedrockClient:
     async def get_account_data_retention(
         self,
     ) -> GetAccountDataRetentionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_account_data_retention/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1278,6 +1319,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> GetAdvancedPromptOptimizationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_advanced_prompt_optimization_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1300,6 +1342,7 @@ class BedrockClient:
         *,
         policy_arn: str,
     ) -> GetAutomatedReasoningPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_automated_reasoning_policy/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1323,6 +1366,7 @@ class BedrockClient:
         policy_arn: str,
         build_workflow_id: str,
     ) -> GetAutomatedReasoningPolicyAnnotationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_automated_reasoning_policy_annotations/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1347,6 +1391,7 @@ class BedrockClient:
         policy_arn: str,
         build_workflow_id: str,
     ) -> GetAutomatedReasoningPolicyBuildWorkflowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_automated_reasoning_policy_build_workflow/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1373,6 +1418,7 @@ class BedrockClient:
         asset_type: AutomatedReasoningPolicyBuildResultAssetType,
         asset_id: str | None = None,
     ) -> GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_automated_reasoning_policy_build_workflow_result_assets/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1400,6 +1446,7 @@ class BedrockClient:
         policy_arn: str,
         build_workflow_id: str,
     ) -> GetAutomatedReasoningPolicyNextScenarioOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_automated_reasoning_policy_next_scenario/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1424,6 +1471,7 @@ class BedrockClient:
         policy_arn: str,
         test_case_id: str,
     ) -> GetAutomatedReasoningPolicyTestCaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_automated_reasoning_policy_test_case/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "test_case_id": test_case_id,
@@ -1449,6 +1497,7 @@ class BedrockClient:
         build_workflow_id: str,
         test_case_id: str,
     ) -> GetAutomatedReasoningPolicyTestResultOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_automated_reasoning_policy_test_result/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -1473,6 +1522,7 @@ class BedrockClient:
         *,
         model_identifier: str,
     ) -> GetCustomModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_custom_model/)."""
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1495,6 +1545,7 @@ class BedrockClient:
         *,
         custom_model_deployment_identifier: str,
     ) -> GetCustomModelDeploymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_custom_model_deployment/)."""
         params: dict[str, object] = {
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
         }
@@ -1517,6 +1568,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> GetEvaluationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_evaluation_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1539,6 +1591,7 @@ class BedrockClient:
         *,
         model_identifier: str,
     ) -> GetFoundationModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_foundation_model/)."""
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1561,6 +1614,7 @@ class BedrockClient:
         *,
         model_id: str,
     ) -> GetFoundationModelAvailabilityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_foundation_model_availability/)."""
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -1584,6 +1638,7 @@ class BedrockClient:
         guardrail_identifier: str,
         guardrail_version: str | None = None,
     ) -> GetGuardrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_guardrail/)."""
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
         }
@@ -1608,6 +1663,7 @@ class BedrockClient:
         *,
         model_identifier: str,
     ) -> GetImportedModelOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_imported_model/)."""
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
@@ -1630,6 +1686,7 @@ class BedrockClient:
         *,
         inference_profile_identifier: str,
     ) -> GetInferenceProfileOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_inference_profile/)."""
         params: dict[str, object] = {
             "inference_profile_identifier": inference_profile_identifier,
         }
@@ -1652,6 +1709,7 @@ class BedrockClient:
         *,
         endpoint_arn: str,
     ) -> GetMarketplaceModelEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_marketplace_model_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
@@ -1674,6 +1732,7 @@ class BedrockClient:
         *,
         job_arn: str,
     ) -> GetModelCopyJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_model_copy_job/)."""
         params: dict[str, object] = {
             "job_arn": job_arn,
         }
@@ -1696,6 +1755,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> GetModelCustomizationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_model_customization_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1718,6 +1778,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> GetModelImportJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_model_import_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1740,6 +1801,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> GetModelInvocationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_model_invocation_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -1760,6 +1822,7 @@ class BedrockClient:
     async def get_model_invocation_logging_configuration(
         self,
     ) -> GetModelInvocationLoggingConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_model_invocation_logging_configuration/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1781,6 +1844,7 @@ class BedrockClient:
         *,
         prompt_router_arn: str,
     ) -> GetPromptRouterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_prompt_router/)."""
         params: dict[str, object] = {
             "prompt_router_arn": prompt_router_arn,
         }
@@ -1803,6 +1867,7 @@ class BedrockClient:
         *,
         provisioned_model_id: str,
     ) -> GetProvisionedModelThroughputOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_provisioned_model_throughput/)."""
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }
@@ -1825,6 +1890,7 @@ class BedrockClient:
         *,
         resource_arn: str,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1845,6 +1911,7 @@ class BedrockClient:
     async def get_use_case_for_model_access(
         self,
     ) -> GetUseCaseForModelAccessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/get_use_case_for_model_access/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("bedrock", self._interceptors)
@@ -1869,6 +1936,7 @@ class BedrockClient:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListAdvancedPromptOptimizationJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_advanced_prompt_optimization_jobs/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1900,6 +1968,7 @@ class BedrockClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListAutomatedReasoningPoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policies/)."""
         params: dict[str, object] = {
         }
         if policy_arn is not None:
@@ -1929,6 +1998,7 @@ class BedrockClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListAutomatedReasoningPolicyBuildWorkflowsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policy_build_workflows/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1957,6 +2027,7 @@ class BedrockClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListAutomatedReasoningPolicyTestCasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policy_test_cases/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
@@ -1986,6 +2057,7 @@ class BedrockClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListAutomatedReasoningPolicyTestResultsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_automated_reasoning_policy_test_results/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -2021,6 +2093,7 @@ class BedrockClient:
         status_equals: CustomModelDeploymentStatus | None = None,
         model_arn_equals: str | None = None,
     ) -> ListCustomModelDeploymentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_custom_model_deployments/)."""
         params: dict[str, object] = {
         }
         if created_before is not None:
@@ -2070,6 +2143,7 @@ class BedrockClient:
         is_owned: bool | None = None,
         model_status: ModelStatus | None = None,
     ) -> ListCustomModelsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_custom_models/)."""
         params: dict[str, object] = {
         }
         if creation_time_before is not None:
@@ -2113,6 +2187,7 @@ class BedrockClient:
         *,
         next_token: str | None = None,
     ) -> ListEnforcedGuardrailsConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_enforced_guardrails_configuration/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -2144,6 +2219,7 @@ class BedrockClient:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListEvaluationJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_evaluation_jobs/)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2184,6 +2260,7 @@ class BedrockClient:
         model_id: str,
         offer_type: OfferType | None = None,
     ) -> ListFoundationModelAgreementOffersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_foundation_model_agreement_offers/)."""
         params: dict[str, object] = {
             "model_id": model_id,
         }
@@ -2211,6 +2288,7 @@ class BedrockClient:
         by_output_modality: ModelModality | None = None,
         by_inference_type: InferenceType | None = None,
     ) -> ListFoundationModelsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_foundation_models/)."""
         params: dict[str, object] = {
         }
         if by_provider is not None:
@@ -2242,6 +2320,7 @@ class BedrockClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListGuardrailsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_guardrails/)."""
         params: dict[str, object] = {
         }
         if guardrail_identifier is not None:
@@ -2275,6 +2354,7 @@ class BedrockClient:
         sort_by: SortModelsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListImportedModelsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_imported_models/)."""
         params: dict[str, object] = {
         }
         if creation_time_before is not None:
@@ -2312,6 +2392,7 @@ class BedrockClient:
         next_token: str | None = None,
         type_equals: InferenceProfileType | None = None,
     ) -> ListInferenceProfilesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_inference_profiles/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2341,6 +2422,7 @@ class BedrockClient:
         next_token: str | None = None,
         model_source_equals: str | None = None,
     ) -> ListMarketplaceModelEndpointsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_marketplace_model_endpoints/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2377,6 +2459,7 @@ class BedrockClient:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListModelCopyJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_copy_jobs/)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2425,6 +2508,7 @@ class BedrockClient:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListModelCustomizationJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_customization_jobs/)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2469,6 +2553,7 @@ class BedrockClient:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListModelImportJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_import_jobs/)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2513,6 +2598,7 @@ class BedrockClient:
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListModelInvocationJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_model_invocation_jobs/)."""
         params: dict[str, object] = {
         }
         if submit_time_after is not None:
@@ -2552,6 +2638,7 @@ class BedrockClient:
         next_token: str | None = None,
         type: PromptRouterType | None = None,
     ) -> ListPromptRoutersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_prompt_routers/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2587,6 +2674,7 @@ class BedrockClient:
         sort_by: SortByProvisionedModels | None = None,
         sort_order: SortOrder | None = None,
     ) -> ListProvisionedModelThroughputsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_provisioned_model_throughputs/)."""
         params: dict[str, object] = {
         }
         if creation_time_after is not None:
@@ -2626,6 +2714,7 @@ class BedrockClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2648,6 +2737,7 @@ class BedrockClient:
         *,
         mode: DataRetentionMode,
     ) -> PutAccountDataRetentionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_account_data_retention/)."""
         params: dict[str, object] = {
             "mode": mode,
         }
@@ -2671,6 +2761,7 @@ class BedrockClient:
         guardrail_inference_config: AccountEnforcedGuardrailInferenceInputConfiguration,
         config_id: str | None = None,
     ) -> PutEnforcedGuardrailConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_enforced_guardrail_configuration/)."""
         params: dict[str, object] = {
             "guardrail_inference_config": guardrail_inference_config,
         }
@@ -2695,6 +2786,7 @@ class BedrockClient:
         *,
         logging_config: LoggingConfig,
     ) -> PutModelInvocationLoggingConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_model_invocation_logging_configuration/)."""
         params: dict[str, object] = {
             "logging_config": logging_config,
         }
@@ -2718,6 +2810,7 @@ class BedrockClient:
         resource_arn: str,
         resource_policy: str,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "resource_policy": resource_policy,
@@ -2741,6 +2834,7 @@ class BedrockClient:
         *,
         form_data: bytes,
     ) -> PutUseCaseForModelAccessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/put_use_case_for_model_access/)."""
         params: dict[str, object] = {
             "form_data": form_data,
         }
@@ -2764,6 +2858,7 @@ class BedrockClient:
         endpoint_identifier: str,
         model_source_identifier: str,
     ) -> RegisterMarketplaceModelEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/register_marketplace_model_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_identifier": endpoint_identifier,
             "model_source_identifier": model_source_identifier,
@@ -2790,6 +2885,7 @@ class BedrockClient:
         source_content: AutomatedReasoningPolicyBuildWorkflowSource,
         client_request_token: str | None = None,
     ) -> StartAutomatedReasoningPolicyBuildWorkflowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/start_automated_reasoning_policy_build_workflow/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_type": build_workflow_type,
@@ -2819,6 +2915,7 @@ class BedrockClient:
         test_case_ids: Sequence[str] | None = None,
         client_request_token: str | None = None,
     ) -> StartAutomatedReasoningPolicyTestWorkflowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/start_automated_reasoning_policy_test_workflow/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -2846,6 +2943,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> StopAdvancedPromptOptimizationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/stop_advanced_prompt_optimization_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2868,6 +2966,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> StopEvaluationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/stop_evaluation_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2890,6 +2989,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> StopModelCustomizationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/stop_model_customization_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2912,6 +3012,7 @@ class BedrockClient:
         *,
         job_identifier: str,
     ) -> StopModelInvocationJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/stop_model_invocation_job/)."""
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
@@ -2935,6 +3036,7 @@ class BedrockClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2959,6 +3061,7 @@ class BedrockClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2985,6 +3088,7 @@ class BedrockClient:
         name: str | None = None,
         description: str | None = None,
     ) -> UpdateAutomatedReasoningPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_automated_reasoning_policy/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "policy_definition": policy_definition,
@@ -3015,6 +3119,7 @@ class BedrockClient:
         annotations: Sequence[AutomatedReasoningPolicyAnnotation],
         last_updated_annotation_set_hash: str,
     ) -> UpdateAutomatedReasoningPolicyAnnotationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_automated_reasoning_policy_annotations/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
@@ -3047,6 +3152,7 @@ class BedrockClient:
         confidence_threshold: float | None = None,
         client_request_token: str | None = None,
     ) -> UpdateAutomatedReasoningPolicyTestCaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_automated_reasoning_policy_test_case/)."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
             "test_case_id": test_case_id,
@@ -3080,6 +3186,7 @@ class BedrockClient:
         model_arn: str,
         custom_model_deployment_identifier: str,
     ) -> UpdateCustomModelDeploymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_custom_model_deployment/)."""
         params: dict[str, object] = {
             "model_arn": model_arn,
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
@@ -3115,6 +3222,7 @@ class BedrockClient:
         cross_region_config: GuardrailCrossRegionConfig | None = None,
         kms_key_id: str | None = None,
     ) -> UpdateGuardrailOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_guardrail/)."""
         params: dict[str, object] = {
             "guardrail_identifier": guardrail_identifier,
             "name": name,
@@ -3160,6 +3268,7 @@ class BedrockClient:
         endpoint_config: EndpointConfig,
         client_request_token: str | None = None,
     ) -> UpdateMarketplaceModelEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_marketplace_model_endpoint/)."""
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
             "endpoint_config": endpoint_config,
@@ -3187,6 +3296,7 @@ class BedrockClient:
         desired_provisioned_model_name: str | None = None,
         desired_model_id: str | None = None,
     ) -> UpdateProvisionedModelThroughputOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/operations/update_provisioned_model_throughput/)."""
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }

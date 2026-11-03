@@ -51,7 +51,7 @@ class APIGatewayClientPaginators:
         customer_id: str | None = None,
         include_values: bool | None = None,
     ) -> AsyncIterator[GetApiKeysOutput]:
-        """Yield each page from get_api_keys; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_api_keys/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -81,7 +81,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetAuthorizersOutput]:
-        """Yield each page from get_authorizers; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_authorizers/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -107,7 +107,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetBasePathMappingsOutput]:
-        """Yield each page from get_base_path_mappings; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_base_path_mappings/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "domain_name": domain_name,
         }
@@ -133,7 +133,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetClientCertificatesOutput]:
-        """Yield each page from get_client_certificates; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_client_certificates/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -157,7 +157,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetDeploymentsOutput]:
-        """Yield each page from get_deployments; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_deployments/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -186,7 +186,7 @@ class APIGatewayClientPaginators:
         limit: int | None = None,
         location_status: LocationStatusType | None = None,
     ) -> AsyncIterator[GetDocumentationPartsOutput]:
-        """Yield each page from get_documentation_parts; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_documentation_parts/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -219,7 +219,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetDocumentationVersionsOutput]:
-        """Yield each page from get_documentation_versions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_documentation_versions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -244,7 +244,7 @@ class APIGatewayClientPaginators:
         limit: int | None = None,
         resource_owner: ResourceOwner | None = None,
     ) -> AsyncIterator[GetDomainNamesOutput]:
-        """Yield each page from get_domain_names; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_domain_names/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -270,7 +270,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetGatewayResponsesOutput]:
-        """Yield each page from get_gateway_responses; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_gateway_responses/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -295,7 +295,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetModelsOutput]:
-        """Yield each page from get_models; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_models/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -320,7 +320,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetRequestValidatorsOutput]:
-        """Yield each page from get_request_validators; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_request_validators/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -346,7 +346,7 @@ class APIGatewayClientPaginators:
         limit: int | None = None,
         embed: Sequence[str] | None = None,
     ) -> AsyncIterator[GetResourcesOutput]:
-        """Yield each page from get_resources; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_resources/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -372,7 +372,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetRestApisOutput]:
-        """Yield each page from get_rest_apis; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_rest_apis/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -399,7 +399,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetUsageOutput]:
-        """Yield each page from get_usage; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
             "start_date": start_date,
@@ -429,7 +429,7 @@ class APIGatewayClientPaginators:
         limit: int | None = None,
         name_query: str | None = None,
     ) -> AsyncIterator[GetUsagePlanKeysOutput]:
-        """Yield each page from get_usage_plan_keys; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage_plan_keys/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
@@ -456,7 +456,7 @@ class APIGatewayClientPaginators:
         key_id: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetUsagePlansOutput]:
-        """Yield each page from get_usage_plans; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_usage_plans/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if position is not None:
@@ -481,7 +481,7 @@ class APIGatewayClientPaginators:
         position: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[GetVpcLinksOutput]:
-        """Yield each page from get_vpc_links; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/get_vpc_links/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if position is not None:

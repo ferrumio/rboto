@@ -31,7 +31,7 @@ class EventBridgeClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[ListRuleNamesByTargetOutput]:
-        """Yield each page from list_rule_names_by_target; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_rule_names_by_target/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "target_arn": target_arn,
         }
@@ -59,7 +59,7 @@ class EventBridgeClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[ListRulesOutput]:
-        """Yield each page from list_rules; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_rules/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if name_prefix is not None:
@@ -88,7 +88,7 @@ class EventBridgeClientPaginators:
         next_token: str | None = None,
         limit: int | None = None,
     ) -> AsyncIterator[ListTargetsByRuleOutput]:
-        """Yield each page from list_targets_by_rule; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/operations/list_targets_by_rule/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "rule": rule,
         }

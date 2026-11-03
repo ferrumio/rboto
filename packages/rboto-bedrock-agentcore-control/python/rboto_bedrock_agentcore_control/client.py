@@ -119,6 +119,8 @@ from .paginators import BedrockAgentCoreControlClientPaginators as _Paginators
 
 
 class BedrockAgentCoreControlClient:
+    """Async BedrockAgentCoreControlClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/)."""
+
     logger_name = "rboto.bedrock-agentcore-control"
 
     def __init__(
@@ -161,6 +163,7 @@ class BedrockAgentCoreControlClient:
         source: DataSourceType,
         client_token: str | None = None,
     ) -> AddDatasetExamplesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/add_dataset_examples/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
             "source": source,
@@ -188,6 +191,7 @@ class BedrockAgentCoreControlClient:
         rate_limits: Sequence[BatchPutLimitEntry],
         client_token: str | None = None,
     ) -> BatchPutGatewayRateLimitsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/batch_put_gateway_rate_limits/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "rate_limits": rate_limits,
@@ -227,6 +231,7 @@ class BedrockAgentCoreControlClient:
         tags: dict[str, str] | None = None,
         platform_version: str | None = None,
     ) -> CreateAgentRuntimeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_agent_runtime/)."""
         params: dict[str, object] = {
             "agent_runtime_name": agent_runtime_name,
             "agent_runtime_artifact": agent_runtime_artifact,
@@ -280,6 +285,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateAgentRuntimeEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_agent_runtime_endpoint/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
             "name": name,
@@ -315,6 +321,7 @@ class BedrockAgentCoreControlClient:
         api_key_secret_source: SecretSourceType | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateApiKeyCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_api_key_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -355,6 +362,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateBrowserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_browser/)."""
         params: dict[str, object] = {
             "name": name,
             "network_configuration": network_configuration,
@@ -399,6 +407,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateBrowserProfileOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_browser_profile/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -432,6 +441,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_capacity_provider/)."""
         params: dict[str, object] = {
             "name": name,
             "permissions_configuration": permissions_configuration,
@@ -469,6 +479,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateCodeInterpreterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_code_interpreter/)."""
         params: dict[str, object] = {
             "name": name,
             "network_configuration": network_configuration,
@@ -512,6 +523,7 @@ class BedrockAgentCoreControlClient:
         kms_key_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateConfigurationBundleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_configuration_bundle/)."""
         params: dict[str, object] = {
             "bundle_name": bundle_name,
             "components": components,
@@ -554,6 +566,7 @@ class BedrockAgentCoreControlClient:
         description: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateConsentPortalOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_consent_portal/)."""
         params: dict[str, object] = {
             "execution_role_arn": execution_role_arn,
             "idp_config": idp_config,
@@ -589,6 +602,7 @@ class BedrockAgentCoreControlClient:
         kms_key_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateDatasetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_dataset/)."""
         params: dict[str, object] = {
             "dataset_name": dataset_name,
             "source": source,
@@ -622,6 +636,7 @@ class BedrockAgentCoreControlClient:
         dataset_id: str,
         client_token: str | None = None,
     ) -> CreateDatasetVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_dataset_version/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
@@ -652,6 +667,7 @@ class BedrockAgentCoreControlClient:
         kms_key_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateEvaluatorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_evaluator/)."""
         params: dict[str, object] = {
             "evaluator_name": evaluator_name,
             "evaluator_config": evaluator_config,
@@ -696,6 +712,7 @@ class BedrockAgentCoreControlClient:
         exception_level: ExceptionLevel | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateGatewayOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_gateway/)."""
         params: dict[str, object] = {
             "name": name,
             "role_arn": role_arn,
@@ -745,6 +762,7 @@ class BedrockAgentCoreControlClient:
         rate_limit_id: str | None = None,
         description: str | None = None,
     ) -> CreateGatewayRateLimitOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_gateway_rate_limit/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "dimension_keys": dimension_keys,
@@ -780,6 +798,7 @@ class BedrockAgentCoreControlClient:
         conditions: Sequence[Condition] | None = None,
         description: str | None = None,
     ) -> CreateGatewayRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_gateway_rule/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "priority": priority,
@@ -818,6 +837,7 @@ class BedrockAgentCoreControlClient:
         private_endpoint: PrivateEndpoint | None = None,
         certificate_configurations: Sequence[CertificateConfiguration] | None = None,
     ) -> CreateGatewayTargetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_gateway_target/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "target_configuration": target_configuration,
@@ -873,6 +893,7 @@ class BedrockAgentCoreControlClient:
         timeout_seconds: int | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateHarnessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_harness/)."""
         params: dict[str, object] = {
             "harness_name": harness_name,
             "execution_role_arn": execution_role_arn,
@@ -935,6 +956,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateHarnessEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_harness_endpoint/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
             "endpoint_name": endpoint_name,
@@ -976,6 +998,7 @@ class BedrockAgentCoreControlClient:
         stream_delivery_resources: StreamDeliveryResources | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateMemoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_memory/)."""
         params: dict[str, object] = {
             "name": name,
             "event_expiry_duration": event_expiry_duration,
@@ -1020,6 +1043,7 @@ class BedrockAgentCoreControlClient:
         oauth2_provider_config_input: Oauth2ProviderConfigInput,
         tags: dict[str, str] | None = None,
     ) -> CreateOauth2CredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_oauth2_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
             "credential_provider_vendor": credential_provider_vendor,
@@ -1057,6 +1081,7 @@ class BedrockAgentCoreControlClient:
         output_config: OutputConfig | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateOnlineEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_online_evaluation_config/)."""
         params: dict[str, object] = {
             "online_evaluation_config_name": online_evaluation_config_name,
             "rule": rule,
@@ -1103,6 +1128,7 @@ class BedrockAgentCoreControlClient:
         provision_mode: PaymentConnectorProvisionMode | None = None,
         client_token: str | None = None,
     ) -> CreatePaymentConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_payment_connector/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
             "name": name,
@@ -1137,6 +1163,7 @@ class BedrockAgentCoreControlClient:
         provider_configuration_input: PaymentProviderConfigurationInput,
         tags: dict[str, str] | None = None,
     ) -> CreatePaymentCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_payment_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
             "credential_provider_vendor": credential_provider_vendor,
@@ -1170,6 +1197,7 @@ class BedrockAgentCoreControlClient:
         tags: dict[str, str] | None = None,
         kms_key_arn: str | None = None,
     ) -> CreatePaymentManagerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_payment_manager/)."""
         params: dict[str, object] = {
             "name": name,
             "authorizer_type": authorizer_type,
@@ -1210,6 +1238,7 @@ class BedrockAgentCoreControlClient:
         enforcement_mode: EnforcementMode | None = None,
         client_token: str | None = None,
     ) -> CreatePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_policy/)."""
         params: dict[str, object] = {
             "name": name,
             "definition": definition,
@@ -1246,6 +1275,7 @@ class BedrockAgentCoreControlClient:
         encryption_key_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreatePolicyEngineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_policy_engine/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1281,6 +1311,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         approval_configuration: ApprovalConfiguration | None = None,
     ) -> CreateRegistryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_registry/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1321,6 +1352,7 @@ class BedrockAgentCoreControlClient:
         synchronization_configuration: SynchronizationConfiguration | None = None,
         client_token: str | None = None,
     ) -> CreateRegistryRecordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_registry_record/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
             "name": name,
@@ -1359,6 +1391,7 @@ class BedrockAgentCoreControlClient:
         allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateWorkloadIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_workload_identity/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1387,6 +1420,7 @@ class BedrockAgentCoreControlClient:
         agent_runtime_version: str | None = None,
         client_token: str | None = None,
     ) -> DeleteAgentRuntimeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_agent_runtime/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
         }
@@ -1415,6 +1449,7 @@ class BedrockAgentCoreControlClient:
         endpoint_name: str,
         client_token: str | None = None,
     ) -> DeleteAgentRuntimeEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_agent_runtime_endpoint/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
             "endpoint_name": endpoint_name,
@@ -1440,6 +1475,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> DeleteApiKeyCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_api_key_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1463,6 +1499,7 @@ class BedrockAgentCoreControlClient:
         browser_id: str,
         client_token: str | None = None,
     ) -> DeleteBrowserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_browser/)."""
         params: dict[str, object] = {
             "browser_id": browser_id,
         }
@@ -1488,6 +1525,7 @@ class BedrockAgentCoreControlClient:
         profile_id: str,
         client_token: str | None = None,
     ) -> DeleteBrowserProfileOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_browser_profile/)."""
         params: dict[str, object] = {
             "profile_id": profile_id,
         }
@@ -1513,6 +1551,7 @@ class BedrockAgentCoreControlClient:
         capacity_provider_id: str,
         client_token: str | None = None,
     ) -> DeleteCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_id": capacity_provider_id,
         }
@@ -1538,6 +1577,7 @@ class BedrockAgentCoreControlClient:
         code_interpreter_id: str,
         client_token: str | None = None,
     ) -> DeleteCodeInterpreterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_code_interpreter/)."""
         params: dict[str, object] = {
             "code_interpreter_id": code_interpreter_id,
         }
@@ -1562,6 +1602,7 @@ class BedrockAgentCoreControlClient:
         *,
         bundle_id: str,
     ) -> DeleteConfigurationBundleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_configuration_bundle/)."""
         params: dict[str, object] = {
             "bundle_id": bundle_id,
         }
@@ -1584,6 +1625,7 @@ class BedrockAgentCoreControlClient:
         *,
         consent_portal_identifier: str,
     ) -> DeleteConsentPortalOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_consent_portal/)."""
         params: dict[str, object] = {
             "consent_portal_identifier": consent_portal_identifier,
         }
@@ -1607,6 +1649,7 @@ class BedrockAgentCoreControlClient:
         dataset_id: str,
         dataset_version: str | None = None,
     ) -> DeleteDatasetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_dataset/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
@@ -1633,6 +1676,7 @@ class BedrockAgentCoreControlClient:
         example_ids: Sequence[str],
         client_token: str | None = None,
     ) -> DeleteDatasetExamplesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_dataset_examples/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
             "example_ids": example_ids,
@@ -1658,6 +1702,7 @@ class BedrockAgentCoreControlClient:
         *,
         evaluator_id: str,
     ) -> DeleteEvaluatorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_evaluator/)."""
         params: dict[str, object] = {
             "evaluator_id": evaluator_id,
         }
@@ -1680,6 +1725,7 @@ class BedrockAgentCoreControlClient:
         *,
         gateway_identifier: str,
     ) -> DeleteGatewayOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_gateway/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
         }
@@ -1703,6 +1749,7 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         rate_limit_id: str,
     ) -> DeleteGatewayRateLimitOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_gateway_rate_limit/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "rate_limit_id": rate_limit_id,
@@ -1727,6 +1774,7 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         rule_id: str,
     ) -> DeleteGatewayRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_gateway_rule/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "rule_id": rule_id,
@@ -1751,6 +1799,7 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         target_id: str,
     ) -> DeleteGatewayTargetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_gateway_target/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
@@ -1776,6 +1825,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         delete_managed_memory: bool | None = None,
     ) -> DeleteHarnessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_harness/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
         }
@@ -1804,6 +1854,7 @@ class BedrockAgentCoreControlClient:
         endpoint_name: str,
         client_token: str | None = None,
     ) -> DeleteHarnessEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_harness_endpoint/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
             "endpoint_name": endpoint_name,
@@ -1830,6 +1881,7 @@ class BedrockAgentCoreControlClient:
         memory_id: str,
         client_token: str | None = None,
     ) -> DeleteMemoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_memory/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -1854,6 +1906,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> DeleteOauth2CredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_oauth2_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1876,6 +1929,7 @@ class BedrockAgentCoreControlClient:
         *,
         online_evaluation_config_id: str,
     ) -> DeleteOnlineEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_online_evaluation_config/)."""
         params: dict[str, object] = {
             "online_evaluation_config_id": online_evaluation_config_id,
         }
@@ -1900,6 +1954,7 @@ class BedrockAgentCoreControlClient:
         payment_connector_id: str,
         client_token: str | None = None,
     ) -> DeletePaymentConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_payment_connector/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
             "payment_connector_id": payment_connector_id,
@@ -1925,6 +1980,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> DeletePaymentCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_payment_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -1948,6 +2004,7 @@ class BedrockAgentCoreControlClient:
         payment_manager_id: str,
         client_token: str | None = None,
     ) -> DeletePaymentManagerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_payment_manager/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
         }
@@ -1973,6 +2030,7 @@ class BedrockAgentCoreControlClient:
         policy_engine_id: str,
         policy_id: str,
     ) -> DeletePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_policy/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
             "policy_id": policy_id,
@@ -1996,6 +2054,7 @@ class BedrockAgentCoreControlClient:
         *,
         policy_engine_id: str,
     ) -> DeletePolicyEngineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_policy_engine/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -2018,6 +2077,7 @@ class BedrockAgentCoreControlClient:
         *,
         registry_id: str,
     ) -> DeleteRegistryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_registry/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
         }
@@ -2041,6 +2101,7 @@ class BedrockAgentCoreControlClient:
         registry_id: str,
         record_id: str,
     ) -> DeleteRegistryRecordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_registry_record/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
             "record_id": record_id,
@@ -2064,6 +2125,7 @@ class BedrockAgentCoreControlClient:
         *,
         resource_arn: str,
     ) -> DeleteResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2086,6 +2148,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> DeleteWorkloadIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/delete_workload_identity/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2109,6 +2172,7 @@ class BedrockAgentCoreControlClient:
         agent_runtime_id: str,
         agent_runtime_version: str | None = None,
     ) -> GetAgentRuntimeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_agent_runtime/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
         }
@@ -2134,6 +2198,7 @@ class BedrockAgentCoreControlClient:
         agent_runtime_id: str,
         endpoint_name: str,
     ) -> GetAgentRuntimeEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_agent_runtime_endpoint/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
             "endpoint_name": endpoint_name,
@@ -2157,6 +2222,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> GetApiKeyCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_api_key_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2179,6 +2245,7 @@ class BedrockAgentCoreControlClient:
         *,
         browser_id: str,
     ) -> GetBrowserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_browser/)."""
         params: dict[str, object] = {
             "browser_id": browser_id,
         }
@@ -2201,6 +2268,7 @@ class BedrockAgentCoreControlClient:
         *,
         profile_id: str,
     ) -> GetBrowserProfileOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_browser_profile/)."""
         params: dict[str, object] = {
             "profile_id": profile_id,
         }
@@ -2223,6 +2291,7 @@ class BedrockAgentCoreControlClient:
         *,
         capacity_provider_id: str,
     ) -> GetCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_id": capacity_provider_id,
         }
@@ -2245,6 +2314,7 @@ class BedrockAgentCoreControlClient:
         *,
         code_interpreter_id: str,
     ) -> GetCodeInterpreterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_code_interpreter/)."""
         params: dict[str, object] = {
             "code_interpreter_id": code_interpreter_id,
         }
@@ -2268,6 +2338,7 @@ class BedrockAgentCoreControlClient:
         bundle_id: str,
         branch_name: str | None = None,
     ) -> GetConfigurationBundleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_configuration_bundle/)."""
         params: dict[str, object] = {
             "bundle_id": bundle_id,
         }
@@ -2293,6 +2364,7 @@ class BedrockAgentCoreControlClient:
         bundle_id: str,
         version_id: str,
     ) -> GetConfigurationBundleVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_configuration_bundle_version/)."""
         params: dict[str, object] = {
             "bundle_id": bundle_id,
             "version_id": version_id,
@@ -2316,6 +2388,7 @@ class BedrockAgentCoreControlClient:
         *,
         consent_portal_identifier: str,
     ) -> GetConsentPortalOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_consent_portal/)."""
         params: dict[str, object] = {
             "consent_portal_identifier": consent_portal_identifier,
         }
@@ -2339,6 +2412,7 @@ class BedrockAgentCoreControlClient:
         dataset_id: str,
         dataset_version: str | None = None,
     ) -> GetDatasetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_dataset/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
@@ -2364,6 +2438,7 @@ class BedrockAgentCoreControlClient:
         evaluator_id: str,
         included_data: IncludedData | None = None,
     ) -> GetEvaluatorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_evaluator/)."""
         params: dict[str, object] = {
             "evaluator_id": evaluator_id,
         }
@@ -2388,6 +2463,7 @@ class BedrockAgentCoreControlClient:
         *,
         gateway_identifier: str,
     ) -> GetGatewayOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_gateway/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
         }
@@ -2411,6 +2487,7 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         rate_limit_id: str,
     ) -> GetGatewayRateLimitOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_gateway_rate_limit/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "rate_limit_id": rate_limit_id,
@@ -2435,6 +2512,7 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         rule_id: str,
     ) -> GetGatewayRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_gateway_rule/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "rule_id": rule_id,
@@ -2459,6 +2537,7 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         target_id: str,
     ) -> GetGatewayTargetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_gateway_target/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
@@ -2483,6 +2562,7 @@ class BedrockAgentCoreControlClient:
         harness_id: str,
         harness_version: str | None = None,
     ) -> GetHarnessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_harness/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
         }
@@ -2508,6 +2588,7 @@ class BedrockAgentCoreControlClient:
         harness_id: str,
         endpoint_name: str,
     ) -> GetHarnessEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_harness_endpoint/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
             "endpoint_name": endpoint_name,
@@ -2532,6 +2613,7 @@ class BedrockAgentCoreControlClient:
         memory_id: str,
         view: MemoryView | None = None,
     ) -> GetMemoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_memory/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -2556,6 +2638,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> GetOauth2CredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_oauth2_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2578,6 +2661,7 @@ class BedrockAgentCoreControlClient:
         *,
         online_evaluation_config_id: str,
     ) -> GetOnlineEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_online_evaluation_config/)."""
         params: dict[str, object] = {
             "online_evaluation_config_id": online_evaluation_config_id,
         }
@@ -2601,6 +2685,7 @@ class BedrockAgentCoreControlClient:
         payment_manager_id: str,
         payment_connector_id: str,
     ) -> GetPaymentConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_payment_connector/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
             "payment_connector_id": payment_connector_id,
@@ -2624,6 +2709,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> GetPaymentCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_payment_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2646,6 +2732,7 @@ class BedrockAgentCoreControlClient:
         *,
         payment_manager_id: str,
     ) -> GetPaymentManagerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_payment_manager/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
         }
@@ -2669,6 +2756,7 @@ class BedrockAgentCoreControlClient:
         policy_engine_id: str,
         policy_id: str,
     ) -> GetPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
             "policy_id": policy_id,
@@ -2692,6 +2780,7 @@ class BedrockAgentCoreControlClient:
         *,
         policy_engine_id: str,
     ) -> GetPolicyEngineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_engine/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -2714,6 +2803,7 @@ class BedrockAgentCoreControlClient:
         *,
         policy_engine_id: str,
     ) -> GetPolicyEngineSummaryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_engine_summary/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -2737,6 +2827,7 @@ class BedrockAgentCoreControlClient:
         policy_generation_id: str,
         policy_engine_id: str,
     ) -> GetPolicyGenerationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_generation/)."""
         params: dict[str, object] = {
             "policy_generation_id": policy_generation_id,
             "policy_engine_id": policy_engine_id,
@@ -2761,6 +2852,7 @@ class BedrockAgentCoreControlClient:
         policy_generation_id: str,
         policy_engine_id: str,
     ) -> GetPolicyGenerationSummaryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_generation_summary/)."""
         params: dict[str, object] = {
             "policy_generation_id": policy_generation_id,
             "policy_engine_id": policy_engine_id,
@@ -2785,6 +2877,7 @@ class BedrockAgentCoreControlClient:
         policy_engine_id: str,
         policy_id: str,
     ) -> GetPolicySummaryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_policy_summary/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
             "policy_id": policy_id,
@@ -2808,6 +2901,7 @@ class BedrockAgentCoreControlClient:
         *,
         registry_id: str,
     ) -> GetRegistryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_registry/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
         }
@@ -2831,6 +2925,7 @@ class BedrockAgentCoreControlClient:
         registry_id: str,
         record_id: str,
     ) -> GetRegistryRecordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_registry_record/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
             "record_id": record_id,
@@ -2854,6 +2949,7 @@ class BedrockAgentCoreControlClient:
         *,
         resource_arn: str,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2876,6 +2972,7 @@ class BedrockAgentCoreControlClient:
         *,
         token_vault_id: str | None = None,
     ) -> GetTokenVaultOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_token_vault/)."""
         params: dict[str, object] = {
         }
         if token_vault_id is not None:
@@ -2899,6 +2996,7 @@ class BedrockAgentCoreControlClient:
         *,
         name: str,
     ) -> GetWorkloadIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_workload_identity/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -2923,6 +3021,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentRuntimeEndpointsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_agent_runtime_endpoints/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
         }
@@ -2951,6 +3050,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentRuntimeVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_agent_runtime_versions/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
         }
@@ -2979,6 +3079,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentRuntimeVersionsByCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_agent_runtime_versions_by_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_id": capacity_provider_id,
         }
@@ -3006,6 +3107,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentRuntimesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_agent_runtimes/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3032,6 +3134,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListApiKeyCredentialProvidersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_api_key_credential_providers/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3059,6 +3162,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         name: str | None = None,
     ) -> ListBrowserProfilesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_browser_profiles/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3088,6 +3192,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         type: ResourceType | None = None,
     ) -> ListBrowsersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_browsers/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3116,6 +3221,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListCapacityProvidersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_capacity_providers/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3143,6 +3249,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         type: ResourceType | None = None,
     ) -> ListCodeInterpretersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_code_interpreters/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3173,6 +3280,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         filter: VersionFilter | None = None,
     ) -> ListConfigurationBundleVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_configuration_bundle_versions/)."""
         params: dict[str, object] = {
             "bundle_id": bundle_id,
         }
@@ -3202,6 +3310,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListConfigurationBundlesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_configuration_bundles/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3228,6 +3337,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListConsentPortalsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_consent_portals/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3256,6 +3366,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDatasetExamplesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_dataset_examples/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
@@ -3286,6 +3397,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDatasetVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_dataset_versions/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
@@ -3313,6 +3425,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDatasetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_datasets/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3339,6 +3452,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListEvaluatorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_evaluators/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3366,6 +3480,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListGatewayRateLimitsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_gateway_rate_limits/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
         }
@@ -3394,6 +3509,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListGatewayRulesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_gateway_rules/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
         }
@@ -3422,6 +3538,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListGatewayTargetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_gateway_targets/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
         }
@@ -3449,6 +3566,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListGatewaysOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_gateways/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3476,6 +3594,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListHarnessEndpointsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_harness_endpoints/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
         }
@@ -3504,6 +3623,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListHarnessVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_harness_versions/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
         }
@@ -3531,6 +3651,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListHarnessesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_harnesses/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3557,6 +3678,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListMemoriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_memories/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3583,6 +3705,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListOauth2CredentialProvidersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_oauth2_credential_providers/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3609,6 +3732,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListOnlineEvaluationConfigsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_online_evaluation_configs/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3636,6 +3760,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListPaymentConnectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_payment_connectors/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
         }
@@ -3663,6 +3788,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPaymentCredentialProvidersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_payment_credential_providers/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3689,6 +3815,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListPaymentManagersOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_payment_managers/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3717,6 +3844,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         target_resource_scope: str | None = None,
     ) -> ListPoliciesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_policies/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -3746,6 +3874,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPolicyEngineSummariesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_policy_engine_summaries/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3772,6 +3901,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPolicyEnginesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_policy_engines/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -3800,6 +3930,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPolicyGenerationAssetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_policy_generation_assets/)."""
         params: dict[str, object] = {
             "policy_generation_id": policy_generation_id,
             "policy_engine_id": policy_engine_id,
@@ -3829,6 +3960,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPolicyGenerationSummariesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_policy_generation_summaries/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -3857,6 +3989,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPolicyGenerationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_policy_generations/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -3886,6 +4019,7 @@ class BedrockAgentCoreControlClient:
         max_results: int | None = None,
         target_resource_scope: str | None = None,
     ) -> ListPolicySummariesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_policy_summaries/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -3917,6 +4051,7 @@ class BedrockAgentCoreControlClient:
         status: RegistryStatus | None = None,
         authorizer_type: RegistryAuthorizerType | None = None,
     ) -> ListRegistriesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_registries/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3951,6 +4086,7 @@ class BedrockAgentCoreControlClient:
         status: RegistryRecordStatus | None = None,
         descriptor_type: DescriptorType | None = None,
     ) -> ListRegistryRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_registry_records/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
         }
@@ -3983,6 +4119,7 @@ class BedrockAgentCoreControlClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -4006,6 +4143,7 @@ class BedrockAgentCoreControlClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListWorkloadIdentitiesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_workload_identities/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -4032,6 +4170,7 @@ class BedrockAgentCoreControlClient:
         resource_arn: str,
         policy: str,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy": policy,
@@ -4058,6 +4197,7 @@ class BedrockAgentCoreControlClient:
         credentials_to_rotate: CredentialRotationConfig,
         client_token: str | None = None,
     ) -> RotatePaymentConnectorCredentialsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/rotate_payment_connector_credentials/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
             "payment_connector_id": payment_connector_id,
@@ -4085,6 +4225,7 @@ class BedrockAgentCoreControlClient:
         kms_configuration: KmsConfiguration,
         token_vault_id: str | None = None,
     ) -> SetTokenVaultCMKOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/set_token_vault_cmk/)."""
         params: dict[str, object] = {
             "kms_configuration": kms_configuration,
         }
@@ -4113,6 +4254,7 @@ class BedrockAgentCoreControlClient:
         name: str,
         client_token: str | None = None,
     ) -> StartPolicyGenerationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/start_policy_generation/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
             "resource": resource,
@@ -4141,6 +4283,7 @@ class BedrockAgentCoreControlClient:
         registry_id: str,
         record_id: str,
     ) -> SubmitRegistryRecordForApprovalOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/submit_registry_record_for_approval/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
             "record_id": record_id,
@@ -4165,6 +4308,7 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         target_id_list: Sequence[str],
     ) -> SynchronizeGatewayTargetsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/synchronize_gateway_targets/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "target_id_list": target_id_list,
@@ -4189,6 +4333,7 @@ class BedrockAgentCoreControlClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -4213,6 +4358,7 @@ class BedrockAgentCoreControlClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -4250,6 +4396,7 @@ class BedrockAgentCoreControlClient:
         platform_version: str | None = None,
         client_token: str | None = None,
     ) -> UpdateAgentRuntimeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_agent_runtime/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
             "agent_runtime_artifact": agent_runtime_artifact,
@@ -4302,6 +4449,7 @@ class BedrockAgentCoreControlClient:
         description: str | None = None,
         client_token: str | None = None,
     ) -> UpdateAgentRuntimeEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_agent_runtime_endpoint/)."""
         params: dict[str, object] = {
             "agent_runtime_id": agent_runtime_id,
             "endpoint_name": endpoint_name,
@@ -4334,6 +4482,7 @@ class BedrockAgentCoreControlClient:
         api_key_secret_config: SecretReference | None = None,
         api_key_secret_source: SecretSourceType | None = None,
     ) -> UpdateApiKeyCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_api_key_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -4364,6 +4513,7 @@ class BedrockAgentCoreControlClient:
         description: UpdatedDescription | None = None,
         client_token: str | None = None,
     ) -> UpdateCapacityProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_capacity_provider/)."""
         params: dict[str, object] = {
             "capacity_provider_id": capacity_provider_id,
         }
@@ -4399,6 +4549,7 @@ class BedrockAgentCoreControlClient:
         created_by: VersionCreatedBySource | None = None,
         kms_key_arn: str | None = None,
     ) -> UpdateConfigurationBundleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_configuration_bundle/)."""
         params: dict[str, object] = {
             "bundle_id": bundle_id,
             "parent_version_ids": parent_version_ids,
@@ -4440,6 +4591,7 @@ class BedrockAgentCoreControlClient:
         idp_config: ConsentPortalIdpConfig | None = None,
         description: str | None = None,
     ) -> UpdateConsentPortalOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_consent_portal/)."""
         params: dict[str, object] = {
             "consent_portal_identifier": consent_portal_identifier,
         }
@@ -4470,6 +4622,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         description: str | None = None,
     ) -> UpdateDatasetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_dataset/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
@@ -4498,6 +4651,7 @@ class BedrockAgentCoreControlClient:
         examples: Sequence[JSONValue],
         client_token: str | None = None,
     ) -> UpdateDatasetExamplesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_dataset_examples/)."""
         params: dict[str, object] = {
             "dataset_id": dataset_id,
             "examples": examples,
@@ -4528,6 +4682,7 @@ class BedrockAgentCoreControlClient:
         level: EvaluatorLevel | None = None,
         kms_key_arn: str | None = None,
     ) -> UpdateEvaluatorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_evaluator/)."""
         params: dict[str, object] = {
             "evaluator_id": evaluator_id,
         }
@@ -4573,6 +4728,7 @@ class BedrockAgentCoreControlClient:
         exception_level: ExceptionLevel | None = None,
         waf_configuration: WafConfiguration | None = None,
     ) -> UpdateGatewayOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_gateway/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "name": name,
@@ -4621,6 +4777,7 @@ class BedrockAgentCoreControlClient:
         entries: Sequence[LimitEntry],
         description: str | None = None,
     ) -> UpdateGatewayRateLimitOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_gateway_rate_limit/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "rate_limit_id": rate_limit_id,
@@ -4652,6 +4809,7 @@ class BedrockAgentCoreControlClient:
         actions: Sequence[Action] | None = None,
         description: str | None = None,
     ) -> UpdateGatewayRuleOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_gateway_rule/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "rule_id": rule_id,
@@ -4691,6 +4849,7 @@ class BedrockAgentCoreControlClient:
         private_endpoint: PrivateEndpoint | None = None,
         certificate_configurations: Sequence[CertificateConfiguration] | None = None,
     ) -> UpdateGatewayTargetOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_gateway_target/)."""
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
@@ -4744,6 +4903,7 @@ class BedrockAgentCoreControlClient:
         max_tokens: int | None = None,
         timeout_seconds: int | None = None,
     ) -> UpdateHarnessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_harness/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
         }
@@ -4804,6 +4964,7 @@ class BedrockAgentCoreControlClient:
         description: str | None = None,
         client_token: str | None = None,
     ) -> UpdateHarnessEndpointOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_harness_endpoint/)."""
         params: dict[str, object] = {
             "harness_id": harness_id,
             "endpoint_name": endpoint_name,
@@ -4841,6 +5002,7 @@ class BedrockAgentCoreControlClient:
         namespace_keys: Sequence[NamespaceKeyEntry] | None = None,
         stream_delivery_resources: StreamDeliveryResources | None = None,
     ) -> UpdateMemoryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_memory/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -4881,6 +5043,7 @@ class BedrockAgentCoreControlClient:
         credential_provider_vendor: CredentialProviderVendorType,
         oauth2_provider_config_input: Oauth2ProviderConfigInput,
     ) -> UpdateOauth2CredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_oauth2_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
             "credential_provider_vendor": credential_provider_vendor,
@@ -4915,6 +5078,7 @@ class BedrockAgentCoreControlClient:
         evaluation_execution_role_arn: str | None = None,
         execution_status: OnlineEvaluationExecutionStatus | None = None,
     ) -> UpdateOnlineEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_online_evaluation_config/)."""
         params: dict[str, object] = {
             "online_evaluation_config_id": online_evaluation_config_id,
         }
@@ -4962,6 +5126,7 @@ class BedrockAgentCoreControlClient:
         credential_provider_configurations: Sequence[CredentialsProviderConfiguration] | None = None,
         client_token: str | None = None,
     ) -> UpdatePaymentConnectorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_payment_connector/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
             "payment_connector_id": payment_connector_id,
@@ -4995,6 +5160,7 @@ class BedrockAgentCoreControlClient:
         credential_provider_vendor: PaymentCredentialProviderVendorType,
         provider_configuration_input: PaymentProviderConfigurationInput,
     ) -> UpdatePaymentCredentialProviderOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_payment_credential_provider/)."""
         params: dict[str, object] = {
             "name": name,
             "credential_provider_vendor": credential_provider_vendor,
@@ -5025,6 +5191,7 @@ class BedrockAgentCoreControlClient:
         client_token: str | None = None,
         kms_key_arn: str | None = None,
     ) -> UpdatePaymentManagerOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_payment_manager/)."""
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
         }
@@ -5064,6 +5231,7 @@ class BedrockAgentCoreControlClient:
         validation_mode: PolicyValidationMode | None = None,
         enforcement_mode: EnforcementMode | None = None,
     ) -> UpdatePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_policy/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
             "policy_id": policy_id,
@@ -5096,6 +5264,7 @@ class BedrockAgentCoreControlClient:
         policy_engine_id: str,
         description: UpdatedDescription | None = None,
     ) -> UpdatePolicyEngineOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_policy_engine/)."""
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
@@ -5124,6 +5293,7 @@ class BedrockAgentCoreControlClient:
         authorizer_configuration: UpdatedAuthorizerConfiguration | None = None,
         approval_configuration: UpdatedApprovalConfiguration | None = None,
     ) -> UpdateRegistryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_registry/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
         }
@@ -5163,6 +5333,7 @@ class BedrockAgentCoreControlClient:
         synchronization_configuration: UpdatedSynchronizationConfiguration | None = None,
         trigger_synchronization: bool | None = None,
     ) -> UpdateRegistryRecordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_registry_record/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
             "record_id": record_id,
@@ -5205,6 +5376,7 @@ class BedrockAgentCoreControlClient:
         status: RegistryRecordStatus,
         status_reason: str,
     ) -> UpdateRegistryRecordStatusOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_registry_record_status/)."""
         params: dict[str, object] = {
             "registry_id": registry_id,
             "record_id": record_id,
@@ -5231,6 +5403,7 @@ class BedrockAgentCoreControlClient:
         name: str,
         allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
     ) -> UpdateWorkloadIdentityOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_workload_identity/)."""
         params: dict[str, object] = {
             "name": name,
         }

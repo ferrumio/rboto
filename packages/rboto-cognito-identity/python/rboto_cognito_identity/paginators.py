@@ -27,7 +27,7 @@ class CognitoIdentityClientPaginators:
         max_results: int,
         next_token: str | None = None,
     ) -> AsyncIterator[ListIdentityPoolsOutput]:
-        """Yield each page from list_identity_pools; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/operations/list_identity_pools/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "max_results": max_results,
         }

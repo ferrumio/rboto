@@ -9,56 +9,105 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ActiveContextValueOutput: TypeAlias = _native.ActiveContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContextValueOutput/)."""
 ActiveContextTimeToLiveValueOutput: TypeAlias = _native.ActiveContextTimeToLive
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContextTimeToLiveValueOutput/)."""
 ButtonValueOutput: TypeAlias = _native.Button
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ButtonValueOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ByteStream/)."""
 ConfidenceScoreOutput: TypeAlias = _native.ConfidenceScore
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConfidenceScoreOutput/)."""
 DeleteSessionOutput: TypeAlias = _native.DeleteSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DeleteSessionOutput/)."""
 DialogActionValueOutput: TypeAlias = _native.DialogAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DialogActionValueOutput/)."""
 ElicitSubSlotValueOutput: TypeAlias = _native.ElicitSubSlot
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ElicitSubSlotValueOutput/)."""
 GetSessionOutput: TypeAlias = _native.GetSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/GetSessionOutput/)."""
 ImageResponseCardValueOutput: TypeAlias = _native.ImageResponseCard
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ImageResponseCardValueOutput/)."""
 IntentValueOutput: TypeAlias = _native.Intent
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/IntentValueOutput/)."""
 InterpretationOutput: TypeAlias = _native.Interpretation
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/InterpretationOutput/)."""
 MessageValueOutput: TypeAlias = _native.Message
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/MessageValueOutput/)."""
 PutSessionOutput: TypeAlias = _native.PutSessionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PutSessionOutput/)."""
 RecognizeTextOutput: TypeAlias = _native.RecognizeTextOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeTextOutput/)."""
 RecognizeUtteranceOutput: TypeAlias = _native.RecognizeUtteranceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeUtteranceOutput/)."""
 RecognizedBotMemberOutput: TypeAlias = _native.RecognizedBotMember
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizedBotMemberOutput/)."""
 RuntimeHintDetailsValueOutput: TypeAlias = _native.RuntimeHintDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintDetailsValueOutput/)."""
 RuntimeHintValueValueOutput: TypeAlias = _native.RuntimeHintValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintValueValueOutput/)."""
 RuntimeHintsValueOutput: TypeAlias = _native.RuntimeHints
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintsValueOutput/)."""
 SentimentResponseOutput: TypeAlias = _native.SentimentResponse
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentResponseOutput/)."""
 SentimentScoreOutput: TypeAlias = _native.SentimentScore
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentScoreOutput/)."""
 SessionStateValueOutput: TypeAlias = _native.SessionState
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SessionStateValueOutput/)."""
 SlotValueOutput: TypeAlias = _native.Slot
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SlotValueOutput/)."""
 StartConversationResponseEventStreamReceiver: TypeAlias = _native.StartConversationResponseEventStreamReceiver
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamReceiver/)."""
 ValueValueOutput: TypeAlias = _native.Value
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ValueValueOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/JSONValue/)."""
 
 ConfirmationState: TypeAlias = Literal['Confirmed', 'Denied', 'None']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConfirmationState/)."""
 ConfirmationStateOutput: TypeAlias = ConfirmationState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConfirmationStateOutput/)."""
 ConversationMode: TypeAlias = Literal['AUDIO', 'TEXT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConversationMode/)."""
 ConversationModeOutput: TypeAlias = ConversationMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConversationModeOutput/)."""
 DialogActionType: TypeAlias = Literal['Close', 'ConfirmIntent', 'Delegate', 'ElicitIntent', 'ElicitSlot', 'None']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DialogActionType/)."""
 DialogActionTypeOutput: TypeAlias = DialogActionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DialogActionTypeOutput/)."""
 InputMode: TypeAlias = Literal['Text', 'Speech', 'DTMF']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/InputMode/)."""
 InputModeOutput: TypeAlias = InputMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/InputModeOutput/)."""
 IntentState: TypeAlias = Literal['Failed', 'Fulfilled', 'InProgress', 'ReadyForFulfillment', 'Waiting', 'FulfillmentInProgress']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/IntentState/)."""
 IntentStateOutput: TypeAlias = IntentState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/IntentStateOutput/)."""
 InterpretationSource: TypeAlias = Literal['Bedrock', 'Lex']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/InterpretationSource/)."""
 InterpretationSourceOutput: TypeAlias = InterpretationSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/InterpretationSourceOutput/)."""
 MessageContentType: TypeAlias = Literal['CustomPayload', 'ImageResponseCard', 'PlainText', 'SSML']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/MessageContentType/)."""
 MessageContentTypeOutput: TypeAlias = MessageContentType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/MessageContentTypeOutput/)."""
 PlaybackInterruptionReason: TypeAlias = Literal['DTMF_START_DETECTED', 'TEXT_DETECTED', 'VOICE_START_DETECTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PlaybackInterruptionReason/)."""
 PlaybackInterruptionReasonOutput: TypeAlias = PlaybackInterruptionReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PlaybackInterruptionReasonOutput/)."""
 SentimentType: TypeAlias = Literal['MIXED', 'NEGATIVE', 'NEUTRAL', 'POSITIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentType/)."""
 SentimentTypeOutput: TypeAlias = SentimentType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentTypeOutput/)."""
 Shape: TypeAlias = Literal['Scalar', 'List', 'Composite']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/Shape/)."""
 ShapeOutput: TypeAlias = Shape | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ShapeOutput/)."""
 StyleType: TypeAlias = Literal['Default', 'SpellByLetter', 'SpellByWord']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StyleType/)."""
 StyleTypeOutput: TypeAlias = StyleType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StyleTypeOutput/)."""
 
 ActiveContext = TypedDict(
     "ActiveContext",
@@ -68,6 +117,7 @@ ActiveContext = TypedDict(
     "context_attributes": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContext/)."""
 
 ActiveContextOutput = TypedDict(
     "ActiveContextOutput",
@@ -77,6 +127,7 @@ ActiveContextOutput = TypedDict(
     "context_attributes": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContextOutput/)."""
 
 ActiveContextTimeToLive = TypedDict(
     "ActiveContextTimeToLive",
@@ -85,6 +136,7 @@ ActiveContextTimeToLive = TypedDict(
     "turns_to_live": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContextTimeToLive/)."""
 
 ActiveContextTimeToLiveOutput = TypedDict(
     "ActiveContextTimeToLiveOutput",
@@ -93,6 +145,7 @@ ActiveContextTimeToLiveOutput = TypedDict(
     "turns_to_live": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ActiveContextTimeToLiveOutput/)."""
 
 AudioInputEvent = TypedDict(
     "AudioInputEvent",
@@ -103,6 +156,7 @@ AudioInputEvent = TypedDict(
     "client_timestamp_millis": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/AudioInputEvent/)."""
 
 AudioResponseEvent = TypedDict(
     "AudioResponseEvent",
@@ -112,6 +166,7 @@ AudioResponseEvent = TypedDict(
     "event_id": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/AudioResponseEvent/)."""
 
 Button = TypedDict(
     "Button",
@@ -120,6 +175,7 @@ Button = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/Button/)."""
 
 ButtonOutput = TypedDict(
     "ButtonOutput",
@@ -128,6 +184,7 @@ ButtonOutput = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ButtonOutput/)."""
 
 ConfidenceScore = TypedDict(
     "ConfidenceScore",
@@ -135,6 +192,7 @@ ConfidenceScore = TypedDict(
     "score": Required["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConfidenceScore/)."""
 
 ConfigurationEvent = TypedDict(
     "ConfigurationEvent",
@@ -148,6 +206,7 @@ ConfigurationEvent = TypedDict(
     "client_timestamp_millis": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ConfigurationEvent/)."""
 
 DTMFInputEvent = TypedDict(
     "DTMFInputEvent",
@@ -157,6 +216,7 @@ DTMFInputEvent = TypedDict(
     "client_timestamp_millis": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DTMFInputEvent/)."""
 
 DeleteSessionRequest = TypedDict(
     "DeleteSessionRequest",
@@ -167,6 +227,7 @@ DeleteSessionRequest = TypedDict(
     "session_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DeleteSessionRequest/)."""
 
 DialogAction = TypedDict(
     "DialogAction",
@@ -177,6 +238,7 @@ DialogAction = TypedDict(
     "sub_slot_to_elicit": NotRequired["ElicitSubSlot"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DialogAction/)."""
 
 DialogActionOutput = TypedDict(
     "DialogActionOutput",
@@ -187,6 +249,7 @@ DialogActionOutput = TypedDict(
     "sub_slot_to_elicit": Required["ElicitSubSlotOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DialogActionOutput/)."""
 
 DisconnectionEvent = TypedDict(
     "DisconnectionEvent",
@@ -195,6 +258,7 @@ DisconnectionEvent = TypedDict(
     "client_timestamp_millis": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/DisconnectionEvent/)."""
 
 ElicitSubSlot = TypedDict(
     "ElicitSubSlot",
@@ -203,6 +267,7 @@ ElicitSubSlot = TypedDict(
     "sub_slot_to_elicit": NotRequired["ElicitSubSlot"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ElicitSubSlot/)."""
 
 ElicitSubSlotOutput = TypedDict(
     "ElicitSubSlotOutput",
@@ -211,6 +276,7 @@ ElicitSubSlotOutput = TypedDict(
     "sub_slot_to_elicit": Required["ElicitSubSlotOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ElicitSubSlotOutput/)."""
 
 GetSessionRequest = TypedDict(
     "GetSessionRequest",
@@ -221,6 +287,7 @@ GetSessionRequest = TypedDict(
     "session_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/GetSessionRequest/)."""
 
 HeartbeatEvent = TypedDict(
     "HeartbeatEvent",
@@ -228,6 +295,7 @@ HeartbeatEvent = TypedDict(
     "event_id": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/HeartbeatEvent/)."""
 
 ImageResponseCard = TypedDict(
     "ImageResponseCard",
@@ -238,6 +306,7 @@ ImageResponseCard = TypedDict(
     "buttons": NotRequired["Sequence[Button]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ImageResponseCard/)."""
 
 ImageResponseCardOutput = TypedDict(
     "ImageResponseCardOutput",
@@ -248,6 +317,7 @@ ImageResponseCardOutput = TypedDict(
     "buttons": Required["list[ButtonOutput] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ImageResponseCardOutput/)."""
 
 Intent = TypedDict(
     "Intent",
@@ -258,6 +328,7 @@ Intent = TypedDict(
     "confirmation_state": NotRequired["ConfirmationState"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/Intent/)."""
 
 IntentOutput = TypedDict(
     "IntentOutput",
@@ -268,6 +339,7 @@ IntentOutput = TypedDict(
     "confirmation_state": Required["ConfirmationStateOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/IntentOutput/)."""
 
 IntentResultEvent = TypedDict(
     "IntentResultEvent",
@@ -281,6 +353,7 @@ IntentResultEvent = TypedDict(
     "recognized_bot_member": Required["RecognizedBotMember | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/IntentResultEvent/)."""
 
 Interpretation = TypedDict(
     "Interpretation",
@@ -291,6 +364,7 @@ Interpretation = TypedDict(
     "interpretation_source": Required["InterpretationSourceOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/Interpretation/)."""
 
 Message = TypedDict(
     "Message",
@@ -300,6 +374,7 @@ Message = TypedDict(
     "image_response_card": NotRequired["ImageResponseCard"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/Message/)."""
 
 MessageOutput = TypedDict(
     "MessageOutput",
@@ -309,6 +384,7 @@ MessageOutput = TypedDict(
     "image_response_card": Required["ImageResponseCardOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/MessageOutput/)."""
 
 PlaybackCompletionEvent = TypedDict(
     "PlaybackCompletionEvent",
@@ -317,6 +393,7 @@ PlaybackCompletionEvent = TypedDict(
     "client_timestamp_millis": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PlaybackCompletionEvent/)."""
 
 PlaybackInterruptionEvent = TypedDict(
     "PlaybackInterruptionEvent",
@@ -326,6 +403,7 @@ PlaybackInterruptionEvent = TypedDict(
     "event_id": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PlaybackInterruptionEvent/)."""
 
 PutSessionRequest = TypedDict(
     "PutSessionRequest",
@@ -340,6 +418,7 @@ PutSessionRequest = TypedDict(
     "response_content_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/PutSessionRequest/)."""
 
 RecognizeTextRequest = TypedDict(
     "RecognizeTextRequest",
@@ -353,6 +432,7 @@ RecognizeTextRequest = TypedDict(
     "request_attributes": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeTextRequest/)."""
 
 RecognizeUtteranceRequest = TypedDict(
     "RecognizeUtteranceRequest",
@@ -368,6 +448,7 @@ RecognizeUtteranceRequest = TypedDict(
     "input_stream": NotRequired["bytes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizeUtteranceRequest/)."""
 
 RecognizedBotMember = TypedDict(
     "RecognizedBotMember",
@@ -376,6 +457,7 @@ RecognizedBotMember = TypedDict(
     "bot_name": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RecognizedBotMember/)."""
 
 RuntimeHintDetails = TypedDict(
     "RuntimeHintDetails",
@@ -384,6 +466,7 @@ RuntimeHintDetails = TypedDict(
     "sub_slot_hints": NotRequired["dict[str, RuntimeHintDetails]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintDetails/)."""
 
 RuntimeHintDetailsOutput = TypedDict(
     "RuntimeHintDetailsOutput",
@@ -392,6 +475,7 @@ RuntimeHintDetailsOutput = TypedDict(
     "sub_slot_hints": Required["dict[str, RuntimeHintDetailsOutput] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintDetailsOutput/)."""
 
 RuntimeHintValue = TypedDict(
     "RuntimeHintValue",
@@ -399,6 +483,7 @@ RuntimeHintValue = TypedDict(
     "phrase": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintValue/)."""
 
 RuntimeHintValueOutput = TypedDict(
     "RuntimeHintValueOutput",
@@ -406,6 +491,7 @@ RuntimeHintValueOutput = TypedDict(
     "phrase": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintValueOutput/)."""
 
 RuntimeHints = TypedDict(
     "RuntimeHints",
@@ -413,6 +499,7 @@ RuntimeHints = TypedDict(
     "slot_hints": NotRequired["dict[str, dict[str, RuntimeHintDetails]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHints/)."""
 
 RuntimeHintsOutput = TypedDict(
     "RuntimeHintsOutput",
@@ -420,6 +507,7 @@ RuntimeHintsOutput = TypedDict(
     "slot_hints": Required["dict[str, dict[str, RuntimeHintDetailsOutput]] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/RuntimeHintsOutput/)."""
 
 SentimentResponse = TypedDict(
     "SentimentResponse",
@@ -428,6 +516,7 @@ SentimentResponse = TypedDict(
     "sentiment_score": Required["SentimentScore | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentResponse/)."""
 
 SentimentScore = TypedDict(
     "SentimentScore",
@@ -438,6 +527,7 @@ SentimentScore = TypedDict(
     "mixed": Required["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SentimentScore/)."""
 
 SessionState = TypedDict(
     "SessionState",
@@ -450,6 +540,7 @@ SessionState = TypedDict(
     "runtime_hints": NotRequired["RuntimeHints"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SessionState/)."""
 
 SessionStateOutput = TypedDict(
     "SessionStateOutput",
@@ -462,6 +553,7 @@ SessionStateOutput = TypedDict(
     "runtime_hints": Required["RuntimeHintsOutput | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SessionStateOutput/)."""
 
 Slot = TypedDict(
     "Slot",
@@ -472,6 +564,7 @@ Slot = TypedDict(
     "sub_slots": NotRequired["dict[str, Slot]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/Slot/)."""
 
 SlotOutput = TypedDict(
     "SlotOutput",
@@ -482,6 +575,7 @@ SlotOutput = TypedDict(
     "sub_slots": Required["dict[str, SlotOutput] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/SlotOutput/)."""
 
 StartConversationRequest = TypedDict(
     "StartConversationRequest",
@@ -494,14 +588,22 @@ StartConversationRequest = TypedDict(
     "request_event_stream": Required["AsyncIterator[StartConversationRequestEventStream]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequest/)."""
 
 StartConversationRequestEventStreamConfigurationEvent = TypedDict("StartConversationRequestEventStreamConfigurationEvent", {"configuration_event": Required["ConfigurationEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamConfigurationEvent/)."""
 StartConversationRequestEventStreamAudioInputEvent = TypedDict("StartConversationRequestEventStreamAudioInputEvent", {"audio_input_event": Required["AudioInputEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamAudioInputEvent/)."""
 StartConversationRequestEventStreamDTMFInputEvent = TypedDict("StartConversationRequestEventStreamDTMFInputEvent", {"dtmf_input_event": Required["DTMFInputEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamDTMFInputEvent/)."""
 StartConversationRequestEventStreamTextInputEvent = TypedDict("StartConversationRequestEventStreamTextInputEvent", {"text_input_event": Required["TextInputEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamTextInputEvent/)."""
 StartConversationRequestEventStreamPlaybackCompletionEvent = TypedDict("StartConversationRequestEventStreamPlaybackCompletionEvent", {"playback_completion_event": Required["PlaybackCompletionEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamPlaybackCompletionEvent/)."""
 StartConversationRequestEventStreamDisconnectionEvent = TypedDict("StartConversationRequestEventStreamDisconnectionEvent", {"disconnection_event": Required["DisconnectionEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamDisconnectionEvent/)."""
 StartConversationRequestEventStream: TypeAlias = StartConversationRequestEventStreamConfigurationEvent | StartConversationRequestEventStreamAudioInputEvent | StartConversationRequestEventStreamDTMFInputEvent | StartConversationRequestEventStreamTextInputEvent | StartConversationRequestEventStreamPlaybackCompletionEvent | StartConversationRequestEventStreamDisconnectionEvent
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStream/)."""
 
 StartConversationOutput = TypedDict(
     "StartConversationOutput",
@@ -509,15 +611,24 @@ StartConversationOutput = TypedDict(
     "response_event_stream": Required["AsyncIterator[StartConversationResponseEventStream]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationOutput/)."""
 
 StartConversationResponseEventStreamPlaybackInterruptionEvent = TypedDict("StartConversationResponseEventStreamPlaybackInterruptionEvent", {"playback_interruption_event": Required["PlaybackInterruptionEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamPlaybackInterruptionEvent/)."""
 StartConversationResponseEventStreamTranscriptEvent = TypedDict("StartConversationResponseEventStreamTranscriptEvent", {"transcript_event": Required["TranscriptEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamTranscriptEvent/)."""
 StartConversationResponseEventStreamIntentResultEvent = TypedDict("StartConversationResponseEventStreamIntentResultEvent", {"intent_result_event": Required["IntentResultEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamIntentResultEvent/)."""
 StartConversationResponseEventStreamTextResponseEvent = TypedDict("StartConversationResponseEventStreamTextResponseEvent", {"text_response_event": Required["TextResponseEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamTextResponseEvent/)."""
 StartConversationResponseEventStreamAudioResponseEvent = TypedDict("StartConversationResponseEventStreamAudioResponseEvent", {"audio_response_event": Required["AudioResponseEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamAudioResponseEvent/)."""
 StartConversationResponseEventStreamHeartbeatEvent = TypedDict("StartConversationResponseEventStreamHeartbeatEvent", {"heartbeat_event": Required["HeartbeatEvent"]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamHeartbeatEvent/)."""
 StartConversationResponseEventStreamUnknown = TypedDict("StartConversationResponseEventStreamUnknown", {"unknown": Required[Literal[True]]})
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamUnknown/)."""
 StartConversationResponseEventStream: TypeAlias = StartConversationResponseEventStreamPlaybackInterruptionEvent | StartConversationResponseEventStreamTranscriptEvent | StartConversationResponseEventStreamIntentResultEvent | StartConversationResponseEventStreamTextResponseEvent | StartConversationResponseEventStreamAudioResponseEvent | StartConversationResponseEventStreamHeartbeatEvent | StartConversationResponseEventStreamUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStream/)."""
 
 TextInputEvent = TypedDict(
     "TextInputEvent",
@@ -527,6 +638,7 @@ TextInputEvent = TypedDict(
     "client_timestamp_millis": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/TextInputEvent/)."""
 
 TextResponseEvent = TypedDict(
     "TextResponseEvent",
@@ -535,6 +647,7 @@ TextResponseEvent = TypedDict(
     "event_id": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/TextResponseEvent/)."""
 
 TranscriptEvent = TypedDict(
     "TranscriptEvent",
@@ -543,6 +656,7 @@ TranscriptEvent = TypedDict(
     "event_id": Required["str | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/TranscriptEvent/)."""
 
 Value = TypedDict(
     "Value",
@@ -552,6 +666,7 @@ Value = TypedDict(
     "resolved_values": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/Value/)."""
 
 ValueOutput = TypedDict(
     "ValueOutput",
@@ -561,3 +676,4 @@ ValueOutput = TypedDict(
     "resolved_values": Required["list[str] | None"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/ValueOutput/)."""

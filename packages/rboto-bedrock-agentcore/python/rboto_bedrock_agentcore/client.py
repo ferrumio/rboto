@@ -81,6 +81,8 @@ from .paginators import BedrockAgentCoreClientPaginators as _Paginators
 
 
 class BedrockAgentCoreClient:
+    """Async BedrockAgentCoreClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/)."""
+
     logger_name = "rboto.bedrock-agentcore"
 
     def __init__(
@@ -124,6 +126,7 @@ class BedrockAgentCoreClient:
         client_token: str | None = None,
         record_expiry_specification: RecordExpirySpecification | None = None,
     ) -> BatchCreateMemoryRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/batch_create_memory_records/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "records": records,
@@ -152,6 +155,7 @@ class BedrockAgentCoreClient:
         memory_id: str,
         records: Sequence[MemoryRecordDeleteInput],
     ) -> BatchDeleteMemoryRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/batch_delete_memory_records/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "records": records,
@@ -177,6 +181,7 @@ class BedrockAgentCoreClient:
         records: Sequence[MemoryRecordUpdateInput],
         record_expiry_specification: RecordExpirySpecification | None = None,
     ) -> BatchUpdateMemoryRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/batch_update_memory_records/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "records": records,
@@ -203,6 +208,7 @@ class BedrockAgentCoreClient:
         user_identifier: UserIdentifier,
         session_uri: str,
     ) -> CompleteResourceTokenAuthOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/complete_resource_token_auth/)."""
         params: dict[str, object] = {
             "user_identifier": user_identifier,
             "session_uri": session_uri,
@@ -235,6 +241,7 @@ class BedrockAgentCoreClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateABTestOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/create_ab_test/)."""
         params: dict[str, object] = {
             "name": name,
             "gateway_arn": gateway_arn,
@@ -280,6 +287,7 @@ class BedrockAgentCoreClient:
         extraction_mode: ExtractionMode | None = None,
         extraction_config: ExtractionConfig | None = None,
     ) -> CreateEventOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/create_event/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "actor_id": actor_id,
@@ -323,6 +331,7 @@ class BedrockAgentCoreClient:
         agent_name: str | None = None,
         client_token: str | None = None,
     ) -> CreatePaymentInstrumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/create_payment_instrument/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_connector_id": payment_connector_id,
@@ -359,6 +368,7 @@ class BedrockAgentCoreClient:
         limits: SessionLimits | None = None,
         client_token: str | None = None,
     ) -> CreatePaymentSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/create_payment_session/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "expiry_time_in_minutes": expiry_time_in_minutes,
@@ -390,6 +400,7 @@ class BedrockAgentCoreClient:
         *,
         ab_test_id: str,
     ) -> DeleteABTestOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_ab_test/)."""
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
@@ -412,6 +423,7 @@ class BedrockAgentCoreClient:
         *,
         batch_evaluation_id: str,
     ) -> DeleteBatchEvaluationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_batch_evaluation/)."""
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
@@ -435,6 +447,7 @@ class BedrockAgentCoreClient:
         capacity_provider_id: str,
         session_id: str,
     ) -> DeleteCapacityProviderSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_capacity_provider_session/)."""
         params: dict[str, object] = {
             "capacity_provider_id": capacity_provider_id,
             "session_id": session_id,
@@ -461,6 +474,7 @@ class BedrockAgentCoreClient:
         event_id: str,
         actor_id: str,
     ) -> DeleteEventOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_event/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "session_id": session_id,
@@ -488,6 +502,7 @@ class BedrockAgentCoreClient:
         memory_record_id: str,
         namespace: str | None = None,
     ) -> DeleteMemoryRecordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_memory_record/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
@@ -516,6 +531,7 @@ class BedrockAgentCoreClient:
         payment_instrument_id: str,
         user_id: str | None = None,
     ) -> DeletePaymentInstrumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_payment_instrument/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_connector_id": payment_connector_id,
@@ -544,6 +560,7 @@ class BedrockAgentCoreClient:
         payment_session_id: str,
         user_id: str | None = None,
     ) -> DeletePaymentSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_payment_session/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_session_id": payment_session_id,
@@ -569,6 +586,7 @@ class BedrockAgentCoreClient:
         *,
         recommendation_id: str,
     ) -> DeleteRecommendationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_recommendation/)."""
         params: dict[str, object] = {
             "recommendation_id": recommendation_id,
         }
@@ -594,6 +612,7 @@ class BedrockAgentCoreClient:
         evaluation_target: EvaluationTarget | None = None,
         evaluation_reference_inputs: Sequence[EvaluationReferenceInput] | None = None,
     ) -> EvaluateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/evaluate/)."""
         params: dict[str, object] = {
             "evaluator_id": evaluator_id,
             "evaluation_input": evaluation_input,
@@ -621,6 +640,7 @@ class BedrockAgentCoreClient:
         *,
         ab_test_id: str,
     ) -> GetABTestOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_ab_test/)."""
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
@@ -645,6 +665,7 @@ class BedrockAgentCoreClient:
         runtime_session_id: str | None = None,
         qualifier: str | None = None,
     ) -> GetAgentCardOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_agent_card/)."""
         params: dict[str, object] = {
             "agent_runtime_arn": agent_runtime_arn,
         }
@@ -671,6 +692,7 @@ class BedrockAgentCoreClient:
         *,
         batch_evaluation_id: str,
     ) -> GetBatchEvaluationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_batch_evaluation/)."""
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
@@ -694,6 +716,7 @@ class BedrockAgentCoreClient:
         browser_identifier: str,
         session_id: str,
     ) -> GetBrowserSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_browser_session/)."""
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,
@@ -718,6 +741,7 @@ class BedrockAgentCoreClient:
         code_interpreter_identifier: str,
         session_id: str,
     ) -> GetCodeInterpreterSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_code_interpreter_session/)."""
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
             "session_id": session_id,
@@ -744,6 +768,7 @@ class BedrockAgentCoreClient:
         actor_id: str,
         event_id: str,
     ) -> GetEventOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_event/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "session_id": session_id,
@@ -771,6 +796,7 @@ class BedrockAgentCoreClient:
         memory_record_id: str,
         namespace: str | None = None,
     ) -> GetMemoryRecordOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_memory_record/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "memory_record_id": memory_record_id,
@@ -800,6 +826,7 @@ class BedrockAgentCoreClient:
         agent_name: str | None = None,
         payment_connector_id: str | None = None,
     ) -> GetPaymentInstrumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_payment_instrument/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_instrument_id": payment_instrument_id,
@@ -835,6 +862,7 @@ class BedrockAgentCoreClient:
         user_id: str | None = None,
         agent_name: str | None = None,
     ) -> GetPaymentInstrumentBalanceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_payment_instrument_balance/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_connector_id": payment_connector_id,
@@ -868,6 +896,7 @@ class BedrockAgentCoreClient:
         user_id: str | None = None,
         agent_name: str | None = None,
     ) -> GetPaymentSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_payment_session/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_session_id": payment_session_id,
@@ -895,6 +924,7 @@ class BedrockAgentCoreClient:
         *,
         recommendation_id: str,
     ) -> GetRecommendationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_recommendation/)."""
         params: dict[str, object] = {
             "recommendation_id": recommendation_id,
         }
@@ -918,6 +948,7 @@ class BedrockAgentCoreClient:
         workload_identity_token: str,
         resource_credential_provider_name: str,
     ) -> GetResourceApiKeyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_resource_api_key/)."""
         params: dict[str, object] = {
             "workload_identity_token": workload_identity_token,
             "resource_credential_provider_name": resource_credential_provider_name,
@@ -951,6 +982,7 @@ class BedrockAgentCoreClient:
         resources: Sequence[str] | None = None,
         audiences: Sequence[str] | None = None,
     ) -> GetResourceOauth2TokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_resource_oauth2_token/)."""
         params: dict[str, object] = {
             "workload_identity_token": workload_identity_token,
             "resource_credential_provider_name": resource_credential_provider_name,
@@ -992,6 +1024,7 @@ class BedrockAgentCoreClient:
         resource_credential_provider_name: str,
         payment_token_request: PaymentTokenRequestInput,
     ) -> GetResourcePaymentTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_resource_payment_token/)."""
         params: dict[str, object] = {
             "workload_identity_token": workload_identity_token,
             "resource_credential_provider_name": resource_credential_provider_name,
@@ -1016,6 +1049,7 @@ class BedrockAgentCoreClient:
         *,
         workload_name: str,
     ) -> GetWorkloadAccessTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_workload_access_token/)."""
         params: dict[str, object] = {
             "workload_name": workload_name,
         }
@@ -1039,6 +1073,7 @@ class BedrockAgentCoreClient:
         workload_name: str,
         user_token: str,
     ) -> GetWorkloadAccessTokenForJWTOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_workload_access_token_for_jwt/)."""
         params: dict[str, object] = {
             "workload_name": workload_name,
             "user_token": user_token,
@@ -1063,6 +1098,7 @@ class BedrockAgentCoreClient:
         workload_name: str,
         user_id: str,
     ) -> GetWorkloadAccessTokenForUserIdOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_workload_access_token_for_user_id/)."""
         params: dict[str, object] = {
             "workload_name": workload_name,
             "user_id": user_id,
@@ -1093,6 +1129,7 @@ class BedrockAgentCoreClient:
         metadata: dict[str, MetadataValue] | None = None,
         client_token: str | None = None,
     ) -> IngestDataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/ingest_data/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "source": source,
@@ -1141,6 +1178,7 @@ class BedrockAgentCoreClient:
         qualifier: str | None = None,
         account_id: str | None = None,
     ) -> InvokeAgentRuntimeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/invoke_agent_runtime/)."""
         params: dict[str, object] = {
             "agent_runtime_arn": agent_runtime_arn,
             "payload": payload,
@@ -1202,6 +1240,7 @@ class BedrockAgentCoreClient:
         qualifier: str | None = None,
         account_id: str | None = None,
     ) -> InvokeAgentRuntimeCommandOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/invoke_agent_runtime_command/)."""
         params: dict[str, object] = {
             "agent_runtime_arn": agent_runtime_arn,
             "body": body,
@@ -1245,6 +1284,7 @@ class BedrockAgentCoreClient:
         session_id: str,
         action: BrowserAction,
     ) -> InvokeBrowserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/invoke_browser/)."""
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,
@@ -1274,6 +1314,7 @@ class BedrockAgentCoreClient:
         trace_parent: str | None = None,
         arguments: ToolArguments | None = None,
     ) -> InvokeCodeInterpreterOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/invoke_code_interpreter/)."""
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
             "name": name,
@@ -1322,6 +1363,7 @@ class BedrockAgentCoreClient:
         timeout_seconds: int | None = None,
         actor_id: str | None = None,
     ) -> InvokeHarnessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/invoke_harness/)."""
         params: dict[str, object] = {
             "harness_arn": harness_arn,
             "runtime_session_id": runtime_session_id,
@@ -1377,6 +1419,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListABTestsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_ab_tests/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1404,6 +1447,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListActorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_actors/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -1431,6 +1475,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListBatchEvaluationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_batch_evaluations/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1459,6 +1504,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         status: BrowserSessionStatus | None = None,
     ) -> ListBrowserSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_browser_sessions/)."""
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
         }
@@ -1490,6 +1536,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         status: CodeInterpreterSessionStatus | None = None,
     ) -> ListCodeInterpreterSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_code_interpreter_sessions/)."""
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
         }
@@ -1524,6 +1571,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListEventsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_events/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "session_id": session_id,
@@ -1559,6 +1607,7 @@ class BedrockAgentCoreClient:
         filter: ExtractionJobFilterInput | None = None,
         next_token: str | None = None,
     ) -> ListMemoryExtractionJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_memory_extraction_jobs/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -1593,6 +1642,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         metadata_filters: Sequence[MemoryMetadataFilterExpression] | None = None,
     ) -> ListMemoryRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_memory_records/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
         }
@@ -1632,6 +1682,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPaymentInstrumentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_payment_instruments/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
         }
@@ -1668,6 +1719,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPaymentSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_payment_sessions/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
         }
@@ -1700,6 +1752,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         status_filter: RecommendationStatus | None = None,
     ) -> ListRecommendationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_recommendations/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1731,6 +1784,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         filter: SessionFilter | None = None,
     ) -> ListSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_sessions/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "actor_id": actor_id,
@@ -1767,6 +1821,7 @@ class BedrockAgentCoreClient:
         agent_name: str | None = None,
         client_token: str | None = None,
     ) -> ProcessPaymentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/process_payment/)."""
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_session_id": payment_session_id,
@@ -1804,6 +1859,7 @@ class BedrockAgentCoreClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> RetrieveMemoryRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/retrieve_memory_records/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "search_criteria": search_criteria,
@@ -1840,6 +1896,7 @@ class BedrockAgentCoreClient:
         trace_parent: str | None = None,
         client_token: str | None = None,
     ) -> SaveBrowserSessionProfileOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/save_browser_session_profile/)."""
         params: dict[str, object] = {
             "profile_identifier": profile_identifier,
             "browser_identifier": browser_identifier,
@@ -1873,6 +1930,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         filters: JSONValue | None = None,
     ) -> SearchRegistryRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/search_registry_records/)."""
         params: dict[str, object] = {
             "search_query": search_query,
             "registry_ids": registry_ids,
@@ -1909,6 +1967,7 @@ class BedrockAgentCoreClient:
         description: str | None = None,
         output_config: OutputConfig | None = None,
     ) -> StartBatchEvaluationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/start_batch_evaluation/)."""
         params: dict[str, object] = {
             "batch_evaluation_name": batch_evaluation_name,
             "data_source_config": data_source_config,
@@ -1960,6 +2019,7 @@ class BedrockAgentCoreClient:
         filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
         client_token: str | None = None,
     ) -> StartBrowserSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/start_browser_session/)."""
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
         }
@@ -2013,6 +2073,7 @@ class BedrockAgentCoreClient:
         filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
         client_token: str | None = None,
     ) -> StartCodeInterpreterSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/start_code_interpreter_session/)."""
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
         }
@@ -2051,6 +2112,7 @@ class BedrockAgentCoreClient:
         extraction_job: ExtractionJob,
         client_token: str | None = None,
     ) -> StartMemoryExtractionJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/start_memory_extraction_job/)."""
         params: dict[str, object] = {
             "memory_id": memory_id,
             "extraction_job": extraction_job,
@@ -2082,6 +2144,7 @@ class BedrockAgentCoreClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> StartRecommendationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/start_recommendation/)."""
         params: dict[str, object] = {
             "name": name,
             "type": type,
@@ -2114,6 +2177,7 @@ class BedrockAgentCoreClient:
         *,
         batch_evaluation_id: str,
     ) -> StopBatchEvaluationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/stop_batch_evaluation/)."""
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
@@ -2140,6 +2204,7 @@ class BedrockAgentCoreClient:
         trace_parent: str | None = None,
         client_token: str | None = None,
     ) -> StopBrowserSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/stop_browser_session/)."""
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,
@@ -2173,6 +2238,7 @@ class BedrockAgentCoreClient:
         trace_parent: str | None = None,
         client_token: str | None = None,
     ) -> StopCodeInterpreterSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/stop_code_interpreter_session/)."""
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
             "session_id": session_id,
@@ -2205,6 +2271,7 @@ class BedrockAgentCoreClient:
         qualifier: str | None = None,
         client_token: str | None = None,
     ) -> StopRuntimeSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/stop_runtime_session/)."""
         params: dict[str, object] = {
             "runtime_session_id": runtime_session_id,
             "agent_runtime_arn": agent_runtime_arn,
@@ -2240,6 +2307,7 @@ class BedrockAgentCoreClient:
         role_arn: str | None = None,
         execution_status: ABTestExecutionStatus | None = None,
     ) -> UpdateABTestOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/update_ab_test/)."""
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
@@ -2281,6 +2349,7 @@ class BedrockAgentCoreClient:
         stream_update: StreamUpdate,
         client_token: str | None = None,
     ) -> UpdateBrowserStreamOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/update_browser_stream/)."""
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,

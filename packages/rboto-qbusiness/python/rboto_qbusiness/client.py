@@ -73,6 +73,8 @@ from .paginators import QBusinessClientPaginators as _Paginators
 
 
 class QBusinessClient:
+    """Async QBusinessClient. See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/)."""
+
     logger_name = "rboto.qbusiness"
 
     def __init__(
@@ -117,6 +119,7 @@ class QBusinessClient:
         principal: str,
         conditions: Sequence[PermissionCondition] | None = None,
     ) -> AssociatePermissionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/associate_permission/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "statement_id": statement_id,
@@ -147,6 +150,7 @@ class QBusinessClient:
         documents: Sequence[DeleteDocument],
         data_source_sync_id: str | None = None,
     ) -> BatchDeleteDocumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/batch_delete_document/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -177,6 +181,7 @@ class QBusinessClient:
         role_arn: str | None = None,
         data_source_sync_id: str | None = None,
     ) -> BatchPutDocumentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/batch_put_document/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -206,6 +211,7 @@ class QBusinessClient:
         application_id: str,
         subscription_id: str,
     ) -> CancelSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/cancel_subscription/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "subscription_id": subscription_id,
@@ -235,6 +241,7 @@ class QBusinessClient:
         client_token: str | None = None,
         input_stream: AsyncIterator[ChatInputStream] | None = None,
     ) -> ChatOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/chat/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -281,6 +288,7 @@ class QBusinessClient:
         chat_mode_configuration: ChatModeConfiguration | None = None,
         client_token: str | None = None,
     ) -> ChatSyncOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/chat_sync/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -331,6 +339,7 @@ class QBusinessClient:
         document_id: str,
         data_source_id: str | None = None,
     ) -> CheckDocumentAccessOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/check_document_access/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -360,6 +369,7 @@ class QBusinessClient:
         web_experience_id: str,
         session_duration_in_minutes: int | None = None,
     ) -> CreateAnonymousWebExperienceUrlOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_anonymous_web_experience_url/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,
@@ -398,6 +408,7 @@ class QBusinessClient:
         personalization_configuration: PersonalizationConfiguration | None = None,
         quick_sight_configuration: QuickSightConfiguration | None = None,
     ) -> CreateApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_application/)."""
         params: dict[str, object] = {
             "display_name": display_name,
         }
@@ -450,6 +461,7 @@ class QBusinessClient:
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateChatResponseConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_chat_response_configuration/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "display_name": display_name,
@@ -484,6 +496,7 @@ class QBusinessClient:
         authentication_detail: DataAccessorAuthenticationDetail | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateDataAccessorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_data_accessor/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "principal": principal,
@@ -526,6 +539,7 @@ class QBusinessClient:
         document_enrichment_configuration: DocumentEnrichmentConfiguration | None = None,
         media_extraction_configuration: MediaExtractionConfiguration | None = None,
     ) -> CreateDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_data_source/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -573,6 +587,7 @@ class QBusinessClient:
         capacity_configuration: IndexCapacityConfiguration | None = None,
         client_token: str | None = None,
     ) -> CreateIndexOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_index/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "display_name": display_name,
@@ -613,6 +628,7 @@ class QBusinessClient:
         tags: Sequence[Tag] | None = None,
         client_token: str | None = None,
     ) -> CreatePluginOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_plugin/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "display_name": display_name,
@@ -652,6 +668,7 @@ class QBusinessClient:
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateRetrieverOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_retriever/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "type": type,
@@ -686,6 +703,7 @@ class QBusinessClient:
         type: SubscriptionType,
         client_token: str | None = None,
     ) -> CreateSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_subscription/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "principal": principal,
@@ -715,6 +733,7 @@ class QBusinessClient:
         user_aliases: Sequence[UserAlias] | None = None,
         client_token: str | None = None,
     ) -> CreateUserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_user/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -753,6 +772,7 @@ class QBusinessClient:
         browser_extension_configuration: BrowserExtensionConfiguration | None = None,
         customization_configuration: CustomizationConfiguration | None = None,
     ) -> CreateWebExperienceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/create_web_experience/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -797,6 +817,7 @@ class QBusinessClient:
         *,
         application_id: str,
     ) -> DeleteApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_application/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -822,6 +843,7 @@ class QBusinessClient:
         attachment_id: str,
         user_id: str | None = None,
     ) -> DeleteAttachmentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_attachment/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "conversation_id": conversation_id,
@@ -848,6 +870,7 @@ class QBusinessClient:
         *,
         application_id: str,
     ) -> DeleteChatControlsConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_chat_controls_configuration/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -871,6 +894,7 @@ class QBusinessClient:
         application_id: str,
         chat_response_configuration_id: str,
     ) -> DeleteChatResponseConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_chat_response_configuration/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
@@ -896,6 +920,7 @@ class QBusinessClient:
         application_id: str,
         user_id: str | None = None,
     ) -> DeleteConversationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_conversation/)."""
         params: dict[str, object] = {
             "conversation_id": conversation_id,
             "application_id": application_id,
@@ -922,6 +947,7 @@ class QBusinessClient:
         application_id: str,
         data_accessor_id: str,
     ) -> DeleteDataAccessorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_data_accessor/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
@@ -947,6 +973,7 @@ class QBusinessClient:
         index_id: str,
         data_source_id: str,
     ) -> DeleteDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_data_source/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -974,6 +1001,7 @@ class QBusinessClient:
         group_name: str,
         data_source_id: str | None = None,
     ) -> DeleteGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_group/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1001,6 +1029,7 @@ class QBusinessClient:
         application_id: str,
         index_id: str,
     ) -> DeleteIndexOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_index/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1025,6 +1054,7 @@ class QBusinessClient:
         application_id: str,
         plugin_id: str,
     ) -> DeletePluginOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_plugin/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -1049,6 +1079,7 @@ class QBusinessClient:
         application_id: str,
         retriever_id: str,
     ) -> DeleteRetrieverOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_retriever/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "retriever_id": retriever_id,
@@ -1073,6 +1104,7 @@ class QBusinessClient:
         application_id: str,
         user_id: str,
     ) -> DeleteUserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_user/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -1097,6 +1129,7 @@ class QBusinessClient:
         application_id: str,
         web_experience_id: str,
     ) -> DeleteWebExperienceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/delete_web_experience/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,
@@ -1121,6 +1154,7 @@ class QBusinessClient:
         application_id: str,
         statement_id: str,
     ) -> DisassociatePermissionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/disassociate_permission/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "statement_id": statement_id,
@@ -1144,6 +1178,7 @@ class QBusinessClient:
         *,
         application_id: str,
     ) -> GetApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_application/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1168,6 +1203,7 @@ class QBusinessClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> GetChatControlsConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_chat_controls_configuration/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1195,6 +1231,7 @@ class QBusinessClient:
         application_id: str,
         chat_response_configuration_id: str,
     ) -> GetChatResponseConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_chat_response_configuration/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
@@ -1219,6 +1256,7 @@ class QBusinessClient:
         application_id: str,
         data_accessor_id: str,
     ) -> GetDataAccessorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_data_accessor/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
@@ -1244,6 +1282,7 @@ class QBusinessClient:
         index_id: str,
         data_source_id: str,
     ) -> GetDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_data_source/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1272,6 +1311,7 @@ class QBusinessClient:
         data_source_id: str | None = None,
         output_format: OutputFormat | None = None,
     ) -> GetDocumentContentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_document_content/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1303,6 +1343,7 @@ class QBusinessClient:
         group_name: str,
         data_source_id: str | None = None,
     ) -> GetGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_group/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1330,6 +1371,7 @@ class QBusinessClient:
         application_id: str,
         index_id: str,
     ) -> GetIndexOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_index/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1356,6 +1398,7 @@ class QBusinessClient:
         message_id: str,
         media_id: str,
     ) -> GetMediaOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_media/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "conversation_id": conversation_id,
@@ -1382,6 +1425,7 @@ class QBusinessClient:
         application_id: str,
         plugin_id: str,
     ) -> GetPluginOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_plugin/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -1405,6 +1449,7 @@ class QBusinessClient:
         *,
         application_id: str,
     ) -> GetPolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_policy/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1428,6 +1473,7 @@ class QBusinessClient:
         application_id: str,
         retriever_id: str,
     ) -> GetRetrieverOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_retriever/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "retriever_id": retriever_id,
@@ -1452,6 +1498,7 @@ class QBusinessClient:
         application_id: str,
         user_id: str,
     ) -> GetUserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_user/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -1476,6 +1523,7 @@ class QBusinessClient:
         application_id: str,
         web_experience_id: str,
     ) -> GetWebExperienceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/get_web_experience/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,
@@ -1500,6 +1548,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListApplicationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_applications/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1529,6 +1578,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListAttachmentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_attachments/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1561,6 +1611,7 @@ class QBusinessClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListChatResponseConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_chat_response_configurations/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1590,6 +1641,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListConversationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_conversations/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1620,6 +1672,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDataAccessorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_data_accessors/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1653,6 +1706,7 @@ class QBusinessClient:
         end_time: str | None = None,
         status_filter: DataSourceSyncJobStatus | None = None,
     ) -> ListDataSourceSyncJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_data_source_sync_jobs/)."""
         params: dict[str, object] = {
             "data_source_id": data_source_id,
             "application_id": application_id,
@@ -1690,6 +1744,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDataSourcesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_data_sources/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1721,6 +1776,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDocumentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_documents/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1755,6 +1811,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListGroupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_groups/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -1787,6 +1844,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListIndicesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_indices/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1817,6 +1875,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListMessagesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_messages/)."""
         params: dict[str, object] = {
             "conversation_id": conversation_id,
             "application_id": application_id,
@@ -1849,6 +1908,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPluginActionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugin_actions/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -1878,6 +1938,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPluginTypeActionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugin_type_actions/)."""
         params: dict[str, object] = {
             "plugin_type": plugin_type,
         }
@@ -1905,6 +1966,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPluginTypeMetadataOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugin_type_metadata/)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -1932,6 +1994,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListPluginsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_plugins/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1960,6 +2023,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListRetrieversOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_retrievers/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -1988,6 +2052,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListSubscriptionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_subscriptions/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2014,6 +2079,7 @@ class QBusinessClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2038,6 +2104,7 @@ class QBusinessClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListWebExperiencesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/list_web_experiences/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2069,6 +2136,7 @@ class QBusinessClient:
         message_copied_at: str | None = None,
         message_usefulness: MessageUsefulnessFeedback | None = None,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/put_feedback/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "conversation_id": conversation_id,
@@ -2105,6 +2173,7 @@ class QBusinessClient:
         data_source_id: str | None = None,
         role_arn: str | None = None,
     ) -> PutGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/put_group/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -2140,6 +2209,7 @@ class QBusinessClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> SearchRelevantContentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/search_relevant_content/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "query_text": query_text,
@@ -2172,6 +2242,7 @@ class QBusinessClient:
         application_id: str,
         index_id: str,
     ) -> StartDataSourceSyncJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/start_data_source_sync_job/)."""
         params: dict[str, object] = {
             "data_source_id": data_source_id,
             "application_id": application_id,
@@ -2198,6 +2269,7 @@ class QBusinessClient:
         application_id: str,
         index_id: str,
     ) -> StopDataSourceSyncJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/stop_data_source_sync_job/)."""
         params: dict[str, object] = {
             "data_source_id": data_source_id,
             "application_id": application_id,
@@ -2223,6 +2295,7 @@ class QBusinessClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2247,6 +2320,7 @@ class QBusinessClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2278,6 +2352,7 @@ class QBusinessClient:
         personalization_configuration: PersonalizationConfiguration | None = None,
         auto_subscription_configuration: AutoSubscriptionConfiguration | None = None,
     ) -> UpdateApplicationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_application/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2324,6 +2399,7 @@ class QBusinessClient:
         creator_mode_configuration: CreatorModeConfiguration | None = None,
         hallucination_reduction_configuration: HallucinationReductionConfiguration | None = None,
     ) -> UpdateChatControlsConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_chat_controls_configuration/)."""
         params: dict[str, object] = {
             "application_id": application_id,
         }
@@ -2366,6 +2442,7 @@ class QBusinessClient:
         display_name: str | None = None,
         client_token: str | None = None,
     ) -> UpdateChatResponseConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_chat_response_configuration/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
@@ -2398,6 +2475,7 @@ class QBusinessClient:
         authentication_detail: DataAccessorAuthenticationDetail | None = None,
         display_name: str | None = None,
     ) -> UpdateDataAccessorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_data_accessor/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
@@ -2436,6 +2514,7 @@ class QBusinessClient:
         document_enrichment_configuration: DocumentEnrichmentConfiguration | None = None,
         media_extraction_configuration: MediaExtractionConfiguration | None = None,
     ) -> UpdateDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_data_source/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -2481,6 +2560,7 @@ class QBusinessClient:
         capacity_configuration: IndexCapacityConfiguration | None = None,
         document_attribute_configurations: Sequence[DocumentAttributeConfiguration] | None = None,
     ) -> UpdateIndexOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_index/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "index_id": index_id,
@@ -2518,6 +2598,7 @@ class QBusinessClient:
         custom_plugin_configuration: CustomPluginConfiguration | None = None,
         auth_configuration: PluginAuthConfiguration | None = None,
     ) -> UpdatePluginOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_plugin/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "plugin_id": plugin_id,
@@ -2555,6 +2636,7 @@ class QBusinessClient:
         display_name: str | None = None,
         role_arn: str | None = None,
     ) -> UpdateRetrieverOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_retriever/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "retriever_id": retriever_id,
@@ -2586,6 +2668,7 @@ class QBusinessClient:
         subscription_id: str,
         type: SubscriptionType,
     ) -> UpdateSubscriptionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_subscription/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "subscription_id": subscription_id,
@@ -2613,6 +2696,7 @@ class QBusinessClient:
         user_aliases_to_update: Sequence[UserAlias] | None = None,
         user_aliases_to_delete: Sequence[UserAlias] | None = None,
     ) -> UpdateUserOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_user/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "user_id": user_id,
@@ -2651,6 +2735,7 @@ class QBusinessClient:
         browser_extension_configuration: BrowserExtensionConfiguration | None = None,
         customization_configuration: CustomizationConfiguration | None = None,
     ) -> UpdateWebExperienceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/operations/update_web_experience/)."""
         params: dict[str, object] = {
             "application_id": application_id,
             "web_experience_id": web_experience_id,

@@ -49,7 +49,7 @@ class BedrockAgentRuntimeClientPaginators:
         next_token: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[GetAgentMemoryOutput]:
-        """Yield each page from get_agent_memory; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/get_agent_memory/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_id": agent_alias_id,
@@ -80,7 +80,7 @@ class BedrockAgentRuntimeClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListFlowExecutionEventsOutput]:
-        """Yield each page from list_flow_execution_events; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_flow_execution_events/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_alias_identifier": flow_alias_identifier,
@@ -109,7 +109,7 @@ class BedrockAgentRuntimeClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListFlowExecutionsOutput]:
-        """Yield each page from list_flow_executions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_flow_executions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -137,7 +137,7 @@ class BedrockAgentRuntimeClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListInvocationStepsOutput]:
-        """Yield each page from list_invocation_steps; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_invocation_steps/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -164,7 +164,7 @@ class BedrockAgentRuntimeClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> AsyncIterator[ListInvocationsOutput]:
-        """Yield each page from list_invocations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_invocations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
@@ -188,7 +188,7 @@ class BedrockAgentRuntimeClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListSessionsOutput]:
-        """Yield each page from list_sessions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/list_sessions/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -213,7 +213,7 @@ class BedrockAgentRuntimeClientPaginators:
         reranking_configuration: RerankingConfiguration,
         next_token: str | None = None,
     ) -> AsyncIterator[RerankOutput]:
-        """Yield each page from rerank; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/rerank/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "queries": queries,
             "sources": sources,
@@ -241,7 +241,7 @@ class BedrockAgentRuntimeClientPaginators:
         next_token: str | None = None,
         user_context: UserContext | None = None,
     ) -> AsyncIterator[RetrieveOutput]:
-        """Yield each page from retrieve; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/operations/retrieve/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "retrieval_query": retrieval_query,

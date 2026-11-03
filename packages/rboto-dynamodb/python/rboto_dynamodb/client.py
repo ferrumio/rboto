@@ -76,6 +76,8 @@ from .paginators import DynamoDBClientPaginators as _Paginators
 
 
 class DynamoDBClient:
+    """Async DynamoDBClient. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/)."""
+
     logger_name = "rboto.dynamodb"
 
     def __init__(
@@ -117,6 +119,7 @@ class DynamoDBClient:
         statements: Sequence[BatchStatementRequest],
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
     ) -> BatchExecuteStatementOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/batch_execute_statement/)."""
         params: dict[str, object] = {
             "statements": statements,
         }
@@ -142,6 +145,7 @@ class DynamoDBClient:
         request_items: dict[str, KeysAndAttributes],
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
     ) -> BatchGetItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/batch_get_item/)."""
         params: dict[str, object] = {
             "request_items": request_items,
         }
@@ -168,6 +172,7 @@ class DynamoDBClient:
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
         return_item_collection_metrics: ReturnItemCollectionMetrics | None = None,
     ) -> BatchWriteItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/batch_write_item/)."""
         params: dict[str, object] = {
             "request_items": request_items,
         }
@@ -195,6 +200,7 @@ class DynamoDBClient:
         table_name: str,
         backup_name: str,
     ) -> CreateBackupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/create_backup/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "backup_name": backup_name,
@@ -219,6 +225,7 @@ class DynamoDBClient:
         global_table_name: str,
         replication_group: Sequence[Replica],
     ) -> CreateGlobalTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/create_global_table/)."""
         params: dict[str, object] = {
             "global_table_name": global_table_name,
             "replication_group": replication_group,
@@ -259,6 +266,7 @@ class DynamoDBClient:
         global_table_settings_replication_mode: GlobalTableSettingsReplicationMode | None = None,
         vector_indexes: Sequence[VectorIndex] | None = None,
     ) -> CreateTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/create_table/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -315,6 +323,7 @@ class DynamoDBClient:
         *,
         backup_arn: str,
     ) -> DeleteBackupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/delete_backup/)."""
         params: dict[str, object] = {
             "backup_arn": backup_arn,
         }
@@ -347,6 +356,7 @@ class DynamoDBClient:
         expression_attribute_values: dict[str, AttributeValue] | None = None,
         return_values_on_condition_check_failure: ReturnValuesOnConditionCheckFailure | None = None,
     ) -> DeleteItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/delete_item/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "key": key,
@@ -389,6 +399,7 @@ class DynamoDBClient:
         resource_arn: str,
         expected_revision_id: str | None = None,
     ) -> DeleteResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -413,6 +424,7 @@ class DynamoDBClient:
         *,
         table_name: str,
     ) -> DeleteTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/delete_table/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -435,6 +447,7 @@ class DynamoDBClient:
         *,
         backup_arn: str,
     ) -> DescribeBackupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_backup/)."""
         params: dict[str, object] = {
             "backup_arn": backup_arn,
         }
@@ -457,6 +470,7 @@ class DynamoDBClient:
         *,
         table_name: str,
     ) -> DescribeContinuousBackupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_continuous_backups/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -480,6 +494,7 @@ class DynamoDBClient:
         table_name: str,
         index_name: str | None = None,
     ) -> DescribeContributorInsightsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_contributor_insights/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -502,6 +517,7 @@ class DynamoDBClient:
     async def describe_endpoints(
         self,
     ) -> DescribeEndpointsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_endpoints/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("dynamodb", self._interceptors)
@@ -523,6 +539,7 @@ class DynamoDBClient:
         *,
         export_arn: str,
     ) -> DescribeExportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_export/)."""
         params: dict[str, object] = {
             "export_arn": export_arn,
         }
@@ -545,6 +562,7 @@ class DynamoDBClient:
         *,
         global_table_name: str,
     ) -> DescribeGlobalTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_global_table/)."""
         params: dict[str, object] = {
             "global_table_name": global_table_name,
         }
@@ -567,6 +585,7 @@ class DynamoDBClient:
         *,
         global_table_name: str,
     ) -> DescribeGlobalTableSettingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_global_table_settings/)."""
         params: dict[str, object] = {
             "global_table_name": global_table_name,
         }
@@ -589,6 +608,7 @@ class DynamoDBClient:
         *,
         import_arn: str,
     ) -> DescribeImportOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_import/)."""
         params: dict[str, object] = {
             "import_arn": import_arn,
         }
@@ -611,6 +631,7 @@ class DynamoDBClient:
         *,
         table_name: str,
     ) -> DescribeKinesisStreamingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_kinesis_streaming_destination/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -631,6 +652,7 @@ class DynamoDBClient:
     async def describe_limits(
         self,
     ) -> DescribeLimitsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_limits/)."""
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("dynamodb", self._interceptors)
@@ -652,6 +674,7 @@ class DynamoDBClient:
         *,
         table_name: str,
     ) -> DescribeTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_table/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -674,6 +697,7 @@ class DynamoDBClient:
         *,
         table_name: str,
     ) -> DescribeTableReplicaAutoScalingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_table_replica_auto_scaling/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -696,6 +720,7 @@ class DynamoDBClient:
         *,
         table_name: str,
     ) -> DescribeTimeToLiveOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_time_to_live/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -720,6 +745,7 @@ class DynamoDBClient:
         stream_arn: str,
         enable_kinesis_streaming_configuration: EnableKinesisStreamingConfiguration | None = None,
     ) -> DisableKinesisStreamingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/disable_kinesis_streaming_destination/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "stream_arn": stream_arn,
@@ -747,6 +773,7 @@ class DynamoDBClient:
         stream_arn: str,
         enable_kinesis_streaming_configuration: EnableKinesisStreamingConfiguration | None = None,
     ) -> EnableKinesisStreamingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/enable_kinesis_streaming_destination/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "stream_arn": stream_arn,
@@ -778,6 +805,7 @@ class DynamoDBClient:
         limit: int | None = None,
         return_values_on_condition_check_failure: ReturnValuesOnConditionCheckFailure | None = None,
     ) -> ExecuteStatementOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/execute_statement/)."""
         params: dict[str, object] = {
             "statement": statement,
         }
@@ -814,6 +842,7 @@ class DynamoDBClient:
         client_request_token: str | None = None,
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
     ) -> ExecuteTransactionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/execute_transaction/)."""
         params: dict[str, object] = {
             "transact_statements": transact_statements,
         }
@@ -851,6 +880,7 @@ class DynamoDBClient:
         incremental_export_specification: IncrementalExportSpecification | None = None,
         filter_specification: FilterSpecification | None = None,
     ) -> ExportTableToPointInTimeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/export_table_to_point_in_time/)."""
         params: dict[str, object] = {
             "table_arn": table_arn,
             "s3_bucket": s3_bucket,
@@ -900,6 +930,7 @@ class DynamoDBClient:
         projection_expression: str | None = None,
         expression_attribute_names: dict[str, str] | None = None,
     ) -> GetItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/get_item/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "key": key,
@@ -933,6 +964,7 @@ class DynamoDBClient:
         *,
         resource_arn: str,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -960,6 +992,7 @@ class DynamoDBClient:
         input_format_options: InputFormatOptions | None = None,
         input_compression_type: InputCompressionType | None = None,
     ) -> ImportTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/import_table/)."""
         params: dict[str, object] = {
             "s3_bucket_source": s3_bucket_source,
             "input_format": input_format,
@@ -995,6 +1028,7 @@ class DynamoDBClient:
         exclusive_start_backup_arn: str | None = None,
         backup_type: BackupTypeFilter | None = None,
     ) -> ListBackupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_backups/)."""
         params: dict[str, object] = {
         }
         if table_name is not None:
@@ -1030,6 +1064,7 @@ class DynamoDBClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListContributorInsightsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_contributor_insights/)."""
         params: dict[str, object] = {
         }
         if table_name is not None:
@@ -1059,6 +1094,7 @@ class DynamoDBClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListExportsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_exports/)."""
         params: dict[str, object] = {
         }
         if table_arn is not None:
@@ -1088,6 +1124,7 @@ class DynamoDBClient:
         limit: int | None = None,
         region_name: str | None = None,
     ) -> ListGlobalTablesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_global_tables/)."""
         params: dict[str, object] = {
         }
         if exclusive_start_global_table_name is not None:
@@ -1117,6 +1154,7 @@ class DynamoDBClient:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> ListImportsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_imports/)."""
         params: dict[str, object] = {
         }
         if table_arn is not None:
@@ -1145,6 +1183,7 @@ class DynamoDBClient:
         exclusive_start_table_name: str | None = None,
         limit: int | None = None,
     ) -> ListTablesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_tables/)."""
         params: dict[str, object] = {
         }
         if exclusive_start_table_name is not None:
@@ -1171,6 +1210,7 @@ class DynamoDBClient:
         resource_arn: str,
         next_token: str | None = None,
     ) -> ListTagsOfResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_tags_of_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1205,6 +1245,7 @@ class DynamoDBClient:
         expression_attribute_values: dict[str, AttributeValue] | None = None,
         return_values_on_condition_check_failure: ReturnValuesOnConditionCheckFailure | None = None,
     ) -> PutItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/put_item/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "item": item,
@@ -1249,6 +1290,7 @@ class DynamoDBClient:
         expected_revision_id: str | None = None,
         confirm_remove_self_resource_access: bool | None = None,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy": policy,
@@ -1292,6 +1334,7 @@ class DynamoDBClient:
         expression_attribute_names: dict[str, str] | None = None,
         expression_attribute_values: dict[str, AttributeValue] | None = None,
     ) -> QueryOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/query/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -1354,6 +1397,7 @@ class DynamoDBClient:
         sse_specification_override: SSESpecification | None = None,
         vector_index_override: Sequence[VectorIndex] | None = None,
     ) -> RestoreTableFromBackupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/restore_table_from_backup/)."""
         params: dict[str, object] = {
             "target_table_name": target_table_name,
             "backup_arn": backup_arn,
@@ -1402,6 +1446,7 @@ class DynamoDBClient:
         sse_specification_override: SSESpecification | None = None,
         vector_index_override: Sequence[VectorIndex] | None = None,
     ) -> RestoreTableToPointInTimeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/restore_table_to_point_in_time/)."""
         params: dict[str, object] = {
             "target_table_name": target_table_name,
         }
@@ -1461,6 +1506,7 @@ class DynamoDBClient:
         expression_attribute_values: dict[str, AttributeValue] | None = None,
         consistent_read: bool | None = None,
     ) -> ScanOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/scan/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -1521,6 +1567,7 @@ class DynamoDBClient:
         projection_expression: str | None = None,
         search_condition_expression: str | None = None,
     ) -> SearchVectorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/search_vectors/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "index_name": index_name,
@@ -1557,6 +1604,7 @@ class DynamoDBClient:
         resource_arn: str,
         tags: Sequence[Tag],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -1581,6 +1629,7 @@ class DynamoDBClient:
         transact_items: Sequence[TransactGetItem],
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
     ) -> TransactGetItemsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/transact_get_items/)."""
         params: dict[str, object] = {
             "transact_items": transact_items,
         }
@@ -1608,6 +1657,7 @@ class DynamoDBClient:
         return_item_collection_metrics: ReturnItemCollectionMetrics | None = None,
         client_request_token: str | None = None,
     ) -> TransactWriteItemsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/transact_write_items/)."""
         params: dict[str, object] = {
             "transact_items": transact_items,
         }
@@ -1637,6 +1687,7 @@ class DynamoDBClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -1661,6 +1712,7 @@ class DynamoDBClient:
         table_name: str,
         point_in_time_recovery_specification: PointInTimeRecoverySpecification,
     ) -> UpdateContinuousBackupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_continuous_backups/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "point_in_time_recovery_specification": point_in_time_recovery_specification,
@@ -1687,6 +1739,7 @@ class DynamoDBClient:
         index_name: str | None = None,
         contributor_insights_mode: ContributorInsightsMode | None = None,
     ) -> UpdateContributorInsightsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_contributor_insights/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "contributor_insights_action": contributor_insights_action,
@@ -1715,6 +1768,7 @@ class DynamoDBClient:
         global_table_name: str,
         replica_updates: Sequence[ReplicaUpdate],
     ) -> UpdateGlobalTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_global_table/)."""
         params: dict[str, object] = {
             "global_table_name": global_table_name,
             "replica_updates": replica_updates,
@@ -1743,6 +1797,7 @@ class DynamoDBClient:
         global_table_global_secondary_index_settings_update: Sequence[GlobalTableGlobalSecondaryIndexSettingsUpdate] | None = None,
         replica_settings_update: Sequence[ReplicaSettingsUpdate] | None = None,
     ) -> UpdateGlobalTableSettingsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_global_table_settings/)."""
         params: dict[str, object] = {
             "global_table_name": global_table_name,
         }
@@ -1787,6 +1842,7 @@ class DynamoDBClient:
         expression_attribute_values: dict[str, AttributeValue] | None = None,
         return_values_on_condition_check_failure: ReturnValuesOnConditionCheckFailure | None = None,
     ) -> UpdateItemOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_item/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "key": key,
@@ -1834,6 +1890,7 @@ class DynamoDBClient:
         stream_arn: str,
         update_kinesis_streaming_configuration: UpdateKinesisStreamingConfiguration | None = None,
     ) -> UpdateKinesisStreamingDestinationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_kinesis_streaming_destination/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "stream_arn": stream_arn,
@@ -1875,6 +1932,7 @@ class DynamoDBClient:
         disassociation_protection_enabled: bool | None = None,
         vector_index_updates: Sequence[VectorIndexUpdate] | None = None,
     ) -> UpdateTableOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_table/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -1932,6 +1990,7 @@ class DynamoDBClient:
         provisioned_write_capacity_auto_scaling_update: AutoScalingSettingsUpdate | None = None,
         replica_updates: Sequence[ReplicaAutoScalingUpdate] | None = None,
     ) -> UpdateTableReplicaAutoScalingOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_table_replica_auto_scaling/)."""
         params: dict[str, object] = {
             "table_name": table_name,
         }
@@ -1961,6 +2020,7 @@ class DynamoDBClient:
         table_name: str,
         time_to_live_specification: TimeToLiveSpecification,
     ) -> UpdateTimeToLiveOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/update_time_to_live/)."""
         params: dict[str, object] = {
             "table_name": table_name,
             "time_to_live_specification": time_to_live_specification,

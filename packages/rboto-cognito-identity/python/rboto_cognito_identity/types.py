@@ -9,44 +9,81 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ByteStream/)."""
 CognitoIdentityProviderOutput: TypeAlias = _native.CognitoIdentityProvider
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CognitoIdentityProviderOutput/)."""
 CreateIdentityPoolOutput: TypeAlias = _native.CreateIdentityPoolOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CreateIdentityPoolOutput/)."""
 CredentialsOutput: TypeAlias = _native.Credentials
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CredentialsOutput/)."""
 DeleteIdentitiesOutput: TypeAlias = _native.DeleteIdentitiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DeleteIdentitiesOutput/)."""
 DescribeIdentityOutput: TypeAlias = _native.DescribeIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityOutput/)."""
 DescribeIdentityPoolOutput: TypeAlias = _native.DescribeIdentityPoolOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityPoolOutput/)."""
 GetCredentialsForIdentityOutput: TypeAlias = _native.GetCredentialsForIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetCredentialsForIdentityOutput/)."""
 GetIdOutput: TypeAlias = _native.GetIdOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdOutput/)."""
 GetIdentityPoolRolesOutput: TypeAlias = _native.GetIdentityPoolRolesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdentityPoolRolesOutput/)."""
 GetOpenIdTokenForDeveloperIdentityOutput: TypeAlias = _native.GetOpenIdTokenForDeveloperIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenForDeveloperIdentityOutput/)."""
 GetOpenIdTokenOutput: TypeAlias = _native.GetOpenIdTokenOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenOutput/)."""
 GetPrincipalTagAttributeMapOutput: TypeAlias = _native.GetPrincipalTagAttributeMapOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetPrincipalTagAttributeMapOutput/)."""
 IdentityDescription: TypeAlias = _native.IdentityDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/IdentityDescription/)."""
 IdentityPoolShortDescriptionOutput: TypeAlias = _native.IdentityPoolShortDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/IdentityPoolShortDescriptionOutput/)."""
 ListIdentitiesOutput: TypeAlias = _native.ListIdentitiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentitiesOutput/)."""
 ListIdentityPoolsOutput: TypeAlias = _native.ListIdentityPoolsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentityPoolsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListTagsForResourceOutput/)."""
 LookupDeveloperIdentityOutput: TypeAlias = _native.LookupDeveloperIdentityOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/LookupDeveloperIdentityOutput/)."""
 MappingRuleOutput: TypeAlias = _native.MappingRule
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MappingRuleOutput/)."""
 MergeDeveloperIdentitiesOutput: TypeAlias = _native.MergeDeveloperIdentitiesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MergeDeveloperIdentitiesOutput/)."""
 RoleMappingOutput: TypeAlias = _native.RoleMapping
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RoleMappingOutput/)."""
 RulesConfigurationTypeOutput: TypeAlias = _native.RulesConfigurationType
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RulesConfigurationTypeOutput/)."""
 SetPrincipalTagAttributeMapOutput: TypeAlias = _native.SetPrincipalTagAttributeMapOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/SetPrincipalTagAttributeMapOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/TagResourceOutput/)."""
 UnprocessedIdentityIdOutput: TypeAlias = _native.UnprocessedIdentityId
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UnprocessedIdentityIdOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UntagResourceOutput/)."""
 UpdateIdentityPoolOutput: TypeAlias = _native.UpdateIdentityPoolOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UpdateIdentityPoolOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/JSONValue/)."""
 
 AmbiguousRoleResolutionType: TypeAlias = Literal['AuthenticatedRole', 'Deny']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/AmbiguousRoleResolutionType/)."""
 AmbiguousRoleResolutionTypeOutput: TypeAlias = AmbiguousRoleResolutionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/AmbiguousRoleResolutionTypeOutput/)."""
 ErrorCode: TypeAlias = Literal['AccessDenied', 'InternalServerError']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ErrorCode/)."""
 ErrorCodeOutput: TypeAlias = ErrorCode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ErrorCodeOutput/)."""
 MappingRuleMatchType: TypeAlias = Literal['Equals', 'Contains', 'StartsWith', 'NotEqual']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MappingRuleMatchType/)."""
 MappingRuleMatchTypeOutput: TypeAlias = MappingRuleMatchType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MappingRuleMatchTypeOutput/)."""
 RoleMappingType: TypeAlias = Literal['Token', 'Rules']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RoleMappingType/)."""
 RoleMappingTypeOutput: TypeAlias = RoleMappingType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RoleMappingTypeOutput/)."""
 
 CognitoIdentityProvider = TypedDict(
     "CognitoIdentityProvider",
@@ -56,6 +93,7 @@ CognitoIdentityProvider = TypedDict(
     "server_side_token_check": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CognitoIdentityProvider/)."""
 
 CreateIdentityPoolInput = TypedDict(
     "CreateIdentityPoolInput",
@@ -71,6 +109,7 @@ CreateIdentityPoolInput = TypedDict(
     "identity_pool_tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/CreateIdentityPoolInput/)."""
 
 Credentials = TypedDict(
     "Credentials",
@@ -81,6 +120,7 @@ Credentials = TypedDict(
     "expiration": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/Credentials/)."""
 
 DeleteIdentitiesInput = TypedDict(
     "DeleteIdentitiesInput",
@@ -88,6 +128,7 @@ DeleteIdentitiesInput = TypedDict(
     "identity_ids_to_delete": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DeleteIdentitiesInput/)."""
 
 DeleteIdentityPoolInput = TypedDict(
     "DeleteIdentityPoolInput",
@@ -95,6 +136,7 @@ DeleteIdentityPoolInput = TypedDict(
     "identity_pool_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DeleteIdentityPoolInput/)."""
 
 DescribeIdentityInput = TypedDict(
     "DescribeIdentityInput",
@@ -102,6 +144,7 @@ DescribeIdentityInput = TypedDict(
     "identity_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityInput/)."""
 
 DescribeIdentityPoolInput = TypedDict(
     "DescribeIdentityPoolInput",
@@ -109,6 +152,7 @@ DescribeIdentityPoolInput = TypedDict(
     "identity_pool_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/DescribeIdentityPoolInput/)."""
 
 GetCredentialsForIdentityInput = TypedDict(
     "GetCredentialsForIdentityInput",
@@ -118,6 +162,7 @@ GetCredentialsForIdentityInput = TypedDict(
     "custom_role_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetCredentialsForIdentityInput/)."""
 
 GetIdInput = TypedDict(
     "GetIdInput",
@@ -127,6 +172,7 @@ GetIdInput = TypedDict(
     "logins": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdInput/)."""
 
 GetIdentityPoolRolesInput = TypedDict(
     "GetIdentityPoolRolesInput",
@@ -134,6 +180,7 @@ GetIdentityPoolRolesInput = TypedDict(
     "identity_pool_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetIdentityPoolRolesInput/)."""
 
 GetOpenIdTokenForDeveloperIdentityInput = TypedDict(
     "GetOpenIdTokenForDeveloperIdentityInput",
@@ -145,6 +192,7 @@ GetOpenIdTokenForDeveloperIdentityInput = TypedDict(
     "token_duration": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenForDeveloperIdentityInput/)."""
 
 GetOpenIdTokenInput = TypedDict(
     "GetOpenIdTokenInput",
@@ -153,6 +201,7 @@ GetOpenIdTokenInput = TypedDict(
     "logins": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetOpenIdTokenInput/)."""
 
 GetPrincipalTagAttributeMapInput = TypedDict(
     "GetPrincipalTagAttributeMapInput",
@@ -161,6 +210,7 @@ GetPrincipalTagAttributeMapInput = TypedDict(
     "identity_provider_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/GetPrincipalTagAttributeMapInput/)."""
 
 IdentityPool = TypedDict(
     "IdentityPool",
@@ -177,6 +227,7 @@ IdentityPool = TypedDict(
     "identity_pool_tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/IdentityPool/)."""
 
 IdentityPoolShortDescription = TypedDict(
     "IdentityPoolShortDescription",
@@ -185,6 +236,7 @@ IdentityPoolShortDescription = TypedDict(
     "identity_pool_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/IdentityPoolShortDescription/)."""
 
 ListIdentitiesInput = TypedDict(
     "ListIdentitiesInput",
@@ -195,6 +247,7 @@ ListIdentitiesInput = TypedDict(
     "hide_disabled": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentitiesInput/)."""
 
 ListIdentityPoolsInput = TypedDict(
     "ListIdentityPoolsInput",
@@ -203,6 +256,7 @@ ListIdentityPoolsInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListIdentityPoolsInput/)."""
 
 ListTagsForResourceInput = TypedDict(
     "ListTagsForResourceInput",
@@ -210,6 +264,7 @@ ListTagsForResourceInput = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/ListTagsForResourceInput/)."""
 
 LookupDeveloperIdentityInput = TypedDict(
     "LookupDeveloperIdentityInput",
@@ -221,6 +276,7 @@ LookupDeveloperIdentityInput = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/LookupDeveloperIdentityInput/)."""
 
 MappingRule = TypedDict(
     "MappingRule",
@@ -231,6 +287,7 @@ MappingRule = TypedDict(
     "role_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MappingRule/)."""
 
 MergeDeveloperIdentitiesInput = TypedDict(
     "MergeDeveloperIdentitiesInput",
@@ -241,6 +298,7 @@ MergeDeveloperIdentitiesInput = TypedDict(
     "identity_pool_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/MergeDeveloperIdentitiesInput/)."""
 
 RoleMapping = TypedDict(
     "RoleMapping",
@@ -250,6 +308,7 @@ RoleMapping = TypedDict(
     "rules_configuration": NotRequired["RulesConfigurationType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RoleMapping/)."""
 
 RulesConfigurationType = TypedDict(
     "RulesConfigurationType",
@@ -257,6 +316,7 @@ RulesConfigurationType = TypedDict(
     "rules": Required["Sequence[MappingRule]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/RulesConfigurationType/)."""
 
 SetIdentityPoolRolesInput = TypedDict(
     "SetIdentityPoolRolesInput",
@@ -266,6 +326,7 @@ SetIdentityPoolRolesInput = TypedDict(
     "role_mappings": NotRequired["dict[str, RoleMapping]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/SetIdentityPoolRolesInput/)."""
 
 SetPrincipalTagAttributeMapInput = TypedDict(
     "SetPrincipalTagAttributeMapInput",
@@ -276,6 +337,7 @@ SetPrincipalTagAttributeMapInput = TypedDict(
     "principal_tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/SetPrincipalTagAttributeMapInput/)."""
 
 TagResourceInput = TypedDict(
     "TagResourceInput",
@@ -284,6 +346,7 @@ TagResourceInput = TypedDict(
     "tags": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/TagResourceInput/)."""
 
 UnlinkDeveloperIdentityInput = TypedDict(
     "UnlinkDeveloperIdentityInput",
@@ -294,6 +357,7 @@ UnlinkDeveloperIdentityInput = TypedDict(
     "developer_user_identifier": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UnlinkDeveloperIdentityInput/)."""
 
 UnlinkIdentityInput = TypedDict(
     "UnlinkIdentityInput",
@@ -303,6 +367,7 @@ UnlinkIdentityInput = TypedDict(
     "logins_to_remove": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UnlinkIdentityInput/)."""
 
 UnprocessedIdentityId = TypedDict(
     "UnprocessedIdentityId",
@@ -311,6 +376,7 @@ UnprocessedIdentityId = TypedDict(
     "error_code": NotRequired["ErrorCode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UnprocessedIdentityId/)."""
 
 UntagResourceInput = TypedDict(
     "UntagResourceInput",
@@ -319,3 +385,4 @@ UntagResourceInput = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/cognito-identity/types/UntagResourceInput/)."""

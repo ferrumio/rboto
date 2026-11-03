@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AccountSharingInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AccountSharingInfoOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -25,6 +27,7 @@ class AccountSharingInfo:
 
 @final
 class Activation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ActivationOutput/)."""
     @property
     def activation_id(self) -> str | None: ...
     @property
@@ -49,12 +52,14 @@ class Activation:
 
 @final
 class Alarm:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmOutput/)."""
     @property
     def name(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AlarmConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmConfigurationOutput/)."""
     @property
     def ignore_poll_alarm_failure(self) -> bool: ...
     @property
@@ -63,6 +68,7 @@ class AlarmConfiguration:
 
 @final
 class AlarmStateInformation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AlarmStateInformationOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -71,6 +77,7 @@ class AlarmStateInformation:
 
 @final
 class Association:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -101,6 +108,7 @@ class Association:
 
 @final
 class AssociationDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationDescriptionOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -165,6 +173,7 @@ class AssociationDescription:
 
 @final
 class AssociationExecution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     @property
@@ -189,6 +198,7 @@ class AssociationExecution:
 
 @final
 class AssociationExecutionTarget:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationExecutionTargetOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     @property
@@ -211,6 +221,7 @@ class AssociationExecutionTarget:
 
 @final
 class AssociationOverview:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationOverviewOutput/)."""
     @property
     def status(self) -> str | None: ...
     @property
@@ -221,6 +232,7 @@ class AssociationOverview:
 
 @final
 class AssociationStatus:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationStatusOutput/)."""
     @property
     def date(self) -> str: ...
     @property
@@ -233,6 +245,7 @@ class AssociationStatus:
 
 @final
 class AssociationVersionInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociationVersionInfoOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     @property
@@ -279,6 +292,7 @@ class AssociationVersionInfo:
 
 @final
 class AttachmentContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentContentOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -293,12 +307,14 @@ class AttachmentContent:
 
 @final
 class AttachmentInformation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AttachmentInformationOutput/)."""
     @property
     def name(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AutomationExecution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionOutput/)."""
     @property
     def automation_execution_id(self) -> str | None: ...
     @property
@@ -375,6 +391,7 @@ class AutomationExecution:
 
 @final
 class AutomationExecutionMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AutomationExecutionMetadataOutput/)."""
     @property
     def automation_execution_id(self) -> str | None: ...
     @property
@@ -443,6 +460,7 @@ class AutomationExecutionMetadata:
 
 @final
 class CloudConnectorSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorSummaryOutput/)."""
     @property
     def cloud_connector_id(self) -> str | None: ...
     @property
@@ -459,6 +477,7 @@ class CloudConnectorSummary:
 
 @final
 class CloudWatchOutputConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudWatchOutputConfigOutput/)."""
     @property
     def cloud_watch_log_group_name(self) -> str | None: ...
     @property
@@ -467,6 +486,7 @@ class CloudWatchOutputConfig:
 
 @final
 class Command:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandOutput/)."""
     @property
     def command_id(self) -> str | None: ...
     @property
@@ -523,6 +543,7 @@ class Command:
 
 @final
 class CommandInvocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandInvocationOutput/)."""
     @property
     def command_id(self) -> str | None: ...
     @property
@@ -559,6 +580,7 @@ class CommandInvocation:
 
 @final
 class CommandPlugin:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CommandPluginOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -587,6 +609,7 @@ class CommandPlugin:
 
 @final
 class ComplianceExecutionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceExecutionSummaryOutput/)."""
     @property
     def execution_time(self) -> str: ...
     @property
@@ -597,6 +620,7 @@ class ComplianceExecutionSummary:
 
 @final
 class ComplianceItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceItemOutput/)."""
     @property
     def compliance_type(self) -> str | None: ...
     @property
@@ -619,6 +643,7 @@ class ComplianceItem:
 
 @final
 class ComplianceSummaryItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ComplianceSummaryItemOutput/)."""
     @property
     def compliance_type(self) -> str | None: ...
     @property
@@ -629,6 +654,7 @@ class ComplianceSummaryItem:
 
 @final
 class CompliantSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CompliantSummaryOutput/)."""
     @property
     def compliant_count(self) -> int: ...
     @property
@@ -637,6 +663,7 @@ class CompliantSummary:
 
 @final
 class CreateAssociationBatchRequestEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationBatchRequestEntryOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -681,6 +708,7 @@ class CreateAssociationBatchRequestEntry:
 
 @final
 class Credentials:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CredentialsOutput/)."""
     @property
     def access_key_id(self) -> str: ...
     @property
@@ -693,6 +721,7 @@ class Credentials:
 
 @final
 class DocumentDefaultVersionDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentDefaultVersionDescriptionOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -703,6 +732,7 @@ class DocumentDefaultVersionDescription:
 
 @final
 class DocumentDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentDescriptionOutput/)."""
     @property
     def sha1(self) -> str | None: ...
     @property
@@ -767,6 +797,7 @@ class DocumentDescription:
 
 @final
 class DocumentIdentifier:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentIdentifierOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -801,12 +832,14 @@ class DocumentIdentifier:
 
 @final
 class DocumentMetadataResponseInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentMetadataResponseInfoOutput/)."""
     @property
     def reviewer_response(self) -> list[DocumentReviewerResponseSource] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DocumentParameter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentParameterOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -819,6 +852,7 @@ class DocumentParameter:
 
 @final
 class DocumentRequires:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentRequiresOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -831,6 +865,7 @@ class DocumentRequires:
 
 @final
 class DocumentReviewCommentSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewCommentSourceOutput/)."""
     @property
     def type(self) -> _types.DocumentReviewCommentTypeOutput | None: ...
     @property
@@ -839,6 +874,7 @@ class DocumentReviewCommentSource:
 
 @final
 class DocumentReviewerResponseSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentReviewerResponseSourceOutput/)."""
     @property
     def create_time(self) -> str | None: ...
     @property
@@ -853,6 +889,7 @@ class DocumentReviewerResponseSource:
 
 @final
 class DocumentVersionInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DocumentVersionInfoOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -877,6 +914,7 @@ class DocumentVersionInfo:
 
 @final
 class EffectivePatch:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/EffectivePatchOutput/)."""
     @property
     def patch(self) -> Patch | None: ...
     @property
@@ -885,6 +923,7 @@ class EffectivePatch:
 
 @final
 class FailedCreateAssociation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FailedCreateAssociationOutput/)."""
     @property
     def entry(self) -> CreateAssociationBatchRequestEntry | None: ...
     @property
@@ -895,6 +934,7 @@ class FailedCreateAssociation:
 
 @final
 class FailureDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/FailureDetailsOutput/)."""
     @property
     def failure_stage(self) -> str | None: ...
     @property
@@ -905,6 +945,7 @@ class FailureDetails:
 
 @final
 class GetResourcePoliciesResponseEntry:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetResourcePoliciesResponseEntryOutput/)."""
     @property
     def policy_id(self) -> str | None: ...
     @property
@@ -915,6 +956,7 @@ class GetResourcePoliciesResponseEntry:
 
 @final
 class InstanceAggregatedAssociationOverview:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAggregatedAssociationOverviewOutput/)."""
     @property
     def detailed_status(self) -> str | None: ...
     @property
@@ -923,6 +965,7 @@ class InstanceAggregatedAssociationOverview:
 
 @final
 class InstanceAssociation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     @property
@@ -935,18 +978,21 @@ class InstanceAssociation:
 
 @final
 class InstanceAssociationOutputLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutputLocationOutput/)."""
     @property
     def s3_location(self) -> S3OutputLocation | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InstanceAssociationOutputUrl:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationOutputUrlOutput/)."""
     @property
     def s3_output_url(self) -> S3OutputUrl | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InstanceAssociationStatusInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceAssociationStatusInfoOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     @property
@@ -975,6 +1021,7 @@ class InstanceAssociationStatusInfo:
 
 @final
 class InstanceInformation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstanceInformationOutput/)."""
     @property
     def instance_id(self) -> str | None: ...
     @property
@@ -1023,6 +1070,7 @@ class InstanceInformation:
 
 @final
 class InstancePatchState:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePatchStateOutput/)."""
     @property
     def instance_id(self) -> str: ...
     @property
@@ -1073,6 +1121,7 @@ class InstancePatchState:
 
 @final
 class InstanceProperty:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -1133,6 +1182,7 @@ class InstanceProperty:
 
 @final
 class InventoryDeletionStatusItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionStatusItemOutput/)."""
     @property
     def deletion_id(self) -> str | None: ...
     @property
@@ -1151,6 +1201,7 @@ class InventoryDeletionStatusItem:
 
 @final
 class InventoryDeletionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionSummaryOutput/)."""
     @property
     def total_count(self) -> int: ...
     @property
@@ -1161,6 +1212,7 @@ class InventoryDeletionSummary:
 
 @final
 class InventoryDeletionSummaryItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryDeletionSummaryItemOutput/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -1171,6 +1223,7 @@ class InventoryDeletionSummaryItem:
 
 @final
 class InventoryItemAttribute:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryItemAttributeOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1179,6 +1232,7 @@ class InventoryItemAttribute:
 
 @final
 class InventoryItemSchema:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryItemSchemaOutput/)."""
     @property
     def type_name(self) -> str: ...
     @property
@@ -1191,6 +1245,7 @@ class InventoryItemSchema:
 
 @final
 class InventoryResultEntity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryResultEntityOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1199,6 +1254,7 @@ class InventoryResultEntity:
 
 @final
 class InventoryResultItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryResultItemOutput/)."""
     @property
     def type_name(self) -> str: ...
     @property
@@ -1213,6 +1269,7 @@ class InventoryResultItem:
 
 @final
 class LoggingInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LoggingInfoOutput/)."""
     @property
     def s3_bucket_name(self) -> str: ...
     @property
@@ -1223,6 +1280,7 @@ class LoggingInfo:
 
 @final
 class MaintenanceWindowAutomationParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowAutomationParametersOutput/)."""
     @property
     def document_version(self) -> str | None: ...
     @property
@@ -1231,6 +1289,7 @@ class MaintenanceWindowAutomationParameters:
 
 @final
 class MaintenanceWindowExecution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -1247,6 +1306,7 @@ class MaintenanceWindowExecution:
 
 @final
 class MaintenanceWindowExecutionTaskIdentity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionTaskIdentityOutput/)."""
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -1271,6 +1331,7 @@ class MaintenanceWindowExecutionTaskIdentity:
 
 @final
 class MaintenanceWindowExecutionTaskInvocationIdentity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowExecutionTaskInvocationIdentityOutput/)."""
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -1299,6 +1360,7 @@ class MaintenanceWindowExecutionTaskInvocationIdentity:
 
 @final
 class MaintenanceWindowIdentity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowIdentityOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -1327,6 +1389,7 @@ class MaintenanceWindowIdentity:
 
 @final
 class MaintenanceWindowIdentityForTarget:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowIdentityForTargetOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -1335,6 +1398,7 @@ class MaintenanceWindowIdentityForTarget:
 
 @final
 class MaintenanceWindowLambdaParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowLambdaParametersOutput/)."""
     @property
     def client_context(self) -> str | None: ...
     @property
@@ -1345,6 +1409,7 @@ class MaintenanceWindowLambdaParameters:
 
 @final
 class MaintenanceWindowRunCommandParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowRunCommandParametersOutput/)."""
     @property
     def comment(self) -> str | None: ...
     @property
@@ -1371,6 +1436,7 @@ class MaintenanceWindowRunCommandParameters:
 
 @final
 class MaintenanceWindowStepFunctionsParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowStepFunctionsParametersOutput/)."""
     @property
     def input(self) -> str | None: ...
     @property
@@ -1379,6 +1445,7 @@ class MaintenanceWindowStepFunctionsParameters:
 
 @final
 class MaintenanceWindowTarget:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTargetOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -1397,6 +1464,7 @@ class MaintenanceWindowTarget:
 
 @final
 class MaintenanceWindowTask:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -1431,6 +1499,7 @@ class MaintenanceWindowTask:
 
 @final
 class MaintenanceWindowTaskInvocationParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskInvocationParametersOutput/)."""
     @property
     def run_command(self) -> MaintenanceWindowRunCommandParameters | None: ...
     @property
@@ -1443,18 +1512,21 @@ class MaintenanceWindowTaskInvocationParameters:
 
 @final
 class MaintenanceWindowTaskParameterValueExpression:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MaintenanceWindowTaskParameterValueExpressionOutput/)."""
     @property
     def values(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MetadataValue:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/MetadataValueOutput/)."""
     @property
     def value(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Node:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeOutput/)."""
     @property
     def capture_time(self) -> str | None: ...
     @property
@@ -1469,6 +1541,7 @@ class Node:
 
 @final
 class NodeOwnerInfo:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeOwnerInfoOutput/)."""
     @property
     def account_id(self) -> str | None: ...
     @property
@@ -1479,6 +1552,7 @@ class NodeOwnerInfo:
 
 @final
 class NonCompliantSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NonCompliantSummaryOutput/)."""
     @property
     def non_compliant_count(self) -> int: ...
     @property
@@ -1487,6 +1561,7 @@ class NonCompliantSummary:
 
 @final
 class NotificationConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NotificationConfigOutput/)."""
     @property
     def notification_arn(self) -> str | None: ...
     @property
@@ -1497,6 +1572,7 @@ class NotificationConfig:
 
 @final
 class OpsEntity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsEntityOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1505,6 +1581,7 @@ class OpsEntity:
 
 @final
 class OpsEntityItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsEntityItemOutput/)."""
     @property
     def capture_time(self) -> str | None: ...
     @property
@@ -1513,6 +1590,7 @@ class OpsEntityItem:
 
 @final
 class OpsItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemOutput/)."""
     @property
     def created_by(self) -> str | None: ...
     @property
@@ -1561,6 +1639,7 @@ class OpsItem:
 
 @final
 class OpsItemDataValue:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemDataValueOutput/)."""
     @property
     def value(self) -> str | None: ...
     @property
@@ -1569,6 +1648,7 @@ class OpsItemDataValue:
 
 @final
 class OpsItemEventSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemEventSummaryOutput/)."""
     @property
     def ops_item_id(self) -> str | None: ...
     @property
@@ -1587,18 +1667,21 @@ class OpsItemEventSummary:
 
 @final
 class OpsItemIdentity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemIdentityOutput/)."""
     @property
     def arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OpsItemNotification:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemNotificationOutput/)."""
     @property
     def arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OpsItemRelatedItemSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemSummaryOutput/)."""
     @property
     def ops_item_id(self) -> str | None: ...
     @property
@@ -1621,6 +1704,7 @@ class OpsItemRelatedItemSummary:
 
 @final
 class OpsItemSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemSummaryOutput/)."""
     @property
     def created_by(self) -> str | None: ...
     @property
@@ -1659,6 +1743,7 @@ class OpsItemSummary:
 
 @final
 class OpsMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsMetadataOutput/)."""
     @property
     def resource_id(self) -> str | None: ...
     @property
@@ -1673,6 +1758,7 @@ class OpsMetadata:
 
 @final
 class OutputSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OutputSourceOutput/)."""
     @property
     def output_source_id(self) -> str | None: ...
     @property
@@ -1681,6 +1767,7 @@ class OutputSource:
 
 @final
 class Parameter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -1703,6 +1790,7 @@ class Parameter:
 
 @final
 class ParameterHistory:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterHistoryOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -1733,6 +1821,7 @@ class ParameterHistory:
 
 @final
 class ParameterInlinePolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterInlinePolicyOutput/)."""
     @property
     def policy_text(self) -> str | None: ...
     @property
@@ -1743,6 +1832,7 @@ class ParameterInlinePolicy:
 
 @final
 class ParameterMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParameterMetadataOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -1771,6 +1861,7 @@ class ParameterMetadata:
 
 @final
 class ParentStepDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ParentStepDetailsOutput/)."""
     @property
     def step_execution_id(self) -> str | None: ...
     @property
@@ -1785,6 +1876,7 @@ class ParentStepDetails:
 
 @final
 class Patch:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1835,6 +1927,7 @@ class Patch:
 
 @final
 class PatchBaselineIdentity:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchBaselineIdentityOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -1849,6 +1942,7 @@ class PatchBaselineIdentity:
 
 @final
 class PatchComplianceData:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchComplianceDataOutput/)."""
     @property
     def title(self) -> str: ...
     @property
@@ -1867,6 +1961,7 @@ class PatchComplianceData:
 
 @final
 class PatchFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilterOutput/)."""
     @property
     def key(self) -> _types.PatchFilterKeyOutput: ...
     @property
@@ -1875,12 +1970,14 @@ class PatchFilter:
 
 @final
 class PatchFilterGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchFilterGroupOutput/)."""
     @property
     def patch_filters(self) -> list[PatchFilter]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PatchGroupPatchBaselineMapping:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchGroupPatchBaselineMappingOutput/)."""
     @property
     def patch_group(self) -> str | None: ...
     @property
@@ -1889,6 +1986,7 @@ class PatchGroupPatchBaselineMapping:
 
 @final
 class PatchRule:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchRuleOutput/)."""
     @property
     def patch_filter_group(self) -> PatchFilterGroup | None: ...
     @property
@@ -1903,12 +2001,14 @@ class PatchRule:
 
 @final
 class PatchRuleGroup:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchRuleGroupOutput/)."""
     @property
     def patch_rules(self) -> list[PatchRule]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PatchSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchSourceOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -1919,6 +2019,7 @@ class PatchSource:
 
 @final
 class PatchStatus:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PatchStatusOutput/)."""
     @property
     def deployment_status(self) -> _types.PatchDeploymentStatusOutput | None: ...
     @property
@@ -1929,6 +2030,7 @@ class PatchStatus:
 
 @final
 class ProgressCounters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ProgressCountersOutput/)."""
     @property
     def total_steps(self) -> int: ...
     @property
@@ -1943,12 +2045,14 @@ class ProgressCounters:
 
 @final
 class RelatedOpsItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RelatedOpsItemOutput/)."""
     @property
     def ops_item_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ResolvedTargets:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResolvedTargetsOutput/)."""
     @property
     def parameter_values(self) -> list[str] | None: ...
     @property
@@ -1957,6 +2061,7 @@ class ResolvedTargets:
 
 @final
 class ResourceComplianceSummaryItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceComplianceSummaryItemOutput/)."""
     @property
     def compliance_type(self) -> str | None: ...
     @property
@@ -1977,6 +2082,7 @@ class ResourceComplianceSummaryItem:
 
 @final
 class ResourceDataSyncAwsOrganizationsSource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncAwsOrganizationsSourceOutput/)."""
     @property
     def organization_source_type(self) -> str: ...
     @property
@@ -1985,12 +2091,14 @@ class ResourceDataSyncAwsOrganizationsSource:
 
 @final
 class ResourceDataSyncDestinationDataSharing:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncDestinationDataSharingOutput/)."""
     @property
     def destination_data_sharing_type(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ResourceDataSyncItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncItemOutput/)."""
     @property
     def sync_name(self) -> str | None: ...
     @property
@@ -2015,12 +2123,14 @@ class ResourceDataSyncItem:
 
 @final
 class ResourceDataSyncOrganizationalUnit:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncOrganizationalUnitOutput/)."""
     @property
     def organizational_unit_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ResourceDataSyncS3Destination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncS3DestinationOutput/)."""
     @property
     def bucket_name(self) -> str: ...
     @property
@@ -2037,6 +2147,7 @@ class ResourceDataSyncS3Destination:
 
 @final
 class ResourceDataSyncSourceWithState:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncSourceWithStateOutput/)."""
     @property
     def source_type(self) -> str | None: ...
     @property
@@ -2053,6 +2164,7 @@ class ResourceDataSyncSourceWithState:
 
 @final
 class ReviewInformation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ReviewInformationOutput/)."""
     @property
     def reviewed_time(self) -> str | None: ...
     @property
@@ -2063,6 +2175,7 @@ class ReviewInformation:
 
 @final
 class Runbook:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RunbookOutput/)."""
     @property
     def document_name(self) -> str: ...
     @property
@@ -2085,6 +2198,7 @@ class Runbook:
 
 @final
 class S3OutputLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/S3OutputLocationOutput/)."""
     @property
     def output_s3_region(self) -> str | None: ...
     @property
@@ -2095,12 +2209,14 @@ class S3OutputLocation:
 
 @final
 class S3OutputUrl:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/S3OutputUrlOutput/)."""
     @property
     def output_url(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ScheduledWindowExecution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ScheduledWindowExecutionOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -2111,6 +2227,7 @@ class ScheduledWindowExecution:
 
 @final
 class ServiceSetting:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ServiceSettingOutput/)."""
     @property
     def setting_id(self) -> str | None: ...
     @property
@@ -2127,6 +2244,7 @@ class ServiceSetting:
 
 @final
 class Session:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionOutput/)."""
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -2155,6 +2273,7 @@ class Session:
 
 @final
 class SessionManagerOutputUrl:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SessionManagerOutputUrlOutput/)."""
     @property
     def s3_output_url(self) -> str | None: ...
     @property
@@ -2163,6 +2282,7 @@ class SessionManagerOutputUrl:
 
 @final
 class SeveritySummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SeveritySummaryOutput/)."""
     @property
     def critical_count(self) -> int: ...
     @property
@@ -2179,6 +2299,7 @@ class SeveritySummary:
 
 @final
 class StepExecution:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StepExecutionOutput/)."""
     @property
     def step_name(self) -> str | None: ...
     @property
@@ -2233,6 +2354,7 @@ class StepExecution:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -2241,6 +2363,7 @@ class Tag:
 
 @final
 class Target:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetOutput/)."""
     @property
     def key(self) -> str | None: ...
     @property
@@ -2249,6 +2372,7 @@ class Target:
 
 @final
 class TargetLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TargetLocationOutput/)."""
     @property
     def accounts(self) -> list[str] | None: ...
     @property
@@ -2275,6 +2399,7 @@ class TargetLocation:
 
 @final
 class ValidationFinding:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingOutput/)."""
     @property
     def type(self) -> _types.ValidationFindingTypeOutput | None: ...
     @property
@@ -2289,6 +2414,7 @@ class ValidationFinding:
 
 @final
 class ValidationFindingScope:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationFindingScopeOutput/)."""
     @property
     def type(self) -> _types.ValidationFindingScopeTypeOutput | None: ...
     @property
@@ -2297,26 +2423,31 @@ class ValidationFindingScope:
 
 @final
 class AddTagsToResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AddTagsToResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AssociateOpsItemRelatedItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/AssociateOpsItemRelatedItemOutput/)."""
     @property
     def association_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CancelCommandOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelCommandOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CancelMaintenanceWindowExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelMaintenanceWindowExecutionOutput/)."""
     @property
     def window_execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateActivationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateActivationOutput/)."""
     @property
     def activation_id(self) -> str | None: ...
     @property
@@ -2325,12 +2456,14 @@ class CreateActivationOutput:
 
 @final
 class CreateAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationOutput/)."""
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateAssociationBatchOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateAssociationBatchOutput/)."""
     @property
     def successful(self) -> list[AssociationDescription] | None: ...
     @property
@@ -2339,24 +2472,28 @@ class CreateAssociationBatchOutput:
 
 @final
 class CreateCloudConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateCloudConnectorOutput/)."""
     @property
     def cloud_connector_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDocumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateDocumentOutput/)."""
     @property
     def document_description(self) -> DocumentDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateMaintenanceWindowOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateOpsItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsItemOutput/)."""
     @property
     def ops_item_id(self) -> str | None: ...
     @property
@@ -2365,40 +2502,48 @@ class CreateOpsItemOutput:
 
 @final
 class CreateOpsMetadataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateOpsMetadataOutput/)."""
     @property
     def ops_metadata_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreatePatchBaselineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreatePatchBaselineOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateResourceDataSyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CreateResourceDataSyncOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteActivationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteActivationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteAssociationOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteCloudConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteCloudConnectorOutput/)."""
     @property
     def cloud_connector_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDocumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteDocumentOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteInventoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteInventoryOutput/)."""
     @property
     def deletion_id(self) -> str | None: ...
     @property
@@ -2409,24 +2554,29 @@ class DeleteInventoryOutput:
 
 @final
 class DeleteMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteMaintenanceWindowOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteOpsItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsItemOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteOpsMetadataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteOpsMetadataOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteParameterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParameterOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteParametersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteParametersOutput/)."""
     @property
     def deleted_parameters(self) -> list[str] | None: ...
     @property
@@ -2435,24 +2585,29 @@ class DeleteParametersOutput:
 
 @final
 class DeletePatchBaselineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeletePatchBaselineOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourceDataSyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourceDataSyncOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourcePolicyOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeregisterManagedInstanceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterManagedInstanceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeregisterPatchBaselineForPatchGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterPatchBaselineForPatchGroupOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -2461,6 +2616,7 @@ class DeregisterPatchBaselineForPatchGroupOutput:
 
 @final
 class DeregisterTargetFromMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTargetFromMaintenanceWindowOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -2469,6 +2625,7 @@ class DeregisterTargetFromMaintenanceWindowOutput:
 
 @final
 class DeregisterTaskFromMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterTaskFromMaintenanceWindowOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -2477,6 +2634,7 @@ class DeregisterTaskFromMaintenanceWindowOutput:
 
 @final
 class DescribeActivationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeActivationsOutput/)."""
     @property
     def activation_list(self) -> list[Activation] | None: ...
     @property
@@ -2485,12 +2643,14 @@ class DescribeActivationsOutput:
 
 @final
 class DescribeAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationOutput/)."""
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeAssociationExecutionTargetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionTargetsOutput/)."""
     @property
     def association_execution_targets(self) -> list[AssociationExecutionTarget] | None: ...
     @property
@@ -2499,6 +2659,7 @@ class DescribeAssociationExecutionTargetsOutput:
 
 @final
 class DescribeAssociationExecutionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAssociationExecutionsOutput/)."""
     @property
     def association_executions(self) -> list[AssociationExecution] | None: ...
     @property
@@ -2507,6 +2668,7 @@ class DescribeAssociationExecutionsOutput:
 
 @final
 class DescribeAutomationExecutionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationExecutionsOutput/)."""
     @property
     def automation_execution_metadata_list(self) -> list[AutomationExecutionMetadata] | None: ...
     @property
@@ -2515,6 +2677,7 @@ class DescribeAutomationExecutionsOutput:
 
 @final
 class DescribeAutomationStepExecutionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAutomationStepExecutionsOutput/)."""
     @property
     def step_executions(self) -> list[StepExecution] | None: ...
     @property
@@ -2523,6 +2686,7 @@ class DescribeAutomationStepExecutionsOutput:
 
 @final
 class DescribeAvailablePatchesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeAvailablePatchesOutput/)."""
     @property
     def patches(self) -> list[Patch] | None: ...
     @property
@@ -2531,12 +2695,14 @@ class DescribeAvailablePatchesOutput:
 
 @final
 class DescribeDocumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentOutput/)."""
     @property
     def document(self) -> DocumentDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DescribeDocumentPermissionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeDocumentPermissionOutput/)."""
     @property
     def account_ids(self) -> list[str] | None: ...
     @property
@@ -2547,6 +2713,7 @@ class DescribeDocumentPermissionOutput:
 
 @final
 class DescribeEffectiveInstanceAssociationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectiveInstanceAssociationsOutput/)."""
     @property
     def associations(self) -> list[InstanceAssociation] | None: ...
     @property
@@ -2555,6 +2722,7 @@ class DescribeEffectiveInstanceAssociationsOutput:
 
 @final
 class DescribeEffectivePatchesForPatchBaselineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeEffectivePatchesForPatchBaselineOutput/)."""
     @property
     def effective_patches(self) -> list[EffectivePatch] | None: ...
     @property
@@ -2563,6 +2731,7 @@ class DescribeEffectivePatchesForPatchBaselineOutput:
 
 @final
 class DescribeInstanceAssociationsStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceAssociationsStatusOutput/)."""
     @property
     def instance_association_status_infos(self) -> list[InstanceAssociationStatusInfo] | None: ...
     @property
@@ -2571,6 +2740,7 @@ class DescribeInstanceAssociationsStatusOutput:
 
 @final
 class DescribeInstanceInformationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstanceInformationOutput/)."""
     @property
     def instance_information_list(self) -> list[InstanceInformation] | None: ...
     @property
@@ -2579,6 +2749,7 @@ class DescribeInstanceInformationOutput:
 
 @final
 class DescribeInstancePatchStatesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesOutput/)."""
     @property
     def instance_patch_states(self) -> list[InstancePatchState] | None: ...
     @property
@@ -2587,6 +2758,7 @@ class DescribeInstancePatchStatesOutput:
 
 @final
 class DescribeInstancePatchStatesForPatchGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchStatesForPatchGroupOutput/)."""
     @property
     def instance_patch_states(self) -> list[InstancePatchState] | None: ...
     @property
@@ -2595,6 +2767,7 @@ class DescribeInstancePatchStatesForPatchGroupOutput:
 
 @final
 class DescribeInstancePatchesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePatchesOutput/)."""
     @property
     def patches(self) -> list[PatchComplianceData] | None: ...
     @property
@@ -2603,6 +2776,7 @@ class DescribeInstancePatchesOutput:
 
 @final
 class DescribeInstancePropertiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInstancePropertiesOutput/)."""
     @property
     def instance_properties(self) -> list[InstanceProperty] | None: ...
     @property
@@ -2611,6 +2785,7 @@ class DescribeInstancePropertiesOutput:
 
 @final
 class DescribeInventoryDeletionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeInventoryDeletionsOutput/)."""
     @property
     def inventory_deletions(self) -> list[InventoryDeletionStatusItem] | None: ...
     @property
@@ -2619,6 +2794,7 @@ class DescribeInventoryDeletionsOutput:
 
 @final
 class DescribeMaintenanceWindowExecutionTaskInvocationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTaskInvocationsOutput/)."""
     @property
     def window_execution_task_invocation_identities(self) -> list[MaintenanceWindowExecutionTaskInvocationIdentity] | None: ...
     @property
@@ -2627,6 +2803,7 @@ class DescribeMaintenanceWindowExecutionTaskInvocationsOutput:
 
 @final
 class DescribeMaintenanceWindowExecutionTasksOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionTasksOutput/)."""
     @property
     def window_execution_task_identities(self) -> list[MaintenanceWindowExecutionTaskIdentity] | None: ...
     @property
@@ -2635,6 +2812,7 @@ class DescribeMaintenanceWindowExecutionTasksOutput:
 
 @final
 class DescribeMaintenanceWindowExecutionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowExecutionsOutput/)."""
     @property
     def window_executions(self) -> list[MaintenanceWindowExecution] | None: ...
     @property
@@ -2643,6 +2821,7 @@ class DescribeMaintenanceWindowExecutionsOutput:
 
 @final
 class DescribeMaintenanceWindowScheduleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowScheduleOutput/)."""
     @property
     def scheduled_window_executions(self) -> list[ScheduledWindowExecution] | None: ...
     @property
@@ -2651,6 +2830,7 @@ class DescribeMaintenanceWindowScheduleOutput:
 
 @final
 class DescribeMaintenanceWindowTargetsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTargetsOutput/)."""
     @property
     def targets(self) -> list[MaintenanceWindowTarget] | None: ...
     @property
@@ -2659,6 +2839,7 @@ class DescribeMaintenanceWindowTargetsOutput:
 
 @final
 class DescribeMaintenanceWindowTasksOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowTasksOutput/)."""
     @property
     def tasks(self) -> list[MaintenanceWindowTask] | None: ...
     @property
@@ -2667,6 +2848,7 @@ class DescribeMaintenanceWindowTasksOutput:
 
 @final
 class DescribeMaintenanceWindowsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsOutput/)."""
     @property
     def window_identities(self) -> list[MaintenanceWindowIdentity] | None: ...
     @property
@@ -2675,6 +2857,7 @@ class DescribeMaintenanceWindowsOutput:
 
 @final
 class DescribeMaintenanceWindowsForTargetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeMaintenanceWindowsForTargetOutput/)."""
     @property
     def window_identities(self) -> list[MaintenanceWindowIdentityForTarget] | None: ...
     @property
@@ -2683,6 +2866,7 @@ class DescribeMaintenanceWindowsForTargetOutput:
 
 @final
 class DescribeOpsItemsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeOpsItemsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -2691,6 +2875,7 @@ class DescribeOpsItemsOutput:
 
 @final
 class DescribeParametersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeParametersOutput/)."""
     @property
     def parameters(self) -> list[ParameterMetadata] | None: ...
     @property
@@ -2699,6 +2884,7 @@ class DescribeParametersOutput:
 
 @final
 class DescribePatchBaselinesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchBaselinesOutput/)."""
     @property
     def baseline_identities(self) -> list[PatchBaselineIdentity] | None: ...
     @property
@@ -2707,6 +2893,7 @@ class DescribePatchBaselinesOutput:
 
 @final
 class DescribePatchGroupStateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupStateOutput/)."""
     @property
     def instances(self) -> int: ...
     @property
@@ -2737,6 +2924,7 @@ class DescribePatchGroupStateOutput:
 
 @final
 class DescribePatchGroupsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchGroupsOutput/)."""
     @property
     def mappings(self) -> list[PatchGroupPatchBaselineMapping] | None: ...
     @property
@@ -2745,6 +2933,7 @@ class DescribePatchGroupsOutput:
 
 @final
 class DescribePatchPropertiesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribePatchPropertiesOutput/)."""
     @property
     def properties(self) -> list[dict[str, str]] | None: ...
     @property
@@ -2753,6 +2942,7 @@ class DescribePatchPropertiesOutput:
 
 @final
 class DescribeSessionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DescribeSessionsOutput/)."""
     @property
     def sessions(self) -> list[Session] | None: ...
     @property
@@ -2761,10 +2951,12 @@ class DescribeSessionsOutput:
 
 @final
 class DisassociateOpsItemRelatedItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DisassociateOpsItemRelatedItemOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetAccessTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAccessTokenOutput/)."""
     @property
     def credentials(self) -> Credentials | None: ...
     @property
@@ -2773,12 +2965,14 @@ class GetAccessTokenOutput:
 
 @final
 class GetAutomationExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetAutomationExecutionOutput/)."""
     @property
     def automation_execution(self) -> AutomationExecution | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetCalendarStateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCalendarStateOutput/)."""
     @property
     def state(self) -> _types.CalendarStateOutput | None: ...
     @property
@@ -2789,6 +2983,7 @@ class GetCalendarStateOutput:
 
 @final
 class GetCloudConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCloudConnectorOutput/)."""
     @property
     def cloud_connector_arn(self) -> str | None: ...
     @property
@@ -2809,6 +3004,7 @@ class GetCloudConnectorOutput:
 
 @final
 class GetCommandInvocationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetCommandInvocationOutput/)."""
     @property
     def command_id(self) -> str | None: ...
     @property
@@ -2847,6 +3043,7 @@ class GetCommandInvocationOutput:
 
 @final
 class GetConnectionStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetConnectionStatusOutput/)."""
     @property
     def target(self) -> str | None: ...
     @property
@@ -2855,6 +3052,7 @@ class GetConnectionStatusOutput:
 
 @final
 class GetDefaultPatchBaselineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDefaultPatchBaselineOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -2863,6 +3061,7 @@ class GetDefaultPatchBaselineOutput:
 
 @final
 class GetDeployablePatchSnapshotForInstanceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDeployablePatchSnapshotForInstanceOutput/)."""
     @property
     def instance_id(self) -> str | None: ...
     @property
@@ -2875,6 +3074,7 @@ class GetDeployablePatchSnapshotForInstanceOutput:
 
 @final
 class GetDocumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetDocumentOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -2905,6 +3105,7 @@ class GetDocumentOutput:
 
 @final
 class GetExecutionPreviewOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetExecutionPreviewOutput/)."""
     @property
     def execution_preview_id(self) -> str | None: ...
     @property
@@ -2919,6 +3120,7 @@ class GetExecutionPreviewOutput:
 
 @final
 class GetInventoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventoryOutput/)."""
     @property
     def entities(self) -> list[InventoryResultEntity] | None: ...
     @property
@@ -2927,6 +3129,7 @@ class GetInventoryOutput:
 
 @final
 class GetInventorySchemaOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetInventorySchemaOutput/)."""
     @property
     def schemas(self) -> list[InventoryItemSchema] | None: ...
     @property
@@ -2935,6 +3138,7 @@ class GetInventorySchemaOutput:
 
 @final
 class GetMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -2969,6 +3173,7 @@ class GetMaintenanceWindowOutput:
 
 @final
 class GetMaintenanceWindowExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionOutput/)."""
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -2985,6 +3190,7 @@ class GetMaintenanceWindowExecutionOutput:
 
 @final
 class GetMaintenanceWindowExecutionTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskOutput/)."""
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -3019,6 +3225,7 @@ class GetMaintenanceWindowExecutionTaskOutput:
 
 @final
 class GetMaintenanceWindowExecutionTaskInvocationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowExecutionTaskInvocationOutput/)."""
     @property
     def window_execution_id(self) -> str | None: ...
     @property
@@ -3047,6 +3254,7 @@ class GetMaintenanceWindowExecutionTaskInvocationOutput:
 
 @final
 class GetMaintenanceWindowTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetMaintenanceWindowTaskOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3083,12 +3291,14 @@ class GetMaintenanceWindowTaskOutput:
 
 @final
 class GetOpsItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsItemOutput/)."""
     @property
     def ops_item(self) -> OpsItem | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetOpsMetadataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsMetadataOutput/)."""
     @property
     def resource_id(self) -> str | None: ...
     @property
@@ -3099,6 +3309,7 @@ class GetOpsMetadataOutput:
 
 @final
 class GetOpsSummaryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetOpsSummaryOutput/)."""
     @property
     def entities(self) -> list[OpsEntity] | None: ...
     @property
@@ -3107,12 +3318,14 @@ class GetOpsSummaryOutput:
 
 @final
 class GetParameterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterOutput/)."""
     @property
     def parameter(self) -> Parameter | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetParameterHistoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParameterHistoryOutput/)."""
     @property
     def parameters(self) -> list[ParameterHistory] | None: ...
     @property
@@ -3121,6 +3334,7 @@ class GetParameterHistoryOutput:
 
 @final
 class GetParametersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersOutput/)."""
     @property
     def parameters(self) -> list[Parameter] | None: ...
     @property
@@ -3129,6 +3343,7 @@ class GetParametersOutput:
 
 @final
 class GetParametersByPathOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetParametersByPathOutput/)."""
     @property
     def parameters(self) -> list[Parameter] | None: ...
     @property
@@ -3137,6 +3352,7 @@ class GetParametersByPathOutput:
 
 @final
 class GetPatchBaselineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3173,6 +3389,7 @@ class GetPatchBaselineOutput:
 
 @final
 class GetPatchBaselineForPatchGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetPatchBaselineForPatchGroupOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3183,6 +3400,7 @@ class GetPatchBaselineForPatchGroupOutput:
 
 @final
 class GetResourcePoliciesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetResourcePoliciesOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -3191,12 +3409,14 @@ class GetResourcePoliciesOutput:
 
 @final
 class GetServiceSettingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/GetServiceSettingOutput/)."""
     @property
     def service_setting(self) -> ServiceSetting | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class LabelParameterVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/LabelParameterVersionOutput/)."""
     @property
     def invalid_labels(self) -> list[str] | None: ...
     @property
@@ -3205,6 +3425,7 @@ class LabelParameterVersionOutput:
 
 @final
 class ListAssociationVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationVersionsOutput/)."""
     @property
     def association_versions(self) -> list[AssociationVersionInfo] | None: ...
     @property
@@ -3213,6 +3434,7 @@ class ListAssociationVersionsOutput:
 
 @final
 class ListAssociationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListAssociationsOutput/)."""
     @property
     def associations(self) -> list[Association] | None: ...
     @property
@@ -3221,6 +3443,7 @@ class ListAssociationsOutput:
 
 @final
 class ListCloudConnectorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCloudConnectorsOutput/)."""
     @property
     def cloud_connectors(self) -> list[CloudConnectorSummary] | None: ...
     @property
@@ -3229,6 +3452,7 @@ class ListCloudConnectorsOutput:
 
 @final
 class ListCommandInvocationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandInvocationsOutput/)."""
     @property
     def command_invocations(self) -> list[CommandInvocation] | None: ...
     @property
@@ -3237,6 +3461,7 @@ class ListCommandInvocationsOutput:
 
 @final
 class ListCommandsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListCommandsOutput/)."""
     @property
     def commands(self) -> list[Command] | None: ...
     @property
@@ -3245,6 +3470,7 @@ class ListCommandsOutput:
 
 @final
 class ListComplianceItemsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceItemsOutput/)."""
     @property
     def compliance_items(self) -> list[ComplianceItem] | None: ...
     @property
@@ -3253,6 +3479,7 @@ class ListComplianceItemsOutput:
 
 @final
 class ListComplianceSummariesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListComplianceSummariesOutput/)."""
     @property
     def compliance_summary_items(self) -> list[ComplianceSummaryItem] | None: ...
     @property
@@ -3261,6 +3488,7 @@ class ListComplianceSummariesOutput:
 
 @final
 class ListDocumentMetadataHistoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentMetadataHistoryOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -3275,6 +3503,7 @@ class ListDocumentMetadataHistoryOutput:
 
 @final
 class ListDocumentVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentVersionsOutput/)."""
     @property
     def document_versions(self) -> list[DocumentVersionInfo] | None: ...
     @property
@@ -3283,6 +3512,7 @@ class ListDocumentVersionsOutput:
 
 @final
 class ListDocumentsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListDocumentsOutput/)."""
     @property
     def document_identifiers(self) -> list[DocumentIdentifier] | None: ...
     @property
@@ -3291,6 +3521,7 @@ class ListDocumentsOutput:
 
 @final
 class ListInventoryEntriesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListInventoryEntriesOutput/)."""
     @property
     def type_name(self) -> str | None: ...
     @property
@@ -3307,6 +3538,7 @@ class ListInventoryEntriesOutput:
 
 @final
 class ListNodesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesOutput/)."""
     @property
     def nodes(self) -> list[Node] | None: ...
     @property
@@ -3315,6 +3547,7 @@ class ListNodesOutput:
 
 @final
 class ListNodesSummaryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListNodesSummaryOutput/)."""
     @property
     def summary(self) -> list[dict[str, str]] | None: ...
     @property
@@ -3323,6 +3556,7 @@ class ListNodesSummaryOutput:
 
 @final
 class ListOpsItemEventsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemEventsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -3331,6 +3565,7 @@ class ListOpsItemEventsOutput:
 
 @final
 class ListOpsItemRelatedItemsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsItemRelatedItemsOutput/)."""
     @property
     def next_token(self) -> str | None: ...
     @property
@@ -3339,6 +3574,7 @@ class ListOpsItemRelatedItemsOutput:
 
 @final
 class ListOpsMetadataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListOpsMetadataOutput/)."""
     @property
     def ops_metadata_list(self) -> list[OpsMetadata] | None: ...
     @property
@@ -3347,6 +3583,7 @@ class ListOpsMetadataOutput:
 
 @final
 class ListResourceComplianceSummariesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceComplianceSummariesOutput/)."""
     @property
     def resource_compliance_summary_items(self) -> list[ResourceComplianceSummaryItem] | None: ...
     @property
@@ -3355,6 +3592,7 @@ class ListResourceComplianceSummariesOutput:
 
 @final
 class ListResourceDataSyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListResourceDataSyncOutput/)."""
     @property
     def resource_data_sync_items(self) -> list[ResourceDataSyncItem] | None: ...
     @property
@@ -3363,26 +3601,31 @@ class ListResourceDataSyncOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ListTagsForResourceOutput/)."""
     @property
     def tag_list(self) -> list[Tag] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ModifyDocumentPermissionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ModifyDocumentPermissionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutComplianceItemsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutComplianceItemsOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutInventoryOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutInventoryOutput/)."""
     @property
     def message(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PutParameterOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutParameterOutput/)."""
     @property
     def version(self) -> int: ...
     @property
@@ -3391,6 +3634,7 @@ class PutParameterOutput:
 
 @final
 class PutResourcePolicyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutResourcePolicyOutput/)."""
     @property
     def policy_id(self) -> str | None: ...
     @property
@@ -3399,12 +3643,14 @@ class PutResourcePolicyOutput:
 
 @final
 class RegisterDefaultPatchBaselineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterDefaultPatchBaselineOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RegisterPatchBaselineForPatchGroupOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterPatchBaselineForPatchGroupOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3413,28 +3659,33 @@ class RegisterPatchBaselineForPatchGroupOutput:
 
 @final
 class RegisterTargetWithMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTargetWithMaintenanceWindowOutput/)."""
     @property
     def window_target_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RegisterTaskWithMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterTaskWithMaintenanceWindowOutput/)."""
     @property
     def window_task_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class RemoveTagsFromResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RemoveTagsFromResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ResetServiceSettingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResetServiceSettingOutput/)."""
     @property
     def service_setting(self) -> ServiceSetting | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ResumeSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResumeSessionOutput/)."""
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -3445,44 +3696,52 @@ class ResumeSessionOutput:
 
 @final
 class SendAutomationSignalOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendAutomationSignalOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SendCommandOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendCommandOutput/)."""
     @property
     def command(self) -> Command | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartAccessRequestOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAccessRequestOutput/)."""
     @property
     def access_request_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartAssociationsOnceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAssociationsOnceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartAutomationExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartAutomationExecutionOutput/)."""
     @property
     def automation_execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartChangeRequestExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartChangeRequestExecutionOutput/)."""
     @property
     def automation_execution_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartExecutionPreviewOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartExecutionPreviewOutput/)."""
     @property
     def execution_preview_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StartSessionOutput/)."""
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -3493,16 +3752,19 @@ class StartSessionOutput:
 
 @final
 class StopAutomationExecutionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/StopAutomationExecutionOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TerminateSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TerminateSessionOutput/)."""
     @property
     def session_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UnlabelParameterVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UnlabelParameterVersionOutput/)."""
     @property
     def removed_labels(self) -> list[str] | None: ...
     @property
@@ -3511,40 +3773,47 @@ class UnlabelParameterVersionOutput:
 
 @final
 class UpdateAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationOutput/)."""
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateAssociationStatusOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateAssociationStatusOutput/)."""
     @property
     def association_description(self) -> AssociationDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateCloudConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateCloudConnectorOutput/)."""
     @property
     def cloud_connector_id(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDocumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentOutput/)."""
     @property
     def document_description(self) -> DocumentDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDocumentDefaultVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentDefaultVersionOutput/)."""
     @property
     def description(self) -> DocumentDefaultVersionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateDocumentMetadataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateDocumentMetadataOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateMaintenanceWindowOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3573,6 +3842,7 @@ class UpdateMaintenanceWindowOutput:
 
 @final
 class UpdateMaintenanceWindowTargetOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTargetOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3589,6 +3859,7 @@ class UpdateMaintenanceWindowTargetOutput:
 
 @final
 class UpdateMaintenanceWindowTaskOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateMaintenanceWindowTaskOutput/)."""
     @property
     def window_id(self) -> str | None: ...
     @property
@@ -3623,20 +3894,24 @@ class UpdateMaintenanceWindowTaskOutput:
 
 @final
 class UpdateManagedInstanceRoleOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateManagedInstanceRoleOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateOpsItemOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsItemOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateOpsMetadataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateOpsMetadataOutput/)."""
     @property
     def ops_metadata_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdatePatchBaselineOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdatePatchBaselineOutput/)."""
     @property
     def baseline_id(self) -> str | None: ...
     @property
@@ -3671,14 +3946,17 @@ class UpdatePatchBaselineOutput:
 
 @final
 class UpdateResourceDataSyncOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateResourceDataSyncOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdateServiceSettingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UpdateServiceSettingOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ValidateCloudConnectorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidateCloudConnectorOutput/)."""
     @property
     def validation_findings(self) -> list[ValidationFinding] | None: ...
     @property

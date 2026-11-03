@@ -53,6 +53,8 @@ from .paginators import BedrockAgentClientPaginators as _Paginators
 
 
 class BedrockAgentClient:
+    """Async BedrockAgentClient. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/)."""
+
     logger_name = "rboto.bedrock-agent"
 
     def __init__(
@@ -99,6 +101,7 @@ class BedrockAgentClient:
         relay_conversation_history: RelayConversationHistory | None = None,
         client_token: str | None = None,
     ) -> AssociateAgentCollaboratorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/associate_agent_collaborator/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -133,6 +136,7 @@ class BedrockAgentClient:
         description: str,
         knowledge_base_state: KnowledgeBaseState | None = None,
     ) -> AssociateAgentKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/associate_agent_knowledge_base/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -174,6 +178,7 @@ class BedrockAgentClient:
         memory_configuration: MemoryConfiguration | None = None,
         agent_collaboration: AgentCollaboration | None = None,
     ) -> CreateAgentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_agent/)."""
         params: dict[str, object] = {
             "agent_name": agent_name,
         }
@@ -234,6 +239,7 @@ class BedrockAgentClient:
         action_group_state: ActionGroupState | None = None,
         function_schema: FunctionSchema | None = None,
     ) -> CreateAgentActionGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_agent_action_group/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -279,6 +285,7 @@ class BedrockAgentClient:
         routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateAgentAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_agent_alias/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_name": agent_alias_name,
@@ -317,6 +324,7 @@ class BedrockAgentClient:
         server_side_encryption_configuration: ServerSideEncryptionConfiguration | None = None,
         vector_ingestion_configuration: VectorIngestionConfiguration | None = None,
     ) -> CreateDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_data_source/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "name": name,
@@ -357,6 +365,7 @@ class BedrockAgentClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateFlowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_flow/)."""
         params: dict[str, object] = {
             "name": name,
             "execution_role_arn": execution_role_arn,
@@ -396,6 +405,7 @@ class BedrockAgentClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateFlowAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_flow_alias/)."""
         params: dict[str, object] = {
             "name": name,
             "routing_configuration": routing_configuration,
@@ -430,6 +440,7 @@ class BedrockAgentClient:
         description: str | None = None,
         client_token: str | None = None,
     ) -> CreateFlowVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_flow_version/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -462,6 +473,7 @@ class BedrockAgentClient:
         storage_configuration: StorageConfiguration | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_knowledge_base/)."""
         params: dict[str, object] = {
             "name": name,
             "role_arn": role_arn,
@@ -500,6 +512,7 @@ class BedrockAgentClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreatePromptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_prompt/)."""
         params: dict[str, object] = {
             "name": name,
         }
@@ -537,6 +550,7 @@ class BedrockAgentClient:
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreatePromptVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_prompt_version/)."""
         params: dict[str, object] = {
             "prompt_identifier": prompt_identifier,
         }
@@ -570,6 +584,7 @@ class BedrockAgentClient:
         customer_encryption_key_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateRetrievalInstructionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_retrieval_instruction/)."""
         params: dict[str, object] = {
             "name": name,
             "instruction": instruction,
@@ -603,6 +618,7 @@ class BedrockAgentClient:
         description: str | None = None,
         client_token: str | None = None,
     ) -> CreateRetrievalInstructionVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_retrieval_instruction_version/)."""
         params: dict[str, object] = {
             "retrieval_instruction_id": retrieval_instruction_id,
         }
@@ -640,6 +656,7 @@ class BedrockAgentClient:
         name: str | None = None,
         description: str | None = None,
     ) -> CreateVpcConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/create_vpc_configuration/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "vpc_id": vpc_id,
@@ -679,6 +696,7 @@ class BedrockAgentClient:
         agent_id: str,
         skip_resource_in_use_check: bool | None = None,
     ) -> DeleteAgentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_agent/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
         }
@@ -706,6 +724,7 @@ class BedrockAgentClient:
         action_group_id: str,
         skip_resource_in_use_check: bool | None = None,
     ) -> DeleteAgentActionGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_agent_action_group/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -733,6 +752,7 @@ class BedrockAgentClient:
         agent_id: str,
         agent_alias_id: str,
     ) -> DeleteAgentAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_agent_alias/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_id": agent_alias_id,
@@ -758,6 +778,7 @@ class BedrockAgentClient:
         agent_version: str,
         skip_resource_in_use_check: bool | None = None,
     ) -> DeleteAgentVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_agent_version/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -784,6 +805,7 @@ class BedrockAgentClient:
         knowledge_base_id: str,
         data_source_id: str,
     ) -> DeleteDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_data_source/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -808,6 +830,7 @@ class BedrockAgentClient:
         flow_identifier: str,
         skip_resource_in_use_check: bool | None = None,
     ) -> DeleteFlowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_flow/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -833,6 +856,7 @@ class BedrockAgentClient:
         flow_identifier: str,
         alias_identifier: str,
     ) -> DeleteFlowAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_flow_alias/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "alias_identifier": alias_identifier,
@@ -858,6 +882,7 @@ class BedrockAgentClient:
         flow_version: str,
         skip_resource_in_use_check: bool | None = None,
     ) -> DeleteFlowVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_flow_version/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_version": flow_version,
@@ -883,6 +908,7 @@ class BedrockAgentClient:
         *,
         knowledge_base_id: str,
     ) -> DeleteKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_knowledge_base/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
         }
@@ -908,6 +934,7 @@ class BedrockAgentClient:
         document_identifiers: Sequence[DocumentIdentifier],
         client_token: str | None = None,
     ) -> DeleteKnowledgeBaseDocumentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_knowledge_base_documents/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -935,6 +962,7 @@ class BedrockAgentClient:
         prompt_identifier: str,
         prompt_version: str | None = None,
     ) -> DeletePromptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_prompt/)."""
         params: dict[str, object] = {
             "prompt_identifier": prompt_identifier,
         }
@@ -960,6 +988,7 @@ class BedrockAgentClient:
         resource_arn: str,
         expected_revision_id: str | None = None,
     ) -> DeleteResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -985,6 +1014,7 @@ class BedrockAgentClient:
         retrieval_instruction_id: str,
         retrieval_instruction_version: str | None = None,
     ) -> DeleteRetrievalInstructionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_retrieval_instruction/)."""
         params: dict[str, object] = {
             "retrieval_instruction_id": retrieval_instruction_id,
         }
@@ -1010,6 +1040,7 @@ class BedrockAgentClient:
         knowledge_base_id: str,
         vpc_configuration_id: str,
     ) -> DeleteVpcConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/delete_vpc_configuration/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "vpc_configuration_id": vpc_configuration_id,
@@ -1035,6 +1066,7 @@ class BedrockAgentClient:
         agent_version: str,
         collaborator_id: str,
     ) -> DisassociateAgentCollaboratorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/disassociate_agent_collaborator/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1061,6 +1093,7 @@ class BedrockAgentClient:
         agent_version: str,
         knowledge_base_id: str,
     ) -> DisassociateAgentKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/disassociate_agent_knowledge_base/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1085,6 +1118,7 @@ class BedrockAgentClient:
         *,
         agent_id: str,
     ) -> GetAgentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_agent/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
         }
@@ -1109,6 +1143,7 @@ class BedrockAgentClient:
         agent_version: str,
         action_group_id: str,
     ) -> GetAgentActionGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_agent_action_group/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1134,6 +1169,7 @@ class BedrockAgentClient:
         agent_id: str,
         agent_alias_id: str,
     ) -> GetAgentAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_agent_alias/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_id": agent_alias_id,
@@ -1159,6 +1195,7 @@ class BedrockAgentClient:
         agent_version: str,
         collaborator_id: str,
     ) -> GetAgentCollaboratorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_agent_collaborator/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1185,6 +1222,7 @@ class BedrockAgentClient:
         agent_version: str,
         knowledge_base_id: str,
     ) -> GetAgentKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_agent_knowledge_base/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1210,6 +1248,7 @@ class BedrockAgentClient:
         agent_id: str,
         agent_version: str,
     ) -> GetAgentVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_agent_version/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1234,6 +1273,7 @@ class BedrockAgentClient:
         knowledge_base_id: str,
         data_source_id: str,
     ) -> GetDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_data_source/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -1258,6 +1298,7 @@ class BedrockAgentClient:
         flow_identifier: str,
         included_data: IncludedData | None = None,
     ) -> GetFlowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_flow/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -1283,6 +1324,7 @@ class BedrockAgentClient:
         flow_identifier: str,
         alias_identifier: str,
     ) -> GetFlowAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_flow_alias/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "alias_identifier": alias_identifier,
@@ -1308,6 +1350,7 @@ class BedrockAgentClient:
         flow_version: str,
         included_data: IncludedData | None = None,
     ) -> GetFlowVersionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_flow_version/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
             "flow_version": flow_version,
@@ -1335,6 +1378,7 @@ class BedrockAgentClient:
         data_source_id: str,
         ingestion_job_id: str,
     ) -> GetIngestionJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_ingestion_job/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -1359,6 +1403,7 @@ class BedrockAgentClient:
         *,
         knowledge_base_id: str,
     ) -> GetKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_knowledge_base/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
         }
@@ -1383,6 +1428,7 @@ class BedrockAgentClient:
         data_source_id: str,
         document_identifiers: Sequence[DocumentIdentifier],
     ) -> GetKnowledgeBaseDocumentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_knowledge_base_documents/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -1409,6 +1455,7 @@ class BedrockAgentClient:
         prompt_version: str | None = None,
         included_data: IncludedData | None = None,
     ) -> GetPromptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_prompt/)."""
         params: dict[str, object] = {
             "prompt_identifier": prompt_identifier,
         }
@@ -1435,6 +1482,7 @@ class BedrockAgentClient:
         *,
         resource_arn: str,
     ) -> GetResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -1458,6 +1506,7 @@ class BedrockAgentClient:
         retrieval_instruction_id: str,
         retrieval_instruction_version: str | None = None,
     ) -> GetRetrievalInstructionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_retrieval_instruction/)."""
         params: dict[str, object] = {
             "retrieval_instruction_id": retrieval_instruction_id,
         }
@@ -1483,6 +1532,7 @@ class BedrockAgentClient:
         knowledge_base_id: str,
         vpc_configuration_id: str,
     ) -> GetVpcConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/get_vpc_configuration/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "vpc_configuration_id": vpc_configuration_id,
@@ -1509,6 +1559,7 @@ class BedrockAgentClient:
         documents: Sequence[KnowledgeBaseDocument],
         client_token: str | None = None,
     ) -> IngestKnowledgeBaseDocumentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/ingest_knowledge_base_documents/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -1538,6 +1589,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentActionGroupsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_agent_action_groups/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1567,6 +1619,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentAliasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_agent_aliases/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
         }
@@ -1596,6 +1649,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentCollaboratorsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_agent_collaborators/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1626,6 +1680,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentKnowledgeBasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_agent_knowledge_bases/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -1655,6 +1710,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_agent_versions/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
         }
@@ -1682,6 +1738,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAgentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_agents/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1709,6 +1766,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDataSourcesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_data_sources/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
         }
@@ -1737,6 +1795,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListFlowAliasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_flow_aliases/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -1765,6 +1824,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListFlowVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_flow_versions/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -1792,6 +1852,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListFlowsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_flows/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1822,6 +1883,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListIngestionJobsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_ingestion_jobs/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -1856,6 +1918,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListKnowledgeBaseDocumentsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_knowledge_base_documents/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -1884,6 +1947,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListKnowledgeBasesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_knowledge_bases/)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1911,6 +1975,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListPromptsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_prompts/)."""
         params: dict[str, object] = {
         }
         if prompt_identifier is not None:
@@ -1940,6 +2005,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListRetrievalInstructionVersionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_retrieval_instruction_versions/)."""
         params: dict[str, object] = {
             "retrieval_instruction_id": retrieval_instruction_id,
         }
@@ -1968,6 +2034,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListRetrievalInstructionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_retrieval_instructions/)."""
         params: dict[str, object] = {
         }
         if status is not None:
@@ -1995,6 +2062,7 @@ class BedrockAgentClient:
         *,
         resource_arn: str,
     ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_tags_for_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2020,6 +2088,7 @@ class BedrockAgentClient:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListVpcConfigurationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/list_vpc_configurations/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
         }
@@ -2048,6 +2117,7 @@ class BedrockAgentClient:
         *,
         agent_id: str,
     ) -> PrepareAgentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/prepare_agent/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
         }
@@ -2070,6 +2140,7 @@ class BedrockAgentClient:
         *,
         flow_identifier: str,
     ) -> PrepareFlowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/prepare_flow/)."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
         }
@@ -2094,6 +2165,7 @@ class BedrockAgentClient:
         policy: str,
         expected_revision_id: str | None = None,
     ) -> PutResourcePolicyOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/put_resource_policy/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy": policy,
@@ -2122,6 +2194,7 @@ class BedrockAgentClient:
         client_token: str | None = None,
         description: str | None = None,
     ) -> StartIngestionJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/start_ingestion_job/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -2151,6 +2224,7 @@ class BedrockAgentClient:
         data_source_id: str,
         ingestion_job_id: str,
     ) -> StopIngestionJobOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/stop_ingestion_job/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -2176,6 +2250,7 @@ class BedrockAgentClient:
         resource_arn: str,
         tags: dict[str, str],
     ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/tag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tags": tags,
@@ -2200,6 +2275,7 @@ class BedrockAgentClient:
         resource_arn: str,
         tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/untag_resource/)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
@@ -2236,6 +2312,7 @@ class BedrockAgentClient:
         memory_configuration: MemoryConfiguration | None = None,
         agent_collaboration: AgentCollaboration | None = None,
     ) -> UpdateAgentOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_agent/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_name": agent_name,
@@ -2291,6 +2368,7 @@ class BedrockAgentClient:
         api_schema: APISchema | None = None,
         function_schema: FunctionSchema | None = None,
     ) -> UpdateAgentActionGroupOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_agent_action_group/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -2335,6 +2413,7 @@ class BedrockAgentClient:
         routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
         alias_invocation_state: AliasInvocationState | None = None,
     ) -> UpdateAgentAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_agent_alias/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_alias_id": agent_alias_id,
@@ -2371,6 +2450,7 @@ class BedrockAgentClient:
         collaboration_instruction: str,
         relay_conversation_history: RelayConversationHistory | None = None,
     ) -> UpdateAgentCollaboratorOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_agent_collaborator/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -2404,6 +2484,7 @@ class BedrockAgentClient:
         description: str | None = None,
         knowledge_base_state: KnowledgeBaseState | None = None,
     ) -> UpdateAgentKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_agent_knowledge_base/)."""
         params: dict[str, object] = {
             "agent_id": agent_id,
             "agent_version": agent_version,
@@ -2439,6 +2520,7 @@ class BedrockAgentClient:
         server_side_encryption_configuration: ServerSideEncryptionConfiguration | None = None,
         vector_ingestion_configuration: VectorIngestionConfiguration | None = None,
     ) -> UpdateDataSourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_data_source/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "data_source_id": data_source_id,
@@ -2477,6 +2559,7 @@ class BedrockAgentClient:
         customer_encryption_key_arn: str | None = None,
         definition: FlowDefinition | None = None,
     ) -> UpdateFlowOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_flow/)."""
         params: dict[str, object] = {
             "name": name,
             "execution_role_arn": execution_role_arn,
@@ -2512,6 +2595,7 @@ class BedrockAgentClient:
         description: str | None = None,
         concurrency_configuration: FlowAliasConcurrencyConfiguration | None = None,
     ) -> UpdateFlowAliasOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_flow_alias/)."""
         params: dict[str, object] = {
             "name": name,
             "routing_configuration": routing_configuration,
@@ -2546,6 +2630,7 @@ class BedrockAgentClient:
         description: str | None = None,
         storage_configuration: StorageConfiguration | None = None,
     ) -> UpdateKnowledgeBaseOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_knowledge_base/)."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
             "name": name,
@@ -2580,6 +2665,7 @@ class BedrockAgentClient:
         default_variant: str | None = None,
         variants: Sequence[PromptVariant] | None = None,
     ) -> UpdatePromptOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_prompt/)."""
         params: dict[str, object] = {
             "name": name,
             "prompt_identifier": prompt_identifier,
@@ -2613,6 +2699,7 @@ class BedrockAgentClient:
         instruction: RetrievalInstructionContent,
         description: str | None = None,
     ) -> UpdateRetrievalInstructionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_retrieval_instruction/)."""
         params: dict[str, object] = {
             "retrieval_instruction_id": retrieval_instruction_id,
             "instruction": instruction,
@@ -2638,6 +2725,7 @@ class BedrockAgentClient:
         *,
         definition: FlowDefinition,
     ) -> ValidateFlowDefinitionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/validate_flow_definition/)."""
         params: dict[str, object] = {
             "definition": definition,
         }

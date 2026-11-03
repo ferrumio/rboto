@@ -11,32 +11,38 @@ from .types import InvokeAgentRuntimeCommandOutput, InvokeCodeInterpreterOutput,
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class CodeInterpreterStreamOutputReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CodeInterpreterStreamOutputReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.CodeInterpreterStreamOutput]: ...
     def __anext__(self) -> Awaitable[_types.CodeInterpreterStreamOutput]: ...
 @final
 class InvokeAgentRuntimeCommandStreamOutputReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeAgentRuntimeCommandStreamOutputReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.InvokeAgentRuntimeCommandStreamOutput]: ...
     def __anext__(self) -> Awaitable[_types.InvokeAgentRuntimeCommandStreamOutput]: ...
 @final
 class InvokeHarnessStreamOutputReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.InvokeHarnessStreamOutput]: ...
     def __anext__(self) -> Awaitable[_types.InvokeHarnessStreamOutput]: ...
 
 
 @final
 class A2aDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/A2aDescriptorOutput/)."""
     @property
     def agent_card(self) -> AgentCardDefinition | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AbTestResults:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AbTestResults-1a33cd8225fe/)."""
     @property
     def analysis_timestamp(self) -> str | None: ...
     @property
@@ -45,6 +51,7 @@ class AbTestResults:
 
 @final
 class AbTestSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AbTestSummary-dbdc0f8d450f/)."""
     @property
     def ab_test_id(self) -> str: ...
     @property
@@ -67,12 +74,14 @@ class AbTestSummary:
 
 @final
 class ActorSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ActorSummaryOutput/)."""
     @property
     def actor_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class AffectedSession:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AffectedSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -87,6 +96,7 @@ class AffectedSession:
 
 @final
 class AgentCardDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentCardDefinitionOutput/)."""
     @property
     def schema_version(self) -> str | None: ...
     @property
@@ -95,6 +105,7 @@ class AgentCardDefinition:
 
 @final
 class AgentSkillsDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentSkillsDescriptorOutput/)."""
     @property
     def skill_md(self) -> SkillMdDefinition | None: ...
     @property
@@ -103,6 +114,7 @@ class AgentSkillsDescriptor:
 
 @final
 class Amount:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AmountOutput/)."""
     @property
     def value(self) -> str: ...
     @property
@@ -111,6 +123,7 @@ class Amount:
 
 @final
 class AutomationStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AutomationStreamOutput/)."""
     @property
     def stream_endpoint(self) -> str: ...
     @property
@@ -119,6 +132,7 @@ class AutomationStream:
 
 @final
 class AvailableLimits:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AvailableLimitsOutput/)."""
     @property
     def available_spend_amount(self) -> Amount | None: ...
     @property
@@ -127,6 +141,7 @@ class AvailableLimits:
 
 @final
 class BatchEvaluationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BatchEvaluationSummaryOutput/)."""
     @property
     def batch_evaluation_id(self) -> str: ...
     @property
@@ -155,6 +170,7 @@ class BatchEvaluationSummary:
 
 @final
 class Branch:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BranchOutput/)."""
     @property
     def root_event_id(self) -> str | None: ...
     @property
@@ -163,6 +179,7 @@ class Branch:
 
 @final
 class BrowserEnterprisePolicy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserEnterprisePolicyOutput/)."""
     @property
     def location(self) -> _types.ResourceLocationOutput | None: ...
     @property
@@ -171,18 +188,21 @@ class BrowserEnterprisePolicy:
 
 @final
 class BrowserExtension:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserExtensionOutput/)."""
     @property
     def location(self) -> _types.ResourceLocationOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BrowserProfileConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserProfileConfigurationOutput/)."""
     @property
     def profile_identifier(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BrowserSessionStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserSessionStreamOutput/)."""
     @property
     def automation_stream(self) -> AutomationStream | None: ...
     @property
@@ -191,6 +211,7 @@ class BrowserSessionStream:
 
 @final
 class BrowserSessionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserSessionSummaryOutput/)."""
     @property
     def browser_identifier(self) -> str: ...
     @property
@@ -207,12 +228,14 @@ class BrowserSessionSummary:
 
 @final
 class Certificate:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CertificateOutput/)."""
     @property
     def location(self) -> _types.CertificateLocationOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CodeInterpreterSessionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CodeInterpreterSessionSummaryOutput/)."""
     @property
     def code_interpreter_identifier(self) -> str: ...
     @property
@@ -229,6 +252,7 @@ class CodeInterpreterSessionSummary:
 
 @final
 class ConfidenceInterval:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ConfidenceIntervalOutput/)."""
     @property
     def lower(self) -> float | None: ...
     @property
@@ -237,6 +261,7 @@ class ConfidenceInterval:
 
 @final
 class ConfigurationBundleRef:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ConfigurationBundleRefOutput/)."""
     @property
     def bundle_arn(self) -> str: ...
     @property
@@ -245,6 +270,7 @@ class ConfigurationBundleRef:
 
 @final
 class ControlStats:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ControlStatsOutput/)."""
     @property
     def variant_name(self) -> str: ...
     @property
@@ -255,12 +281,14 @@ class ControlStats:
 
 @final
 class CustomDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CustomDescriptorOutput/)."""
     @property
     def inline_content(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Descriptors:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DescriptorsOutput/)."""
     @property
     def mcp(self) -> McpDescriptor | None: ...
     @property
@@ -273,6 +301,7 @@ class Descriptors:
 
 @final
 class EvaluationJobResults:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationJobResultsOutput/)."""
     @property
     def number_of_sessions_completed(self) -> int | None: ...
     @property
@@ -289,6 +318,7 @@ class EvaluationJobResults:
 
 @final
 class EvaluationResultContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationResultContentOutput/)."""
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -317,12 +347,14 @@ class EvaluationResultContent:
 
 @final
 class Evaluator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluatorOutput/)."""
     @property
     def evaluator_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EvaluatorMetric:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluatorMetricOutput/)."""
     @property
     def evaluator_arn(self) -> str: ...
     @property
@@ -333,12 +365,14 @@ class EvaluatorMetric:
 
 @final
 class EvaluatorStatistics:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluatorStatisticsOutput/)."""
     @property
     def average_score(self) -> float | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EvaluatorSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluatorSummaryOutput/)."""
     @property
     def evaluator_id(self) -> str | None: ...
     @property
@@ -353,6 +387,7 @@ class EvaluatorSummary:
 
 @final
 class Event:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EventOutput/)."""
     @property
     def memory_id(self) -> str: ...
     @property
@@ -373,6 +408,7 @@ class Event:
 
 @final
 class ExecutionSummaryAffectedSession:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExecutionSummaryAffectedSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -383,6 +419,7 @@ class ExecutionSummaryAffectedSession:
 
 @final
 class ExecutionSummaryCluster:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExecutionSummaryClusterOutput/)."""
     @property
     def cluster_id(self) -> int: ...
     @property
@@ -397,12 +434,14 @@ class ExecutionSummaryCluster:
 
 @final
 class ExecutionSummaryClusteringResultContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExecutionSummaryClusteringResultContentOutput/)."""
     @property
     def execution_summaries(self) -> list[ExecutionSummaryCluster]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ExtractionJobMetadata:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExtractionJobMetadataOutput/)."""
     @property
     def job_id(self) -> str: ...
     @property
@@ -421,12 +460,14 @@ class ExtractionJobMetadata:
 
 @final
 class FailureAnalysisResultContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FailureAnalysisResultContentOutput/)."""
     @property
     def failures(self) -> list[FailureCategoryCluster]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FailureCategoryCluster:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FailureCategoryClusterOutput/)."""
     @property
     def cluster_id(self) -> int: ...
     @property
@@ -441,6 +482,7 @@ class FailureCategoryCluster:
 
 @final
 class FailureSpanDetail:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FailureSpanDetailOutput/)."""
     @property
     def span_id(self) -> str: ...
     @property
@@ -451,6 +493,7 @@ class FailureSpanDetail:
 
 @final
 class FailureSubCategoryCluster:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FailureSubCategoryClusterOutput/)."""
     @property
     def cluster_id(self) -> int: ...
     @property
@@ -465,18 +508,21 @@ class FailureSubCategoryCluster:
 
 @final
 class GatewayFilter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GatewayFilterOutput/)."""
     @property
     def target_paths(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Insight:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InsightOutput/)."""
     @property
     def insight_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InsightResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InsightResultOutput/)."""
     @property
     def type(self) -> _types.InsightTypeOutput: ...
     @property
@@ -495,6 +541,7 @@ class InsightResult:
 
 @final
 class InsightRootCause:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InsightRootCauseOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -509,6 +556,7 @@ class InsightRootCause:
 
 @final
 class InsightsFailureSignal:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InsightsFailureSignalOutput/)."""
     @property
     def category(self) -> _types.InsightsFailureCategoryOutput: ...
     @property
@@ -519,12 +567,14 @@ class InsightsFailureSignal:
 
 @final
 class LiveViewStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LiveViewStreamOutput/)."""
     @property
     def stream_endpoint(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class McpDescriptor:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/McpDescriptorOutput/)."""
     @property
     def server(self) -> ServerDefinition | None: ...
     @property
@@ -533,6 +583,7 @@ class McpDescriptor:
 
 @final
 class MemoryRecord:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordValueOutput/)."""
     @property
     def memory_record_id(self) -> str: ...
     @property
@@ -553,6 +604,7 @@ class MemoryRecord:
 
 @final
 class MemoryRecordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordValueValueOutput/)."""
     @property
     def memory_record_id(self) -> str: ...
     @property
@@ -567,6 +619,7 @@ class MemoryRecordOutput:
 
 @final
 class MemoryRecordSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordSummaryOutput/)."""
     @property
     def memory_record_id(self) -> str: ...
     @property
@@ -587,6 +640,7 @@ class MemoryRecordSummary:
 
 @final
 class PaymentInstrument:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentOutput/)."""
     @property
     def payment_instrument_id(self) -> str: ...
     @property
@@ -609,6 +663,7 @@ class PaymentInstrument:
 
 @final
 class PaymentInstrumentSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentSummaryOutput/)."""
     @property
     def payment_instrument_id(self) -> str: ...
     @property
@@ -629,6 +684,7 @@ class PaymentInstrumentSummary:
 
 @final
 class PaymentSession:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentSessionOutput/)."""
     @property
     def payment_session_id(self) -> str: ...
     @property
@@ -649,6 +705,7 @@ class PaymentSession:
 
 @final
 class PaymentSessionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentSessionSummaryOutput/)."""
     @property
     def payment_session_id(self) -> str: ...
     @property
@@ -665,12 +722,14 @@ class PaymentSessionSummary:
 
 @final
 class ProxyBypass:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyBypassOutput/)."""
     @property
     def domain_patterns(self) -> list[str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ProxyConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyConfigurationOutput/)."""
     @property
     def proxies(self) -> list[_types.ProxyOutput]: ...
     @property
@@ -679,6 +738,7 @@ class ProxyConfiguration:
 
 @final
 class RecommendationSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationSummaryOutput/)."""
     @property
     def recommendation_id(self) -> str: ...
     @property
@@ -699,6 +759,7 @@ class RecommendationSummary:
 
 @final
 class RegistryRecordSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RegistryRecordSummaryOutput/)."""
     @property
     def registry_arn(self) -> str: ...
     @property
@@ -725,6 +786,7 @@ class RegistryRecordSummary:
 
 @final
 class RootCauseCluster:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RootCauseClusterOutput/)."""
     @property
     def cluster_id(self) -> int: ...
     @property
@@ -741,6 +803,7 @@ class RootCauseCluster:
 
 @final
 class SampleSession:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SampleSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -751,6 +814,7 @@ class SampleSession:
 
 @final
 class ServerDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ServerDefinitionOutput/)."""
     @property
     def schema_version(self) -> str | None: ...
     @property
@@ -759,6 +823,7 @@ class ServerDefinition:
 
 @final
 class SessionFinding:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SessionFindingOutput/)."""
     @property
     def target_id(self) -> str | None: ...
     @property
@@ -773,12 +838,14 @@ class SessionFinding:
 
 @final
 class SessionLimits:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SessionLimitsOutput/)."""
     @property
     def max_spend_amount(self) -> Amount | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SessionSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SessionSummaryOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -789,6 +856,7 @@ class SessionSummary:
 
 @final
 class SkillDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SkillDefinitionOutput/)."""
     @property
     def schema_version(self) -> str | None: ...
     @property
@@ -797,18 +865,21 @@ class SkillDefinition:
 
 @final
 class SkillMdDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SkillMdDefinitionOutput/)."""
     @property
     def inline_content(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TargetRef:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/TargetRefOutput/)."""
     @property
     def name(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class TokenBalance:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/TokenBalanceOutput/)."""
     @property
     def amount(self) -> str: ...
     @property
@@ -823,6 +894,7 @@ class TokenBalance:
 
 @final
 class TokenUsage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/TokenUsageOutput/)."""
     @property
     def input_tokens(self) -> int | None: ...
     @property
@@ -833,6 +905,7 @@ class TokenUsage:
 
 @final
 class ToolsDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsDefinitionOutput/)."""
     @property
     def protocol_version(self) -> str | None: ...
     @property
@@ -841,6 +914,7 @@ class ToolsDefinition:
 
 @final
 class UserIntentAffectedSession:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UserIntentAffectedSessionOutput/)."""
     @property
     def session_id(self) -> str: ...
     @property
@@ -849,6 +923,7 @@ class UserIntentAffectedSession:
 
 @final
 class UserIntentCluster:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UserIntentClusterOutput/)."""
     @property
     def cluster_id(self) -> int: ...
     @property
@@ -863,12 +938,14 @@ class UserIntentCluster:
 
 @final
 class UserIntentClusteringResultContent:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UserIntentClusteringResultContentOutput/)."""
     @property
     def user_intents(self) -> list[UserIntentCluster]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Variant:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/VariantOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -879,6 +956,7 @@ class Variant:
 
 @final
 class VariantConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/VariantConfigurationOutput/)."""
     @property
     def configuration_bundle(self) -> ConfigurationBundleRef | None: ...
     @property
@@ -887,6 +965,7 @@ class VariantConfiguration:
 
 @final
 class VariantResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/VariantResultOutput/)."""
     @property
     def variant_name(self) -> str: ...
     @property
@@ -907,6 +986,7 @@ class VariantResult:
 
 @final
 class ViewPort:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ViewPortOutput/)."""
     @property
     def width(self) -> int: ...
     @property
@@ -915,6 +995,7 @@ class ViewPort:
 
 @final
 class BatchCreateMemoryRecordsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BatchCreateMemoryRecordsOutput/)."""
     @property
     def successful_records(self) -> list[MemoryRecordOutput]: ...
     @property
@@ -923,6 +1004,7 @@ class BatchCreateMemoryRecordsOutput:
 
 @final
 class BatchDeleteMemoryRecordsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BatchDeleteMemoryRecordsOutput/)."""
     @property
     def successful_records(self) -> list[MemoryRecordOutput]: ...
     @property
@@ -931,6 +1013,7 @@ class BatchDeleteMemoryRecordsOutput:
 
 @final
 class BatchUpdateMemoryRecordsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BatchUpdateMemoryRecordsOutput/)."""
     @property
     def successful_records(self) -> list[MemoryRecordOutput]: ...
     @property
@@ -939,10 +1022,12 @@ class BatchUpdateMemoryRecordsOutput:
 
 @final
 class CompleteResourceTokenAuthOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CompleteResourceTokenAuthOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateABTestOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CreateABTestOutput/)."""
     @property
     def ab_test_id(self) -> str: ...
     @property
@@ -959,24 +1044,28 @@ class CreateABTestOutput:
 
 @final
 class CreateEventOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CreateEventOutput/)."""
     @property
     def event(self) -> Event | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreatePaymentInstrumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CreatePaymentInstrumentOutput/)."""
     @property
     def payment_instrument(self) -> PaymentInstrument | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreatePaymentSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CreatePaymentSessionOutput/)."""
     @property
     def payment_session(self) -> PaymentSession | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteABTestOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeleteABTestOutput/)."""
     @property
     def ab_test_id(self) -> str: ...
     @property
@@ -987,6 +1076,7 @@ class DeleteABTestOutput:
 
 @final
 class DeleteBatchEvaluationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeleteBatchEvaluationOutput/)."""
     @property
     def batch_evaluation_id(self) -> str: ...
     @property
@@ -997,6 +1087,7 @@ class DeleteBatchEvaluationOutput:
 
 @final
 class DeleteCapacityProviderSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeleteCapacityProviderSessionOutput/)."""
     @property
     def capacity_provider_arn(self) -> str: ...
     @property
@@ -1007,30 +1098,35 @@ class DeleteCapacityProviderSessionOutput:
 
 @final
 class DeleteEventOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeleteEventOutput/)."""
     @property
     def event_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteMemoryRecordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeleteMemoryRecordOutput/)."""
     @property
     def memory_record_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePaymentInstrumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeletePaymentInstrumentOutput/)."""
     @property
     def status(self) -> _types.PaymentInstrumentStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeletePaymentSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeletePaymentSessionOutput/)."""
     @property
     def status(self) -> _types.PaymentSessionStatusOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteRecommendationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DeleteRecommendationOutput/)."""
     @property
     def recommendation_id(self) -> str: ...
     @property
@@ -1039,12 +1135,14 @@ class DeleteRecommendationOutput:
 
 @final
 class EvaluateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluateOutput/)."""
     @property
     def evaluation_results(self) -> list[EvaluationResultContent]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetABTestOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetABTestOutput/)."""
     @property
     def ab_test_id(self) -> str: ...
     @property
@@ -1087,6 +1185,7 @@ class GetABTestOutput:
 
 @final
 class GetAgentCardOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetAgentCardOutput/)."""
     @property
     def runtime_session_id(self) -> str | None: ...
     @property
@@ -1097,6 +1196,7 @@ class GetAgentCardOutput:
 
 @final
 class GetBatchEvaluationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetBatchEvaluationOutput/)."""
     @property
     def batch_evaluation_id(self) -> str: ...
     @property
@@ -1137,6 +1237,7 @@ class GetBatchEvaluationOutput:
 
 @final
 class GetBrowserSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetBrowserSessionOutput/)."""
     @property
     def browser_identifier(self) -> str: ...
     @property
@@ -1173,6 +1274,7 @@ class GetBrowserSessionOutput:
 
 @final
 class GetCodeInterpreterSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetCodeInterpreterSessionOutput/)."""
     @property
     def code_interpreter_identifier(self) -> str: ...
     @property
@@ -1193,24 +1295,28 @@ class GetCodeInterpreterSessionOutput:
 
 @final
 class GetEventOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetEventOutput/)."""
     @property
     def event(self) -> Event | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetMemoryRecordOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetMemoryRecordOutput/)."""
     @property
     def memory_record(self) -> MemoryRecord | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetPaymentInstrumentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetPaymentInstrumentOutput/)."""
     @property
     def payment_instrument(self) -> PaymentInstrument | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetPaymentInstrumentBalanceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetPaymentInstrumentBalanceOutput/)."""
     @property
     def payment_instrument_id(self) -> str: ...
     @property
@@ -1219,12 +1325,14 @@ class GetPaymentInstrumentBalanceOutput:
 
 @final
 class GetPaymentSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetPaymentSessionOutput/)."""
     @property
     def payment_session(self) -> PaymentSession | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetRecommendationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetRecommendationOutput/)."""
     @property
     def recommendation_id(self) -> str: ...
     @property
@@ -1251,12 +1359,14 @@ class GetRecommendationOutput:
 
 @final
 class GetResourceApiKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetResourceApiKeyOutput/)."""
     @property
     def api_key(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetResourceOauth2TokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetResourceOauth2TokenOutput/)."""
     @property
     def authorization_url(self) -> str | None: ...
     @property
@@ -1269,36 +1379,42 @@ class GetResourceOauth2TokenOutput:
 
 @final
 class GetResourcePaymentTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetResourcePaymentTokenOutput/)."""
     @property
     def payment_token_response(self) -> _types.PaymentTokenResponseOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetWorkloadAccessTokenOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetWorkloadAccessTokenOutput/)."""
     @property
     def workload_access_token(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetWorkloadAccessTokenForJWTOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetWorkloadAccessTokenForJWTOutput/)."""
     @property
     def workload_access_token(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetWorkloadAccessTokenForUserIdOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetWorkloadAccessTokenForUserIdOutput/)."""
     @property
     def workload_access_token(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class IngestDataOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/IngestDataOutput/)."""
     @property
     def session_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InvokeAgentRuntimeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeAgentRuntimeOutput/)."""
     @property
     def runtime_session_id(self) -> str | None: ...
     @property
@@ -1323,6 +1439,7 @@ class InvokeAgentRuntimeOutput:
 
 @final
 class InvokeBrowserOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeBrowserOutput/)."""
     @property
     def result(self) -> _types.BrowserActionResult | None: ...
     @property
@@ -1331,6 +1448,7 @@ class InvokeBrowserOutput:
 
 @final
 class ListABTestsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListABTestsOutput/)."""
     @property
     def ab_tests(self) -> list[AbTestSummary]: ...
     @property
@@ -1339,6 +1457,7 @@ class ListABTestsOutput:
 
 @final
 class ListActorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListActorsOutput/)."""
     @property
     def actor_summaries(self) -> list[ActorSummary]: ...
     @property
@@ -1347,6 +1466,7 @@ class ListActorsOutput:
 
 @final
 class ListBatchEvaluationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListBatchEvaluationsOutput/)."""
     @property
     def batch_evaluations(self) -> list[BatchEvaluationSummary]: ...
     @property
@@ -1355,6 +1475,7 @@ class ListBatchEvaluationsOutput:
 
 @final
 class ListBrowserSessionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListBrowserSessionsOutput/)."""
     @property
     def items(self) -> list[BrowserSessionSummary]: ...
     @property
@@ -1363,6 +1484,7 @@ class ListBrowserSessionsOutput:
 
 @final
 class ListCodeInterpreterSessionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListCodeInterpreterSessionsOutput/)."""
     @property
     def items(self) -> list[CodeInterpreterSessionSummary]: ...
     @property
@@ -1371,6 +1493,7 @@ class ListCodeInterpreterSessionsOutput:
 
 @final
 class ListEventsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListEventsOutput/)."""
     @property
     def events(self) -> list[Event]: ...
     @property
@@ -1379,6 +1502,7 @@ class ListEventsOutput:
 
 @final
 class ListMemoryExtractionJobsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListMemoryExtractionJobsOutput/)."""
     @property
     def jobs(self) -> list[ExtractionJobMetadata]: ...
     @property
@@ -1387,6 +1511,7 @@ class ListMemoryExtractionJobsOutput:
 
 @final
 class ListMemoryRecordsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListMemoryRecordsOutput/)."""
     @property
     def memory_record_summaries(self) -> list[MemoryRecordSummary]: ...
     @property
@@ -1395,6 +1520,7 @@ class ListMemoryRecordsOutput:
 
 @final
 class ListPaymentInstrumentsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListPaymentInstrumentsOutput/)."""
     @property
     def payment_instruments(self) -> list[PaymentInstrumentSummary]: ...
     @property
@@ -1403,6 +1529,7 @@ class ListPaymentInstrumentsOutput:
 
 @final
 class ListPaymentSessionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListPaymentSessionsOutput/)."""
     @property
     def payment_sessions(self) -> list[PaymentSessionSummary]: ...
     @property
@@ -1411,6 +1538,7 @@ class ListPaymentSessionsOutput:
 
 @final
 class ListRecommendationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListRecommendationsOutput/)."""
     @property
     def recommendation_summaries(self) -> list[RecommendationSummary]: ...
     @property
@@ -1419,6 +1547,7 @@ class ListRecommendationsOutput:
 
 @final
 class ListSessionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ListSessionsOutput/)."""
     @property
     def session_summaries(self) -> list[SessionSummary]: ...
     @property
@@ -1427,6 +1556,7 @@ class ListSessionsOutput:
 
 @final
 class ProcessPaymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProcessPaymentOutput/)."""
     @property
     def process_payment_id(self) -> str: ...
     @property
@@ -1449,6 +1579,7 @@ class ProcessPaymentOutput:
 
 @final
 class RetrieveMemoryRecordsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RetrieveMemoryRecordsOutput/)."""
     @property
     def memory_record_summaries(self) -> list[MemoryRecordSummary]: ...
     @property
@@ -1457,6 +1588,7 @@ class RetrieveMemoryRecordsOutput:
 
 @final
 class SaveBrowserSessionProfileOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SaveBrowserSessionProfileOutput/)."""
     @property
     def profile_identifier(self) -> str: ...
     @property
@@ -1469,12 +1601,14 @@ class SaveBrowserSessionProfileOutput:
 
 @final
 class SearchRegistryRecordsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SearchRegistryRecordsOutput/)."""
     @property
     def registry_records(self) -> list[RegistryRecordSummary]: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartBatchEvaluationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StartBatchEvaluationOutput/)."""
     @property
     def batch_evaluation_id(self) -> str: ...
     @property
@@ -1501,6 +1635,7 @@ class StartBatchEvaluationOutput:
 
 @final
 class StartBrowserSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StartBrowserSessionOutput/)."""
     @property
     def browser_identifier(self) -> str: ...
     @property
@@ -1513,6 +1648,7 @@ class StartBrowserSessionOutput:
 
 @final
 class StartCodeInterpreterSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StartCodeInterpreterSessionOutput/)."""
     @property
     def code_interpreter_identifier(self) -> str: ...
     @property
@@ -1523,12 +1659,14 @@ class StartCodeInterpreterSessionOutput:
 
 @final
 class StartMemoryExtractionJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StartMemoryExtractionJobOutput/)."""
     @property
     def job_id(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartRecommendationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StartRecommendationOutput/)."""
     @property
     def recommendation_id(self) -> str: ...
     @property
@@ -1551,6 +1689,7 @@ class StartRecommendationOutput:
 
 @final
 class StopBatchEvaluationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StopBatchEvaluationOutput/)."""
     @property
     def batch_evaluation_id(self) -> str: ...
     @property
@@ -1563,6 +1702,7 @@ class StopBatchEvaluationOutput:
 
 @final
 class StopBrowserSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StopBrowserSessionOutput/)."""
     @property
     def browser_identifier(self) -> str: ...
     @property
@@ -1573,6 +1713,7 @@ class StopBrowserSessionOutput:
 
 @final
 class StopCodeInterpreterSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StopCodeInterpreterSessionOutput/)."""
     @property
     def code_interpreter_identifier(self) -> str: ...
     @property
@@ -1583,6 +1724,7 @@ class StopCodeInterpreterSessionOutput:
 
 @final
 class StopRuntimeSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StopRuntimeSessionOutput/)."""
     @property
     def runtime_session_id(self) -> str | None: ...
     @property
@@ -1591,6 +1733,7 @@ class StopRuntimeSessionOutput:
 
 @final
 class UpdateABTestOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UpdateABTestOutput/)."""
     @property
     def ab_test_id(self) -> str: ...
     @property
@@ -1605,6 +1748,7 @@ class UpdateABTestOutput:
 
 @final
 class UpdateBrowserStreamOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UpdateBrowserStreamOutput/)."""
     @property
     def browser_identifier(self) -> str: ...
     @property

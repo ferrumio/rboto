@@ -63,7 +63,7 @@ class GuardDutyClientPaginators:
         filter_criteria: FilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
     ) -> AsyncIterator[DescribeMalwareScansOutput]:
-        """Yield each page from describe_malware_scans; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/describe_malware_scans/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -92,7 +92,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[DescribeOrganizationConfigurationOutput]:
-        """Yield each page from describe_organization_configuration; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/describe_organization_configuration/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -120,7 +120,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[GetUsageStatisticsOutput]:
-        """Yield each page from get_usage_statistics; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_usage_statistics/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "usage_statistic_type": usage_statistic_type,
@@ -151,7 +151,7 @@ class GuardDutyClientPaginators:
         filter_criteria: CoverageFilterCriteria | None = None,
         sort_criteria: CoverageSortCriteria | None = None,
     ) -> AsyncIterator[ListCoverageOutput]:
-        """Yield each page from list_coverage; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_coverage/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -181,7 +181,7 @@ class GuardDutyClientPaginators:
         rule_id: str | None = None,
         mode: AssociationMode | None = None,
     ) -> AsyncIterator[ListCustomDetectionRuleAssociationsOutput]:
-        """Yield each page from list_custom_detection_rule_associations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_custom_detection_rule_associations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -209,7 +209,7 @@ class GuardDutyClientPaginators:
         next_token: str | None = None,
         status: DetectionRuleConfigurationStatus | None = None,
     ) -> AsyncIterator[ListCustomDetectionRuleOrgConfigurationsOutput]:
-        """Yield each page from list_custom_detection_rule_org_configurations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_custom_detection_rule_org_configurations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -235,7 +235,7 @@ class GuardDutyClientPaginators:
         next_token: str | None = None,
         filters: _Sequence[DetectionRuleFilter] | None = None,
     ) -> AsyncIterator[ListCustomDetectionRulesOutput]:
-        """Yield each page from list_custom_detection_rules; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_custom_detection_rules/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -260,7 +260,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListDetectorsOutput]:
-        """Yield each page from list_detectors; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_detectors/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -284,7 +284,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListFiltersOutput]:
-        """Yield each page from list_filters; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_filters/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -311,7 +311,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListFindingsOutput]:
-        """Yield each page from list_findings; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_findings/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -340,7 +340,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListIPSetsOutput]:
-        """Yield each page from list_ip_sets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_ip_sets/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -366,7 +366,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListInvestigationsOutput]:
-        """Yield each page from list_investigations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_investigations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -392,7 +392,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListInvitationsOutput]:
-        """Yield each page from list_invitations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_invitations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -417,7 +417,7 @@ class GuardDutyClientPaginators:
         filter_criteria: ListMalwareScansFilterCriteria | None = None,
         sort_criteria: SortCriteria | None = None,
     ) -> AsyncIterator[ListMalwareScansOutput]:
-        """Yield each page from list_malware_scans; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_malware_scans/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -446,7 +446,7 @@ class GuardDutyClientPaginators:
         next_token: str | None = None,
         only_associated: str | None = None,
     ) -> AsyncIterator[ListMembersOutput]:
-        """Yield each page from list_members; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_members/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -472,7 +472,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListOrganizationAdminAccountsOutput]:
-        """Yield each page from list_organization_admin_accounts; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_organization_admin_accounts/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -496,7 +496,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListPublishingDestinationsOutput]:
-        """Yield each page from list_publishing_destinations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_publishing_destinations/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -521,7 +521,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListThreatEntitySetsOutput]:
-        """Yield each page from list_threat_entity_sets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_threat_entity_sets/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -546,7 +546,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListThreatIntelSetsOutput]:
-        """Yield each page from list_threat_intel_sets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_threat_intel_sets/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
@@ -571,7 +571,7 @@ class GuardDutyClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListTrustedEntitySetsOutput]:
-        """Yield each page from list_trusted_entity_sets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_trusted_entity_sets/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
         }

@@ -52,7 +52,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         reverse_order: bool | None = None,
     ) -> AsyncIterator[GetDurableExecutionHistoryOutput]:
-        """Yield each page from get_durable_execution_history; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_durable_execution_history/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
         }
@@ -82,7 +82,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[GetDurableExecutionStateOutput]:
-        """Yield each page from get_durable_execution_state; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/get_durable_execution_state/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "durable_execution_arn": durable_execution_arn,
             "checkpoint_token": checkpoint_token,
@@ -109,7 +109,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListAliasesOutput]:
-        """Yield each page from list_aliases; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_aliases/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -136,7 +136,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListCapacityProvidersOutput]:
-        """Yield each page from list_capacity_providers; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_capacity_providers/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if state is not None:
@@ -161,7 +161,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListCodeSigningConfigsOutput]:
-        """Yield each page from list_code_signing_configs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_code_signing_configs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if marker is not None:
@@ -191,7 +191,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListDurableExecutionsByFunctionOutput]:
-        """Yield each page from list_durable_executions_by_function; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_durable_executions_by_function/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -229,7 +229,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListEventSourceMappingsOutput]:
-        """Yield each page from list_event_source_mappings; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_event_source_mappings/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if event_source_arn is not None:
@@ -257,7 +257,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListFunctionEventInvokeConfigsOutput]:
-        """Yield each page from list_function_event_invoke_configs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_function_event_invoke_configs/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -282,7 +282,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListFunctionUrlConfigsOutput]:
-        """Yield each page from list_function_url_configs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_function_url_configs/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -307,7 +307,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListFunctionVersionsByCapacityProviderOutput]:
-        """Yield each page from list_function_versions_by_capacity_provider; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_function_versions_by_capacity_provider/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
@@ -333,7 +333,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListFunctionsOutput]:
-        """Yield each page from list_functions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_functions/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if master_region is not None:
@@ -361,7 +361,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListFunctionsByCodeSigningConfigOutput]:
-        """Yield each page from list_functions_by_code_signing_config; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_functions_by_code_signing_config/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
@@ -388,7 +388,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListLayerVersionsOutput]:
-        """Yield each page from list_layer_versions; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_layer_versions/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "layer_name": layer_name,
         }
@@ -418,7 +418,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListLayersOutput]:
-        """Yield each page from list_layers; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_layers/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if compatible_architecture is not None:
@@ -446,7 +446,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListProvisionedConcurrencyConfigsOutput]:
-        """Yield each page from list_provisioned_concurrency_configs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_provisioned_concurrency_configs/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }
@@ -471,7 +471,7 @@ class LambdaClientPaginators:
         marker: str | None = None,
         max_items: int | None = None,
     ) -> AsyncIterator[ListVersionsByFunctionOutput]:
-        """Yield each page from list_versions_by_function; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/list_versions_by_function/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "function_name": function_name,
         }

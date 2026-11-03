@@ -60,7 +60,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[GetDedicatedIpsOutput]:
-        """Yield each page from get_dedicated_ips; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/get_dedicated_ips/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if pool_name is not None:
@@ -86,7 +86,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListConfigurationSetsOutput]:
-        """Yield each page from list_configuration_sets; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_configuration_sets/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -111,7 +111,7 @@ class SESV2ClientPaginators:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListContactListsOutput]:
-        """Yield each page from list_contact_lists; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_contact_lists/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if page_size is not None:
@@ -136,7 +136,7 @@ class SESV2ClientPaginators:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListContactsOutput]:
-        """Yield each page from list_contacts; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_contacts/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
@@ -162,7 +162,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListCustomVerificationEmailTemplatesOutput]:
-        """Yield each page from list_custom_verification_email_templates; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_custom_verification_email_templates/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -185,7 +185,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListDedicatedIpPoolsOutput]:
-        """Yield each page from list_dedicated_ip_pools; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_dedicated_ip_pools/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -208,7 +208,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListDeliverabilityTestReportsOutput]:
-        """Yield each page from list_deliverability_test_reports; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_deliverability_test_reports/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -234,7 +234,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListDomainDeliverabilityCampaignsOutput]:
-        """Yield each page from list_domain_deliverability_campaigns; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_domain_deliverability_campaigns/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "start_date": start_date,
             "end_date": end_date,
@@ -261,7 +261,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListEmailIdentitiesOutput]:
-        """Yield each page from list_email_identities; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_email_identities/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -287,7 +287,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListEmailIdentityCertificatesOutput]:
-        """Yield each page from list_email_identity_certificates; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_email_identity_certificates/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
@@ -311,7 +311,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListEmailTemplatesOutput]:
-        """Yield each page from list_email_templates; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_email_templates/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -336,7 +336,7 @@ class SESV2ClientPaginators:
         export_source_type: ExportSourceType | None = None,
         job_status: JobStatus | None = None,
     ) -> AsyncIterator[ListExportJobsOutput]:
-        """Yield each page from list_export_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_export_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -364,7 +364,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListImportJobsOutput]:
-        """Yield each page from list_import_jobs; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_import_jobs/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if import_destination_type is not None:
@@ -389,7 +389,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListMultiRegionEndpointsOutput]:
-        """Yield each page from list_multi_region_endpoints; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_multi_region_endpoints/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if next_token is not None:
@@ -413,7 +413,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListRecommendationsOutput]:
-        """Yield each page from list_recommendations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_recommendations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -439,7 +439,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListReputationEntitiesOutput]:
-        """Yield each page from list_reputation_entities; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_reputation_entities/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filter is not None:
@@ -465,7 +465,7 @@ class SESV2ClientPaginators:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListResourceTenantsOutput]:
-        """Yield each page from list_resource_tenants; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_resource_tenants/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -493,7 +493,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListSuppressedDestinationsOutput]:
-        """Yield each page from list_suppressed_destinations; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_suppressed_destinations/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if tenant_name is not None:
@@ -526,7 +526,7 @@ class SESV2ClientPaginators:
         page_size: int | None = None,
         next_token: str | None = None,
     ) -> AsyncIterator[ListTenantResourcesOutput]:
-        """Yield each page from list_tenant_resources; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_tenant_resources/#pagination-and-streaming)."""
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
@@ -553,7 +553,7 @@ class SESV2ClientPaginators:
         next_token: str | None = None,
         page_size: int | None = None,
     ) -> AsyncIterator[ListTenantsOutput]:
-        """Yield each page from list_tenants; requests start on iteration."""
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/sesv2/operations/list_tenants/#pagination-and-streaming)."""
         params: dict[str, object] = {
         }
         if filter is not None:

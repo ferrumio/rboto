@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AccessLogSettings:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/AccessLogSettingsOutput/)."""
     @property
     def format(self) -> str | None: ...
     @property
@@ -25,6 +27,7 @@ class AccessLogSettings:
 
 @final
 class ApiKey:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiKey/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -49,6 +52,7 @@ class ApiKey:
 
 @final
 class ApiStage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ApiStageOutput/)."""
     @property
     def api_id(self) -> str | None: ...
     @property
@@ -59,6 +63,7 @@ class ApiStage:
 
 @final
 class Authorizer:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Authorizer/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -83,6 +88,7 @@ class Authorizer:
 
 @final
 class BasePathMapping:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/BasePathMapping/)."""
     @property
     def base_path(self) -> str | None: ...
     @property
@@ -93,6 +99,7 @@ class BasePathMapping:
 
 @final
 class CanarySettings:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CanarySettingsOutput/)."""
     @property
     def percent_traffic(self) -> float: ...
     @property
@@ -105,6 +112,7 @@ class CanarySettings:
 
 @final
 class ClientCertificate:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ClientCertificate/)."""
     @property
     def client_certificate_id(self) -> str | None: ...
     @property
@@ -121,6 +129,7 @@ class ClientCertificate:
 
 @final
 class Deployment:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Deployment/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -133,6 +142,7 @@ class Deployment:
 
 @final
 class DocumentationPart:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationPart/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -143,6 +153,7 @@ class DocumentationPart:
 
 @final
 class DocumentationPartLocation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationPartLocationOutput/)."""
     @property
     def type(self) -> _types.DocumentationPartTypeOutput: ...
     @property
@@ -157,6 +168,7 @@ class DocumentationPartLocation:
 
 @final
 class DocumentationVersion:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DocumentationVersion/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -167,6 +179,7 @@ class DocumentationVersion:
 
 @final
 class DomainName:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DomainName/)."""
     @property
     def domain_name(self) -> str | None: ...
     @property
@@ -217,6 +230,7 @@ class DomainName:
 
 @final
 class DomainNameAccessAssociation:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/DomainNameAccessAssociation/)."""
     @property
     def domain_name_access_association_arn(self) -> str | None: ...
     @property
@@ -231,6 +245,7 @@ class DomainNameAccessAssociation:
 
 @final
 class EndpointConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/EndpointConfigurationOutput/)."""
     @property
     def types(self) -> list[_types.EndpointTypeOutput] | None: ...
     @property
@@ -241,6 +256,7 @@ class EndpointConfiguration:
 
 @final
 class GatewayResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GatewayResponse/)."""
     @property
     def response_type(self) -> _types.GatewayResponseTypeOutput | None: ...
     @property
@@ -255,6 +271,7 @@ class GatewayResponse:
 
 @final
 class Integration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Integration/)."""
     @property
     def type(self) -> _types.IntegrationTypeOutput | None: ...
     @property
@@ -293,6 +310,7 @@ class Integration:
 
 @final
 class IntegrationResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/IntegrationResponse/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -307,6 +325,7 @@ class IntegrationResponse:
 
 @final
 class Method:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Method/)."""
     @property
     def http_method(self) -> str | None: ...
     @property
@@ -333,6 +352,7 @@ class Method:
 
 @final
 class MethodResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodResponse/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -343,6 +363,7 @@ class MethodResponse:
 
 @final
 class MethodSetting:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodSettingOutput/)."""
     @property
     def metrics_enabled(self) -> bool: ...
     @property
@@ -367,6 +388,7 @@ class MethodSetting:
 
 @final
 class MethodSnapshot:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MethodSnapshotOutput/)."""
     @property
     def authorization_type(self) -> str | None: ...
     @property
@@ -375,6 +397,7 @@ class MethodSnapshot:
 
 @final
 class Model:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Model/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -389,6 +412,7 @@ class Model:
 
 @final
 class MutualTlsAuthentication:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/MutualTlsAuthenticationOutput/)."""
     @property
     def truststore_uri(self) -> str | None: ...
     @property
@@ -399,6 +423,7 @@ class MutualTlsAuthentication:
 
 @final
 class QuotaSettings:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/QuotaSettingsOutput/)."""
     @property
     def limit(self) -> int: ...
     @property
@@ -409,6 +434,7 @@ class QuotaSettings:
 
 @final
 class RequestValidator:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/RequestValidator/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -421,6 +447,7 @@ class RequestValidator:
 
 @final
 class Resource:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Resource/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -435,6 +462,7 @@ class Resource:
 
 @final
 class RestApi:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/RestApi/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -475,6 +503,7 @@ class RestApi:
 
 @final
 class SdkConfigurationProperty:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SdkConfigurationPropertyOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -489,6 +518,7 @@ class SdkConfigurationProperty:
 
 @final
 class SdkType:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SdkType/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -501,6 +531,7 @@ class SdkType:
 
 @final
 class Stage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/Stage/)."""
     @property
     def deployment_id(self) -> str | None: ...
     @property
@@ -539,6 +570,7 @@ class Stage:
 
 @final
 class ThrottleSettings:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ThrottleSettingsOutput/)."""
     @property
     def burst_limit(self) -> int: ...
     @property
@@ -547,12 +579,14 @@ class ThrottleSettings:
 
 @final
 class TlsConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TlsConfigOutput/)."""
     @property
     def insecure_skip_verification(self) -> bool: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UsagePlan:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UsagePlan/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -573,6 +607,7 @@ class UsagePlan:
 
 @final
 class UsagePlanKey:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UsagePlanKey/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -585,6 +620,7 @@ class UsagePlanKey:
 
 @final
 class VpcLink:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/VpcLink/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -603,6 +639,7 @@ class VpcLink:
 
 @final
 class CreateApiKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateApiKeyOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -627,6 +664,7 @@ class CreateApiKeyOutput:
 
 @final
 class CreateAuthorizerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateAuthorizerOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -651,6 +689,7 @@ class CreateAuthorizerOutput:
 
 @final
 class CreateBasePathMappingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateBasePathMappingOutput/)."""
     @property
     def base_path(self) -> str | None: ...
     @property
@@ -661,6 +700,7 @@ class CreateBasePathMappingOutput:
 
 @final
 class CreateDeploymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDeploymentOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -673,6 +713,7 @@ class CreateDeploymentOutput:
 
 @final
 class CreateDocumentationPartOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationPartOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -683,6 +724,7 @@ class CreateDocumentationPartOutput:
 
 @final
 class CreateDocumentationVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDocumentationVersionOutput/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -693,6 +735,7 @@ class CreateDocumentationVersionOutput:
 
 @final
 class CreateDomainNameOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameOutput/)."""
     @property
     def domain_name(self) -> str | None: ...
     @property
@@ -743,6 +786,7 @@ class CreateDomainNameOutput:
 
 @final
 class CreateDomainNameAccessAssociationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateDomainNameAccessAssociationOutput/)."""
     @property
     def domain_name_access_association_arn(self) -> str | None: ...
     @property
@@ -757,6 +801,7 @@ class CreateDomainNameAccessAssociationOutput:
 
 @final
 class CreateModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateModelOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -771,6 +816,7 @@ class CreateModelOutput:
 
 @final
 class CreateRequestValidatorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRequestValidatorOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -783,6 +829,7 @@ class CreateRequestValidatorOutput:
 
 @final
 class CreateResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateResourceOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -797,6 +844,7 @@ class CreateResourceOutput:
 
 @final
 class CreateRestApiOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateRestApiOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -837,6 +885,7 @@ class CreateRestApiOutput:
 
 @final
 class CreateStageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateStageOutput/)."""
     @property
     def deployment_id(self) -> str | None: ...
     @property
@@ -875,6 +924,7 @@ class CreateStageOutput:
 
 @final
 class CreateUsagePlanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -895,6 +945,7 @@ class CreateUsagePlanOutput:
 
 @final
 class CreateUsagePlanKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateUsagePlanKeyOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -907,6 +958,7 @@ class CreateUsagePlanKeyOutput:
 
 @final
 class CreateVpcLinkOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/CreateVpcLinkOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -925,6 +977,7 @@ class CreateVpcLinkOutput:
 
 @final
 class GenerateClientCertificateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GenerateClientCertificateOutput/)."""
     @property
     def client_certificate_id(self) -> str | None: ...
     @property
@@ -941,6 +994,7 @@ class GenerateClientCertificateOutput:
 
 @final
 class GetAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAccountOutput/)."""
     @property
     def cloudwatch_role_arn(self) -> str | None: ...
     @property
@@ -953,6 +1007,7 @@ class GetAccountOutput:
 
 @final
 class GetApiKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeyOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -977,6 +1032,7 @@ class GetApiKeyOutput:
 
 @final
 class GetApiKeysOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetApiKeysOutput/)."""
     @property
     def warnings(self) -> list[str] | None: ...
     @property
@@ -987,6 +1043,7 @@ class GetApiKeysOutput:
 
 @final
 class GetAuthorizerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizerOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1011,6 +1068,7 @@ class GetAuthorizerOutput:
 
 @final
 class GetAuthorizersOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetAuthorizersOutput/)."""
     @property
     def items(self) -> list[Authorizer] | None: ...
     @property
@@ -1019,6 +1077,7 @@ class GetAuthorizersOutput:
 
 @final
 class GetBasePathMappingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingOutput/)."""
     @property
     def base_path(self) -> str | None: ...
     @property
@@ -1029,6 +1088,7 @@ class GetBasePathMappingOutput:
 
 @final
 class GetBasePathMappingsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetBasePathMappingsOutput/)."""
     @property
     def items(self) -> list[BasePathMapping] | None: ...
     @property
@@ -1037,6 +1097,7 @@ class GetBasePathMappingsOutput:
 
 @final
 class GetClientCertificateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificateOutput/)."""
     @property
     def client_certificate_id(self) -> str | None: ...
     @property
@@ -1053,6 +1114,7 @@ class GetClientCertificateOutput:
 
 @final
 class GetClientCertificatesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetClientCertificatesOutput/)."""
     @property
     def items(self) -> list[ClientCertificate] | None: ...
     @property
@@ -1061,6 +1123,7 @@ class GetClientCertificatesOutput:
 
 @final
 class GetDeploymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1073,6 +1136,7 @@ class GetDeploymentOutput:
 
 @final
 class GetDeploymentsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDeploymentsOutput/)."""
     @property
     def items(self) -> list[Deployment] | None: ...
     @property
@@ -1081,6 +1145,7 @@ class GetDeploymentsOutput:
 
 @final
 class GetDocumentationPartOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1091,6 +1156,7 @@ class GetDocumentationPartOutput:
 
 @final
 class GetDocumentationPartsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationPartsOutput/)."""
     @property
     def items(self) -> list[DocumentationPart] | None: ...
     @property
@@ -1099,6 +1165,7 @@ class GetDocumentationPartsOutput:
 
 @final
 class GetDocumentationVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionOutput/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -1109,6 +1176,7 @@ class GetDocumentationVersionOutput:
 
 @final
 class GetDocumentationVersionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDocumentationVersionsOutput/)."""
     @property
     def items(self) -> list[DocumentationVersion] | None: ...
     @property
@@ -1117,6 +1185,7 @@ class GetDocumentationVersionsOutput:
 
 @final
 class GetDomainNameOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameOutput/)."""
     @property
     def domain_name(self) -> str | None: ...
     @property
@@ -1167,6 +1236,7 @@ class GetDomainNameOutput:
 
 @final
 class GetDomainNameAccessAssociationsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNameAccessAssociationsOutput/)."""
     @property
     def items(self) -> list[DomainNameAccessAssociation] | None: ...
     @property
@@ -1175,6 +1245,7 @@ class GetDomainNameAccessAssociationsOutput:
 
 @final
 class GetDomainNamesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetDomainNamesOutput/)."""
     @property
     def items(self) -> list[DomainName] | None: ...
     @property
@@ -1183,6 +1254,7 @@ class GetDomainNamesOutput:
 
 @final
 class GetExportOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetExportOutput/)."""
     @property
     def content_type(self) -> str | None: ...
     @property
@@ -1193,6 +1265,7 @@ class GetExportOutput:
 
 @final
 class GetGatewayResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponseOutput/)."""
     @property
     def response_type(self) -> _types.GatewayResponseTypeOutput | None: ...
     @property
@@ -1207,6 +1280,7 @@ class GetGatewayResponseOutput:
 
 @final
 class GetGatewayResponsesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetGatewayResponsesOutput/)."""
     @property
     def items(self) -> list[GatewayResponse] | None: ...
     @property
@@ -1215,6 +1289,7 @@ class GetGatewayResponsesOutput:
 
 @final
 class GetIntegrationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationOutput/)."""
     @property
     def type(self) -> _types.IntegrationTypeOutput | None: ...
     @property
@@ -1253,6 +1328,7 @@ class GetIntegrationOutput:
 
 @final
 class GetIntegrationResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetIntegrationResponseOutput/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1267,6 +1343,7 @@ class GetIntegrationResponseOutput:
 
 @final
 class GetMethodOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodOutput/)."""
     @property
     def http_method(self) -> str | None: ...
     @property
@@ -1293,6 +1370,7 @@ class GetMethodOutput:
 
 @final
 class GetMethodResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetMethodResponseOutput/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1303,6 +1381,7 @@ class GetMethodResponseOutput:
 
 @final
 class GetModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1317,12 +1396,14 @@ class GetModelOutput:
 
 @final
 class GetModelTemplateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelTemplateOutput/)."""
     @property
     def value(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetModelsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetModelsOutput/)."""
     @property
     def items(self) -> list[Model] | None: ...
     @property
@@ -1331,6 +1412,7 @@ class GetModelsOutput:
 
 @final
 class GetRequestValidatorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1343,6 +1425,7 @@ class GetRequestValidatorOutput:
 
 @final
 class GetRequestValidatorsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRequestValidatorsOutput/)."""
     @property
     def items(self) -> list[RequestValidator] | None: ...
     @property
@@ -1351,6 +1434,7 @@ class GetRequestValidatorsOutput:
 
 @final
 class GetResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourceOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1365,6 +1449,7 @@ class GetResourceOutput:
 
 @final
 class GetResourcesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetResourcesOutput/)."""
     @property
     def items(self) -> list[Resource] | None: ...
     @property
@@ -1373,6 +1458,7 @@ class GetResourcesOutput:
 
 @final
 class GetRestApiOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApiOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1413,6 +1499,7 @@ class GetRestApiOutput:
 
 @final
 class GetRestApisOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetRestApisOutput/)."""
     @property
     def items(self) -> list[RestApi] | None: ...
     @property
@@ -1421,6 +1508,7 @@ class GetRestApisOutput:
 
 @final
 class GetSdkOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkOutput/)."""
     @property
     def content_type(self) -> str | None: ...
     @property
@@ -1431,6 +1519,7 @@ class GetSdkOutput:
 
 @final
 class GetSdkTypeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypeOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1443,12 +1532,14 @@ class GetSdkTypeOutput:
 
 @final
 class GetSdkTypesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetSdkTypesOutput/)."""
     @property
     def items(self) -> list[SdkType] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetStageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStageOutput/)."""
     @property
     def deployment_id(self) -> str | None: ...
     @property
@@ -1487,18 +1578,21 @@ class GetStageOutput:
 
 @final
 class GetStagesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetStagesOutput/)."""
     @property
     def item(self) -> list[Stage] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetTagsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetTagsOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetUsageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsageOutput/)."""
     @property
     def usage_plan_id(self) -> str | None: ...
     @property
@@ -1513,6 +1607,7 @@ class GetUsageOutput:
 
 @final
 class GetUsagePlanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1533,6 +1628,7 @@ class GetUsagePlanOutput:
 
 @final
 class GetUsagePlanKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeyOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1545,6 +1641,7 @@ class GetUsagePlanKeyOutput:
 
 @final
 class GetUsagePlanKeysOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlanKeysOutput/)."""
     @property
     def items(self) -> list[UsagePlanKey] | None: ...
     @property
@@ -1553,6 +1650,7 @@ class GetUsagePlanKeysOutput:
 
 @final
 class GetUsagePlansOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetUsagePlansOutput/)."""
     @property
     def items(self) -> list[UsagePlan] | None: ...
     @property
@@ -1561,6 +1659,7 @@ class GetUsagePlansOutput:
 
 @final
 class GetVpcLinkOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinkOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1579,6 +1678,7 @@ class GetVpcLinkOutput:
 
 @final
 class GetVpcLinksOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/GetVpcLinksOutput/)."""
     @property
     def items(self) -> list[VpcLink] | None: ...
     @property
@@ -1587,6 +1687,7 @@ class GetVpcLinksOutput:
 
 @final
 class ImportApiKeysOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportApiKeysOutput/)."""
     @property
     def ids(self) -> list[str] | None: ...
     @property
@@ -1595,6 +1696,7 @@ class ImportApiKeysOutput:
 
 @final
 class ImportDocumentationPartsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportDocumentationPartsOutput/)."""
     @property
     def ids(self) -> list[str] | None: ...
     @property
@@ -1603,6 +1705,7 @@ class ImportDocumentationPartsOutput:
 
 @final
 class ImportRestApiOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportRestApiOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1643,6 +1746,7 @@ class ImportRestApiOutput:
 
 @final
 class PutGatewayResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutGatewayResponseOutput/)."""
     @property
     def response_type(self) -> _types.GatewayResponseTypeOutput | None: ...
     @property
@@ -1657,6 +1761,7 @@ class PutGatewayResponseOutput:
 
 @final
 class PutIntegrationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationOutput/)."""
     @property
     def type(self) -> _types.IntegrationTypeOutput | None: ...
     @property
@@ -1695,6 +1800,7 @@ class PutIntegrationOutput:
 
 @final
 class PutIntegrationResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutIntegrationResponseOutput/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1709,6 +1815,7 @@ class PutIntegrationResponseOutput:
 
 @final
 class PutMethodOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodOutput/)."""
     @property
     def http_method(self) -> str | None: ...
     @property
@@ -1735,6 +1842,7 @@ class PutMethodOutput:
 
 @final
 class PutMethodResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutMethodResponseOutput/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -1745,6 +1853,7 @@ class PutMethodResponseOutput:
 
 @final
 class PutRestApiOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/PutRestApiOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1785,6 +1894,7 @@ class PutRestApiOutput:
 
 @final
 class TestInvokeAuthorizerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeAuthorizerOutput/)."""
     @property
     def client_status(self) -> int: ...
     @property
@@ -1803,6 +1913,7 @@ class TestInvokeAuthorizerOutput:
 
 @final
 class TestInvokeMethodOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TestInvokeMethodOutput/)."""
     @property
     def status(self) -> int: ...
     @property
@@ -1819,6 +1930,7 @@ class TestInvokeMethodOutput:
 
 @final
 class UpdateAccountOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAccountOutput/)."""
     @property
     def cloudwatch_role_arn(self) -> str | None: ...
     @property
@@ -1831,6 +1943,7 @@ class UpdateAccountOutput:
 
 @final
 class UpdateApiKeyOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateApiKeyOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1855,6 +1968,7 @@ class UpdateApiKeyOutput:
 
 @final
 class UpdateAuthorizerOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateAuthorizerOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1879,6 +1993,7 @@ class UpdateAuthorizerOutput:
 
 @final
 class UpdateBasePathMappingOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateBasePathMappingOutput/)."""
     @property
     def base_path(self) -> str | None: ...
     @property
@@ -1889,6 +2004,7 @@ class UpdateBasePathMappingOutput:
 
 @final
 class UpdateClientCertificateOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateClientCertificateOutput/)."""
     @property
     def client_certificate_id(self) -> str | None: ...
     @property
@@ -1905,6 +2021,7 @@ class UpdateClientCertificateOutput:
 
 @final
 class UpdateDeploymentOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDeploymentOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1917,6 +2034,7 @@ class UpdateDeploymentOutput:
 
 @final
 class UpdateDocumentationPartOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationPartOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -1927,6 +2045,7 @@ class UpdateDocumentationPartOutput:
 
 @final
 class UpdateDocumentationVersionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDocumentationVersionOutput/)."""
     @property
     def version(self) -> str | None: ...
     @property
@@ -1937,6 +2056,7 @@ class UpdateDocumentationVersionOutput:
 
 @final
 class UpdateDomainNameOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateDomainNameOutput/)."""
     @property
     def domain_name(self) -> str | None: ...
     @property
@@ -1987,6 +2107,7 @@ class UpdateDomainNameOutput:
 
 @final
 class UpdateGatewayResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateGatewayResponseOutput/)."""
     @property
     def response_type(self) -> _types.GatewayResponseTypeOutput | None: ...
     @property
@@ -2001,6 +2122,7 @@ class UpdateGatewayResponseOutput:
 
 @final
 class UpdateIntegrationOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationOutput/)."""
     @property
     def type(self) -> _types.IntegrationTypeOutput | None: ...
     @property
@@ -2039,6 +2161,7 @@ class UpdateIntegrationOutput:
 
 @final
 class UpdateIntegrationResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateIntegrationResponseOutput/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -2053,6 +2176,7 @@ class UpdateIntegrationResponseOutput:
 
 @final
 class UpdateMethodOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodOutput/)."""
     @property
     def http_method(self) -> str | None: ...
     @property
@@ -2079,6 +2203,7 @@ class UpdateMethodOutput:
 
 @final
 class UpdateMethodResponseOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateMethodResponseOutput/)."""
     @property
     def status_code(self) -> str | None: ...
     @property
@@ -2089,6 +2214,7 @@ class UpdateMethodResponseOutput:
 
 @final
 class UpdateModelOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateModelOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -2103,6 +2229,7 @@ class UpdateModelOutput:
 
 @final
 class UpdateRequestValidatorOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRequestValidatorOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -2115,6 +2242,7 @@ class UpdateRequestValidatorOutput:
 
 @final
 class UpdateResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateResourceOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -2129,6 +2257,7 @@ class UpdateResourceOutput:
 
 @final
 class UpdateRestApiOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateRestApiOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -2169,6 +2298,7 @@ class UpdateRestApiOutput:
 
 @final
 class UpdateStageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateStageOutput/)."""
     @property
     def deployment_id(self) -> str | None: ...
     @property
@@ -2207,6 +2337,7 @@ class UpdateStageOutput:
 
 @final
 class UpdateUsageOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsageOutput/)."""
     @property
     def usage_plan_id(self) -> str | None: ...
     @property
@@ -2221,6 +2352,7 @@ class UpdateUsageOutput:
 
 @final
 class UpdateUsagePlanOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateUsagePlanOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property
@@ -2241,6 +2373,7 @@ class UpdateUsagePlanOutput:
 
 @final
 class UpdateVpcLinkOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/UpdateVpcLinkOutput/)."""
     @property
     def id(self) -> str | None: ...
     @property

@@ -25,6 +25,8 @@ from .paginators import SQSClientPaginators as _Paginators
 
 
 class SQSClient:
+    """Async SQSClient. See [reference](https://ferrumio.github.io/rboto/reference/sqs/)."""
+
     logger_name = "rboto.sqs"
 
     def __init__(
@@ -68,6 +70,7 @@ class SQSClient:
         aws_account_ids: Sequence[str],
         actions: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/add_permission/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "label": label,
@@ -93,6 +96,7 @@ class SQSClient:
         *,
         task_handle: str,
     ) -> CancelMessageMoveTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/cancel_message_move_task/)."""
         params: dict[str, object] = {
             "task_handle": task_handle,
         }
@@ -117,6 +121,7 @@ class SQSClient:
         receipt_handle: str,
         visibility_timeout: int,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/change_message_visibility/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "receipt_handle": receipt_handle,
@@ -142,6 +147,7 @@ class SQSClient:
         queue_url: str,
         entries: Sequence[ChangeMessageVisibilityBatchRequestEntry],
     ) -> ChangeMessageVisibilityBatchOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/change_message_visibility_batch/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "entries": entries,
@@ -167,6 +173,7 @@ class SQSClient:
         attributes: dict[QueueAttributeName, str] | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateQueueOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/create_queue/)."""
         params: dict[str, object] = {
             "queue_name": queue_name,
         }
@@ -194,6 +201,7 @@ class SQSClient:
         queue_url: str,
         receipt_handle: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/delete_message/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "receipt_handle": receipt_handle,
@@ -218,6 +226,7 @@ class SQSClient:
         queue_url: str,
         entries: Sequence[DeleteMessageBatchRequestEntry],
     ) -> DeleteMessageBatchOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/delete_message_batch/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "entries": entries,
@@ -241,6 +250,7 @@ class SQSClient:
         *,
         queue_url: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/delete_queue/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -264,6 +274,7 @@ class SQSClient:
         queue_url: str,
         attribute_names: Sequence[QueueAttributeName] | None = None,
     ) -> GetQueueAttributesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/get_queue_attributes/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -289,6 +300,7 @@ class SQSClient:
         queue_name: str,
         queue_owner_aws_account_id: str | None = None,
     ) -> GetQueueUrlOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/get_queue_url/)."""
         params: dict[str, object] = {
             "queue_name": queue_name,
         }
@@ -315,6 +327,7 @@ class SQSClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDeadLetterSourceQueuesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/list_dead_letter_source_queues/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -342,6 +355,7 @@ class SQSClient:
         source_arn: str,
         max_results: int | None = None,
     ) -> ListMessageMoveTasksOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/list_message_move_tasks/)."""
         params: dict[str, object] = {
             "source_arn": source_arn,
         }
@@ -366,6 +380,7 @@ class SQSClient:
         *,
         queue_url: str,
     ) -> ListQueueTagsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/list_queue_tags/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -390,6 +405,7 @@ class SQSClient:
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListQueuesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/list_queues/)."""
         params: dict[str, object] = {
         }
         if queue_name_prefix is not None:
@@ -417,6 +433,7 @@ class SQSClient:
         *,
         queue_url: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/purge_queue/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -446,6 +463,7 @@ class SQSClient:
         wait_time_seconds: int | None = None,
         receive_request_attempt_id: str | None = None,
     ) -> ReceiveMessageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/receive_message/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
@@ -483,6 +501,7 @@ class SQSClient:
         queue_url: str,
         label: str,
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/remove_permission/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "label": label,
@@ -512,6 +531,7 @@ class SQSClient:
         message_deduplication_id: str | None = None,
         message_group_id: str | None = None,
     ) -> SendMessageOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/send_message/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "message_body": message_body,
@@ -546,6 +566,7 @@ class SQSClient:
         queue_url: str,
         entries: Sequence[SendMessageBatchRequestEntry],
     ) -> SendMessageBatchOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/send_message_batch/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "entries": entries,
@@ -570,6 +591,7 @@ class SQSClient:
         queue_url: str,
         attributes: dict[QueueAttributeName, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/set_queue_attributes/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "attributes": attributes,
@@ -595,6 +617,7 @@ class SQSClient:
         destination_arn: str | None = None,
         max_number_of_messages_per_second: int | None = None,
     ) -> StartMessageMoveTaskOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/start_message_move_task/)."""
         params: dict[str, object] = {
             "source_arn": source_arn,
         }
@@ -622,6 +645,7 @@ class SQSClient:
         queue_url: str,
         tags: dict[str, str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/tag_queue/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "tags": tags,
@@ -646,6 +670,7 @@ class SQSClient:
         queue_url: str,
         tag_keys: Sequence[str],
     ) -> None:
+        """See [reference](https://ferrumio.github.io/rboto/reference/sqs/operations/untag_queue/)."""
         params: dict[str, object] = {
             "queue_url": queue_url,
             "tag_keys": tag_keys,

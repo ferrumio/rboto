@@ -11,18 +11,21 @@ from .types import StartMedicalScribeListeningSessionOutput
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
 
 @final
 class MedicalScribeOutputStreamReceiver:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStreamReceiver/)."""
     def __aiter__(self) -> AsyncIterator[_types.MedicalScribeOutputStream]: ...
     def __anext__(self) -> Awaitable[_types.MedicalScribeOutputStream]: ...
 
 
 @final
 class ArtifactDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ArtifactDetailsOutput/)."""
     @property
     def output_location(self) -> str | None: ...
     @property
@@ -33,6 +36,7 @@ class ArtifactDetails:
 
 @final
 class ClinicalNoteGenerationResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ClinicalNoteGenerationResultOutput/)."""
     @property
     def note_result(self) -> ArtifactDetails | None: ...
     @property
@@ -43,12 +47,14 @@ class ClinicalNoteGenerationResult:
 
 @final
 class ClinicalNoteGenerationSettingsResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ClinicalNoteGenerationSettingsResponseOutput/)."""
     @property
     def note_template_settings(self) -> _types.NoteTemplateSettingsResponse | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DomainSummary:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DomainSummaryOutput/)."""
     @property
     def domain_id(self) -> str: ...
     @property
@@ -63,6 +69,7 @@ class DomainSummary:
 
 @final
 class EncryptionContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/EncryptionContextOutput/)."""
     @property
     def encryption_type(self) -> _types.EncryptionTypeOutput: ...
     @property
@@ -71,6 +78,7 @@ class EncryptionContext:
 
 @final
 class FhirServer:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/FhirServer-618cdbd19e7a/)."""
     @property
     def fhir_endpoint(self) -> str: ...
     @property
@@ -79,6 +87,7 @@ class FhirServer:
 
 @final
 class InputDataConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/InputDataConfigOutput/)."""
     @property
     def fhir_server(self) -> FhirServer | None: ...
     @property
@@ -87,18 +96,21 @@ class InputDataConfig:
 
 @final
 class InsightsContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/InsightsContextOutput/)."""
     @property
     def insights_type(self) -> _types.InsightsTypeOutput: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class InsightsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/InsightsValueOutput/)."""
     @property
     def uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MedicalScribeChannelDefinition:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeChannelDefinitionOutput/)."""
     @property
     def channel_id(self) -> int: ...
     @property
@@ -107,6 +119,7 @@ class MedicalScribeChannelDefinition:
 
 @final
 class MedicalScribeListeningSessionDetails:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeListeningSessionDetailsOutput/)."""
     @property
     def session_id(self) -> str | None: ...
     @property
@@ -137,6 +150,7 @@ class MedicalScribeListeningSessionDetails:
 
 @final
 class MedicalScribePostStreamActionSettingsResponse:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribePostStreamActionSettingsResponseOutput/)."""
     @property
     def output_s3_uri(self) -> str: ...
     @property
@@ -145,24 +159,28 @@ class MedicalScribePostStreamActionSettingsResponse:
 
 @final
 class MedicalScribePostStreamActionsResult:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribePostStreamActionsResultOutput/)."""
     @property
     def clinical_note_generation_result(self) -> ClinicalNoteGenerationResult | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class OutputDataConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/OutputDataConfigOutput/)."""
     @property
     def s3_output_path(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PatientInsightsEncounterContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PatientInsightsEncounterContextOutput/)."""
     @property
     def encounter_reason(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PatientInsightsPatientContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/PatientInsightsPatientContextOutput/)."""
     @property
     def patient_id(self) -> str: ...
     @property
@@ -173,12 +191,14 @@ class PatientInsightsPatientContext:
 
 @final
 class S3Source:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/S3SourceOutput/)."""
     @property
     def uri(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class SubscriptionDescription:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/SubscriptionDescriptionOutput/)."""
     @property
     def domain_id(self) -> str: ...
     @property
@@ -199,6 +219,7 @@ class SubscriptionDescription:
 
 @final
 class UserContext:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/UserContextOutput/)."""
     @property
     def role(self) -> _types.ProviderRoleOutput: ...
     @property
@@ -209,6 +230,7 @@ class UserContext:
 
 @final
 class WebAppConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/WebAppConfigurationOutput/)."""
     @property
     def ehr_role(self) -> str: ...
     @property
@@ -219,12 +241,14 @@ class WebAppConfiguration:
 
 @final
 class ActivateSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ActivateSubscriptionOutput/)."""
     @property
     def subscription(self) -> SubscriptionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CreateDomainOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateDomainOutput/)."""
     @property
     def domain_id(self) -> str: ...
     @property
@@ -247,6 +271,7 @@ class CreateDomainOutput:
 
 @final
 class CreateSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/CreateSubscriptionOutput/)."""
     @property
     def domain_id(self) -> str: ...
     @property
@@ -267,12 +292,14 @@ class CreateSubscriptionOutput:
 
 @final
 class DeactivateSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeactivateSubscriptionOutput/)."""
     @property
     def subscription(self) -> SubscriptionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeleteDomainOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/DeleteDomainOutput/)."""
     @property
     def domain_id(self) -> str: ...
     @property
@@ -283,6 +310,7 @@ class DeleteDomainOutput:
 
 @final
 class GetDomainOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetDomainOutput/)."""
     @property
     def domain_id(self) -> str: ...
     @property
@@ -307,12 +335,14 @@ class GetDomainOutput:
 
 @final
 class GetMedicalScribeListeningSessionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetMedicalScribeListeningSessionOutput/)."""
     @property
     def medical_scribe_listening_session_details(self) -> MedicalScribeListeningSessionDetails | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class GetPatientInsightsJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetPatientInsightsJobOutput/)."""
     @property
     def job_id(self) -> str: ...
     @property
@@ -343,12 +373,14 @@ class GetPatientInsightsJobOutput:
 
 @final
 class GetSubscriptionOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/GetSubscriptionOutput/)."""
     @property
     def subscription(self) -> SubscriptionDescription | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class ListDomainsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListDomainsOutput/)."""
     @property
     def domains(self) -> list[DomainSummary]: ...
     @property
@@ -357,6 +389,7 @@ class ListDomainsOutput:
 
 @final
 class ListSubscriptionsOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListSubscriptionsOutput/)."""
     @property
     def subscriptions(self) -> list[SubscriptionDescription]: ...
     @property
@@ -365,12 +398,14 @@ class ListSubscriptionsOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartPatientInsightsJobOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/StartPatientInsightsJobOutput/)."""
     @property
     def job_arn(self) -> str: ...
     @property

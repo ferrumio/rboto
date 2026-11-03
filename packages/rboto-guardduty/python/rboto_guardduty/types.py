@@ -9,524 +9,1041 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 AcceptAdministratorInvitationOutput: TypeAlias = _native.AcceptAdministratorInvitationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptAdministratorInvitationOutput/)."""
 AcceptInvitationOutput: TypeAlias = _native.AcceptInvitationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptInvitationOutput/)."""
 AccessControlListOutput: TypeAlias = _native.AccessControlList
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessControlListOutput/)."""
 AccessKeyOutput: TypeAlias = _native.AccessKey
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessKeyOutput/)."""
 AccessKeyDetailsOutput: TypeAlias = _native.AccessKeyDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessKeyDetailsOutput/)."""
 AccountOutput: TypeAlias = _native.Account
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountOutput/)."""
 AccountFreeTrialInfoOutput: TypeAlias = _native.AccountFreeTrialInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountFreeTrialInfoOutput/)."""
 AccountLevelPermissionsOutput: TypeAlias = _native.AccountLevelPermissions
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountLevelPermissionsOutput/)."""
 AccountStatisticsOutput: TypeAlias = _native.AccountStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountStatisticsOutput/)."""
 ActionOutput: TypeAlias = _native.Action
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActionOutput/)."""
 ActivityOutput: TypeAlias = _native.Activity
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActivityOutput/)."""
 ActorOutput: TypeAlias = _native.Actor
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActorOutput/)."""
 ActorProcessOutput: TypeAlias = _native.ActorProcess
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActorProcessOutput/)."""
 AdditionalInfoOutput: TypeAlias = _native.AdditionalInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdditionalInfoOutput/)."""
 AddonDetailsOutput: TypeAlias = _native.AddonDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AddonDetailsOutput/)."""
 AdminAccountOutput: TypeAlias = _native.AdminAccount
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminAccountOutput/)."""
 AdministratorOutput: TypeAlias = _native.Administrator
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdministratorOutput/)."""
 AgentDetailsOutput: TypeAlias = _native.AgentDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AgentDetailsOutput/)."""
 AnomalyOutput: TypeAlias = _native.Anomaly
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyOutput/)."""
 AnomalyObjectOutput: TypeAlias = _native.AnomalyObject
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyObjectOutput/)."""
 AnomalyUnusualOutput: TypeAlias = _native.AnomalyUnusual
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyUnusualOutput/)."""
 ApiCallOutput: TypeAlias = _native.ApiCall
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ApiCallOutput/)."""
 ArchiveFindingsOutput: TypeAlias = _native.ArchiveFindingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ArchiveFindingsOutput/)."""
 AssociationDetailOutput: TypeAlias = _native.AssociationDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationDetailOutput/)."""
 AssociationSummaryOutput: TypeAlias = _native.AssociationSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationSummaryOutput/)."""
 AutonomousSystemOutput: TypeAlias = _native.AutonomousSystem
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutonomousSystemOutput/)."""
 AutoscalingAutoScalingGroupOutput: TypeAlias = _native.AutoscalingAutoScalingGroup
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutoscalingAutoScalingGroupOutput/)."""
 AwsApiCallActionOutput: TypeAlias = _native.AwsApiCallAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AwsApiCallActionOutput/)."""
 BedrockGuardrailOutput: TypeAlias = _native.BedrockGuardrail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailOutput/)."""
 BedrockGuardrailDetailsOutput: TypeAlias = _native.BedrockGuardrailDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailDetailsOutput/)."""
 BedrockGuardrailResourceOutput: TypeAlias = _native.BedrockGuardrailResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailResourceOutput/)."""
 BlockPublicAccessOutput: TypeAlias = _native.BlockPublicAccess
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BlockPublicAccessOutput/)."""
 BucketLevelPermissionsOutput: TypeAlias = _native.BucketLevelPermissions
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BucketLevelPermissionsOutput/)."""
 BucketPolicyOutput: TypeAlias = _native.BucketPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BucketPolicyOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ByteStream/)."""
 CityOutput: TypeAlias = _native.City
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CityOutput/)."""
 CloudDetailsOutput: TypeAlias = _native.CloudDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudDetailsOutput/)."""
 CloudTrailConfigurationResultOutput: TypeAlias = _native.CloudTrailConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudTrailConfigurationResultOutput/)."""
 CloudformationStackOutput: TypeAlias = _native.CloudformationStack
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudformationStackOutput/)."""
 ConditionOutput: TypeAlias = _native.Condition
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ConditionOutput/)."""
 ContainerOutput: TypeAlias = _native.Container
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerOutput/)."""
 ContainerFindingResourceOutput: TypeAlias = _native.ContainerFindingResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerFindingResourceOutput/)."""
 ContainerInstanceDetailsOutput: TypeAlias = _native.ContainerInstanceDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerInstanceDetailsOutput/)."""
 ContentPolicyFilterOutput: TypeAlias = _native.ContentPolicyFilter
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterOutput/)."""
 CountryOutput: TypeAlias = _native.Country
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CountryOutput/)."""
 CoverageEc2InstanceDetailsOutput: TypeAlias = _native.CoverageEc2InstanceDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEc2InstanceDetailsOutput/)."""
 CoverageEcsClusterDetailsOutput: TypeAlias = _native.CoverageEcsClusterDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEcsClusterDetailsOutput/)."""
 CoverageEksClusterDetailsOutput: TypeAlias = _native.CoverageEksClusterDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEksClusterDetailsOutput/)."""
 CoverageResourceOutput: TypeAlias = _native.CoverageResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageResourceOutput/)."""
 CoverageResourceDetailsOutput: TypeAlias = _native.CoverageResourceDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageResourceDetailsOutput/)."""
 CoverageStatisticsOutput: TypeAlias = _native.CoverageStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageStatisticsOutput/)."""
 CreateCustomDetectionRuleAssociationOutput: TypeAlias = _native.CreateCustomDetectionRuleAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleAssociationOutput/)."""
 CreateCustomDetectionRuleOrgConfigurationOutput: TypeAlias = _native.CreateCustomDetectionRuleOrgConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleOrgConfigurationOutput/)."""
 CreateDetectorOutput: TypeAlias = _native.CreateDetectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateDetectorOutput/)."""
 CreateFilterOutput: TypeAlias = _native.CreateFilterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateFilterOutput/)."""
 CreateIPSetOutput: TypeAlias = _native.CreateIPSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateIPSetOutput/)."""
 CreateInvestigationOutput: TypeAlias = _native.CreateInvestigationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateInvestigationOutput/)."""
 CreateMalwareProtectionPlanOutput: TypeAlias = _native.CreateMalwareProtectionPlanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMalwareProtectionPlanOutput/)."""
 CreateMembersOutput: TypeAlias = _native.CreateMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMembersOutput/)."""
 CreateProtectedResourceOutput: TypeAlias = _native.CreateProtectedResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateProtectedResourceOutput/)."""
 CreatePublishingDestinationOutput: TypeAlias = _native.CreatePublishingDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreatePublishingDestinationOutput/)."""
 CreateS3BucketResourceOutput: TypeAlias = _native.CreateS3BucketResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateS3BucketResourceOutput/)."""
 CreateSampleFindingsOutput: TypeAlias = _native.CreateSampleFindingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateSampleFindingsOutput/)."""
 CreateThreatEntitySetOutput: TypeAlias = _native.CreateThreatEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatEntitySetOutput/)."""
 CreateThreatIntelSetOutput: TypeAlias = _native.CreateThreatIntelSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatIntelSetOutput/)."""
 CreateTrustedEntitySetOutput: TypeAlias = _native.CreateTrustedEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateTrustedEntitySetOutput/)."""
 DataSourceConfigurationsResultOutput: TypeAlias = _native.DataSourceConfigurationsResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceConfigurationsResultOutput/)."""
 DataSourceFreeTrialOutput: TypeAlias = _native.DataSourceFreeTrial
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceFreeTrialOutput/)."""
 DataSourcesFreeTrialOutput: TypeAlias = _native.DataSourcesFreeTrial
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourcesFreeTrialOutput/)."""
 DateStatisticsOutput: TypeAlias = _native.DateStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DateStatisticsOutput/)."""
 DeclineInvitationsOutput: TypeAlias = _native.DeclineInvitationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeclineInvitationsOutput/)."""
 DefaultServerSideEncryptionOutput: TypeAlias = _native.DefaultServerSideEncryption
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DefaultServerSideEncryptionOutput/)."""
 DeleteCustomDetectionRuleAssociationOutput: TypeAlias = _native.DeleteCustomDetectionRuleAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleAssociationOutput/)."""
 DeleteCustomDetectionRuleOrgConfigurationOutput: TypeAlias = _native.DeleteCustomDetectionRuleOrgConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleOrgConfigurationOutput/)."""
 DeleteDetectorOutput: TypeAlias = _native.DeleteDetectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteDetectorOutput/)."""
 DeleteFilterOutput: TypeAlias = _native.DeleteFilterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteFilterOutput/)."""
 DeleteIPSetOutput: TypeAlias = _native.DeleteIPSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteIPSetOutput/)."""
 DeleteInvitationsOutput: TypeAlias = _native.DeleteInvitationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteInvitationsOutput/)."""
 DeleteMembersOutput: TypeAlias = _native.DeleteMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteMembersOutput/)."""
 DeletePublishingDestinationOutput: TypeAlias = _native.DeletePublishingDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeletePublishingDestinationOutput/)."""
 DeleteThreatEntitySetOutput: TypeAlias = _native.DeleteThreatEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatEntitySetOutput/)."""
 DeleteThreatIntelSetOutput: TypeAlias = _native.DeleteThreatIntelSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatIntelSetOutput/)."""
 DeleteTrustedEntitySetOutput: TypeAlias = _native.DeleteTrustedEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteTrustedEntitySetOutput/)."""
 DescribeMalwareScansOutput: TypeAlias = _native.DescribeMalwareScansOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeMalwareScansOutput/)."""
 DescribeOrganizationConfigurationOutput: TypeAlias = _native.DescribeOrganizationConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeOrganizationConfigurationOutput/)."""
 DescribePublishingDestinationOutput: TypeAlias = _native.DescribePublishingDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribePublishingDestinationOutput/)."""
 DestinationOutput: TypeAlias = _native.Destination
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationOutput/)."""
 DestinationPropertiesOutput: TypeAlias = _native.DestinationProperties
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationPropertiesOutput/)."""
 DetectionOutput: TypeAlias = _native.Detection
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionOutput/)."""
 DetectionRuleEc2RequirementsOutput: TypeAlias = _native.DetectionRuleEc2Requirements
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEc2RequirementsOutput/)."""
 DetectionRuleEcsFargateRequirementsOutput: TypeAlias = _native.DetectionRuleEcsFargateRequirements
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEcsFargateRequirementsOutput/)."""
 DetectionRuleEksRequirementsOutput: TypeAlias = _native.DetectionRuleEksRequirements
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEksRequirementsOutput/)."""
 DetectionRuleOrgConfigurationOutput: TypeAlias = _native.DetectionRuleOrgConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleOrgConfigurationOutput/)."""
 DetectionRuleOrgConfigurationSummaryOutput: TypeAlias = _native.DetectionRuleOrgConfigurationSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleOrgConfigurationSummaryOutput/)."""
 DetectionRuleRuntimeMonitoringDetailsOutput: TypeAlias = _native.DetectionRuleRuntimeMonitoringDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleRuntimeMonitoringDetailsOutput/)."""
 DetectionRuleRuntimePlatformsOutput: TypeAlias = _native.DetectionRuleRuntimePlatforms
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleRuntimePlatformsOutput/)."""
 DetectorAdditionalConfigurationResultOutput: TypeAlias = _native.DetectorAdditionalConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorAdditionalConfigurationResultOutput/)."""
 DetectorFeatureConfigurationResultOutput: TypeAlias = _native.DetectorFeatureConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeatureConfigurationResultOutput/)."""
 DisableOrganizationAdminAccountOutput: TypeAlias = _native.DisableOrganizationAdminAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisableOrganizationAdminAccountOutput/)."""
 DisassociateFromAdministratorAccountOutput: TypeAlias = _native.DisassociateFromAdministratorAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromAdministratorAccountOutput/)."""
 DisassociateFromMasterAccountOutput: TypeAlias = _native.DisassociateFromMasterAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromMasterAccountOutput/)."""
 DisassociateMembersOutput: TypeAlias = _native.DisassociateMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateMembersOutput/)."""
 DnsLogsConfigurationResult: TypeAlias = _native.DnsLogsConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DnsLogsConfigurationResult-486dfb991741/)."""
 DnsRequestActionOutput: TypeAlias = _native.DnsRequestAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DnsRequestActionOutput/)."""
 DomainDetailsOutput: TypeAlias = _native.DomainDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DomainDetailsOutput/)."""
 EbsSnapshotOutput: TypeAlias = _native.EbsSnapshot
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotOutput/)."""
 EbsSnapshotDetailsOutput: TypeAlias = _native.EbsSnapshotDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotDetailsOutput/)."""
 EbsVolumeDetailsOutput: TypeAlias = _native.EbsVolumeDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumeDetailsOutput/)."""
 EbsVolumeScanDetailsOutput: TypeAlias = _native.EbsVolumeScanDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumeScanDetailsOutput/)."""
 EbsVolumesResultOutput: TypeAlias = _native.EbsVolumesResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumesResultOutput/)."""
 Ec2ImageOutput: TypeAlias = _native.Ec2Image
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2ImageOutput/)."""
 Ec2ImageDetailsOutput: TypeAlias = _native.Ec2ImageDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2ImageDetailsOutput/)."""
 Ec2InstanceOutput: TypeAlias = _native.Ec2Instance
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2InstanceOutput/)."""
 Ec2LaunchTemplateOutput: TypeAlias = _native.Ec2LaunchTemplate
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2LaunchTemplateOutput/)."""
 Ec2NetworkInterfaceOutput: TypeAlias = _native.Ec2NetworkInterface
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2NetworkInterfaceOutput/)."""
 Ec2VpcOutput: TypeAlias = _native.Ec2Vpc
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2VpcOutput/)."""
 EcsClusterOutput: TypeAlias = _native.EcsCluster
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsClusterOutput/)."""
 EcsClusterDetailsOutput: TypeAlias = _native.EcsClusterDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsClusterDetailsOutput/)."""
 EcsTaskOutput: TypeAlias = _native.EcsTask
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsTaskOutput/)."""
 EcsTaskDetailsOutput: TypeAlias = _native.EcsTaskDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsTaskDetailsOutput/)."""
 EksClusterOutput: TypeAlias = _native.EksCluster
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EksClusterOutput/)."""
 EksClusterDetailsOutput: TypeAlias = _native.EksClusterDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EksClusterDetailsOutput/)."""
 EnableOrganizationAdminAccountOutput: TypeAlias = _native.EnableOrganizationAdminAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EnableOrganizationAdminAccountOutput/)."""
 EvidenceOutput: TypeAlias = _native.Evidence
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EvidenceOutput/)."""
 FargateDetailsOutput: TypeAlias = _native.FargateDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FargateDetailsOutput/)."""
 FindingOutput: TypeAlias = _native.Finding
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingOutput/)."""
 FindingCriteriaOutput: TypeAlias = _native.FindingCriteria
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingCriteriaOutput/)."""
 FindingStatisticsOutput: TypeAlias = _native.FindingStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingStatisticsOutput/)."""
 FindingTypeStatisticsOutput: TypeAlias = _native.FindingTypeStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeStatisticsOutput/)."""
 FlowLogsConfigurationResultOutput: TypeAlias = _native.FlowLogsConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FlowLogsConfigurationResultOutput/)."""
 FreeTrialFeatureConfigurationResultOutput: TypeAlias = _native.FreeTrialFeatureConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FreeTrialFeatureConfigurationResultOutput/)."""
 GeoLocationOutput: TypeAlias = _native.GeoLocation
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GeoLocationOutput/)."""
 GetAdministratorAccountOutput: TypeAlias = _native.GetAdministratorAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetAdministratorAccountOutput/)."""
 GetCoverageStatisticsOutput: TypeAlias = _native.GetCoverageStatisticsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCoverageStatisticsOutput/)."""
 GetCustomDetectionRuleAssociationOutput: TypeAlias = _native.GetCustomDetectionRuleAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleAssociationOutput/)."""
 GetCustomDetectionRuleOrgConfigurationOutput: TypeAlias = _native.GetCustomDetectionRuleOrgConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleOrgConfigurationOutput/)."""
 GetCustomDetectionRuleOutput: TypeAlias = _native.GetCustomDetectionRuleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleOutput/)."""
 GetDetectorOutput: TypeAlias = _native.GetDetectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetDetectorOutput/)."""
 GetFilterOutput: TypeAlias = _native.GetFilterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFilterOutput/)."""
 GetFindingsOutput: TypeAlias = _native.GetFindingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsOutput/)."""
 GetFindingsStatisticsOutput: TypeAlias = _native.GetFindingsStatisticsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsStatisticsOutput/)."""
 GetIPSetOutput: TypeAlias = _native.GetIPSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetIPSetOutput/)."""
 GetInvestigationOutput: TypeAlias = _native.GetInvestigationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvestigationOutput/)."""
 GetInvitationsCountOutput: TypeAlias = _native.GetInvitationsCountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvitationsCountOutput/)."""
 GetMalwareProtectionPlanOutput: TypeAlias = _native.GetMalwareProtectionPlanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareProtectionPlanOutput/)."""
 GetMalwareScanOutput: TypeAlias = _native.GetMalwareScanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanOutput/)."""
 GetMalwareScanResultDetailsOutput: TypeAlias = _native.GetMalwareScanResultDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanResultDetailsOutput/)."""
 GetMalwareScanSettingsOutput: TypeAlias = _native.GetMalwareScanSettingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanSettingsOutput/)."""
 GetMasterAccountOutput: TypeAlias = _native.GetMasterAccountOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMasterAccountOutput/)."""
 GetMemberDetectorsOutput: TypeAlias = _native.GetMemberDetectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMemberDetectorsOutput/)."""
 GetMembersOutput: TypeAlias = _native.GetMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMembersOutput/)."""
 GetOrganizationStatisticsOutput: TypeAlias = _native.GetOrganizationStatisticsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetOrganizationStatisticsOutput/)."""
 GetRemainingFreeTrialDaysOutput: TypeAlias = _native.GetRemainingFreeTrialDaysOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetRemainingFreeTrialDaysOutput/)."""
 GetThreatEntitySetOutput: TypeAlias = _native.GetThreatEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatEntitySetOutput/)."""
 GetThreatIntelSetOutput: TypeAlias = _native.GetThreatIntelSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatIntelSetOutput/)."""
 GetTrustedEntitySetOutput: TypeAlias = _native.GetTrustedEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetTrustedEntitySetOutput/)."""
 GetUsageStatisticsOutput: TypeAlias = _native.GetUsageStatisticsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetUsageStatisticsOutput/)."""
 HighestSeverityThreatDetailsOutput: TypeAlias = _native.HighestSeverityThreatDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/HighestSeverityThreatDetailsOutput/)."""
 HostPathOutput: TypeAlias = _native.HostPath
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/HostPathOutput/)."""
 IamInstanceProfileOutput: TypeAlias = _native.IamInstanceProfile
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IamInstanceProfileOutput/)."""
 IamInstanceProfileV2Output: TypeAlias = _native.IamInstanceProfileV2
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IamInstanceProfileV2Output/)."""
 ImpersonatedUserOutput: TypeAlias = _native.ImpersonatedUser
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ImpersonatedUserOutput/)."""
 IncrementalScanDetailsOutput: TypeAlias = _native.IncrementalScanDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IncrementalScanDetailsOutput/)."""
 IndicatorOutput: TypeAlias = _native.Indicator
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IndicatorOutput/)."""
 InstanceDetailsOutput: TypeAlias = _native.InstanceDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InstanceDetailsOutput/)."""
 InvestigationOutput: TypeAlias = _native.Investigation
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationOutput/)."""
 InvestigationMetadataOutput: TypeAlias = _native.InvestigationMetadata
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationMetadataOutput/)."""
 InvestigationSummaryOutput: TypeAlias = _native.InvestigationSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSummaryOutput/)."""
 InvitationOutput: TypeAlias = _native.Invitation
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvitationOutput/)."""
 InviteMembersOutput: TypeAlias = _native.InviteMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InviteMembersOutput/)."""
 ItemDetailsOutput: TypeAlias = _native.ItemDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemDetailsOutput/)."""
 ItemPathOutput: TypeAlias = _native.ItemPath
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemPathOutput/)."""
 KubernetesApiCallActionOutput: TypeAlias = _native.KubernetesApiCallAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesApiCallActionOutput/)."""
 KubernetesAuditLogsConfigurationResultOutput: TypeAlias = _native.KubernetesAuditLogsConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesAuditLogsConfigurationResultOutput/)."""
 KubernetesConfigurationResultOutput: TypeAlias = _native.KubernetesConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesConfigurationResultOutput/)."""
 KubernetesDataSourceFreeTrialOutput: TypeAlias = _native.KubernetesDataSourceFreeTrial
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesDataSourceFreeTrialOutput/)."""
 KubernetesDetailsOutput: TypeAlias = _native.KubernetesDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesDetailsOutput/)."""
 KubernetesPermissionCheckedDetailsOutput: TypeAlias = _native.KubernetesPermissionCheckedDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesPermissionCheckedDetailsOutput/)."""
 KubernetesRoleBindingDetailsOutput: TypeAlias = _native.KubernetesRoleBindingDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesRoleBindingDetailsOutput/)."""
 KubernetesRoleDetailsOutput: TypeAlias = _native.KubernetesRoleDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesRoleDetailsOutput/)."""
 KubernetesUserDetailsOutput: TypeAlias = _native.KubernetesUserDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesUserDetailsOutput/)."""
 KubernetesWorkloadOutput: TypeAlias = _native.KubernetesWorkload
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesWorkloadOutput/)."""
 KubernetesWorkloadDetailsOutput: TypeAlias = _native.KubernetesWorkloadDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesWorkloadDetailsOutput/)."""
 LambdaDetailsOutput: TypeAlias = _native.LambdaDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LambdaDetailsOutput/)."""
 LineageObjectOutput: TypeAlias = _native.LineageObject
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LineageObjectOutput/)."""
 ListCoverageOutput: TypeAlias = _native.ListCoverageOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCoverageOutput/)."""
 ListCustomDetectionRuleAssociationsOutput: TypeAlias = _native.ListCustomDetectionRuleAssociationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleAssociationsOutput/)."""
 ListCustomDetectionRuleOrgConfigurationsOutput: TypeAlias = _native.ListCustomDetectionRuleOrgConfigurationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleOrgConfigurationsOutput/)."""
 ListCustomDetectionRulesOutput: TypeAlias = _native.ListCustomDetectionRulesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRulesOutput/)."""
 ListDetectorsOutput: TypeAlias = _native.ListDetectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListDetectorsOutput/)."""
 ListFiltersOutput: TypeAlias = _native.ListFiltersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFiltersOutput/)."""
 ListFindingsOutput: TypeAlias = _native.ListFindingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFindingsOutput/)."""
 ListIPSetsOutput: TypeAlias = _native.ListIPSetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListIPSetsOutput/)."""
 ListInvestigationsOutput: TypeAlias = _native.ListInvestigationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvestigationsOutput/)."""
 ListInvitationsOutput: TypeAlias = _native.ListInvitationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvitationsOutput/)."""
 ListMalwareProtectionPlansOutput: TypeAlias = _native.ListMalwareProtectionPlansOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareProtectionPlansOutput/)."""
 ListMalwareScansOutput: TypeAlias = _native.ListMalwareScansOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansOutput/)."""
 ListMembersOutput: TypeAlias = _native.ListMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMembersOutput/)."""
 ListOrganizationAdminAccountsOutput: TypeAlias = _native.ListOrganizationAdminAccountsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListOrganizationAdminAccountsOutput/)."""
 ListPublishingDestinationsOutput: TypeAlias = _native.ListPublishingDestinationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListPublishingDestinationsOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTagsForResourceOutput/)."""
 ListThreatEntitySetsOutput: TypeAlias = _native.ListThreatEntitySetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatEntitySetsOutput/)."""
 ListThreatIntelSetsOutput: TypeAlias = _native.ListThreatIntelSetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatIntelSetsOutput/)."""
 ListTrustedEntitySetsOutput: TypeAlias = _native.ListTrustedEntitySetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTrustedEntitySetsOutput/)."""
 LocalIpDetailsOutput: TypeAlias = _native.LocalIpDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LocalIpDetailsOutput/)."""
 LocalPortDetailsOutput: TypeAlias = _native.LocalPortDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LocalPortDetailsOutput/)."""
 LoginAttributeOutput: TypeAlias = _native.LoginAttribute
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LoginAttributeOutput/)."""
 MalwareProtectionConfigurationResultOutput: TypeAlias = _native.MalwareProtectionConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionConfigurationResultOutput/)."""
 MalwareProtectionDataSourceFreeTrialOutput: TypeAlias = _native.MalwareProtectionDataSourceFreeTrial
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionDataSourceFreeTrialOutput/)."""
 MalwareProtectionFindingsScanConfigurationOutput: TypeAlias = _native.MalwareProtectionFindingsScanConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionFindingsScanConfigurationOutput/)."""
 MalwareProtectionPlanActionsOutput: TypeAlias = _native.MalwareProtectionPlanActions
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanActionsOutput/)."""
 MalwareProtectionPlanStatusReasonOutput: TypeAlias = _native.MalwareProtectionPlanStatusReason
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanStatusReasonOutput/)."""
 MalwareProtectionPlanSummaryOutput: TypeAlias = _native.MalwareProtectionPlanSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanSummaryOutput/)."""
 MalwareProtectionPlanTaggingActionOutput: TypeAlias = _native.MalwareProtectionPlanTaggingAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanTaggingActionOutput/)."""
 MalwareScanOutput: TypeAlias = _native.MalwareScan
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareScanOutput/)."""
 MalwareScanDetailsOutput: TypeAlias = _native.MalwareScanDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareScanDetailsOutput/)."""
 MasterOutput: TypeAlias = _native.Master
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MasterOutput/)."""
 MemberOutput: TypeAlias = _native.Member
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberOutput/)."""
 MemberAdditionalConfigurationResultOutput: TypeAlias = _native.MemberAdditionalConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberAdditionalConfigurationResultOutput/)."""
 MemberDataSourceConfigurationOutput: TypeAlias = _native.MemberDataSourceConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberDataSourceConfigurationOutput/)."""
 MemberFeaturesConfigurationResultOutput: TypeAlias = _native.MemberFeaturesConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberFeaturesConfigurationResultOutput/)."""
 ModelDetailOutput: TypeAlias = _native.ModelDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ModelDetailOutput/)."""
 NetworkConnectionOutput: TypeAlias = _native.NetworkConnection
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkConnectionOutput/)."""
 NetworkConnectionActionOutput: TypeAlias = _native.NetworkConnectionAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkConnectionActionOutput/)."""
 NetworkEndpointOutput: TypeAlias = _native.NetworkEndpoint
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkEndpointOutput/)."""
 NetworkGeoLocationOutput: TypeAlias = _native.NetworkGeoLocation
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkGeoLocationOutput/)."""
 NetworkInterfaceOutput: TypeAlias = _native.NetworkInterface
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkInterfaceOutput/)."""
 ObservationsOutput: TypeAlias = _native.Observations
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ObservationsOutput/)."""
 OrganizationOutput: TypeAlias = _native.Organization
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationOutput/)."""
 OrganizationAdditionalConfigurationResultOutput: TypeAlias = _native.OrganizationAdditionalConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAdditionalConfigurationResultOutput/)."""
 OrganizationDataSourceConfigurationsResultOutput: TypeAlias = _native.OrganizationDataSourceConfigurationsResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDataSourceConfigurationsResultOutput/)."""
 OrganizationDetailsOutput: TypeAlias = _native.OrganizationDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDetailsOutput/)."""
 OrganizationEbsVolumesResultOutput: TypeAlias = _native.OrganizationEbsVolumesResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationEbsVolumesResultOutput/)."""
 OrganizationFeatureConfigurationResultOutput: TypeAlias = _native.OrganizationFeatureConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureConfigurationResultOutput/)."""
 OrganizationFeatureStatisticsOutput: TypeAlias = _native.OrganizationFeatureStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsOutput/)."""
 OrganizationFeatureStatisticsAdditionalConfigurationOutput: TypeAlias = _native.OrganizationFeatureStatisticsAdditionalConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsAdditionalConfigurationOutput/)."""
 OrganizationKubernetesAuditLogsConfigurationResultOutput: TypeAlias = _native.OrganizationKubernetesAuditLogsConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesAuditLogsConfigurationResultOutput/)."""
 OrganizationKubernetesConfigurationResultOutput: TypeAlias = _native.OrganizationKubernetesConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesConfigurationResultOutput/)."""
 OrganizationMalwareProtectionConfigurationResultOutput: TypeAlias = _native.OrganizationMalwareProtectionConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationMalwareProtectionConfigurationResultOutput/)."""
 OrganizationS3LogsConfigurationResultOutput: TypeAlias = _native.OrganizationS3LogsConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationS3LogsConfigurationResultOutput/)."""
 OrganizationScanEc2InstanceWithFindingsResultOutput: TypeAlias = _native.OrganizationScanEc2InstanceWithFindingsResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationScanEc2InstanceWithFindingsResultOutput/)."""
 OrganizationStatisticsOutput: TypeAlias = _native.OrganizationStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationStatisticsOutput/)."""
 OwnerOutput: TypeAlias = _native.Owner
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OwnerOutput/)."""
 PermissionConfigurationOutput: TypeAlias = _native.PermissionConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PermissionConfigurationOutput/)."""
 PortProbeActionOutput: TypeAlias = _native.PortProbeAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PortProbeActionOutput/)."""
 PortProbeDetailOutput: TypeAlias = _native.PortProbeDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PortProbeDetailOutput/)."""
 PrivateIpAddressDetailsOutput: TypeAlias = _native.PrivateIpAddressDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PrivateIpAddressDetailsOutput/)."""
 ProcessDetailsOutput: TypeAlias = _native.ProcessDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProcessDetailsOutput/)."""
 ProductOutput: TypeAlias = _native.Product
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProductOutput/)."""
 ProductCodeOutput: TypeAlias = _native.ProductCode
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProductCodeOutput/)."""
 PublicAccessOutput: TypeAlias = _native.PublicAccess
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessOutput/)."""
 PublicAccessConfigurationOutput: TypeAlias = _native.PublicAccessConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessConfigurationOutput/)."""
 RdsDbInstanceDetailsOutput: TypeAlias = _native.RdsDbInstanceDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbInstanceDetailsOutput/)."""
 RdsDbUserDetailsOutput: TypeAlias = _native.RdsDbUserDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbUserDetailsOutput/)."""
 RdsLimitlessDbDetailsOutput: TypeAlias = _native.RdsLimitlessDbDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLimitlessDbDetailsOutput/)."""
 RdsLoginAttemptActionOutput: TypeAlias = _native.RdsLoginAttemptAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLoginAttemptActionOutput/)."""
 RecoveryPointDetailsOutput: TypeAlias = _native.RecoveryPointDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecoveryPointDetailsOutput/)."""
 RemoteAccountDetailsOutput: TypeAlias = _native.RemoteAccountDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemoteAccountDetailsOutput/)."""
 RemoteIpDetailsOutput: TypeAlias = _native.RemoteIpDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemoteIpDetailsOutput/)."""
 RemotePortDetailsOutput: TypeAlias = _native.RemotePortDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemotePortDetailsOutput/)."""
 ResourceOutput: TypeAlias = _native.Resource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceOutput/)."""
 ResourceDataOutput: TypeAlias = _native.ResourceData
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDataOutput/)."""
 ResourceDetailsOutput: TypeAlias = _native.ResourceDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDetailsOutput/)."""
 ResourceStatisticsOutput: TypeAlias = _native.ResourceStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceStatisticsOutput/)."""
 ResourceV2Output: TypeAlias = _native.ResourceV2
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceV2Output/)."""
 RuleDefinitionOutput: TypeAlias = _native.RuleDefinition
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleDefinitionOutput/)."""
 RuleDetailOutput: TypeAlias = _native.RuleDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleDetailOutput/)."""
 RuleSummaryOutput: TypeAlias = _native.RuleSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleSummaryOutput/)."""
 RuntimeContextOutput: TypeAlias = _native.RuntimeContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeContextOutput/)."""
 RuntimeDetailsOutput: TypeAlias = _native.RuntimeDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeDetailsOutput/)."""
 S3BucketOutput: TypeAlias = _native.S3Bucket
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3BucketOutput/)."""
 S3BucketDetailOutput: TypeAlias = _native.S3BucketDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3BucketDetailOutput/)."""
 S3LogsConfigurationResultOutput: TypeAlias = _native.S3LogsConfigurationResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3LogsConfigurationResultOutput/)."""
 S3ObjectOutput: TypeAlias = _native.S3Object
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3ObjectOutput/)."""
 S3ObjectDetailOutput: TypeAlias = _native.S3ObjectDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3ObjectDetailOutput/)."""
 ScanOutput: TypeAlias = _native.Scan
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanOutput/)."""
 ScanConditionOutput: TypeAlias = _native.ScanCondition
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConditionOutput/)."""
 ScanConditionPairOutput: TypeAlias = _native.ScanConditionPair
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConditionPairOutput/)."""
 ScanConfigurationOutput: TypeAlias = _native.ScanConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationOutput/)."""
 ScanConfigurationContinuousScanDetailsOutput: TypeAlias = _native.ScanConfigurationContinuousScanDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationContinuousScanDetailsOutput/)."""
 ScanConfigurationRecoveryPointOutput: TypeAlias = _native.ScanConfigurationRecoveryPoint
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationRecoveryPointOutput/)."""
 ScanDetectionsOutput: TypeAlias = _native.ScanDetections
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanDetectionsOutput/)."""
 ScanEc2InstanceWithFindingsResultOutput: TypeAlias = _native.ScanEc2InstanceWithFindingsResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanEc2InstanceWithFindingsResultOutput/)."""
 ScanFilePathOutput: TypeAlias = _native.ScanFilePath
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanFilePathOutput/)."""
 ScanResourceCriteriaOutput: TypeAlias = _native.ScanResourceCriteria
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResourceCriteriaOutput/)."""
 ScanResultDetailsOutput: TypeAlias = _native.ScanResultDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultDetailsOutput/)."""
 ScanResultThreatOutput: TypeAlias = _native.ScanResultThreat
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultThreatOutput/)."""
 ScanThreatNameOutput: TypeAlias = _native.ScanThreatName
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanThreatNameOutput/)."""
 ScannedItemCountOutput: TypeAlias = _native.ScannedItemCount
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedItemCountOutput/)."""
 ScannedResourceOutput: TypeAlias = _native.ScannedResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedResourceOutput/)."""
 ScannedResourceDetailsOutput: TypeAlias = _native.ScannedResourceDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedResourceDetailsOutput/)."""
 SecurityContextOutput: TypeAlias = _native.SecurityContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SecurityContextOutput/)."""
 SecurityGroupOutput: TypeAlias = _native.SecurityGroup
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SecurityGroupOutput/)."""
 SendObjectMalwareScanOutput: TypeAlias = _native.SendObjectMalwareScanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SendObjectMalwareScanOutput/)."""
 SequenceOutput: TypeAlias = _native.Sequence
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SequenceOutput/)."""
 ServiceOutput: TypeAlias = _native.Service
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ServiceOutput/)."""
 ServiceAdditionalInfoOutput: TypeAlias = _native.ServiceAdditionalInfo
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ServiceAdditionalInfoOutput/)."""
 SessionOutput: TypeAlias = _native.Session
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SessionOutput/)."""
 SeverityStatisticsOutput: TypeAlias = _native.SeverityStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SeverityStatisticsOutput/)."""
 SignalOutput: TypeAlias = _native.Signal
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SignalOutput/)."""
 StartMalwareScanOutput: TypeAlias = _native.StartMalwareScanOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMalwareScanOutput/)."""
 StartMonitoringMembersOutput: TypeAlias = _native.StartMonitoringMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMonitoringMembersOutput/)."""
 StopMonitoringMembersOutput: TypeAlias = _native.StopMonitoringMembersOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StopMonitoringMembersOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagResourceOutput/)."""
 ThreatOutput: TypeAlias = _native.Threat
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatOutput/)."""
 ThreatDetectedByNameOutput: TypeAlias = _native.ThreatDetectedByName
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatDetectedByNameOutput/)."""
 ThreatIntelligenceDetailOutput: TypeAlias = _native.ThreatIntelligenceDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelligenceDetailOutput/)."""
 ThreatsDetectedItemCountOutput: TypeAlias = _native.ThreatsDetectedItemCount
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatsDetectedItemCountOutput/)."""
 TotalOutput: TypeAlias = _native.Total
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TotalOutput/)."""
 TriggerDetailsOutput: TypeAlias = _native.TriggerDetails
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TriggerDetailsOutput/)."""
 UnarchiveFindingsOutput: TypeAlias = _native.UnarchiveFindingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnarchiveFindingsOutput/)."""
 UnprocessedAccountOutput: TypeAlias = _native.UnprocessedAccount
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnprocessedAccountOutput/)."""
 UnprocessedDataSourcesResultOutput: TypeAlias = _native.UnprocessedDataSourcesResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnprocessedDataSourcesResultOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UntagResourceOutput/)."""
 UpdateCustomDetectionRuleAssociationOutput: TypeAlias = _native.UpdateCustomDetectionRuleAssociationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleAssociationOutput/)."""
 UpdateCustomDetectionRuleOrgConfigurationOutput: TypeAlias = _native.UpdateCustomDetectionRuleOrgConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleOrgConfigurationOutput/)."""
 UpdateDetectorOutput: TypeAlias = _native.UpdateDetectorOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateDetectorOutput/)."""
 UpdateFilterOutput: TypeAlias = _native.UpdateFilterOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFilterOutput/)."""
 UpdateFindingsFeedbackOutput: TypeAlias = _native.UpdateFindingsFeedbackOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFindingsFeedbackOutput/)."""
 UpdateIPSetOutput: TypeAlias = _native.UpdateIPSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateIPSetOutput/)."""
 UpdateMalwareScanSettingsOutput: TypeAlias = _native.UpdateMalwareScanSettingsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMalwareScanSettingsOutput/)."""
 UpdateMemberDetectorsOutput: TypeAlias = _native.UpdateMemberDetectorsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMemberDetectorsOutput/)."""
 UpdateOrganizationConfigurationOutput: TypeAlias = _native.UpdateOrganizationConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateOrganizationConfigurationOutput/)."""
 UpdatePublishingDestinationOutput: TypeAlias = _native.UpdatePublishingDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdatePublishingDestinationOutput/)."""
 UpdateThreatEntitySetOutput: TypeAlias = _native.UpdateThreatEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatEntitySetOutput/)."""
 UpdateThreatIntelSetOutput: TypeAlias = _native.UpdateThreatIntelSetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatIntelSetOutput/)."""
 UpdateTrustedEntitySetOutput: TypeAlias = _native.UpdateTrustedEntitySetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateTrustedEntitySetOutput/)."""
 UsageAccountResultOutput: TypeAlias = _native.UsageAccountResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageAccountResultOutput/)."""
 UsageDataSourceResultOutput: TypeAlias = _native.UsageDataSourceResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageDataSourceResultOutput/)."""
 UsageFeatureResultOutput: TypeAlias = _native.UsageFeatureResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageFeatureResultOutput/)."""
 UsageResourceResultOutput: TypeAlias = _native.UsageResourceResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageResourceResultOutput/)."""
 UsageStatisticsOutput: TypeAlias = _native.UsageStatistics
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageStatisticsOutput/)."""
 UsageTopAccountResultOutput: TypeAlias = _native.UsageTopAccountResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageTopAccountResultOutput/)."""
 UsageTopAccountsResultOutput: TypeAlias = _native.UsageTopAccountsResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageTopAccountsResultOutput/)."""
 UserOutput: TypeAlias = _native.User
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UserOutput/)."""
 VolumeOutput: TypeAlias = _native.Volume
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeOutput/)."""
 VolumeDetailOutput: TypeAlias = _native.VolumeDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeDetailOutput/)."""
 VolumeMountOutput: TypeAlias = _native.VolumeMount
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeMountOutput/)."""
 VpcConfigOutput: TypeAlias = _native.VpcConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VpcConfigOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/JSONValue/)."""
 
 ActivityType: TypeAlias = Literal['API_CALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActivityType/)."""
 ActivityTypeOutput: TypeAlias = ActivityType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActivityTypeOutput/)."""
 AdminStatus: TypeAlias = Literal['ENABLED', 'DISABLE_IN_PROGRESS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminStatus/)."""
 AdminStatusOutput: TypeAlias = AdminStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminStatusOutput/)."""
 AssociationMode: TypeAlias = Literal['LIVE', 'DRY_RUN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationMode/)."""
 AssociationModeOutput: TypeAlias = AssociationMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationModeOutput/)."""
 AutoEnableMembers: TypeAlias = Literal['NEW', 'ALL', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutoEnableMembers/)."""
 AutoEnableMembersOutput: TypeAlias = AutoEnableMembers | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutoEnableMembersOutput/)."""
 CloudProvider: TypeAlias = Literal['AWS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudProvider/)."""
 CloudProviderOutput: TypeAlias = CloudProvider | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudProviderOutput/)."""
 ClusterStatus: TypeAlias = Literal['CREATING', 'ACTIVE', 'DELETING', 'FAILED', 'UPDATING', 'PENDING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ClusterStatus/)."""
 ClusterStatusOutput: TypeAlias = ClusterStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ClusterStatusOutput/)."""
 Confidence: TypeAlias = Literal['Unknown', 'Low', 'Medium', 'High']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Confidence/)."""
 ConfidenceOutput: TypeAlias = Confidence | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ConfidenceOutput/)."""
 ConfidenceLevel: TypeAlias = Literal['HIGH', 'MEDIUM', 'LOW', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ConfidenceLevel/)."""
 ConfidenceLevelOutput: TypeAlias = ConfidenceLevel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ConfidenceLevelOutput/)."""
 ContentPolicyFilterAction: TypeAlias = Literal['BLOCKED', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterAction/)."""
 ContentPolicyFilterActionOutput: TypeAlias = ContentPolicyFilterAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterActionOutput/)."""
 ContentPolicyFilterType: TypeAlias = Literal['PROMPT_ATTACK', 'JAILBREAK', 'HATE', 'INSULTS', 'SEXUAL', 'VIOLENCE', 'MISCONDUCT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterType/)."""
 ContentPolicyFilterTypeOutput: TypeAlias = ContentPolicyFilterType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterTypeOutput/)."""
 CoverageFilterCriterionKey: TypeAlias = Literal['ACCOUNT_ID', 'RESOURCE_TYPE', 'COVERAGE_STATUS', 'ADDON_VERSION', 'CLUSTER_NAME', 'ECS_CLUSTER_NAME', 'MANAGEMENT_TYPE', 'EKS_CLUSTER_NAME', 'AGENT_VERSION', 'INSTANCE_ID', 'CLUSTER_ARN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageFilterCriterionKey/)."""
 CoverageFilterCriterionKeyOutput: TypeAlias = CoverageFilterCriterionKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageFilterCriterionKeyOutput/)."""
 CoverageSortKey: TypeAlias = Literal['ACCOUNT_ID', 'COVERAGE_STATUS', 'ISSUE', 'ADDON_VERSION', 'UPDATED_AT', 'CLUSTER_NAME', 'EKS_CLUSTER_NAME', 'ECS_CLUSTER_NAME', 'INSTANCE_ID']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageSortKey/)."""
 CoverageSortKeyOutput: TypeAlias = CoverageSortKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageSortKeyOutput/)."""
 CoverageStatisticsType: TypeAlias = Literal['COUNT_BY_RESOURCE_TYPE', 'COUNT_BY_COVERAGE_STATUS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageStatisticsType/)."""
 CoverageStatisticsTypeOutput: TypeAlias = CoverageStatisticsType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageStatisticsTypeOutput/)."""
 CoverageStatus: TypeAlias = Literal['HEALTHY', 'UNHEALTHY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageStatus/)."""
 CoverageStatusOutput: TypeAlias = CoverageStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageStatusOutput/)."""
 CriterionKey: TypeAlias = Literal['EC2_INSTANCE_ARN', 'SCAN_ID', 'ACCOUNT_ID', 'GUARDDUTY_FINDING_ID', 'SCAN_START_TIME', 'SCAN_STATUS', 'SCAN_TYPE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CriterionKey/)."""
 CriterionKeyOutput: TypeAlias = CriterionKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CriterionKeyOutput/)."""
 DataSource: TypeAlias = Literal['FLOW_LOGS', 'CLOUD_TRAIL', 'DNS_LOGS', 'S3_LOGS', 'KUBERNETES_AUDIT_LOGS', 'EC2_MALWARE_SCAN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSource/)."""
 DataSourceOutput: TypeAlias = DataSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceOutput/)."""
 DataSourceStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceStatus/)."""
 DataSourceStatusOutput: TypeAlias = DataSourceStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceStatusOutput/)."""
 DestinationType: TypeAlias = Literal['S3']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationType/)."""
 DestinationTypeOutput: TypeAlias = DestinationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationTypeOutput/)."""
 DetectionRuleConfigurationStatus: TypeAlias = Literal['ACTIVE', 'PROCESSING', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleConfigurationStatus/)."""
 DetectionRuleConfigurationStatusOutput: TypeAlias = DetectionRuleConfigurationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleConfigurationStatusOutput/)."""
 DetectionRuleDataSource: TypeAlias = Literal['CloudTrailManagementEvent', 'RuntimeMonitoring']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleDataSource/)."""
 DetectionRuleDataSourceOutput: TypeAlias = DetectionRuleDataSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleDataSourceOutput/)."""
 DetectionRuleFilterCondition: TypeAlias = Literal['EQUALS', 'CONTAINS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleFilterCondition/)."""
 DetectionRuleFilterConditionOutput: TypeAlias = DetectionRuleFilterCondition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleFilterConditionOutput/)."""
 DetectionRuleSeverity: TypeAlias = Literal['CRITICAL', 'HIGH', 'MEDIUM', 'LOW']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleSeverity/)."""
 DetectionRuleSeverityOutput: TypeAlias = DetectionRuleSeverity | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleSeverityOutput/)."""
 DetectionSource: TypeAlias = Literal['AMAZON', 'BITDEFENDER']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionSource/)."""
 DetectionSourceOutput: TypeAlias = DetectionSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionSourceOutput/)."""
 DetectorFeature: TypeAlias = Literal['S3_DATA_EVENTS', 'EKS_AUDIT_LOGS', 'EBS_MALWARE_PROTECTION', 'RDS_LOGIN_EVENTS', 'LAMBDA_NETWORK_LOGS', 'EKS_RUNTIME_MONITORING', 'RUNTIME_MONITORING', 'AI_PROTECTION', 'AI_ANALYST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeature/)."""
 DetectorFeatureOutput: TypeAlias = DetectorFeature | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeatureOutput/)."""
 DetectorFeatureResult: TypeAlias = Literal['FLOW_LOGS', 'CLOUD_TRAIL', 'DNS_LOGS', 'S3_DATA_EVENTS', 'EKS_AUDIT_LOGS', 'EBS_MALWARE_PROTECTION', 'RDS_LOGIN_EVENTS', 'LAMBDA_NETWORK_LOGS', 'EKS_RUNTIME_MONITORING', 'RUNTIME_MONITORING', 'AI_PROTECTION', 'AI_ANALYST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeatureResult/)."""
 DetectorFeatureResultOutput: TypeAlias = DetectorFeatureResult | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeatureResultOutput/)."""
 DetectorStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorStatus/)."""
 DetectorStatusOutput: TypeAlias = DetectorStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorStatusOutput/)."""
 EbsSnapshotPreservation: TypeAlias = Literal['NO_RETENTION', 'RETENTION_WITH_FINDING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotPreservation/)."""
 EbsSnapshotPreservationOutput: TypeAlias = EbsSnapshotPreservation | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotPreservationOutput/)."""
 EcsClusterStatus: TypeAlias = Literal['ACTIVE', 'PROVISIONING', 'DEPROVISIONING', 'FAILED', 'INACTIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsClusterStatus/)."""
 EcsClusterStatusOutput: TypeAlias = EcsClusterStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsClusterStatusOutput/)."""
 EcsLaunchType: TypeAlias = Literal['FARGATE', 'EC2']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsLaunchType/)."""
 EcsLaunchTypeOutput: TypeAlias = EcsLaunchType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsLaunchTypeOutput/)."""
 FeatureAdditionalConfiguration: TypeAlias = Literal['EKS_ADDON_MANAGEMENT', 'ECS_FARGATE_AGENT_MANAGEMENT', 'EC2_AGENT_MANAGEMENT', 'RDS_DATA_RISK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FeatureAdditionalConfiguration/)."""
 FeatureAdditionalConfigurationOutput: TypeAlias = FeatureAdditionalConfiguration | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FeatureAdditionalConfigurationOutput/)."""
 FeatureStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FeatureStatus/)."""
 FeatureStatusOutput: TypeAlias = FeatureStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FeatureStatusOutput/)."""
 Feedback: TypeAlias = Literal['USEFUL', 'NOT_USEFUL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Feedback/)."""
 FeedbackOutput: TypeAlias = Feedback | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FeedbackOutput/)."""
 FilterAction: TypeAlias = Literal['NOOP', 'ARCHIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterAction/)."""
 FilterActionOutput: TypeAlias = FilterAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterActionOutput/)."""
 FilterFieldName: TypeAlias = Literal['name', 'description', 'dataSource', 'severity', 'tactic', 'technique', 'service']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterFieldName/)."""
 FilterFieldNameOutput: TypeAlias = FilterFieldName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterFieldNameOutput/)."""
 FindingPublishingFrequency: TypeAlias = Literal['FIFTEEN_MINUTES', 'ONE_HOUR', 'SIX_HOURS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingPublishingFrequency/)."""
 FindingPublishingFrequencyOutput: TypeAlias = FindingPublishingFrequency | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingPublishingFrequencyOutput/)."""
 FindingResourceType: TypeAlias = Literal['EC2_INSTANCE', 'EC2_NETWORK_INTERFACE', 'S3_BUCKET', 'S3_OBJECT', 'ACCESS_KEY', 'EKS_CLUSTER', 'KUBERNETES_WORKLOAD', 'CONTAINER', 'ECS_CLUSTER', 'ECS_TASK', 'AUTOSCALING_AUTO_SCALING_GROUP', 'IAM_INSTANCE_PROFILE', 'CLOUDFORMATION_STACK', 'EC2_LAUNCH_TEMPLATE', 'EC2_VPC', 'EC2_IMAGE', 'BEDROCK_CUSTOM_MODEL', 'BEDROCK_IMPORTED_MODEL', 'BEDROCK_PROVISIONED_MODEL', 'BEDROCK_CUSTOM_MODEL_DEPLOYMENT', 'BEDROCK_INFERENCE_PROFILE', 'BEDROCK_APPLICATION_INFERENCE_PROFILE', 'BEDROCK_PROMPT', 'BEDROCK_PROMPT_ROUTER', 'BEDROCK_GUARDRAIL', 'SAGEMAKER_ENDPOINT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingResourceType/)."""
 FindingResourceTypeOutput: TypeAlias = FindingResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingResourceTypeOutput/)."""
 FindingStatisticType: TypeAlias = Literal['COUNT_BY_SEVERITY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingStatisticType/)."""
 FindingStatisticTypeOutput: TypeAlias = FindingStatisticType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingStatisticTypeOutput/)."""
 FreeTrialFeatureResult: TypeAlias = Literal['FLOW_LOGS', 'CLOUD_TRAIL', 'DNS_LOGS', 'S3_DATA_EVENTS', 'EKS_AUDIT_LOGS', 'EBS_MALWARE_PROTECTION', 'RDS_LOGIN_EVENTS', 'LAMBDA_NETWORK_LOGS', 'EKS_RUNTIME_MONITORING', 'EC2_RUNTIME_MONITORING', 'FARGATE_RUNTIME_MONITORING', 'AI_PROTECTION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FreeTrialFeatureResult/)."""
 FreeTrialFeatureResultOutput: TypeAlias = FreeTrialFeatureResult | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FreeTrialFeatureResultOutput/)."""
 GroupByType: TypeAlias = Literal['ACCOUNT', 'DATE', 'FINDING_TYPE', 'RESOURCE', 'SEVERITY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GroupByType/)."""
 GroupByTypeOutput: TypeAlias = GroupByType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GroupByTypeOutput/)."""
 GuardrailAction: TypeAlias = Literal['GUARDRAIL_INTERVENED', 'NONE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GuardrailAction/)."""
 GuardrailActionOutput: TypeAlias = GuardrailAction | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GuardrailActionOutput/)."""
 GuardrailSource: TypeAlias = Literal['INPUT', 'OUTPUT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GuardrailSource/)."""
 GuardrailSourceOutput: TypeAlias = GuardrailSource | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GuardrailSourceOutput/)."""
 IndicatorType: TypeAlias = Literal['SUSPICIOUS_USER_AGENT', 'SUSPICIOUS_NETWORK', 'MALICIOUS_IP', 'TOR_IP', 'ATTACK_TACTIC', 'HIGH_RISK_API', 'ATTACK_TECHNIQUE', 'UNUSUAL_API_FOR_ACCOUNT', 'UNUSUAL_ASN_FOR_ACCOUNT', 'UNUSUAL_ASN_FOR_USER', 'SUSPICIOUS_PROCESS', 'MALICIOUS_DOMAIN', 'MALICIOUS_PROCESS', 'CRYPTOMINING_IP', 'CRYPTOMINING_DOMAIN', 'CRYPTOMINING_PROCESS', 'MALICIOUS_FILE', 'VULNERABILITY', 'MALICIOUS_PACKAGE', 'MISCONFIGURATION', 'REACHABILITY', 'SENSITIVE_DATA']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IndicatorType/)."""
 IndicatorTypeOutput: TypeAlias = IndicatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IndicatorTypeOutput/)."""
 InvestigationSortField: TypeAlias = Literal['START_TIME', 'END_TIME', 'STATUS', 'RISK_LEVEL', 'CONFIDENCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSortField/)."""
 InvestigationSortFieldOutput: TypeAlias = InvestigationSortField | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSortFieldOutput/)."""
 InvestigationStatus: TypeAlias = Literal['RUNNING', 'COMPLETED', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationStatus/)."""
 InvestigationStatusOutput: TypeAlias = InvestigationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationStatusOutput/)."""
 IpSetFormat: TypeAlias = Literal['TXT', 'STIX', 'OTX_CSV', 'ALIEN_VAULT', 'PROOF_POINT', 'FIRE_EYE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IpSetFormat/)."""
 IpSetFormatOutput: TypeAlias = IpSetFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IpSetFormatOutput/)."""
 IpSetStatus: TypeAlias = Literal['INACTIVE', 'ACTIVATING', 'ACTIVE', 'DEACTIVATING', 'ERROR', 'DELETE_PENDING', 'DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IpSetStatus/)."""
 IpSetStatusOutput: TypeAlias = IpSetStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IpSetStatusOutput/)."""
 KubernetesResourcesTypes: TypeAlias = Literal['PODS', 'JOBS', 'CRONJOBS', 'DEPLOYMENTS', 'DAEMONSETS', 'STATEFULSETS', 'REPLICASETS', 'REPLICATIONCONTROLLERS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesResourcesTypes/)."""
 KubernetesResourcesTypesOutput: TypeAlias = KubernetesResourcesTypes | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesResourcesTypesOutput/)."""
 ListMalwareScansCriterionKey: TypeAlias = Literal['RESOURCE_ARN', 'SCAN_ID', 'ACCOUNT_ID', 'GUARDDUTY_FINDING_ID', 'RESOURCE_TYPE', 'SCAN_START_TIME', 'SCAN_STATUS', 'SCAN_TYPE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansCriterionKey/)."""
 ListMalwareScansCriterionKeyOutput: TypeAlias = ListMalwareScansCriterionKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansCriterionKeyOutput/)."""
 MalwareProtectionPlanStatus: TypeAlias = Literal['ACTIVE', 'WARNING', 'ERROR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanStatus/)."""
 MalwareProtectionPlanStatusOutput: TypeAlias = MalwareProtectionPlanStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanStatusOutput/)."""
 MalwareProtectionPlanTaggingActionStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanTaggingActionStatus/)."""
 MalwareProtectionPlanTaggingActionStatusOutput: TypeAlias = MalwareProtectionPlanTaggingActionStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanTaggingActionStatusOutput/)."""
 MalwareProtectionResourceType: TypeAlias = Literal['EBS_RECOVERY_POINT', 'EBS_SNAPSHOT', 'EBS_VOLUME', 'EC2_AMI', 'EC2_INSTANCE', 'EC2_RECOVERY_POINT', 'S3_RECOVERY_POINT', 'S3_BUCKET', 'S3_POINT_IN_TIME_RECOVERY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionResourceType/)."""
 MalwareProtectionResourceTypeOutput: TypeAlias = MalwareProtectionResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionResourceTypeOutput/)."""
 MalwareProtectionScanStatus: TypeAlias = Literal['RUNNING', 'COMPLETED', 'COMPLETED_WITH_ISSUES', 'FAILED', 'SKIPPED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionScanStatus/)."""
 MalwareProtectionScanStatusOutput: TypeAlias = MalwareProtectionScanStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionScanStatusOutput/)."""
 MalwareProtectionScanType: TypeAlias = Literal['BACKUP_INITIATED', 'ON_DEMAND', 'GUARDDUTY_INITIATED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionScanType/)."""
 MalwareProtectionScanTypeOutput: TypeAlias = MalwareProtectionScanType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionScanTypeOutput/)."""
 ManagedBy: TypeAlias = Literal['GUARDDUTY_POLICY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ManagedBy/)."""
 ManagedByOutput: TypeAlias = ManagedBy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ManagedByOutput/)."""
 ManagementType: TypeAlias = Literal['AUTO_MANAGED', 'MANUAL', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ManagementType/)."""
 ManagementTypeOutput: TypeAlias = ManagementType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ManagementTypeOutput/)."""
 MfaStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MfaStatus/)."""
 MfaStatusOutput: TypeAlias = MfaStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MfaStatusOutput/)."""
 NetworkDirection: TypeAlias = Literal['INBOUND', 'OUTBOUND']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkDirection/)."""
 NetworkDirectionOutput: TypeAlias = NetworkDirection | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkDirectionOutput/)."""
 OrderBy: TypeAlias = Literal['ASC', 'DESC']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrderBy/)."""
 OrderByOutput: TypeAlias = OrderBy | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrderByOutput/)."""
 OrgFeature: TypeAlias = Literal['S3_DATA_EVENTS', 'EKS_AUDIT_LOGS', 'EBS_MALWARE_PROTECTION', 'RDS_LOGIN_EVENTS', 'LAMBDA_NETWORK_LOGS', 'EKS_RUNTIME_MONITORING', 'RUNTIME_MONITORING', 'AI_PROTECTION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrgFeature/)."""
 OrgFeatureOutput: TypeAlias = OrgFeature | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrgFeatureOutput/)."""
 OrgFeatureAdditionalConfiguration: TypeAlias = Literal['EKS_ADDON_MANAGEMENT', 'ECS_FARGATE_AGENT_MANAGEMENT', 'EC2_AGENT_MANAGEMENT', 'RDS_DATA_RISK']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrgFeatureAdditionalConfiguration/)."""
 OrgFeatureAdditionalConfigurationOutput: TypeAlias = OrgFeatureAdditionalConfiguration | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrgFeatureAdditionalConfigurationOutput/)."""
 OrgFeatureStatus: TypeAlias = Literal['NEW', 'NONE', 'ALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrgFeatureStatus/)."""
 OrgFeatureStatusOutput: TypeAlias = OrgFeatureStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrgFeatureStatusOutput/)."""
 ProfileSubtype: TypeAlias = Literal['FREQUENT', 'INFREQUENT', 'UNSEEN', 'RARE', 'COUNT', 'AVERAGE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProfileSubtype/)."""
 ProfileSubtypeOutput: TypeAlias = ProfileSubtype | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProfileSubtypeOutput/)."""
 ProfileType: TypeAlias = Literal['FREQUENCY', 'VOLUME']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProfileType/)."""
 ProfileTypeOutput: TypeAlias = ProfileType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProfileTypeOutput/)."""
 PublicAccessStatus: TypeAlias = Literal['BLOCKED', 'ALLOWED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessStatus/)."""
 PublicAccessStatusOutput: TypeAlias = PublicAccessStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessStatusOutput/)."""
 PublicAclIgnoreBehavior: TypeAlias = Literal['IGNORED', 'NOT_IGNORED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAclIgnoreBehavior/)."""
 PublicAclIgnoreBehaviorOutput: TypeAlias = PublicAclIgnoreBehavior | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAclIgnoreBehaviorOutput/)."""
 PublicBucketRestrictBehavior: TypeAlias = Literal['RESTRICTED', 'NOT_RESTRICTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicBucketRestrictBehavior/)."""
 PublicBucketRestrictBehaviorOutput: TypeAlias = PublicBucketRestrictBehavior | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicBucketRestrictBehaviorOutput/)."""
 PublishingStatus: TypeAlias = Literal['PENDING_VERIFICATION', 'PUBLISHING', 'UNABLE_TO_PUBLISH_FIX_DESTINATION_PROPERTY', 'STOPPED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublishingStatus/)."""
 PublishingStatusOutput: TypeAlias = PublishingStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublishingStatusOutput/)."""
 ResourceType: TypeAlias = Literal['EKS', 'ECS', 'EC2']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceType/)."""
 ResourceTypeOutput: TypeAlias = ResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceTypeOutput/)."""
 RiskLevel: TypeAlias = Literal['Info', 'Low', 'Medium', 'High', 'Critical']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RiskLevel/)."""
 RiskLevelOutput: TypeAlias = RiskLevel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RiskLevelOutput/)."""
 RuleLanguage: TypeAlias = Literal['SQL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleLanguage/)."""
 RuleLanguageOutput: TypeAlias = RuleLanguage | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleLanguageOutput/)."""
 RuleSchema: TypeAlias = Literal['CloudTrail']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleSchema/)."""
 RuleSchemaOutput: TypeAlias = RuleSchema | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleSchemaOutput/)."""
 ScanCategory: TypeAlias = Literal['FULL_SCAN', 'INCREMENTAL_SCAN']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanCategory/)."""
 ScanCategoryOutput: TypeAlias = ScanCategory | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanCategoryOutput/)."""
 ScanCriterionKey: TypeAlias = Literal['EC2_INSTANCE_TAG']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanCriterionKey/)."""
 ScanCriterionKeyOutput: TypeAlias = ScanCriterionKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanCriterionKeyOutput/)."""
 ScanResult: TypeAlias = Literal['CLEAN', 'INFECTED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResult/)."""
 ScanResultOutput: TypeAlias = ScanResult | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultOutput/)."""
 ScanResultStatus: TypeAlias = Literal['NO_THREATS_FOUND', 'THREATS_FOUND']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultStatus/)."""
 ScanResultStatusOutput: TypeAlias = ScanResultStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultStatusOutput/)."""
 ScanStatus: TypeAlias = Literal['RUNNING', 'COMPLETED', 'FAILED', 'SKIPPED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanStatus/)."""
 ScanStatusOutput: TypeAlias = ScanStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanStatusOutput/)."""
 ScanStatusReason: TypeAlias = Literal['ACCESS_DENIED', 'RESOURCE_NOT_FOUND', 'SNAPSHOT_SIZE_LIMIT_EXCEEDED', 'RESOURCE_UNAVAILABLE', 'INCONSISTENT_SOURCE', 'INCREMENTAL_NO_DIFFERENCE', 'NO_EBS_VOLUMES_FOUND', 'UNSUPPORTED_PRODUCT_CODE_TYPE', 'AMI_SNAPSHOT_LIMIT_EXCEEDED', 'UNRELATED_RESOURCES', 'BASE_RESOURCE_NOT_SCANNED', 'BASE_CREATED_AFTER_TARGET', 'UNSUPPORTED_FOR_INCREMENTAL', 'UNSUPPORTED_AMI', 'UNSUPPORTED_SNAPSHOT', 'UNSUPPORTED_COMPOSITE_RECOVERY_POINT', 'ALL_FILES_SKIPPED_OR_FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanStatusReason/)."""
 ScanStatusReasonOutput: TypeAlias = ScanStatusReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanStatusReasonOutput/)."""
 ScanType: TypeAlias = Literal['GUARDDUTY_INITIATED', 'ON_DEMAND']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanType/)."""
 ScanTypeOutput: TypeAlias = ScanType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanTypeOutput/)."""
 SignalType: TypeAlias = Literal['FINDING', 'CLOUD_TRAIL', 'S3_DATA_EVENTS', 'EKS_AUDIT_LOGS', 'FLOW_LOGS', 'DNS_LOGS', 'RUNTIME_MONITORING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SignalType/)."""
 SignalTypeOutput: TypeAlias = SignalType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SignalTypeOutput/)."""
 ThreatEntitySetFormat: TypeAlias = Literal['TXT', 'STIX', 'OTX_CSV', 'ALIEN_VAULT', 'PROOF_POINT', 'FIRE_EYE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatEntitySetFormat/)."""
 ThreatEntitySetFormatOutput: TypeAlias = ThreatEntitySetFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatEntitySetFormatOutput/)."""
 ThreatEntitySetStatus: TypeAlias = Literal['INACTIVE', 'ACTIVATING', 'ACTIVE', 'DEACTIVATING', 'ERROR', 'DELETE_PENDING', 'DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatEntitySetStatus/)."""
 ThreatEntitySetStatusOutput: TypeAlias = ThreatEntitySetStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatEntitySetStatusOutput/)."""
 ThreatIntelSetFormat: TypeAlias = Literal['TXT', 'STIX', 'OTX_CSV', 'ALIEN_VAULT', 'PROOF_POINT', 'FIRE_EYE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelSetFormat/)."""
 ThreatIntelSetFormatOutput: TypeAlias = ThreatIntelSetFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelSetFormatOutput/)."""
 ThreatIntelSetStatus: TypeAlias = Literal['INACTIVE', 'ACTIVATING', 'ACTIVE', 'DEACTIVATING', 'ERROR', 'DELETE_PENDING', 'DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelSetStatus/)."""
 ThreatIntelSetStatusOutput: TypeAlias = ThreatIntelSetStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelSetStatusOutput/)."""
 TriggerType: TypeAlias = Literal['BACKUP', 'GUARDDUTY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TriggerType/)."""
 TriggerTypeOutput: TypeAlias = TriggerType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TriggerTypeOutput/)."""
 TrustedEntitySetFormat: TypeAlias = Literal['TXT', 'STIX', 'OTX_CSV', 'ALIEN_VAULT', 'PROOF_POINT', 'FIRE_EYE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TrustedEntitySetFormat/)."""
 TrustedEntitySetFormatOutput: TypeAlias = TrustedEntitySetFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TrustedEntitySetFormatOutput/)."""
 TrustedEntitySetStatus: TypeAlias = Literal['INACTIVE', 'ACTIVATING', 'ACTIVE', 'DEACTIVATING', 'ERROR', 'DELETE_PENDING', 'DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TrustedEntitySetStatus/)."""
 TrustedEntitySetStatusOutput: TypeAlias = TrustedEntitySetStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TrustedEntitySetStatusOutput/)."""
 UsageFeature: TypeAlias = Literal['FLOW_LOGS', 'CLOUD_TRAIL', 'DNS_LOGS', 'S3_DATA_EVENTS', 'EKS_AUDIT_LOGS', 'EBS_MALWARE_PROTECTION', 'RDS_LOGIN_EVENTS', 'LAMBDA_NETWORK_LOGS', 'EKS_RUNTIME_MONITORING', 'EC2_RUNTIME_MONITORING', 'FARGATE_RUNTIME_MONITORING', 'RDS_DBI_PROTECTION_PROVISIONED', 'RDS_DBI_PROTECTION_SERVERLESS', 'RDS_DBI_PROTECTION_LIMITLESS', 'RDS_DATA_ACTIVITY_DBI_PROTECTION_PROVISIONED', 'RDS_DATA_ACTIVITY_DBI_PROTECTION_SERVERLESS', 'RDS_DATA_ACTIVITY_DBI_PROTECTION_LIMITLESS', 'AI_PROTECTION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageFeature/)."""
 UsageFeatureOutput: TypeAlias = UsageFeature | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageFeatureOutput/)."""
 UsageStatisticType: TypeAlias = Literal['SUM_BY_ACCOUNT', 'SUM_BY_DATA_SOURCE', 'SUM_BY_RESOURCE', 'TOP_RESOURCES', 'SUM_BY_FEATURES', 'TOP_ACCOUNTS_BY_FEATURE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageStatisticType/)."""
 UsageStatisticTypeOutput: TypeAlias = UsageStatisticType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageStatisticTypeOutput/)."""
 
 AcceptAdministratorInvitationRequest = TypedDict(
     "AcceptAdministratorInvitationRequest",
@@ -536,6 +1053,7 @@ AcceptAdministratorInvitationRequest = TypedDict(
     "invitation_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptAdministratorInvitationRequest/)."""
 
 AcceptInvitationRequest = TypedDict(
     "AcceptInvitationRequest",
@@ -545,6 +1063,7 @@ AcceptInvitationRequest = TypedDict(
     "invitation_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AcceptInvitationRequest/)."""
 
 AccessControlList = TypedDict(
     "AccessControlList",
@@ -553,6 +1072,7 @@ AccessControlList = TypedDict(
     "allows_public_write_access": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessControlList/)."""
 
 AccessKey = TypedDict(
     "AccessKey",
@@ -562,6 +1082,7 @@ AccessKey = TypedDict(
     "user_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessKey/)."""
 
 AccessKeyDetails = TypedDict(
     "AccessKeyDetails",
@@ -572,6 +1093,7 @@ AccessKeyDetails = TypedDict(
     "user_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessKeyDetails/)."""
 
 Account = TypedDict(
     "Account",
@@ -580,6 +1102,7 @@ Account = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Account/)."""
 
 AccountDetail = TypedDict(
     "AccountDetail",
@@ -588,6 +1111,7 @@ AccountDetail = TypedDict(
     "email": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountDetail/)."""
 
 AccountFreeTrialInfo = TypedDict(
     "AccountFreeTrialInfo",
@@ -597,6 +1121,7 @@ AccountFreeTrialInfo = TypedDict(
     "features": NotRequired["_Sequence[FreeTrialFeatureConfigurationResult]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountFreeTrialInfo/)."""
 
 AccountLevelPermissions = TypedDict(
     "AccountLevelPermissions",
@@ -604,6 +1129,7 @@ AccountLevelPermissions = TypedDict(
     "block_public_access": NotRequired["BlockPublicAccess"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountLevelPermissions/)."""
 
 AccountStatistics = TypedDict(
     "AccountStatistics",
@@ -613,6 +1139,7 @@ AccountStatistics = TypedDict(
     "total_findings": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountStatistics/)."""
 
 Action = TypedDict(
     "Action",
@@ -629,6 +1156,7 @@ Action = TypedDict(
     "rds_login_attempt_action": NotRequired["RdsLoginAttemptAction"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Action/)."""
 
 Activity = TypedDict(
     "Activity",
@@ -637,6 +1165,7 @@ Activity = TypedDict(
     "api": NotRequired["ApiCall"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Activity/)."""
 
 Actor = TypedDict(
     "Actor",
@@ -647,6 +1176,7 @@ Actor = TypedDict(
     "process": NotRequired["ActorProcess"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Actor/)."""
 
 ActorProcess = TypedDict(
     "ActorProcess",
@@ -656,6 +1186,7 @@ ActorProcess = TypedDict(
     "sha256": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActorProcess/)."""
 
 AdditionalInfo = TypedDict(
     "AdditionalInfo",
@@ -664,6 +1195,7 @@ AdditionalInfo = TypedDict(
     "device_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdditionalInfo/)."""
 
 AddonDetails = TypedDict(
     "AddonDetails",
@@ -672,6 +1204,7 @@ AddonDetails = TypedDict(
     "addon_status": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AddonDetails/)."""
 
 AdminAccount = TypedDict(
     "AdminAccount",
@@ -680,6 +1213,7 @@ AdminAccount = TypedDict(
     "admin_status": NotRequired["AdminStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminAccount/)."""
 
 Administrator = TypedDict(
     "Administrator",
@@ -690,6 +1224,7 @@ Administrator = TypedDict(
     "invited_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Administrator/)."""
 
 AgentDetails = TypedDict(
     "AgentDetails",
@@ -697,6 +1232,7 @@ AgentDetails = TypedDict(
     "version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AgentDetails/)."""
 
 Anomaly = TypedDict(
     "Anomaly",
@@ -705,6 +1241,7 @@ Anomaly = TypedDict(
     "unusual": NotRequired["AnomalyUnusual"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Anomaly/)."""
 
 AnomalyObject = TypedDict(
     "AnomalyObject",
@@ -714,6 +1251,7 @@ AnomalyObject = TypedDict(
     "observations": NotRequired["Observations"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyObject/)."""
 
 AnomalyUnusual = TypedDict(
     "AnomalyUnusual",
@@ -721,6 +1259,7 @@ AnomalyUnusual = TypedDict(
     "behavior": NotRequired["dict[str, dict[str, AnomalyObject]]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnomalyUnusual/)."""
 
 ApiCall = TypedDict(
     "ApiCall",
@@ -731,6 +1270,7 @@ ApiCall = TypedDict(
     "user_agent": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ApiCall/)."""
 
 ArchiveFindingsRequest = TypedDict(
     "ArchiveFindingsRequest",
@@ -739,6 +1279,7 @@ ArchiveFindingsRequest = TypedDict(
     "finding_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ArchiveFindingsRequest/)."""
 
 AssociationDetail = TypedDict(
     "AssociationDetail",
@@ -753,6 +1294,7 @@ AssociationDetail = TypedDict(
     "expires_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationDetail/)."""
 
 AssociationSummary = TypedDict(
     "AssociationSummary",
@@ -766,6 +1308,7 @@ AssociationSummary = TypedDict(
     "expires_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationSummary/)."""
 
 AutonomousSystem = TypedDict(
     "AutonomousSystem",
@@ -774,6 +1317,7 @@ AutonomousSystem = TypedDict(
     "number": Required["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutonomousSystem/)."""
 
 AutoscalingAutoScalingGroup = TypedDict(
     "AutoscalingAutoScalingGroup",
@@ -781,6 +1325,7 @@ AutoscalingAutoScalingGroup = TypedDict(
     "ec2_instance_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutoscalingAutoScalingGroup/)."""
 
 AwsApiCallAction = TypedDict(
     "AwsApiCallAction",
@@ -796,6 +1341,7 @@ AwsApiCallAction = TypedDict(
     "affected_resources": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AwsApiCallAction/)."""
 
 BedrockGuardrail = TypedDict(
     "BedrockGuardrail",
@@ -804,6 +1350,7 @@ BedrockGuardrail = TypedDict(
     "version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrail/)."""
 
 BedrockGuardrailDetails = TypedDict(
     "BedrockGuardrailDetails",
@@ -816,6 +1363,7 @@ BedrockGuardrailDetails = TypedDict(
     "content_policy_filters": NotRequired["_Sequence[ContentPolicyFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailDetails/)."""
 
 BedrockGuardrailResource = TypedDict(
     "BedrockGuardrailResource",
@@ -825,6 +1373,7 @@ BedrockGuardrailResource = TypedDict(
     "guardrail_source": NotRequired["GuardrailSource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BedrockGuardrailResource/)."""
 
 BlockPublicAccess = TypedDict(
     "BlockPublicAccess",
@@ -835,6 +1384,7 @@ BlockPublicAccess = TypedDict(
     "block_public_policy": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BlockPublicAccess/)."""
 
 BucketLevelPermissions = TypedDict(
     "BucketLevelPermissions",
@@ -844,6 +1394,7 @@ BucketLevelPermissions = TypedDict(
     "block_public_access": NotRequired["BlockPublicAccess"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BucketLevelPermissions/)."""
 
 BucketPolicy = TypedDict(
     "BucketPolicy",
@@ -852,6 +1403,7 @@ BucketPolicy = TypedDict(
     "allows_public_write_access": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BucketPolicy/)."""
 
 City = TypedDict(
     "City",
@@ -859,6 +1411,7 @@ City = TypedDict(
     "city_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/City/)."""
 
 CloudDetails = TypedDict(
     "CloudDetails",
@@ -868,6 +1421,7 @@ CloudDetails = TypedDict(
     "account": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudDetails/)."""
 
 CloudTrailConfigurationResult = TypedDict(
     "CloudTrailConfigurationResult",
@@ -875,6 +1429,7 @@ CloudTrailConfigurationResult = TypedDict(
     "status": Required["DataSourceStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudTrailConfigurationResult/)."""
 
 CloudformationStack = TypedDict(
     "CloudformationStack",
@@ -882,6 +1437,7 @@ CloudformationStack = TypedDict(
     "ec2_instance_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CloudformationStack/)."""
 
 Condition = TypedDict(
     "Condition",
@@ -902,6 +1458,7 @@ Condition = TypedDict(
     "not_matches": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Condition/)."""
 
 Container = TypedDict(
     "Container",
@@ -915,6 +1472,7 @@ Container = TypedDict(
     "security_context": NotRequired["SecurityContext"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Container/)."""
 
 ContainerFindingResource = TypedDict(
     "ContainerFindingResource",
@@ -923,6 +1481,7 @@ ContainerFindingResource = TypedDict(
     "image_uid": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerFindingResource/)."""
 
 ContainerInstanceDetails = TypedDict(
     "ContainerInstanceDetails",
@@ -931,6 +1490,7 @@ ContainerInstanceDetails = TypedDict(
     "compatible_container_instances": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerInstanceDetails/)."""
 
 ContentPolicyFilter = TypedDict(
     "ContentPolicyFilter",
@@ -940,6 +1500,7 @@ ContentPolicyFilter = TypedDict(
     "action": NotRequired["ContentPolicyFilterAction"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilter/)."""
 
 ContinuousScanDetails = TypedDict(
     "ContinuousScanDetails",
@@ -948,6 +1509,7 @@ ContinuousScanDetails = TypedDict(
     "end_time": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContinuousScanDetails/)."""
 
 Country = TypedDict(
     "Country",
@@ -956,6 +1518,7 @@ Country = TypedDict(
     "country_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Country/)."""
 
 CoverageEc2InstanceDetails = TypedDict(
     "CoverageEc2InstanceDetails",
@@ -967,6 +1530,7 @@ CoverageEc2InstanceDetails = TypedDict(
     "management_type": NotRequired["ManagementType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEc2InstanceDetails/)."""
 
 CoverageEcsClusterDetails = TypedDict(
     "CoverageEcsClusterDetails",
@@ -976,6 +1540,7 @@ CoverageEcsClusterDetails = TypedDict(
     "container_instance_details": NotRequired["ContainerInstanceDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEcsClusterDetails/)."""
 
 CoverageEksClusterDetails = TypedDict(
     "CoverageEksClusterDetails",
@@ -987,6 +1552,7 @@ CoverageEksClusterDetails = TypedDict(
     "management_type": NotRequired["ManagementType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageEksClusterDetails/)."""
 
 CoverageFilterCondition = TypedDict(
     "CoverageFilterCondition",
@@ -995,6 +1561,7 @@ CoverageFilterCondition = TypedDict(
     "not_equals": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageFilterCondition/)."""
 
 CoverageFilterCriteria = TypedDict(
     "CoverageFilterCriteria",
@@ -1002,6 +1569,7 @@ CoverageFilterCriteria = TypedDict(
     "filter_criterion": NotRequired["_Sequence[CoverageFilterCriterion]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageFilterCriteria/)."""
 
 CoverageFilterCriterion = TypedDict(
     "CoverageFilterCriterion",
@@ -1010,6 +1578,7 @@ CoverageFilterCriterion = TypedDict(
     "filter_condition": NotRequired["CoverageFilterCondition"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageFilterCriterion/)."""
 
 CoverageResource = TypedDict(
     "CoverageResource",
@@ -1023,6 +1592,7 @@ CoverageResource = TypedDict(
     "updated_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageResource/)."""
 
 CoverageResourceDetails = TypedDict(
     "CoverageResourceDetails",
@@ -1033,6 +1603,7 @@ CoverageResourceDetails = TypedDict(
     "resource_type": NotRequired["ResourceType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageResourceDetails/)."""
 
 CoverageSortCriteria = TypedDict(
     "CoverageSortCriteria",
@@ -1041,6 +1612,7 @@ CoverageSortCriteria = TypedDict(
     "order_by": NotRequired["OrderBy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageSortCriteria/)."""
 
 CoverageStatistics = TypedDict(
     "CoverageStatistics",
@@ -1049,6 +1621,7 @@ CoverageStatistics = TypedDict(
     "count_by_coverage_status": NotRequired["dict[CoverageStatus, int]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageStatistics/)."""
 
 CreateCustomDetectionRuleAssociationRequest = TypedDict(
     "CreateCustomDetectionRuleAssociationRequest",
@@ -1059,6 +1632,7 @@ CreateCustomDetectionRuleAssociationRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleAssociationRequest/)."""
 
 CreateCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "CreateCustomDetectionRuleOrgConfigurationRequest",
@@ -1070,6 +1644,7 @@ CreateCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateCustomDetectionRuleOrgConfigurationRequest/)."""
 
 CreateDetectorRequest = TypedDict(
     "CreateDetectorRequest",
@@ -1082,6 +1657,7 @@ CreateDetectorRequest = TypedDict(
     "features": NotRequired["_Sequence[DetectorFeatureConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateDetectorRequest/)."""
 
 CreateFilterRequest = TypedDict(
     "CreateFilterRequest",
@@ -1096,6 +1672,7 @@ CreateFilterRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateFilterRequest/)."""
 
 CreateIPSetRequest = TypedDict(
     "CreateIPSetRequest",
@@ -1110,6 +1687,7 @@ CreateIPSetRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateIPSetRequest/)."""
 
 CreateInvestigationRequest = TypedDict(
     "CreateInvestigationRequest",
@@ -1119,6 +1697,7 @@ CreateInvestigationRequest = TypedDict(
     "client_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateInvestigationRequest/)."""
 
 CreateMalwareProtectionPlanRequest = TypedDict(
     "CreateMalwareProtectionPlanRequest",
@@ -1130,6 +1709,7 @@ CreateMalwareProtectionPlanRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMalwareProtectionPlanRequest/)."""
 
 CreateMembersRequest = TypedDict(
     "CreateMembersRequest",
@@ -1138,6 +1718,7 @@ CreateMembersRequest = TypedDict(
     "account_details": Required["_Sequence[AccountDetail]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateMembersRequest/)."""
 
 CreateProtectedResource = TypedDict(
     "CreateProtectedResource",
@@ -1145,6 +1726,7 @@ CreateProtectedResource = TypedDict(
     "s3_bucket": NotRequired["CreateS3BucketResource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateProtectedResource/)."""
 
 CreatePublishingDestinationRequest = TypedDict(
     "CreatePublishingDestinationRequest",
@@ -1156,6 +1738,7 @@ CreatePublishingDestinationRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreatePublishingDestinationRequest/)."""
 
 CreateS3BucketResource = TypedDict(
     "CreateS3BucketResource",
@@ -1164,6 +1747,7 @@ CreateS3BucketResource = TypedDict(
     "object_prefixes": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateS3BucketResource/)."""
 
 CreateSampleFindingsRequest = TypedDict(
     "CreateSampleFindingsRequest",
@@ -1172,6 +1756,7 @@ CreateSampleFindingsRequest = TypedDict(
     "finding_types": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateSampleFindingsRequest/)."""
 
 CreateThreatEntitySetRequest = TypedDict(
     "CreateThreatEntitySetRequest",
@@ -1186,6 +1771,7 @@ CreateThreatEntitySetRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatEntitySetRequest/)."""
 
 CreateThreatIntelSetRequest = TypedDict(
     "CreateThreatIntelSetRequest",
@@ -1200,6 +1786,7 @@ CreateThreatIntelSetRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateThreatIntelSetRequest/)."""
 
 CreateTrustedEntitySetRequest = TypedDict(
     "CreateTrustedEntitySetRequest",
@@ -1214,6 +1801,7 @@ CreateTrustedEntitySetRequest = TypedDict(
     "tags": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CreateTrustedEntitySetRequest/)."""
 
 DNSLogsConfigurationResult = TypedDict(
     "DNSLogsConfigurationResult",
@@ -1221,6 +1809,7 @@ DNSLogsConfigurationResult = TypedDict(
     "status": Required["DataSourceStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DNSLogsConfigurationResult-ca4a919877f4/)."""
 
 DataSourceConfigurations = TypedDict(
     "DataSourceConfigurations",
@@ -1230,6 +1819,7 @@ DataSourceConfigurations = TypedDict(
     "malware_protection": NotRequired["MalwareProtectionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceConfigurations/)."""
 
 DataSourceConfigurationsResult = TypedDict(
     "DataSourceConfigurationsResult",
@@ -1242,6 +1832,7 @@ DataSourceConfigurationsResult = TypedDict(
     "malware_protection": NotRequired["MalwareProtectionConfigurationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceConfigurationsResult/)."""
 
 DataSourceFreeTrial = TypedDict(
     "DataSourceFreeTrial",
@@ -1249,6 +1840,7 @@ DataSourceFreeTrial = TypedDict(
     "free_trial_days_remaining": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceFreeTrial/)."""
 
 DataSourcesFreeTrial = TypedDict(
     "DataSourcesFreeTrial",
@@ -1261,6 +1853,7 @@ DataSourcesFreeTrial = TypedDict(
     "malware_protection": NotRequired["MalwareProtectionDataSourceFreeTrial"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourcesFreeTrial/)."""
 
 DateStatistics = TypedDict(
     "DateStatistics",
@@ -1271,6 +1864,7 @@ DateStatistics = TypedDict(
     "total_findings": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DateStatistics/)."""
 
 DeclineInvitationsRequest = TypedDict(
     "DeclineInvitationsRequest",
@@ -1278,6 +1872,7 @@ DeclineInvitationsRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeclineInvitationsRequest/)."""
 
 DefaultServerSideEncryption = TypedDict(
     "DefaultServerSideEncryption",
@@ -1286,6 +1881,7 @@ DefaultServerSideEncryption = TypedDict(
     "kms_master_key_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DefaultServerSideEncryption/)."""
 
 DeleteCustomDetectionRuleAssociationRequest = TypedDict(
     "DeleteCustomDetectionRuleAssociationRequest",
@@ -1294,6 +1890,7 @@ DeleteCustomDetectionRuleAssociationRequest = TypedDict(
     "association_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleAssociationRequest/)."""
 
 DeleteCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "DeleteCustomDetectionRuleOrgConfigurationRequest",
@@ -1302,6 +1899,7 @@ DeleteCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "mode": Required["AssociationMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteCustomDetectionRuleOrgConfigurationRequest/)."""
 
 DeleteDetectorRequest = TypedDict(
     "DeleteDetectorRequest",
@@ -1309,6 +1907,7 @@ DeleteDetectorRequest = TypedDict(
     "detector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteDetectorRequest/)."""
 
 DeleteFilterRequest = TypedDict(
     "DeleteFilterRequest",
@@ -1317,6 +1916,7 @@ DeleteFilterRequest = TypedDict(
     "filter_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteFilterRequest/)."""
 
 DeleteIPSetRequest = TypedDict(
     "DeleteIPSetRequest",
@@ -1325,6 +1925,7 @@ DeleteIPSetRequest = TypedDict(
     "ip_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteIPSetRequest/)."""
 
 DeleteInvitationsRequest = TypedDict(
     "DeleteInvitationsRequest",
@@ -1332,6 +1933,7 @@ DeleteInvitationsRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteInvitationsRequest/)."""
 
 DeleteMalwareProtectionPlanRequest = TypedDict(
     "DeleteMalwareProtectionPlanRequest",
@@ -1339,6 +1941,7 @@ DeleteMalwareProtectionPlanRequest = TypedDict(
     "malware_protection_plan_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteMalwareProtectionPlanRequest/)."""
 
 DeleteMembersRequest = TypedDict(
     "DeleteMembersRequest",
@@ -1347,6 +1950,7 @@ DeleteMembersRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteMembersRequest/)."""
 
 DeletePublishingDestinationRequest = TypedDict(
     "DeletePublishingDestinationRequest",
@@ -1355,6 +1959,7 @@ DeletePublishingDestinationRequest = TypedDict(
     "destination_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeletePublishingDestinationRequest/)."""
 
 DeleteThreatEntitySetRequest = TypedDict(
     "DeleteThreatEntitySetRequest",
@@ -1363,6 +1968,7 @@ DeleteThreatEntitySetRequest = TypedDict(
     "threat_entity_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatEntitySetRequest/)."""
 
 DeleteThreatIntelSetRequest = TypedDict(
     "DeleteThreatIntelSetRequest",
@@ -1371,6 +1977,7 @@ DeleteThreatIntelSetRequest = TypedDict(
     "threat_intel_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteThreatIntelSetRequest/)."""
 
 DeleteTrustedEntitySetRequest = TypedDict(
     "DeleteTrustedEntitySetRequest",
@@ -1379,6 +1986,7 @@ DeleteTrustedEntitySetRequest = TypedDict(
     "trusted_entity_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DeleteTrustedEntitySetRequest/)."""
 
 DescribeMalwareScansRequest = TypedDict(
     "DescribeMalwareScansRequest",
@@ -1390,6 +1998,7 @@ DescribeMalwareScansRequest = TypedDict(
     "sort_criteria": NotRequired["SortCriteria"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeMalwareScansRequest/)."""
 
 DescribeOrganizationConfigurationRequest = TypedDict(
     "DescribeOrganizationConfigurationRequest",
@@ -1399,6 +2008,7 @@ DescribeOrganizationConfigurationRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribeOrganizationConfigurationRequest/)."""
 
 DescribePublishingDestinationRequest = TypedDict(
     "DescribePublishingDestinationRequest",
@@ -1407,6 +2017,7 @@ DescribePublishingDestinationRequest = TypedDict(
     "destination_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DescribePublishingDestinationRequest/)."""
 
 Destination = TypedDict(
     "Destination",
@@ -1416,6 +2027,7 @@ Destination = TypedDict(
     "status": Required["PublishingStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Destination/)."""
 
 DestinationProperties = TypedDict(
     "DestinationProperties",
@@ -1425,6 +2037,7 @@ DestinationProperties = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationProperties/)."""
 
 Detection = TypedDict(
     "Detection",
@@ -1433,6 +2046,7 @@ Detection = TypedDict(
     "sequence": NotRequired["Sequence"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Detection/)."""
 
 DetectionRuleEc2Requirements = TypedDict(
     "DetectionRuleEc2Requirements",
@@ -1440,6 +2054,7 @@ DetectionRuleEc2Requirements = TypedDict(
     "min_agent_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEc2Requirements/)."""
 
 DetectionRuleEcsFargateRequirements = TypedDict(
     "DetectionRuleEcsFargateRequirements",
@@ -1447,6 +2062,7 @@ DetectionRuleEcsFargateRequirements = TypedDict(
     "min_agent_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEcsFargateRequirements/)."""
 
 DetectionRuleEksRequirements = TypedDict(
     "DetectionRuleEksRequirements",
@@ -1454,6 +2070,7 @@ DetectionRuleEksRequirements = TypedDict(
     "min_agent_version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleEksRequirements/)."""
 
 DetectionRuleFilter = TypedDict(
     "DetectionRuleFilter",
@@ -1463,6 +2080,7 @@ DetectionRuleFilter = TypedDict(
     "condition": NotRequired["DetectionRuleFilterCondition"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleFilter/)."""
 
 DetectionRuleOrgConfiguration = TypedDict(
     "DetectionRuleOrgConfiguration",
@@ -1478,6 +2096,7 @@ DetectionRuleOrgConfiguration = TypedDict(
     "expires_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleOrgConfiguration/)."""
 
 DetectionRuleOrgConfigurationSummary = TypedDict(
     "DetectionRuleOrgConfigurationSummary",
@@ -1491,6 +2110,7 @@ DetectionRuleOrgConfigurationSummary = TypedDict(
     "expires_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleOrgConfigurationSummary/)."""
 
 DetectionRuleRuntimeMonitoringDetails = TypedDict(
     "DetectionRuleRuntimeMonitoringDetails",
@@ -1498,6 +2118,7 @@ DetectionRuleRuntimeMonitoringDetails = TypedDict(
     "platforms": NotRequired["DetectionRuleRuntimePlatforms"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleRuntimeMonitoringDetails/)."""
 
 DetectionRuleRuntimePlatforms = TypedDict(
     "DetectionRuleRuntimePlatforms",
@@ -1507,6 +2128,7 @@ DetectionRuleRuntimePlatforms = TypedDict(
     "ecs_fargate": NotRequired["DetectionRuleEcsFargateRequirements"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionRuleRuntimePlatforms/)."""
 
 DetectorAdditionalConfiguration = TypedDict(
     "DetectorAdditionalConfiguration",
@@ -1515,6 +2137,7 @@ DetectorAdditionalConfiguration = TypedDict(
     "status": NotRequired["FeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorAdditionalConfiguration/)."""
 
 DetectorAdditionalConfigurationResult = TypedDict(
     "DetectorAdditionalConfigurationResult",
@@ -1525,6 +2148,7 @@ DetectorAdditionalConfigurationResult = TypedDict(
     "managed_by": NotRequired["ManagedBy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorAdditionalConfigurationResult/)."""
 
 DetectorFeatureConfiguration = TypedDict(
     "DetectorFeatureConfiguration",
@@ -1534,6 +2158,7 @@ DetectorFeatureConfiguration = TypedDict(
     "additional_configuration": NotRequired["_Sequence[DetectorAdditionalConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeatureConfiguration/)."""
 
 DetectorFeatureConfigurationResult = TypedDict(
     "DetectorFeatureConfigurationResult",
@@ -1545,6 +2170,7 @@ DetectorFeatureConfigurationResult = TypedDict(
     "managed_by": NotRequired["ManagedBy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorFeatureConfigurationResult/)."""
 
 DisableOrganizationAdminAccountRequest = TypedDict(
     "DisableOrganizationAdminAccountRequest",
@@ -1552,6 +2178,7 @@ DisableOrganizationAdminAccountRequest = TypedDict(
     "admin_account_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisableOrganizationAdminAccountRequest/)."""
 
 DisassociateFromAdministratorAccountRequest = TypedDict(
     "DisassociateFromAdministratorAccountRequest",
@@ -1559,6 +2186,7 @@ DisassociateFromAdministratorAccountRequest = TypedDict(
     "detector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromAdministratorAccountRequest/)."""
 
 DisassociateFromMasterAccountRequest = TypedDict(
     "DisassociateFromMasterAccountRequest",
@@ -1566,6 +2194,7 @@ DisassociateFromMasterAccountRequest = TypedDict(
     "detector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateFromMasterAccountRequest/)."""
 
 DisassociateMembersRequest = TypedDict(
     "DisassociateMembersRequest",
@@ -1574,6 +2203,7 @@ DisassociateMembersRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateMembersRequest/)."""
 
 DnsRequestAction = TypedDict(
     "DnsRequestAction",
@@ -1585,6 +2215,7 @@ DnsRequestAction = TypedDict(
     "vpc_owner_account_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DnsRequestAction/)."""
 
 DomainDetails = TypedDict(
     "DomainDetails",
@@ -1592,6 +2223,7 @@ DomainDetails = TypedDict(
     "domain": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DomainDetails/)."""
 
 EbsSnapshot = TypedDict(
     "EbsSnapshot",
@@ -1599,6 +2231,7 @@ EbsSnapshot = TypedDict(
     "device_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshot/)."""
 
 EbsSnapshotDetails = TypedDict(
     "EbsSnapshotDetails",
@@ -1606,6 +2239,7 @@ EbsSnapshotDetails = TypedDict(
     "snapshot_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotDetails/)."""
 
 EbsVolumeDetails = TypedDict(
     "EbsVolumeDetails",
@@ -1614,6 +2248,7 @@ EbsVolumeDetails = TypedDict(
     "skipped_volume_details": NotRequired["_Sequence[VolumeDetail]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumeDetails/)."""
 
 EbsVolumeScanDetails = TypedDict(
     "EbsVolumeScanDetails",
@@ -1627,6 +2262,7 @@ EbsVolumeScanDetails = TypedDict(
     "scan_type": NotRequired["ScanType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumeScanDetails/)."""
 
 EbsVolumesResult = TypedDict(
     "EbsVolumesResult",
@@ -1635,6 +2271,7 @@ EbsVolumesResult = TypedDict(
     "reason": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsVolumesResult/)."""
 
 Ec2Image = TypedDict(
     "Ec2Image",
@@ -1642,6 +2279,7 @@ Ec2Image = TypedDict(
     "ec2_instance_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2Image/)."""
 
 Ec2ImageDetails = TypedDict(
     "Ec2ImageDetails",
@@ -1649,6 +2287,7 @@ Ec2ImageDetails = TypedDict(
     "image_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2ImageDetails/)."""
 
 Ec2Instance = TypedDict(
     "Ec2Instance",
@@ -1664,6 +2303,7 @@ Ec2Instance = TypedDict(
     "ec2_network_interface_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2Instance/)."""
 
 Ec2LaunchTemplate = TypedDict(
     "Ec2LaunchTemplate",
@@ -1672,6 +2312,7 @@ Ec2LaunchTemplate = TypedDict(
     "version": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2LaunchTemplate/)."""
 
 Ec2NetworkInterface = TypedDict(
     "Ec2NetworkInterface",
@@ -1684,6 +2325,7 @@ Ec2NetworkInterface = TypedDict(
     "vpc_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2NetworkInterface/)."""
 
 Ec2Vpc = TypedDict(
     "Ec2Vpc",
@@ -1691,6 +2333,7 @@ Ec2Vpc = TypedDict(
     "ec2_instance_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Ec2Vpc/)."""
 
 EcsCluster = TypedDict(
     "EcsCluster",
@@ -1699,6 +2342,7 @@ EcsCluster = TypedDict(
     "ec2_instance_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsCluster/)."""
 
 EcsClusterDetails = TypedDict(
     "EcsClusterDetails",
@@ -1713,6 +2357,7 @@ EcsClusterDetails = TypedDict(
     "task_details": NotRequired["EcsTaskDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsClusterDetails/)."""
 
 EcsTask = TypedDict(
     "EcsTask",
@@ -1723,6 +2368,7 @@ EcsTask = TypedDict(
     "container_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsTask/)."""
 
 EcsTaskDetails = TypedDict(
     "EcsTaskDetails",
@@ -1740,6 +2386,7 @@ EcsTaskDetails = TypedDict(
     "launch_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EcsTaskDetails/)."""
 
 EksCluster = TypedDict(
     "EksCluster",
@@ -1751,6 +2398,7 @@ EksCluster = TypedDict(
     "ec2_instance_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EksCluster/)."""
 
 EksClusterDetails = TypedDict(
     "EksClusterDetails",
@@ -1763,6 +2411,7 @@ EksClusterDetails = TypedDict(
     "created_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EksClusterDetails/)."""
 
 EnableOrganizationAdminAccountRequest = TypedDict(
     "EnableOrganizationAdminAccountRequest",
@@ -1770,6 +2419,7 @@ EnableOrganizationAdminAccountRequest = TypedDict(
     "admin_account_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EnableOrganizationAdminAccountRequest/)."""
 
 Evidence = TypedDict(
     "Evidence",
@@ -1777,6 +2427,7 @@ Evidence = TypedDict(
     "threat_intelligence_details": NotRequired["_Sequence[ThreatIntelligenceDetail]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Evidence/)."""
 
 FargateDetails = TypedDict(
     "FargateDetails",
@@ -1785,6 +2436,7 @@ FargateDetails = TypedDict(
     "management_type": NotRequired["ManagementType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FargateDetails/)."""
 
 FilterCondition = TypedDict(
     "FilterCondition",
@@ -1794,6 +2446,7 @@ FilterCondition = TypedDict(
     "less_than": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterCondition/)."""
 
 FilterCriteria = TypedDict(
     "FilterCriteria",
@@ -1801,6 +2454,7 @@ FilterCriteria = TypedDict(
     "filter_criterion": NotRequired["_Sequence[FilterCriterion]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterCriteria/)."""
 
 FilterCriterion = TypedDict(
     "FilterCriterion",
@@ -1809,6 +2463,7 @@ FilterCriterion = TypedDict(
     "filter_condition": NotRequired["FilterCondition"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterCriterion/)."""
 
 Finding = TypedDict(
     "Finding",
@@ -1832,6 +2487,7 @@ Finding = TypedDict(
     "custom_detection_rule_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Finding/)."""
 
 FindingCriteria = TypedDict(
     "FindingCriteria",
@@ -1839,6 +2495,7 @@ FindingCriteria = TypedDict(
     "criterion": NotRequired["dict[str, Condition]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingCriteria/)."""
 
 FindingStatistics = TypedDict(
     "FindingStatistics",
@@ -1851,6 +2508,7 @@ FindingStatistics = TypedDict(
     "grouped_by_severity": NotRequired["_Sequence[SeverityStatistics]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingStatistics/)."""
 
 FindingTypeStatistics = TypedDict(
     "FindingTypeStatistics",
@@ -1860,6 +2518,7 @@ FindingTypeStatistics = TypedDict(
     "total_findings": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeStatistics/)."""
 
 FlowLogsConfigurationResult = TypedDict(
     "FlowLogsConfigurationResult",
@@ -1867,6 +2526,7 @@ FlowLogsConfigurationResult = TypedDict(
     "status": Required["DataSourceStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FlowLogsConfigurationResult/)."""
 
 FreeTrialFeatureConfigurationResult = TypedDict(
     "FreeTrialFeatureConfigurationResult",
@@ -1875,6 +2535,7 @@ FreeTrialFeatureConfigurationResult = TypedDict(
     "free_trial_days_remaining": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FreeTrialFeatureConfigurationResult/)."""
 
 GeoLocation = TypedDict(
     "GeoLocation",
@@ -1883,6 +2544,7 @@ GeoLocation = TypedDict(
     "lon": NotRequired["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GeoLocation/)."""
 
 GetAdministratorAccountRequest = TypedDict(
     "GetAdministratorAccountRequest",
@@ -1890,6 +2552,7 @@ GetAdministratorAccountRequest = TypedDict(
     "detector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetAdministratorAccountRequest/)."""
 
 GetCoverageStatisticsRequest = TypedDict(
     "GetCoverageStatisticsRequest",
@@ -1899,6 +2562,7 @@ GetCoverageStatisticsRequest = TypedDict(
     "statistics_type": Required["_Sequence[CoverageStatisticsType]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCoverageStatisticsRequest/)."""
 
 GetCustomDetectionRuleAssociationRequest = TypedDict(
     "GetCustomDetectionRuleAssociationRequest",
@@ -1907,6 +2571,7 @@ GetCustomDetectionRuleAssociationRequest = TypedDict(
     "association_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleAssociationRequest/)."""
 
 GetCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "GetCustomDetectionRuleOrgConfigurationRequest",
@@ -1915,6 +2580,7 @@ GetCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "mode": Required["AssociationMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleOrgConfigurationRequest/)."""
 
 GetCustomDetectionRuleRequest = TypedDict(
     "GetCustomDetectionRuleRequest",
@@ -1922,6 +2588,7 @@ GetCustomDetectionRuleRequest = TypedDict(
     "rule_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetCustomDetectionRuleRequest/)."""
 
 GetDetectorRequest = TypedDict(
     "GetDetectorRequest",
@@ -1929,6 +2596,7 @@ GetDetectorRequest = TypedDict(
     "detector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetDetectorRequest/)."""
 
 GetFilterRequest = TypedDict(
     "GetFilterRequest",
@@ -1937,6 +2605,7 @@ GetFilterRequest = TypedDict(
     "filter_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFilterRequest/)."""
 
 GetFindingsRequest = TypedDict(
     "GetFindingsRequest",
@@ -1946,6 +2615,7 @@ GetFindingsRequest = TypedDict(
     "sort_criteria": NotRequired["SortCriteria"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsRequest/)."""
 
 GetFindingsStatisticsRequest = TypedDict(
     "GetFindingsStatisticsRequest",
@@ -1958,6 +2628,7 @@ GetFindingsStatisticsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetFindingsStatisticsRequest/)."""
 
 GetIPSetRequest = TypedDict(
     "GetIPSetRequest",
@@ -1966,6 +2637,7 @@ GetIPSetRequest = TypedDict(
     "ip_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetIPSetRequest/)."""
 
 GetInvestigationRequest = TypedDict(
     "GetInvestigationRequest",
@@ -1974,12 +2646,14 @@ GetInvestigationRequest = TypedDict(
     "investigation_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvestigationRequest/)."""
 
 GetInvitationsCountRequest = TypedDict(
     "GetInvitationsCountRequest",
     {
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvitationsCountRequest/)."""
 
 GetMalwareProtectionPlanRequest = TypedDict(
     "GetMalwareProtectionPlanRequest",
@@ -1987,6 +2661,7 @@ GetMalwareProtectionPlanRequest = TypedDict(
     "malware_protection_plan_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareProtectionPlanRequest/)."""
 
 GetMalwareScanRequest = TypedDict(
     "GetMalwareScanRequest",
@@ -1994,6 +2669,7 @@ GetMalwareScanRequest = TypedDict(
     "scan_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanRequest/)."""
 
 GetMalwareScanResultDetails = TypedDict(
     "GetMalwareScanResultDetails",
@@ -2008,6 +2684,7 @@ GetMalwareScanResultDetails = TypedDict(
     "threats": NotRequired["_Sequence[ScanResultThreat]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanResultDetails/)."""
 
 GetMalwareScanSettingsRequest = TypedDict(
     "GetMalwareScanSettingsRequest",
@@ -2015,6 +2692,7 @@ GetMalwareScanSettingsRequest = TypedDict(
     "detector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMalwareScanSettingsRequest/)."""
 
 GetMasterAccountRequest = TypedDict(
     "GetMasterAccountRequest",
@@ -2022,6 +2700,7 @@ GetMasterAccountRequest = TypedDict(
     "detector_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMasterAccountRequest/)."""
 
 GetMemberDetectorsRequest = TypedDict(
     "GetMemberDetectorsRequest",
@@ -2030,6 +2709,7 @@ GetMemberDetectorsRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMemberDetectorsRequest/)."""
 
 GetMembersRequest = TypedDict(
     "GetMembersRequest",
@@ -2038,6 +2718,7 @@ GetMembersRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetMembersRequest/)."""
 
 GetRemainingFreeTrialDaysRequest = TypedDict(
     "GetRemainingFreeTrialDaysRequest",
@@ -2046,6 +2727,7 @@ GetRemainingFreeTrialDaysRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetRemainingFreeTrialDaysRequest/)."""
 
 GetThreatEntitySetRequest = TypedDict(
     "GetThreatEntitySetRequest",
@@ -2054,6 +2736,7 @@ GetThreatEntitySetRequest = TypedDict(
     "threat_entity_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatEntitySetRequest/)."""
 
 GetThreatIntelSetRequest = TypedDict(
     "GetThreatIntelSetRequest",
@@ -2062,6 +2745,7 @@ GetThreatIntelSetRequest = TypedDict(
     "threat_intel_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetThreatIntelSetRequest/)."""
 
 GetTrustedEntitySetRequest = TypedDict(
     "GetTrustedEntitySetRequest",
@@ -2070,6 +2754,7 @@ GetTrustedEntitySetRequest = TypedDict(
     "trusted_entity_set_id": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetTrustedEntitySetRequest/)."""
 
 GetUsageStatisticsRequest = TypedDict(
     "GetUsageStatisticsRequest",
@@ -2082,6 +2767,7 @@ GetUsageStatisticsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetUsageStatisticsRequest/)."""
 
 HighestSeverityThreatDetails = TypedDict(
     "HighestSeverityThreatDetails",
@@ -2091,6 +2777,7 @@ HighestSeverityThreatDetails = TypedDict(
     "count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/HighestSeverityThreatDetails/)."""
 
 HostPath = TypedDict(
     "HostPath",
@@ -2098,6 +2785,7 @@ HostPath = TypedDict(
     "path": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/HostPath/)."""
 
 IamInstanceProfile = TypedDict(
     "IamInstanceProfile",
@@ -2106,6 +2794,7 @@ IamInstanceProfile = TypedDict(
     "id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IamInstanceProfile/)."""
 
 IamInstanceProfileV2 = TypedDict(
     "IamInstanceProfileV2",
@@ -2113,6 +2802,7 @@ IamInstanceProfileV2 = TypedDict(
     "ec2_instance_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IamInstanceProfileV2/)."""
 
 ImpersonatedUser = TypedDict(
     "ImpersonatedUser",
@@ -2121,6 +2811,7 @@ ImpersonatedUser = TypedDict(
     "groups": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ImpersonatedUser/)."""
 
 IncrementalScanDetails = TypedDict(
     "IncrementalScanDetails",
@@ -2128,6 +2819,7 @@ IncrementalScanDetails = TypedDict(
     "baseline_resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IncrementalScanDetails/)."""
 
 Indicator = TypedDict(
     "Indicator",
@@ -2137,6 +2829,7 @@ Indicator = TypedDict(
     "title": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Indicator/)."""
 
 InstanceDetails = TypedDict(
     "InstanceDetails",
@@ -2156,6 +2849,7 @@ InstanceDetails = TypedDict(
     "tags": NotRequired["_Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InstanceDetails/)."""
 
 Investigation = TypedDict(
     "Investigation",
@@ -2175,6 +2869,7 @@ Investigation = TypedDict(
     "error": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Investigation/)."""
 
 InvestigationMetadata = TypedDict(
     "InvestigationMetadata",
@@ -2183,6 +2878,7 @@ InvestigationMetadata = TypedDict(
     "product": Required["Product"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationMetadata/)."""
 
 InvestigationSortCriteria = TypedDict(
     "InvestigationSortCriteria",
@@ -2191,6 +2887,7 @@ InvestigationSortCriteria = TypedDict(
     "order_by": NotRequired["OrderBy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSortCriteria/)."""
 
 InvestigationSummary = TypedDict(
     "InvestigationSummary",
@@ -2206,6 +2903,7 @@ InvestigationSummary = TypedDict(
     "end_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSummary/)."""
 
 Invitation = TypedDict(
     "Invitation",
@@ -2216,6 +2914,7 @@ Invitation = TypedDict(
     "invited_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Invitation/)."""
 
 InviteMembersRequest = TypedDict(
     "InviteMembersRequest",
@@ -2226,6 +2925,7 @@ InviteMembersRequest = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InviteMembersRequest/)."""
 
 ItemDetails = TypedDict(
     "ItemDetails",
@@ -2236,6 +2936,7 @@ ItemDetails = TypedDict(
     "additional_info": NotRequired["AdditionalInfo"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemDetails/)."""
 
 ItemPath = TypedDict(
     "ItemPath",
@@ -2244,6 +2945,7 @@ ItemPath = TypedDict(
     "hash": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemPath/)."""
 
 KubernetesApiCallAction = TypedDict(
     "KubernetesApiCallAction",
@@ -2261,6 +2963,7 @@ KubernetesApiCallAction = TypedDict(
     "parameters": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesApiCallAction/)."""
 
 KubernetesAuditLogsConfiguration = TypedDict(
     "KubernetesAuditLogsConfiguration",
@@ -2268,6 +2971,7 @@ KubernetesAuditLogsConfiguration = TypedDict(
     "enable": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesAuditLogsConfiguration/)."""
 
 KubernetesAuditLogsConfigurationResult = TypedDict(
     "KubernetesAuditLogsConfigurationResult",
@@ -2275,6 +2979,7 @@ KubernetesAuditLogsConfigurationResult = TypedDict(
     "status": Required["DataSourceStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesAuditLogsConfigurationResult/)."""
 
 KubernetesConfiguration = TypedDict(
     "KubernetesConfiguration",
@@ -2282,6 +2987,7 @@ KubernetesConfiguration = TypedDict(
     "audit_logs": Required["KubernetesAuditLogsConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesConfiguration/)."""
 
 KubernetesConfigurationResult = TypedDict(
     "KubernetesConfigurationResult",
@@ -2289,6 +2995,7 @@ KubernetesConfigurationResult = TypedDict(
     "audit_logs": Required["KubernetesAuditLogsConfigurationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesConfigurationResult/)."""
 
 KubernetesDataSourceFreeTrial = TypedDict(
     "KubernetesDataSourceFreeTrial",
@@ -2296,6 +3003,7 @@ KubernetesDataSourceFreeTrial = TypedDict(
     "audit_logs": NotRequired["DataSourceFreeTrial"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesDataSourceFreeTrial/)."""
 
 KubernetesDetails = TypedDict(
     "KubernetesDetails",
@@ -2304,6 +3012,7 @@ KubernetesDetails = TypedDict(
     "kubernetes_workload_details": NotRequired["KubernetesWorkloadDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesDetails/)."""
 
 KubernetesPermissionCheckedDetails = TypedDict(
     "KubernetesPermissionCheckedDetails",
@@ -2314,6 +3023,7 @@ KubernetesPermissionCheckedDetails = TypedDict(
     "allowed": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesPermissionCheckedDetails/)."""
 
 KubernetesRoleBindingDetails = TypedDict(
     "KubernetesRoleBindingDetails",
@@ -2325,6 +3035,7 @@ KubernetesRoleBindingDetails = TypedDict(
     "role_ref_kind": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesRoleBindingDetails/)."""
 
 KubernetesRoleDetails = TypedDict(
     "KubernetesRoleDetails",
@@ -2334,6 +3045,7 @@ KubernetesRoleDetails = TypedDict(
     "uid": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesRoleDetails/)."""
 
 KubernetesUserDetails = TypedDict(
     "KubernetesUserDetails",
@@ -2345,6 +3057,7 @@ KubernetesUserDetails = TypedDict(
     "impersonated_user": NotRequired["ImpersonatedUser"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesUserDetails/)."""
 
 KubernetesWorkload = TypedDict(
     "KubernetesWorkload",
@@ -2354,6 +3067,7 @@ KubernetesWorkload = TypedDict(
     "kubernetes_resources_types": NotRequired["KubernetesResourcesTypes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesWorkload/)."""
 
 KubernetesWorkloadDetails = TypedDict(
     "KubernetesWorkloadDetails",
@@ -2370,6 +3084,7 @@ KubernetesWorkloadDetails = TypedDict(
     "host_pid": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesWorkloadDetails/)."""
 
 LambdaDetails = TypedDict(
     "LambdaDetails",
@@ -2385,6 +3100,7 @@ LambdaDetails = TypedDict(
     "tags": NotRequired["_Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LambdaDetails/)."""
 
 LineageObject = TypedDict(
     "LineageObject",
@@ -2400,6 +3116,7 @@ LineageObject = TypedDict(
     "parent_uuid": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LineageObject/)."""
 
 ListCoverageRequest = TypedDict(
     "ListCoverageRequest",
@@ -2411,6 +3128,7 @@ ListCoverageRequest = TypedDict(
     "sort_criteria": NotRequired["CoverageSortCriteria"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCoverageRequest/)."""
 
 ListCustomDetectionRuleAssociationsRequest = TypedDict(
     "ListCustomDetectionRuleAssociationsRequest",
@@ -2421,6 +3139,7 @@ ListCustomDetectionRuleAssociationsRequest = TypedDict(
     "mode": NotRequired["AssociationMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleAssociationsRequest/)."""
 
 ListCustomDetectionRuleOrgConfigurationsRequest = TypedDict(
     "ListCustomDetectionRuleOrgConfigurationsRequest",
@@ -2430,6 +3149,7 @@ ListCustomDetectionRuleOrgConfigurationsRequest = TypedDict(
     "status": NotRequired["DetectionRuleConfigurationStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRuleOrgConfigurationsRequest/)."""
 
 ListCustomDetectionRulesRequest = TypedDict(
     "ListCustomDetectionRulesRequest",
@@ -2439,6 +3159,7 @@ ListCustomDetectionRulesRequest = TypedDict(
     "filters": NotRequired["_Sequence[DetectionRuleFilter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListCustomDetectionRulesRequest/)."""
 
 ListDetectorsRequest = TypedDict(
     "ListDetectorsRequest",
@@ -2447,6 +3168,7 @@ ListDetectorsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListDetectorsRequest/)."""
 
 ListFiltersRequest = TypedDict(
     "ListFiltersRequest",
@@ -2456,6 +3178,7 @@ ListFiltersRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFiltersRequest/)."""
 
 ListFindingsRequest = TypedDict(
     "ListFindingsRequest",
@@ -2467,6 +3190,7 @@ ListFindingsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFindingsRequest/)."""
 
 ListIPSetsRequest = TypedDict(
     "ListIPSetsRequest",
@@ -2476,6 +3200,7 @@ ListIPSetsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListIPSetsRequest/)."""
 
 ListInvestigationsRequest = TypedDict(
     "ListInvestigationsRequest",
@@ -2486,6 +3211,7 @@ ListInvestigationsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvestigationsRequest/)."""
 
 ListInvitationsRequest = TypedDict(
     "ListInvitationsRequest",
@@ -2494,6 +3220,7 @@ ListInvitationsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvitationsRequest/)."""
 
 ListMalwareProtectionPlansRequest = TypedDict(
     "ListMalwareProtectionPlansRequest",
@@ -2501,6 +3228,7 @@ ListMalwareProtectionPlansRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareProtectionPlansRequest/)."""
 
 ListMalwareScansFilterCriteria = TypedDict(
     "ListMalwareScansFilterCriteria",
@@ -2508,6 +3236,7 @@ ListMalwareScansFilterCriteria = TypedDict(
     "list_malware_scans_filter_criterion": NotRequired["_Sequence[ListMalwareScansFilterCriterion]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansFilterCriteria/)."""
 
 ListMalwareScansFilterCriterion = TypedDict(
     "ListMalwareScansFilterCriterion",
@@ -2516,6 +3245,7 @@ ListMalwareScansFilterCriterion = TypedDict(
     "filter_condition": NotRequired["FilterCondition"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansFilterCriterion/)."""
 
 ListMalwareScansRequest = TypedDict(
     "ListMalwareScansRequest",
@@ -2526,6 +3256,7 @@ ListMalwareScansRequest = TypedDict(
     "sort_criteria": NotRequired["SortCriteria"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMalwareScansRequest/)."""
 
 ListMembersRequest = TypedDict(
     "ListMembersRequest",
@@ -2536,6 +3267,7 @@ ListMembersRequest = TypedDict(
     "only_associated": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListMembersRequest/)."""
 
 ListOrganizationAdminAccountsRequest = TypedDict(
     "ListOrganizationAdminAccountsRequest",
@@ -2544,6 +3276,7 @@ ListOrganizationAdminAccountsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListOrganizationAdminAccountsRequest/)."""
 
 ListPublishingDestinationsRequest = TypedDict(
     "ListPublishingDestinationsRequest",
@@ -2553,6 +3286,7 @@ ListPublishingDestinationsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListPublishingDestinationsRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -2560,6 +3294,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTagsForResourceRequest/)."""
 
 ListThreatEntitySetsRequest = TypedDict(
     "ListThreatEntitySetsRequest",
@@ -2569,6 +3304,7 @@ ListThreatEntitySetsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatEntitySetsRequest/)."""
 
 ListThreatIntelSetsRequest = TypedDict(
     "ListThreatIntelSetsRequest",
@@ -2578,6 +3314,7 @@ ListThreatIntelSetsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListThreatIntelSetsRequest/)."""
 
 ListTrustedEntitySetsRequest = TypedDict(
     "ListTrustedEntitySetsRequest",
@@ -2587,6 +3324,7 @@ ListTrustedEntitySetsRequest = TypedDict(
     "next_token": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListTrustedEntitySetsRequest/)."""
 
 LocalIpDetails = TypedDict(
     "LocalIpDetails",
@@ -2595,6 +3333,7 @@ LocalIpDetails = TypedDict(
     "ip_address_v6": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LocalIpDetails/)."""
 
 LocalPortDetails = TypedDict(
     "LocalPortDetails",
@@ -2603,6 +3342,7 @@ LocalPortDetails = TypedDict(
     "port_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LocalPortDetails/)."""
 
 LoginAttribute = TypedDict(
     "LoginAttribute",
@@ -2613,6 +3353,7 @@ LoginAttribute = TypedDict(
     "successful_login_attempts": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LoginAttribute/)."""
 
 MalwareProtectionConfiguration = TypedDict(
     "MalwareProtectionConfiguration",
@@ -2620,6 +3361,7 @@ MalwareProtectionConfiguration = TypedDict(
     "scan_ec2_instance_with_findings": NotRequired["ScanEc2InstanceWithFindings"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionConfiguration/)."""
 
 MalwareProtectionConfigurationResult = TypedDict(
     "MalwareProtectionConfigurationResult",
@@ -2628,6 +3370,7 @@ MalwareProtectionConfigurationResult = TypedDict(
     "service_role": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionConfigurationResult/)."""
 
 MalwareProtectionDataSourceFreeTrial = TypedDict(
     "MalwareProtectionDataSourceFreeTrial",
@@ -2635,6 +3378,7 @@ MalwareProtectionDataSourceFreeTrial = TypedDict(
     "scan_ec2_instance_with_findings": NotRequired["DataSourceFreeTrial"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionDataSourceFreeTrial/)."""
 
 MalwareProtectionFindingsScanConfiguration = TypedDict(
     "MalwareProtectionFindingsScanConfiguration",
@@ -2643,6 +3387,7 @@ MalwareProtectionFindingsScanConfiguration = TypedDict(
     "incremental_scan_details": NotRequired["IncrementalScanDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionFindingsScanConfiguration/)."""
 
 MalwareProtectionPlanActions = TypedDict(
     "MalwareProtectionPlanActions",
@@ -2650,6 +3395,7 @@ MalwareProtectionPlanActions = TypedDict(
     "tagging": NotRequired["MalwareProtectionPlanTaggingAction"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanActions/)."""
 
 MalwareProtectionPlanStatusReason = TypedDict(
     "MalwareProtectionPlanStatusReason",
@@ -2658,6 +3404,7 @@ MalwareProtectionPlanStatusReason = TypedDict(
     "message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanStatusReason/)."""
 
 MalwareProtectionPlanSummary = TypedDict(
     "MalwareProtectionPlanSummary",
@@ -2665,6 +3412,7 @@ MalwareProtectionPlanSummary = TypedDict(
     "malware_protection_plan_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanSummary/)."""
 
 MalwareProtectionPlanTaggingAction = TypedDict(
     "MalwareProtectionPlanTaggingAction",
@@ -2672,6 +3420,7 @@ MalwareProtectionPlanTaggingAction = TypedDict(
     "status": NotRequired["MalwareProtectionPlanTaggingActionStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareProtectionPlanTaggingAction/)."""
 
 MalwareScan = TypedDict(
     "MalwareScan",
@@ -2686,6 +3435,7 @@ MalwareScan = TypedDict(
     "scan_completed_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareScan/)."""
 
 MalwareScanDetails = TypedDict(
     "MalwareScanDetails",
@@ -2698,6 +3448,7 @@ MalwareScanDetails = TypedDict(
     "unique_threat_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareScanDetails/)."""
 
 Master = TypedDict(
     "Master",
@@ -2708,6 +3459,7 @@ Master = TypedDict(
     "invited_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Master/)."""
 
 Member = TypedDict(
     "Member",
@@ -2722,6 +3474,7 @@ Member = TypedDict(
     "administrator_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Member/)."""
 
 MemberAdditionalConfiguration = TypedDict(
     "MemberAdditionalConfiguration",
@@ -2730,6 +3483,7 @@ MemberAdditionalConfiguration = TypedDict(
     "status": NotRequired["FeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberAdditionalConfiguration/)."""
 
 MemberAdditionalConfigurationResult = TypedDict(
     "MemberAdditionalConfigurationResult",
@@ -2740,6 +3494,7 @@ MemberAdditionalConfigurationResult = TypedDict(
     "managed_by": NotRequired["ManagedBy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberAdditionalConfigurationResult/)."""
 
 MemberDataSourceConfiguration = TypedDict(
     "MemberDataSourceConfiguration",
@@ -2749,6 +3504,7 @@ MemberDataSourceConfiguration = TypedDict(
     "features": NotRequired["_Sequence[MemberFeaturesConfigurationResult]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberDataSourceConfiguration/)."""
 
 MemberFeaturesConfiguration = TypedDict(
     "MemberFeaturesConfiguration",
@@ -2758,6 +3514,7 @@ MemberFeaturesConfiguration = TypedDict(
     "additional_configuration": NotRequired["_Sequence[MemberAdditionalConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberFeaturesConfiguration/)."""
 
 MemberFeaturesConfigurationResult = TypedDict(
     "MemberFeaturesConfigurationResult",
@@ -2769,6 +3526,7 @@ MemberFeaturesConfigurationResult = TypedDict(
     "managed_by": NotRequired["ManagedBy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberFeaturesConfigurationResult/)."""
 
 ModelDetail = TypedDict(
     "ModelDetail",
@@ -2776,6 +3534,7 @@ ModelDetail = TypedDict(
     "model_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ModelDetail/)."""
 
 NetworkConnection = TypedDict(
     "NetworkConnection",
@@ -2783,6 +3542,7 @@ NetworkConnection = TypedDict(
     "direction": Required["NetworkDirection"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkConnection/)."""
 
 NetworkConnectionAction = TypedDict(
     "NetworkConnectionAction",
@@ -2797,6 +3557,7 @@ NetworkConnectionAction = TypedDict(
     "remote_port_details": NotRequired["RemotePortDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkConnectionAction/)."""
 
 NetworkEndpoint = TypedDict(
     "NetworkEndpoint",
@@ -2810,6 +3571,7 @@ NetworkEndpoint = TypedDict(
     "connection": NotRequired["NetworkConnection"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkEndpoint/)."""
 
 NetworkGeoLocation = TypedDict(
     "NetworkGeoLocation",
@@ -2820,6 +3582,7 @@ NetworkGeoLocation = TypedDict(
     "longitude": Required["float"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkGeoLocation/)."""
 
 NetworkInterface = TypedDict(
     "NetworkInterface",
@@ -2836,6 +3599,7 @@ NetworkInterface = TypedDict(
     "vpc_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkInterface/)."""
 
 Observations = TypedDict(
     "Observations",
@@ -2844,6 +3608,7 @@ Observations = TypedDict(
     "number": NotRequired["_Sequence[int]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Observations/)."""
 
 Organization = TypedDict(
     "Organization",
@@ -2854,6 +3619,7 @@ Organization = TypedDict(
     "org": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Organization/)."""
 
 OrganizationAdditionalConfiguration = TypedDict(
     "OrganizationAdditionalConfiguration",
@@ -2862,6 +3628,7 @@ OrganizationAdditionalConfiguration = TypedDict(
     "auto_enable": NotRequired["OrgFeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAdditionalConfiguration/)."""
 
 OrganizationAdditionalConfigurationResult = TypedDict(
     "OrganizationAdditionalConfigurationResult",
@@ -2870,6 +3637,7 @@ OrganizationAdditionalConfigurationResult = TypedDict(
     "auto_enable": NotRequired["OrgFeatureStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAdditionalConfigurationResult/)."""
 
 OrganizationDataSourceConfigurations = TypedDict(
     "OrganizationDataSourceConfigurations",
@@ -2879,6 +3647,7 @@ OrganizationDataSourceConfigurations = TypedDict(
     "malware_protection": NotRequired["OrganizationMalwareProtectionConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDataSourceConfigurations/)."""
 
 OrganizationDataSourceConfigurationsResult = TypedDict(
     "OrganizationDataSourceConfigurationsResult",
@@ -2888,6 +3657,7 @@ OrganizationDataSourceConfigurationsResult = TypedDict(
     "malware_protection": NotRequired["OrganizationMalwareProtectionConfigurationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDataSourceConfigurationsResult/)."""
 
 OrganizationDetails = TypedDict(
     "OrganizationDetails",
@@ -2896,6 +3666,7 @@ OrganizationDetails = TypedDict(
     "organization_statistics": NotRequired["OrganizationStatistics"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDetails/)."""
 
 OrganizationEbsVolumes = TypedDict(
     "OrganizationEbsVolumes",
@@ -2903,6 +3674,7 @@ OrganizationEbsVolumes = TypedDict(
     "auto_enable": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationEbsVolumes/)."""
 
 OrganizationEbsVolumesResult = TypedDict(
     "OrganizationEbsVolumesResult",
@@ -2910,6 +3682,7 @@ OrganizationEbsVolumesResult = TypedDict(
     "auto_enable": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationEbsVolumesResult/)."""
 
 OrganizationFeatureConfiguration = TypedDict(
     "OrganizationFeatureConfiguration",
@@ -2919,6 +3692,7 @@ OrganizationFeatureConfiguration = TypedDict(
     "additional_configuration": NotRequired["_Sequence[OrganizationAdditionalConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureConfiguration/)."""
 
 OrganizationFeatureConfigurationResult = TypedDict(
     "OrganizationFeatureConfigurationResult",
@@ -2928,6 +3702,7 @@ OrganizationFeatureConfigurationResult = TypedDict(
     "additional_configuration": NotRequired["_Sequence[OrganizationAdditionalConfigurationResult]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureConfigurationResult/)."""
 
 OrganizationFeatureStatistics = TypedDict(
     "OrganizationFeatureStatistics",
@@ -2937,6 +3712,7 @@ OrganizationFeatureStatistics = TypedDict(
     "additional_configuration": NotRequired["_Sequence[OrganizationFeatureStatisticsAdditionalConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatistics/)."""
 
 OrganizationFeatureStatisticsAdditionalConfiguration = TypedDict(
     "OrganizationFeatureStatisticsAdditionalConfiguration",
@@ -2945,6 +3721,7 @@ OrganizationFeatureStatisticsAdditionalConfiguration = TypedDict(
     "enabled_accounts_count": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsAdditionalConfiguration/)."""
 
 OrganizationKubernetesAuditLogsConfiguration = TypedDict(
     "OrganizationKubernetesAuditLogsConfiguration",
@@ -2952,6 +3729,7 @@ OrganizationKubernetesAuditLogsConfiguration = TypedDict(
     "auto_enable": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesAuditLogsConfiguration/)."""
 
 OrganizationKubernetesAuditLogsConfigurationResult = TypedDict(
     "OrganizationKubernetesAuditLogsConfigurationResult",
@@ -2959,6 +3737,7 @@ OrganizationKubernetesAuditLogsConfigurationResult = TypedDict(
     "auto_enable": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesAuditLogsConfigurationResult/)."""
 
 OrganizationKubernetesConfiguration = TypedDict(
     "OrganizationKubernetesConfiguration",
@@ -2966,6 +3745,7 @@ OrganizationKubernetesConfiguration = TypedDict(
     "audit_logs": Required["OrganizationKubernetesAuditLogsConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesConfiguration/)."""
 
 OrganizationKubernetesConfigurationResult = TypedDict(
     "OrganizationKubernetesConfigurationResult",
@@ -2973,6 +3753,7 @@ OrganizationKubernetesConfigurationResult = TypedDict(
     "audit_logs": Required["OrganizationKubernetesAuditLogsConfigurationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesConfigurationResult/)."""
 
 OrganizationMalwareProtectionConfiguration = TypedDict(
     "OrganizationMalwareProtectionConfiguration",
@@ -2980,6 +3761,7 @@ OrganizationMalwareProtectionConfiguration = TypedDict(
     "scan_ec2_instance_with_findings": NotRequired["OrganizationScanEc2InstanceWithFindings"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationMalwareProtectionConfiguration/)."""
 
 OrganizationMalwareProtectionConfigurationResult = TypedDict(
     "OrganizationMalwareProtectionConfigurationResult",
@@ -2987,6 +3769,7 @@ OrganizationMalwareProtectionConfigurationResult = TypedDict(
     "scan_ec2_instance_with_findings": NotRequired["OrganizationScanEc2InstanceWithFindingsResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationMalwareProtectionConfigurationResult/)."""
 
 OrganizationS3LogsConfiguration = TypedDict(
     "OrganizationS3LogsConfiguration",
@@ -2994,6 +3777,7 @@ OrganizationS3LogsConfiguration = TypedDict(
     "auto_enable": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationS3LogsConfiguration/)."""
 
 OrganizationS3LogsConfigurationResult = TypedDict(
     "OrganizationS3LogsConfigurationResult",
@@ -3001,6 +3785,7 @@ OrganizationS3LogsConfigurationResult = TypedDict(
     "auto_enable": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationS3LogsConfigurationResult/)."""
 
 OrganizationScanEc2InstanceWithFindings = TypedDict(
     "OrganizationScanEc2InstanceWithFindings",
@@ -3008,6 +3793,7 @@ OrganizationScanEc2InstanceWithFindings = TypedDict(
     "ebs_volumes": NotRequired["OrganizationEbsVolumes"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationScanEc2InstanceWithFindings/)."""
 
 OrganizationScanEc2InstanceWithFindingsResult = TypedDict(
     "OrganizationScanEc2InstanceWithFindingsResult",
@@ -3015,6 +3801,7 @@ OrganizationScanEc2InstanceWithFindingsResult = TypedDict(
     "ebs_volumes": NotRequired["OrganizationEbsVolumesResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationScanEc2InstanceWithFindingsResult/)."""
 
 OrganizationStatistics = TypedDict(
     "OrganizationStatistics",
@@ -3026,6 +3813,7 @@ OrganizationStatistics = TypedDict(
     "count_by_feature": NotRequired["_Sequence[OrganizationFeatureStatistics]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationStatistics/)."""
 
 Owner = TypedDict(
     "Owner",
@@ -3033,6 +3821,7 @@ Owner = TypedDict(
     "id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Owner/)."""
 
 PermissionConfiguration = TypedDict(
     "PermissionConfiguration",
@@ -3041,6 +3830,7 @@ PermissionConfiguration = TypedDict(
     "account_level_permissions": NotRequired["AccountLevelPermissions"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PermissionConfiguration/)."""
 
 PortProbeAction = TypedDict(
     "PortProbeAction",
@@ -3049,6 +3839,7 @@ PortProbeAction = TypedDict(
     "port_probe_details": NotRequired["_Sequence[PortProbeDetail]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PortProbeAction/)."""
 
 PortProbeDetail = TypedDict(
     "PortProbeDetail",
@@ -3058,6 +3849,7 @@ PortProbeDetail = TypedDict(
     "remote_ip_details": NotRequired["RemoteIpDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PortProbeDetail/)."""
 
 PrivateIpAddressDetails = TypedDict(
     "PrivateIpAddressDetails",
@@ -3066,6 +3858,7 @@ PrivateIpAddressDetails = TypedDict(
     "private_ip_address": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PrivateIpAddressDetails/)."""
 
 ProcessDetails = TypedDict(
     "ProcessDetails",
@@ -3085,6 +3878,7 @@ ProcessDetails = TypedDict(
     "lineage": NotRequired["_Sequence[LineageObject]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProcessDetails/)."""
 
 Product = TypedDict(
     "Product",
@@ -3093,6 +3887,7 @@ Product = TypedDict(
     "feature": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Product/)."""
 
 ProductCode = TypedDict(
     "ProductCode",
@@ -3101,6 +3896,7 @@ ProductCode = TypedDict(
     "product_type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProductCode/)."""
 
 PublicAccess = TypedDict(
     "PublicAccess",
@@ -3109,6 +3905,7 @@ PublicAccess = TypedDict(
     "effective_permission": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccess/)."""
 
 PublicAccessConfiguration = TypedDict(
     "PublicAccessConfiguration",
@@ -3119,6 +3916,7 @@ PublicAccessConfiguration = TypedDict(
     "public_bucket_restrict_behavior": NotRequired["PublicBucketRestrictBehavior"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessConfiguration/)."""
 
 RdsDbInstanceDetails = TypedDict(
     "RdsDbInstanceDetails",
@@ -3132,6 +3930,7 @@ RdsDbInstanceDetails = TypedDict(
     "tags": NotRequired["_Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbInstanceDetails/)."""
 
 RdsDbUserDetails = TypedDict(
     "RdsDbUserDetails",
@@ -3143,6 +3942,7 @@ RdsDbUserDetails = TypedDict(
     "auth_method": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbUserDetails/)."""
 
 RdsLimitlessDbDetails = TypedDict(
     "RdsLimitlessDbDetails",
@@ -3156,6 +3956,7 @@ RdsLimitlessDbDetails = TypedDict(
     "tags": NotRequired["_Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLimitlessDbDetails/)."""
 
 RdsLoginAttemptAction = TypedDict(
     "RdsLoginAttemptAction",
@@ -3164,6 +3965,7 @@ RdsLoginAttemptAction = TypedDict(
     "login_attributes": NotRequired["_Sequence[LoginAttribute]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLoginAttemptAction/)."""
 
 RecoveryPoint = TypedDict(
     "RecoveryPoint",
@@ -3172,6 +3974,7 @@ RecoveryPoint = TypedDict(
     "continuous_scan_details": NotRequired["ContinuousScanDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecoveryPoint/)."""
 
 RecoveryPointDetails = TypedDict(
     "RecoveryPointDetails",
@@ -3181,6 +3984,7 @@ RecoveryPointDetails = TypedDict(
     "continuous_scan_details": NotRequired["ScanConfigurationContinuousScanDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecoveryPointDetails/)."""
 
 RemoteAccountDetails = TypedDict(
     "RemoteAccountDetails",
@@ -3190,6 +3994,7 @@ RemoteAccountDetails = TypedDict(
     "aws_service_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemoteAccountDetails/)."""
 
 RemoteIpDetails = TypedDict(
     "RemoteIpDetails",
@@ -3202,6 +4007,7 @@ RemoteIpDetails = TypedDict(
     "organization": NotRequired["Organization"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemoteIpDetails/)."""
 
 RemotePortDetails = TypedDict(
     "RemotePortDetails",
@@ -3210,6 +4016,7 @@ RemotePortDetails = TypedDict(
     "port_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemotePortDetails/)."""
 
 Resource = TypedDict(
     "Resource",
@@ -3234,6 +4041,7 @@ Resource = TypedDict(
     "model_details": NotRequired["_Sequence[ModelDetail]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Resource/)."""
 
 ResourceData = TypedDict(
     "ResourceData",
@@ -3257,6 +4065,7 @@ ResourceData = TypedDict(
     "bedrock_guardrail": NotRequired["BedrockGuardrailResource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceData/)."""
 
 ResourceDetails = TypedDict(
     "ResourceDetails",
@@ -3264,6 +4073,7 @@ ResourceDetails = TypedDict(
     "instance_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDetails/)."""
 
 ResourceStatistics = TypedDict(
     "ResourceStatistics",
@@ -3275,6 +4085,7 @@ ResourceStatistics = TypedDict(
     "total_findings": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceStatistics/)."""
 
 ResourceV2 = TypedDict(
     "ResourceV2",
@@ -3290,6 +4101,7 @@ ResourceV2 = TypedDict(
     "data": NotRequired["ResourceData"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceV2/)."""
 
 RuleDefinition = TypedDict(
     "RuleDefinition",
@@ -3297,6 +4109,7 @@ RuleDefinition = TypedDict(
     "expression": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleDefinition/)."""
 
 RuleDetail = TypedDict(
     "RuleDetail",
@@ -3318,6 +4131,7 @@ RuleDetail = TypedDict(
     "updated_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleDetail/)."""
 
 RuleSummary = TypedDict(
     "RuleSummary",
@@ -3337,6 +4151,7 @@ RuleSummary = TypedDict(
     "updated_at": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuleSummary/)."""
 
 RuntimeContext = TypedDict(
     "RuntimeContext",
@@ -3371,6 +4186,7 @@ RuntimeContext = TypedDict(
     "related_file_paths": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeContext/)."""
 
 RuntimeDetails = TypedDict(
     "RuntimeDetails",
@@ -3379,6 +4195,7 @@ RuntimeDetails = TypedDict(
     "context": NotRequired["RuntimeContext"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeDetails/)."""
 
 S3Bucket = TypedDict(
     "S3Bucket",
@@ -3395,6 +4212,7 @@ S3Bucket = TypedDict(
     "s3_object_uids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3Bucket/)."""
 
 S3BucketDetail = TypedDict(
     "S3BucketDetail",
@@ -3410,6 +4228,7 @@ S3BucketDetail = TypedDict(
     "s3_object_details": NotRequired["_Sequence[S3ObjectDetail]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3BucketDetail/)."""
 
 S3LogsConfiguration = TypedDict(
     "S3LogsConfiguration",
@@ -3417,6 +4236,7 @@ S3LogsConfiguration = TypedDict(
     "enable": Required["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3LogsConfiguration/)."""
 
 S3LogsConfigurationResult = TypedDict(
     "S3LogsConfigurationResult",
@@ -3424,6 +4244,7 @@ S3LogsConfigurationResult = TypedDict(
     "status": Required["DataSourceStatus"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3LogsConfigurationResult/)."""
 
 S3Object = TypedDict(
     "S3Object",
@@ -3433,6 +4254,7 @@ S3Object = TypedDict(
     "version_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3Object/)."""
 
 S3ObjectDetail = TypedDict(
     "S3ObjectDetail",
@@ -3444,6 +4266,7 @@ S3ObjectDetail = TypedDict(
     "version_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3ObjectDetail/)."""
 
 S3ObjectForSendObjectMalwareScan = TypedDict(
     "S3ObjectForSendObjectMalwareScan",
@@ -3453,6 +4276,7 @@ S3ObjectForSendObjectMalwareScan = TypedDict(
     "version_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3ObjectForSendObjectMalwareScan/)."""
 
 Scan = TypedDict(
     "Scan",
@@ -3474,6 +4298,7 @@ Scan = TypedDict(
     "scan_type": NotRequired["ScanType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Scan/)."""
 
 ScanCondition = TypedDict(
     "ScanCondition",
@@ -3481,6 +4306,7 @@ ScanCondition = TypedDict(
     "map_equals": Required["_Sequence[ScanConditionPair]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanCondition/)."""
 
 ScanConditionPair = TypedDict(
     "ScanConditionPair",
@@ -3489,6 +4315,7 @@ ScanConditionPair = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConditionPair/)."""
 
 ScanConfiguration = TypedDict(
     "ScanConfiguration",
@@ -3499,6 +4326,7 @@ ScanConfiguration = TypedDict(
     "recovery_point": NotRequired["ScanConfigurationRecoveryPoint"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfiguration/)."""
 
 ScanConfigurationContinuousScanDetails = TypedDict(
     "ScanConfigurationContinuousScanDetails",
@@ -3507,6 +4335,7 @@ ScanConfigurationContinuousScanDetails = TypedDict(
     "end_time": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationContinuousScanDetails/)."""
 
 ScanConfigurationRecoveryPoint = TypedDict(
     "ScanConfigurationRecoveryPoint",
@@ -3515,6 +4344,7 @@ ScanConfigurationRecoveryPoint = TypedDict(
     "continuous_scan_details": NotRequired["ScanConfigurationContinuousScanDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanConfigurationRecoveryPoint/)."""
 
 ScanDetections = TypedDict(
     "ScanDetections",
@@ -3525,6 +4355,7 @@ ScanDetections = TypedDict(
     "threat_detected_by_name": NotRequired["ThreatDetectedByName"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanDetections/)."""
 
 ScanEc2InstanceWithFindings = TypedDict(
     "ScanEc2InstanceWithFindings",
@@ -3532,6 +4363,7 @@ ScanEc2InstanceWithFindings = TypedDict(
     "ebs_volumes": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanEc2InstanceWithFindings/)."""
 
 ScanEc2InstanceWithFindingsResult = TypedDict(
     "ScanEc2InstanceWithFindingsResult",
@@ -3539,6 +4371,7 @@ ScanEc2InstanceWithFindingsResult = TypedDict(
     "ebs_volumes": NotRequired["EbsVolumesResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanEc2InstanceWithFindingsResult/)."""
 
 ScanFilePath = TypedDict(
     "ScanFilePath",
@@ -3549,6 +4382,7 @@ ScanFilePath = TypedDict(
     "file_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanFilePath/)."""
 
 ScanResourceCriteria = TypedDict(
     "ScanResourceCriteria",
@@ -3557,6 +4391,7 @@ ScanResourceCriteria = TypedDict(
     "exclude": NotRequired["dict[ScanCriterionKey, ScanCondition]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResourceCriteria/)."""
 
 ScanResultDetails = TypedDict(
     "ScanResultDetails",
@@ -3564,6 +4399,7 @@ ScanResultDetails = TypedDict(
     "scan_result": NotRequired["ScanResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultDetails/)."""
 
 ScanResultThreat = TypedDict(
     "ScanResultThreat",
@@ -3575,6 +4411,7 @@ ScanResultThreat = TypedDict(
     "item_details": NotRequired["_Sequence[ItemDetails]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanResultThreat/)."""
 
 ScanThreatName = TypedDict(
     "ScanThreatName",
@@ -3585,6 +4422,7 @@ ScanThreatName = TypedDict(
     "file_paths": NotRequired["_Sequence[ScanFilePath]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScanThreatName/)."""
 
 ScannedItemCount = TypedDict(
     "ScannedItemCount",
@@ -3594,6 +4432,7 @@ ScannedItemCount = TypedDict(
     "volumes": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedItemCount/)."""
 
 ScannedResource = TypedDict(
     "ScannedResource",
@@ -3605,6 +4444,7 @@ ScannedResource = TypedDict(
     "resource_details": NotRequired["ScannedResourceDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedResource/)."""
 
 ScannedResourceDetails = TypedDict(
     "ScannedResourceDetails",
@@ -3613,6 +4453,7 @@ ScannedResourceDetails = TypedDict(
     "ebs_snapshot": NotRequired["EbsSnapshot"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ScannedResourceDetails/)."""
 
 SecurityContext = TypedDict(
     "SecurityContext",
@@ -3621,6 +4462,7 @@ SecurityContext = TypedDict(
     "allow_privilege_escalation": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SecurityContext/)."""
 
 SecurityGroup = TypedDict(
     "SecurityGroup",
@@ -3629,6 +4471,7 @@ SecurityGroup = TypedDict(
     "group_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SecurityGroup/)."""
 
 SendObjectMalwareScanRequest = TypedDict(
     "SendObjectMalwareScanRequest",
@@ -3636,6 +4479,7 @@ SendObjectMalwareScanRequest = TypedDict(
     "s3_object": NotRequired["S3ObjectForSendObjectMalwareScan"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SendObjectMalwareScanRequest/)."""
 
 Sequence = TypedDict(
     "Sequence",
@@ -3650,6 +4494,7 @@ Sequence = TypedDict(
     "additional_sequence_types": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Sequence/)."""
 
 Service = TypedDict(
     "Service",
@@ -3672,6 +4517,7 @@ Service = TypedDict(
     "malware_scan_details": NotRequired["MalwareScanDetails"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Service/)."""
 
 ServiceAdditionalInfo = TypedDict(
     "ServiceAdditionalInfo",
@@ -3680,6 +4526,7 @@ ServiceAdditionalInfo = TypedDict(
     "type": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ServiceAdditionalInfo/)."""
 
 Session = TypedDict(
     "Session",
@@ -3690,6 +4537,7 @@ Session = TypedDict(
     "issuer": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Session/)."""
 
 SeverityStatistics = TypedDict(
     "SeverityStatistics",
@@ -3699,6 +4547,7 @@ SeverityStatistics = TypedDict(
     "total_findings": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SeverityStatistics/)."""
 
 Signal = TypedDict(
     "Signal",
@@ -3720,6 +4569,7 @@ Signal = TypedDict(
     "activities": NotRequired["_Sequence[Activity]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Signal/)."""
 
 SortCriteria = TypedDict(
     "SortCriteria",
@@ -3728,6 +4578,7 @@ SortCriteria = TypedDict(
     "order_by": NotRequired["OrderBy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SortCriteria/)."""
 
 StartMalwareScanConfiguration = TypedDict(
     "StartMalwareScanConfiguration",
@@ -3737,6 +4588,7 @@ StartMalwareScanConfiguration = TypedDict(
     "recovery_point": NotRequired["RecoveryPoint"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMalwareScanConfiguration/)."""
 
 StartMalwareScanRequest = TypedDict(
     "StartMalwareScanRequest",
@@ -3746,6 +4598,7 @@ StartMalwareScanRequest = TypedDict(
     "scan_configuration": NotRequired["StartMalwareScanConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMalwareScanRequest/)."""
 
 StartMonitoringMembersRequest = TypedDict(
     "StartMonitoringMembersRequest",
@@ -3754,6 +4607,7 @@ StartMonitoringMembersRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMonitoringMembersRequest/)."""
 
 StopMonitoringMembersRequest = TypedDict(
     "StopMonitoringMembersRequest",
@@ -3762,6 +4616,7 @@ StopMonitoringMembersRequest = TypedDict(
     "account_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StopMonitoringMembersRequest/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -3770,6 +4625,7 @@ Tag = TypedDict(
     "value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -3778,6 +4634,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagResourceRequest/)."""
 
 Threat = TypedDict(
     "Threat",
@@ -3790,6 +4647,7 @@ Threat = TypedDict(
     "item_details": NotRequired["_Sequence[ItemDetails]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Threat/)."""
 
 ThreatDetectedByName = TypedDict(
     "ThreatDetectedByName",
@@ -3800,6 +4658,7 @@ ThreatDetectedByName = TypedDict(
     "threat_names": NotRequired["_Sequence[ScanThreatName]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatDetectedByName/)."""
 
 ThreatIntelligenceDetail = TypedDict(
     "ThreatIntelligenceDetail",
@@ -3809,6 +4668,7 @@ ThreatIntelligenceDetail = TypedDict(
     "threat_file_sha256": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelligenceDetail/)."""
 
 ThreatsDetectedItemCount = TypedDict(
     "ThreatsDetectedItemCount",
@@ -3816,6 +4676,7 @@ ThreatsDetectedItemCount = TypedDict(
     "files": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatsDetectedItemCount/)."""
 
 Total = TypedDict(
     "Total",
@@ -3824,6 +4685,7 @@ Total = TypedDict(
     "unit": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Total/)."""
 
 TriggerDetails = TypedDict(
     "TriggerDetails",
@@ -3833,6 +4695,7 @@ TriggerDetails = TypedDict(
     "trigger_type": NotRequired["TriggerType"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TriggerDetails/)."""
 
 UnarchiveFindingsRequest = TypedDict(
     "UnarchiveFindingsRequest",
@@ -3841,6 +4704,7 @@ UnarchiveFindingsRequest = TypedDict(
     "finding_ids": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnarchiveFindingsRequest/)."""
 
 UnprocessedAccount = TypedDict(
     "UnprocessedAccount",
@@ -3849,6 +4713,7 @@ UnprocessedAccount = TypedDict(
     "result": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnprocessedAccount/)."""
 
 UnprocessedDataSourcesResult = TypedDict(
     "UnprocessedDataSourcesResult",
@@ -3856,6 +4721,7 @@ UnprocessedDataSourcesResult = TypedDict(
     "malware_protection": NotRequired["MalwareProtectionConfigurationResult"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UnprocessedDataSourcesResult/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -3864,6 +4730,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UntagResourceRequest/)."""
 
 UpdateCustomDetectionRuleAssociationRequest = TypedDict(
     "UpdateCustomDetectionRuleAssociationRequest",
@@ -3873,6 +4740,7 @@ UpdateCustomDetectionRuleAssociationRequest = TypedDict(
     "mode": Required["AssociationMode"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleAssociationRequest/)."""
 
 UpdateCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "UpdateCustomDetectionRuleOrgConfigurationRequest",
@@ -3883,6 +4751,7 @@ UpdateCustomDetectionRuleOrgConfigurationRequest = TypedDict(
     "exclude_account_ids": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateCustomDetectionRuleOrgConfigurationRequest/)."""
 
 UpdateDetectorRequest = TypedDict(
     "UpdateDetectorRequest",
@@ -3894,6 +4763,7 @@ UpdateDetectorRequest = TypedDict(
     "features": NotRequired["_Sequence[DetectorFeatureConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateDetectorRequest/)."""
 
 UpdateFilterRequest = TypedDict(
     "UpdateFilterRequest",
@@ -3906,6 +4776,7 @@ UpdateFilterRequest = TypedDict(
     "finding_criteria": NotRequired["FindingCriteria"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFilterRequest/)."""
 
 UpdateFindingsFeedbackRequest = TypedDict(
     "UpdateFindingsFeedbackRequest",
@@ -3916,6 +4787,7 @@ UpdateFindingsFeedbackRequest = TypedDict(
     "comments": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateFindingsFeedbackRequest/)."""
 
 UpdateIPSetRequest = TypedDict(
     "UpdateIPSetRequest",
@@ -3928,6 +4800,7 @@ UpdateIPSetRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateIPSetRequest/)."""
 
 UpdateMalwareProtectionPlanRequest = TypedDict(
     "UpdateMalwareProtectionPlanRequest",
@@ -3938,6 +4811,7 @@ UpdateMalwareProtectionPlanRequest = TypedDict(
     "protected_resource": NotRequired["UpdateProtectedResource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMalwareProtectionPlanRequest/)."""
 
 UpdateMalwareScanSettingsRequest = TypedDict(
     "UpdateMalwareScanSettingsRequest",
@@ -3947,6 +4821,7 @@ UpdateMalwareScanSettingsRequest = TypedDict(
     "ebs_snapshot_preservation": NotRequired["EbsSnapshotPreservation"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMalwareScanSettingsRequest/)."""
 
 UpdateMemberDetectorsRequest = TypedDict(
     "UpdateMemberDetectorsRequest",
@@ -3957,6 +4832,7 @@ UpdateMemberDetectorsRequest = TypedDict(
     "features": NotRequired["_Sequence[MemberFeaturesConfiguration]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateMemberDetectorsRequest/)."""
 
 UpdateOrganizationConfigurationRequest = TypedDict(
     "UpdateOrganizationConfigurationRequest",
@@ -3968,6 +4844,7 @@ UpdateOrganizationConfigurationRequest = TypedDict(
     "auto_enable_organization_members": NotRequired["AutoEnableMembers"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateOrganizationConfigurationRequest/)."""
 
 UpdateProtectedResource = TypedDict(
     "UpdateProtectedResource",
@@ -3975,6 +4852,7 @@ UpdateProtectedResource = TypedDict(
     "s3_bucket": NotRequired["UpdateS3BucketResource"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateProtectedResource/)."""
 
 UpdatePublishingDestinationRequest = TypedDict(
     "UpdatePublishingDestinationRequest",
@@ -3984,6 +4862,7 @@ UpdatePublishingDestinationRequest = TypedDict(
     "destination_properties": NotRequired["DestinationProperties"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdatePublishingDestinationRequest/)."""
 
 UpdateS3BucketResource = TypedDict(
     "UpdateS3BucketResource",
@@ -3991,6 +4870,7 @@ UpdateS3BucketResource = TypedDict(
     "object_prefixes": NotRequired["_Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateS3BucketResource/)."""
 
 UpdateThreatEntitySetRequest = TypedDict(
     "UpdateThreatEntitySetRequest",
@@ -4003,6 +4883,7 @@ UpdateThreatEntitySetRequest = TypedDict(
     "activate": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatEntitySetRequest/)."""
 
 UpdateThreatIntelSetRequest = TypedDict(
     "UpdateThreatIntelSetRequest",
@@ -4015,6 +4896,7 @@ UpdateThreatIntelSetRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateThreatIntelSetRequest/)."""
 
 UpdateTrustedEntitySetRequest = TypedDict(
     "UpdateTrustedEntitySetRequest",
@@ -4027,6 +4909,7 @@ UpdateTrustedEntitySetRequest = TypedDict(
     "activate": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UpdateTrustedEntitySetRequest/)."""
 
 UsageAccountResult = TypedDict(
     "UsageAccountResult",
@@ -4035,6 +4918,7 @@ UsageAccountResult = TypedDict(
     "total": NotRequired["Total"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageAccountResult/)."""
 
 UsageCriteria = TypedDict(
     "UsageCriteria",
@@ -4045,6 +4929,7 @@ UsageCriteria = TypedDict(
     "features": NotRequired["_Sequence[UsageFeature]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageCriteria/)."""
 
 UsageDataSourceResult = TypedDict(
     "UsageDataSourceResult",
@@ -4053,6 +4938,7 @@ UsageDataSourceResult = TypedDict(
     "total": NotRequired["Total"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageDataSourceResult/)."""
 
 UsageFeatureResult = TypedDict(
     "UsageFeatureResult",
@@ -4061,6 +4947,7 @@ UsageFeatureResult = TypedDict(
     "total": NotRequired["Total"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageFeatureResult/)."""
 
 UsageResourceResult = TypedDict(
     "UsageResourceResult",
@@ -4069,6 +4956,7 @@ UsageResourceResult = TypedDict(
     "total": NotRequired["Total"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageResourceResult/)."""
 
 UsageStatistics = TypedDict(
     "UsageStatistics",
@@ -4081,6 +4969,7 @@ UsageStatistics = TypedDict(
     "sum_by_feature": NotRequired["_Sequence[UsageFeatureResult]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageStatistics/)."""
 
 UsageTopAccountResult = TypedDict(
     "UsageTopAccountResult",
@@ -4089,6 +4978,7 @@ UsageTopAccountResult = TypedDict(
     "total": NotRequired["Total"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageTopAccountResult/)."""
 
 UsageTopAccountsResult = TypedDict(
     "UsageTopAccountsResult",
@@ -4097,6 +4987,7 @@ UsageTopAccountsResult = TypedDict(
     "accounts": NotRequired["_Sequence[UsageTopAccountResult]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/UsageTopAccountsResult/)."""
 
 User = TypedDict(
     "User",
@@ -4108,6 +4999,7 @@ User = TypedDict(
     "account": NotRequired["Account"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/User/)."""
 
 Volume = TypedDict(
     "Volume",
@@ -4116,6 +5008,7 @@ Volume = TypedDict(
     "host_path": NotRequired["HostPath"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Volume/)."""
 
 VolumeDetail = TypedDict(
     "VolumeDetail",
@@ -4129,6 +5022,7 @@ VolumeDetail = TypedDict(
     "kms_key_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeDetail/)."""
 
 VolumeMount = TypedDict(
     "VolumeMount",
@@ -4137,6 +5031,7 @@ VolumeMount = TypedDict(
     "mount_path": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VolumeMount/)."""
 
 VpcConfig = TypedDict(
     "VpcConfig",
@@ -4146,3 +5041,4 @@ VpcConfig = TypedDict(
     "security_groups": NotRequired["_Sequence[SecurityGroup]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/VpcConfig/)."""

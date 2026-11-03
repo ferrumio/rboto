@@ -9,6 +9,7 @@ from .types import JSONValue
 
 @final
 class ByteStream:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ByteStream/)."""
     def __aiter__(self) -> AsyncIterator[bytes]: ...
     def __anext__(self) -> Awaitable[bytes]: ...
     def read(self) -> Awaitable[bytes]: ...
@@ -17,6 +18,7 @@ class ByteStream:
 
 @final
 class AwsVpcConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/AwsVpcConfigurationOutput/)."""
     @property
     def subnets(self) -> list[str]: ...
     @property
@@ -27,12 +29,14 @@ class AwsVpcConfiguration:
 
 @final
 class BatchArrayProperties:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchArrayPropertiesOutput/)."""
     @property
     def size(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class BatchContainerOverrides:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchContainerOverridesOutput/)."""
     @property
     def command(self) -> list[str] | None: ...
     @property
@@ -45,6 +49,7 @@ class BatchContainerOverrides:
 
 @final
 class BatchEnvironmentVariable:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchEnvironmentVariableOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -53,6 +58,7 @@ class BatchEnvironmentVariable:
 
 @final
 class BatchJobDependency:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchJobDependencyOutput/)."""
     @property
     def job_id(self) -> str | None: ...
     @property
@@ -61,6 +67,7 @@ class BatchJobDependency:
 
 @final
 class BatchResourceRequirement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchResourceRequirementOutput/)."""
     @property
     def type(self) -> _types.BatchResourceRequirementTypeOutput: ...
     @property
@@ -69,12 +76,14 @@ class BatchResourceRequirement:
 
 @final
 class BatchRetryStrategy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/BatchRetryStrategyOutput/)."""
     @property
     def attempts(self) -> int | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class CapacityProviderStrategyItem:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CapacityProviderStrategyItemOutput/)."""
     @property
     def capacity_provider(self) -> str: ...
     @property
@@ -85,18 +94,21 @@ class CapacityProviderStrategyItem:
 
 @final
 class CloudwatchLogsLogDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CloudwatchLogsLogDestinationOutput/)."""
     @property
     def log_group_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DeadLetterConfig:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DeadLetterConfigOutput/)."""
     @property
     def arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class DimensionMapping:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DimensionMappingOutput/)."""
     @property
     def dimension_value(self) -> str: ...
     @property
@@ -107,6 +119,7 @@ class DimensionMapping:
 
 @final
 class EcsContainerOverride:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsContainerOverrideOutput/)."""
     @property
     def command(self) -> list[str] | None: ...
     @property
@@ -127,6 +140,7 @@ class EcsContainerOverride:
 
 @final
 class EcsEnvironmentFile:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentFileOutput/)."""
     @property
     def type(self) -> _types.EcsEnvironmentFileTypeOutput: ...
     @property
@@ -135,6 +149,7 @@ class EcsEnvironmentFile:
 
 @final
 class EcsEnvironmentVariable:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEnvironmentVariableOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -143,12 +158,14 @@ class EcsEnvironmentVariable:
 
 @final
 class EcsEphemeralStorage:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsEphemeralStorageOutput/)."""
     @property
     def size_in_gib(self) -> int: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class EcsInferenceAcceleratorOverride:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsInferenceAcceleratorOverrideOutput/)."""
     @property
     def device_name(self) -> str | None: ...
     @property
@@ -157,6 +174,7 @@ class EcsInferenceAcceleratorOverride:
 
 @final
 class EcsResourceRequirement:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsResourceRequirementOutput/)."""
     @property
     def type(self) -> _types.EcsResourceRequirementTypeOutput: ...
     @property
@@ -165,6 +183,7 @@ class EcsResourceRequirement:
 
 @final
 class EcsTaskOverride:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/EcsTaskOverrideOutput/)."""
     @property
     def container_overrides(self) -> list[EcsContainerOverride] | None: ...
     @property
@@ -183,24 +202,28 @@ class EcsTaskOverride:
 
 @final
 class Filter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FilterOutput/)."""
     @property
     def pattern(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FilterCriteria:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FilterCriteriaOutput/)."""
     @property
     def filters(self) -> list[Filter] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class FirehoseLogDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FirehoseLogDestinationOutput/)."""
     @property
     def delivery_stream_arn(self) -> str | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class MultiMeasureAttributeMapping:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MultiMeasureAttributeMappingOutput/)."""
     @property
     def measure_value(self) -> str: ...
     @property
@@ -211,6 +234,7 @@ class MultiMeasureAttributeMapping:
 
 @final
 class MultiMeasureMapping:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MultiMeasureMappingOutput/)."""
     @property
     def multi_measure_name(self) -> str: ...
     @property
@@ -219,12 +243,14 @@ class MultiMeasureMapping:
 
 @final
 class NetworkConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/NetworkConfigurationOutput/)."""
     @property
     def awsvpc_configuration(self) -> AwsVpcConfiguration | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class Pipe:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeOutput/)."""
     @property
     def name(self) -> str | None: ...
     @property
@@ -249,6 +275,7 @@ class Pipe:
 
 @final
 class PipeEnrichmentHttpParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeEnrichmentHttpParametersOutput/)."""
     @property
     def path_parameter_values(self) -> list[str] | None: ...
     @property
@@ -259,6 +286,7 @@ class PipeEnrichmentHttpParameters:
 
 @final
 class PipeEnrichmentParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeEnrichmentParametersOutput/)."""
     @property
     def input_template(self) -> str | None: ...
     @property
@@ -267,6 +295,7 @@ class PipeEnrichmentParameters:
 
 @final
 class PipeLogConfiguration:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeLogConfigurationOutput/)."""
     @property
     def s3_log_destination(self) -> S3LogDestination | None: ...
     @property
@@ -281,6 +310,7 @@ class PipeLogConfiguration:
 
 @final
 class PipeSourceActiveMqBrokerParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceActiveMqBrokerParameters-271eb8bb42ee/)."""
     @property
     def credentials(self) -> _types.MQBrokerAccessCredentialsOutput | None: ...
     @property
@@ -293,6 +323,7 @@ class PipeSourceActiveMqBrokerParameters:
 
 @final
 class PipeSourceDynamoDbStreamParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceDynamoDbStreamParameters-63569b66a33a/)."""
     @property
     def batch_size(self) -> int | None: ...
     @property
@@ -313,6 +344,7 @@ class PipeSourceDynamoDbStreamParameters:
 
 @final
 class PipeSourceKinesisStreamParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceKinesisStreamParametersOutput/)."""
     @property
     def batch_size(self) -> int | None: ...
     @property
@@ -335,6 +367,7 @@ class PipeSourceKinesisStreamParameters:
 
 @final
 class PipeSourceManagedStreamingKafkaParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceManagedStreamingKafkaParametersOutput/)."""
     @property
     def topic_name(self) -> str: ...
     @property
@@ -351,6 +384,7 @@ class PipeSourceManagedStreamingKafkaParameters:
 
 @final
 class PipeSourceParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceParametersOutput/)."""
     @property
     def filter_criteria(self) -> FilterCriteria | None: ...
     @property
@@ -371,6 +405,7 @@ class PipeSourceParameters:
 
 @final
 class PipeSourceRabbitMqBrokerParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceRabbitMqBrokerParameters-1317f6d9ad2a/)."""
     @property
     def credentials(self) -> _types.MQBrokerAccessCredentialsOutput | None: ...
     @property
@@ -385,6 +420,7 @@ class PipeSourceRabbitMqBrokerParameters:
 
 @final
 class PipeSourceSelfManagedKafkaParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceSelfManagedKafkaParametersOutput/)."""
     @property
     def topic_name(self) -> str: ...
     @property
@@ -407,6 +443,7 @@ class PipeSourceSelfManagedKafkaParameters:
 
 @final
 class PipeSourceSqsQueueParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeSourceSqsQueueParametersOutput/)."""
     @property
     def batch_size(self) -> int | None: ...
     @property
@@ -415,6 +452,7 @@ class PipeSourceSqsQueueParameters:
 
 @final
 class PipeTargetBatchJobParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetBatchJobParametersOutput/)."""
     @property
     def job_definition(self) -> str: ...
     @property
@@ -433,6 +471,7 @@ class PipeTargetBatchJobParameters:
 
 @final
 class PipeTargetCloudWatchLogsParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetCloudWatchLogsParametersOutput/)."""
     @property
     def log_stream_name(self) -> str | None: ...
     @property
@@ -441,6 +480,7 @@ class PipeTargetCloudWatchLogsParameters:
 
 @final
 class PipeTargetEcsTaskParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetEcsTaskParametersOutput/)."""
     @property
     def task_definition_arn(self) -> str: ...
     @property
@@ -475,6 +515,7 @@ class PipeTargetEcsTaskParameters:
 
 @final
 class PipeTargetEventBridgeEventBusParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetEventBridgeEventBusParametersOutput/)."""
     @property
     def endpoint_id(self) -> str | None: ...
     @property
@@ -489,6 +530,7 @@ class PipeTargetEventBridgeEventBusParameters:
 
 @final
 class PipeTargetHttpParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetHttpParametersOutput/)."""
     @property
     def path_parameter_values(self) -> list[str] | None: ...
     @property
@@ -499,18 +541,21 @@ class PipeTargetHttpParameters:
 
 @final
 class PipeTargetKinesisStreamParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetKinesisStreamParametersOutput/)."""
     @property
     def partition_key(self) -> str: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PipeTargetLambdaFunctionParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetLambdaFunctionParametersOutput/)."""
     @property
     def invocation_type(self) -> _types.PipeTargetInvocationTypeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PipeTargetParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetParametersOutput/)."""
     @property
     def input_template(self) -> str | None: ...
     @property
@@ -541,6 +586,7 @@ class PipeTargetParameters:
 
 @final
 class PipeTargetRedshiftDataParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetRedshiftDataParametersOutput/)."""
     @property
     def secret_manager_arn(self) -> str | None: ...
     @property
@@ -557,12 +603,14 @@ class PipeTargetRedshiftDataParameters:
 
 @final
 class PipeTargetSageMakerPipelineParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetSageMakerPipelineParametersOutput/)."""
     @property
     def pipeline_parameter_list(self) -> list[SageMakerPipelineParameter] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PipeTargetSqsQueueParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetSqsQueueParametersOutput/)."""
     @property
     def message_group_id(self) -> str | None: ...
     @property
@@ -571,12 +619,14 @@ class PipeTargetSqsQueueParameters:
 
 @final
 class PipeTargetStateMachineParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetStateMachineParametersOutput/)."""
     @property
     def invocation_type(self) -> _types.PipeTargetInvocationTypeOutput | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class PipeTargetTimestreamParameters:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PipeTargetTimestreamParametersOutput/)."""
     @property
     def time_value(self) -> str: ...
     @property
@@ -597,6 +647,7 @@ class PipeTargetTimestreamParameters:
 
 @final
 class PlacementConstraint:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementConstraintOutput/)."""
     @property
     def type(self) -> _types.PlacementConstraintTypeOutput | None: ...
     @property
@@ -605,6 +656,7 @@ class PlacementConstraint:
 
 @final
 class PlacementStrategy:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/PlacementStrategyOutput/)."""
     @property
     def type(self) -> _types.PlacementStrategyTypeOutput | None: ...
     @property
@@ -613,6 +665,7 @@ class PlacementStrategy:
 
 @final
 class S3LogDestination:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/S3LogDestinationOutput/)."""
     @property
     def bucket_name(self) -> str | None: ...
     @property
@@ -625,6 +678,7 @@ class S3LogDestination:
 
 @final
 class SageMakerPipelineParameter:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SageMakerPipelineParameterOutput/)."""
     @property
     def name(self) -> str: ...
     @property
@@ -633,6 +687,7 @@ class SageMakerPipelineParameter:
 
 @final
 class SelfManagedKafkaAccessConfigurationVpc:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationVpcOutput/)."""
     @property
     def subnets(self) -> list[str] | None: ...
     @property
@@ -641,6 +696,7 @@ class SelfManagedKafkaAccessConfigurationVpc:
 
 @final
 class SingleMeasureMapping:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SingleMeasureMappingOutput/)."""
     @property
     def measure_value(self) -> str: ...
     @property
@@ -651,6 +707,7 @@ class SingleMeasureMapping:
 
 @final
 class Tag:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TagOutput/)."""
     @property
     def key(self) -> str: ...
     @property
@@ -659,6 +716,7 @@ class Tag:
 
 @final
 class CreatePipeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CreatePipeOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -675,6 +733,7 @@ class CreatePipeOutput:
 
 @final
 class DeletePipeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DeletePipeOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -691,6 +750,7 @@ class DeletePipeOutput:
 
 @final
 class DescribePipeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/DescribePipeOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -731,6 +791,7 @@ class DescribePipeOutput:
 
 @final
 class ListPipesOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListPipesOutput/)."""
     @property
     def pipes(self) -> list[Pipe] | None: ...
     @property
@@ -739,12 +800,14 @@ class ListPipesOutput:
 
 @final
 class ListTagsForResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListTagsForResourceOutput/)."""
     @property
     def tags(self) -> dict[str, str] | None: ...
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class StartPipeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StartPipeOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -761,6 +824,7 @@ class StartPipeOutput:
 
 @final
 class StopPipeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/StopPipeOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property
@@ -777,14 +841,17 @@ class StopPipeOutput:
 
 @final
 class TagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UntagResourceOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UntagResourceOutput/)."""
     def to_dict(self) -> dict[str, object]: ...
 
 @final
 class UpdatePipeOutput:
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeOutput/)."""
     @property
     def arn(self) -> str | None: ...
     @property

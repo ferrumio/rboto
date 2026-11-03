@@ -57,6 +57,12 @@ Run:
 
 ## Documentation
 
+Install `codegen` and `zensical`. Fetch the pinned models and Rust crate sources;
+documentation generation does not compile native extensions.
+
 ```bash
-.venv/bin/zensical build --clean
+cargo fetch --locked
+.venv/bin/rboto-codegen fetch-model --all
+.venv/bin/python -m rboto_codegen.reference_site
+.venv/bin/zensical build --clean --strict
 ```

@@ -9,149 +9,291 @@ from rboto.types import UnknownEnumValue
 from . import _native
 
 ApiDestinationOutput: TypeAlias = _native.ApiDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ApiDestinationOutput/)."""
 AppSyncParametersOutput: TypeAlias = _native.AppSyncParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/AppSyncParametersOutput/)."""
 ArchiveOutput: TypeAlias = _native.Archive
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ArchiveOutput/)."""
 AwsVpcConfigurationOutput: TypeAlias = _native.AwsVpcConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/AwsVpcConfigurationOutput/)."""
 BatchArrayPropertiesOutput: TypeAlias = _native.BatchArrayProperties
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/BatchArrayPropertiesOutput/)."""
 BatchParametersOutput: TypeAlias = _native.BatchParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/BatchParametersOutput/)."""
 BatchRetryStrategyOutput: TypeAlias = _native.BatchRetryStrategy
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/BatchRetryStrategyOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ByteStream/)."""
 CancelReplayOutput: TypeAlias = _native.CancelReplayOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CancelReplayOutput/)."""
 CapacityProviderStrategyItemOutput: TypeAlias = _native.CapacityProviderStrategyItem
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CapacityProviderStrategyItemOutput/)."""
 ConnectionOutput: TypeAlias = _native.Connection
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionOutput/)."""
 ConnectionApiKeyAuthResponseParametersOutput: TypeAlias = _native.ConnectionApiKeyAuthResponseParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionApiKeyAuthResponseParametersOutput/)."""
 ConnectionAuthResponseParametersOutput: TypeAlias = _native.ConnectionAuthResponseParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionAuthResponseParametersOutput/)."""
 ConnectionBasicAuthResponseParametersOutput: TypeAlias = _native.ConnectionBasicAuthResponseParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionBasicAuthResponseParametersOutput/)."""
 ConnectionBodyParameterOutput: TypeAlias = _native.ConnectionBodyParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionBodyParameterOutput/)."""
 ConnectionHeaderParameterOutput: TypeAlias = _native.ConnectionHeaderParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionHeaderParameterOutput/)."""
 ConnectionHttpParametersOutput: TypeAlias = _native.ConnectionHttpParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionHttpParametersOutput/)."""
 ConnectionOAuthClientResponseParametersOutput: TypeAlias = _native.ConnectionOAuthClientResponseParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionOAuthClientResponseParametersOutput/)."""
 ConnectionOAuthResponseParametersOutput: TypeAlias = _native.ConnectionOAuthResponseParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionOAuthResponseParametersOutput/)."""
 ConnectionQueryStringParameterOutput: TypeAlias = _native.ConnectionQueryStringParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionQueryStringParameterOutput/)."""
 CreateApiDestinationOutput: TypeAlias = _native.CreateApiDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateApiDestinationOutput/)."""
 CreateArchiveOutput: TypeAlias = _native.CreateArchiveOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateArchiveOutput/)."""
 CreateConnectionOutput: TypeAlias = _native.CreateConnectionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionOutput/)."""
 CreateEndpointOutput: TypeAlias = _native.CreateEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateEndpointOutput/)."""
 CreateEventBusOutput: TypeAlias = _native.CreateEventBusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateEventBusOutput/)."""
 CreatePartnerEventSourceOutput: TypeAlias = _native.CreatePartnerEventSourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreatePartnerEventSourceOutput/)."""
 DeadLetterConfigOutput: TypeAlias = _native.DeadLetterConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeadLetterConfigOutput/)."""
 DeauthorizeConnectionOutput: TypeAlias = _native.DeauthorizeConnectionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeauthorizeConnectionOutput/)."""
 DeleteApiDestinationOutput: TypeAlias = _native.DeleteApiDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteApiDestinationOutput/)."""
 DeleteArchiveOutput: TypeAlias = _native.DeleteArchiveOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteArchiveOutput/)."""
 DeleteConnectionOutput: TypeAlias = _native.DeleteConnectionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteConnectionOutput/)."""
 DeleteEndpointOutput: TypeAlias = _native.DeleteEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteEndpointOutput/)."""
 DescribeApiDestinationOutput: TypeAlias = _native.DescribeApiDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeApiDestinationOutput/)."""
 DescribeArchiveOutput: TypeAlias = _native.DescribeArchiveOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeArchiveOutput/)."""
 DescribeConnectionConnectivityParametersOutput: TypeAlias = _native.DescribeConnectionConnectivityParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeConnectionConnectivityParametersOutput/)."""
 DescribeConnectionOutput: TypeAlias = _native.DescribeConnectionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeConnectionOutput/)."""
 DescribeConnectionResourceParametersOutput: TypeAlias = _native.DescribeConnectionResourceParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeConnectionResourceParametersOutput/)."""
 DescribeEndpointOutput: TypeAlias = _native.DescribeEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEndpointOutput/)."""
 DescribeEventBusOutput: TypeAlias = _native.DescribeEventBusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEventBusOutput/)."""
 DescribeEventSourceOutput: TypeAlias = _native.DescribeEventSourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEventSourceOutput/)."""
 DescribePartnerEventSourceOutput: TypeAlias = _native.DescribePartnerEventSourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribePartnerEventSourceOutput/)."""
 DescribeReplayOutput: TypeAlias = _native.DescribeReplayOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeReplayOutput/)."""
 DescribeRuleOutput: TypeAlias = _native.DescribeRuleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeRuleOutput/)."""
 EcsParametersOutput: TypeAlias = _native.EcsParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EcsParametersOutput/)."""
 EndpointOutput: TypeAlias = _native.Endpoint
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EndpointOutput/)."""
 EndpointEventBusOutput: TypeAlias = _native.EndpointEventBus
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EndpointEventBusOutput/)."""
 EventBusOutput: TypeAlias = _native.EventBus
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EventBusOutput/)."""
 EventSourceOutput: TypeAlias = _native.EventSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EventSourceOutput/)."""
 FailoverConfigOutput: TypeAlias = _native.FailoverConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/FailoverConfigOutput/)."""
 HttpParametersOutput: TypeAlias = _native.HttpParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/HttpParametersOutput/)."""
 InputTransformerOutput: TypeAlias = _native.InputTransformer
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/InputTransformerOutput/)."""
 KinesisParametersOutput: TypeAlias = _native.KinesisParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/KinesisParametersOutput/)."""
 ListApiDestinationsOutput: TypeAlias = _native.ListApiDestinationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListApiDestinationsOutput/)."""
 ListArchivesOutput: TypeAlias = _native.ListArchivesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListArchivesOutput/)."""
 ListConnectionsOutput: TypeAlias = _native.ListConnectionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListConnectionsOutput/)."""
 ListEndpointsOutput: TypeAlias = _native.ListEndpointsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEndpointsOutput/)."""
 ListEventBusesOutput: TypeAlias = _native.ListEventBusesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEventBusesOutput/)."""
 ListEventSourcesOutput: TypeAlias = _native.ListEventSourcesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEventSourcesOutput/)."""
 ListPartnerEventSourceAccountsOutput: TypeAlias = _native.ListPartnerEventSourceAccountsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListPartnerEventSourceAccountsOutput/)."""
 ListPartnerEventSourcesOutput: TypeAlias = _native.ListPartnerEventSourcesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListPartnerEventSourcesOutput/)."""
 ListReplaysOutput: TypeAlias = _native.ListReplaysOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListReplaysOutput/)."""
 ListRuleNamesByTargetOutput: TypeAlias = _native.ListRuleNamesByTargetOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListRuleNamesByTargetOutput/)."""
 ListRulesOutput: TypeAlias = _native.ListRulesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListRulesOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListTagsForResourceOutput/)."""
 ListTargetsByRuleOutput: TypeAlias = _native.ListTargetsByRuleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListTargetsByRuleOutput/)."""
 LogConfigOutput: TypeAlias = _native.LogConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/LogConfigOutput/)."""
 NetworkConfigurationOutput: TypeAlias = _native.NetworkConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/NetworkConfigurationOutput/)."""
 PartnerEventSourceOutput: TypeAlias = _native.PartnerEventSource
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PartnerEventSourceOutput/)."""
 PartnerEventSourceAccountOutput: TypeAlias = _native.PartnerEventSourceAccount
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PartnerEventSourceAccountOutput/)."""
 PlacementConstraintOutput: TypeAlias = _native.PlacementConstraint
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementConstraintOutput/)."""
 PlacementStrategyOutput: TypeAlias = _native.PlacementStrategy
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementStrategyOutput/)."""
 PrimaryOutput: TypeAlias = _native.Primary
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PrimaryOutput/)."""
 PutEventsOutput: TypeAlias = _native.PutEventsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutEventsOutput/)."""
 PutEventsResultEntryOutput: TypeAlias = _native.PutEventsResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutEventsResultEntryOutput/)."""
 PutPartnerEventsOutput: TypeAlias = _native.PutPartnerEventsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutPartnerEventsOutput/)."""
 PutPartnerEventsResultEntryOutput: TypeAlias = _native.PutPartnerEventsResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutPartnerEventsResultEntryOutput/)."""
 PutRuleOutput: TypeAlias = _native.PutRuleOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutRuleOutput/)."""
 PutTargetsOutput: TypeAlias = _native.PutTargetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutTargetsOutput/)."""
 PutTargetsResultEntryOutput: TypeAlias = _native.PutTargetsResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutTargetsResultEntryOutput/)."""
 RedshiftDataParametersOutput: TypeAlias = _native.RedshiftDataParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RedshiftDataParametersOutput/)."""
 RemoveTargetsOutput: TypeAlias = _native.RemoveTargetsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RemoveTargetsOutput/)."""
 RemoveTargetsResultEntryOutput: TypeAlias = _native.RemoveTargetsResultEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RemoveTargetsResultEntryOutput/)."""
 ReplayOutput: TypeAlias = _native.Replay
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplayOutput/)."""
 ReplayDestinationOutput: TypeAlias = _native.ReplayDestination
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplayDestinationOutput/)."""
 ReplicationConfigOutput: TypeAlias = _native.ReplicationConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplicationConfigOutput/)."""
 RetryPolicyOutput: TypeAlias = _native.RetryPolicy
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RetryPolicyOutput/)."""
 RoutingConfigOutput: TypeAlias = _native.RoutingConfig
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RoutingConfigOutput/)."""
 RuleOutput: TypeAlias = _native.Rule
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RuleOutput/)."""
 RunCommandParametersOutput: TypeAlias = _native.RunCommandParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RunCommandParametersOutput/)."""
 RunCommandTargetOutput: TypeAlias = _native.RunCommandTarget
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RunCommandTargetOutput/)."""
 SageMakerPipelineParameterOutput: TypeAlias = _native.SageMakerPipelineParameter
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/SageMakerPipelineParameterOutput/)."""
 SageMakerPipelineParametersOutput: TypeAlias = _native.SageMakerPipelineParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/SageMakerPipelineParametersOutput/)."""
 SecondaryOutput: TypeAlias = _native.Secondary
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/SecondaryOutput/)."""
 SqsParametersOutput: TypeAlias = _native.SqsParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/SqsParametersOutput/)."""
 StartReplayOutput: TypeAlias = _native.StartReplayOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/StartReplayOutput/)."""
 TagOutput: TypeAlias = _native.Tag
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TagResourceOutput/)."""
 TargetOutput: TypeAlias = _native.Target
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TargetOutput/)."""
 TestEventPatternOutput: TypeAlias = _native.TestEventPatternOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TestEventPatternOutput/)."""
 UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UntagResourceOutput/)."""
 UpdateApiDestinationOutput: TypeAlias = _native.UpdateApiDestinationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateApiDestinationOutput/)."""
 UpdateArchiveOutput: TypeAlias = _native.UpdateArchiveOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateArchiveOutput/)."""
 UpdateConnectionOutput: TypeAlias = _native.UpdateConnectionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionOutput/)."""
 UpdateEndpointOutput: TypeAlias = _native.UpdateEndpointOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateEndpointOutput/)."""
 UpdateEventBusOutput: TypeAlias = _native.UpdateEventBusOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateEventBusOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/JSONValue/)."""
 
 ApiDestinationHttpMethod: TypeAlias = Literal['POST', 'GET', 'HEAD', 'OPTIONS', 'PUT', 'PATCH', 'DELETE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ApiDestinationHttpMethod/)."""
 ApiDestinationHttpMethodOutput: TypeAlias = ApiDestinationHttpMethod | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ApiDestinationHttpMethodOutput/)."""
 ApiDestinationState: TypeAlias = Literal['ACTIVE', 'INACTIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ApiDestinationState/)."""
 ApiDestinationStateOutput: TypeAlias = ApiDestinationState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ApiDestinationStateOutput/)."""
 ArchiveState: TypeAlias = Literal['ENABLED', 'DISABLED', 'CREATING', 'UPDATING', 'CREATE_FAILED', 'UPDATE_FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ArchiveState/)."""
 ArchiveStateOutput: TypeAlias = ArchiveState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ArchiveStateOutput/)."""
 AssignPublicIp: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/AssignPublicIp/)."""
 AssignPublicIpOutput: TypeAlias = AssignPublicIp | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/AssignPublicIpOutput/)."""
 ConnectionAuthorizationType: TypeAlias = Literal['BASIC', 'OAUTH_CLIENT_CREDENTIALS', 'API_KEY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionAuthorizationType/)."""
 ConnectionAuthorizationTypeOutput: TypeAlias = ConnectionAuthorizationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionAuthorizationTypeOutput/)."""
 ConnectionOAuthHttpMethod: TypeAlias = Literal['GET', 'POST', 'PUT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionOAuthHttpMethod/)."""
 ConnectionOAuthHttpMethodOutput: TypeAlias = ConnectionOAuthHttpMethod | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionOAuthHttpMethodOutput/)."""
 ConnectionState: TypeAlias = Literal['CREATING', 'UPDATING', 'DELETING', 'AUTHORIZED', 'DEAUTHORIZED', 'AUTHORIZING', 'DEAUTHORIZING', 'ACTIVE', 'FAILED_CONNECTIVITY']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionState/)."""
 ConnectionStateOutput: TypeAlias = ConnectionState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionStateOutput/)."""
 EndpointState: TypeAlias = Literal['ACTIVE', 'CREATING', 'UPDATING', 'DELETING', 'CREATE_FAILED', 'UPDATE_FAILED', 'DELETE_FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EndpointState/)."""
 EndpointStateOutput: TypeAlias = EndpointState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EndpointStateOutput/)."""
 EventSourceState: TypeAlias = Literal['PENDING', 'ACTIVE', 'DELETED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EventSourceState/)."""
 EventSourceStateOutput: TypeAlias = EventSourceState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EventSourceStateOutput/)."""
 IncludeDetail: TypeAlias = Literal['NONE', 'FULL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/IncludeDetail/)."""
 IncludeDetailOutput: TypeAlias = IncludeDetail | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/IncludeDetailOutput/)."""
 LaunchType: TypeAlias = Literal['EC2', 'FARGATE', 'EXTERNAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/LaunchType/)."""
 LaunchTypeOutput: TypeAlias = LaunchType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/LaunchTypeOutput/)."""
 Level: TypeAlias = Literal['OFF', 'ERROR', 'INFO', 'TRACE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Level/)."""
 LevelOutput: TypeAlias = Level | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/LevelOutput/)."""
 PlacementConstraintType: TypeAlias = Literal['distinctInstance', 'memberOf']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementConstraintType/)."""
 PlacementConstraintTypeOutput: TypeAlias = PlacementConstraintType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementConstraintTypeOutput/)."""
 PlacementStrategyType: TypeAlias = Literal['random', 'spread', 'binpack']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementStrategyType/)."""
 PlacementStrategyTypeOutput: TypeAlias = PlacementStrategyType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementStrategyTypeOutput/)."""
 PropagateTags: TypeAlias = Literal['TASK_DEFINITION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PropagateTags/)."""
 PropagateTagsOutput: TypeAlias = PropagateTags | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PropagateTagsOutput/)."""
 ReplayState: TypeAlias = Literal['STARTING', 'RUNNING', 'CANCELLING', 'COMPLETED', 'CANCELLED', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplayState/)."""
 ReplayStateOutput: TypeAlias = ReplayState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplayStateOutput/)."""
 ReplicationState: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplicationState/)."""
 ReplicationStateOutput: TypeAlias = ReplicationState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplicationStateOutput/)."""
 RuleState: TypeAlias = Literal['ENABLED', 'DISABLED', 'ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RuleState/)."""
 RuleStateOutput: TypeAlias = RuleState | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RuleStateOutput/)."""
 
 ActivateEventSourceRequest = TypedDict(
     "ActivateEventSourceRequest",
@@ -159,6 +301,7 @@ ActivateEventSourceRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ActivateEventSourceRequest/)."""
 
 ApiDestination = TypedDict(
     "ApiDestination",
@@ -174,6 +317,7 @@ ApiDestination = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ApiDestination/)."""
 
 AppSyncParameters = TypedDict(
     "AppSyncParameters",
@@ -181,6 +325,7 @@ AppSyncParameters = TypedDict(
     "graph_ql_operation": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/AppSyncParameters/)."""
 
 Archive = TypedDict(
     "Archive",
@@ -195,6 +340,7 @@ Archive = TypedDict(
     "creation_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Archive/)."""
 
 AwsVpcConfiguration = TypedDict(
     "AwsVpcConfiguration",
@@ -204,6 +350,7 @@ AwsVpcConfiguration = TypedDict(
     "assign_public_ip": NotRequired["AssignPublicIp"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/AwsVpcConfiguration/)."""
 
 BatchArrayProperties = TypedDict(
     "BatchArrayProperties",
@@ -211,6 +358,7 @@ BatchArrayProperties = TypedDict(
     "size": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/BatchArrayProperties/)."""
 
 BatchParameters = TypedDict(
     "BatchParameters",
@@ -221,6 +369,7 @@ BatchParameters = TypedDict(
     "retry_strategy": NotRequired["BatchRetryStrategy"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/BatchParameters/)."""
 
 BatchRetryStrategy = TypedDict(
     "BatchRetryStrategy",
@@ -228,6 +377,7 @@ BatchRetryStrategy = TypedDict(
     "attempts": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/BatchRetryStrategy/)."""
 
 CancelReplayRequest = TypedDict(
     "CancelReplayRequest",
@@ -235,6 +385,7 @@ CancelReplayRequest = TypedDict(
     "replay_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CancelReplayRequest/)."""
 
 CapacityProviderStrategyItem = TypedDict(
     "CapacityProviderStrategyItem",
@@ -244,6 +395,7 @@ CapacityProviderStrategyItem = TypedDict(
     "base": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CapacityProviderStrategyItem/)."""
 
 Condition = TypedDict(
     "Condition",
@@ -253,6 +405,7 @@ Condition = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Condition/)."""
 
 Connection = TypedDict(
     "Connection",
@@ -267,6 +420,7 @@ Connection = TypedDict(
     "last_authorized_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Connection/)."""
 
 ConnectionApiKeyAuthResponseParameters = TypedDict(
     "ConnectionApiKeyAuthResponseParameters",
@@ -274,6 +428,7 @@ ConnectionApiKeyAuthResponseParameters = TypedDict(
     "api_key_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionApiKeyAuthResponseParameters/)."""
 
 ConnectionAuthResponseParameters = TypedDict(
     "ConnectionAuthResponseParameters",
@@ -285,6 +440,7 @@ ConnectionAuthResponseParameters = TypedDict(
     "connectivity_parameters": NotRequired["DescribeConnectionConnectivityParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionAuthResponseParameters/)."""
 
 ConnectionBasicAuthResponseParameters = TypedDict(
     "ConnectionBasicAuthResponseParameters",
@@ -292,6 +448,7 @@ ConnectionBasicAuthResponseParameters = TypedDict(
     "username": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionBasicAuthResponseParameters/)."""
 
 ConnectionBodyParameter = TypedDict(
     "ConnectionBodyParameter",
@@ -301,6 +458,7 @@ ConnectionBodyParameter = TypedDict(
     "is_value_secret": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionBodyParameter/)."""
 
 ConnectionHeaderParameter = TypedDict(
     "ConnectionHeaderParameter",
@@ -310,6 +468,7 @@ ConnectionHeaderParameter = TypedDict(
     "is_value_secret": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionHeaderParameter/)."""
 
 ConnectionHttpParameters = TypedDict(
     "ConnectionHttpParameters",
@@ -319,6 +478,7 @@ ConnectionHttpParameters = TypedDict(
     "body_parameters": NotRequired["Sequence[ConnectionBodyParameter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionHttpParameters/)."""
 
 ConnectionOAuthClientResponseParameters = TypedDict(
     "ConnectionOAuthClientResponseParameters",
@@ -326,6 +486,7 @@ ConnectionOAuthClientResponseParameters = TypedDict(
     "client_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionOAuthClientResponseParameters/)."""
 
 ConnectionOAuthResponseParameters = TypedDict(
     "ConnectionOAuthResponseParameters",
@@ -336,6 +497,7 @@ ConnectionOAuthResponseParameters = TypedDict(
     "o_auth_http_parameters": NotRequired["ConnectionHttpParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionOAuthResponseParameters/)."""
 
 ConnectionQueryStringParameter = TypedDict(
     "ConnectionQueryStringParameter",
@@ -345,6 +507,7 @@ ConnectionQueryStringParameter = TypedDict(
     "is_value_secret": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectionQueryStringParameter/)."""
 
 ConnectivityResourceConfigurationArn = TypedDict(
     "ConnectivityResourceConfigurationArn",
@@ -352,6 +515,7 @@ ConnectivityResourceConfigurationArn = TypedDict(
     "resource_configuration_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectivityResourceConfigurationArn/)."""
 
 ConnectivityResourceParameters = TypedDict(
     "ConnectivityResourceParameters",
@@ -359,6 +523,7 @@ ConnectivityResourceParameters = TypedDict(
     "resource_parameters": Required["ConnectivityResourceConfigurationArn"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ConnectivityResourceParameters/)."""
 
 CreateApiDestinationRequest = TypedDict(
     "CreateApiDestinationRequest",
@@ -371,6 +536,7 @@ CreateApiDestinationRequest = TypedDict(
     "invocation_rate_limit_per_second": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateApiDestinationRequest/)."""
 
 CreateArchiveRequest = TypedDict(
     "CreateArchiveRequest",
@@ -383,6 +549,7 @@ CreateArchiveRequest = TypedDict(
     "kms_key_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateArchiveRequest/)."""
 
 CreateConnectionApiKeyAuthRequestParameters = TypedDict(
     "CreateConnectionApiKeyAuthRequestParameters",
@@ -391,6 +558,7 @@ CreateConnectionApiKeyAuthRequestParameters = TypedDict(
     "api_key_value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionApiKeyAuthRequestParameters/)."""
 
 CreateConnectionAuthRequestParameters = TypedDict(
     "CreateConnectionAuthRequestParameters",
@@ -402,6 +570,7 @@ CreateConnectionAuthRequestParameters = TypedDict(
     "connectivity_parameters": NotRequired["ConnectivityResourceParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionAuthRequestParameters/)."""
 
 CreateConnectionBasicAuthRequestParameters = TypedDict(
     "CreateConnectionBasicAuthRequestParameters",
@@ -410,6 +579,7 @@ CreateConnectionBasicAuthRequestParameters = TypedDict(
     "password": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionBasicAuthRequestParameters/)."""
 
 CreateConnectionOAuthClientRequestParameters = TypedDict(
     "CreateConnectionOAuthClientRequestParameters",
@@ -418,6 +588,7 @@ CreateConnectionOAuthClientRequestParameters = TypedDict(
     "client_secret": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionOAuthClientRequestParameters/)."""
 
 CreateConnectionOAuthRequestParameters = TypedDict(
     "CreateConnectionOAuthRequestParameters",
@@ -428,6 +599,7 @@ CreateConnectionOAuthRequestParameters = TypedDict(
     "o_auth_http_parameters": NotRequired["ConnectionHttpParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionOAuthRequestParameters/)."""
 
 CreateConnectionRequest = TypedDict(
     "CreateConnectionRequest",
@@ -440,6 +612,7 @@ CreateConnectionRequest = TypedDict(
     "kms_key_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateConnectionRequest/)."""
 
 CreateEndpointRequest = TypedDict(
     "CreateEndpointRequest",
@@ -452,6 +625,7 @@ CreateEndpointRequest = TypedDict(
     "role_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateEndpointRequest/)."""
 
 CreateEventBusRequest = TypedDict(
     "CreateEventBusRequest",
@@ -465,6 +639,7 @@ CreateEventBusRequest = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreateEventBusRequest/)."""
 
 CreatePartnerEventSourceRequest = TypedDict(
     "CreatePartnerEventSourceRequest",
@@ -473,6 +648,7 @@ CreatePartnerEventSourceRequest = TypedDict(
     "account": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/CreatePartnerEventSourceRequest/)."""
 
 DeactivateEventSourceRequest = TypedDict(
     "DeactivateEventSourceRequest",
@@ -480,6 +656,7 @@ DeactivateEventSourceRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeactivateEventSourceRequest/)."""
 
 DeadLetterConfig = TypedDict(
     "DeadLetterConfig",
@@ -487,6 +664,7 @@ DeadLetterConfig = TypedDict(
     "arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeadLetterConfig/)."""
 
 DeauthorizeConnectionRequest = TypedDict(
     "DeauthorizeConnectionRequest",
@@ -494,6 +672,7 @@ DeauthorizeConnectionRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeauthorizeConnectionRequest/)."""
 
 DeleteApiDestinationRequest = TypedDict(
     "DeleteApiDestinationRequest",
@@ -501,6 +680,7 @@ DeleteApiDestinationRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteApiDestinationRequest/)."""
 
 DeleteArchiveRequest = TypedDict(
     "DeleteArchiveRequest",
@@ -508,6 +688,7 @@ DeleteArchiveRequest = TypedDict(
     "archive_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteArchiveRequest/)."""
 
 DeleteConnectionRequest = TypedDict(
     "DeleteConnectionRequest",
@@ -515,6 +696,7 @@ DeleteConnectionRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteConnectionRequest/)."""
 
 DeleteEndpointRequest = TypedDict(
     "DeleteEndpointRequest",
@@ -522,6 +704,7 @@ DeleteEndpointRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteEndpointRequest/)."""
 
 DeleteEventBusRequest = TypedDict(
     "DeleteEventBusRequest",
@@ -529,6 +712,7 @@ DeleteEventBusRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteEventBusRequest/)."""
 
 DeletePartnerEventSourceRequest = TypedDict(
     "DeletePartnerEventSourceRequest",
@@ -537,6 +721,7 @@ DeletePartnerEventSourceRequest = TypedDict(
     "account": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeletePartnerEventSourceRequest/)."""
 
 DeleteRuleRequest = TypedDict(
     "DeleteRuleRequest",
@@ -546,6 +731,7 @@ DeleteRuleRequest = TypedDict(
     "force": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DeleteRuleRequest/)."""
 
 DescribeApiDestinationRequest = TypedDict(
     "DescribeApiDestinationRequest",
@@ -553,6 +739,7 @@ DescribeApiDestinationRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeApiDestinationRequest/)."""
 
 DescribeArchiveRequest = TypedDict(
     "DescribeArchiveRequest",
@@ -560,6 +747,7 @@ DescribeArchiveRequest = TypedDict(
     "archive_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeArchiveRequest/)."""
 
 DescribeConnectionConnectivityParameters = TypedDict(
     "DescribeConnectionConnectivityParameters",
@@ -567,6 +755,7 @@ DescribeConnectionConnectivityParameters = TypedDict(
     "resource_parameters": Required["DescribeConnectionResourceParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeConnectionConnectivityParameters/)."""
 
 DescribeConnectionRequest = TypedDict(
     "DescribeConnectionRequest",
@@ -574,6 +763,7 @@ DescribeConnectionRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeConnectionRequest/)."""
 
 DescribeConnectionResourceParameters = TypedDict(
     "DescribeConnectionResourceParameters",
@@ -582,6 +772,7 @@ DescribeConnectionResourceParameters = TypedDict(
     "resource_association_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeConnectionResourceParameters/)."""
 
 DescribeEndpointRequest = TypedDict(
     "DescribeEndpointRequest",
@@ -590,6 +781,7 @@ DescribeEndpointRequest = TypedDict(
     "home_region": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEndpointRequest/)."""
 
 DescribeEventBusRequest = TypedDict(
     "DescribeEventBusRequest",
@@ -597,6 +789,7 @@ DescribeEventBusRequest = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEventBusRequest/)."""
 
 DescribeEventSourceRequest = TypedDict(
     "DescribeEventSourceRequest",
@@ -604,6 +797,7 @@ DescribeEventSourceRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeEventSourceRequest/)."""
 
 DescribePartnerEventSourceRequest = TypedDict(
     "DescribePartnerEventSourceRequest",
@@ -611,6 +805,7 @@ DescribePartnerEventSourceRequest = TypedDict(
     "name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribePartnerEventSourceRequest/)."""
 
 DescribeReplayRequest = TypedDict(
     "DescribeReplayRequest",
@@ -618,6 +813,7 @@ DescribeReplayRequest = TypedDict(
     "replay_name": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeReplayRequest/)."""
 
 DescribeRuleRequest = TypedDict(
     "DescribeRuleRequest",
@@ -626,6 +822,7 @@ DescribeRuleRequest = TypedDict(
     "event_bus_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DescribeRuleRequest/)."""
 
 DisableRuleRequest = TypedDict(
     "DisableRuleRequest",
@@ -634,6 +831,7 @@ DisableRuleRequest = TypedDict(
     "event_bus_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/DisableRuleRequest/)."""
 
 EcsParameters = TypedDict(
     "EcsParameters",
@@ -654,6 +852,7 @@ EcsParameters = TypedDict(
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EcsParameters/)."""
 
 EnableRuleRequest = TypedDict(
     "EnableRuleRequest",
@@ -662,6 +861,7 @@ EnableRuleRequest = TypedDict(
     "event_bus_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EnableRuleRequest/)."""
 
 Endpoint = TypedDict(
     "Endpoint",
@@ -681,6 +881,7 @@ Endpoint = TypedDict(
     "last_modified_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Endpoint/)."""
 
 EndpointEventBus = TypedDict(
     "EndpointEventBus",
@@ -688,6 +889,7 @@ EndpointEventBus = TypedDict(
     "event_bus_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EndpointEventBus/)."""
 
 EventBus = TypedDict(
     "EventBus",
@@ -701,6 +903,7 @@ EventBus = TypedDict(
     "managed_by": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EventBus/)."""
 
 EventSource = TypedDict(
     "EventSource",
@@ -713,6 +916,7 @@ EventSource = TypedDict(
     "state": NotRequired["EventSourceState"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/EventSource/)."""
 
 FailoverConfig = TypedDict(
     "FailoverConfig",
@@ -721,6 +925,7 @@ FailoverConfig = TypedDict(
     "secondary": Required["Secondary"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/FailoverConfig/)."""
 
 HttpParameters = TypedDict(
     "HttpParameters",
@@ -730,6 +935,7 @@ HttpParameters = TypedDict(
     "query_string_parameters": NotRequired["dict[str, str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/HttpParameters/)."""
 
 InputTransformer = TypedDict(
     "InputTransformer",
@@ -738,6 +944,7 @@ InputTransformer = TypedDict(
     "input_template": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/InputTransformer/)."""
 
 KinesisParameters = TypedDict(
     "KinesisParameters",
@@ -745,6 +952,7 @@ KinesisParameters = TypedDict(
     "partition_key_path": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/KinesisParameters/)."""
 
 ListApiDestinationsRequest = TypedDict(
     "ListApiDestinationsRequest",
@@ -755,6 +963,7 @@ ListApiDestinationsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListApiDestinationsRequest/)."""
 
 ListArchivesRequest = TypedDict(
     "ListArchivesRequest",
@@ -766,6 +975,7 @@ ListArchivesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListArchivesRequest/)."""
 
 ListConnectionsRequest = TypedDict(
     "ListConnectionsRequest",
@@ -776,6 +986,7 @@ ListConnectionsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListConnectionsRequest/)."""
 
 ListEndpointsRequest = TypedDict(
     "ListEndpointsRequest",
@@ -786,6 +997,7 @@ ListEndpointsRequest = TypedDict(
     "max_results": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEndpointsRequest/)."""
 
 ListEventBusesRequest = TypedDict(
     "ListEventBusesRequest",
@@ -795,6 +1007,7 @@ ListEventBusesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEventBusesRequest/)."""
 
 ListEventSourcesRequest = TypedDict(
     "ListEventSourcesRequest",
@@ -804,6 +1017,7 @@ ListEventSourcesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListEventSourcesRequest/)."""
 
 ListPartnerEventSourceAccountsRequest = TypedDict(
     "ListPartnerEventSourceAccountsRequest",
@@ -813,6 +1027,7 @@ ListPartnerEventSourceAccountsRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListPartnerEventSourceAccountsRequest/)."""
 
 ListPartnerEventSourcesRequest = TypedDict(
     "ListPartnerEventSourcesRequest",
@@ -822,6 +1037,7 @@ ListPartnerEventSourcesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListPartnerEventSourcesRequest/)."""
 
 ListReplaysRequest = TypedDict(
     "ListReplaysRequest",
@@ -833,6 +1049,7 @@ ListReplaysRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListReplaysRequest/)."""
 
 ListRuleNamesByTargetRequest = TypedDict(
     "ListRuleNamesByTargetRequest",
@@ -843,6 +1060,7 @@ ListRuleNamesByTargetRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListRuleNamesByTargetRequest/)."""
 
 ListRulesRequest = TypedDict(
     "ListRulesRequest",
@@ -853,6 +1071,7 @@ ListRulesRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListRulesRequest/)."""
 
 ListTagsForResourceRequest = TypedDict(
     "ListTagsForResourceRequest",
@@ -860,6 +1079,7 @@ ListTagsForResourceRequest = TypedDict(
     "resource_arn": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListTagsForResourceRequest/)."""
 
 ListTargetsByRuleRequest = TypedDict(
     "ListTargetsByRuleRequest",
@@ -870,6 +1090,7 @@ ListTargetsByRuleRequest = TypedDict(
     "limit": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ListTargetsByRuleRequest/)."""
 
 LogConfig = TypedDict(
     "LogConfig",
@@ -878,6 +1099,7 @@ LogConfig = TypedDict(
     "level": NotRequired["Level"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/LogConfig/)."""
 
 NetworkConfiguration = TypedDict(
     "NetworkConfiguration",
@@ -885,6 +1107,7 @@ NetworkConfiguration = TypedDict(
     "awsvpc_configuration": NotRequired["AwsVpcConfiguration"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/NetworkConfiguration/)."""
 
 PartnerEventSource = TypedDict(
     "PartnerEventSource",
@@ -893,6 +1116,7 @@ PartnerEventSource = TypedDict(
     "name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PartnerEventSource/)."""
 
 PartnerEventSourceAccount = TypedDict(
     "PartnerEventSourceAccount",
@@ -903,6 +1127,7 @@ PartnerEventSourceAccount = TypedDict(
     "state": NotRequired["EventSourceState"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PartnerEventSourceAccount/)."""
 
 PlacementConstraint = TypedDict(
     "PlacementConstraint",
@@ -911,6 +1136,7 @@ PlacementConstraint = TypedDict(
     "expression": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementConstraint/)."""
 
 PlacementStrategy = TypedDict(
     "PlacementStrategy",
@@ -919,6 +1145,7 @@ PlacementStrategy = TypedDict(
     "field": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PlacementStrategy/)."""
 
 Primary = TypedDict(
     "Primary",
@@ -926,6 +1153,7 @@ Primary = TypedDict(
     "health_check": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Primary/)."""
 
 PutEventsRequest = TypedDict(
     "PutEventsRequest",
@@ -934,6 +1162,7 @@ PutEventsRequest = TypedDict(
     "endpoint_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutEventsRequest/)."""
 
 PutEventsRequestEntry = TypedDict(
     "PutEventsRequestEntry",
@@ -947,6 +1176,7 @@ PutEventsRequestEntry = TypedDict(
     "trace_header": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutEventsRequestEntry/)."""
 
 PutEventsResultEntry = TypedDict(
     "PutEventsResultEntry",
@@ -956,6 +1186,7 @@ PutEventsResultEntry = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutEventsResultEntry/)."""
 
 PutPartnerEventsRequest = TypedDict(
     "PutPartnerEventsRequest",
@@ -963,6 +1194,7 @@ PutPartnerEventsRequest = TypedDict(
     "entries": Required["Sequence[PutPartnerEventsRequestEntry]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutPartnerEventsRequest/)."""
 
 PutPartnerEventsRequestEntry = TypedDict(
     "PutPartnerEventsRequestEntry",
@@ -974,6 +1206,7 @@ PutPartnerEventsRequestEntry = TypedDict(
     "detail": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutPartnerEventsRequestEntry/)."""
 
 PutPartnerEventsResultEntry = TypedDict(
     "PutPartnerEventsResultEntry",
@@ -983,6 +1216,7 @@ PutPartnerEventsResultEntry = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutPartnerEventsResultEntry/)."""
 
 PutPermissionRequest = TypedDict(
     "PutPermissionRequest",
@@ -995,6 +1229,7 @@ PutPermissionRequest = TypedDict(
     "policy": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutPermissionRequest/)."""
 
 PutRuleRequest = TypedDict(
     "PutRuleRequest",
@@ -1009,6 +1244,7 @@ PutRuleRequest = TypedDict(
     "event_bus_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutRuleRequest/)."""
 
 PutTargetsRequest = TypedDict(
     "PutTargetsRequest",
@@ -1018,6 +1254,7 @@ PutTargetsRequest = TypedDict(
     "targets": Required["Sequence[Target]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutTargetsRequest/)."""
 
 PutTargetsResultEntry = TypedDict(
     "PutTargetsResultEntry",
@@ -1027,6 +1264,7 @@ PutTargetsResultEntry = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/PutTargetsResultEntry/)."""
 
 RedshiftDataParameters = TypedDict(
     "RedshiftDataParameters",
@@ -1040,6 +1278,7 @@ RedshiftDataParameters = TypedDict(
     "sqls": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RedshiftDataParameters/)."""
 
 RemovePermissionRequest = TypedDict(
     "RemovePermissionRequest",
@@ -1049,6 +1288,7 @@ RemovePermissionRequest = TypedDict(
     "event_bus_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RemovePermissionRequest/)."""
 
 RemoveTargetsRequest = TypedDict(
     "RemoveTargetsRequest",
@@ -1059,6 +1299,7 @@ RemoveTargetsRequest = TypedDict(
     "force": NotRequired["bool"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RemoveTargetsRequest/)."""
 
 RemoveTargetsResultEntry = TypedDict(
     "RemoveTargetsResultEntry",
@@ -1068,6 +1309,7 @@ RemoveTargetsResultEntry = TypedDict(
     "error_message": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RemoveTargetsResultEntry/)."""
 
 Replay = TypedDict(
     "Replay",
@@ -1083,6 +1325,7 @@ Replay = TypedDict(
     "replay_end_time": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Replay/)."""
 
 ReplayDestination = TypedDict(
     "ReplayDestination",
@@ -1091,6 +1334,7 @@ ReplayDestination = TypedDict(
     "filter_arns": NotRequired["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplayDestination/)."""
 
 ReplicationConfig = TypedDict(
     "ReplicationConfig",
@@ -1098,6 +1342,7 @@ ReplicationConfig = TypedDict(
     "state": NotRequired["ReplicationState"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/ReplicationConfig/)."""
 
 RetryPolicy = TypedDict(
     "RetryPolicy",
@@ -1106,6 +1351,7 @@ RetryPolicy = TypedDict(
     "maximum_event_age_in_seconds": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RetryPolicy/)."""
 
 RoutingConfig = TypedDict(
     "RoutingConfig",
@@ -1113,6 +1359,7 @@ RoutingConfig = TypedDict(
     "failover_config": Required["FailoverConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RoutingConfig/)."""
 
 Rule = TypedDict(
     "Rule",
@@ -1128,6 +1375,7 @@ Rule = TypedDict(
     "event_bus_name": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Rule/)."""
 
 RunCommandParameters = TypedDict(
     "RunCommandParameters",
@@ -1135,6 +1383,7 @@ RunCommandParameters = TypedDict(
     "run_command_targets": Required["Sequence[RunCommandTarget]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RunCommandParameters/)."""
 
 RunCommandTarget = TypedDict(
     "RunCommandTarget",
@@ -1143,6 +1392,7 @@ RunCommandTarget = TypedDict(
     "values": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/RunCommandTarget/)."""
 
 SageMakerPipelineParameter = TypedDict(
     "SageMakerPipelineParameter",
@@ -1151,6 +1401,7 @@ SageMakerPipelineParameter = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/SageMakerPipelineParameter/)."""
 
 SageMakerPipelineParameters = TypedDict(
     "SageMakerPipelineParameters",
@@ -1158,6 +1409,7 @@ SageMakerPipelineParameters = TypedDict(
     "pipeline_parameter_list": NotRequired["Sequence[SageMakerPipelineParameter]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/SageMakerPipelineParameters/)."""
 
 Secondary = TypedDict(
     "Secondary",
@@ -1165,6 +1417,7 @@ Secondary = TypedDict(
     "route": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Secondary/)."""
 
 SqsParameters = TypedDict(
     "SqsParameters",
@@ -1172,6 +1425,7 @@ SqsParameters = TypedDict(
     "message_group_id": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/SqsParameters/)."""
 
 StartReplayRequest = TypedDict(
     "StartReplayRequest",
@@ -1184,6 +1438,7 @@ StartReplayRequest = TypedDict(
     "destination": Required["ReplayDestination"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/StartReplayRequest/)."""
 
 Tag = TypedDict(
     "Tag",
@@ -1192,6 +1447,7 @@ Tag = TypedDict(
     "value": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Tag/)."""
 
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
@@ -1200,6 +1456,7 @@ TagResourceRequest = TypedDict(
     "tags": Required["Sequence[Tag]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TagResourceRequest/)."""
 
 Target = TypedDict(
     "Target",
@@ -1223,6 +1480,7 @@ Target = TypedDict(
     "app_sync_parameters": NotRequired["AppSyncParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/Target/)."""
 
 TestEventPatternRequest = TypedDict(
     "TestEventPatternRequest",
@@ -1231,6 +1489,7 @@ TestEventPatternRequest = TypedDict(
     "event": Required["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/TestEventPatternRequest/)."""
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -1239,6 +1498,7 @@ UntagResourceRequest = TypedDict(
     "tag_keys": Required["Sequence[str]"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UntagResourceRequest/)."""
 
 UpdateApiDestinationRequest = TypedDict(
     "UpdateApiDestinationRequest",
@@ -1251,6 +1511,7 @@ UpdateApiDestinationRequest = TypedDict(
     "invocation_rate_limit_per_second": NotRequired["int"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateApiDestinationRequest/)."""
 
 UpdateArchiveRequest = TypedDict(
     "UpdateArchiveRequest",
@@ -1262,6 +1523,7 @@ UpdateArchiveRequest = TypedDict(
     "kms_key_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateArchiveRequest/)."""
 
 UpdateConnectionApiKeyAuthRequestParameters = TypedDict(
     "UpdateConnectionApiKeyAuthRequestParameters",
@@ -1270,6 +1532,7 @@ UpdateConnectionApiKeyAuthRequestParameters = TypedDict(
     "api_key_value": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionApiKeyAuthRequestParameters/)."""
 
 UpdateConnectionAuthRequestParameters = TypedDict(
     "UpdateConnectionAuthRequestParameters",
@@ -1281,6 +1544,7 @@ UpdateConnectionAuthRequestParameters = TypedDict(
     "connectivity_parameters": NotRequired["ConnectivityResourceParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionAuthRequestParameters/)."""
 
 UpdateConnectionBasicAuthRequestParameters = TypedDict(
     "UpdateConnectionBasicAuthRequestParameters",
@@ -1289,6 +1553,7 @@ UpdateConnectionBasicAuthRequestParameters = TypedDict(
     "password": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionBasicAuthRequestParameters/)."""
 
 UpdateConnectionOAuthClientRequestParameters = TypedDict(
     "UpdateConnectionOAuthClientRequestParameters",
@@ -1297,6 +1562,7 @@ UpdateConnectionOAuthClientRequestParameters = TypedDict(
     "client_secret": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionOAuthClientRequestParameters/)."""
 
 UpdateConnectionOAuthRequestParameters = TypedDict(
     "UpdateConnectionOAuthRequestParameters",
@@ -1307,6 +1573,7 @@ UpdateConnectionOAuthRequestParameters = TypedDict(
     "o_auth_http_parameters": NotRequired["ConnectionHttpParameters"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionOAuthRequestParameters/)."""
 
 UpdateConnectionRequest = TypedDict(
     "UpdateConnectionRequest",
@@ -1319,6 +1586,7 @@ UpdateConnectionRequest = TypedDict(
     "kms_key_identifier": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateConnectionRequest/)."""
 
 UpdateEndpointRequest = TypedDict(
     "UpdateEndpointRequest",
@@ -1331,6 +1599,7 @@ UpdateEndpointRequest = TypedDict(
     "role_arn": NotRequired["str"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateEndpointRequest/)."""
 
 UpdateEventBusRequest = TypedDict(
     "UpdateEventBusRequest",
@@ -1342,3 +1611,4 @@ UpdateEventBusRequest = TypedDict(
     "log_config": NotRequired["LogConfig"],
     },
 )
+"""See [reference](https://ferrumio.github.io/rboto/reference/eventbridge/types/UpdateEventBusRequest/)."""
