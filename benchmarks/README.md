@@ -4,6 +4,8 @@ rboto is an independent project maintained by [Ferrumio](https://github.com/ferr
 It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS).
 
 For optional tracing and metrics, see [OpenTelemetry measurements](opentelemetry.md).
+For successful input preparation before and after field-path diagnostics, see
+[input conversion measurements](input_conversion.md).
 
 `interceptors.py` runs a compiled DynamoDB client against an HTTP server on
 loopback. It supplies test credentials and does not contact an external service.

@@ -40,6 +40,12 @@ resolve through `typing.get_type_hints` and schema generators can follow its
 recursive definition. Do not replace it with a quoted string assigned to
 `TypeAlias`: `JSONValue | None` would then fail during runtime introspection.
 
+Input diagnostics unwind through `_from_py` and `rboto-core/src/input_error.rs`.
+Construct paths and format context only on failure. Use public parameter names
+at the operation boundary, literal TypedDict field names for nested members,
+and ordinal positions for arbitrary map keys/values. Do not add validation or
+echo SDK builder messages or input values. See ADR-0028.
+
 ## Required workflow
 
 1. Update the source layer.

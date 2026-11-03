@@ -16,24 +16,48 @@ fn batch_result_error_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::BatchResultErrorEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_1: String = value.extract()?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
         builder = builder.set_id(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "sender_fault")? {
-        let converted_2: bool = value.extract()?;
+        let converted_2 = (|| -> PyResult<_> {
+            let converted_2: bool = value.extract()?;
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sender_fault"), "bool")
+        })?;
         builder = builder.set_sender_fault(Some(converted_2));
     }
     if let Some(value) = dict_value(values, "code")? {
-        let converted_3: String = value.extract()?;
+        let converted_3 = (|| -> PyResult<_> {
+            let converted_3: String = value.extract()?;
+            Ok(converted_3)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("code"), "str")
+        })?;
         builder = builder.set_code(Some(converted_3));
     }
     if let Some(value) = dict_value(values, "message")? {
-        let converted_4: String = value.extract()?;
+        let converted_4 = (|| -> PyResult<_> {
+            let converted_4: String = value.extract()?;
+            Ok(converted_4)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message"), "str")
+        })?;
         builder = builder.set_message(Some(converted_4));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("id", "id"), ("code", "code")]))
 }
 
 fn batch_result_error_entry_to_py(
@@ -62,20 +86,45 @@ fn change_message_visibility_batch_request_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::ChangeMessageVisibilityBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_9: String = value.extract()?;
+        let converted_9 = (|| -> PyResult<_> {
+            let converted_9: String = value.extract()?;
+            Ok(converted_9)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
         builder = builder.set_id(Some(converted_9));
     }
     if let Some(value) = dict_value(values, "receipt_handle")? {
-        let converted_10: String = value.extract()?;
+        let converted_10 = (|| -> PyResult<_> {
+            let converted_10: String = value.extract()?;
+            Ok(converted_10)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
         builder = builder.set_receipt_handle(Some(converted_10));
     }
     if let Some(value) = dict_value(values, "visibility_timeout")? {
-        let converted_11: i32 = value.extract()?;
+        let converted_11 = (|| -> PyResult<_> {
+            let converted_11: i32 = value.extract()?;
+            Ok(converted_11)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("visibility_timeout"),
+                "int",
+            )
+        })?;
         builder = builder.set_visibility_timeout(Some(converted_11));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("id", "id"), ("receipt_handle", "receipt_handle")],
+        )
+    })
 }
 
 fn change_message_visibility_batch_request_entry_to_py(
@@ -102,12 +151,18 @@ fn change_message_visibility_batch_result_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_15: String = value.extract()?;
+        let converted_15 = (|| -> PyResult<_> {
+            let converted_15: String = value.extract()?;
+            Ok(converted_15)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
         builder = builder.set_id(Some(converted_15));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("id", "id")]))
 }
 
 fn change_message_visibility_batch_result_entry_to_py(
@@ -126,16 +181,31 @@ fn delete_message_batch_request_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::DeleteMessageBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_17: String = value.extract()?;
+        let converted_17 = (|| -> PyResult<_> {
+            let converted_17: String = value.extract()?;
+            Ok(converted_17)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
         builder = builder.set_id(Some(converted_17));
     }
     if let Some(value) = dict_value(values, "receipt_handle")? {
-        let converted_18: String = value.extract()?;
+        let converted_18 = (|| -> PyResult<_> {
+            let converted_18: String = value.extract()?;
+            Ok(converted_18)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
         builder = builder.set_receipt_handle(Some(converted_18));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("id", "id"), ("receipt_handle", "receipt_handle")],
+        )
+    })
 }
 
 fn delete_message_batch_request_entry_to_py(
@@ -156,12 +226,18 @@ fn delete_message_batch_result_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::DeleteMessageBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_21: String = value.extract()?;
+        let converted_21 = (|| -> PyResult<_> {
+            let converted_21: String = value.extract()?;
+            Ok(converted_21)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
         builder = builder.set_id(Some(converted_21));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("id", "id")]))
 }
 
 fn delete_message_batch_result_entry_to_py(
@@ -180,39 +256,113 @@ fn list_message_move_tasks_result_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::ListMessageMoveTasksResultEntry::builder();
     if let Some(value) = dict_value(values, "task_handle")? {
-        let converted_23: String = value.extract()?;
+        let converted_23 = (|| -> PyResult<_> {
+            let converted_23: String = value.extract()?;
+            Ok(converted_23)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("task_handle"), "str")
+        })?;
         builder = builder.set_task_handle(Some(converted_23));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let converted_24: String = value.extract()?;
+        let converted_24 = (|| -> PyResult<_> {
+            let converted_24: String = value.extract()?;
+            Ok(converted_24)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("status"), "str")
+        })?;
         builder = builder.set_status(Some(converted_24));
     }
     if let Some(value) = dict_value(values, "source_arn")? {
-        let converted_25: String = value.extract()?;
+        let converted_25 = (|| -> PyResult<_> {
+            let converted_25: String = value.extract()?;
+            Ok(converted_25)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("source_arn"), "str")
+        })?;
         builder = builder.set_source_arn(Some(converted_25));
     }
     if let Some(value) = dict_value(values, "destination_arn")? {
-        let converted_26: String = value.extract()?;
+        let converted_26 = (|| -> PyResult<_> {
+            let converted_26: String = value.extract()?;
+            Ok(converted_26)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("destination_arn"),
+                "str",
+            )
+        })?;
         builder = builder.set_destination_arn(Some(converted_26));
     }
     if let Some(value) = dict_value(values, "max_number_of_messages_per_second")? {
-        let converted_27: i32 = value.extract()?;
+        let converted_27 = (|| -> PyResult<_> {
+            let converted_27: i32 = value.extract()?;
+            Ok(converted_27)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("max_number_of_messages_per_second"),
+                "int",
+            )
+        })?;
         builder = builder.set_max_number_of_messages_per_second(Some(converted_27));
     }
     if let Some(value) = dict_value(values, "approximate_number_of_messages_moved")? {
-        let converted_28: i64 = value.extract()?;
+        let converted_28 = (|| -> PyResult<_> {
+            let converted_28: i64 = value.extract()?;
+            Ok(converted_28)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("approximate_number_of_messages_moved"),
+                "int",
+            )
+        })?;
         builder = builder.set_approximate_number_of_messages_moved(Some(converted_28));
     }
     if let Some(value) = dict_value(values, "approximate_number_of_messages_to_move")? {
-        let converted_29: i64 = value.extract()?;
+        let converted_29 = (|| -> PyResult<_> {
+            let converted_29: i64 = value.extract()?;
+            Ok(converted_29)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("approximate_number_of_messages_to_move"),
+                "int",
+            )
+        })?;
         builder = builder.set_approximate_number_of_messages_to_move(Some(converted_29));
     }
     if let Some(value) = dict_value(values, "failure_reason")? {
-        let converted_30: String = value.extract()?;
+        let converted_30 = (|| -> PyResult<_> {
+            let converted_30: String = value.extract()?;
+            Ok(converted_30)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("failure_reason"), "str")
+        })?;
         builder = builder.set_failure_reason(Some(converted_30));
     }
     if let Some(value) = dict_value(values, "started_timestamp")? {
-        let converted_31: i64 = value.extract()?;
+        let converted_31 = (|| -> PyResult<_> {
+            let converted_31: i64 = value.extract()?;
+            Ok(converted_31)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("started_timestamp"),
+                "int",
+            )
+        })?;
         builder = builder.set_started_timestamp(Some(converted_31));
     }
     Ok(builder.build())
@@ -278,46 +428,129 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sqs::types::Mes
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::Message::builder();
     if let Some(value) = dict_value(values, "message_id")? {
-        let converted_41: String = value.extract()?;
+        let converted_41 = (|| -> PyResult<_> {
+            let converted_41: String = value.extract()?;
+            Ok(converted_41)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message_id"), "str")
+        })?;
         builder = builder.set_message_id(Some(converted_41));
     }
     if let Some(value) = dict_value(values, "receipt_handle")? {
-        let converted_42: String = value.extract()?;
+        let converted_42 = (|| -> PyResult<_> {
+            let converted_42: String = value.extract()?;
+            Ok(converted_42)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("receipt_handle"), "str")
+        })?;
         builder = builder.set_receipt_handle(Some(converted_42));
     }
     if let Some(value) = dict_value(values, "md5_of_body")? {
-        let converted_43: String = value.extract()?;
+        let converted_43 = (|| -> PyResult<_> {
+            let converted_43: String = value.extract()?;
+            Ok(converted_43)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("md5_of_body"), "str")
+        })?;
         builder = builder.set_md5_of_body(Some(converted_43));
     }
     if let Some(value) = dict_value(values, "body")? {
-        let converted_44: String = value.extract()?;
+        let converted_44 = (|| -> PyResult<_> {
+            let converted_44: String = value.extract()?;
+            Ok(converted_44)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("body"), "str")
+        })?;
         builder = builder.set_body(Some(converted_44));
     }
     if let Some(value) = dict_value(values, "attributes")? {
-        let mapping_46 = value.cast::<PyDict>()?;
-        let mut converted_45 = HashMap::with_capacity(mapping_46.len());
-        for (key_47, value_48) in mapping_46.iter() {
-            let enum_value_51: String = key_47.extract()?;
-            let converted_key_49 =
-                aws_sdk_sqs::types::MessageSystemAttributeName::from(enum_value_51.as_str());
-            let converted_value_50: String = value_48.extract()?;
-            converted_45.insert(converted_key_49, converted_value_50);
-        }
+        let converted_45 = (|| -> PyResult<_> {
+            let mapping_46 = value.cast::<PyDict>()?;
+            let mut converted_45 = HashMap::with_capacity(mapping_46.len());
+            for (index_51, (key_47, value_48)) in mapping_46.iter().enumerate() {
+                let converted_key_49 = (|| -> PyResult<_> {
+                    let enum_value_52: String = key_47.extract()?;
+                    let converted_key_49 = aws_sdk_sqs::types::MessageSystemAttributeName::from(
+                        enum_value_52.as_str(),
+                    );
+                    Ok(converted_key_49)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapKey(index_51),
+                        "str (MessageSystemAttributeName)",
+                    )
+                })?;
+                let converted_value_50 = (|| -> PyResult<_> {
+                    let converted_value_50: String = value_48.extract()?;
+                    Ok(converted_value_50)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_51), "str")
+                })?;
+                converted_45.insert(converted_key_49, converted_value_50);
+            }
+            Ok(converted_45)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("attributes"), "dict")
+        })?;
         builder = builder.set_attributes(Some(converted_45));
     }
     if let Some(value) = dict_value(values, "md5_of_message_attributes")? {
-        let converted_52: String = value.extract()?;
-        builder = builder.set_md5_of_message_attributes(Some(converted_52));
+        let converted_53 = (|| -> PyResult<_> {
+            let converted_53: String = value.extract()?;
+            Ok(converted_53)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("md5_of_message_attributes"),
+                "str",
+            )
+        })?;
+        builder = builder.set_md5_of_message_attributes(Some(converted_53));
     }
     if let Some(value) = dict_value(values, "message_attributes")? {
-        let mapping_54 = value.cast::<PyDict>()?;
-        let mut converted_53 = HashMap::with_capacity(mapping_54.len());
-        for (key_55, value_56) in mapping_54.iter() {
-            let converted_key_57: String = key_55.extract()?;
-            let converted_value_58 = message_attribute_value_from_py(&value_56)?;
-            converted_53.insert(converted_key_57, converted_value_58);
-        }
-        builder = builder.set_message_attributes(Some(converted_53));
+        let converted_54 = (|| -> PyResult<_> {
+            let mapping_55 = value.cast::<PyDict>()?;
+            let mut converted_54 = HashMap::with_capacity(mapping_55.len());
+            for (index_60, (key_56, value_57)) in mapping_55.iter().enumerate() {
+                let converted_key_58 = (|| -> PyResult<_> {
+                    let converted_key_58: String = key_56.extract()?;
+                    Ok(converted_key_58)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_60), "str")
+                })?;
+                let converted_value_59 = (|| -> PyResult<_> {
+                    let converted_value_59 = message_attribute_value_from_py(&value_57)?;
+                    Ok(converted_value_59)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_60),
+                        "dict (MessageAttributeValue)",
+                    )
+                })?;
+                converted_54.insert(converted_key_58, converted_value_59);
+            }
+            Ok(converted_54)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_attributes"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_message_attributes(Some(converted_54));
     }
     Ok(builder.build())
 }
@@ -325,56 +558,56 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sqs::types::Mes
 fn message_to_py(py: Python<'_>, value: &aws_sdk_sqs::types::Message) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.message_id {
-        let converted_59 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_id", converted_59)?;
+        let converted_61 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_id", converted_61)?;
     } else {
         result.set_item("message_id", py.None())?;
     }
     if let Some(value) = &value.receipt_handle {
-        let converted_60 = (value).as_str().into_py_any(py)?;
-        result.set_item("receipt_handle", converted_60)?;
+        let converted_62 = (value).as_str().into_py_any(py)?;
+        result.set_item("receipt_handle", converted_62)?;
     } else {
         result.set_item("receipt_handle", py.None())?;
     }
     if let Some(value) = &value.md5_of_body {
-        let converted_61 = (value).as_str().into_py_any(py)?;
-        result.set_item("md5_of_body", converted_61)?;
+        let converted_63 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_body", converted_63)?;
     } else {
         result.set_item("md5_of_body", py.None())?;
     }
     if let Some(value) = &value.body {
-        let converted_62 = (value).as_str().into_py_any(py)?;
-        result.set_item("body", converted_62)?;
+        let converted_64 = (value).as_str().into_py_any(py)?;
+        result.set_item("body", converted_64)?;
     } else {
         result.set_item("body", py.None())?;
     }
     if let Some(value) = &value.attributes {
-        let converted_63_dict = PyDict::new(py);
-        for (key_64, value_65) in value {
-            let converted_key_66 = (key_64).as_str().into_py_any(py)?;
-            let converted_value_67 = (value_65).as_str().into_py_any(py)?;
-            converted_63_dict.set_item(converted_key_66, converted_value_67)?;
+        let converted_65_dict = PyDict::new(py);
+        for (key_66, value_67) in value {
+            let converted_key_68 = (key_66).as_str().into_py_any(py)?;
+            let converted_value_69 = (value_67).as_str().into_py_any(py)?;
+            converted_65_dict.set_item(converted_key_68, converted_value_69)?;
         }
-        let converted_63 = converted_63_dict.into_any().unbind();
-        result.set_item("attributes", converted_63)?;
+        let converted_65 = converted_65_dict.into_any().unbind();
+        result.set_item("attributes", converted_65)?;
     } else {
         result.set_item("attributes", py.None())?;
     }
     if let Some(value) = &value.md5_of_message_attributes {
-        let converted_68 = (value).as_str().into_py_any(py)?;
-        result.set_item("md5_of_message_attributes", converted_68)?;
+        let converted_70 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_message_attributes", converted_70)?;
     } else {
         result.set_item("md5_of_message_attributes", py.None())?;
     }
     if let Some(value) = &value.message_attributes {
-        let converted_69_dict = PyDict::new(py);
-        for (key_70, value_71) in value {
-            let converted_key_72 = (key_70).as_str().into_py_any(py)?;
-            let converted_value_73 = message_attribute_value_to_py(py, value_71)?;
-            converted_69_dict.set_item(converted_key_72, converted_value_73)?;
+        let converted_71_dict = PyDict::new(py);
+        for (key_72, value_73) in value {
+            let converted_key_74 = (key_72).as_str().into_py_any(py)?;
+            let converted_value_75 = message_attribute_value_to_py(py, value_73)?;
+            converted_71_dict.set_item(converted_key_74, converted_value_75)?;
         }
-        let converted_69 = converted_69_dict.into_any().unbind();
-        result.set_item("message_attributes", converted_69)?;
+        let converted_71 = converted_71_dict.into_any().unbind();
+        result.set_item("message_attributes", converted_71)?;
     } else {
         result.set_item("message_attributes", py.None())?;
     }
@@ -387,42 +620,106 @@ fn message_attribute_value_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::MessageAttributeValue::builder();
     if let Some(value) = dict_value(values, "string_value")? {
-        let converted_74: String = value.extract()?;
-        builder = builder.set_string_value(Some(converted_74));
+        let converted_76 = (|| -> PyResult<_> {
+            let converted_76: String = value.extract()?;
+            Ok(converted_76)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("string_value"), "str")
+        })?;
+        builder = builder.set_string_value(Some(converted_76));
     }
     if let Some(value) = dict_value(values, "binary_value")? {
-        let bytes_76: Vec<u8> = value.extract()?;
-        let converted_75 = ::aws_smithy_types::Blob::new(bytes_76);
-        builder = builder.set_binary_value(Some(converted_75));
+        let converted_77 = (|| -> PyResult<_> {
+            let bytes_78: Vec<u8> = value.extract()?;
+            let converted_77 = ::aws_smithy_types::Blob::new(bytes_78);
+            Ok(converted_77)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("binary_value"), "bytes")
+        })?;
+        builder = builder.set_binary_value(Some(converted_77));
     }
     if let Some(value) = dict_value(values, "string_list_values")? {
-        let mut converted_77 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_78 in value.try_iter()? {
-            let item_79 = item_result_78?;
-            let converted_item_80: String = item_79.extract()?;
-            converted_77.push(converted_item_80);
-        }
-        builder = builder.set_string_list_values(Some(converted_77));
+        let converted_79 = (|| -> PyResult<_> {
+            let mut converted_79 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_83, item_result_80) in value.try_iter()?.enumerate() {
+                let item_81 = item_result_80.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_83),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_82 = (|| -> PyResult<_> {
+                    let converted_item_82: String = item_81.extract()?;
+                    Ok(converted_item_82)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_83), "str")
+                })?;
+                converted_79.push(converted_item_82);
+            }
+            Ok(converted_79)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("string_list_values"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_string_list_values(Some(converted_79));
     }
     if let Some(value) = dict_value(values, "binary_list_values")? {
-        let mut converted_81 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_82 in value.try_iter()? {
-            let item_83 = item_result_82?;
-            let bytes_85: Vec<u8> = item_83.extract()?;
-            let converted_item_84 = ::aws_smithy_types::Blob::new(bytes_85);
-            converted_81.push(converted_item_84);
-        }
-        builder = builder.set_binary_list_values(Some(converted_81));
+        let converted_84 = (|| -> PyResult<_> {
+            let mut converted_84 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_88, item_result_85) in value.try_iter()?.enumerate() {
+                let item_86 = item_result_85.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_88),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_87 = (|| -> PyResult<_> {
+                    let bytes_89: Vec<u8> = item_86.extract()?;
+                    let converted_item_87 = ::aws_smithy_types::Blob::new(bytes_89);
+                    Ok(converted_item_87)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_88), "bytes")
+                })?;
+                converted_84.push(converted_item_87);
+            }
+            Ok(converted_84)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("binary_list_values"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_binary_list_values(Some(converted_84));
     }
     if let Some(value) = dict_value(values, "data_type")? {
-        let converted_86: String = value.extract()?;
-        builder = builder.set_data_type(Some(converted_86));
+        let converted_90 = (|| -> PyResult<_> {
+            let converted_90: String = value.extract()?;
+            Ok(converted_90)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("data_type"), "str")
+        })?;
+        builder = builder.set_data_type(Some(converted_90));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("data_type", "data_type")]))
 }
 
 fn message_attribute_value_to_py(
@@ -431,41 +728,41 @@ fn message_attribute_value_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.string_value {
-        let converted_87 = (value).as_str().into_py_any(py)?;
-        result.set_item("string_value", converted_87)?;
+        let converted_91 = (value).as_str().into_py_any(py)?;
+        result.set_item("string_value", converted_91)?;
     } else {
         result.set_item("string_value", py.None())?;
     }
     if let Some(value) = &value.binary_value {
-        let converted_88 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("binary_value", converted_88)?;
+        let converted_92 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("binary_value", converted_92)?;
     } else {
         result.set_item("binary_value", py.None())?;
     }
     if let Some(value) = &value.string_list_values {
-        let converted_89_list = PyList::empty(py);
-        for item_90 in value {
-            let converted_item_91 = (item_90).as_str().into_py_any(py)?;
-            converted_89_list.append(converted_item_91)?;
+        let converted_93_list = PyList::empty(py);
+        for item_94 in value {
+            let converted_item_95 = (item_94).as_str().into_py_any(py)?;
+            converted_93_list.append(converted_item_95)?;
         }
-        let converted_89 = converted_89_list.into_any().unbind();
-        result.set_item("string_list_values", converted_89)?;
+        let converted_93 = converted_93_list.into_any().unbind();
+        result.set_item("string_list_values", converted_93)?;
     } else {
         result.set_item("string_list_values", py.None())?;
     }
     if let Some(value) = &value.binary_list_values {
-        let converted_92_list = PyList::empty(py);
-        for item_93 in value {
-            let converted_item_94 = PyBytes::new(py, (item_93).as_ref()).into_any().unbind();
-            converted_92_list.append(converted_item_94)?;
+        let converted_96_list = PyList::empty(py);
+        for item_97 in value {
+            let converted_item_98 = PyBytes::new(py, (item_97).as_ref()).into_any().unbind();
+            converted_96_list.append(converted_item_98)?;
         }
-        let converted_92 = converted_92_list.into_any().unbind();
-        result.set_item("binary_list_values", converted_92)?;
+        let converted_96 = converted_96_list.into_any().unbind();
+        result.set_item("binary_list_values", converted_96)?;
     } else {
         result.set_item("binary_list_values", py.None())?;
     }
-    let converted_95 = (&value.data_type).as_str().into_py_any(py)?;
-    result.set_item("data_type", converted_95)?;
+    let converted_99 = (&value.data_type).as_str().into_py_any(py)?;
+    result.set_item("data_type", converted_99)?;
     Ok(result.into_any().unbind())
 }
 
@@ -475,42 +772,106 @@ fn message_system_attribute_value_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::MessageSystemAttributeValue::builder();
     if let Some(value) = dict_value(values, "string_value")? {
-        let converted_96: String = value.extract()?;
-        builder = builder.set_string_value(Some(converted_96));
+        let converted_100 = (|| -> PyResult<_> {
+            let converted_100: String = value.extract()?;
+            Ok(converted_100)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("string_value"), "str")
+        })?;
+        builder = builder.set_string_value(Some(converted_100));
     }
     if let Some(value) = dict_value(values, "binary_value")? {
-        let bytes_98: Vec<u8> = value.extract()?;
-        let converted_97 = ::aws_smithy_types::Blob::new(bytes_98);
-        builder = builder.set_binary_value(Some(converted_97));
+        let converted_101 = (|| -> PyResult<_> {
+            let bytes_102: Vec<u8> = value.extract()?;
+            let converted_101 = ::aws_smithy_types::Blob::new(bytes_102);
+            Ok(converted_101)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("binary_value"), "bytes")
+        })?;
+        builder = builder.set_binary_value(Some(converted_101));
     }
     if let Some(value) = dict_value(values, "string_list_values")? {
-        let mut converted_99 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_100 in value.try_iter()? {
-            let item_101 = item_result_100?;
-            let converted_item_102: String = item_101.extract()?;
-            converted_99.push(converted_item_102);
-        }
-        builder = builder.set_string_list_values(Some(converted_99));
+        let converted_103 = (|| -> PyResult<_> {
+            let mut converted_103 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_107, item_result_104) in value.try_iter()?.enumerate() {
+                let item_105 = item_result_104.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_107),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_106 = (|| -> PyResult<_> {
+                    let converted_item_106: String = item_105.extract()?;
+                    Ok(converted_item_106)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_107), "str")
+                })?;
+                converted_103.push(converted_item_106);
+            }
+            Ok(converted_103)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("string_list_values"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_string_list_values(Some(converted_103));
     }
     if let Some(value) = dict_value(values, "binary_list_values")? {
-        let mut converted_103 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_104 in value.try_iter()? {
-            let item_105 = item_result_104?;
-            let bytes_107: Vec<u8> = item_105.extract()?;
-            let converted_item_106 = ::aws_smithy_types::Blob::new(bytes_107);
-            converted_103.push(converted_item_106);
-        }
-        builder = builder.set_binary_list_values(Some(converted_103));
+        let converted_108 = (|| -> PyResult<_> {
+            let mut converted_108 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_112, item_result_109) in value.try_iter()?.enumerate() {
+                let item_110 = item_result_109.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_112),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_111 = (|| -> PyResult<_> {
+                    let bytes_113: Vec<u8> = item_110.extract()?;
+                    let converted_item_111 = ::aws_smithy_types::Blob::new(bytes_113);
+                    Ok(converted_item_111)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_112), "bytes")
+                })?;
+                converted_108.push(converted_item_111);
+            }
+            Ok(converted_108)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("binary_list_values"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_binary_list_values(Some(converted_108));
     }
     if let Some(value) = dict_value(values, "data_type")? {
-        let converted_108: String = value.extract()?;
-        builder = builder.set_data_type(Some(converted_108));
+        let converted_114 = (|| -> PyResult<_> {
+            let converted_114: String = value.extract()?;
+            Ok(converted_114)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("data_type"), "str")
+        })?;
+        builder = builder.set_data_type(Some(converted_114));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("data_type", "data_type")]))
 }
 
 fn message_system_attribute_value_to_py(
@@ -519,41 +880,41 @@ fn message_system_attribute_value_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.string_value {
-        let converted_109 = (value).as_str().into_py_any(py)?;
-        result.set_item("string_value", converted_109)?;
+        let converted_115 = (value).as_str().into_py_any(py)?;
+        result.set_item("string_value", converted_115)?;
     } else {
         result.set_item("string_value", py.None())?;
     }
     if let Some(value) = &value.binary_value {
-        let converted_110 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("binary_value", converted_110)?;
+        let converted_116 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("binary_value", converted_116)?;
     } else {
         result.set_item("binary_value", py.None())?;
     }
     if let Some(value) = &value.string_list_values {
-        let converted_111_list = PyList::empty(py);
-        for item_112 in value {
-            let converted_item_113 = (item_112).as_str().into_py_any(py)?;
-            converted_111_list.append(converted_item_113)?;
+        let converted_117_list = PyList::empty(py);
+        for item_118 in value {
+            let converted_item_119 = (item_118).as_str().into_py_any(py)?;
+            converted_117_list.append(converted_item_119)?;
         }
-        let converted_111 = converted_111_list.into_any().unbind();
-        result.set_item("string_list_values", converted_111)?;
+        let converted_117 = converted_117_list.into_any().unbind();
+        result.set_item("string_list_values", converted_117)?;
     } else {
         result.set_item("string_list_values", py.None())?;
     }
     if let Some(value) = &value.binary_list_values {
-        let converted_114_list = PyList::empty(py);
-        for item_115 in value {
-            let converted_item_116 = PyBytes::new(py, (item_115).as_ref()).into_any().unbind();
-            converted_114_list.append(converted_item_116)?;
+        let converted_120_list = PyList::empty(py);
+        for item_121 in value {
+            let converted_item_122 = PyBytes::new(py, (item_121).as_ref()).into_any().unbind();
+            converted_120_list.append(converted_item_122)?;
         }
-        let converted_114 = converted_114_list.into_any().unbind();
-        result.set_item("binary_list_values", converted_114)?;
+        let converted_120 = converted_120_list.into_any().unbind();
+        result.set_item("binary_list_values", converted_120)?;
     } else {
         result.set_item("binary_list_values", py.None())?;
     }
-    let converted_117 = (&value.data_type).as_str().into_py_any(py)?;
-    result.set_item("data_type", converted_117)?;
+    let converted_123 = (&value.data_type).as_str().into_py_any(py)?;
+    result.set_item("data_type", converted_123)?;
     Ok(result.into_any().unbind())
 }
 
@@ -563,51 +924,146 @@ fn send_message_batch_request_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::SendMessageBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_118: String = value.extract()?;
-        builder = builder.set_id(Some(converted_118));
+        let converted_124 = (|| -> PyResult<_> {
+            let converted_124: String = value.extract()?;
+            Ok(converted_124)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
+        builder = builder.set_id(Some(converted_124));
     }
     if let Some(value) = dict_value(values, "message_body")? {
-        let converted_119: String = value.extract()?;
-        builder = builder.set_message_body(Some(converted_119));
+        let converted_125 = (|| -> PyResult<_> {
+            let converted_125: String = value.extract()?;
+            Ok(converted_125)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message_body"), "str")
+        })?;
+        builder = builder.set_message_body(Some(converted_125));
     }
     if let Some(value) = dict_value(values, "delay_seconds")? {
-        let converted_120: i32 = value.extract()?;
-        builder = builder.set_delay_seconds(Some(converted_120));
+        let converted_126 = (|| -> PyResult<_> {
+            let converted_126: i32 = value.extract()?;
+            Ok(converted_126)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("delay_seconds"), "int")
+        })?;
+        builder = builder.set_delay_seconds(Some(converted_126));
     }
     if let Some(value) = dict_value(values, "message_attributes")? {
-        let mapping_122 = value.cast::<PyDict>()?;
-        let mut converted_121 = HashMap::with_capacity(mapping_122.len());
-        for (key_123, value_124) in mapping_122.iter() {
-            let converted_key_125: String = key_123.extract()?;
-            let converted_value_126 = message_attribute_value_from_py(&value_124)?;
-            converted_121.insert(converted_key_125, converted_value_126);
-        }
-        builder = builder.set_message_attributes(Some(converted_121));
+        let converted_127 = (|| -> PyResult<_> {
+            let mapping_128 = value.cast::<PyDict>()?;
+            let mut converted_127 = HashMap::with_capacity(mapping_128.len());
+            for (index_133, (key_129, value_130)) in mapping_128.iter().enumerate() {
+                let converted_key_131 = (|| -> PyResult<_> {
+                    let converted_key_131: String = key_129.extract()?;
+                    Ok(converted_key_131)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_133), "str")
+                })?;
+                let converted_value_132 = (|| -> PyResult<_> {
+                    let converted_value_132 = message_attribute_value_from_py(&value_130)?;
+                    Ok(converted_value_132)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_133),
+                        "dict (MessageAttributeValue)",
+                    )
+                })?;
+                converted_127.insert(converted_key_131, converted_value_132);
+            }
+            Ok(converted_127)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_attributes"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_message_attributes(Some(converted_127));
     }
     if let Some(value) = dict_value(values, "message_system_attributes")? {
-        let mapping_128 = value.cast::<PyDict>()?;
-        let mut converted_127 = HashMap::with_capacity(mapping_128.len());
-        for (key_129, value_130) in mapping_128.iter() {
-            let enum_value_133: String = key_129.extract()?;
-            let converted_key_131 = aws_sdk_sqs::types::MessageSystemAttributeNameForSends::from(
-                enum_value_133.as_str(),
-            );
-            let converted_value_132 = message_system_attribute_value_from_py(&value_130)?;
-            converted_127.insert(converted_key_131, converted_value_132);
-        }
-        builder = builder.set_message_system_attributes(Some(converted_127));
+        let converted_134 = (|| -> PyResult<_> {
+            let mapping_135 = value.cast::<PyDict>()?;
+            let mut converted_134 = HashMap::with_capacity(mapping_135.len());
+            for (index_140, (key_136, value_137)) in mapping_135.iter().enumerate() {
+                let converted_key_138 = (|| -> PyResult<_> {
+                    let enum_value_141: String = key_136.extract()?;
+                    let converted_key_138 =
+                        aws_sdk_sqs::types::MessageSystemAttributeNameForSends::from(
+                            enum_value_141.as_str(),
+                        );
+                    Ok(converted_key_138)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapKey(index_140),
+                        "str (MessageSystemAttributeNameForSends)",
+                    )
+                })?;
+                let converted_value_139 = (|| -> PyResult<_> {
+                    let converted_value_139 = message_system_attribute_value_from_py(&value_137)?;
+                    Ok(converted_value_139)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_140),
+                        "dict (MessageSystemAttributeValue)",
+                    )
+                })?;
+                converted_134.insert(converted_key_138, converted_value_139);
+            }
+            Ok(converted_134)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_system_attributes"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_message_system_attributes(Some(converted_134));
     }
     if let Some(value) = dict_value(values, "message_deduplication_id")? {
-        let converted_134: String = value.extract()?;
-        builder = builder.set_message_deduplication_id(Some(converted_134));
+        let converted_142 = (|| -> PyResult<_> {
+            let converted_142: String = value.extract()?;
+            Ok(converted_142)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_deduplication_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_message_deduplication_id(Some(converted_142));
     }
     if let Some(value) = dict_value(values, "message_group_id")? {
-        let converted_135: String = value.extract()?;
-        builder = builder.set_message_group_id(Some(converted_135));
+        let converted_143 = (|| -> PyResult<_> {
+            let converted_143: String = value.extract()?;
+            Ok(converted_143)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_group_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_message_group_id(Some(converted_143));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("id", "id"), ("message_body", "message_body")])
+    })
 }
 
 fn send_message_batch_request_entry_to_py(
@@ -615,49 +1071,49 @@ fn send_message_batch_request_entry_to_py(
     value: &aws_sdk_sqs::types::SendMessageBatchRequestEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_136 = (&value.id).as_str().into_py_any(py)?;
-    result.set_item("id", converted_136)?;
-    let converted_137 = (&value.message_body).as_str().into_py_any(py)?;
-    result.set_item("message_body", converted_137)?;
+    let converted_144 = (&value.id).as_str().into_py_any(py)?;
+    result.set_item("id", converted_144)?;
+    let converted_145 = (&value.message_body).as_str().into_py_any(py)?;
+    result.set_item("message_body", converted_145)?;
     if let Some(value) = &value.delay_seconds {
-        let converted_138 = (value).to_owned().into_py_any(py)?;
-        result.set_item("delay_seconds", converted_138)?;
+        let converted_146 = (value).to_owned().into_py_any(py)?;
+        result.set_item("delay_seconds", converted_146)?;
     } else {
         result.set_item("delay_seconds", py.None())?;
     }
     if let Some(value) = &value.message_attributes {
-        let converted_139_dict = PyDict::new(py);
-        for (key_140, value_141) in value {
-            let converted_key_142 = (key_140).as_str().into_py_any(py)?;
-            let converted_value_143 = message_attribute_value_to_py(py, value_141)?;
-            converted_139_dict.set_item(converted_key_142, converted_value_143)?;
+        let converted_147_dict = PyDict::new(py);
+        for (key_148, value_149) in value {
+            let converted_key_150 = (key_148).as_str().into_py_any(py)?;
+            let converted_value_151 = message_attribute_value_to_py(py, value_149)?;
+            converted_147_dict.set_item(converted_key_150, converted_value_151)?;
         }
-        let converted_139 = converted_139_dict.into_any().unbind();
-        result.set_item("message_attributes", converted_139)?;
+        let converted_147 = converted_147_dict.into_any().unbind();
+        result.set_item("message_attributes", converted_147)?;
     } else {
         result.set_item("message_attributes", py.None())?;
     }
     if let Some(value) = &value.message_system_attributes {
-        let converted_144_dict = PyDict::new(py);
-        for (key_145, value_146) in value {
-            let converted_key_147 = (key_145).as_str().into_py_any(py)?;
-            let converted_value_148 = message_system_attribute_value_to_py(py, value_146)?;
-            converted_144_dict.set_item(converted_key_147, converted_value_148)?;
+        let converted_152_dict = PyDict::new(py);
+        for (key_153, value_154) in value {
+            let converted_key_155 = (key_153).as_str().into_py_any(py)?;
+            let converted_value_156 = message_system_attribute_value_to_py(py, value_154)?;
+            converted_152_dict.set_item(converted_key_155, converted_value_156)?;
         }
-        let converted_144 = converted_144_dict.into_any().unbind();
-        result.set_item("message_system_attributes", converted_144)?;
+        let converted_152 = converted_152_dict.into_any().unbind();
+        result.set_item("message_system_attributes", converted_152)?;
     } else {
         result.set_item("message_system_attributes", py.None())?;
     }
     if let Some(value) = &value.message_deduplication_id {
-        let converted_149 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_deduplication_id", converted_149)?;
+        let converted_157 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_deduplication_id", converted_157)?;
     } else {
         result.set_item("message_deduplication_id", py.None())?;
     }
     if let Some(value) = &value.message_group_id {
-        let converted_150 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_group_id", converted_150)?;
+        let converted_158 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_group_id", converted_158)?;
     } else {
         result.set_item("message_group_id", py.None())?;
     }
@@ -670,32 +1126,91 @@ fn send_message_batch_result_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sqs::types::SendMessageBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_151: String = value.extract()?;
-        builder = builder.set_id(Some(converted_151));
+        let converted_159 = (|| -> PyResult<_> {
+            let converted_159: String = value.extract()?;
+            Ok(converted_159)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
+        builder = builder.set_id(Some(converted_159));
     }
     if let Some(value) = dict_value(values, "message_id")? {
-        let converted_152: String = value.extract()?;
-        builder = builder.set_message_id(Some(converted_152));
+        let converted_160 = (|| -> PyResult<_> {
+            let converted_160: String = value.extract()?;
+            Ok(converted_160)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message_id"), "str")
+        })?;
+        builder = builder.set_message_id(Some(converted_160));
     }
     if let Some(value) = dict_value(values, "md5_of_message_body")? {
-        let converted_153: String = value.extract()?;
-        builder = builder.set_md5_of_message_body(Some(converted_153));
+        let converted_161 = (|| -> PyResult<_> {
+            let converted_161: String = value.extract()?;
+            Ok(converted_161)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("md5_of_message_body"),
+                "str",
+            )
+        })?;
+        builder = builder.set_md5_of_message_body(Some(converted_161));
     }
     if let Some(value) = dict_value(values, "md5_of_message_attributes")? {
-        let converted_154: String = value.extract()?;
-        builder = builder.set_md5_of_message_attributes(Some(converted_154));
+        let converted_162 = (|| -> PyResult<_> {
+            let converted_162: String = value.extract()?;
+            Ok(converted_162)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("md5_of_message_attributes"),
+                "str",
+            )
+        })?;
+        builder = builder.set_md5_of_message_attributes(Some(converted_162));
     }
     if let Some(value) = dict_value(values, "md5_of_message_system_attributes")? {
-        let converted_155: String = value.extract()?;
-        builder = builder.set_md5_of_message_system_attributes(Some(converted_155));
+        let converted_163 = (|| -> PyResult<_> {
+            let converted_163: String = value.extract()?;
+            Ok(converted_163)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("md5_of_message_system_attributes"),
+                "str",
+            )
+        })?;
+        builder = builder.set_md5_of_message_system_attributes(Some(converted_163));
     }
     if let Some(value) = dict_value(values, "sequence_number")? {
-        let converted_156: String = value.extract()?;
-        builder = builder.set_sequence_number(Some(converted_156));
+        let converted_164 = (|| -> PyResult<_> {
+            let converted_164: String = value.extract()?;
+            Ok(converted_164)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sequence_number"),
+                "str",
+            )
+        })?;
+        builder = builder.set_sequence_number(Some(converted_164));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("id", "id"),
+                ("message_id", "message_id"),
+                ("md5_of_message_body", "md5_of_message_body"),
+            ],
+        )
+    })
 }
 
 fn send_message_batch_result_entry_to_py(
@@ -703,27 +1218,27 @@ fn send_message_batch_result_entry_to_py(
     value: &aws_sdk_sqs::types::SendMessageBatchResultEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_157 = (&value.id).as_str().into_py_any(py)?;
-    result.set_item("id", converted_157)?;
-    let converted_158 = (&value.message_id).as_str().into_py_any(py)?;
-    result.set_item("message_id", converted_158)?;
-    let converted_159 = (&value.md5_of_message_body).as_str().into_py_any(py)?;
-    result.set_item("md5_of_message_body", converted_159)?;
+    let converted_165 = (&value.id).as_str().into_py_any(py)?;
+    result.set_item("id", converted_165)?;
+    let converted_166 = (&value.message_id).as_str().into_py_any(py)?;
+    result.set_item("message_id", converted_166)?;
+    let converted_167 = (&value.md5_of_message_body).as_str().into_py_any(py)?;
+    result.set_item("md5_of_message_body", converted_167)?;
     if let Some(value) = &value.md5_of_message_attributes {
-        let converted_160 = (value).as_str().into_py_any(py)?;
-        result.set_item("md5_of_message_attributes", converted_160)?;
+        let converted_168 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_message_attributes", converted_168)?;
     } else {
         result.set_item("md5_of_message_attributes", py.None())?;
     }
     if let Some(value) = &value.md5_of_message_system_attributes {
-        let converted_161 = (value).as_str().into_py_any(py)?;
-        result.set_item("md5_of_message_system_attributes", converted_161)?;
+        let converted_169 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_message_system_attributes", converted_169)?;
     } else {
         result.set_item("md5_of_message_system_attributes", py.None())?;
     }
     if let Some(value) = &value.sequence_number {
-        let converted_162 = (value).as_str().into_py_any(py)?;
-        result.set_item("sequence_number", converted_162)?;
+        let converted_170 = (value).as_str().into_py_any(py)?;
+        result.set_item("sequence_number", converted_170)?;
     } else {
         result.set_item("sequence_number", py.None())?;
     }
@@ -739,27 +1254,27 @@ struct PyBatchResultErrorEntry {
 impl PyBatchResultErrorEntry {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_289 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_289)
+        let converted_313 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_313)
     }
 
     #[getter]
     fn sender_fault(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_290 = (&self.inner.sender_fault).to_owned().into_py_any(py)?;
-        Ok(converted_290)
+        let converted_314 = (&self.inner.sender_fault).to_owned().into_py_any(py)?;
+        Ok(converted_314)
     }
 
     #[getter]
     fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_291 = (&self.inner.code).as_str().into_py_any(py)?;
-        Ok(converted_291)
+        let converted_315 = (&self.inner.code).as_str().into_py_any(py)?;
+        Ok(converted_315)
     }
 
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_292 = (value).as_str().into_py_any(py)?;
-            Ok(converted_292)
+            let converted_316 = (value).as_str().into_py_any(py)?;
+            Ok(converted_316)
         } else {
             Ok(py.None())
         }
@@ -783,8 +1298,8 @@ struct PyChangeMessageVisibilityBatchResultEntry {
 impl PyChangeMessageVisibilityBatchResultEntry {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_293 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_293)
+        let converted_317 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_317)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -805,8 +1320,8 @@ struct PyDeleteMessageBatchResultEntry {
 impl PyDeleteMessageBatchResultEntry {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_294 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_294)
+        let converted_318 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_318)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -828,8 +1343,8 @@ impl PyListMessageMoveTasksResultEntry {
     #[getter]
     fn task_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_handle {
-            let converted_295 = (value).as_str().into_py_any(py)?;
-            Ok(converted_295)
+            let converted_319 = (value).as_str().into_py_any(py)?;
+            Ok(converted_319)
         } else {
             Ok(py.None())
         }
@@ -838,8 +1353,8 @@ impl PyListMessageMoveTasksResultEntry {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_296 = (value).as_str().into_py_any(py)?;
-            Ok(converted_296)
+            let converted_320 = (value).as_str().into_py_any(py)?;
+            Ok(converted_320)
         } else {
             Ok(py.None())
         }
@@ -848,8 +1363,8 @@ impl PyListMessageMoveTasksResultEntry {
     #[getter]
     fn source_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_arn {
-            let converted_297 = (value).as_str().into_py_any(py)?;
-            Ok(converted_297)
+            let converted_321 = (value).as_str().into_py_any(py)?;
+            Ok(converted_321)
         } else {
             Ok(py.None())
         }
@@ -858,8 +1373,8 @@ impl PyListMessageMoveTasksResultEntry {
     #[getter]
     fn destination_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_arn {
-            let converted_298 = (value).as_str().into_py_any(py)?;
-            Ok(converted_298)
+            let converted_322 = (value).as_str().into_py_any(py)?;
+            Ok(converted_322)
         } else {
             Ok(py.None())
         }
@@ -868,8 +1383,8 @@ impl PyListMessageMoveTasksResultEntry {
     #[getter]
     fn max_number_of_messages_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_number_of_messages_per_second {
-            let converted_299 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_299)
+            let converted_323 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_323)
         } else {
             Ok(py.None())
         }
@@ -877,17 +1392,17 @@ impl PyListMessageMoveTasksResultEntry {
 
     #[getter]
     fn approximate_number_of_messages_moved(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_300 = (&self.inner.approximate_number_of_messages_moved)
+        let converted_324 = (&self.inner.approximate_number_of_messages_moved)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_300)
+        Ok(converted_324)
     }
 
     #[getter]
     fn approximate_number_of_messages_to_move(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.approximate_number_of_messages_to_move {
-            let converted_301 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_301)
+            let converted_325 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_325)
         } else {
             Ok(py.None())
         }
@@ -896,8 +1411,8 @@ impl PyListMessageMoveTasksResultEntry {
     #[getter]
     fn failure_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_reason {
-            let converted_302 = (value).as_str().into_py_any(py)?;
-            Ok(converted_302)
+            let converted_326 = (value).as_str().into_py_any(py)?;
+            Ok(converted_326)
         } else {
             Ok(py.None())
         }
@@ -905,8 +1420,8 @@ impl PyListMessageMoveTasksResultEntry {
 
     #[getter]
     fn started_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_303 = (&self.inner.started_timestamp).to_owned().into_py_any(py)?;
-        Ok(converted_303)
+        let converted_327 = (&self.inner.started_timestamp).to_owned().into_py_any(py)?;
+        Ok(converted_327)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -948,7 +1463,7 @@ impl From<aws_sdk_sqs::types::Message> for SharedMessage {
             message_attributes: value.message_attributes.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|(key, owned_319)| (key, Arc::new(owned_319)))
+                    .map(|(key, owned_343)| (key, Arc::new(owned_343)))
                     .collect()
             }),
         }
@@ -958,56 +1473,56 @@ impl From<aws_sdk_sqs::types::Message> for SharedMessage {
 fn message_shared_to_py(py: Python<'_>, value: &SharedMessage) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.message_id {
-        let converted_320 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_id", converted_320)?;
+        let converted_344 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_id", converted_344)?;
     } else {
         result.set_item("message_id", py.None())?;
     }
     if let Some(value) = &value.receipt_handle {
-        let converted_321 = (value).as_str().into_py_any(py)?;
-        result.set_item("receipt_handle", converted_321)?;
+        let converted_345 = (value).as_str().into_py_any(py)?;
+        result.set_item("receipt_handle", converted_345)?;
     } else {
         result.set_item("receipt_handle", py.None())?;
     }
     if let Some(value) = &value.md5_of_body {
-        let converted_322 = (value).as_str().into_py_any(py)?;
-        result.set_item("md5_of_body", converted_322)?;
+        let converted_346 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_body", converted_346)?;
     } else {
         result.set_item("md5_of_body", py.None())?;
     }
     if let Some(value) = &value.body {
-        let converted_323 = (value).as_str().into_py_any(py)?;
-        result.set_item("body", converted_323)?;
+        let converted_347 = (value).as_str().into_py_any(py)?;
+        result.set_item("body", converted_347)?;
     } else {
         result.set_item("body", py.None())?;
     }
     if let Some(value) = &value.attributes {
-        let converted_324_dict = PyDict::new(py);
-        for (key_325, value_326) in value {
-            let converted_key_327 = (key_325).as_str().into_py_any(py)?;
-            let converted_value_328 = (value_326).as_str().into_py_any(py)?;
-            converted_324_dict.set_item(converted_key_327, converted_value_328)?;
+        let converted_348_dict = PyDict::new(py);
+        for (key_349, value_350) in value {
+            let converted_key_351 = (key_349).as_str().into_py_any(py)?;
+            let converted_value_352 = (value_350).as_str().into_py_any(py)?;
+            converted_348_dict.set_item(converted_key_351, converted_value_352)?;
         }
-        let converted_324 = converted_324_dict.into_any().unbind();
-        result.set_item("attributes", converted_324)?;
+        let converted_348 = converted_348_dict.into_any().unbind();
+        result.set_item("attributes", converted_348)?;
     } else {
         result.set_item("attributes", py.None())?;
     }
     if let Some(value) = &value.md5_of_message_attributes {
-        let converted_329 = (value).as_str().into_py_any(py)?;
-        result.set_item("md5_of_message_attributes", converted_329)?;
+        let converted_353 = (value).as_str().into_py_any(py)?;
+        result.set_item("md5_of_message_attributes", converted_353)?;
     } else {
         result.set_item("md5_of_message_attributes", py.None())?;
     }
     if let Some(value) = &value.message_attributes {
-        let converted_330_dict = PyDict::new(py);
-        for (key_331, value_332) in value {
-            let converted_key_333 = (key_331).as_str().into_py_any(py)?;
-            let converted_value_334 = message_attribute_value_to_py(py, value_332)?;
-            converted_330_dict.set_item(converted_key_333, converted_value_334)?;
+        let converted_354_dict = PyDict::new(py);
+        for (key_355, value_356) in value {
+            let converted_key_357 = (key_355).as_str().into_py_any(py)?;
+            let converted_value_358 = message_attribute_value_to_py(py, value_356)?;
+            converted_354_dict.set_item(converted_key_357, converted_value_358)?;
         }
-        let converted_330 = converted_330_dict.into_any().unbind();
-        result.set_item("message_attributes", converted_330)?;
+        let converted_354 = converted_354_dict.into_any().unbind();
+        result.set_item("message_attributes", converted_354)?;
     } else {
         result.set_item("message_attributes", py.None())?;
     }
@@ -1024,8 +1539,8 @@ impl PyMessage {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
-            let converted_304 = (value).as_str().into_py_any(py)?;
-            Ok(converted_304)
+            let converted_328 = (value).as_str().into_py_any(py)?;
+            Ok(converted_328)
         } else {
             Ok(py.None())
         }
@@ -1034,8 +1549,8 @@ impl PyMessage {
     #[getter]
     fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.receipt_handle {
-            let converted_305 = (value).as_str().into_py_any(py)?;
-            Ok(converted_305)
+            let converted_329 = (value).as_str().into_py_any(py)?;
+            Ok(converted_329)
         } else {
             Ok(py.None())
         }
@@ -1044,8 +1559,8 @@ impl PyMessage {
     #[getter]
     fn md5_of_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_body {
-            let converted_306 = (value).as_str().into_py_any(py)?;
-            Ok(converted_306)
+            let converted_330 = (value).as_str().into_py_any(py)?;
+            Ok(converted_330)
         } else {
             Ok(py.None())
         }
@@ -1054,8 +1569,8 @@ impl PyMessage {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.body {
-            let converted_307 = (value).as_str().into_py_any(py)?;
-            Ok(converted_307)
+            let converted_331 = (value).as_str().into_py_any(py)?;
+            Ok(converted_331)
         } else {
             Ok(py.None())
         }
@@ -1064,14 +1579,14 @@ impl PyMessage {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_308_dict = PyDict::new(py);
-            for (key_309, value_310) in value {
-                let converted_key_311 = (key_309).as_str().into_py_any(py)?;
-                let converted_value_312 = (value_310).as_str().into_py_any(py)?;
-                converted_308_dict.set_item(converted_key_311, converted_value_312)?;
+            let converted_332_dict = PyDict::new(py);
+            for (key_333, value_334) in value {
+                let converted_key_335 = (key_333).as_str().into_py_any(py)?;
+                let converted_value_336 = (value_334).as_str().into_py_any(py)?;
+                converted_332_dict.set_item(converted_key_335, converted_value_336)?;
             }
-            let converted_308 = converted_308_dict.into_any().unbind();
-            Ok(converted_308)
+            let converted_332 = converted_332_dict.into_any().unbind();
+            Ok(converted_332)
         } else {
             Ok(py.None())
         }
@@ -1080,8 +1595,8 @@ impl PyMessage {
     #[getter]
     fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_attributes {
-            let converted_313 = (value).as_str().into_py_any(py)?;
-            Ok(converted_313)
+            let converted_337 = (value).as_str().into_py_any(py)?;
+            Ok(converted_337)
         } else {
             Ok(py.None())
         }
@@ -1090,20 +1605,20 @@ impl PyMessage {
     #[getter]
     fn message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_attributes {
-            let converted_314_dict = PyDict::new(py);
-            for (key_315, value_316) in value {
-                let converted_key_317 = (key_315).as_str().into_py_any(py)?;
-                let converted_value_318 = Py::new(
+            let converted_338_dict = PyDict::new(py);
+            for (key_339, value_340) in value {
+                let converted_key_341 = (key_339).as_str().into_py_any(py)?;
+                let converted_value_342 = Py::new(
                     py,
                     PyMessageAttributeValue {
-                        inner: Arc::clone(value_316),
+                        inner: Arc::clone(value_340),
                     },
                 )?
                 .into_any();
-                converted_314_dict.set_item(converted_key_317, converted_value_318)?;
+                converted_338_dict.set_item(converted_key_341, converted_value_342)?;
             }
-            let converted_314 = converted_314_dict.into_any().unbind();
-            Ok(converted_314)
+            let converted_338 = converted_338_dict.into_any().unbind();
+            Ok(converted_338)
         } else {
             Ok(py.None())
         }
@@ -1124,8 +1639,8 @@ impl PyMessageAttributeValue {
     #[getter]
     fn string_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.string_value {
-            let converted_335 = (value).as_str().into_py_any(py)?;
-            Ok(converted_335)
+            let converted_359 = (value).as_str().into_py_any(py)?;
+            Ok(converted_359)
         } else {
             Ok(py.None())
         }
@@ -1134,8 +1649,8 @@ impl PyMessageAttributeValue {
     #[getter]
     fn binary_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.binary_value {
-            let converted_336 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_336)
+            let converted_360 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_360)
         } else {
             Ok(py.None())
         }
@@ -1144,13 +1659,13 @@ impl PyMessageAttributeValue {
     #[getter]
     fn string_list_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.string_list_values {
-            let converted_337_list = PyList::empty(py);
-            for item_338 in value {
-                let converted_item_339 = (item_338).as_str().into_py_any(py)?;
-                converted_337_list.append(converted_item_339)?;
+            let converted_361_list = PyList::empty(py);
+            for item_362 in value {
+                let converted_item_363 = (item_362).as_str().into_py_any(py)?;
+                converted_361_list.append(converted_item_363)?;
             }
-            let converted_337 = converted_337_list.into_any().unbind();
-            Ok(converted_337)
+            let converted_361 = converted_361_list.into_any().unbind();
+            Ok(converted_361)
         } else {
             Ok(py.None())
         }
@@ -1159,13 +1674,13 @@ impl PyMessageAttributeValue {
     #[getter]
     fn binary_list_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.binary_list_values {
-            let converted_340_list = PyList::empty(py);
-            for item_341 in value {
-                let converted_item_342 = PyBytes::new(py, (item_341).as_ref()).into_any().unbind();
-                converted_340_list.append(converted_item_342)?;
+            let converted_364_list = PyList::empty(py);
+            for item_365 in value {
+                let converted_item_366 = PyBytes::new(py, (item_365).as_ref()).into_any().unbind();
+                converted_364_list.append(converted_item_366)?;
             }
-            let converted_340 = converted_340_list.into_any().unbind();
-            Ok(converted_340)
+            let converted_364 = converted_364_list.into_any().unbind();
+            Ok(converted_364)
         } else {
             Ok(py.None())
         }
@@ -1173,8 +1688,8 @@ impl PyMessageAttributeValue {
 
     #[getter]
     fn data_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_343 = (&self.inner.data_type).as_str().into_py_any(py)?;
-        Ok(converted_343)
+        let converted_367 = (&self.inner.data_type).as_str().into_py_any(py)?;
+        Ok(converted_367)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1195,27 +1710,27 @@ struct PySendMessageBatchResultEntry {
 impl PySendMessageBatchResultEntry {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_344 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_344)
+        let converted_368 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_368)
     }
 
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_345 = (&self.inner.message_id).as_str().into_py_any(py)?;
-        Ok(converted_345)
+        let converted_369 = (&self.inner.message_id).as_str().into_py_any(py)?;
+        Ok(converted_369)
     }
 
     #[getter]
     fn md5_of_message_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_346 = (&self.inner.md5_of_message_body).as_str().into_py_any(py)?;
-        Ok(converted_346)
+        let converted_370 = (&self.inner.md5_of_message_body).as_str().into_py_any(py)?;
+        Ok(converted_370)
     }
 
     #[getter]
     fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_attributes {
-            let converted_347 = (value).as_str().into_py_any(py)?;
-            Ok(converted_347)
+            let converted_371 = (value).as_str().into_py_any(py)?;
+            Ok(converted_371)
         } else {
             Ok(py.None())
         }
@@ -1224,8 +1739,8 @@ impl PySendMessageBatchResultEntry {
     #[getter]
     fn md5_of_message_system_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_system_attributes {
-            let converted_348 = (value).as_str().into_py_any(py)?;
-            Ok(converted_348)
+            let converted_372 = (value).as_str().into_py_any(py)?;
+            Ok(converted_372)
         } else {
             Ok(py.None())
         }
@@ -1234,8 +1749,8 @@ impl PySendMessageBatchResultEntry {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_349 = (value).as_str().into_py_any(py)?;
-            Ok(converted_349)
+            let converted_373 = (value).as_str().into_py_any(py)?;
+            Ok(converted_373)
         } else {
             Ok(py.None())
         }
@@ -1259,18 +1774,18 @@ struct PyOperationCancelMessageMoveTaskOutput {
 impl PyOperationCancelMessageMoveTaskOutput {
     #[getter]
     fn approximate_number_of_messages_moved(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_350 = (&self.inner.approximate_number_of_messages_moved)
+        let converted_374 = (&self.inner.approximate_number_of_messages_moved)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_350)
+        Ok(converted_374)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_351 = (&self.inner.approximate_number_of_messages_moved)
+        let converted_375 = (&self.inner.approximate_number_of_messages_moved)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("approximate_number_of_messages_moved", converted_351)?;
+        result.set_item("approximate_number_of_messages_moved", converted_375)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1293,11 +1808,11 @@ impl
         Self {
             successful: (value.successful)
                 .into_iter()
-                .map(|owned_358| Arc::new(owned_358))
+                .map(|owned_382| Arc::new(owned_382))
                 .collect(),
             failed: (value.failed)
                 .into_iter()
-                .map(|owned_359| Arc::new(owned_359))
+                .map(|owned_383| Arc::new(owned_383))
                 .collect(),
         }
     }
@@ -1316,55 +1831,55 @@ struct PyOperationChangeMessageVisibilityBatchOutput {
 impl PyOperationChangeMessageVisibilityBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_352_list = PyList::empty(py);
-        for item_353 in &self.inner.successful {
-            let converted_item_354 = Py::new(
+        let converted_376_list = PyList::empty(py);
+        for item_377 in &self.inner.successful {
+            let converted_item_378 = Py::new(
                 py,
                 PyChangeMessageVisibilityBatchResultEntry {
-                    inner: Arc::clone(item_353),
+                    inner: Arc::clone(item_377),
                 },
             )?
             .into_any();
-            converted_352_list.append(converted_item_354)?;
+            converted_376_list.append(converted_item_378)?;
         }
-        let converted_352 = converted_352_list.into_any().unbind();
-        Ok(converted_352)
+        let converted_376 = converted_376_list.into_any().unbind();
+        Ok(converted_376)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_355_list = PyList::empty(py);
-        for item_356 in &self.inner.failed {
-            let converted_item_357 = Py::new(
+        let converted_379_list = PyList::empty(py);
+        for item_380 in &self.inner.failed {
+            let converted_item_381 = Py::new(
                 py,
                 PyBatchResultErrorEntry {
-                    inner: Arc::clone(item_356),
+                    inner: Arc::clone(item_380),
                 },
             )?
             .into_any();
-            converted_355_list.append(converted_item_357)?;
+            converted_379_list.append(converted_item_381)?;
         }
-        let converted_355 = converted_355_list.into_any().unbind();
-        Ok(converted_355)
+        let converted_379 = converted_379_list.into_any().unbind();
+        Ok(converted_379)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_360_list = PyList::empty(py);
-        for item_361 in &self.inner.successful {
-            let converted_item_362 =
-                change_message_visibility_batch_result_entry_to_py(py, item_361)?;
-            converted_360_list.append(converted_item_362)?;
+        let converted_384_list = PyList::empty(py);
+        for item_385 in &self.inner.successful {
+            let converted_item_386 =
+                change_message_visibility_batch_result_entry_to_py(py, item_385)?;
+            converted_384_list.append(converted_item_386)?;
         }
-        let converted_360 = converted_360_list.into_any().unbind();
-        result.set_item("successful", converted_360)?;
-        let converted_363_list = PyList::empty(py);
-        for item_364 in &self.inner.failed {
-            let converted_item_365 = batch_result_error_entry_to_py(py, item_364)?;
-            converted_363_list.append(converted_item_365)?;
+        let converted_384 = converted_384_list.into_any().unbind();
+        result.set_item("successful", converted_384)?;
+        let converted_387_list = PyList::empty(py);
+        for item_388 in &self.inner.failed {
+            let converted_item_389 = batch_result_error_entry_to_py(py, item_388)?;
+            converted_387_list.append(converted_item_389)?;
         }
-        let converted_363 = converted_363_list.into_any().unbind();
-        result.set_item("failed", converted_363)?;
+        let converted_387 = converted_387_list.into_any().unbind();
+        result.set_item("failed", converted_387)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1379,8 +1894,8 @@ impl PyOperationCreateQueueOutput {
     #[getter]
     fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_url {
-            let converted_366 = (value).as_str().into_py_any(py)?;
-            Ok(converted_366)
+            let converted_390 = (value).as_str().into_py_any(py)?;
+            Ok(converted_390)
         } else {
             Ok(py.None())
         }
@@ -1389,8 +1904,8 @@ impl PyOperationCreateQueueOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.queue_url {
-            let converted_367 = (value).as_str().into_py_any(py)?;
-            result.set_item("queue_url", converted_367)?;
+            let converted_391 = (value).as_str().into_py_any(py)?;
+            result.set_item("queue_url", converted_391)?;
         } else {
             result.set_item("queue_url", py.None())?;
         }
@@ -1412,11 +1927,11 @@ impl From<aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput
         Self {
             successful: (value.successful)
                 .into_iter()
-                .map(|owned_374| Arc::new(owned_374))
+                .map(|owned_398| Arc::new(owned_398))
                 .collect(),
             failed: (value.failed)
                 .into_iter()
-                .map(|owned_375| Arc::new(owned_375))
+                .map(|owned_399| Arc::new(owned_399))
                 .collect(),
         }
     }
@@ -1435,54 +1950,54 @@ struct PyOperationDeleteMessageBatchOutput {
 impl PyOperationDeleteMessageBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_368_list = PyList::empty(py);
-        for item_369 in &self.inner.successful {
-            let converted_item_370 = Py::new(
+        let converted_392_list = PyList::empty(py);
+        for item_393 in &self.inner.successful {
+            let converted_item_394 = Py::new(
                 py,
                 PyDeleteMessageBatchResultEntry {
-                    inner: Arc::clone(item_369),
+                    inner: Arc::clone(item_393),
                 },
             )?
             .into_any();
-            converted_368_list.append(converted_item_370)?;
+            converted_392_list.append(converted_item_394)?;
         }
-        let converted_368 = converted_368_list.into_any().unbind();
-        Ok(converted_368)
+        let converted_392 = converted_392_list.into_any().unbind();
+        Ok(converted_392)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_371_list = PyList::empty(py);
-        for item_372 in &self.inner.failed {
-            let converted_item_373 = Py::new(
+        let converted_395_list = PyList::empty(py);
+        for item_396 in &self.inner.failed {
+            let converted_item_397 = Py::new(
                 py,
                 PyBatchResultErrorEntry {
-                    inner: Arc::clone(item_372),
+                    inner: Arc::clone(item_396),
                 },
             )?
             .into_any();
-            converted_371_list.append(converted_item_373)?;
+            converted_395_list.append(converted_item_397)?;
         }
-        let converted_371 = converted_371_list.into_any().unbind();
-        Ok(converted_371)
+        let converted_395 = converted_395_list.into_any().unbind();
+        Ok(converted_395)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_376_list = PyList::empty(py);
-        for item_377 in &self.inner.successful {
-            let converted_item_378 = delete_message_batch_result_entry_to_py(py, item_377)?;
-            converted_376_list.append(converted_item_378)?;
+        let converted_400_list = PyList::empty(py);
+        for item_401 in &self.inner.successful {
+            let converted_item_402 = delete_message_batch_result_entry_to_py(py, item_401)?;
+            converted_400_list.append(converted_item_402)?;
         }
-        let converted_376 = converted_376_list.into_any().unbind();
-        result.set_item("successful", converted_376)?;
-        let converted_379_list = PyList::empty(py);
-        for item_380 in &self.inner.failed {
-            let converted_item_381 = batch_result_error_entry_to_py(py, item_380)?;
-            converted_379_list.append(converted_item_381)?;
+        let converted_400 = converted_400_list.into_any().unbind();
+        result.set_item("successful", converted_400)?;
+        let converted_403_list = PyList::empty(py);
+        for item_404 in &self.inner.failed {
+            let converted_item_405 = batch_result_error_entry_to_py(py, item_404)?;
+            converted_403_list.append(converted_item_405)?;
         }
-        let converted_379 = converted_379_list.into_any().unbind();
-        result.set_item("failed", converted_379)?;
+        let converted_403 = converted_403_list.into_any().unbind();
+        result.set_item("failed", converted_403)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1501,14 +2016,14 @@ impl PyOperationGetQueueAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_382_dict = PyDict::new(py);
-            for (key_383, value_384) in value {
-                let converted_key_385 = (key_383).as_str().into_py_any(py)?;
-                let converted_value_386 = (value_384).as_str().into_py_any(py)?;
-                converted_382_dict.set_item(converted_key_385, converted_value_386)?;
+            let converted_406_dict = PyDict::new(py);
+            for (key_407, value_408) in value {
+                let converted_key_409 = (key_407).as_str().into_py_any(py)?;
+                let converted_value_410 = (value_408).as_str().into_py_any(py)?;
+                converted_406_dict.set_item(converted_key_409, converted_value_410)?;
             }
-            let converted_382 = converted_382_dict.into_any().unbind();
-            Ok(converted_382)
+            let converted_406 = converted_406_dict.into_any().unbind();
+            Ok(converted_406)
         } else {
             Ok(py.None())
         }
@@ -1517,14 +2032,14 @@ impl PyOperationGetQueueAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_387_dict = PyDict::new(py);
-            for (key_388, value_389) in value {
-                let converted_key_390 = (key_388).as_str().into_py_any(py)?;
-                let converted_value_391 = (value_389).as_str().into_py_any(py)?;
-                converted_387_dict.set_item(converted_key_390, converted_value_391)?;
+            let converted_411_dict = PyDict::new(py);
+            for (key_412, value_413) in value {
+                let converted_key_414 = (key_412).as_str().into_py_any(py)?;
+                let converted_value_415 = (value_413).as_str().into_py_any(py)?;
+                converted_411_dict.set_item(converted_key_414, converted_value_415)?;
             }
-            let converted_387 = converted_387_dict.into_any().unbind();
-            result.set_item("attributes", converted_387)?;
+            let converted_411 = converted_411_dict.into_any().unbind();
+            result.set_item("attributes", converted_411)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
@@ -1542,8 +2057,8 @@ impl PyOperationGetQueueUrlOutput {
     #[getter]
     fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_url {
-            let converted_392 = (value).as_str().into_py_any(py)?;
-            Ok(converted_392)
+            let converted_416 = (value).as_str().into_py_any(py)?;
+            Ok(converted_416)
         } else {
             Ok(py.None())
         }
@@ -1552,8 +2067,8 @@ impl PyOperationGetQueueUrlOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.queue_url {
-            let converted_393 = (value).as_str().into_py_any(py)?;
-            result.set_item("queue_url", converted_393)?;
+            let converted_417 = (value).as_str().into_py_any(py)?;
+            result.set_item("queue_url", converted_417)?;
         } else {
             result.set_item("queue_url", py.None())?;
         }
@@ -1574,20 +2089,20 @@ struct PyOperationListDeadLetterSourceQueuesOutput {
 impl PyOperationListDeadLetterSourceQueuesOutput {
     #[getter]
     fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_394_list = PyList::empty(py);
-        for item_395 in &self.inner.queue_urls {
-            let converted_item_396 = (item_395).as_str().into_py_any(py)?;
-            converted_394_list.append(converted_item_396)?;
+        let converted_418_list = PyList::empty(py);
+        for item_419 in &self.inner.queue_urls {
+            let converted_item_420 = (item_419).as_str().into_py_any(py)?;
+            converted_418_list.append(converted_item_420)?;
         }
-        let converted_394 = converted_394_list.into_any().unbind();
-        Ok(converted_394)
+        let converted_418 = converted_418_list.into_any().unbind();
+        Ok(converted_418)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_397 = (value).as_str().into_py_any(py)?;
-            Ok(converted_397)
+            let converted_421 = (value).as_str().into_py_any(py)?;
+            Ok(converted_421)
         } else {
             Ok(py.None())
         }
@@ -1595,16 +2110,16 @@ impl PyOperationListDeadLetterSourceQueuesOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_398_list = PyList::empty(py);
-        for item_399 in &self.inner.queue_urls {
-            let converted_item_400 = (item_399).as_str().into_py_any(py)?;
-            converted_398_list.append(converted_item_400)?;
+        let converted_422_list = PyList::empty(py);
+        for item_423 in &self.inner.queue_urls {
+            let converted_item_424 = (item_423).as_str().into_py_any(py)?;
+            converted_422_list.append(converted_item_424)?;
         }
-        let converted_398 = converted_398_list.into_any().unbind();
-        result.set_item("queue_urls", converted_398)?;
+        let converted_422 = converted_422_list.into_any().unbind();
+        result.set_item("queue_urls", converted_422)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_401 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_401)?;
+            let converted_425 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_425)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1628,7 +2143,7 @@ impl From<aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksO
             results: value.results.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_405| Arc::new(owned_405))
+                    .map(|owned_429| Arc::new(owned_429))
                     .collect()
             }),
         }
@@ -1649,19 +2164,19 @@ impl PyOperationListMessageMoveTasksOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results {
-            let converted_402_list = PyList::empty(py);
-            for item_403 in value {
-                let converted_item_404 = Py::new(
+            let converted_426_list = PyList::empty(py);
+            for item_427 in value {
+                let converted_item_428 = Py::new(
                     py,
                     PyListMessageMoveTasksResultEntry {
-                        inner: Arc::clone(item_403),
+                        inner: Arc::clone(item_427),
                     },
                 )?
                 .into_any();
-                converted_402_list.append(converted_item_404)?;
+                converted_426_list.append(converted_item_428)?;
             }
-            let converted_402 = converted_402_list.into_any().unbind();
-            Ok(converted_402)
+            let converted_426 = converted_426_list.into_any().unbind();
+            Ok(converted_426)
         } else {
             Ok(py.None())
         }
@@ -1670,13 +2185,13 @@ impl PyOperationListMessageMoveTasksOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.results {
-            let converted_406_list = PyList::empty(py);
-            for item_407 in value {
-                let converted_item_408 = list_message_move_tasks_result_entry_to_py(py, item_407)?;
-                converted_406_list.append(converted_item_408)?;
+            let converted_430_list = PyList::empty(py);
+            for item_431 in value {
+                let converted_item_432 = list_message_move_tasks_result_entry_to_py(py, item_431)?;
+                converted_430_list.append(converted_item_432)?;
             }
-            let converted_406 = converted_406_list.into_any().unbind();
-            result.set_item("results", converted_406)?;
+            let converted_430 = converted_430_list.into_any().unbind();
+            result.set_item("results", converted_430)?;
         } else {
             result.set_item("results", py.None())?;
         }
@@ -1694,14 +2209,14 @@ impl PyOperationListQueueTagsOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_409_dict = PyDict::new(py);
-            for (key_410, value_411) in value {
-                let converted_key_412 = (key_410).as_str().into_py_any(py)?;
-                let converted_value_413 = (value_411).as_str().into_py_any(py)?;
-                converted_409_dict.set_item(converted_key_412, converted_value_413)?;
+            let converted_433_dict = PyDict::new(py);
+            for (key_434, value_435) in value {
+                let converted_key_436 = (key_434).as_str().into_py_any(py)?;
+                let converted_value_437 = (value_435).as_str().into_py_any(py)?;
+                converted_433_dict.set_item(converted_key_436, converted_value_437)?;
             }
-            let converted_409 = converted_409_dict.into_any().unbind();
-            Ok(converted_409)
+            let converted_433 = converted_433_dict.into_any().unbind();
+            Ok(converted_433)
         } else {
             Ok(py.None())
         }
@@ -1710,14 +2225,14 @@ impl PyOperationListQueueTagsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_414_dict = PyDict::new(py);
-            for (key_415, value_416) in value {
-                let converted_key_417 = (key_415).as_str().into_py_any(py)?;
-                let converted_value_418 = (value_416).as_str().into_py_any(py)?;
-                converted_414_dict.set_item(converted_key_417, converted_value_418)?;
+            let converted_438_dict = PyDict::new(py);
+            for (key_439, value_440) in value {
+                let converted_key_441 = (key_439).as_str().into_py_any(py)?;
+                let converted_value_442 = (value_440).as_str().into_py_any(py)?;
+                converted_438_dict.set_item(converted_key_441, converted_value_442)?;
             }
-            let converted_414 = converted_414_dict.into_any().unbind();
-            result.set_item("tags", converted_414)?;
+            let converted_438 = converted_438_dict.into_any().unbind();
+            result.set_item("tags", converted_438)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -1735,13 +2250,13 @@ impl PyOperationListQueuesOutput {
     #[getter]
     fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queue_urls {
-            let converted_419_list = PyList::empty(py);
-            for item_420 in value {
-                let converted_item_421 = (item_420).as_str().into_py_any(py)?;
-                converted_419_list.append(converted_item_421)?;
+            let converted_443_list = PyList::empty(py);
+            for item_444 in value {
+                let converted_item_445 = (item_444).as_str().into_py_any(py)?;
+                converted_443_list.append(converted_item_445)?;
             }
-            let converted_419 = converted_419_list.into_any().unbind();
-            Ok(converted_419)
+            let converted_443 = converted_443_list.into_any().unbind();
+            Ok(converted_443)
         } else {
             Ok(py.None())
         }
@@ -1750,8 +2265,8 @@ impl PyOperationListQueuesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_422 = (value).as_str().into_py_any(py)?;
-            Ok(converted_422)
+            let converted_446 = (value).as_str().into_py_any(py)?;
+            Ok(converted_446)
         } else {
             Ok(py.None())
         }
@@ -1760,19 +2275,19 @@ impl PyOperationListQueuesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.queue_urls {
-            let converted_423_list = PyList::empty(py);
-            for item_424 in value {
-                let converted_item_425 = (item_424).as_str().into_py_any(py)?;
-                converted_423_list.append(converted_item_425)?;
+            let converted_447_list = PyList::empty(py);
+            for item_448 in value {
+                let converted_item_449 = (item_448).as_str().into_py_any(py)?;
+                converted_447_list.append(converted_item_449)?;
             }
-            let converted_423 = converted_423_list.into_any().unbind();
-            result.set_item("queue_urls", converted_423)?;
+            let converted_447 = converted_447_list.into_any().unbind();
+            result.set_item("queue_urls", converted_447)?;
         } else {
             result.set_item("queue_urls", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_426 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_426)?;
+            let converted_450 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_450)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1794,7 +2309,7 @@ impl From<aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput>
             messages: value.messages.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_430| Arc::new(SharedMessage::from(owned_430)))
+                    .map(|owned_454| Arc::new(SharedMessage::from(owned_454)))
                     .collect()
             }),
         }
@@ -1811,19 +2326,19 @@ impl PyOperationReceiveMessageOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
-            let converted_427_list = PyList::empty(py);
-            for item_428 in value {
-                let converted_item_429 = Py::new(
+            let converted_451_list = PyList::empty(py);
+            for item_452 in value {
+                let converted_item_453 = Py::new(
                     py,
                     PyMessage {
-                        inner: Arc::clone(item_428),
+                        inner: Arc::clone(item_452),
                     },
                 )?
                 .into_any();
-                converted_427_list.append(converted_item_429)?;
+                converted_451_list.append(converted_item_453)?;
             }
-            let converted_427 = converted_427_list.into_any().unbind();
-            Ok(converted_427)
+            let converted_451 = converted_451_list.into_any().unbind();
+            Ok(converted_451)
         } else {
             Ok(py.None())
         }
@@ -1832,13 +2347,13 @@ impl PyOperationReceiveMessageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.messages {
-            let converted_431_list = PyList::empty(py);
-            for item_432 in value {
-                let converted_item_433 = message_shared_to_py(py, item_432)?;
-                converted_431_list.append(converted_item_433)?;
+            let converted_455_list = PyList::empty(py);
+            for item_456 in value {
+                let converted_item_457 = message_shared_to_py(py, item_456)?;
+                converted_455_list.append(converted_item_457)?;
             }
-            let converted_431 = converted_431_list.into_any().unbind();
-            result.set_item("messages", converted_431)?;
+            let converted_455 = converted_455_list.into_any().unbind();
+            result.set_item("messages", converted_455)?;
         } else {
             result.set_item("messages", py.None())?;
         }
@@ -1856,8 +2371,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn md5_of_message_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_body {
-            let converted_434 = (value).as_str().into_py_any(py)?;
-            Ok(converted_434)
+            let converted_458 = (value).as_str().into_py_any(py)?;
+            Ok(converted_458)
         } else {
             Ok(py.None())
         }
@@ -1866,8 +2381,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_attributes {
-            let converted_435 = (value).as_str().into_py_any(py)?;
-            Ok(converted_435)
+            let converted_459 = (value).as_str().into_py_any(py)?;
+            Ok(converted_459)
         } else {
             Ok(py.None())
         }
@@ -1876,8 +2391,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn md5_of_message_system_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.md5_of_message_system_attributes {
-            let converted_436 = (value).as_str().into_py_any(py)?;
-            Ok(converted_436)
+            let converted_460 = (value).as_str().into_py_any(py)?;
+            Ok(converted_460)
         } else {
             Ok(py.None())
         }
@@ -1886,8 +2401,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
-            let converted_437 = (value).as_str().into_py_any(py)?;
-            Ok(converted_437)
+            let converted_461 = (value).as_str().into_py_any(py)?;
+            Ok(converted_461)
         } else {
             Ok(py.None())
         }
@@ -1896,8 +2411,8 @@ impl PyOperationSendMessageOutput {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_438 = (value).as_str().into_py_any(py)?;
-            Ok(converted_438)
+            let converted_462 = (value).as_str().into_py_any(py)?;
+            Ok(converted_462)
         } else {
             Ok(py.None())
         }
@@ -1906,32 +2421,32 @@ impl PyOperationSendMessageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.md5_of_message_body {
-            let converted_439 = (value).as_str().into_py_any(py)?;
-            result.set_item("md5_of_message_body", converted_439)?;
+            let converted_463 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_body", converted_463)?;
         } else {
             result.set_item("md5_of_message_body", py.None())?;
         }
         if let Some(value) = &self.inner.md5_of_message_attributes {
-            let converted_440 = (value).as_str().into_py_any(py)?;
-            result.set_item("md5_of_message_attributes", converted_440)?;
+            let converted_464 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_attributes", converted_464)?;
         } else {
             result.set_item("md5_of_message_attributes", py.None())?;
         }
         if let Some(value) = &self.inner.md5_of_message_system_attributes {
-            let converted_441 = (value).as_str().into_py_any(py)?;
-            result.set_item("md5_of_message_system_attributes", converted_441)?;
+            let converted_465 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_system_attributes", converted_465)?;
         } else {
             result.set_item("md5_of_message_system_attributes", py.None())?;
         }
         if let Some(value) = &self.inner.message_id {
-            let converted_442 = (value).as_str().into_py_any(py)?;
-            result.set_item("message_id", converted_442)?;
+            let converted_466 = (value).as_str().into_py_any(py)?;
+            result.set_item("message_id", converted_466)?;
         } else {
             result.set_item("message_id", py.None())?;
         }
         if let Some(value) = &self.inner.sequence_number {
-            let converted_443 = (value).as_str().into_py_any(py)?;
-            result.set_item("sequence_number", converted_443)?;
+            let converted_467 = (value).as_str().into_py_any(py)?;
+            result.set_item("sequence_number", converted_467)?;
         } else {
             result.set_item("sequence_number", py.None())?;
         }
@@ -1953,11 +2468,11 @@ impl From<aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput>
         Self {
             successful: (value.successful)
                 .into_iter()
-                .map(|owned_450| Arc::new(owned_450))
+                .map(|owned_474| Arc::new(owned_474))
                 .collect(),
             failed: (value.failed)
                 .into_iter()
-                .map(|owned_451| Arc::new(owned_451))
+                .map(|owned_475| Arc::new(owned_475))
                 .collect(),
         }
     }
@@ -1972,54 +2487,54 @@ struct PyOperationSendMessageBatchOutput {
 impl PyOperationSendMessageBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_444_list = PyList::empty(py);
-        for item_445 in &self.inner.successful {
-            let converted_item_446 = Py::new(
+        let converted_468_list = PyList::empty(py);
+        for item_469 in &self.inner.successful {
+            let converted_item_470 = Py::new(
                 py,
                 PySendMessageBatchResultEntry {
-                    inner: Arc::clone(item_445),
+                    inner: Arc::clone(item_469),
                 },
             )?
             .into_any();
-            converted_444_list.append(converted_item_446)?;
+            converted_468_list.append(converted_item_470)?;
         }
-        let converted_444 = converted_444_list.into_any().unbind();
-        Ok(converted_444)
+        let converted_468 = converted_468_list.into_any().unbind();
+        Ok(converted_468)
     }
 
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_447_list = PyList::empty(py);
-        for item_448 in &self.inner.failed {
-            let converted_item_449 = Py::new(
+        let converted_471_list = PyList::empty(py);
+        for item_472 in &self.inner.failed {
+            let converted_item_473 = Py::new(
                 py,
                 PyBatchResultErrorEntry {
-                    inner: Arc::clone(item_448),
+                    inner: Arc::clone(item_472),
                 },
             )?
             .into_any();
-            converted_447_list.append(converted_item_449)?;
+            converted_471_list.append(converted_item_473)?;
         }
-        let converted_447 = converted_447_list.into_any().unbind();
-        Ok(converted_447)
+        let converted_471 = converted_471_list.into_any().unbind();
+        Ok(converted_471)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_452_list = PyList::empty(py);
-        for item_453 in &self.inner.successful {
-            let converted_item_454 = send_message_batch_result_entry_to_py(py, item_453)?;
-            converted_452_list.append(converted_item_454)?;
+        let converted_476_list = PyList::empty(py);
+        for item_477 in &self.inner.successful {
+            let converted_item_478 = send_message_batch_result_entry_to_py(py, item_477)?;
+            converted_476_list.append(converted_item_478)?;
         }
-        let converted_452 = converted_452_list.into_any().unbind();
-        result.set_item("successful", converted_452)?;
-        let converted_455_list = PyList::empty(py);
-        for item_456 in &self.inner.failed {
-            let converted_item_457 = batch_result_error_entry_to_py(py, item_456)?;
-            converted_455_list.append(converted_item_457)?;
+        let converted_476 = converted_476_list.into_any().unbind();
+        result.set_item("successful", converted_476)?;
+        let converted_479_list = PyList::empty(py);
+        for item_480 in &self.inner.failed {
+            let converted_item_481 = batch_result_error_entry_to_py(py, item_480)?;
+            converted_479_list.append(converted_item_481)?;
         }
-        let converted_455 = converted_455_list.into_any().unbind();
-        result.set_item("failed", converted_455)?;
+        let converted_479 = converted_479_list.into_any().unbind();
+        result.set_item("failed", converted_479)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -2038,8 +2553,8 @@ impl PyOperationStartMessageMoveTaskOutput {
     #[getter]
     fn task_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_handle {
-            let converted_458 = (value).as_str().into_py_any(py)?;
-            Ok(converted_458)
+            let converted_482 = (value).as_str().into_py_any(py)?;
+            Ok(converted_482)
         } else {
             Ok(py.None())
         }
@@ -2048,8 +2563,8 @@ impl PyOperationStartMessageMoveTaskOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.task_handle {
-            let converted_459 = (value).as_str().into_py_any(py)?;
-            result.set_item("task_handle", converted_459)?;
+            let converted_483 = (value).as_str().into_py_any(py)?;
+            result.set_item("task_handle", converted_483)?;
         } else {
             result.set_item("task_handle", py.None())?;
         }
@@ -2120,38 +2635,124 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_163: String = value.extract()?;
-            Some(converted_163)
+            let converted_171 = (|| -> PyResult<_> {
+                let converted_171: String = value.extract()?;
+                Ok(converted_171)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_171)
         } else {
             None
         };
         let label_value = if let Some(value) = dict_value(params, "label")? {
-            let converted_164: String = value.extract()?;
-            Some(converted_164)
+            let converted_172 = (|| -> PyResult<_> {
+                let converted_172: String = value.extract()?;
+                Ok(converted_172)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("label"), "str"),
+                    "sqs",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_172)
         } else {
             None
         };
         let aws_account_ids_value = if let Some(value) = dict_value(params, "aws_account_ids")? {
-            let mut converted_165 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_166 in value.try_iter()? {
-                let item_167 = item_result_166?;
-                let converted_item_168: String = item_167.extract()?;
-                converted_165.push(converted_item_168);
-            }
-            Some(converted_165)
+            let converted_173 = (|| -> PyResult<_> {
+                let mut converted_173 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_177, item_result_174) in value.try_iter()?.enumerate() {
+                    let item_175 = item_result_174.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_177),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_176 = (|| -> PyResult<_> {
+                        let converted_item_176: String = item_175.extract()?;
+                        Ok(converted_item_176)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_177),
+                            "str",
+                        )
+                    })?;
+                    converted_173.push(converted_item_176);
+                }
+                Ok(converted_173)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("aws_account_ids"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_173)
         } else {
             None
         };
         let actions_value = if let Some(value) = dict_value(params, "actions")? {
-            let mut converted_169 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_170 in value.try_iter()? {
-                let item_171 = item_result_170?;
-                let converted_item_172: String = item_171.extract()?;
-                converted_169.push(converted_item_172);
-            }
-            Some(converted_169)
+            let converted_178 = (|| -> PyResult<_> {
+                let mut converted_178 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_182, item_result_179) in value.try_iter()?.enumerate() {
+                    let item_180 = item_result_179.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_182),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_181 = (|| -> PyResult<_> {
+                        let converted_item_181: String = item_180.extract()?;
+                        Ok(converted_item_181)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_182),
+                            "str",
+                        )
+                    })?;
+                    converted_178.push(converted_item_181);
+                }
+                Ok(converted_178)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("actions"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_178)
         } else {
             None
         };
@@ -2191,8 +2792,22 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let task_handle_value = if let Some(value) = dict_value(params, "task_handle")? {
-            let converted_173: String = value.extract()?;
-            Some(converted_173)
+            let converted_183 = (|| -> PyResult<_> {
+                let converted_183: String = value.extract()?;
+                Ok(converted_183)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("task_handle"),
+                        "str",
+                    ),
+                    "sqs",
+                    "CancelMessageMoveTask",
+                )
+            })?;
+            Some(converted_183)
         } else {
             None
         };
@@ -2229,21 +2844,63 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_174: String = value.extract()?;
-            Some(converted_174)
+            let converted_184 = (|| -> PyResult<_> {
+                let converted_184: String = value.extract()?;
+                Ok(converted_184)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ChangeMessageVisibility",
+                )
+            })?;
+            Some(converted_184)
         } else {
             None
         };
         let receipt_handle_value = if let Some(value) = dict_value(params, "receipt_handle")? {
-            let converted_175: String = value.extract()?;
-            Some(converted_175)
+            let converted_185 = (|| -> PyResult<_> {
+                let converted_185: String = value.extract()?;
+                Ok(converted_185)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("receipt_handle"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ChangeMessageVisibility",
+                )
+            })?;
+            Some(converted_185)
         } else {
             None
         };
         let visibility_timeout_value =
             if let Some(value) = dict_value(params, "visibility_timeout")? {
-                let converted_176: i32 = value.extract()?;
-                Some(converted_176)
+                let converted_186 = (|| -> PyResult<_> {
+                    let converted_186: i32 = value.extract()?;
+                    Ok(converted_186)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("visibility_timeout"),
+                            "int",
+                        ),
+                        "sqs",
+                        "ChangeMessageVisibility",
+                    )
+                })?;
+                Some(converted_186)
             } else {
                 None
             };
@@ -2282,21 +2939,66 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_177: String = value.extract()?;
-            Some(converted_177)
+            let converted_187 = (|| -> PyResult<_> {
+                let converted_187: String = value.extract()?;
+                Ok(converted_187)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ChangeMessageVisibilityBatch",
+                )
+            })?;
+            Some(converted_187)
         } else {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_178 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_179 in value.try_iter()? {
-                let item_180 = item_result_179?;
-                let converted_item_181 =
-                    change_message_visibility_batch_request_entry_from_py(&item_180)?;
-                converted_178.push(converted_item_181);
-            }
-            Some(converted_178)
+            let converted_188 = (|| -> PyResult<_> {
+                let mut converted_188 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_192, item_result_189) in value.try_iter()?.enumerate() {
+                    let item_190 = item_result_189.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_192),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_191 = (|| -> PyResult<_> {
+                        let converted_item_191 =
+                            change_message_visibility_batch_request_entry_from_py(&item_190)?;
+                        Ok(converted_item_191)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_192),
+                            "dict (ChangeMessageVisibilityBatchRequestEntry)",
+                        )
+                    })?;
+                    converted_188.push(converted_item_191);
+                }
+                Ok(converted_188)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "ChangeMessageVisibilityBatch",
+                )
+            })?;
+            Some(converted_188)
         } else {
             None
         };
@@ -2336,34 +3038,112 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_name_value = if let Some(value) = dict_value(params, "queue_name")? {
-            let converted_182: String = value.extract()?;
-            Some(converted_182)
+            let converted_193 = (|| -> PyResult<_> {
+                let converted_193: String = value.extract()?;
+                Ok(converted_193)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_name"),
+                        "str",
+                    ),
+                    "sqs",
+                    "CreateQueue",
+                )
+            })?;
+            Some(converted_193)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_184 = value.cast::<PyDict>()?;
-            let mut converted_183 = HashMap::with_capacity(mapping_184.len());
-            for (key_185, value_186) in mapping_184.iter() {
-                let enum_value_189: String = key_185.extract()?;
-                let converted_key_187 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_189.as_str());
-                let converted_value_188: String = value_186.extract()?;
-                converted_183.insert(converted_key_187, converted_value_188);
-            }
-            Some(converted_183)
+            let converted_194 = (|| -> PyResult<_> {
+                let mapping_195 = value.cast::<PyDict>()?;
+                let mut converted_194 = HashMap::with_capacity(mapping_195.len());
+                for (index_200, (key_196, value_197)) in mapping_195.iter().enumerate() {
+                    let converted_key_198 = (|| -> PyResult<_> {
+                        let enum_value_201: String = key_196.extract()?;
+                        let converted_key_198 =
+                            aws_sdk_sqs::types::QueueAttributeName::from(enum_value_201.as_str());
+                        Ok(converted_key_198)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_200),
+                            "str (QueueAttributeName)",
+                        )
+                    })?;
+                    let converted_value_199 = (|| -> PyResult<_> {
+                        let converted_value_199: String = value_197.extract()?;
+                        Ok(converted_value_199)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_200),
+                            "str",
+                        )
+                    })?;
+                    converted_194.insert(converted_key_198, converted_value_199);
+                }
+                Ok(converted_194)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sqs",
+                    "CreateQueue",
+                )
+            })?;
+            Some(converted_194)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mapping_191 = value.cast::<PyDict>()?;
-            let mut converted_190 = HashMap::with_capacity(mapping_191.len());
-            for (key_192, value_193) in mapping_191.iter() {
-                let converted_key_194: String = key_192.extract()?;
-                let converted_value_195: String = value_193.extract()?;
-                converted_190.insert(converted_key_194, converted_value_195);
-            }
-            Some(converted_190)
+            let converted_202 = (|| -> PyResult<_> {
+                let mapping_203 = value.cast::<PyDict>()?;
+                let mut converted_202 = HashMap::with_capacity(mapping_203.len());
+                for (index_208, (key_204, value_205)) in mapping_203.iter().enumerate() {
+                    let converted_key_206 = (|| -> PyResult<_> {
+                        let converted_key_206: String = key_204.extract()?;
+                        Ok(converted_key_206)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_208),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_207 = (|| -> PyResult<_> {
+                        let converted_value_207: String = value_205.extract()?;
+                        Ok(converted_value_207)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_208),
+                            "str",
+                        )
+                    })?;
+                    converted_202.insert(converted_key_206, converted_value_207);
+                }
+                Ok(converted_202)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("tags"), "dict"),
+                    "sqs",
+                    "CreateQueue",
+                )
+            })?;
+            Some(converted_202)
         } else {
             None
         };
@@ -2401,14 +3181,42 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_196: String = value.extract()?;
-            Some(converted_196)
+            let converted_209 = (|| -> PyResult<_> {
+                let converted_209: String = value.extract()?;
+                Ok(converted_209)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "DeleteMessage",
+                )
+            })?;
+            Some(converted_209)
         } else {
             None
         };
         let receipt_handle_value = if let Some(value) = dict_value(params, "receipt_handle")? {
-            let converted_197: String = value.extract()?;
-            Some(converted_197)
+            let converted_210 = (|| -> PyResult<_> {
+                let converted_210: String = value.extract()?;
+                Ok(converted_210)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("receipt_handle"),
+                        "str",
+                    ),
+                    "sqs",
+                    "DeleteMessage",
+                )
+            })?;
+            Some(converted_210)
         } else {
             None
         };
@@ -2446,20 +3254,66 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_198: String = value.extract()?;
-            Some(converted_198)
+            let converted_211 = (|| -> PyResult<_> {
+                let converted_211: String = value.extract()?;
+                Ok(converted_211)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "DeleteMessageBatch",
+                )
+            })?;
+            Some(converted_211)
         } else {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_199 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_200 in value.try_iter()? {
-                let item_201 = item_result_200?;
-                let converted_item_202 = delete_message_batch_request_entry_from_py(&item_201)?;
-                converted_199.push(converted_item_202);
-            }
-            Some(converted_199)
+            let converted_212 = (|| -> PyResult<_> {
+                let mut converted_212 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_216, item_result_213) in value.try_iter()?.enumerate() {
+                    let item_214 = item_result_213.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_216),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_215 = (|| -> PyResult<_> {
+                        let converted_item_215 =
+                            delete_message_batch_request_entry_from_py(&item_214)?;
+                        Ok(converted_item_215)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_216),
+                            "dict (DeleteMessageBatchRequestEntry)",
+                        )
+                    })?;
+                    converted_212.push(converted_item_215);
+                }
+                Ok(converted_212)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "DeleteMessageBatch",
+                )
+            })?;
+            Some(converted_212)
         } else {
             None
         };
@@ -2499,8 +3353,22 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_203: String = value.extract()?;
-            Some(converted_203)
+            let converted_217 = (|| -> PyResult<_> {
+                let converted_217: String = value.extract()?;
+                Ok(converted_217)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "DeleteQueue",
+                )
+            })?;
+            Some(converted_217)
         } else {
             None
         };
@@ -2534,22 +3402,67 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_204: String = value.extract()?;
-            Some(converted_204)
+            let converted_218 = (|| -> PyResult<_> {
+                let converted_218: String = value.extract()?;
+                Ok(converted_218)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "GetQueueAttributes",
+                )
+            })?;
+            Some(converted_218)
         } else {
             None
         };
         let attribute_names_value = if let Some(value) = dict_value(params, "attribute_names")? {
-            let mut converted_205 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_206 in value.try_iter()? {
-                let item_207 = item_result_206?;
-                let enum_value_209: String = item_207.extract()?;
-                let converted_item_208 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_209.as_str());
-                converted_205.push(converted_item_208);
-            }
-            Some(converted_205)
+            let converted_219 = (|| -> PyResult<_> {
+                let mut converted_219 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_223, item_result_220) in value.try_iter()?.enumerate() {
+                    let item_221 = item_result_220.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_223),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_222 = (|| -> PyResult<_> {
+                        let enum_value_224: String = item_221.extract()?;
+                        let converted_item_222 =
+                            aws_sdk_sqs::types::QueueAttributeName::from(enum_value_224.as_str());
+                        Ok(converted_item_222)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_223),
+                            "str (QueueAttributeName)",
+                        )
+                    })?;
+                    converted_219.push(converted_item_222);
+                }
+                Ok(converted_219)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attribute_names"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "GetQueueAttributes",
+                )
+            })?;
+            Some(converted_219)
         } else {
             None
         };
@@ -2587,15 +3500,43 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_name_value = if let Some(value) = dict_value(params, "queue_name")? {
-            let converted_210: String = value.extract()?;
-            Some(converted_210)
+            let converted_225 = (|| -> PyResult<_> {
+                let converted_225: String = value.extract()?;
+                Ok(converted_225)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_name"),
+                        "str",
+                    ),
+                    "sqs",
+                    "GetQueueUrl",
+                )
+            })?;
+            Some(converted_225)
         } else {
             None
         };
         let queue_owner_aws_account_id_value =
             if let Some(value) = dict_value(params, "queue_owner_aws_account_id")? {
-                let converted_211: String = value.extract()?;
-                Some(converted_211)
+                let converted_226 = (|| -> PyResult<_> {
+                    let converted_226: String = value.extract()?;
+                    Ok(converted_226)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("queue_owner_aws_account_id"),
+                            "str",
+                        ),
+                        "sqs",
+                        "GetQueueUrl",
+                    )
+                })?;
+                Some(converted_226)
             } else {
                 None
             };
@@ -2632,20 +3573,62 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_212: String = value.extract()?;
-            Some(converted_212)
+            let converted_227 = (|| -> PyResult<_> {
+                let converted_227: String = value.extract()?;
+                Ok(converted_227)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ListDeadLetterSourceQueues",
+                )
+            })?;
+            Some(converted_227)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_213: String = value.extract()?;
-            Some(converted_213)
+            let converted_228 = (|| -> PyResult<_> {
+                let converted_228: String = value.extract()?;
+                Ok(converted_228)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ListDeadLetterSourceQueues",
+                )
+            })?;
+            Some(converted_228)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_214: i32 = value.extract()?;
-            Some(converted_214)
+            let converted_229 = (|| -> PyResult<_> {
+                let converted_229: i32 = value.extract()?;
+                Ok(converted_229)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "sqs",
+                    "ListDeadLetterSourceQueues",
+                )
+            })?;
+            Some(converted_229)
         } else {
             None
         };
@@ -2684,14 +3667,42 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let source_arn_value = if let Some(value) = dict_value(params, "source_arn")? {
-            let converted_215: String = value.extract()?;
-            Some(converted_215)
+            let converted_230 = (|| -> PyResult<_> {
+                let converted_230: String = value.extract()?;
+                Ok(converted_230)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("source_arn"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ListMessageMoveTasks",
+                )
+            })?;
+            Some(converted_230)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_216: i32 = value.extract()?;
-            Some(converted_216)
+            let converted_231 = (|| -> PyResult<_> {
+                let converted_231: i32 = value.extract()?;
+                Ok(converted_231)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "sqs",
+                    "ListMessageMoveTasks",
+                )
+            })?;
+            Some(converted_231)
         } else {
             None
         };
@@ -2731,8 +3742,22 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_217: String = value.extract()?;
-            Some(converted_217)
+            let converted_232 = (|| -> PyResult<_> {
+                let converted_232: String = value.extract()?;
+                Ok(converted_232)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ListQueueTags",
+                )
+            })?;
+            Some(converted_232)
         } else {
             None
         };
@@ -2768,20 +3793,62 @@ impl SQSClient {
         let state = self.state.clone();
         let queue_name_prefix_value = if let Some(value) = dict_value(params, "queue_name_prefix")?
         {
-            let converted_218: String = value.extract()?;
-            Some(converted_218)
+            let converted_233 = (|| -> PyResult<_> {
+                let converted_233: String = value.extract()?;
+                Ok(converted_233)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_name_prefix"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ListQueues",
+                )
+            })?;
+            Some(converted_233)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_219: String = value.extract()?;
-            Some(converted_219)
+            let converted_234 = (|| -> PyResult<_> {
+                let converted_234: String = value.extract()?;
+                Ok(converted_234)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ListQueues",
+                )
+            })?;
+            Some(converted_234)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_220: i32 = value.extract()?;
-            Some(converted_220)
+            let converted_235 = (|| -> PyResult<_> {
+                let converted_235: i32 = value.extract()?;
+                Ok(converted_235)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "sqs",
+                    "ListQueues",
+                )
+            })?;
+            Some(converted_235)
         } else {
             None
         };
@@ -2819,8 +3886,22 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_221: String = value.extract()?;
-            Some(converted_221)
+            let converted_236 = (|| -> PyResult<_> {
+                let converted_236: String = value.extract()?;
+                Ok(converted_236)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "PurgeQueue",
+                )
+            })?;
+            Some(converted_236)
         } else {
             None
         };
@@ -2854,79 +3935,243 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_222: String = value.extract()?;
-            Some(converted_222)
+            let converted_237 = (|| -> PyResult<_> {
+                let converted_237: String = value.extract()?;
+                Ok(converted_237)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "ReceiveMessage",
+                )
+            })?;
+            Some(converted_237)
         } else {
             None
         };
         let attribute_names_value = if let Some(value) = dict_value(params, "attribute_names")? {
-            let mut converted_223 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_224 in value.try_iter()? {
-                let item_225 = item_result_224?;
-                let enum_value_227: String = item_225.extract()?;
-                let converted_item_226 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_227.as_str());
-                converted_223.push(converted_item_226);
-            }
-            Some(converted_223)
+            let converted_238 = (|| -> PyResult<_> {
+                let mut converted_238 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_242, item_result_239) in value.try_iter()?.enumerate() {
+                    let item_240 = item_result_239.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_242),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_241 = (|| -> PyResult<_> {
+                        let enum_value_243: String = item_240.extract()?;
+                        let converted_item_241 =
+                            aws_sdk_sqs::types::QueueAttributeName::from(enum_value_243.as_str());
+                        Ok(converted_item_241)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_242),
+                            "str (QueueAttributeName)",
+                        )
+                    })?;
+                    converted_238.push(converted_item_241);
+                }
+                Ok(converted_238)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attribute_names"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "ReceiveMessage",
+                )
+            })?;
+            Some(converted_238)
         } else {
             None
         };
-        let message_system_attribute_names_value = if let Some(value) =
-            dict_value(params, "message_system_attribute_names")?
-        {
-            let mut converted_228 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_229 in value.try_iter()? {
-                let item_230 = item_result_229?;
-                let enum_value_232: String = item_230.extract()?;
-                let converted_item_231 =
-                    aws_sdk_sqs::types::MessageSystemAttributeName::from(enum_value_232.as_str());
-                converted_228.push(converted_item_231);
-            }
-            Some(converted_228)
-        } else {
-            None
-        };
+        let message_system_attribute_names_value =
+            if let Some(value) = dict_value(params, "message_system_attribute_names")? {
+                let converted_244 = (|| -> PyResult<_> {
+                    let mut converted_244 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_248, item_result_245) in value.try_iter()?.enumerate() {
+                        let item_246 = item_result_245.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_248),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_247 = (|| -> PyResult<_> {
+                            let enum_value_249: String = item_246.extract()?;
+                            let converted_item_247 =
+                                aws_sdk_sqs::types::MessageSystemAttributeName::from(
+                                    enum_value_249.as_str(),
+                                );
+                            Ok(converted_item_247)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_248),
+                                "str (MessageSystemAttributeName)",
+                            )
+                        })?;
+                        converted_244.push(converted_item_247);
+                    }
+                    Ok(converted_244)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("message_system_attribute_names"),
+                            "sequence",
+                        ),
+                        "sqs",
+                        "ReceiveMessage",
+                    )
+                })?;
+                Some(converted_244)
+            } else {
+                None
+            };
         let message_attribute_names_value =
             if let Some(value) = dict_value(params, "message_attribute_names")? {
-                let mut converted_233 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_234 in value.try_iter()? {
-                    let item_235 = item_result_234?;
-                    let converted_item_236: String = item_235.extract()?;
-                    converted_233.push(converted_item_236);
-                }
-                Some(converted_233)
+                let converted_250 = (|| -> PyResult<_> {
+                    let mut converted_250 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_254, item_result_251) in value.try_iter()?.enumerate() {
+                        let item_252 = item_result_251.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_254),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_253 = (|| -> PyResult<_> {
+                            let converted_item_253: String = item_252.extract()?;
+                            Ok(converted_item_253)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_254),
+                                "str",
+                            )
+                        })?;
+                        converted_250.push(converted_item_253);
+                    }
+                    Ok(converted_250)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("message_attribute_names"),
+                            "sequence",
+                        ),
+                        "sqs",
+                        "ReceiveMessage",
+                    )
+                })?;
+                Some(converted_250)
             } else {
                 None
             };
         let max_number_of_messages_value =
             if let Some(value) = dict_value(params, "max_number_of_messages")? {
-                let converted_237: i32 = value.extract()?;
-                Some(converted_237)
+                let converted_255 = (|| -> PyResult<_> {
+                    let converted_255: i32 = value.extract()?;
+                    Ok(converted_255)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("max_number_of_messages"),
+                            "int",
+                        ),
+                        "sqs",
+                        "ReceiveMessage",
+                    )
+                })?;
+                Some(converted_255)
             } else {
                 None
             };
         let visibility_timeout_value =
             if let Some(value) = dict_value(params, "visibility_timeout")? {
-                let converted_238: i32 = value.extract()?;
-                Some(converted_238)
+                let converted_256 = (|| -> PyResult<_> {
+                    let converted_256: i32 = value.extract()?;
+                    Ok(converted_256)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("visibility_timeout"),
+                            "int",
+                        ),
+                        "sqs",
+                        "ReceiveMessage",
+                    )
+                })?;
+                Some(converted_256)
             } else {
                 None
             };
         let wait_time_seconds_value = if let Some(value) = dict_value(params, "wait_time_seconds")?
         {
-            let converted_239: i32 = value.extract()?;
-            Some(converted_239)
+            let converted_257 = (|| -> PyResult<_> {
+                let converted_257: i32 = value.extract()?;
+                Ok(converted_257)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("wait_time_seconds"),
+                        "int",
+                    ),
+                    "sqs",
+                    "ReceiveMessage",
+                )
+            })?;
+            Some(converted_257)
         } else {
             None
         };
         let receive_request_attempt_id_value =
             if let Some(value) = dict_value(params, "receive_request_attempt_id")? {
-                let converted_240: String = value.extract()?;
-                Some(converted_240)
+                let converted_258 = (|| -> PyResult<_> {
+                    let converted_258: String = value.extract()?;
+                    Ok(converted_258)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("receive_request_attempt_id"),
+                            "str",
+                        ),
+                        "sqs",
+                        "ReceiveMessage",
+                    )
+                })?;
+                Some(converted_258)
             } else {
                 None
             };
@@ -2972,14 +4217,38 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_241: String = value.extract()?;
-            Some(converted_241)
+            let converted_259 = (|| -> PyResult<_> {
+                let converted_259: String = value.extract()?;
+                Ok(converted_259)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "RemovePermission",
+                )
+            })?;
+            Some(converted_259)
         } else {
             None
         };
         let label_value = if let Some(value) = dict_value(params, "label")? {
-            let converted_242: String = value.extract()?;
-            Some(converted_242)
+            let converted_260 = (|| -> PyResult<_> {
+                let converted_260: String = value.extract()?;
+                Ok(converted_260)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("label"), "str"),
+                    "sqs",
+                    "RemovePermission",
+                )
+            })?;
+            Some(converted_260)
         } else {
             None
         };
@@ -3017,63 +4286,202 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_243: String = value.extract()?;
-            Some(converted_243)
+            let converted_261 = (|| -> PyResult<_> {
+                let converted_261: String = value.extract()?;
+                Ok(converted_261)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "SendMessage",
+                )
+            })?;
+            Some(converted_261)
         } else {
             None
         };
         let message_body_value = if let Some(value) = dict_value(params, "message_body")? {
-            let converted_244: String = value.extract()?;
-            Some(converted_244)
+            let converted_262 = (|| -> PyResult<_> {
+                let converted_262: String = value.extract()?;
+                Ok(converted_262)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message_body"),
+                        "str",
+                    ),
+                    "sqs",
+                    "SendMessage",
+                )
+            })?;
+            Some(converted_262)
         } else {
             None
         };
         let delay_seconds_value = if let Some(value) = dict_value(params, "delay_seconds")? {
-            let converted_245: i32 = value.extract()?;
-            Some(converted_245)
+            let converted_263 = (|| -> PyResult<_> {
+                let converted_263: i32 = value.extract()?;
+                Ok(converted_263)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("delay_seconds"),
+                        "int",
+                    ),
+                    "sqs",
+                    "SendMessage",
+                )
+            })?;
+            Some(converted_263)
         } else {
             None
         };
         let message_attributes_value =
             if let Some(value) = dict_value(params, "message_attributes")? {
-                let mapping_247 = value.cast::<PyDict>()?;
-                let mut converted_246 = HashMap::with_capacity(mapping_247.len());
-                for (key_248, value_249) in mapping_247.iter() {
-                    let converted_key_250: String = key_248.extract()?;
-                    let converted_value_251 = message_attribute_value_from_py(&value_249)?;
-                    converted_246.insert(converted_key_250, converted_value_251);
-                }
-                Some(converted_246)
+                let converted_264 = (|| -> PyResult<_> {
+                    let mapping_265 = value.cast::<PyDict>()?;
+                    let mut converted_264 = HashMap::with_capacity(mapping_265.len());
+                    for (index_270, (key_266, value_267)) in mapping_265.iter().enumerate() {
+                        let converted_key_268 = (|| -> PyResult<_> {
+                            let converted_key_268: String = key_266.extract()?;
+                            Ok(converted_key_268)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_270),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_269 = (|| -> PyResult<_> {
+                            let converted_value_269 = message_attribute_value_from_py(&value_267)?;
+                            Ok(converted_value_269)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_270),
+                                "dict (MessageAttributeValue)",
+                            )
+                        })?;
+                        converted_264.insert(converted_key_268, converted_value_269);
+                    }
+                    Ok(converted_264)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("message_attributes"),
+                            "dict",
+                        ),
+                        "sqs",
+                        "SendMessage",
+                    )
+                })?;
+                Some(converted_264)
             } else {
                 None
             };
         let message_system_attributes_value =
             if let Some(value) = dict_value(params, "message_system_attributes")? {
-                let mapping_253 = value.cast::<PyDict>()?;
-                let mut converted_252 = HashMap::with_capacity(mapping_253.len());
-                for (key_254, value_255) in mapping_253.iter() {
-                    let enum_value_258: String = key_254.extract()?;
-                    let converted_key_256 =
-                        aws_sdk_sqs::types::MessageSystemAttributeNameForSends::from(
-                            enum_value_258.as_str(),
-                        );
-                    let converted_value_257 = message_system_attribute_value_from_py(&value_255)?;
-                    converted_252.insert(converted_key_256, converted_value_257);
-                }
-                Some(converted_252)
+                let converted_271 = (|| -> PyResult<_> {
+                    let mapping_272 = value.cast::<PyDict>()?;
+                    let mut converted_271 = HashMap::with_capacity(mapping_272.len());
+                    for (index_277, (key_273, value_274)) in mapping_272.iter().enumerate() {
+                        let converted_key_275 = (|| -> PyResult<_> {
+                            let enum_value_278: String = key_273.extract()?;
+                            let converted_key_275 =
+                                aws_sdk_sqs::types::MessageSystemAttributeNameForSends::from(
+                                    enum_value_278.as_str(),
+                                );
+                            Ok(converted_key_275)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_277),
+                                "str (MessageSystemAttributeNameForSends)",
+                            )
+                        })?;
+                        let converted_value_276 = (|| -> PyResult<_> {
+                            let converted_value_276 =
+                                message_system_attribute_value_from_py(&value_274)?;
+                            Ok(converted_value_276)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_277),
+                                "dict (MessageSystemAttributeValue)",
+                            )
+                        })?;
+                        converted_271.insert(converted_key_275, converted_value_276);
+                    }
+                    Ok(converted_271)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("message_system_attributes"),
+                            "dict",
+                        ),
+                        "sqs",
+                        "SendMessage",
+                    )
+                })?;
+                Some(converted_271)
             } else {
                 None
             };
         let message_deduplication_id_value =
             if let Some(value) = dict_value(params, "message_deduplication_id")? {
-                let converted_259: String = value.extract()?;
-                Some(converted_259)
+                let converted_279 = (|| -> PyResult<_> {
+                    let converted_279: String = value.extract()?;
+                    Ok(converted_279)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("message_deduplication_id"),
+                            "str",
+                        ),
+                        "sqs",
+                        "SendMessage",
+                    )
+                })?;
+                Some(converted_279)
             } else {
                 None
             };
         let message_group_id_value = if let Some(value) = dict_value(params, "message_group_id")? {
-            let converted_260: String = value.extract()?;
-            Some(converted_260)
+            let converted_280 = (|| -> PyResult<_> {
+                let converted_280: String = value.extract()?;
+                Ok(converted_280)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message_group_id"),
+                        "str",
+                    ),
+                    "sqs",
+                    "SendMessage",
+                )
+            })?;
+            Some(converted_280)
         } else {
             None
         };
@@ -3115,20 +4523,66 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_261: String = value.extract()?;
-            Some(converted_261)
+            let converted_281 = (|| -> PyResult<_> {
+                let converted_281: String = value.extract()?;
+                Ok(converted_281)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "SendMessageBatch",
+                )
+            })?;
+            Some(converted_281)
         } else {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_262 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_263 in value.try_iter()? {
-                let item_264 = item_result_263?;
-                let converted_item_265 = send_message_batch_request_entry_from_py(&item_264)?;
-                converted_262.push(converted_item_265);
-            }
-            Some(converted_262)
+            let converted_282 = (|| -> PyResult<_> {
+                let mut converted_282 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_286, item_result_283) in value.try_iter()?.enumerate() {
+                    let item_284 = item_result_283.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_286),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_285 = (|| -> PyResult<_> {
+                        let converted_item_285 =
+                            send_message_batch_request_entry_from_py(&item_284)?;
+                        Ok(converted_item_285)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_286),
+                            "dict (SendMessageBatchRequestEntry)",
+                        )
+                    })?;
+                    converted_282.push(converted_item_285);
+                }
+                Ok(converted_282)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("entries"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "SendMessageBatch",
+                )
+            })?;
+            Some(converted_282)
         } else {
             None
         };
@@ -3168,22 +4622,70 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_266: String = value.extract()?;
-            Some(converted_266)
+            let converted_287 = (|| -> PyResult<_> {
+                let converted_287: String = value.extract()?;
+                Ok(converted_287)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "SetQueueAttributes",
+                )
+            })?;
+            Some(converted_287)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_268 = value.cast::<PyDict>()?;
-            let mut converted_267 = HashMap::with_capacity(mapping_268.len());
-            for (key_269, value_270) in mapping_268.iter() {
-                let enum_value_273: String = key_269.extract()?;
-                let converted_key_271 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_273.as_str());
-                let converted_value_272: String = value_270.extract()?;
-                converted_267.insert(converted_key_271, converted_value_272);
-            }
-            Some(converted_267)
+            let converted_288 = (|| -> PyResult<_> {
+                let mapping_289 = value.cast::<PyDict>()?;
+                let mut converted_288 = HashMap::with_capacity(mapping_289.len());
+                for (index_294, (key_290, value_291)) in mapping_289.iter().enumerate() {
+                    let converted_key_292 = (|| -> PyResult<_> {
+                        let enum_value_295: String = key_290.extract()?;
+                        let converted_key_292 =
+                            aws_sdk_sqs::types::QueueAttributeName::from(enum_value_295.as_str());
+                        Ok(converted_key_292)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_294),
+                            "str (QueueAttributeName)",
+                        )
+                    })?;
+                    let converted_value_293 = (|| -> PyResult<_> {
+                        let converted_value_293: String = value_291.extract()?;
+                        Ok(converted_value_293)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_294),
+                            "str",
+                        )
+                    })?;
+                    converted_288.insert(converted_key_292, converted_value_293);
+                }
+                Ok(converted_288)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sqs",
+                    "SetQueueAttributes",
+                )
+            })?;
+            Some(converted_288)
         } else {
             None
         };
@@ -3221,21 +4723,63 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let source_arn_value = if let Some(value) = dict_value(params, "source_arn")? {
-            let converted_274: String = value.extract()?;
-            Some(converted_274)
+            let converted_296 = (|| -> PyResult<_> {
+                let converted_296: String = value.extract()?;
+                Ok(converted_296)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("source_arn"),
+                        "str",
+                    ),
+                    "sqs",
+                    "StartMessageMoveTask",
+                )
+            })?;
+            Some(converted_296)
         } else {
             None
         };
         let destination_arn_value = if let Some(value) = dict_value(params, "destination_arn")? {
-            let converted_275: String = value.extract()?;
-            Some(converted_275)
+            let converted_297 = (|| -> PyResult<_> {
+                let converted_297: String = value.extract()?;
+                Ok(converted_297)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("destination_arn"),
+                        "str",
+                    ),
+                    "sqs",
+                    "StartMessageMoveTask",
+                )
+            })?;
+            Some(converted_297)
         } else {
             None
         };
         let max_number_of_messages_per_second_value =
             if let Some(value) = dict_value(params, "max_number_of_messages_per_second")? {
-                let converted_276: i32 = value.extract()?;
-                Some(converted_276)
+                let converted_298 = (|| -> PyResult<_> {
+                    let converted_298: i32 = value.extract()?;
+                    Ok(converted_298)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("max_number_of_messages_per_second"),
+                            "int",
+                        ),
+                        "sqs",
+                        "StartMessageMoveTask",
+                    )
+                })?;
+                Some(converted_298)
             } else {
                 None
             };
@@ -3274,20 +4818,64 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_277: String = value.extract()?;
-            Some(converted_277)
+            let converted_299 = (|| -> PyResult<_> {
+                let converted_299: String = value.extract()?;
+                Ok(converted_299)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "TagQueue",
+                )
+            })?;
+            Some(converted_299)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mapping_279 = value.cast::<PyDict>()?;
-            let mut converted_278 = HashMap::with_capacity(mapping_279.len());
-            for (key_280, value_281) in mapping_279.iter() {
-                let converted_key_282: String = key_280.extract()?;
-                let converted_value_283: String = value_281.extract()?;
-                converted_278.insert(converted_key_282, converted_value_283);
-            }
-            Some(converted_278)
+            let converted_300 = (|| -> PyResult<_> {
+                let mapping_301 = value.cast::<PyDict>()?;
+                let mut converted_300 = HashMap::with_capacity(mapping_301.len());
+                for (index_306, (key_302, value_303)) in mapping_301.iter().enumerate() {
+                    let converted_key_304 = (|| -> PyResult<_> {
+                        let converted_key_304: String = key_302.extract()?;
+                        Ok(converted_key_304)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_306),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_305 = (|| -> PyResult<_> {
+                        let converted_value_305: String = value_303.extract()?;
+                        Ok(converted_value_305)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_306),
+                            "str",
+                        )
+                    })?;
+                    converted_300.insert(converted_key_304, converted_value_305);
+                }
+                Ok(converted_300)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("tags"), "dict"),
+                    "sqs",
+                    "TagQueue",
+                )
+            })?;
+            Some(converted_300)
         } else {
             None
         };
@@ -3324,20 +4912,65 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_284: String = value.extract()?;
-            Some(converted_284)
+            let converted_307 = (|| -> PyResult<_> {
+                let converted_307: String = value.extract()?;
+                Ok(converted_307)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("queue_url"),
+                        "str",
+                    ),
+                    "sqs",
+                    "UntagQueue",
+                )
+            })?;
+            Some(converted_307)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_285 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_286 in value.try_iter()? {
-                let item_287 = item_result_286?;
-                let converted_item_288: String = item_287.extract()?;
-                converted_285.push(converted_item_288);
-            }
-            Some(converted_285)
+            let converted_308 = (|| -> PyResult<_> {
+                let mut converted_308 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_312, item_result_309) in value.try_iter()?.enumerate() {
+                    let item_310 = item_result_309.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_312),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_311 = (|| -> PyResult<_> {
+                        let converted_item_311: String = item_310.extract()?;
+                        Ok(converted_item_311)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_312),
+                            "str",
+                        )
+                    })?;
+                    converted_308.push(converted_item_311);
+                }
+                Ok(converted_308)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tag_keys"),
+                        "sequence",
+                    ),
+                    "sqs",
+                    "UntagQueue",
+                )
+            })?;
+            Some(converted_308)
         } else {
             None
         };

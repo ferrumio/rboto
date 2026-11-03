@@ -486,7 +486,42 @@ class ServiceGenerator:
             return "enum"
         raise GenerationError(f"unsupported Rust type: {rust_type}")
 
-    def _from_py(self, rust_type: str, source: str, target: str, indent: str) -> list[str]:
+    def _input_expected(self, rust_type: str) -> str:
+        kind = self._kind(rust_type)
+        if kind in {"struct", "enum"}:
+            name = _crate_type_name(rust_type)
+            return f"{'dict' if kind == 'struct' else 'str'} ({name})"
+        return {
+            "string": "str", "bool": "bool", "i8": "int", "i16": "int",
+            "i32": "int", "i64": "int", "f32": "float", "f64": "float",
+            "document": "JSONValue", "datetime": "ISO 8601 timestamp string",
+            "blob": "bytes", "byte_stream": "bytes", "vec": "sequence",
+            "map": "dict", "union": "exactly one known union variant",
+            "event_sender": "async iterator", "box": "valid boxed value",
+            "option": "valid optional value",
+        }.get(kind, "valid input")
+
+    def _from_py(
+        self, rust_type: str, source: str, target: str, indent: str,
+        *, path: str = "rboto_core::InputPath::Root", operation: str | None = None,
+    ) -> list[str]:
+        expected = self._input_expected(rust_type)
+        error = f'rboto_core::input_error(error, {path}, "{expected}")'
+        if operation is not None:
+            error = (
+                f'rboto_core::input_operation({error}, '
+                f'"{self.descriptor.service_id}", "{operation}")'
+            )
+        return [
+            f"{indent}let {target} = (|| -> PyResult<_> {{",
+            *self._from_py_value(rust_type, source, target, indent + "    "),
+            f"{indent}    Ok({target})",
+            f"{indent}}})().map_err(|error| {error})?;",
+        ]
+
+    def _from_py_value(
+        self, rust_type: str, source: str, target: str, indent: str,
+    ) -> list[str]:
         kind = self._kind(rust_type)
         lines: list[str] = []
         if kind == "string":
@@ -529,7 +564,7 @@ class ServiceGenerator:
                 f"{indent}let {raw}: String = {source}.extract()?;",
                 f"{indent}let {target} = ::aws_smithy_types::DateTime::from_str(",
                 f"{indent}    &{raw}, ::aws_smithy_types::date_time::Format::DateTime",
-                f"{indent}).map_err(|error| PyValueError::new_err(error.to_string()))?;",
+                f'{indent}).map_err(|_| PyValueError::new_err("invalid timestamp"))?;',
             ]
         if kind == "blob":
             raw = self._next("bytes")
@@ -561,15 +596,22 @@ class ServiceGenerator:
             iterator = self._next("item_result")
             item = self._next("item")
             converted = self._next("converted_item")
+            index = self._next("index")
             # Reserve only for concrete lists. Other accepted iterables may not
             # have a length, or may execute user code when a length is requested.
             lines.append(
                 f"{indent}let mut {target} = Vec::with_capacity("
                 f"{source}.cast::<PyList>().map_or(0, |items| items.len()));"
             )
-            lines.append(f"{indent}for {iterator} in {source}.try_iter()? {{")
-            lines.append(f"{indent}    let {item} = {iterator}?;")
-            lines.extend(self._from_py(item_type, item, converted, indent + "    "))
+            lines.append(f"{indent}for ({index}, {iterator}) in {source}.try_iter()?.enumerate() {{")
+            lines.append(
+                f"{indent}    let {item} = {iterator}.map_err(|error| rboto_core::input_rule("
+                f'error, rboto_core::InputPath::Index({index}), "next sequence item", Some("iteration")))?;'
+            )
+            lines.extend(self._from_py(
+                item_type, item, converted, indent + "    ",
+                path=f"rboto_core::InputPath::Index({index})",
+            ))
             lines.append(f"{indent}    {target}.push({converted});")
             lines.append(f"{indent}}}")
             return lines
@@ -583,13 +625,20 @@ class ServiceGenerator:
             value = self._next("value")
             converted_key = self._next("converted_key")
             converted_value = self._next("converted_value")
+            index = self._next("index")
             lines.append(f"{indent}let {dictionary} = {source}.cast::<PyDict>()?;")
             lines.append(
                 f"{indent}let mut {target} = HashMap::with_capacity({dictionary}.len());"
             )
-            lines.append(f"{indent}for ({key}, {value}) in {dictionary}.iter() {{")
-            lines.extend(self._from_py(key_type, key, converted_key, indent + "    "))
-            lines.extend(self._from_py(value_type, value, converted_value, indent + "    "))
+            lines.append(f"{indent}for ({index}, ({key}, {value})) in {dictionary}.iter().enumerate() {{")
+            lines.extend(self._from_py(
+                key_type, key, converted_key, indent + "    ",
+                path=f"rboto_core::InputPath::MapKey({index})",
+            ))
+            lines.extend(self._from_py(
+                value_type, value, converted_value, indent + "    ",
+                path=f"rboto_core::InputPath::MapValue({index})",
+            ))
             lines.append(f"{indent}    {target}.insert({converted_key}, {converted_value});")
             lines.append(f"{indent}}}")
             return lines
@@ -1067,12 +1116,18 @@ class ServiceGenerator:
         for field in rust.fields:
             converted = self._next("converted")
             lines.append(f'    if let Some(value) = dict_value(values, "{field.name}")? {{')
-            lines.extend(self._from_py(field.rust_type, "value", converted, "        "))
+            lines.extend(self._from_py(
+                field.rust_type, "value", converted, "        ",
+                path=f'rboto_core::InputPath::Field("{field.name}")',
+            ))
             lines.append(f"        builder = builder.set_{field.name}(Some({converted}));")
             lines.append("    }")
         if rust.build_fallible:
+            required = ", ".join(
+                f'("{name}", "{name}")' for name in rust.builder_required_fields
+            )
             lines.append(
-                "    builder.build().map_err(|error| PyValueError::new_err(error.to_string()))"
+                f"    builder.build().map_err(|_| rboto_core::input_builder_error(values, &[{required}]))"
             )
         else:
             lines.append("    Ok(builder.build())")
@@ -1158,7 +1213,7 @@ class ServiceGenerator:
         lines = [
             f"fn {fn_name}_from_py(value: &Bound<'_, PyAny>) -> PyResult<{self.rust_module}::types::{rust.name}> {{",
             "    let values = value.cast::<PyDict>()?;",
-            '    if values.len() != 1 { return Err(PyValueError::new_err("union requires exactly one variant")); }',
+            '    if values.len() != 1 { return Err(rboto_core::input_rule(PyValueError::new_err("union requires exactly one variant"), rboto_core::InputPath::Root, "exactly one known union variant", Some("union"))); }',
         ]
         for member in shape.members:
             if (
@@ -1181,7 +1236,7 @@ class ServiceGenerator:
                 lines.extend(
                     [
                         f'    if let Some(value) = values.get_item("{member.rust_name}")? {{',
-                        '        if !value.is_none() { return Err(PyValueError::new_err("unit variant requires None")); }',
+                        f'        if !value.is_none() {{ return Err(rboto_core::input_rule(PyValueError::new_err("unit variant requires None"), rboto_core::InputPath::Field("{member.rust_name}"), "None", Some("union"))); }}',
                         f"        return Ok({self.rust_module}::types::{rust.name}::{variant});",
                         "    }",
                     ]
@@ -1190,14 +1245,17 @@ class ServiceGenerator:
             if rust_type is None:
                 raise GenerationError(f"missing Rust union variant: {rust.name}.{variant}")
             lines.append(f'    if let Some(value) = dict_value(values, "{member.rust_name}")? {{')
-            lines.extend(self._from_py(rust_type, "value", converted, "        "))
+            lines.extend(self._from_py(
+                rust_type, "value", converted, "        ",
+                path=f'rboto_core::InputPath::Field("{member.rust_name}")',
+            ))
             lines.append(
                 f"        return Ok({self.rust_module}::types::{rust.name}::{variant}({converted}));"
             )
             lines.append("    }")
         lines.extend(
             [
-                f'    Err(PyValueError::new_err("{rust.name} requires exactly one known variant"))',
+                f'    Err(rboto_core::input_rule(PyValueError::new_err("{rust.name} requires exactly one known variant"), rboto_core::InputPath::Root, "exactly one known union variant", Some("union")))',
                 "}",
             ]
         )
@@ -1275,7 +1333,11 @@ class ServiceGenerator:
             lines.append(
                 f'        let {converted} = if let Some(value) = dict_value(params, "{field.name}")? {{'
             )
-            lines.extend(self._from_py(field.rust_type, "value", inner, "            "))
+            lines.extend(self._from_py(
+                field.rust_type, "value", inner, "            ",
+                path=f'rboto_core::InputPath::Field("{_safe_parameter(field.name)}")',
+                operation=smithy.name,
+            ))
             lines.append(f"            Some({inner})")
             lines.append("        } else { None };")
             converted_fields.append((field, converted))

@@ -128,6 +128,7 @@ jobs:
           .venv/bin/pytest tests/integration/test_generated_client_bridge.py
           tests/integration/test_new_client_protocols.py
           tests/integration/test_model_interop.py
+          tests/integration/test_input_conversion.py
           tests/integration/test_interceptors.py
           tests/integration/test_client_configuration.py
           tests/integration/test_byte_stream.py

@@ -1,5 +1,15 @@
 from typing import NotRequired, TypedDict
 
+from ._conversion import (
+    ConversionErrorCategory as ConversionErrorCategory,
+)
+from ._conversion import (
+    ConversionErrorContext as ConversionErrorContext,
+)
+from ._conversion import (
+    get_conversion_context as get_conversion_context,
+)
+
 
 class ErrorDetails(TypedDict):
     Code: str

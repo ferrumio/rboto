@@ -10,22 +10,43 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn assumed_role_user_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sts::types::AssumedRoleUser> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sts::types::AssumedRoleUser::builder();
     if let Some(value) = dict_value(values, "assumed_role_id")? {
-        let converted_1: String = value.extract()?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("assumed_role_id"),
+                "str",
+            )
+        })?;
         builder = builder.set_assumed_role_id(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_2: String = value.extract()?;
+        let converted_2 = (|| -> PyResult<_> {
+            let converted_2: String = value.extract()?;
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
+        })?;
         builder = builder.set_arn(Some(converted_2));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("assumed_role_id", "assumed_role_id"), ("arn", "arn")],
+        )
+    })
 }
 
 fn assumed_role_user_to_py(
@@ -44,29 +65,69 @@ fn credentials_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sts::types:
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sts::types::Credentials::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
-        let converted_5: String = value.extract()?;
+        let converted_5 = (|| -> PyResult<_> {
+            let converted_5: String = value.extract()?;
+            Ok(converted_5)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("access_key_id"), "str")
+        })?;
         builder = builder.set_access_key_id(Some(converted_5));
     }
     if let Some(value) = dict_value(values, "secret_access_key")? {
-        let converted_6: String = value.extract()?;
+        let converted_6 = (|| -> PyResult<_> {
+            let converted_6: String = value.extract()?;
+            Ok(converted_6)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("secret_access_key"),
+                "str",
+            )
+        })?;
         builder = builder.set_secret_access_key(Some(converted_6));
     }
     if let Some(value) = dict_value(values, "session_token")? {
-        let converted_7: String = value.extract()?;
+        let converted_7 = (|| -> PyResult<_> {
+            let converted_7: String = value.extract()?;
+            Ok(converted_7)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("session_token"), "str")
+        })?;
         builder = builder.set_session_token(Some(converted_7));
     }
     if let Some(value) = dict_value(values, "expiration")? {
-        let timestamp_9: String = value.extract()?;
-        let converted_8 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_9,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        let converted_8 = (|| -> PyResult<_> {
+            let timestamp_9: String = value.extract()?;
+            let converted_8 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_9,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_8)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("expiration"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
         builder = builder.set_expiration(Some(converted_8));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("access_key_id", "access_key_id"),
+                ("secret_access_key", "secret_access_key"),
+                ("session_token", "session_token"),
+                ("expiration", "expiration"),
+            ],
+        )
+    })
 }
 
 fn credentials_to_py(
@@ -89,16 +150,35 @@ fn federated_user_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sts::typ
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sts::types::FederatedUser::builder();
     if let Some(value) = dict_value(values, "federated_user_id")? {
-        let converted_14: String = value.extract()?;
+        let converted_14 = (|| -> PyResult<_> {
+            let converted_14: String = value.extract()?;
+            Ok(converted_14)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("federated_user_id"),
+                "str",
+            )
+        })?;
         builder = builder.set_federated_user_id(Some(converted_14));
     }
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_15: String = value.extract()?;
+        let converted_15 = (|| -> PyResult<_> {
+            let converted_15: String = value.extract()?;
+            Ok(converted_15)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
+        })?;
         builder = builder.set_arn(Some(converted_15));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("federated_user_id", "federated_user_id"), ("arn", "arn")],
+        )
+    })
 }
 
 fn federated_user_to_py(
@@ -119,7 +199,13 @@ fn policy_descriptor_type_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sts::types::PolicyDescriptorType::builder();
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_18: String = value.extract()?;
+        let converted_18 = (|| -> PyResult<_> {
+            let converted_18: String = value.extract()?;
+            Ok(converted_18)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
+        })?;
         builder = builder.set_arn(Some(converted_18));
     }
     Ok(builder.build())
@@ -145,11 +231,27 @@ fn provided_context_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sts::types::ProvidedContext::builder();
     if let Some(value) = dict_value(values, "provider_arn")? {
-        let converted_20: String = value.extract()?;
+        let converted_20 = (|| -> PyResult<_> {
+            let converted_20: String = value.extract()?;
+            Ok(converted_20)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("provider_arn"), "str")
+        })?;
         builder = builder.set_provider_arn(Some(converted_20));
     }
     if let Some(value) = dict_value(values, "context_assertion")? {
-        let converted_21: String = value.extract()?;
+        let converted_21 = (|| -> PyResult<_> {
+            let converted_21: String = value.extract()?;
+            Ok(converted_21)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("context_assertion"),
+                "str",
+            )
+        })?;
         builder = builder.set_context_assertion(Some(converted_21));
     }
     Ok(builder.build())
@@ -179,16 +281,28 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sts::types::Tag> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sts::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_24: String = value.extract()?;
+        let converted_24 = (|| -> PyResult<_> {
+            let converted_24: String = value.extract()?;
+            Ok(converted_24)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
+        })?;
         builder = builder.set_key(Some(converted_24));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_25: String = value.extract()?;
+        let converted_25 = (|| -> PyResult<_> {
+            let converted_25: String = value.extract()?;
+            Ok(converted_25)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
+        })?;
         builder = builder.set_value(Some(converted_25));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("key", "key"), ("value", "value")]))
 }
 
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_sts::types::Tag) -> PyResult<Py<PyAny>> {
@@ -209,14 +323,14 @@ struct PyAssumedRoleUser {
 impl PyAssumedRoleUser {
     #[getter]
     fn assumed_role_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_107 = (&self.inner.assumed_role_id).as_str().into_py_any(py)?;
-        Ok(converted_107)
+        let converted_117 = (&self.inner.assumed_role_id).as_str().into_py_any(py)?;
+        Ok(converted_117)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_108 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_108)
+        let converted_118 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_118)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -233,26 +347,26 @@ struct PyCredentials {
 impl PyCredentials {
     #[getter]
     fn access_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_109 = (&self.inner.access_key_id).as_str().into_py_any(py)?;
-        Ok(converted_109)
+        let converted_119 = (&self.inner.access_key_id).as_str().into_py_any(py)?;
+        Ok(converted_119)
     }
 
     #[getter]
     fn secret_access_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_110 = (&self.inner.secret_access_key).as_str().into_py_any(py)?;
-        Ok(converted_110)
+        let converted_120 = (&self.inner.secret_access_key).as_str().into_py_any(py)?;
+        Ok(converted_120)
     }
 
     #[getter]
     fn session_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_111 = (&self.inner.session_token).as_str().into_py_any(py)?;
-        Ok(converted_111)
+        let converted_121 = (&self.inner.session_token).as_str().into_py_any(py)?;
+        Ok(converted_121)
     }
 
     #[getter]
     fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_112 = (&self.inner.expiration).to_string().into_py_any(py)?;
-        Ok(converted_112)
+        let converted_122 = (&self.inner.expiration).to_string().into_py_any(py)?;
+        Ok(converted_122)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -269,14 +383,14 @@ struct PyFederatedUser {
 impl PyFederatedUser {
     #[getter]
     fn federated_user_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_113 = (&self.inner.federated_user_id).as_str().into_py_any(py)?;
-        Ok(converted_113)
+        let converted_123 = (&self.inner.federated_user_id).as_str().into_py_any(py)?;
+        Ok(converted_123)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_114 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_114)
+        let converted_124 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_124)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -320,14 +434,14 @@ impl PyOperationAssumeRoleOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_115 = Py::new(
+            let converted_125 = Py::new(
                 py,
                 PyCredentials {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_115)
+            Ok(converted_125)
         } else {
             Ok(py.None())
         }
@@ -336,14 +450,14 @@ impl PyOperationAssumeRoleOutput {
     #[getter]
     fn assumed_role_user(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.assumed_role_user {
-            let converted_116 = Py::new(
+            let converted_126 = Py::new(
                 py,
                 PyAssumedRoleUser {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_116)
+            Ok(converted_126)
         } else {
             Ok(py.None())
         }
@@ -352,8 +466,8 @@ impl PyOperationAssumeRoleOutput {
     #[getter]
     fn packed_policy_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_117 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_117)
+            let converted_127 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_127)
         } else {
             Ok(py.None())
         }
@@ -362,8 +476,8 @@ impl PyOperationAssumeRoleOutput {
     #[getter]
     fn source_identity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_identity {
-            let converted_118 = (value).as_str().into_py_any(py)?;
-            Ok(converted_118)
+            let converted_128 = (value).as_str().into_py_any(py)?;
+            Ok(converted_128)
         } else {
             Ok(py.None())
         }
@@ -372,8 +486,8 @@ impl PyOperationAssumeRoleOutput {
     #[getter]
     fn session_token_utilization(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_119 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_119)
+            let converted_129 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_129)
         } else {
             Ok(py.None())
         }
@@ -382,8 +496,8 @@ impl PyOperationAssumeRoleOutput {
     #[getter]
     fn session_token_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_size {
-            let converted_120 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_120)
+            let converted_130 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_130)
         } else {
             Ok(py.None())
         }
@@ -392,38 +506,38 @@ impl PyOperationAssumeRoleOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.credentials {
-            let converted_121 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_121)?;
+            let converted_131 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_131)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
         if let Some(value) = &self.inner.assumed_role_user {
-            let converted_122 = assumed_role_user_to_py(py, value)?;
-            result.set_item("assumed_role_user", converted_122)?;
+            let converted_132 = assumed_role_user_to_py(py, value)?;
+            result.set_item("assumed_role_user", converted_132)?;
         } else {
             result.set_item("assumed_role_user", py.None())?;
         }
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_123 = (value).to_owned().into_py_any(py)?;
-            result.set_item("packed_policy_size", converted_123)?;
+            let converted_133 = (value).to_owned().into_py_any(py)?;
+            result.set_item("packed_policy_size", converted_133)?;
         } else {
             result.set_item("packed_policy_size", py.None())?;
         }
         if let Some(value) = &self.inner.source_identity {
-            let converted_124 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_identity", converted_124)?;
+            let converted_134 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_identity", converted_134)?;
         } else {
             result.set_item("source_identity", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_125 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_utilization", converted_125)?;
+            let converted_135 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_utilization", converted_135)?;
         } else {
             result.set_item("session_token_utilization", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_size {
-            let converted_126 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_size", converted_126)?;
+            let converted_136 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_size", converted_136)?;
         } else {
             result.set_item("session_token_size", py.None())?;
         }
@@ -483,14 +597,14 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_127 = Py::new(
+            let converted_137 = Py::new(
                 py,
                 PyCredentials {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_127)
+            Ok(converted_137)
         } else {
             Ok(py.None())
         }
@@ -499,14 +613,14 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn assumed_role_user(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.assumed_role_user {
-            let converted_128 = Py::new(
+            let converted_138 = Py::new(
                 py,
                 PyAssumedRoleUser {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_128)
+            Ok(converted_138)
         } else {
             Ok(py.None())
         }
@@ -515,8 +629,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn packed_policy_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_129 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_129)
+            let converted_139 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_139)
         } else {
             Ok(py.None())
         }
@@ -525,8 +639,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn subject(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subject {
-            let converted_130 = (value).as_str().into_py_any(py)?;
-            Ok(converted_130)
+            let converted_140 = (value).as_str().into_py_any(py)?;
+            Ok(converted_140)
         } else {
             Ok(py.None())
         }
@@ -535,8 +649,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn subject_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subject_type {
-            let converted_131 = (value).as_str().into_py_any(py)?;
-            Ok(converted_131)
+            let converted_141 = (value).as_str().into_py_any(py)?;
+            Ok(converted_141)
         } else {
             Ok(py.None())
         }
@@ -545,8 +659,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn issuer(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.issuer {
-            let converted_132 = (value).as_str().into_py_any(py)?;
-            Ok(converted_132)
+            let converted_142 = (value).as_str().into_py_any(py)?;
+            Ok(converted_142)
         } else {
             Ok(py.None())
         }
@@ -555,8 +669,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn audience(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.audience {
-            let converted_133 = (value).as_str().into_py_any(py)?;
-            Ok(converted_133)
+            let converted_143 = (value).as_str().into_py_any(py)?;
+            Ok(converted_143)
         } else {
             Ok(py.None())
         }
@@ -565,8 +679,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn name_qualifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name_qualifier {
-            let converted_134 = (value).as_str().into_py_any(py)?;
-            Ok(converted_134)
+            let converted_144 = (value).as_str().into_py_any(py)?;
+            Ok(converted_144)
         } else {
             Ok(py.None())
         }
@@ -575,8 +689,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn source_identity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_identity {
-            let converted_135 = (value).as_str().into_py_any(py)?;
-            Ok(converted_135)
+            let converted_145 = (value).as_str().into_py_any(py)?;
+            Ok(converted_145)
         } else {
             Ok(py.None())
         }
@@ -585,8 +699,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn session_token_utilization(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_136 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_136)
+            let converted_146 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_146)
         } else {
             Ok(py.None())
         }
@@ -595,8 +709,8 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     #[getter]
     fn session_token_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_size {
-            let converted_137 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_137)
+            let converted_147 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_147)
         } else {
             Ok(py.None())
         }
@@ -605,68 +719,68 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.credentials {
-            let converted_138 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_138)?;
+            let converted_148 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_148)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
         if let Some(value) = &self.inner.assumed_role_user {
-            let converted_139 = assumed_role_user_to_py(py, value)?;
-            result.set_item("assumed_role_user", converted_139)?;
+            let converted_149 = assumed_role_user_to_py(py, value)?;
+            result.set_item("assumed_role_user", converted_149)?;
         } else {
             result.set_item("assumed_role_user", py.None())?;
         }
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_140 = (value).to_owned().into_py_any(py)?;
-            result.set_item("packed_policy_size", converted_140)?;
+            let converted_150 = (value).to_owned().into_py_any(py)?;
+            result.set_item("packed_policy_size", converted_150)?;
         } else {
             result.set_item("packed_policy_size", py.None())?;
         }
         if let Some(value) = &self.inner.subject {
-            let converted_141 = (value).as_str().into_py_any(py)?;
-            result.set_item("subject", converted_141)?;
+            let converted_151 = (value).as_str().into_py_any(py)?;
+            result.set_item("subject", converted_151)?;
         } else {
             result.set_item("subject", py.None())?;
         }
         if let Some(value) = &self.inner.subject_type {
-            let converted_142 = (value).as_str().into_py_any(py)?;
-            result.set_item("subject_type", converted_142)?;
+            let converted_152 = (value).as_str().into_py_any(py)?;
+            result.set_item("subject_type", converted_152)?;
         } else {
             result.set_item("subject_type", py.None())?;
         }
         if let Some(value) = &self.inner.issuer {
-            let converted_143 = (value).as_str().into_py_any(py)?;
-            result.set_item("issuer", converted_143)?;
+            let converted_153 = (value).as_str().into_py_any(py)?;
+            result.set_item("issuer", converted_153)?;
         } else {
             result.set_item("issuer", py.None())?;
         }
         if let Some(value) = &self.inner.audience {
-            let converted_144 = (value).as_str().into_py_any(py)?;
-            result.set_item("audience", converted_144)?;
+            let converted_154 = (value).as_str().into_py_any(py)?;
+            result.set_item("audience", converted_154)?;
         } else {
             result.set_item("audience", py.None())?;
         }
         if let Some(value) = &self.inner.name_qualifier {
-            let converted_145 = (value).as_str().into_py_any(py)?;
-            result.set_item("name_qualifier", converted_145)?;
+            let converted_155 = (value).as_str().into_py_any(py)?;
+            result.set_item("name_qualifier", converted_155)?;
         } else {
             result.set_item("name_qualifier", py.None())?;
         }
         if let Some(value) = &self.inner.source_identity {
-            let converted_146 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_identity", converted_146)?;
+            let converted_156 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_identity", converted_156)?;
         } else {
             result.set_item("source_identity", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_147 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_utilization", converted_147)?;
+            let converted_157 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_utilization", converted_157)?;
         } else {
             result.set_item("session_token_utilization", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_size {
-            let converted_148 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_size", converted_148)?;
+            let converted_158 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_size", converted_158)?;
         } else {
             result.set_item("session_token_size", py.None())?;
         }
@@ -722,14 +836,14 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_149 = Py::new(
+            let converted_159 = Py::new(
                 py,
                 PyCredentials {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_149)
+            Ok(converted_159)
         } else {
             Ok(py.None())
         }
@@ -738,8 +852,8 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn subject_from_web_identity_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subject_from_web_identity_token {
-            let converted_150 = (value).as_str().into_py_any(py)?;
-            Ok(converted_150)
+            let converted_160 = (value).as_str().into_py_any(py)?;
+            Ok(converted_160)
         } else {
             Ok(py.None())
         }
@@ -748,14 +862,14 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn assumed_role_user(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.assumed_role_user {
-            let converted_151 = Py::new(
+            let converted_161 = Py::new(
                 py,
                 PyAssumedRoleUser {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_151)
+            Ok(converted_161)
         } else {
             Ok(py.None())
         }
@@ -764,8 +878,8 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn packed_policy_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_152 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_152)
+            let converted_162 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_162)
         } else {
             Ok(py.None())
         }
@@ -774,8 +888,8 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn provider(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.provider {
-            let converted_153 = (value).as_str().into_py_any(py)?;
-            Ok(converted_153)
+            let converted_163 = (value).as_str().into_py_any(py)?;
+            Ok(converted_163)
         } else {
             Ok(py.None())
         }
@@ -784,8 +898,8 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn audience(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.audience {
-            let converted_154 = (value).as_str().into_py_any(py)?;
-            Ok(converted_154)
+            let converted_164 = (value).as_str().into_py_any(py)?;
+            Ok(converted_164)
         } else {
             Ok(py.None())
         }
@@ -794,8 +908,8 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn source_identity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_identity {
-            let converted_155 = (value).as_str().into_py_any(py)?;
-            Ok(converted_155)
+            let converted_165 = (value).as_str().into_py_any(py)?;
+            Ok(converted_165)
         } else {
             Ok(py.None())
         }
@@ -804,8 +918,8 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn session_token_utilization(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_156 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_156)
+            let converted_166 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_166)
         } else {
             Ok(py.None())
         }
@@ -814,8 +928,8 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     #[getter]
     fn session_token_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_size {
-            let converted_157 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_157)
+            let converted_167 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_167)
         } else {
             Ok(py.None())
         }
@@ -824,56 +938,56 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.credentials {
-            let converted_158 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_158)?;
+            let converted_168 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_168)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
         if let Some(value) = &self.inner.subject_from_web_identity_token {
-            let converted_159 = (value).as_str().into_py_any(py)?;
-            result.set_item("subject_from_web_identity_token", converted_159)?;
+            let converted_169 = (value).as_str().into_py_any(py)?;
+            result.set_item("subject_from_web_identity_token", converted_169)?;
         } else {
             result.set_item("subject_from_web_identity_token", py.None())?;
         }
         if let Some(value) = &self.inner.assumed_role_user {
-            let converted_160 = assumed_role_user_to_py(py, value)?;
-            result.set_item("assumed_role_user", converted_160)?;
+            let converted_170 = assumed_role_user_to_py(py, value)?;
+            result.set_item("assumed_role_user", converted_170)?;
         } else {
             result.set_item("assumed_role_user", py.None())?;
         }
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_161 = (value).to_owned().into_py_any(py)?;
-            result.set_item("packed_policy_size", converted_161)?;
+            let converted_171 = (value).to_owned().into_py_any(py)?;
+            result.set_item("packed_policy_size", converted_171)?;
         } else {
             result.set_item("packed_policy_size", py.None())?;
         }
         if let Some(value) = &self.inner.provider {
-            let converted_162 = (value).as_str().into_py_any(py)?;
-            result.set_item("provider", converted_162)?;
+            let converted_172 = (value).as_str().into_py_any(py)?;
+            result.set_item("provider", converted_172)?;
         } else {
             result.set_item("provider", py.None())?;
         }
         if let Some(value) = &self.inner.audience {
-            let converted_163 = (value).as_str().into_py_any(py)?;
-            result.set_item("audience", converted_163)?;
+            let converted_173 = (value).as_str().into_py_any(py)?;
+            result.set_item("audience", converted_173)?;
         } else {
             result.set_item("audience", py.None())?;
         }
         if let Some(value) = &self.inner.source_identity {
-            let converted_164 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_identity", converted_164)?;
+            let converted_174 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_identity", converted_174)?;
         } else {
             result.set_item("source_identity", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_165 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_utilization", converted_165)?;
+            let converted_175 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_utilization", converted_175)?;
         } else {
             result.set_item("session_token_utilization", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_size {
-            let converted_166 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_size", converted_166)?;
+            let converted_176 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_size", converted_176)?;
         } else {
             result.set_item("session_token_size", py.None())?;
         }
@@ -913,14 +1027,14 @@ impl PyOperationAssumeRootOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_167 = Py::new(
+            let converted_177 = Py::new(
                 py,
                 PyCredentials {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_167)
+            Ok(converted_177)
         } else {
             Ok(py.None())
         }
@@ -929,8 +1043,8 @@ impl PyOperationAssumeRootOutput {
     #[getter]
     fn source_identity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_identity {
-            let converted_168 = (value).as_str().into_py_any(py)?;
-            Ok(converted_168)
+            let converted_178 = (value).as_str().into_py_any(py)?;
+            Ok(converted_178)
         } else {
             Ok(py.None())
         }
@@ -939,8 +1053,8 @@ impl PyOperationAssumeRootOutput {
     #[getter]
     fn session_token_utilization(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_169 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_169)
+            let converted_179 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_179)
         } else {
             Ok(py.None())
         }
@@ -949,8 +1063,8 @@ impl PyOperationAssumeRootOutput {
     #[getter]
     fn session_token_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_size {
-            let converted_170 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_170)
+            let converted_180 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_180)
         } else {
             Ok(py.None())
         }
@@ -959,26 +1073,26 @@ impl PyOperationAssumeRootOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.credentials {
-            let converted_171 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_171)?;
+            let converted_181 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_181)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
         if let Some(value) = &self.inner.source_identity {
-            let converted_172 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_identity", converted_172)?;
+            let converted_182 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_identity", converted_182)?;
         } else {
             result.set_item("source_identity", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_173 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_utilization", converted_173)?;
+            let converted_183 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_utilization", converted_183)?;
         } else {
             result.set_item("session_token_utilization", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_size {
-            let converted_174 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_size", converted_174)?;
+            let converted_184 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_size", converted_184)?;
         } else {
             result.set_item("session_token_size", py.None())?;
         }
@@ -1000,8 +1114,8 @@ impl PyOperationDecodeAuthorizationMessageOutput {
     #[getter]
     fn decoded_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.decoded_message {
-            let converted_175 = (value).as_str().into_py_any(py)?;
-            Ok(converted_175)
+            let converted_185 = (value).as_str().into_py_any(py)?;
+            Ok(converted_185)
         } else {
             Ok(py.None())
         }
@@ -1010,8 +1124,8 @@ impl PyOperationDecodeAuthorizationMessageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.decoded_message {
-            let converted_176 = (value).as_str().into_py_any(py)?;
-            result.set_item("decoded_message", converted_176)?;
+            let converted_186 = (value).as_str().into_py_any(py)?;
+            result.set_item("decoded_message", converted_186)?;
         } else {
             result.set_item("decoded_message", py.None())?;
         }
@@ -1029,8 +1143,8 @@ impl PyOperationGetAccessKeyInfoOutput {
     #[getter]
     fn account(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account {
-            let converted_177 = (value).as_str().into_py_any(py)?;
-            Ok(converted_177)
+            let converted_187 = (value).as_str().into_py_any(py)?;
+            Ok(converted_187)
         } else {
             Ok(py.None())
         }
@@ -1039,8 +1153,8 @@ impl PyOperationGetAccessKeyInfoOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.account {
-            let converted_178 = (value).as_str().into_py_any(py)?;
-            result.set_item("account", converted_178)?;
+            let converted_188 = (value).as_str().into_py_any(py)?;
+            result.set_item("account", converted_188)?;
         } else {
             result.set_item("account", py.None())?;
         }
@@ -1058,8 +1172,8 @@ impl PyOperationGetCallerIdentityOutput {
     #[getter]
     fn user_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_id {
-            let converted_179 = (value).as_str().into_py_any(py)?;
-            Ok(converted_179)
+            let converted_189 = (value).as_str().into_py_any(py)?;
+            Ok(converted_189)
         } else {
             Ok(py.None())
         }
@@ -1068,8 +1182,8 @@ impl PyOperationGetCallerIdentityOutput {
     #[getter]
     fn account(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account {
-            let converted_180 = (value).as_str().into_py_any(py)?;
-            Ok(converted_180)
+            let converted_190 = (value).as_str().into_py_any(py)?;
+            Ok(converted_190)
         } else {
             Ok(py.None())
         }
@@ -1078,8 +1192,8 @@ impl PyOperationGetCallerIdentityOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_181 = (value).as_str().into_py_any(py)?;
-            Ok(converted_181)
+            let converted_191 = (value).as_str().into_py_any(py)?;
+            Ok(converted_191)
         } else {
             Ok(py.None())
         }
@@ -1088,20 +1202,20 @@ impl PyOperationGetCallerIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.user_id {
-            let converted_182 = (value).as_str().into_py_any(py)?;
-            result.set_item("user_id", converted_182)?;
+            let converted_192 = (value).as_str().into_py_any(py)?;
+            result.set_item("user_id", converted_192)?;
         } else {
             result.set_item("user_id", py.None())?;
         }
         if let Some(value) = &self.inner.account {
-            let converted_183 = (value).as_str().into_py_any(py)?;
-            result.set_item("account", converted_183)?;
+            let converted_193 = (value).as_str().into_py_any(py)?;
+            result.set_item("account", converted_193)?;
         } else {
             result.set_item("account", py.None())?;
         }
         if let Some(value) = &self.inner.arn {
-            let converted_184 = (value).as_str().into_py_any(py)?;
-            result.set_item("arn", converted_184)?;
+            let converted_194 = (value).as_str().into_py_any(py)?;
+            result.set_item("arn", converted_194)?;
         } else {
             result.set_item("arn", py.None())?;
         }
@@ -1145,14 +1259,14 @@ impl PyOperationGetDelegatedAccessTokenOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_185 = Py::new(
+            let converted_195 = Py::new(
                 py,
                 PyCredentials {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_185)
+            Ok(converted_195)
         } else {
             Ok(py.None())
         }
@@ -1161,8 +1275,8 @@ impl PyOperationGetDelegatedAccessTokenOutput {
     #[getter]
     fn packed_policy_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_186 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_186)
+            let converted_196 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_196)
         } else {
             Ok(py.None())
         }
@@ -1171,8 +1285,8 @@ impl PyOperationGetDelegatedAccessTokenOutput {
     #[getter]
     fn assumed_principal(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.assumed_principal {
-            let converted_187 = (value).as_str().into_py_any(py)?;
-            Ok(converted_187)
+            let converted_197 = (value).as_str().into_py_any(py)?;
+            Ok(converted_197)
         } else {
             Ok(py.None())
         }
@@ -1181,20 +1295,20 @@ impl PyOperationGetDelegatedAccessTokenOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.credentials {
-            let converted_188 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_188)?;
+            let converted_198 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_198)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_189 = (value).to_owned().into_py_any(py)?;
-            result.set_item("packed_policy_size", converted_189)?;
+            let converted_199 = (value).to_owned().into_py_any(py)?;
+            result.set_item("packed_policy_size", converted_199)?;
         } else {
             result.set_item("packed_policy_size", py.None())?;
         }
         if let Some(value) = &self.inner.assumed_principal {
-            let converted_190 = (value).as_str().into_py_any(py)?;
-            result.set_item("assumed_principal", converted_190)?;
+            let converted_200 = (value).as_str().into_py_any(py)?;
+            result.set_item("assumed_principal", converted_200)?;
         } else {
             result.set_item("assumed_principal", py.None())?;
         }
@@ -1240,14 +1354,14 @@ impl PyOperationGetFederationTokenOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_191 = Py::new(
+            let converted_201 = Py::new(
                 py,
                 PyCredentials {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_191)
+            Ok(converted_201)
         } else {
             Ok(py.None())
         }
@@ -1256,14 +1370,14 @@ impl PyOperationGetFederationTokenOutput {
     #[getter]
     fn federated_user(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federated_user {
-            let converted_192 = Py::new(
+            let converted_202 = Py::new(
                 py,
                 PyFederatedUser {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_192)
+            Ok(converted_202)
         } else {
             Ok(py.None())
         }
@@ -1272,8 +1386,8 @@ impl PyOperationGetFederationTokenOutput {
     #[getter]
     fn packed_policy_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_193 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_193)
+            let converted_203 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_203)
         } else {
             Ok(py.None())
         }
@@ -1282,8 +1396,8 @@ impl PyOperationGetFederationTokenOutput {
     #[getter]
     fn session_token_utilization(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_194 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_194)
+            let converted_204 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_204)
         } else {
             Ok(py.None())
         }
@@ -1292,8 +1406,8 @@ impl PyOperationGetFederationTokenOutput {
     #[getter]
     fn session_token_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_size {
-            let converted_195 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_195)
+            let converted_205 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_205)
         } else {
             Ok(py.None())
         }
@@ -1302,32 +1416,32 @@ impl PyOperationGetFederationTokenOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.credentials {
-            let converted_196 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_196)?;
+            let converted_206 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_206)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
         if let Some(value) = &self.inner.federated_user {
-            let converted_197 = federated_user_to_py(py, value)?;
-            result.set_item("federated_user", converted_197)?;
+            let converted_207 = federated_user_to_py(py, value)?;
+            result.set_item("federated_user", converted_207)?;
         } else {
             result.set_item("federated_user", py.None())?;
         }
         if let Some(value) = &self.inner.packed_policy_size {
-            let converted_198 = (value).to_owned().into_py_any(py)?;
-            result.set_item("packed_policy_size", converted_198)?;
+            let converted_208 = (value).to_owned().into_py_any(py)?;
+            result.set_item("packed_policy_size", converted_208)?;
         } else {
             result.set_item("packed_policy_size", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_199 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_utilization", converted_199)?;
+            let converted_209 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_utilization", converted_209)?;
         } else {
             result.set_item("session_token_utilization", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_size {
-            let converted_200 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_size", converted_200)?;
+            let converted_210 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_size", converted_210)?;
         } else {
             result.set_item("session_token_size", py.None())?;
         }
@@ -1365,14 +1479,14 @@ impl PyOperationGetSessionTokenOutput {
     #[getter]
     fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.credentials {
-            let converted_201 = Py::new(
+            let converted_211 = Py::new(
                 py,
                 PyCredentials {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_201)
+            Ok(converted_211)
         } else {
             Ok(py.None())
         }
@@ -1381,8 +1495,8 @@ impl PyOperationGetSessionTokenOutput {
     #[getter]
     fn session_token_utilization(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_202 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_202)
+            let converted_212 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_212)
         } else {
             Ok(py.None())
         }
@@ -1391,8 +1505,8 @@ impl PyOperationGetSessionTokenOutput {
     #[getter]
     fn session_token_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_token_size {
-            let converted_203 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_203)
+            let converted_213 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_213)
         } else {
             Ok(py.None())
         }
@@ -1401,20 +1515,20 @@ impl PyOperationGetSessionTokenOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.credentials {
-            let converted_204 = credentials_to_py(py, value)?;
-            result.set_item("credentials", converted_204)?;
+            let converted_214 = credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_214)?;
         } else {
             result.set_item("credentials", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_utilization {
-            let converted_205 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_utilization", converted_205)?;
+            let converted_215 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_utilization", converted_215)?;
         } else {
             result.set_item("session_token_utilization", py.None())?;
         }
         if let Some(value) = &self.inner.session_token_size {
-            let converted_206 = (value).to_owned().into_py_any(py)?;
-            result.set_item("session_token_size", converted_206)?;
+            let converted_216 = (value).to_owned().into_py_any(py)?;
+            result.set_item("session_token_size", converted_216)?;
         } else {
             result.set_item("session_token_size", py.None())?;
         }
@@ -1436,8 +1550,8 @@ impl PyOperationGetWebIdentityTokenOutput {
     #[getter]
     fn web_identity_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_identity_token {
-            let converted_207 = (value).as_str().into_py_any(py)?;
-            Ok(converted_207)
+            let converted_217 = (value).as_str().into_py_any(py)?;
+            Ok(converted_217)
         } else {
             Ok(py.None())
         }
@@ -1446,8 +1560,8 @@ impl PyOperationGetWebIdentityTokenOutput {
     #[getter]
     fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expiration {
-            let converted_208 = (value).to_string().into_py_any(py)?;
-            Ok(converted_208)
+            let converted_218 = (value).to_string().into_py_any(py)?;
+            Ok(converted_218)
         } else {
             Ok(py.None())
         }
@@ -1456,14 +1570,14 @@ impl PyOperationGetWebIdentityTokenOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.web_identity_token {
-            let converted_209 = (value).as_str().into_py_any(py)?;
-            result.set_item("web_identity_token", converted_209)?;
+            let converted_219 = (value).as_str().into_py_any(py)?;
+            result.set_item("web_identity_token", converted_219)?;
         } else {
             result.set_item("web_identity_token", py.None())?;
         }
         if let Some(value) = &self.inner.expiration {
-            let converted_210 = (value).to_string().into_py_any(py)?;
-            result.set_item("expiration", converted_210)?;
+            let converted_220 = (value).to_string().into_py_any(py)?;
+            result.set_item("expiration", converted_220)?;
         } else {
             result.set_item("expiration", py.None())?;
         }
@@ -1527,108 +1641,350 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
-            let converted_28: String = value.extract()?;
+            let converted_28 = (|| -> PyResult<_> {
+                let converted_28: String = value.extract()?;
+                Ok(converted_28)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("role_arn"), "str"),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
             Some(converted_28)
         } else {
             None
         };
         let role_session_name_value = if let Some(value) = dict_value(params, "role_session_name")?
         {
-            let converted_29: String = value.extract()?;
+            let converted_29 = (|| -> PyResult<_> {
+                let converted_29: String = value.extract()?;
+                Ok(converted_29)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("role_session_name"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
             Some(converted_29)
         } else {
             None
         };
         let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_30 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_31 in value.try_iter()? {
-                let item_32 = item_result_31?;
-                let converted_item_33 = policy_descriptor_type_from_py(&item_32)?;
-                converted_30.push(converted_item_33);
-            }
+            let converted_30 = (|| -> PyResult<_> {
+                let mut converted_30 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_34, item_result_31) in value.try_iter()?.enumerate() {
+                    let item_32 = item_result_31.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_34),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_33 = (|| -> PyResult<_> {
+                        let converted_item_33 = policy_descriptor_type_from_py(&item_32)?;
+                        Ok(converted_item_33)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_34),
+                            "dict (PolicyDescriptorType)",
+                        )
+                    })?;
+                    converted_30.push(converted_item_33);
+                }
+                Ok(converted_30)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("policy_arns"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
             Some(converted_30)
         } else {
             None
         };
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_34: String = value.extract()?;
-            Some(converted_34)
-        } else {
-            None
-        };
-        let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
-            let converted_35: i32 = value.extract()?;
+            let converted_35 = (|| -> PyResult<_> {
+                let converted_35: String = value.extract()?;
+                Ok(converted_35)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("policy"), "str"),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
             Some(converted_35)
         } else {
             None
         };
-        let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_36 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_37 in value.try_iter()? {
-                let item_38 = item_result_37?;
-                let converted_item_39 = tag_from_py(&item_38)?;
-                converted_36.push(converted_item_39);
-            }
+        let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
+            let converted_36 = (|| -> PyResult<_> {
+                let converted_36: i32 = value.extract()?;
+                Ok(converted_36)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
             Some(converted_36)
+        } else {
+            None
+        };
+        let tags_value = if let Some(value) = dict_value(params, "tags")? {
+            let converted_37 = (|| -> PyResult<_> {
+                let mut converted_37 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_41, item_result_38) in value.try_iter()?.enumerate() {
+                    let item_39 = item_result_38.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_41),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_40 = (|| -> PyResult<_> {
+                        let converted_item_40 = tag_from_py(&item_39)?;
+                        Ok(converted_item_40)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_41),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_37.push(converted_item_40);
+                }
+                Ok(converted_37)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
+            Some(converted_37)
         } else {
             None
         };
         let transitive_tag_keys_value =
             if let Some(value) = dict_value(params, "transitive_tag_keys")? {
-                let mut converted_40 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_41 in value.try_iter()? {
-                    let item_42 = item_result_41?;
-                    let converted_item_43: String = item_42.extract()?;
-                    converted_40.push(converted_item_43);
-                }
-                Some(converted_40)
+                let converted_42 = (|| -> PyResult<_> {
+                    let mut converted_42 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_46, item_result_43) in value.try_iter()?.enumerate() {
+                        let item_44 = item_result_43.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_46),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_45 = (|| -> PyResult<_> {
+                            let converted_item_45: String = item_44.extract()?;
+                            Ok(converted_item_45)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_46),
+                                "str",
+                            )
+                        })?;
+                        converted_42.push(converted_item_45);
+                    }
+                    Ok(converted_42)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("transitive_tag_keys"),
+                            "sequence",
+                        ),
+                        "sts",
+                        "AssumeRole",
+                    )
+                })?;
+                Some(converted_42)
             } else {
                 None
             };
         let external_id_value = if let Some(value) = dict_value(params, "external_id")? {
-            let converted_44: String = value.extract()?;
-            Some(converted_44)
+            let converted_47 = (|| -> PyResult<_> {
+                let converted_47: String = value.extract()?;
+                Ok(converted_47)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("external_id"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
+            Some(converted_47)
         } else {
             None
         };
         let serial_number_value = if let Some(value) = dict_value(params, "serial_number")? {
-            let converted_45: String = value.extract()?;
-            Some(converted_45)
+            let converted_48 = (|| -> PyResult<_> {
+                let converted_48: String = value.extract()?;
+                Ok(converted_48)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("serial_number"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
+            Some(converted_48)
         } else {
             None
         };
         let token_code_value = if let Some(value) = dict_value(params, "token_code")? {
-            let converted_46: String = value.extract()?;
-            Some(converted_46)
+            let converted_49 = (|| -> PyResult<_> {
+                let converted_49: String = value.extract()?;
+                Ok(converted_49)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("token_code"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
+            Some(converted_49)
         } else {
             None
         };
         let source_identity_value = if let Some(value) = dict_value(params, "source_identity")? {
-            let converted_47: String = value.extract()?;
-            Some(converted_47)
+            let converted_50 = (|| -> PyResult<_> {
+                let converted_50: String = value.extract()?;
+                Ok(converted_50)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("source_identity"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
+            Some(converted_50)
         } else {
             None
         };
         let provided_contexts_value = if let Some(value) = dict_value(params, "provided_contexts")?
         {
-            let mut converted_48 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_49 in value.try_iter()? {
-                let item_50 = item_result_49?;
-                let converted_item_51 = provided_context_from_py(&item_50)?;
-                converted_48.push(converted_item_51);
-            }
-            Some(converted_48)
+            let converted_51 = (|| -> PyResult<_> {
+                let mut converted_51 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_55, item_result_52) in value.try_iter()?.enumerate() {
+                    let item_53 = item_result_52.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_55),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_54 = (|| -> PyResult<_> {
+                        let converted_item_54 = provided_context_from_py(&item_53)?;
+                        Ok(converted_item_54)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_55),
+                            "dict (ProvidedContext)",
+                        )
+                    })?;
+                    converted_51.push(converted_item_54);
+                }
+                Ok(converted_51)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("provided_contexts"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "AssumeRole",
+                )
+            })?;
+            Some(converted_51)
         } else {
             None
         };
         let minimum_session_token_size_value =
             if let Some(value) = dict_value(params, "minimum_session_token_size")? {
-                let converted_52: i32 = value.extract()?;
-                Some(converted_52)
+                let converted_56 = (|| -> PyResult<_> {
+                    let converted_56: i32 = value.extract()?;
+                    Ok(converted_56)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("minimum_session_token_size"),
+                            "int",
+                        ),
+                        "sts",
+                        "AssumeRole",
+                    )
+                })?;
+                Some(converted_56)
             } else {
                 None
             };
@@ -1678,51 +2034,158 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
-            let converted_53: String = value.extract()?;
-            Some(converted_53)
+            let converted_57 = (|| -> PyResult<_> {
+                let converted_57: String = value.extract()?;
+                Ok(converted_57)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("role_arn"), "str"),
+                    "sts",
+                    "AssumeRoleWithSAML",
+                )
+            })?;
+            Some(converted_57)
         } else {
             None
         };
         let principal_arn_value = if let Some(value) = dict_value(params, "principal_arn")? {
-            let converted_54: String = value.extract()?;
-            Some(converted_54)
+            let converted_58 = (|| -> PyResult<_> {
+                let converted_58: String = value.extract()?;
+                Ok(converted_58)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("principal_arn"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRoleWithSAML",
+                )
+            })?;
+            Some(converted_58)
         } else {
             None
         };
         let saml_assertion_value = if let Some(value) = dict_value(params, "saml_assertion")? {
-            let converted_55: String = value.extract()?;
-            Some(converted_55)
+            let converted_59 = (|| -> PyResult<_> {
+                let converted_59: String = value.extract()?;
+                Ok(converted_59)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("saml_assertion"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRoleWithSAML",
+                )
+            })?;
+            Some(converted_59)
         } else {
             None
         };
         let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_56 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_57 in value.try_iter()? {
-                let item_58 = item_result_57?;
-                let converted_item_59 = policy_descriptor_type_from_py(&item_58)?;
-                converted_56.push(converted_item_59);
-            }
-            Some(converted_56)
-        } else {
-            None
-        };
-        let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_60: String = value.extract()?;
+            let converted_60 = (|| -> PyResult<_> {
+                let mut converted_60 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_64, item_result_61) in value.try_iter()?.enumerate() {
+                    let item_62 = item_result_61.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_64),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_63 = (|| -> PyResult<_> {
+                        let converted_item_63 = policy_descriptor_type_from_py(&item_62)?;
+                        Ok(converted_item_63)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_64),
+                            "dict (PolicyDescriptorType)",
+                        )
+                    })?;
+                    converted_60.push(converted_item_63);
+                }
+                Ok(converted_60)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("policy_arns"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "AssumeRoleWithSAML",
+                )
+            })?;
             Some(converted_60)
         } else {
             None
         };
+        let policy_value = if let Some(value) = dict_value(params, "policy")? {
+            let converted_65 = (|| -> PyResult<_> {
+                let converted_65: String = value.extract()?;
+                Ok(converted_65)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("policy"), "str"),
+                    "sts",
+                    "AssumeRoleWithSAML",
+                )
+            })?;
+            Some(converted_65)
+        } else {
+            None
+        };
         let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
-            let converted_61: i32 = value.extract()?;
-            Some(converted_61)
+            let converted_66 = (|| -> PyResult<_> {
+                let converted_66: i32 = value.extract()?;
+                Ok(converted_66)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "sts",
+                    "AssumeRoleWithSAML",
+                )
+            })?;
+            Some(converted_66)
         } else {
             None
         };
         let minimum_session_token_size_value =
             if let Some(value) = dict_value(params, "minimum_session_token_size")? {
-                let converted_62: i32 = value.extract()?;
-                Some(converted_62)
+                let converted_67 = (|| -> PyResult<_> {
+                    let converted_67: i32 = value.extract()?;
+                    Ok(converted_67)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("minimum_session_token_size"),
+                            "int",
+                        ),
+                        "sts",
+                        "AssumeRoleWithSAML",
+                    )
+                })?;
+                Some(converted_67)
             } else {
                 None
             };
@@ -1767,59 +2230,180 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
-            let converted_63: String = value.extract()?;
-            Some(converted_63)
+            let converted_68 = (|| -> PyResult<_> {
+                let converted_68: String = value.extract()?;
+                Ok(converted_68)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("role_arn"), "str"),
+                    "sts",
+                    "AssumeRoleWithWebIdentity",
+                )
+            })?;
+            Some(converted_68)
         } else {
             None
         };
         let role_session_name_value = if let Some(value) = dict_value(params, "role_session_name")?
         {
-            let converted_64: String = value.extract()?;
-            Some(converted_64)
+            let converted_69 = (|| -> PyResult<_> {
+                let converted_69: String = value.extract()?;
+                Ok(converted_69)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("role_session_name"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRoleWithWebIdentity",
+                )
+            })?;
+            Some(converted_69)
         } else {
             None
         };
         let web_identity_token_value =
             if let Some(value) = dict_value(params, "web_identity_token")? {
-                let converted_65: String = value.extract()?;
-                Some(converted_65)
+                let converted_70 = (|| -> PyResult<_> {
+                    let converted_70: String = value.extract()?;
+                    Ok(converted_70)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("web_identity_token"),
+                            "str",
+                        ),
+                        "sts",
+                        "AssumeRoleWithWebIdentity",
+                    )
+                })?;
+                Some(converted_70)
             } else {
                 None
             };
         let provider_id_value = if let Some(value) = dict_value(params, "provider_id")? {
-            let converted_66: String = value.extract()?;
-            Some(converted_66)
-        } else {
-            None
-        };
-        let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_67 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_68 in value.try_iter()? {
-                let item_69 = item_result_68?;
-                let converted_item_70 = policy_descriptor_type_from_py(&item_69)?;
-                converted_67.push(converted_item_70);
-            }
-            Some(converted_67)
-        } else {
-            None
-        };
-        let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_71: String = value.extract()?;
+            let converted_71 = (|| -> PyResult<_> {
+                let converted_71: String = value.extract()?;
+                Ok(converted_71)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("provider_id"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRoleWithWebIdentity",
+                )
+            })?;
             Some(converted_71)
         } else {
             None
         };
-        let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
-            let converted_72: i32 = value.extract()?;
+        let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
+            let converted_72 = (|| -> PyResult<_> {
+                let mut converted_72 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_76, item_result_73) in value.try_iter()?.enumerate() {
+                    let item_74 = item_result_73.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_76),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_75 = (|| -> PyResult<_> {
+                        let converted_item_75 = policy_descriptor_type_from_py(&item_74)?;
+                        Ok(converted_item_75)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_76),
+                            "dict (PolicyDescriptorType)",
+                        )
+                    })?;
+                    converted_72.push(converted_item_75);
+                }
+                Ok(converted_72)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("policy_arns"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "AssumeRoleWithWebIdentity",
+                )
+            })?;
             Some(converted_72)
+        } else {
+            None
+        };
+        let policy_value = if let Some(value) = dict_value(params, "policy")? {
+            let converted_77 = (|| -> PyResult<_> {
+                let converted_77: String = value.extract()?;
+                Ok(converted_77)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("policy"), "str"),
+                    "sts",
+                    "AssumeRoleWithWebIdentity",
+                )
+            })?;
+            Some(converted_77)
+        } else {
+            None
+        };
+        let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
+            let converted_78 = (|| -> PyResult<_> {
+                let converted_78: i32 = value.extract()?;
+                Ok(converted_78)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "sts",
+                    "AssumeRoleWithWebIdentity",
+                )
+            })?;
+            Some(converted_78)
         } else {
             None
         };
         let minimum_session_token_size_value =
             if let Some(value) = dict_value(params, "minimum_session_token_size")? {
-                let converted_73: i32 = value.extract()?;
-                Some(converted_73)
+                let converted_79 = (|| -> PyResult<_> {
+                    let converted_79: i32 = value.extract()?;
+                    Ok(converted_79)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("minimum_session_token_size"),
+                            "int",
+                        ),
+                        "sts",
+                        "AssumeRoleWithWebIdentity",
+                    )
+                })?;
+                Some(converted_79)
             } else {
                 None
             };
@@ -1865,27 +2449,83 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let target_principal_value = if let Some(value) = dict_value(params, "target_principal")? {
-            let converted_74: String = value.extract()?;
-            Some(converted_74)
+            let converted_80 = (|| -> PyResult<_> {
+                let converted_80: String = value.extract()?;
+                Ok(converted_80)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("target_principal"),
+                        "str",
+                    ),
+                    "sts",
+                    "AssumeRoot",
+                )
+            })?;
+            Some(converted_80)
         } else {
             None
         };
         let task_policy_arn_value = if let Some(value) = dict_value(params, "task_policy_arn")? {
-            let converted_75 = policy_descriptor_type_from_py(&value)?;
-            Some(converted_75)
+            let converted_81 = (|| -> PyResult<_> {
+                let converted_81 = policy_descriptor_type_from_py(&value)?;
+                Ok(converted_81)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("task_policy_arn"),
+                        "dict (PolicyDescriptorType)",
+                    ),
+                    "sts",
+                    "AssumeRoot",
+                )
+            })?;
+            Some(converted_81)
         } else {
             None
         };
         let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
-            let converted_76: i32 = value.extract()?;
-            Some(converted_76)
+            let converted_82 = (|| -> PyResult<_> {
+                let converted_82: i32 = value.extract()?;
+                Ok(converted_82)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "sts",
+                    "AssumeRoot",
+                )
+            })?;
+            Some(converted_82)
         } else {
             None
         };
         let minimum_session_token_size_value =
             if let Some(value) = dict_value(params, "minimum_session_token_size")? {
-                let converted_77: i32 = value.extract()?;
-                Some(converted_77)
+                let converted_83 = (|| -> PyResult<_> {
+                    let converted_83: i32 = value.extract()?;
+                    Ok(converted_83)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("minimum_session_token_size"),
+                            "int",
+                        ),
+                        "sts",
+                        "AssumeRoot",
+                    )
+                })?;
+                Some(converted_83)
             } else {
                 None
             };
@@ -1926,8 +2566,22 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let encoded_message_value = if let Some(value) = dict_value(params, "encoded_message")? {
-            let converted_78: String = value.extract()?;
-            Some(converted_78)
+            let converted_84 = (|| -> PyResult<_> {
+                let converted_84: String = value.extract()?;
+                Ok(converted_84)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("encoded_message"),
+                        "str",
+                    ),
+                    "sts",
+                    "DecodeAuthorizationMessage",
+                )
+            })?;
+            Some(converted_84)
         } else {
             None
         };
@@ -1964,8 +2618,22 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let access_key_id_value = if let Some(value) = dict_value(params, "access_key_id")? {
-            let converted_79: String = value.extract()?;
-            Some(converted_79)
+            let converted_85 = (|| -> PyResult<_> {
+                let converted_85: String = value.extract()?;
+                Ok(converted_85)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("access_key_id"),
+                        "str",
+                    ),
+                    "sts",
+                    "GetAccessKeyInfo",
+                )
+            })?;
+            Some(converted_85)
         } else {
             None
         };
@@ -2032,8 +2700,22 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trade_in_token_value = if let Some(value) = dict_value(params, "trade_in_token")? {
-            let converted_80: String = value.extract()?;
-            Some(converted_80)
+            let converted_86 = (|| -> PyResult<_> {
+                let converted_86: String = value.extract()?;
+                Ok(converted_86)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trade_in_token"),
+                        "str",
+                    ),
+                    "sts",
+                    "GetDelegatedAccessToken",
+                )
+            })?;
+            Some(converted_86)
         } else {
             None
         };
@@ -2072,51 +2754,161 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_81: String = value.extract()?;
-            Some(converted_81)
-        } else {
-            None
-        };
-        let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_82: String = value.extract()?;
-            Some(converted_82)
-        } else {
-            None
-        };
-        let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_83 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_84 in value.try_iter()? {
-                let item_85 = item_result_84?;
-                let converted_item_86 = policy_descriptor_type_from_py(&item_85)?;
-                converted_83.push(converted_item_86);
-            }
-            Some(converted_83)
-        } else {
-            None
-        };
-        let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
-            let converted_87: i32 = value.extract()?;
+            let converted_87 = (|| -> PyResult<_> {
+                let converted_87: String = value.extract()?;
+                Ok(converted_87)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "sts",
+                    "GetFederationToken",
+                )
+            })?;
             Some(converted_87)
         } else {
             None
         };
-        let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_88 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_89 in value.try_iter()? {
-                let item_90 = item_result_89?;
-                let converted_item_91 = tag_from_py(&item_90)?;
-                converted_88.push(converted_item_91);
-            }
+        let policy_value = if let Some(value) = dict_value(params, "policy")? {
+            let converted_88 = (|| -> PyResult<_> {
+                let converted_88: String = value.extract()?;
+                Ok(converted_88)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("policy"), "str"),
+                    "sts",
+                    "GetFederationToken",
+                )
+            })?;
             Some(converted_88)
+        } else {
+            None
+        };
+        let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
+            let converted_89 = (|| -> PyResult<_> {
+                let mut converted_89 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_93, item_result_90) in value.try_iter()?.enumerate() {
+                    let item_91 = item_result_90.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_93),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_92 = (|| -> PyResult<_> {
+                        let converted_item_92 = policy_descriptor_type_from_py(&item_91)?;
+                        Ok(converted_item_92)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_93),
+                            "dict (PolicyDescriptorType)",
+                        )
+                    })?;
+                    converted_89.push(converted_item_92);
+                }
+                Ok(converted_89)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("policy_arns"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "GetFederationToken",
+                )
+            })?;
+            Some(converted_89)
+        } else {
+            None
+        };
+        let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
+            let converted_94 = (|| -> PyResult<_> {
+                let converted_94: i32 = value.extract()?;
+                Ok(converted_94)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "sts",
+                    "GetFederationToken",
+                )
+            })?;
+            Some(converted_94)
+        } else {
+            None
+        };
+        let tags_value = if let Some(value) = dict_value(params, "tags")? {
+            let converted_95 = (|| -> PyResult<_> {
+                let mut converted_95 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_99, item_result_96) in value.try_iter()?.enumerate() {
+                    let item_97 = item_result_96.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_99),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_98 = (|| -> PyResult<_> {
+                        let converted_item_98 = tag_from_py(&item_97)?;
+                        Ok(converted_item_98)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_99),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_95.push(converted_item_98);
+                }
+                Ok(converted_95)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "GetFederationToken",
+                )
+            })?;
+            Some(converted_95)
         } else {
             None
         };
         let minimum_session_token_size_value =
             if let Some(value) = dict_value(params, "minimum_session_token_size")? {
-                let converted_92: i32 = value.extract()?;
-                Some(converted_92)
+                let converted_100 = (|| -> PyResult<_> {
+                    let converted_100: i32 = value.extract()?;
+                    Ok(converted_100)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("minimum_session_token_size"),
+                            "int",
+                        ),
+                        "sts",
+                        "GetFederationToken",
+                    )
+                })?;
+                Some(converted_100)
             } else {
                 None
             };
@@ -2160,27 +2952,83 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
-            let converted_93: i32 = value.extract()?;
-            Some(converted_93)
+            let converted_101 = (|| -> PyResult<_> {
+                let converted_101: i32 = value.extract()?;
+                Ok(converted_101)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "sts",
+                    "GetSessionToken",
+                )
+            })?;
+            Some(converted_101)
         } else {
             None
         };
         let serial_number_value = if let Some(value) = dict_value(params, "serial_number")? {
-            let converted_94: String = value.extract()?;
-            Some(converted_94)
+            let converted_102 = (|| -> PyResult<_> {
+                let converted_102: String = value.extract()?;
+                Ok(converted_102)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("serial_number"),
+                        "str",
+                    ),
+                    "sts",
+                    "GetSessionToken",
+                )
+            })?;
+            Some(converted_102)
         } else {
             None
         };
         let token_code_value = if let Some(value) = dict_value(params, "token_code")? {
-            let converted_95: String = value.extract()?;
-            Some(converted_95)
+            let converted_103 = (|| -> PyResult<_> {
+                let converted_103: String = value.extract()?;
+                Ok(converted_103)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("token_code"),
+                        "str",
+                    ),
+                    "sts",
+                    "GetSessionToken",
+                )
+            })?;
+            Some(converted_103)
         } else {
             None
         };
         let minimum_session_token_size_value =
             if let Some(value) = dict_value(params, "minimum_session_token_size")? {
-                let converted_96: i32 = value.extract()?;
-                Some(converted_96)
+                let converted_104 = (|| -> PyResult<_> {
+                    let converted_104: i32 = value.extract()?;
+                    Ok(converted_104)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("minimum_session_token_size"),
+                            "int",
+                        ),
+                        "sts",
+                        "GetSessionToken",
+                    )
+                })?;
+                Some(converted_104)
             } else {
                 None
             };
@@ -2222,39 +3070,129 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let audience_value = if let Some(value) = dict_value(params, "audience")? {
-            let mut converted_97 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_98 in value.try_iter()? {
-                let item_99 = item_result_98?;
-                let converted_item_100: String = item_99.extract()?;
-                converted_97.push(converted_item_100);
-            }
-            Some(converted_97)
+            let converted_105 = (|| -> PyResult<_> {
+                let mut converted_105 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_109, item_result_106) in value.try_iter()?.enumerate() {
+                    let item_107 = item_result_106.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_109),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_108 = (|| -> PyResult<_> {
+                        let converted_item_108: String = item_107.extract()?;
+                        Ok(converted_item_108)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_109),
+                            "str",
+                        )
+                    })?;
+                    converted_105.push(converted_item_108);
+                }
+                Ok(converted_105)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("audience"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "GetWebIdentityToken",
+                )
+            })?;
+            Some(converted_105)
         } else {
             None
         };
         let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
-            let converted_101: i32 = value.extract()?;
-            Some(converted_101)
+            let converted_110 = (|| -> PyResult<_> {
+                let converted_110: i32 = value.extract()?;
+                Ok(converted_110)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "sts",
+                    "GetWebIdentityToken",
+                )
+            })?;
+            Some(converted_110)
         } else {
             None
         };
         let signing_algorithm_value = if let Some(value) = dict_value(params, "signing_algorithm")?
         {
-            let converted_102: String = value.extract()?;
-            Some(converted_102)
+            let converted_111 = (|| -> PyResult<_> {
+                let converted_111: String = value.extract()?;
+                Ok(converted_111)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("signing_algorithm"),
+                        "str",
+                    ),
+                    "sts",
+                    "GetWebIdentityToken",
+                )
+            })?;
+            Some(converted_111)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_103 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_104 in value.try_iter()? {
-                let item_105 = item_result_104?;
-                let converted_item_106 = tag_from_py(&item_105)?;
-                converted_103.push(converted_item_106);
-            }
-            Some(converted_103)
+            let converted_112 = (|| -> PyResult<_> {
+                let mut converted_112 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_116, item_result_113) in value.try_iter()?.enumerate() {
+                    let item_114 = item_result_113.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_116),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_115 = (|| -> PyResult<_> {
+                        let converted_item_115 = tag_from_py(&item_114)?;
+                        Ok(converted_item_115)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_116),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_112.push(converted_item_115);
+                }
+                Ok(converted_112)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "sts",
+                    "GetWebIdentityToken",
+                )
+            })?;
+            Some(converted_112)
         } else {
             None
         };
