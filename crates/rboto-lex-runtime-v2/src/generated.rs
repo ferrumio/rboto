@@ -2007,7 +2007,7 @@ impl PyDialogAction {
 
 struct SharedElicitSubSlot {
     name: ::std::string::String,
-    sub_slot_to_elicit: Option<::std::boxed::Box<Arc<SharedElicitSubSlot>>>,
+    sub_slot_to_elicit: Option<Arc<SharedElicitSubSlot>>,
 }
 
 #[allow(clippy::redundant_closure)]
@@ -2017,7 +2017,7 @@ impl From<aws_sdk_lexruntimev2::types::ElicitSubSlot> for SharedElicitSubSlot {
             name: value.name,
             sub_slot_to_elicit: value
                 .sub_slot_to_elicit
-                .map(|item| Box::new(Arc::new(SharedElicitSubSlot::from(*(item))))),
+                .map(|item| Arc::new(SharedElicitSubSlot::from(*(item)))),
         }
     }
 }
@@ -2030,7 +2030,7 @@ fn elicit_sub_slot_shared_to_py(
     let converted_427 = (&value.name).as_str().into_py_any(py)?;
     result.set_item("name", converted_427)?;
     if let Some(value) = &value.sub_slot_to_elicit {
-        let converted_428 = elicit_sub_slot_shared_to_py(py, (value).as_ref())?;
+        let converted_428 = elicit_sub_slot_shared_to_py(py, value)?;
         result.set_item("sub_slot_to_elicit", converted_428)?;
     } else {
         result.set_item("sub_slot_to_elicit", py.None())?;
@@ -2061,7 +2061,7 @@ impl PyElicitSubSlot {
             let converted_426 = Py::new(
                 py,
                 PyElicitSubSlot {
-                    inner: Arc::clone((value).as_ref()),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();

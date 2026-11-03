@@ -44,13 +44,19 @@ def test_generated_ownership_moves_payloads_and_releases_siblings(tmp_path: Path
         field("named", "::std::collections::HashMap<"
               "::std::string::String, crate::types::TestLeaf>"),
         field("empty", "crate::types::TestLeaf", optional=True),
+        field("scalar", "::std::boxed::Box<i32>"),
+    )
+    node = structure(
+        "TestNode",
+        field("body", "::std::string::String"),
+        field("child", "::std::boxed::Box<crate::types::TestNode>", optional=True),
     )
     root = structure(
         "TestRoot", field("branches", "::std::vec::Vec<crate::types::TestBranch>"),
         field("raw", "::std::collections::HashMap< ::std::string::String, "
               "::std::vec::Vec<::std::string::String>, >"),
     )
-    generated = generator.render((leaf, branch, root))
+    generated = generator.render((leaf, branch, node, root))
     source = r"""
 #![allow(dead_code)]
 use std::collections::HashMap;
@@ -62,6 +68,11 @@ mod aws_sdk_sqs {
             pub children: Vec<Option<Box<TestLeaf>>>,
             pub named: std::collections::HashMap<String, TestLeaf>,
             pub empty: Option<TestLeaf>,
+            pub scalar: Box<i32>,
+        }
+        pub struct TestNode {
+            pub body: String,
+            pub child: Option<Box<TestNode>>,
         }
         pub struct TestRoot {
             pub branches: Vec<TestBranch>,
@@ -80,6 +91,7 @@ fn main() {
         children: vec![Some(Box::new(TestLeaf { body })), None],
         named: HashMap::from([("sibling".into(), TestLeaf { body: "b".repeat(1024 * 1024) })]),
         empty: None,
+        scalar: Box::new(42),
     }], raw };
     let output = SharedTestRoot::from(original);
     assert_eq!(&output.raw["keep"] as *const Vec<String> as usize, map_address);
@@ -88,6 +100,7 @@ fn main() {
     let sibling = Arc::downgrade(branch.named.get("sibling").unwrap());
     assert!(branch.empty.is_none());
     assert!(branch.children[1].is_none());
+    assert_eq!(*branch.scalar, 42); // Boxes without native nodes retain their representation.
     assert_eq!(leaf.body.as_ptr() as usize, address); // Moved, never cloned.
     drop(branch);
     drop(output);
@@ -95,13 +108,27 @@ fn main() {
     assert_eq!(Arc::strong_count(&leaf), 1);
     assert_eq!(leaf.body.len(), 1024 * 1024);
     std::thread::spawn(move || assert_eq!(leaf.body.as_ptr() as usize, address)).join().unwrap();
+    let body = "recursive".repeat(1024);
+    let address = body.as_ptr() as usize;
+    let recursive = SharedTestNode::from(TestNode {
+        body: "parent".into(),
+        child: Some(Box::new(TestNode { body, child: None })),
+    });
+    let child = Arc::clone(recursive.child.as_ref().unwrap());
+    drop(recursive);
+    assert!(child.child.is_none());
+    assert_eq!(child.body.as_ptr() as usize, address);
+    assert_eq!(Arc::strong_count(&child), 1);
 }
 """
     path = tmp_path / "storage.rs"
     path.write_text(source)
     executable = tmp_path / "storage"
     build = subprocess.run(
-        ["rustc", "--edition=2024", "-Dwarnings", str(path), "-o", str(executable)],
+        [
+            "clippy-driver", "--edition=2024", "-Dwarnings",
+            "-Dclippy::redundant_allocation", str(path), "-o", str(executable),
+        ],
         capture_output=True, text=True, check=False,
     )
     assert build.returncode == 0, build.stdout + build.stderr

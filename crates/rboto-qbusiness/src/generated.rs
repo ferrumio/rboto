@@ -8827,7 +8827,7 @@ impl PyAttachmentOutput {
 struct SharedAttributeFilter {
     and_all_filters: Option<::std::vec::Vec<Arc<SharedAttributeFilter>>>,
     or_all_filters: Option<::std::vec::Vec<Arc<SharedAttributeFilter>>>,
-    not_filter: Option<::std::boxed::Box<Arc<SharedAttributeFilter>>>,
+    not_filter: Option<Arc<SharedAttributeFilter>>,
     equals_to: Option<Arc<aws_sdk_qbusiness::types::DocumentAttribute>>,
     contains_all: Option<Arc<aws_sdk_qbusiness::types::DocumentAttribute>>,
     contains_any: Option<Arc<aws_sdk_qbusiness::types::DocumentAttribute>>,
@@ -8855,7 +8855,7 @@ impl From<aws_sdk_qbusiness::types::AttributeFilter> for SharedAttributeFilter {
             }),
             not_filter: value
                 .not_filter
-                .map(|item| Box::new(Arc::new(SharedAttributeFilter::from(*(item))))),
+                .map(|item| Arc::new(SharedAttributeFilter::from(*(item)))),
             equals_to: value.equals_to.map(|item| Arc::new(item)),
             contains_all: value.contains_all.map(|item| Arc::new(item)),
             contains_any: value.contains_any.map(|item| Arc::new(item)),
@@ -8895,7 +8895,7 @@ fn attribute_filter_shared_to_py(
         result.set_item("or_all_filters", py.None())?;
     }
     if let Some(value) = &value.not_filter {
-        let converted_1857 = attribute_filter_shared_to_py(py, (value).as_ref())?;
+        let converted_1857 = attribute_filter_shared_to_py(py, value)?;
         result.set_item("not_filter", converted_1857)?;
     } else {
         result.set_item("not_filter", py.None())?;
@@ -9000,7 +9000,7 @@ impl PyAttributeFilter {
             let converted_1841 = Py::new(
                 py,
                 PyAttributeFilter {
-                    inner: Arc::clone((value).as_ref()),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();

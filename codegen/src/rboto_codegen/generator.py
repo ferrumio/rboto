@@ -609,7 +609,10 @@ class ServiceGenerator:
         if kind == "box":
             arguments = _generic(rust_type, "::std::boxed::Box")
             assert arguments is not None
-            return self._to_py(arguments[0], f"({source}).as_ref()", target, indent, shared=shared)
+            inner_source = (
+                source if shared and self._shared_is_arc(rust_type) else f"({source}).as_ref()"
+            )
+            return self._to_py(arguments[0], inner_source, target, indent, shared=shared)
         if kind == "option":
             arguments = _generic(rust_type, "::std::option::Option")
             assert arguments is not None
@@ -675,7 +678,8 @@ class ServiceGenerator:
         if kind == "box":
             arguments = _generic(rust_type, "::std::boxed::Box")
             assert arguments is not None
-            return self._to_typed_py(arguments[0], f"({source}).as_ref()", target, indent)
+            inner_source = source if self._shared_is_arc(rust_type) else f"({source}).as_ref()"
+            return self._to_typed_py(arguments[0], inner_source, target, indent)
         if kind == "option":
             arguments = _generic(rust_type, "::std::option::Option")
             assert arguments is not None
@@ -746,6 +750,13 @@ class ServiceGenerator:
             return f"Shared{name}"
         return f"{self.rust_module}::types::{name}"
 
+    def _shared_is_arc(self, rust_type: str) -> bool:
+        # SDK boxes break recursive type cycles; the shared node's Arc already
+        # provides that indirection. Other boxed values keep their representation.
+        while (arguments := _generic(rust_type, "::std::boxed::Box")) is not None:
+            rust_type = arguments[0]
+        return self._kind(rust_type) == "struct"
+
     def _shared_type(self, rust_type: str) -> str:
         """Rust-only output storage. Unions keep their dictionary representation."""
         kind = self._kind(rust_type)
@@ -759,6 +770,8 @@ class ServiceGenerator:
             prefix = prefixes[kind]
             arguments = _generic(rust_type, prefix)
             assert arguments is not None
+            if kind == "box" and self._shared_is_arc(rust_type):
+                return self._shared_type(arguments[0])
             return f"{prefix}<{', '.join(self._shared_type(arg) for arg in arguments)}>"
         return rust_type.replace("crate::", f"{self.rust_module}::")
 
@@ -779,7 +792,8 @@ class ServiceGenerator:
         arguments = _generic(rust_type, prefixes[kind])
         assert arguments is not None
         if kind == "box":
-            return f"Box::new({self._into_shared(arguments[0], f'*({source})')})"
+            converted = self._into_shared(arguments[0], f"*({source})")
+            return converted if self._shared_is_arc(rust_type) else f"Box::new({converted})"
         item = self._next("owned")
         converted = self._into_shared(arguments[-1], item)
         if kind == "option":

@@ -10247,7 +10247,7 @@ impl PyLogEvent {
 
 struct SharedLogFieldType {
     r#type: Option<::std::string::String>,
-    element: Option<::std::boxed::Box<Arc<SharedLogFieldType>>>,
+    element: Option<Arc<SharedLogFieldType>>,
     fields: Option<::std::vec::Vec<Arc<SharedLogFieldsListItem>>>,
 }
 
@@ -10258,7 +10258,7 @@ impl From<aws_sdk_cloudwatchlogs::types::LogFieldType> for SharedLogFieldType {
             r#type: value.r#type,
             element: value
                 .element
-                .map(|item| Box::new(Arc::new(SharedLogFieldType::from(*(item))))),
+                .map(|item| Arc::new(SharedLogFieldType::from(*(item)))),
             fields: value.fields.map(|item| {
                 (item)
                     .into_iter()
@@ -10278,7 +10278,7 @@ fn log_field_type_shared_to_py(py: Python<'_>, value: &SharedLogFieldType) -> Py
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.element {
-        let converted_2278 = log_field_type_shared_to_py(py, (value).as_ref())?;
+        let converted_2278 = log_field_type_shared_to_py(py, value)?;
         result.set_item("element", converted_2278)?;
     } else {
         result.set_item("element", py.None())?;
@@ -10324,7 +10324,7 @@ impl PyLogFieldType {
             let converted_2272 = Py::new(
                 py,
                 PyLogFieldType {
-                    inner: Arc::clone((value).as_ref()),
+                    inner: Arc::clone(value),
                 },
             )?
             .into_any();
