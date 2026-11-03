@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import CloudWatchLogsClient as NativeClient, AssociateSourceToS3TableIntegrationOutput, CancelImportTaskOutput, CreateDeliveryOutput, CreateExportTaskOutput, CreateImportTaskOutput, CreateLogAnomalyDetectorOutput, CreateLookupTableOutput, CreateScheduledQueryOutput, DeleteIndexPolicyOutput, DeleteIntegrationOutput, DeleteQueryDefinitionOutput, DeleteScheduledQueryOutput, DescribeAccountPoliciesOutput, DescribeConfigurationTemplatesOutput, DescribeDeliveriesOutput, DescribeDeliveryDestinationsOutput, DescribeDeliverySourcesOutput, DescribeDestinationsOutput, DescribeExportTasksOutput, DescribeFieldIndexesOutput, DescribeImportTaskBatchesOutput, DescribeImportTasksOutput, DescribeIndexPoliciesOutput, DescribeLogGroupsOutput, DescribeLogStreamsOutput, DescribeLookupTablesOutput, DescribeMetricFiltersOutput, DescribeQueriesOutput, DescribeQueryDefinitionsOutput, DescribeResourcePoliciesOutput, DescribeSubscriptionFiltersOutput, DisassociateSourceFromS3TableIntegrationOutput, FilterLogEventsOutput, GetDataProtectionPolicyOutput, GetDeliveryDestinationOutput, GetDeliveryDestinationPolicyOutput, GetDeliveryOutput, GetDeliverySourceOutput, GetIntegrationOutput, GetLogAnomalyDetectorOutput, GetLogEventsOutput, GetLogFieldsOutput, GetLogGroupFieldsOutput, GetLogRecordOutput, GetLookupTableOutput, GetQueryResultsOutput, GetScheduledQueryHistoryOutput, GetScheduledQueryOutput, GetStorageTierPolicyOutput, GetTransformerOutput, ListAggregateLogGroupSummariesOutput, ListAnomaliesOutput, ListIntegrationsOutput, ListLogAnomalyDetectorsOutput, ListLogGroupsForQueryOutput, ListLogGroupsOutput, ListScheduledQueriesOutput, ListSourcesForS3TableIntegrationOutput, ListSyslogConfigurationsOutput, ListTagsForResourceOutput, ListTagsLogGroupOutput, PutAccountPolicyOutput, PutDataProtectionPolicyOutput, PutDeliveryDestinationOutput, PutDeliveryDestinationPolicyOutput, PutDeliverySourceOutput, PutDestinationOutput, PutIndexPolicyOutput, PutIntegrationOutput, PutLogEventsOutput, PutQueryDefinitionOutput, PutResourcePolicyOutput, PutStorageTierPolicyOutput, StartQueryOutput, StopQueryOutput, TestMetricFilterOutput, TestTransformerOutput, UpdateDeliveryConfigurationOutput, UpdateLookupTableOutput, UpdateScheduledQueryOutput
 from .types import (
@@ -116,6 +116,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("kms_key_id", "log_group_name", "resource_identifier", ),
                 ("kms_key_id", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.associate_kms_key(params)
@@ -141,6 +142,7 @@ class CloudWatchLogsClient:
                 AssociateSourceToS3TableIntegrationOutput,
                 ("integration_arn", "data_source", ),
                 ("integration_arn", "data_source", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.associate_source_to_s3_table_integration(params)
@@ -164,6 +166,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("task_id", ),
                 ("task_id", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.cancel_export_task(params)
@@ -187,6 +190,7 @@ class CloudWatchLogsClient:
                 CancelImportTaskOutput,
                 ("import_id", ),
                 ("import_id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.cancel_import_task(params)
@@ -224,6 +228,7 @@ class CloudWatchLogsClient:
                 CreateDeliveryOutput,
                 ("delivery_source_name", "delivery_destination_arn", "record_fields", "field_delimiter", "s3_delivery_configuration", "tags", ),
                 ("delivery_source_name", "delivery_destination_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.create_delivery(params)
@@ -262,6 +267,7 @@ class CloudWatchLogsClient:
                 CreateExportTaskOutput,
                 ("log_group_name", "from", "to", "destination", "task_name", "log_stream_name_prefix", "destination_prefix", ),
                 ("log_group_name", "from", "to", "destination", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.create_export_task(params)
@@ -290,6 +296,7 @@ class CloudWatchLogsClient:
                 CreateImportTaskOutput,
                 ("import_source_arn", "import_role_arn", "import_filter", ),
                 ("import_source_arn", "import_role_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.create_import_task(params)
@@ -331,6 +338,7 @@ class CloudWatchLogsClient:
                 CreateLogAnomalyDetectorOutput,
                 ("log_group_arn_list", "detector_name", "evaluation_frequency", "filter_pattern", "kms_key_id", "anomaly_visibility_time", "tags", ),
                 ("log_group_arn_list", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.create_log_anomaly_detector(params)
@@ -366,6 +374,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "kms_key_id", "tags", "log_group_class", "deletion_protection_enabled", ),
                 ("log_group_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.create_log_group(params)
@@ -391,6 +400,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "log_stream_name", ),
                 ("log_group_name", "log_stream_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.create_log_stream(params)
@@ -429,6 +439,7 @@ class CloudWatchLogsClient:
                 CreateLookupTableOutput,
                 ("lookup_table_name", "description", "table_body", "query_id", "kms_key_id", "tags", ),
                 ("lookup_table_name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.create_lookup_table(params)
@@ -490,6 +501,7 @@ class CloudWatchLogsClient:
                 CreateScheduledQueryOutput,
                 ("name", "query_language", "query_string", "schedule_expression", "execution_role_arn", "description", "log_group_identifiers", "timezone", "start_time_offset", "end_time_offset", "destination_configuration", "schedule_start_time", "schedule_end_time", "state", "tags", ),
                 ("name", "query_language", "query_string", "schedule_expression", "execution_role_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.create_scheduled_query(params)
@@ -515,6 +527,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("policy_name", "policy_type", ),
                 ("policy_name", "policy_type", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_account_policy(params)
@@ -538,6 +551,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_identifier", ),
                 ("log_group_identifier", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_data_protection_policy(params)
@@ -561,6 +575,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("id", ),
                 ("id", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_delivery(params)
@@ -584,6 +599,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("name", ),
                 ("name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_delivery_destination(params)
@@ -607,6 +623,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("delivery_destination_name", ),
                 ("delivery_destination_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_delivery_destination_policy(params)
@@ -630,6 +647,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("name", ),
                 ("name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_delivery_source(params)
@@ -653,6 +671,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("destination_name", ),
                 ("destination_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_destination(params)
@@ -676,6 +695,7 @@ class CloudWatchLogsClient:
                 DeleteIndexPolicyOutput,
                 ("log_group_identifier", ),
                 ("log_group_identifier", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.delete_index_policy(params)
@@ -702,6 +722,7 @@ class CloudWatchLogsClient:
                 DeleteIntegrationOutput,
                 ("integration_name", "force", ),
                 ("integration_name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.delete_integration(params)
@@ -725,6 +746,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("anomaly_detector_arn", ),
                 ("anomaly_detector_arn", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_log_anomaly_detector(params)
@@ -748,6 +770,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", ),
                 ("log_group_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_log_group(params)
@@ -773,6 +796,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "log_stream_name", ),
                 ("log_group_name", "log_stream_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_log_stream(params)
@@ -796,6 +820,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("lookup_table_arn", ),
                 ("lookup_table_arn", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_lookup_table(params)
@@ -821,6 +846,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "filter_name", ),
                 ("log_group_name", "filter_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_metric_filter(params)
@@ -844,6 +870,7 @@ class CloudWatchLogsClient:
                 DeleteQueryDefinitionOutput,
                 ("query_definition_id", ),
                 ("query_definition_id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.delete_query_definition(params)
@@ -874,6 +901,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("policy_name", "resource_arn", "expected_revision_id", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_resource_policy(params)
@@ -897,6 +925,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", ),
                 ("log_group_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_retention_policy(params)
@@ -920,6 +949,7 @@ class CloudWatchLogsClient:
                 DeleteScheduledQueryOutput,
                 ("identifier", ),
                 ("identifier", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.delete_scheduled_query(params)
@@ -945,6 +975,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "filter_name", ),
                 ("log_group_name", "filter_name", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_subscription_filter(params)
@@ -971,6 +1002,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_identifier", "vpc_endpoint_id", ),
                 ("log_group_identifier", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_syslog_configuration(params)
@@ -994,6 +1026,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_identifier", ),
                 ("log_group_identifier", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.delete_transformer(params)
@@ -1026,6 +1059,7 @@ class CloudWatchLogsClient:
                 DescribeAccountPoliciesOutput,
                 ("policy_type", "policy_name", "account_identifiers", "next_token", ),
                 ("policy_type", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_account_policies(params)
@@ -1065,6 +1099,7 @@ class CloudWatchLogsClient:
                 DescribeConfigurationTemplatesOutput,
                 ("service", "log_types", "resource_types", "delivery_destination_types", "next_token", "limit", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_configuration_templates(params)
@@ -1095,6 +1130,7 @@ class CloudWatchLogsClient:
                 DescribeDeliveriesOutput,
                 ("next_token", "limit", "delivery_source_names", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_deliveries(params)
@@ -1125,6 +1161,7 @@ class CloudWatchLogsClient:
                 DescribeDeliveryDestinationsOutput,
                 ("next_token", "limit", "names", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_delivery_destinations(params)
@@ -1155,6 +1192,7 @@ class CloudWatchLogsClient:
                 DescribeDeliverySourcesOutput,
                 ("next_token", "limit", "resource_arns", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_delivery_sources(params)
@@ -1185,6 +1223,7 @@ class CloudWatchLogsClient:
                 DescribeDestinationsOutput,
                 ("destination_name_prefix", "next_token", "limit", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_destinations(params)
@@ -1218,6 +1257,7 @@ class CloudWatchLogsClient:
                 DescribeExportTasksOutput,
                 ("task_id", "status_code", "next_token", "limit", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_export_tasks(params)
@@ -1247,6 +1287,7 @@ class CloudWatchLogsClient:
                 DescribeFieldIndexesOutput,
                 ("log_group_identifiers", "index_categories", "next_token", ),
                 ("log_group_identifiers", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_field_indexes(params)
@@ -1279,6 +1320,7 @@ class CloudWatchLogsClient:
                 DescribeImportTaskBatchesOutput,
                 ("import_id", "batch_import_status", "limit", "next_token", ),
                 ("import_id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_import_task_batches(params)
@@ -1315,6 +1357,7 @@ class CloudWatchLogsClient:
                 DescribeImportTasksOutput,
                 ("import_id", "import_status", "import_source_arn", "limit", "next_token", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_import_tasks(params)
@@ -1341,6 +1384,7 @@ class CloudWatchLogsClient:
                 DescribeIndexPoliciesOutput,
                 ("log_group_identifiers", "next_token", ),
                 ("log_group_identifiers", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_index_policies(params)
@@ -1386,6 +1430,7 @@ class CloudWatchLogsClient:
                 DescribeLogGroupsOutput,
                 ("account_identifiers", "log_group_name_prefix", "log_group_name_pattern", "next_token", "limit", "include_linked_accounts", "log_group_class", "log_group_identifiers", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_log_groups(params)
@@ -1428,6 +1473,7 @@ class CloudWatchLogsClient:
                 DescribeLogStreamsOutput,
                 ("log_group_name", "log_group_identifier", "log_stream_name_prefix", "order_by", "descending", "next_token", "limit", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_log_streams(params)
@@ -1458,6 +1504,7 @@ class CloudWatchLogsClient:
                 DescribeLookupTablesOutput,
                 ("lookup_table_name_prefix", "max_results", "next_token", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_lookup_tables(params)
@@ -1497,6 +1544,7 @@ class CloudWatchLogsClient:
                 DescribeMetricFiltersOutput,
                 ("log_group_name", "filter_name_prefix", "next_token", "limit", "metric_name", "metric_namespace", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_metric_filters(params)
@@ -1533,6 +1581,7 @@ class CloudWatchLogsClient:
                 DescribeQueriesOutput,
                 ("log_group_name", "status", "max_results", "next_token", "query_language", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_queries(params)
@@ -1566,6 +1615,7 @@ class CloudWatchLogsClient:
                 DescribeQueryDefinitionsOutput,
                 ("query_language", "query_definition_name_prefix", "max_results", "next_token", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_query_definitions(params)
@@ -1599,6 +1649,7 @@ class CloudWatchLogsClient:
                 DescribeResourcePoliciesOutput,
                 ("next_token", "limit", "resource_arn", "policy_scope", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_resource_policies(params)
@@ -1631,6 +1682,7 @@ class CloudWatchLogsClient:
                 DescribeSubscriptionFiltersOutput,
                 ("log_group_name", "filter_name_prefix", "next_token", "limit", ),
                 ("log_group_name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.describe_subscription_filters(params)
@@ -1658,6 +1710,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "resource_identifier", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.disassociate_kms_key(params)
@@ -1681,6 +1734,7 @@ class CloudWatchLogsClient:
                 DisassociateSourceFromS3TableIntegrationOutput,
                 ("identifier", ),
                 ("identifier", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.disassociate_source_from_s3_table_integration(params)
@@ -1738,6 +1792,7 @@ class CloudWatchLogsClient:
                 FilterLogEventsOutput,
                 ("log_group_name", "log_group_identifier", "log_stream_names", "log_stream_name_prefix", "start_time", "end_time", "filter_pattern", "next_token", "limit", "start_from_head", "interleaved", "unmask", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.filter_log_events(params)
@@ -1761,6 +1816,7 @@ class CloudWatchLogsClient:
                 GetDataProtectionPolicyOutput,
                 ("log_group_identifier", ),
                 ("log_group_identifier", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_data_protection_policy(params)
@@ -1784,6 +1840,7 @@ class CloudWatchLogsClient:
                 GetDeliveryOutput,
                 ("id", ),
                 ("id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_delivery(params)
@@ -1807,6 +1864,7 @@ class CloudWatchLogsClient:
                 GetDeliveryDestinationOutput,
                 ("name", ),
                 ("name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_delivery_destination(params)
@@ -1830,6 +1888,7 @@ class CloudWatchLogsClient:
                 GetDeliveryDestinationPolicyOutput,
                 ("delivery_destination_name", ),
                 ("delivery_destination_name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_delivery_destination_policy(params)
@@ -1853,6 +1912,7 @@ class CloudWatchLogsClient:
                 GetDeliverySourceOutput,
                 ("name", ),
                 ("name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_delivery_source(params)
@@ -1876,6 +1936,7 @@ class CloudWatchLogsClient:
                 GetIntegrationOutput,
                 ("integration_name", ),
                 ("integration_name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_integration(params)
@@ -1899,6 +1960,7 @@ class CloudWatchLogsClient:
                 GetLogAnomalyDetectorOutput,
                 ("anomaly_detector_arn", ),
                 ("anomaly_detector_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_log_anomaly_detector(params)
@@ -1946,6 +2008,7 @@ class CloudWatchLogsClient:
                 GetLogEventsOutput,
                 ("log_stream_name", "log_group_name", "log_group_identifier", "start_time", "end_time", "next_token", "limit", "start_from_head", "unmask", ),
                 ("log_stream_name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_log_events(params)
@@ -1971,6 +2034,7 @@ class CloudWatchLogsClient:
                 GetLogFieldsOutput,
                 ("data_source_name", "data_source_type", ),
                 ("data_source_name", "data_source_type", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_log_fields(params)
@@ -2001,6 +2065,7 @@ class CloudWatchLogsClient:
                 GetLogGroupFieldsOutput,
                 ("log_group_name", "time", "log_group_identifier", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_log_group_fields(params)
@@ -2027,6 +2092,7 @@ class CloudWatchLogsClient:
                 dict,
                 ("log_object_pointer", "unmask", ),
                 ("log_object_pointer", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_log_object(params)
@@ -2053,6 +2119,7 @@ class CloudWatchLogsClient:
                 GetLogRecordOutput,
                 ("log_record_pointer", "unmask", ),
                 ("log_record_pointer", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_log_record(params)
@@ -2076,6 +2143,7 @@ class CloudWatchLogsClient:
                 GetLookupTableOutput,
                 ("lookup_table_arn", ),
                 ("lookup_table_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_lookup_table(params)
@@ -2105,6 +2173,7 @@ class CloudWatchLogsClient:
                 GetQueryResultsOutput,
                 ("query_id", "next_token", "max_items", ),
                 ("query_id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_query_results(params)
@@ -2128,6 +2197,7 @@ class CloudWatchLogsClient:
                 GetScheduledQueryOutput,
                 ("identifier", ),
                 ("identifier", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_scheduled_query(params)
@@ -2164,6 +2234,7 @@ class CloudWatchLogsClient:
                 GetScheduledQueryHistoryOutput,
                 ("identifier", "start_time", "end_time", "execution_statuses", "max_results", "next_token", ),
                 ("identifier", "start_time", "end_time", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_scheduled_query_history(params)
@@ -2184,6 +2255,7 @@ class CloudWatchLogsClient:
                 GetStorageTierPolicyOutput,
                 (),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_storage_tier_policy(params)
@@ -2207,6 +2279,7 @@ class CloudWatchLogsClient:
                 GetTransformerOutput,
                 ("log_group_identifier", ),
                 ("log_group_identifier", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.get_transformer(params)
@@ -2251,6 +2324,7 @@ class CloudWatchLogsClient:
                 ListAggregateLogGroupSummariesOutput,
                 ("group_by", "account_identifiers", "include_linked_accounts", "log_group_class", "log_group_name_pattern", "data_sources", "next_token", "limit", ),
                 ("group_by", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_aggregate_log_group_summaries(params)
@@ -2284,6 +2358,7 @@ class CloudWatchLogsClient:
                 ListAnomaliesOutput,
                 ("anomaly_detector_arn", "suppression_state", "limit", "next_token", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_anomalies(params)
@@ -2314,6 +2389,7 @@ class CloudWatchLogsClient:
                 ListIntegrationsOutput,
                 ("integration_name_prefix", "integration_type", "integration_status", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_integrations(params)
@@ -2344,6 +2420,7 @@ class CloudWatchLogsClient:
                 ListLogAnomalyDetectorsOutput,
                 ("filter_log_group_arn", "limit", "next_token", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_log_anomaly_detectors(params)
@@ -2392,6 +2469,7 @@ class CloudWatchLogsClient:
                 ListLogGroupsOutput,
                 ("log_group_name_pattern", "log_group_class", "include_linked_accounts", "account_identifiers", "next_token", "limit", "data_sources", "field_index_names", "log_group_tags", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_log_groups(params)
@@ -2421,6 +2499,7 @@ class CloudWatchLogsClient:
                 ListLogGroupsForQueryOutput,
                 ("query_id", "next_token", "max_results", ),
                 ("query_id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_log_groups_for_query(params)
@@ -2454,6 +2533,7 @@ class CloudWatchLogsClient:
                 ListScheduledQueriesOutput,
                 ("max_results", "next_token", "state", "schedule_type", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_scheduled_queries(params)
@@ -2483,6 +2563,7 @@ class CloudWatchLogsClient:
                 ListSourcesForS3TableIntegrationOutput,
                 ("integration_arn", "max_results", "next_token", ),
                 ("integration_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_sources_for_s3_table_integration(params)
@@ -2516,6 +2597,7 @@ class CloudWatchLogsClient:
                 ListSyslogConfigurationsOutput,
                 ("log_group_identifier", "vpc_endpoint_id", "next_token", "max_results", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_syslog_configurations(params)
@@ -2539,6 +2621,7 @@ class CloudWatchLogsClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -2562,6 +2645,7 @@ class CloudWatchLogsClient:
                 ListTagsLogGroupOutput,
                 ("log_group_name", ),
                 ("log_group_name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.list_tags_log_group(params)
@@ -2595,6 +2679,7 @@ class CloudWatchLogsClient:
                 PutAccountPolicyOutput,
                 ("policy_name", "policy_document", "policy_type", "scope", "selection_criteria", ),
                 ("policy_name", "policy_document", "policy_type", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_account_policy(params)
@@ -2620,6 +2705,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_identifier", "bearer_token_authentication_enabled", ),
                 ("log_group_identifier", "bearer_token_authentication_enabled", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_bearer_token_authentication(params)
@@ -2645,6 +2731,7 @@ class CloudWatchLogsClient:
                 PutDataProtectionPolicyOutput,
                 ("log_group_identifier", "policy_document", ),
                 ("log_group_identifier", "policy_document", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_data_protection_policy(params)
@@ -2683,6 +2770,7 @@ class CloudWatchLogsClient:
                 PutDeliveryDestinationOutput,
                 ("name", "output_format", "delivery_destination_configuration", "delivery_destination_type", "role_arn", "tags", ),
                 ("name", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_delivery_destination(params)
@@ -2708,6 +2796,7 @@ class CloudWatchLogsClient:
                 PutDeliveryDestinationPolicyOutput,
                 ("delivery_destination_name", "delivery_destination_policy", ),
                 ("delivery_destination_name", "delivery_destination_policy", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_delivery_destination_policy(params)
@@ -2741,6 +2830,7 @@ class CloudWatchLogsClient:
                 PutDeliverySourceOutput,
                 ("name", "resource_arn", "log_type", "tags", "delivery_source_configuration", ),
                 ("name", "resource_arn", "log_type", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_delivery_source(params)
@@ -2771,6 +2861,7 @@ class CloudWatchLogsClient:
                 PutDestinationOutput,
                 ("destination_name", "target_arn", "role_arn", "tags", ),
                 ("destination_name", "target_arn", "role_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_destination(params)
@@ -2799,6 +2890,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("destination_name", "access_policy", "force_update", ),
                 ("destination_name", "access_policy", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_destination_policy(params)
@@ -2824,6 +2916,7 @@ class CloudWatchLogsClient:
                 PutIndexPolicyOutput,
                 ("log_group_identifier", "policy_document", ),
                 ("log_group_identifier", "policy_document", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_index_policy(params)
@@ -2851,6 +2944,7 @@ class CloudWatchLogsClient:
                 PutIntegrationOutput,
                 ("integration_name", "resource_config", "integration_type", ),
                 ("integration_name", "resource_config", "integration_type", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_integration(params)
@@ -2884,6 +2978,7 @@ class CloudWatchLogsClient:
                 PutLogEventsOutput,
                 ("log_group_name", "log_stream_name", "log_events", "sequence_token", "entity", ),
                 ("log_group_name", "log_stream_name", "log_events", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_log_events(params)
@@ -2909,6 +3004,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_identifier", "deletion_protection_enabled", ),
                 ("log_group_identifier", "deletion_protection_enabled", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_log_group_deletion_protection(params)
@@ -2947,6 +3043,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "filter_name", "filter_pattern", "metric_transformations", "apply_on_transformed_logs", "field_selection_criteria", "emit_system_field_dimensions", ),
                 ("log_group_name", "filter_name", "filter_pattern", "metric_transformations", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_metric_filter(params)
@@ -2987,6 +3084,7 @@ class CloudWatchLogsClient:
                 PutQueryDefinitionOutput,
                 ("name", "query_string", "query_language", "query_definition_id", "log_group_names", "client_token", "parameters", ),
                 ("name", "query_string", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_query_definition(params)
@@ -3020,6 +3118,7 @@ class CloudWatchLogsClient:
                 PutResourcePolicyOutput,
                 ("policy_name", "policy_document", "resource_arn", "expected_revision_id", ),
                 (),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -3045,6 +3144,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "retention_in_days", ),
                 ("log_group_name", "retention_in_days", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_retention_policy(params)
@@ -3068,6 +3168,7 @@ class CloudWatchLogsClient:
                 PutStorageTierPolicyOutput,
                 ("storage_tier", ),
                 ("storage_tier", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.put_storage_tier_policy(params)
@@ -3112,6 +3213,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "filter_name", "filter_pattern", "destination_arn", "role_arn", "distribution", "apply_on_transformed_logs", "field_selection_criteria", "emit_system_fields", ),
                 ("log_group_name", "filter_name", "filter_pattern", "destination_arn", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_subscription_filter(params)
@@ -3138,6 +3240,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_identifier", "vpc_endpoint_id", ),
                 ("log_group_identifier", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_syslog_configuration(params)
@@ -3163,6 +3266,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_identifier", "transformer_config", ),
                 ("log_group_identifier", "transformer_config", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.put_transformer(params)
@@ -3195,6 +3299,7 @@ class CloudWatchLogsClient:
                 dict,
                 ("log_group_identifiers", "log_stream_names", "log_stream_name_prefixes", "log_event_filter_pattern", ),
                 ("log_group_identifiers", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.start_live_tail(params)
@@ -3237,6 +3342,7 @@ class CloudWatchLogsClient:
                 StartQueryOutput,
                 ("start_time", "end_time", "query_string", "query_language", "log_group_name", "log_group_names", "log_group_identifiers", "limit", ),
                 ("start_time", "end_time", "query_string", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.start_query(params)
@@ -3260,6 +3366,7 @@ class CloudWatchLogsClient:
                 StopQueryOutput,
                 ("query_id", ),
                 ("query_id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.stop_query(params)
@@ -3285,6 +3392,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "tags", ),
                 ("log_group_name", "tags", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.tag_log_group(params)
@@ -3310,6 +3418,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.tag_resource(params)
@@ -3335,6 +3444,7 @@ class CloudWatchLogsClient:
                 TestMetricFilterOutput,
                 ("filter_pattern", "log_event_messages", ),
                 ("filter_pattern", "log_event_messages", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.test_metric_filter(params)
@@ -3360,6 +3470,7 @@ class CloudWatchLogsClient:
                 TestTransformerOutput,
                 ("transformer_config", "log_event_messages", ),
                 ("transformer_config", "log_event_messages", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.test_transformer(params)
@@ -3385,6 +3496,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("log_group_name", "tags", ),
                 ("log_group_name", "tags", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.untag_log_group(params)
@@ -3410,6 +3522,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.untag_resource(params)
@@ -3448,6 +3561,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("anomaly_detector_arn", "anomaly_id", "pattern_id", "suppression_type", "suppression_period", "baseline", ),
                 ("anomaly_detector_arn", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.update_anomaly(params)
@@ -3480,6 +3594,7 @@ class CloudWatchLogsClient:
                 UpdateDeliveryConfigurationOutput,
                 ("id", "record_fields", "field_delimiter", "s3_delivery_configuration", ),
                 ("id", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.update_delivery_configuration(params)
@@ -3514,6 +3629,7 @@ class CloudWatchLogsClient:
                 type(None),
                 ("anomaly_detector_arn", "enabled", "evaluation_frequency", "filter_pattern", "anomaly_visibility_time", ),
                 ("anomaly_detector_arn", "enabled", ),
+                service_name='CloudWatch Logs',
             )
             return None
         await self._native.update_log_anomaly_detector(params)
@@ -3549,6 +3665,7 @@ class CloudWatchLogsClient:
                 UpdateLookupTableOutput,
                 ("lookup_table_arn", "description", "table_body", "query_id", "kms_key_id", ),
                 ("lookup_table_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.update_lookup_table(params)
@@ -3607,6 +3724,7 @@ class CloudWatchLogsClient:
                 UpdateScheduledQueryOutput,
                 ("identifier", "query_language", "query_string", "schedule_expression", "execution_role_arn", "description", "log_group_identifiers", "timezone", "start_time_offset", "end_time_offset", "destination_configuration", "schedule_start_time", "schedule_end_time", "state", ),
                 ("identifier", "query_language", "query_string", "schedule_expression", "execution_role_arn", ),
+                service_name='CloudWatch Logs',
             )
             return _response
         _response = await self._native.update_scheduled_query(params)

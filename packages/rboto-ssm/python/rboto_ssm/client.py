@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SSMClient as NativeClient, AddTagsToResourceOutput, AssociateOpsItemRelatedItemOutput, CancelCommandOutput, CancelMaintenanceWindowExecutionOutput, CreateActivationOutput, CreateAssociationBatchOutput, CreateAssociationOutput, CreateCloudConnectorOutput, CreateDocumentOutput, CreateMaintenanceWindowOutput, CreateOpsItemOutput, CreateOpsMetadataOutput, CreatePatchBaselineOutput, CreateResourceDataSyncOutput, DeleteActivationOutput, DeleteAssociationOutput, DeleteCloudConnectorOutput, DeleteDocumentOutput, DeleteInventoryOutput, DeleteMaintenanceWindowOutput, DeleteOpsItemOutput, DeleteOpsMetadataOutput, DeleteParameterOutput, DeleteParametersOutput, DeletePatchBaselineOutput, DeleteResourceDataSyncOutput, DeleteResourcePolicyOutput, DeregisterManagedInstanceOutput, DeregisterPatchBaselineForPatchGroupOutput, DeregisterTargetFromMaintenanceWindowOutput, DeregisterTaskFromMaintenanceWindowOutput, DescribeActivationsOutput, DescribeAssociationExecutionTargetsOutput, DescribeAssociationExecutionsOutput, DescribeAssociationOutput, DescribeAutomationExecutionsOutput, DescribeAutomationStepExecutionsOutput, DescribeAvailablePatchesOutput, DescribeDocumentOutput, DescribeDocumentPermissionOutput, DescribeEffectiveInstanceAssociationsOutput, DescribeEffectivePatchesForPatchBaselineOutput, DescribeInstanceAssociationsStatusOutput, DescribeInstanceInformationOutput, DescribeInstancePatchStatesForPatchGroupOutput, DescribeInstancePatchStatesOutput, DescribeInstancePatchesOutput, DescribeInstancePropertiesOutput, DescribeInventoryDeletionsOutput, DescribeMaintenanceWindowExecutionTaskInvocationsOutput, DescribeMaintenanceWindowExecutionTasksOutput, DescribeMaintenanceWindowExecutionsOutput, DescribeMaintenanceWindowScheduleOutput, DescribeMaintenanceWindowTargetsOutput, DescribeMaintenanceWindowTasksOutput, DescribeMaintenanceWindowsForTargetOutput, DescribeMaintenanceWindowsOutput, DescribeOpsItemsOutput, DescribeParametersOutput, DescribePatchBaselinesOutput, DescribePatchGroupStateOutput, DescribePatchGroupsOutput, DescribePatchPropertiesOutput, DescribeSessionsOutput, DisassociateOpsItemRelatedItemOutput, GetAccessTokenOutput, GetAutomationExecutionOutput, GetCalendarStateOutput, GetCloudConnectorOutput, GetCommandInvocationOutput, GetConnectionStatusOutput, GetDefaultPatchBaselineOutput, GetDeployablePatchSnapshotForInstanceOutput, GetDocumentOutput, GetExecutionPreviewOutput, GetInventoryOutput, GetInventorySchemaOutput, GetMaintenanceWindowExecutionOutput, GetMaintenanceWindowExecutionTaskInvocationOutput, GetMaintenanceWindowExecutionTaskOutput, GetMaintenanceWindowOutput, GetMaintenanceWindowTaskOutput, GetOpsItemOutput, GetOpsMetadataOutput, GetOpsSummaryOutput, GetParameterHistoryOutput, GetParameterOutput, GetParametersByPathOutput, GetParametersOutput, GetPatchBaselineForPatchGroupOutput, GetPatchBaselineOutput, GetResourcePoliciesOutput, GetServiceSettingOutput, LabelParameterVersionOutput, ListAssociationVersionsOutput, ListAssociationsOutput, ListCloudConnectorsOutput, ListCommandInvocationsOutput, ListCommandsOutput, ListComplianceItemsOutput, ListComplianceSummariesOutput, ListDocumentMetadataHistoryOutput, ListDocumentVersionsOutput, ListDocumentsOutput, ListInventoryEntriesOutput, ListNodesOutput, ListNodesSummaryOutput, ListOpsItemEventsOutput, ListOpsItemRelatedItemsOutput, ListOpsMetadataOutput, ListResourceComplianceSummariesOutput, ListResourceDataSyncOutput, ListTagsForResourceOutput, ModifyDocumentPermissionOutput, PutComplianceItemsOutput, PutInventoryOutput, PutParameterOutput, PutResourcePolicyOutput, RegisterDefaultPatchBaselineOutput, RegisterPatchBaselineForPatchGroupOutput, RegisterTargetWithMaintenanceWindowOutput, RegisterTaskWithMaintenanceWindowOutput, RemoveTagsFromResourceOutput, ResetServiceSettingOutput, ResumeSessionOutput, SendAutomationSignalOutput, SendCommandOutput, StartAccessRequestOutput, StartAssociationsOnceOutput, StartAutomationExecutionOutput, StartChangeRequestExecutionOutput, StartExecutionPreviewOutput, StartSessionOutput, StopAutomationExecutionOutput, TerminateSessionOutput, UnlabelParameterVersionOutput, UpdateAssociationOutput, UpdateAssociationStatusOutput, UpdateCloudConnectorOutput, UpdateDocumentDefaultVersionOutput, UpdateDocumentMetadataOutput, UpdateDocumentOutput, UpdateMaintenanceWindowOutput, UpdateMaintenanceWindowTargetOutput, UpdateMaintenanceWindowTaskOutput, UpdateManagedInstanceRoleOutput, UpdateOpsItemOutput, UpdateOpsMetadataOutput, UpdatePatchBaselineOutput, UpdateResourceDataSyncOutput, UpdateServiceSettingOutput, ValidateCloudConnectorOutput
 from .types import (
@@ -178,6 +178,7 @@ class SSMClient:
                 AddTagsToResourceOutput,
                 ("resource_type", "resource_id", "tags", ),
                 ("resource_type", "resource_id", "tags", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.add_tags_to_resource(params)
@@ -207,6 +208,7 @@ class SSMClient:
                 AssociateOpsItemRelatedItemOutput,
                 ("ops_item_id", "association_type", "resource_type", "resource_uri", ),
                 ("ops_item_id", "association_type", "resource_type", "resource_uri", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.associate_ops_item_related_item(params)
@@ -233,6 +235,7 @@ class SSMClient:
                 CancelCommandOutput,
                 ("command_id", "instance_ids", ),
                 ("command_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.cancel_command(params)
@@ -256,6 +259,7 @@ class SSMClient:
                 CancelMaintenanceWindowExecutionOutput,
                 ("window_execution_id", ),
                 ("window_execution_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.cancel_maintenance_window_execution(params)
@@ -297,6 +301,7 @@ class SSMClient:
                 CreateActivationOutput,
                 ("iam_role", "description", "default_instance_name", "registration_limit", "expiration_date", "tags", "registration_metadata", ),
                 ("iam_role", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_activation(params)
@@ -383,6 +388,7 @@ class SSMClient:
                 CreateAssociationOutput,
                 ("name", "document_version", "instance_id", "parameters", "targets", "schedule_expression", "output_location", "association_name", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "tags", "alarm_configuration", "association_dispatch_assume_role", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_association(params)
@@ -409,6 +415,7 @@ class SSMClient:
                 CreateAssociationBatchOutput,
                 ("entries", "association_dispatch_assume_role", ),
                 ("entries", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_association_batch(params)
@@ -444,6 +451,7 @@ class SSMClient:
                 CreateCloudConnectorOutput,
                 ("display_name", "role_arn", "configuration", "config_connector_arn", "description", "tags", ),
                 ("display_name", "role_arn", "configuration", "config_connector_arn", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_cloud_connector(params)
@@ -493,6 +501,7 @@ class SSMClient:
                 CreateDocumentOutput,
                 ("content", "name", "requires", "attachments", "display_name", "version_name", "document_type", "document_format", "target_type", "tags", ),
                 ("content", "name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_document(params)
@@ -545,6 +554,7 @@ class SSMClient:
                 CreateMaintenanceWindowOutput,
                 ("name", "schedule", "duration", "cutoff", "allow_unassociated_targets", "description", "start_date", "end_date", "schedule_timezone", "schedule_offset", "client_token", "tags", ),
                 ("name", "schedule", "duration", "cutoff", "allow_unassociated_targets", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_maintenance_window(params)
@@ -611,6 +621,7 @@ class SSMClient:
                 CreateOpsItemOutput,
                 ("description", "source", "title", "ops_item_type", "operational_data", "notifications", "priority", "related_ops_items", "tags", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "account_id", ),
                 ("description", "source", "title", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_ops_item(params)
@@ -640,6 +651,7 @@ class SSMClient:
                 CreateOpsMetadataOutput,
                 ("resource_id", "metadata", "tags", ),
                 ("resource_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_ops_metadata(params)
@@ -702,6 +714,7 @@ class SSMClient:
                 CreatePatchBaselineOutput,
                 ("name", "operating_system", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "client_token", "tags", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_patch_baseline(params)
@@ -734,6 +747,7 @@ class SSMClient:
                 CreateResourceDataSyncOutput,
                 ("sync_name", "s3_destination", "sync_type", "sync_source", ),
                 ("sync_name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.create_resource_data_sync(params)
@@ -757,6 +771,7 @@ class SSMClient:
                 DeleteActivationOutput,
                 ("activation_id", ),
                 ("activation_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_activation(params)
@@ -787,6 +802,7 @@ class SSMClient:
                 DeleteAssociationOutput,
                 ("name", "instance_id", "association_id", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_association(params)
@@ -810,6 +826,7 @@ class SSMClient:
                 DeleteCloudConnectorOutput,
                 ("cloud_connector_id", ),
                 ("cloud_connector_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_cloud_connector(params)
@@ -842,6 +859,7 @@ class SSMClient:
                 DeleteDocumentOutput,
                 ("name", "document_version", "version_name", "force", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_document(params)
@@ -874,6 +892,7 @@ class SSMClient:
                 DeleteInventoryOutput,
                 ("type_name", "schema_delete_option", "dry_run", "client_token", ),
                 ("type_name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_inventory(params)
@@ -897,6 +916,7 @@ class SSMClient:
                 DeleteMaintenanceWindowOutput,
                 ("window_id", ),
                 ("window_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_maintenance_window(params)
@@ -920,6 +940,7 @@ class SSMClient:
                 DeleteOpsItemOutput,
                 ("ops_item_id", ),
                 ("ops_item_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_ops_item(params)
@@ -943,6 +964,7 @@ class SSMClient:
                 DeleteOpsMetadataOutput,
                 ("ops_metadata_arn", ),
                 ("ops_metadata_arn", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_ops_metadata(params)
@@ -966,6 +988,7 @@ class SSMClient:
                 DeleteParameterOutput,
                 ("name", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_parameter(params)
@@ -989,6 +1012,7 @@ class SSMClient:
                 DeleteParametersOutput,
                 ("names", ),
                 ("names", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_parameters(params)
@@ -1012,6 +1036,7 @@ class SSMClient:
                 DeletePatchBaselineOutput,
                 ("baseline_id", ),
                 ("baseline_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_patch_baseline(params)
@@ -1038,6 +1063,7 @@ class SSMClient:
                 DeleteResourceDataSyncOutput,
                 ("sync_name", "sync_type", ),
                 ("sync_name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_resource_data_sync(params)
@@ -1068,6 +1094,7 @@ class SSMClient:
                 DeleteResourcePolicyOutput,
                 ("resource_arn", "policy_id", "policy_hash", "deletion_mode", ),
                 ("resource_arn", "policy_id", "policy_hash", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -1091,6 +1118,7 @@ class SSMClient:
                 DeregisterManagedInstanceOutput,
                 ("instance_id", ),
                 ("instance_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.deregister_managed_instance(params)
@@ -1116,6 +1144,7 @@ class SSMClient:
                 DeregisterPatchBaselineForPatchGroupOutput,
                 ("baseline_id", "patch_group", ),
                 ("baseline_id", "patch_group", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.deregister_patch_baseline_for_patch_group(params)
@@ -1144,6 +1173,7 @@ class SSMClient:
                 DeregisterTargetFromMaintenanceWindowOutput,
                 ("window_id", "window_target_id", "safe", ),
                 ("window_id", "window_target_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.deregister_target_from_maintenance_window(params)
@@ -1169,6 +1199,7 @@ class SSMClient:
                 DeregisterTaskFromMaintenanceWindowOutput,
                 ("window_id", "window_task_id", ),
                 ("window_id", "window_task_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.deregister_task_from_maintenance_window(params)
@@ -1199,6 +1230,7 @@ class SSMClient:
                 DescribeActivationsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_activations(params)
@@ -1232,6 +1264,7 @@ class SSMClient:
                 DescribeAssociationOutput,
                 ("name", "instance_id", "association_id", "association_version", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_association(params)
@@ -1266,6 +1299,7 @@ class SSMClient:
                 DescribeAssociationExecutionTargetsOutput,
                 ("association_id", "execution_id", "filters", "max_results", "next_token", ),
                 ("association_id", "execution_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_association_execution_targets(params)
@@ -1298,6 +1332,7 @@ class SSMClient:
                 DescribeAssociationExecutionsOutput,
                 ("association_id", "filters", "max_results", "next_token", ),
                 ("association_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_association_executions(params)
@@ -1328,6 +1363,7 @@ class SSMClient:
                 DescribeAutomationExecutionsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_automation_executions(params)
@@ -1363,6 +1399,7 @@ class SSMClient:
                 DescribeAutomationStepExecutionsOutput,
                 ("automation_execution_id", "filters", "next_token", "max_results", "reverse_order", ),
                 ("automation_execution_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_automation_step_executions(params)
@@ -1393,6 +1430,7 @@ class SSMClient:
                 DescribeAvailablePatchesOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_available_patches(params)
@@ -1422,6 +1460,7 @@ class SSMClient:
                 DescribeDocumentOutput,
                 ("name", "document_version", "version_name", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_document(params)
@@ -1453,6 +1492,7 @@ class SSMClient:
                 DescribeDocumentPermissionOutput,
                 ("name", "permission_type", "max_results", "next_token", ),
                 ("name", "permission_type", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_document_permission(params)
@@ -1482,6 +1522,7 @@ class SSMClient:
                 DescribeEffectiveInstanceAssociationsOutput,
                 ("instance_id", "max_results", "next_token", ),
                 ("instance_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_effective_instance_associations(params)
@@ -1511,6 +1552,7 @@ class SSMClient:
                 DescribeEffectivePatchesForPatchBaselineOutput,
                 ("baseline_id", "max_results", "next_token", ),
                 ("baseline_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_effective_patches_for_patch_baseline(params)
@@ -1540,6 +1582,7 @@ class SSMClient:
                 DescribeInstanceAssociationsStatusOutput,
                 ("instance_id", "max_results", "next_token", ),
                 ("instance_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_instance_associations_status(params)
@@ -1573,6 +1616,7 @@ class SSMClient:
                 DescribeInstanceInformationOutput,
                 ("instance_information_filter_list", "filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_instance_information(params)
@@ -1602,6 +1646,7 @@ class SSMClient:
                 DescribeInstancePatchStatesOutput,
                 ("instance_ids", "next_token", "max_results", ),
                 ("instance_ids", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_instance_patch_states(params)
@@ -1634,6 +1679,7 @@ class SSMClient:
                 DescribeInstancePatchStatesForPatchGroupOutput,
                 ("patch_group", "filters", "next_token", "max_results", ),
                 ("patch_group", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_instance_patch_states_for_patch_group(params)
@@ -1666,6 +1712,7 @@ class SSMClient:
                 DescribeInstancePatchesOutput,
                 ("instance_id", "filters", "next_token", "max_results", ),
                 ("instance_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_instance_patches(params)
@@ -1699,6 +1746,7 @@ class SSMClient:
                 DescribeInstancePropertiesOutput,
                 ("instance_property_filter_list", "filters_with_operator", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_instance_properties(params)
@@ -1729,6 +1777,7 @@ class SSMClient:
                 DescribeInventoryDeletionsOutput,
                 ("deletion_id", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_inventory_deletions(params)
@@ -1763,6 +1812,7 @@ class SSMClient:
                 DescribeMaintenanceWindowExecutionTaskInvocationsOutput,
                 ("window_execution_id", "task_id", "filters", "max_results", "next_token", ),
                 ("window_execution_id", "task_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_window_execution_task_invocations(params)
@@ -1795,6 +1845,7 @@ class SSMClient:
                 DescribeMaintenanceWindowExecutionTasksOutput,
                 ("window_execution_id", "filters", "max_results", "next_token", ),
                 ("window_execution_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_window_execution_tasks(params)
@@ -1827,6 +1878,7 @@ class SSMClient:
                 DescribeMaintenanceWindowExecutionsOutput,
                 ("window_id", "filters", "max_results", "next_token", ),
                 ("window_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_window_executions(params)
@@ -1866,6 +1918,7 @@ class SSMClient:
                 DescribeMaintenanceWindowScheduleOutput,
                 ("window_id", "targets", "resource_type", "filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_window_schedule(params)
@@ -1898,6 +1951,7 @@ class SSMClient:
                 DescribeMaintenanceWindowTargetsOutput,
                 ("window_id", "filters", "max_results", "next_token", ),
                 ("window_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_window_targets(params)
@@ -1930,6 +1984,7 @@ class SSMClient:
                 DescribeMaintenanceWindowTasksOutput,
                 ("window_id", "filters", "max_results", "next_token", ),
                 ("window_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_window_tasks(params)
@@ -1960,6 +2015,7 @@ class SSMClient:
                 DescribeMaintenanceWindowsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_windows(params)
@@ -1991,6 +2047,7 @@ class SSMClient:
                 DescribeMaintenanceWindowsForTargetOutput,
                 ("targets", "resource_type", "max_results", "next_token", ),
                 ("targets", "resource_type", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_maintenance_windows_for_target(params)
@@ -2021,6 +2078,7 @@ class SSMClient:
                 DescribeOpsItemsOutput,
                 ("ops_item_filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_ops_items(params)
@@ -2057,6 +2115,7 @@ class SSMClient:
                 DescribeParametersOutput,
                 ("filters", "parameter_filters", "max_results", "next_token", "shared", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_parameters(params)
@@ -2087,6 +2146,7 @@ class SSMClient:
                 DescribePatchBaselinesOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_patch_baselines(params)
@@ -2110,6 +2170,7 @@ class SSMClient:
                 DescribePatchGroupStateOutput,
                 ("patch_group", ),
                 ("patch_group", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_patch_group_state(params)
@@ -2140,6 +2201,7 @@ class SSMClient:
                 DescribePatchGroupsOutput,
                 ("max_results", "filters", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_patch_groups(params)
@@ -2174,6 +2236,7 @@ class SSMClient:
                 DescribePatchPropertiesOutput,
                 ("operating_system", "property", "patch_set", "max_results", "next_token", ),
                 ("operating_system", "property", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_patch_properties(params)
@@ -2206,6 +2269,7 @@ class SSMClient:
                 DescribeSessionsOutput,
                 ("state", "max_results", "next_token", "filters", ),
                 ("state", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.describe_sessions(params)
@@ -2231,6 +2295,7 @@ class SSMClient:
                 DisassociateOpsItemRelatedItemOutput,
                 ("ops_item_id", "association_id", ),
                 ("ops_item_id", "association_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.disassociate_ops_item_related_item(params)
@@ -2254,6 +2319,7 @@ class SSMClient:
                 GetAccessTokenOutput,
                 ("access_request_id", ),
                 ("access_request_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_access_token(params)
@@ -2277,6 +2343,7 @@ class SSMClient:
                 GetAutomationExecutionOutput,
                 ("automation_execution_id", ),
                 ("automation_execution_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_automation_execution(params)
@@ -2303,6 +2370,7 @@ class SSMClient:
                 GetCalendarStateOutput,
                 ("calendar_names", "at_time", ),
                 ("calendar_names", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_calendar_state(params)
@@ -2326,6 +2394,7 @@ class SSMClient:
                 GetCloudConnectorOutput,
                 ("cloud_connector_id", ),
                 ("cloud_connector_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_cloud_connector(params)
@@ -2354,6 +2423,7 @@ class SSMClient:
                 GetCommandInvocationOutput,
                 ("command_id", "instance_id", "plugin_name", ),
                 ("command_id", "instance_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_command_invocation(params)
@@ -2377,6 +2447,7 @@ class SSMClient:
                 GetConnectionStatusOutput,
                 ("target", ),
                 ("target", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_connection_status(params)
@@ -2401,6 +2472,7 @@ class SSMClient:
                 GetDefaultPatchBaselineOutput,
                 ("operating_system", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_default_patch_baseline(params)
@@ -2432,6 +2504,7 @@ class SSMClient:
                 GetDeployablePatchSnapshotForInstanceOutput,
                 ("instance_id", "snapshot_id", "baseline_override", "use_s3_dual_stack_endpoint", ),
                 ("instance_id", "snapshot_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_deployable_patch_snapshot_for_instance(params)
@@ -2464,6 +2537,7 @@ class SSMClient:
                 GetDocumentOutput,
                 ("name", "version_name", "document_version", "document_format", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_document(params)
@@ -2487,6 +2561,7 @@ class SSMClient:
                 GetExecutionPreviewOutput,
                 ("execution_preview_id", ),
                 ("execution_preview_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_execution_preview(params)
@@ -2523,6 +2598,7 @@ class SSMClient:
                 GetInventoryOutput,
                 ("filters", "aggregators", "result_attributes", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_inventory(params)
@@ -2559,6 +2635,7 @@ class SSMClient:
                 GetInventorySchemaOutput,
                 ("type_name", "next_token", "max_results", "aggregator", "sub_type", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_inventory_schema(params)
@@ -2582,6 +2659,7 @@ class SSMClient:
                 GetMaintenanceWindowOutput,
                 ("window_id", ),
                 ("window_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_maintenance_window(params)
@@ -2605,6 +2683,7 @@ class SSMClient:
                 GetMaintenanceWindowExecutionOutput,
                 ("window_execution_id", ),
                 ("window_execution_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_maintenance_window_execution(params)
@@ -2630,6 +2709,7 @@ class SSMClient:
                 GetMaintenanceWindowExecutionTaskOutput,
                 ("window_execution_id", "task_id", ),
                 ("window_execution_id", "task_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_maintenance_window_execution_task(params)
@@ -2657,6 +2737,7 @@ class SSMClient:
                 GetMaintenanceWindowExecutionTaskInvocationOutput,
                 ("window_execution_id", "task_id", "invocation_id", ),
                 ("window_execution_id", "task_id", "invocation_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_maintenance_window_execution_task_invocation(params)
@@ -2682,6 +2763,7 @@ class SSMClient:
                 GetMaintenanceWindowTaskOutput,
                 ("window_id", "window_task_id", ),
                 ("window_id", "window_task_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_maintenance_window_task(params)
@@ -2708,6 +2790,7 @@ class SSMClient:
                 GetOpsItemOutput,
                 ("ops_item_id", "ops_item_arn", ),
                 ("ops_item_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_ops_item(params)
@@ -2737,6 +2820,7 @@ class SSMClient:
                 GetOpsMetadataOutput,
                 ("ops_metadata_arn", "max_results", "next_token", ),
                 ("ops_metadata_arn", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_ops_metadata(params)
@@ -2776,6 +2860,7 @@ class SSMClient:
                 GetOpsSummaryOutput,
                 ("sync_name", "filters", "aggregators", "result_attributes", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_ops_summary(params)
@@ -2802,6 +2887,7 @@ class SSMClient:
                 GetParameterOutput,
                 ("name", "with_decryption", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_parameter(params)
@@ -2834,6 +2920,7 @@ class SSMClient:
                 GetParameterHistoryOutput,
                 ("name", "with_decryption", "max_results", "next_token", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_parameter_history(params)
@@ -2860,6 +2947,7 @@ class SSMClient:
                 GetParametersOutput,
                 ("names", "with_decryption", ),
                 ("names", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_parameters(params)
@@ -2898,6 +2986,7 @@ class SSMClient:
                 GetParametersByPathOutput,
                 ("path", "recursive", "parameter_filters", "with_decryption", "max_results", "next_token", ),
                 ("path", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_parameters_by_path(params)
@@ -2921,6 +3010,7 @@ class SSMClient:
                 GetPatchBaselineOutput,
                 ("baseline_id", ),
                 ("baseline_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_patch_baseline(params)
@@ -2947,6 +3037,7 @@ class SSMClient:
                 GetPatchBaselineForPatchGroupOutput,
                 ("patch_group", "operating_system", ),
                 ("patch_group", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_patch_baseline_for_patch_group(params)
@@ -2976,6 +3067,7 @@ class SSMClient:
                 GetResourcePoliciesOutput,
                 ("resource_arn", "next_token", "max_results", ),
                 ("resource_arn", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_resource_policies(params)
@@ -2999,6 +3091,7 @@ class SSMClient:
                 GetServiceSettingOutput,
                 ("setting_id", ),
                 ("setting_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.get_service_setting(params)
@@ -3027,6 +3120,7 @@ class SSMClient:
                 LabelParameterVersionOutput,
                 ("name", "labels", "parameter_version", ),
                 ("name", "labels", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.label_parameter_version(params)
@@ -3056,6 +3150,7 @@ class SSMClient:
                 ListAssociationVersionsOutput,
                 ("association_id", "max_results", "next_token", ),
                 ("association_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_association_versions(params)
@@ -3086,6 +3181,7 @@ class SSMClient:
                 ListAssociationsOutput,
                 ("association_filter_list", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_associations(params)
@@ -3116,6 +3212,7 @@ class SSMClient:
                 ListCloudConnectorsOutput,
                 ("max_results", "next_token", "filters", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_cloud_connectors(params)
@@ -3155,6 +3252,7 @@ class SSMClient:
                 ListCommandInvocationsOutput,
                 ("command_id", "instance_id", "max_results", "next_token", "filters", "details", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_command_invocations(params)
@@ -3191,6 +3289,7 @@ class SSMClient:
                 ListCommandsOutput,
                 ("command_id", "instance_id", "max_results", "next_token", "filters", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_commands(params)
@@ -3227,6 +3326,7 @@ class SSMClient:
                 ListComplianceItemsOutput,
                 ("filters", "resource_ids", "resource_types", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_compliance_items(params)
@@ -3257,6 +3357,7 @@ class SSMClient:
                 ListComplianceSummariesOutput,
                 ("filters", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_compliance_summaries(params)
@@ -3291,6 +3392,7 @@ class SSMClient:
                 ListDocumentMetadataHistoryOutput,
                 ("name", "metadata", "document_version", "next_token", "max_results", ),
                 ("name", "metadata", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_document_metadata_history(params)
@@ -3320,6 +3422,7 @@ class SSMClient:
                 ListDocumentVersionsOutput,
                 ("name", "max_results", "next_token", ),
                 ("name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_document_versions(params)
@@ -3353,6 +3456,7 @@ class SSMClient:
                 ListDocumentsOutput,
                 ("document_filter_list", "filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_documents(params)
@@ -3387,6 +3491,7 @@ class SSMClient:
                 ListInventoryEntriesOutput,
                 ("instance_id", "type_name", "filters", "next_token", "max_results", ),
                 ("instance_id", "type_name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_inventory_entries(params)
@@ -3420,6 +3525,7 @@ class SSMClient:
                 ListNodesOutput,
                 ("sync_name", "filters", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_nodes(params)
@@ -3455,6 +3561,7 @@ class SSMClient:
                 ListNodesSummaryOutput,
                 ("aggregators", "sync_name", "filters", "next_token", "max_results", ),
                 ("aggregators", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_nodes_summary(params)
@@ -3485,6 +3592,7 @@ class SSMClient:
                 ListOpsItemEventsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_ops_item_events(params)
@@ -3518,6 +3626,7 @@ class SSMClient:
                 ListOpsItemRelatedItemsOutput,
                 ("ops_item_id", "filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_ops_item_related_items(params)
@@ -3548,6 +3657,7 @@ class SSMClient:
                 ListOpsMetadataOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_ops_metadata(params)
@@ -3578,6 +3688,7 @@ class SSMClient:
                 ListResourceComplianceSummariesOutput,
                 ("filters", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_resource_compliance_summaries(params)
@@ -3608,6 +3719,7 @@ class SSMClient:
                 ListResourceDataSyncOutput,
                 ("sync_type", "next_token", "max_results", ),
                 (),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_resource_data_sync(params)
@@ -3633,6 +3745,7 @@ class SSMClient:
                 ListTagsForResourceOutput,
                 ("resource_type", "resource_id", ),
                 ("resource_type", "resource_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -3667,6 +3780,7 @@ class SSMClient:
                 ModifyDocumentPermissionOutput,
                 ("name", "permission_type", "account_ids_to_add", "account_ids_to_remove", "shared_document_version", ),
                 ("name", "permission_type", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.modify_document_permission(params)
@@ -3704,6 +3818,7 @@ class SSMClient:
                 PutComplianceItemsOutput,
                 ("resource_id", "resource_type", "compliance_type", "execution_summary", "items", "item_content_hash", "upload_type", ),
                 ("resource_id", "resource_type", "compliance_type", "execution_summary", "items", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.put_compliance_items(params)
@@ -3729,6 +3844,7 @@ class SSMClient:
                 PutInventoryOutput,
                 ("instance_id", "items", ),
                 ("instance_id", "items", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.put_inventory(params)
@@ -3781,6 +3897,7 @@ class SSMClient:
                 PutParameterOutput,
                 ("name", "value", "description", "type", "key_id", "overwrite", "allowed_pattern", "tags", "tier", "policies", "data_type", ),
                 ("name", "value", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.put_parameter(params)
@@ -3812,6 +3929,7 @@ class SSMClient:
                 PutResourcePolicyOutput,
                 ("resource_arn", "policy", "policy_id", "policy_hash", ),
                 ("resource_arn", "policy", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -3835,6 +3953,7 @@ class SSMClient:
                 RegisterDefaultPatchBaselineOutput,
                 ("baseline_id", ),
                 ("baseline_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.register_default_patch_baseline(params)
@@ -3860,6 +3979,7 @@ class SSMClient:
                 RegisterPatchBaselineForPatchGroupOutput,
                 ("baseline_id", "patch_group", ),
                 ("baseline_id", "patch_group", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.register_patch_baseline_for_patch_group(params)
@@ -3899,6 +4019,7 @@ class SSMClient:
                 RegisterTargetWithMaintenanceWindowOutput,
                 ("window_id", "resource_type", "targets", "owner_information", "name", "description", "client_token", ),
                 ("window_id", "resource_type", "targets", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.register_target_with_maintenance_window(params)
@@ -3965,6 +4086,7 @@ class SSMClient:
                 RegisterTaskWithMaintenanceWindowOutput,
                 ("window_id", "task_arn", "task_type", "targets", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "client_token", "cutoff_behavior", "alarm_configuration", ),
                 ("window_id", "task_arn", "task_type", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.register_task_with_maintenance_window(params)
@@ -3992,6 +4114,7 @@ class SSMClient:
                 RemoveTagsFromResourceOutput,
                 ("resource_type", "resource_id", "tag_keys", ),
                 ("resource_type", "resource_id", "tag_keys", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.remove_tags_from_resource(params)
@@ -4015,6 +4138,7 @@ class SSMClient:
                 ResetServiceSettingOutput,
                 ("setting_id", ),
                 ("setting_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.reset_service_setting(params)
@@ -4038,6 +4162,7 @@ class SSMClient:
                 ResumeSessionOutput,
                 ("session_id", ),
                 ("session_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.resume_session(params)
@@ -4066,6 +4191,7 @@ class SSMClient:
                 SendAutomationSignalOutput,
                 ("automation_execution_id", "signal_type", "payload", ),
                 ("automation_execution_id", "signal_type", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.send_automation_signal(params)
@@ -4140,6 +4266,7 @@ class SSMClient:
                 SendCommandOutput,
                 ("document_name", "instance_ids", "targets", "document_version", "document_hash", "document_hash_type", "timeout_seconds", "comment", "parameters", "output_s3_region", "output_s3_bucket_name", "output_s3_key_prefix", "max_concurrency", "max_errors", "service_role_arn", "notification_config", "cloud_watch_output_config", "alarm_configuration", ),
                 ("document_name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.send_command(params)
@@ -4168,6 +4295,7 @@ class SSMClient:
                 StartAccessRequestOutput,
                 ("reason", "targets", "tags", ),
                 ("reason", "targets", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.start_access_request(params)
@@ -4191,6 +4319,7 @@ class SSMClient:
                 StartAssociationsOnceOutput,
                 ("association_ids", ),
                 ("association_ids", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.start_associations_once(params)
@@ -4253,6 +4382,7 @@ class SSMClient:
                 StartAutomationExecutionOutput,
                 ("document_name", "document_version", "parameters", "client_token", "mode", "target_parameter_name", "targets", "target_maps", "max_concurrency", "max_errors", "target_locations", "tags", "alarm_configuration", "target_locations_url", ),
                 ("document_name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.start_automation_execution(params)
@@ -4305,6 +4435,7 @@ class SSMClient:
                 StartChangeRequestExecutionOutput,
                 ("document_name", "runbooks", "scheduled_time", "document_version", "parameters", "change_request_name", "client_token", "auto_approve", "tags", "scheduled_end_time", "change_details", ),
                 ("document_name", "runbooks", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.start_change_request_execution(params)
@@ -4334,6 +4465,7 @@ class SSMClient:
                 StartExecutionPreviewOutput,
                 ("document_name", "document_version", "execution_inputs", ),
                 ("document_name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.start_execution_preview(params)
@@ -4366,6 +4498,7 @@ class SSMClient:
                 StartSessionOutput,
                 ("target", "document_name", "reason", "parameters", ),
                 ("target", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.start_session(params)
@@ -4392,6 +4525,7 @@ class SSMClient:
                 StopAutomationExecutionOutput,
                 ("automation_execution_id", "type", ),
                 ("automation_execution_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.stop_automation_execution(params)
@@ -4415,6 +4549,7 @@ class SSMClient:
                 TerminateSessionOutput,
                 ("session_id", ),
                 ("session_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.terminate_session(params)
@@ -4442,6 +4577,7 @@ class SSMClient:
                 UnlabelParameterVersionOutput,
                 ("name", "parameter_version", "labels", ),
                 ("name", "parameter_version", "labels", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.unlabel_parameter_version(params)
@@ -4528,6 +4664,7 @@ class SSMClient:
                 UpdateAssociationOutput,
                 ("association_id", "parameters", "document_version", "schedule_expression", "output_location", "name", "targets", "association_name", "association_version", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "alarm_configuration", "association_dispatch_assume_role", ),
                 ("association_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_association(params)
@@ -4555,6 +4692,7 @@ class SSMClient:
                 UpdateAssociationStatusOutput,
                 ("name", "instance_id", "association_status", ),
                 ("name", "instance_id", "association_status", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_association_status(params)
@@ -4587,6 +4725,7 @@ class SSMClient:
                 UpdateCloudConnectorOutput,
                 ("cloud_connector_id", "display_name", "configuration", "description", ),
                 ("cloud_connector_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_cloud_connector(params)
@@ -4630,6 +4769,7 @@ class SSMClient:
                 UpdateDocumentOutput,
                 ("content", "name", "attachments", "display_name", "version_name", "document_version", "document_format", "target_type", ),
                 ("content", "name", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_document(params)
@@ -4655,6 +4795,7 @@ class SSMClient:
                 UpdateDocumentDefaultVersionOutput,
                 ("name", "document_version", ),
                 ("name", "document_version", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_document_default_version(params)
@@ -4683,6 +4824,7 @@ class SSMClient:
                 UpdateDocumentMetadataOutput,
                 ("name", "document_reviews", "document_version", ),
                 ("name", "document_reviews", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_document_metadata(params)
@@ -4742,6 +4884,7 @@ class SSMClient:
                 UpdateMaintenanceWindowOutput,
                 ("window_id", "name", "description", "start_date", "end_date", "schedule", "schedule_timezone", "schedule_offset", "duration", "cutoff", "allow_unassociated_targets", "enabled", "replace", ),
                 ("window_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_maintenance_window(params)
@@ -4782,6 +4925,7 @@ class SSMClient:
                 UpdateMaintenanceWindowTargetOutput,
                 ("window_id", "window_target_id", "targets", "owner_information", "name", "description", "replace", ),
                 ("window_id", "window_target_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_maintenance_window_target(params)
@@ -4849,6 +4993,7 @@ class SSMClient:
                 UpdateMaintenanceWindowTaskOutput,
                 ("window_id", "window_task_id", "targets", "task_arn", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "replace", "cutoff_behavior", "alarm_configuration", ),
                 ("window_id", "window_task_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_maintenance_window_task(params)
@@ -4874,6 +5019,7 @@ class SSMClient:
                 UpdateManagedInstanceRoleOutput,
                 ("instance_id", "iam_role", ),
                 ("instance_id", "iam_role", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_managed_instance_role(params)
@@ -4942,6 +5088,7 @@ class SSMClient:
                 UpdateOpsItemOutput,
                 ("ops_item_id", "description", "operational_data", "operational_data_to_delete", "notifications", "priority", "related_ops_items", "status", "title", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "ops_item_arn", ),
                 ("ops_item_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_ops_item(params)
@@ -4971,6 +5118,7 @@ class SSMClient:
                 UpdateOpsMetadataOutput,
                 ("ops_metadata_arn", "metadata_to_update", "keys_to_delete", ),
                 ("ops_metadata_arn", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_ops_metadata(params)
@@ -5030,6 +5178,7 @@ class SSMClient:
                 UpdatePatchBaselineOutput,
                 ("baseline_id", "name", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "replace", ),
                 ("baseline_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_patch_baseline(params)
@@ -5057,6 +5206,7 @@ class SSMClient:
                 UpdateResourceDataSyncOutput,
                 ("sync_name", "sync_type", "sync_source", ),
                 ("sync_name", "sync_type", "sync_source", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_resource_data_sync(params)
@@ -5082,6 +5232,7 @@ class SSMClient:
                 UpdateServiceSettingOutput,
                 ("setting_id", "setting_value", ),
                 ("setting_id", "setting_value", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.update_service_setting(params)
@@ -5111,6 +5262,7 @@ class SSMClient:
                 ValidateCloudConnectorOutput,
                 ("cloud_connector_id", "max_results", "next_token", ),
                 ("cloud_connector_id", ),
+                service_name='SSM',
             )
             return _response
         _response = await self._native.validate_cloud_connector(params)

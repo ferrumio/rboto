@@ -1,5 +1,8 @@
 # Logging
 
+For automatic trace/span IDs in operation logs, enable the optional
+[OpenTelemetry integration](opentelemetry.md) alongside logging.
+
 Call `configure_logging()` once to enable JSON logs for every rboto client.
 No handler, formatter, or interceptor registration is required.
 

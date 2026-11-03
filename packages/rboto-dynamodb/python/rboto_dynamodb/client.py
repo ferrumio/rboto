@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import DynamoDBClient as NativeClient, BatchExecuteStatementOutput, BatchGetItemOutput, BatchWriteItemOutput, CreateBackupOutput, CreateGlobalTableOutput, CreateTableOutput, DeleteBackupOutput, DeleteItemOutput, DeleteResourcePolicyOutput, DeleteTableOutput, DescribeBackupOutput, DescribeContinuousBackupsOutput, DescribeContributorInsightsOutput, DescribeEndpointsOutput, DescribeExportOutput, DescribeGlobalTableOutput, DescribeGlobalTableSettingsOutput, DescribeImportOutput, DescribeKinesisStreamingDestinationOutput, DescribeLimitsOutput, DescribeTableOutput, DescribeTableReplicaAutoScalingOutput, DescribeTimeToLiveOutput, DisableKinesisStreamingDestinationOutput, EnableKinesisStreamingDestinationOutput, ExecuteStatementOutput, ExecuteTransactionOutput, ExportTableToPointInTimeOutput, GetItemOutput, GetResourcePolicyOutput, ImportTableOutput, ListBackupsOutput, ListContributorInsightsOutput, ListExportsOutput, ListGlobalTablesOutput, ListImportsOutput, ListTablesOutput, ListTagsOfResourceOutput, PutItemOutput, PutResourcePolicyOutput, QueryOutput, RestoreTableFromBackupOutput, RestoreTableToPointInTimeOutput, ScanOutput, SearchVectorsOutput, TransactGetItemsOutput, TransactWriteItemsOutput, UpdateContinuousBackupsOutput, UpdateContributorInsightsOutput, UpdateGlobalTableOutput, UpdateGlobalTableSettingsOutput, UpdateItemOutput, UpdateKinesisStreamingDestinationOutput, UpdateTableOutput, UpdateTableReplicaAutoScalingOutput, UpdateTimeToLiveOutput
 from .types import (
@@ -144,6 +144,7 @@ class DynamoDBClient:
                 BatchExecuteStatementOutput,
                 ("statements", "return_consumed_capacity", ),
                 ("statements", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.batch_execute_statement(params)
@@ -170,6 +171,7 @@ class DynamoDBClient:
                 BatchGetItemOutput,
                 ("request_items", "return_consumed_capacity", ),
                 ("request_items", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.batch_get_item(params)
@@ -199,6 +201,7 @@ class DynamoDBClient:
                 BatchWriteItemOutput,
                 ("request_items", "return_consumed_capacity", "return_item_collection_metrics", ),
                 ("request_items", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.batch_write_item(params)
@@ -224,6 +227,7 @@ class DynamoDBClient:
                 CreateBackupOutput,
                 ("table_name", "backup_name", ),
                 ("table_name", "backup_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.create_backup(params)
@@ -249,6 +253,7 @@ class DynamoDBClient:
                 CreateGlobalTableOutput,
                 ("global_table_name", "replication_group", ),
                 ("global_table_name", "replication_group", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.create_global_table(params)
@@ -323,6 +328,7 @@ class DynamoDBClient:
                 CreateTableOutput,
                 ("table_name", "attribute_definitions", "key_schema", "local_secondary_indexes", "global_secondary_indexes", "billing_mode", "provisioned_throughput", "stream_specification", "sse_specification", "tags", "table_class", "deletion_protection_enabled", "warm_throughput", "resource_policy", "on_demand_throughput", "global_table_source_arn", "global_table_settings_replication_mode", "vector_indexes", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.create_table(params)
@@ -346,6 +352,7 @@ class DynamoDBClient:
                 DeleteBackupOutput,
                 ("backup_arn", ),
                 ("backup_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.delete_backup(params)
@@ -398,6 +405,7 @@ class DynamoDBClient:
                 DeleteItemOutput,
                 ("table_name", "key", "expected", "conditional_operator", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
                 ("table_name", "key", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.delete_item(params)
@@ -424,6 +432,7 @@ class DynamoDBClient:
                 DeleteResourcePolicyOutput,
                 ("resource_arn", "expected_revision_id", ),
                 ("resource_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -447,6 +456,7 @@ class DynamoDBClient:
                 DeleteTableOutput,
                 ("table_name", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.delete_table(params)
@@ -470,6 +480,7 @@ class DynamoDBClient:
                 DescribeBackupOutput,
                 ("backup_arn", ),
                 ("backup_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_backup(params)
@@ -493,6 +504,7 @@ class DynamoDBClient:
                 DescribeContinuousBackupsOutput,
                 ("table_name", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_continuous_backups(params)
@@ -519,6 +531,7 @@ class DynamoDBClient:
                 DescribeContributorInsightsOutput,
                 ("table_name", "index_name", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_contributor_insights(params)
@@ -539,6 +552,7 @@ class DynamoDBClient:
                 DescribeEndpointsOutput,
                 (),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_endpoints(params)
@@ -562,6 +576,7 @@ class DynamoDBClient:
                 DescribeExportOutput,
                 ("export_arn", ),
                 ("export_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_export(params)
@@ -585,6 +600,7 @@ class DynamoDBClient:
                 DescribeGlobalTableOutput,
                 ("global_table_name", ),
                 ("global_table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_global_table(params)
@@ -608,6 +624,7 @@ class DynamoDBClient:
                 DescribeGlobalTableSettingsOutput,
                 ("global_table_name", ),
                 ("global_table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_global_table_settings(params)
@@ -631,6 +648,7 @@ class DynamoDBClient:
                 DescribeImportOutput,
                 ("import_arn", ),
                 ("import_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_import(params)
@@ -654,6 +672,7 @@ class DynamoDBClient:
                 DescribeKinesisStreamingDestinationOutput,
                 ("table_name", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_kinesis_streaming_destination(params)
@@ -674,6 +693,7 @@ class DynamoDBClient:
                 DescribeLimitsOutput,
                 (),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_limits(params)
@@ -697,6 +717,7 @@ class DynamoDBClient:
                 DescribeTableOutput,
                 ("table_name", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_table(params)
@@ -720,6 +741,7 @@ class DynamoDBClient:
                 DescribeTableReplicaAutoScalingOutput,
                 ("table_name", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_table_replica_auto_scaling(params)
@@ -743,6 +765,7 @@ class DynamoDBClient:
                 DescribeTimeToLiveOutput,
                 ("table_name", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.describe_time_to_live(params)
@@ -771,6 +794,7 @@ class DynamoDBClient:
                 DisableKinesisStreamingDestinationOutput,
                 ("table_name", "stream_arn", "enable_kinesis_streaming_configuration", ),
                 ("table_name", "stream_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.disable_kinesis_streaming_destination(params)
@@ -799,6 +823,7 @@ class DynamoDBClient:
                 EnableKinesisStreamingDestinationOutput,
                 ("table_name", "stream_arn", "enable_kinesis_streaming_configuration", ),
                 ("table_name", "stream_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.enable_kinesis_streaming_destination(params)
@@ -840,6 +865,7 @@ class DynamoDBClient:
                 ExecuteStatementOutput,
                 ("statement", "parameters", "consistent_read", "next_token", "return_consumed_capacity", "limit", "return_values_on_condition_check_failure", ),
                 ("statement", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.execute_statement(params)
@@ -869,6 +895,7 @@ class DynamoDBClient:
                 ExecuteTransactionOutput,
                 ("transact_statements", "client_request_token", "return_consumed_capacity", ),
                 ("transact_statements", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.execute_transaction(params)
@@ -924,6 +951,7 @@ class DynamoDBClient:
                 ExportTableToPointInTimeOutput,
                 ("table_arn", "s3_bucket", "export_time", "client_token", "s3_bucket_owner", "s3_prefix", "s3_sse_algorithm", "s3_sse_kms_key_id", "export_format", "export_type", "incremental_export_specification", "filter_specification", ),
                 ("table_arn", "s3_bucket", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.export_table_to_point_in_time(params)
@@ -964,6 +992,7 @@ class DynamoDBClient:
                 GetItemOutput,
                 ("table_name", "key", "attributes_to_get", "consistent_read", "return_consumed_capacity", "projection_expression", "expression_attribute_names", ),
                 ("table_name", "key", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.get_item(params)
@@ -987,6 +1016,7 @@ class DynamoDBClient:
                 GetResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -1023,6 +1053,7 @@ class DynamoDBClient:
                 ImportTableOutput,
                 ("s3_bucket_source", "input_format", "table_creation_parameters", "client_token", "input_format_options", "input_compression_type", ),
                 ("s3_bucket_source", "input_format", "table_creation_parameters", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.import_table(params)
@@ -1062,6 +1093,7 @@ class DynamoDBClient:
                 ListBackupsOutput,
                 ("table_name", "limit", "time_range_lower_bound", "time_range_upper_bound", "exclusive_start_backup_arn", "backup_type", ),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.list_backups(params)
@@ -1092,6 +1124,7 @@ class DynamoDBClient:
                 ListContributorInsightsOutput,
                 ("table_name", "next_token", "max_results", ),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.list_contributor_insights(params)
@@ -1122,6 +1155,7 @@ class DynamoDBClient:
                 ListExportsOutput,
                 ("table_arn", "max_results", "next_token", ),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.list_exports(params)
@@ -1152,6 +1186,7 @@ class DynamoDBClient:
                 ListGlobalTablesOutput,
                 ("exclusive_start_global_table_name", "limit", "region_name", ),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.list_global_tables(params)
@@ -1182,6 +1217,7 @@ class DynamoDBClient:
                 ListImportsOutput,
                 ("table_arn", "page_size", "next_token", ),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.list_imports(params)
@@ -1209,6 +1245,7 @@ class DynamoDBClient:
                 ListTablesOutput,
                 ("exclusive_start_table_name", "limit", ),
                 (),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.list_tables(params)
@@ -1235,6 +1272,7 @@ class DynamoDBClient:
                 ListTagsOfResourceOutput,
                 ("resource_arn", "next_token", ),
                 ("resource_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.list_tags_of_resource(params)
@@ -1287,6 +1325,7 @@ class DynamoDBClient:
                 PutItemOutput,
                 ("table_name", "item", "expected", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "conditional_operator", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
                 ("table_name", "item", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.put_item(params)
@@ -1318,6 +1357,7 @@ class DynamoDBClient:
                 PutResourcePolicyOutput,
                 ("resource_arn", "policy", "expected_revision_id", "confirm_remove_self_resource_access", ),
                 ("resource_arn", "policy", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -1389,6 +1429,7 @@ class DynamoDBClient:
                 QueryOutput,
                 ("table_name", "index_name", "select", "attributes_to_get", "limit", "consistent_read", "key_conditions", "query_filter", "conditional_operator", "scan_index_forward", "exclusive_start_key", "return_consumed_capacity", "projection_expression", "filter_expression", "key_condition_expression", "expression_attribute_names", "expression_attribute_values", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.query(params)
@@ -1435,6 +1476,7 @@ class DynamoDBClient:
                 RestoreTableFromBackupOutput,
                 ("target_table_name", "backup_arn", "billing_mode_override", "global_secondary_index_override", "local_secondary_index_override", "provisioned_throughput_override", "on_demand_throughput_override", "sse_specification_override", "vector_index_override", ),
                 ("target_table_name", "backup_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.restore_table_from_backup(params)
@@ -1491,6 +1533,7 @@ class DynamoDBClient:
                 RestoreTableToPointInTimeOutput,
                 ("target_table_name", "source_table_arn", "source_table_name", "use_latest_restorable_time", "restore_date_time", "billing_mode_override", "global_secondary_index_override", "local_secondary_index_override", "provisioned_throughput_override", "on_demand_throughput_override", "sse_specification_override", "vector_index_override", ),
                 ("target_table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.restore_table_to_point_in_time(params)
@@ -1559,6 +1602,7 @@ class DynamoDBClient:
                 ScanOutput,
                 ("table_name", "index_name", "attributes_to_get", "limit", "select", "scan_filter", "conditional_operator", "exclusive_start_key", "return_consumed_capacity", "total_segments", "segment", "projection_expression", "filter_expression", "expression_attribute_names", "expression_attribute_values", "consistent_read", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.scan(params)
@@ -1603,6 +1647,7 @@ class DynamoDBClient:
                 SearchVectorsOutput,
                 ("table_name", "index_name", "search_vector", "top_k", "return_consumed_capacity", "expression_attribute_names", "expression_attribute_values", "projection_expression", "search_condition_expression", ),
                 ("table_name", "index_name", "search_vector", "top_k", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.search_vectors(params)
@@ -1628,6 +1673,7 @@ class DynamoDBClient:
                 type(None),
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='DynamoDB',
             )
             return None
         await self._native.tag_resource(params)
@@ -1654,6 +1700,7 @@ class DynamoDBClient:
                 TransactGetItemsOutput,
                 ("transact_items", "return_consumed_capacity", ),
                 ("transact_items", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.transact_get_items(params)
@@ -1686,6 +1733,7 @@ class DynamoDBClient:
                 TransactWriteItemsOutput,
                 ("transact_items", "return_consumed_capacity", "return_item_collection_metrics", "client_request_token", ),
                 ("transact_items", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.transact_write_items(params)
@@ -1711,6 +1759,7 @@ class DynamoDBClient:
                 type(None),
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='DynamoDB',
             )
             return None
         await self._native.untag_resource(params)
@@ -1736,6 +1785,7 @@ class DynamoDBClient:
                 UpdateContinuousBackupsOutput,
                 ("table_name", "point_in_time_recovery_specification", ),
                 ("table_name", "point_in_time_recovery_specification", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_continuous_backups(params)
@@ -1767,6 +1817,7 @@ class DynamoDBClient:
                 UpdateContributorInsightsOutput,
                 ("table_name", "contributor_insights_action", "index_name", "contributor_insights_mode", ),
                 ("table_name", "contributor_insights_action", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_contributor_insights(params)
@@ -1792,6 +1843,7 @@ class DynamoDBClient:
                 UpdateGlobalTableOutput,
                 ("global_table_name", "replica_updates", ),
                 ("global_table_name", "replica_updates", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_global_table(params)
@@ -1830,6 +1882,7 @@ class DynamoDBClient:
                 UpdateGlobalTableSettingsOutput,
                 ("global_table_name", "global_table_billing_mode", "global_table_provisioned_write_capacity_units", "global_table_provisioned_write_capacity_auto_scaling_settings_update", "global_table_global_secondary_index_settings_update", "replica_settings_update", ),
                 ("global_table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_global_table_settings(params)
@@ -1888,6 +1941,7 @@ class DynamoDBClient:
                 UpdateItemOutput,
                 ("table_name", "key", "attribute_updates", "expected", "conditional_operator", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "update_expression", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
                 ("table_name", "key", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_item(params)
@@ -1916,6 +1970,7 @@ class DynamoDBClient:
                 UpdateKinesisStreamingDestinationOutput,
                 ("table_name", "stream_arn", "update_kinesis_streaming_configuration", ),
                 ("table_name", "stream_arn", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_kinesis_streaming_destination(params)
@@ -1987,6 +2042,7 @@ class DynamoDBClient:
                 UpdateTableOutput,
                 ("table_name", "attribute_definitions", "billing_mode", "provisioned_throughput", "global_secondary_index_updates", "stream_specification", "sse_specification", "replica_updates", "table_class", "deletion_protection_enabled", "multi_region_consistency", "global_table_witness_updates", "on_demand_throughput", "warm_throughput", "global_table_settings_replication_mode", "disassociation_protection_enabled", "vector_index_updates", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_table(params)
@@ -2019,6 +2075,7 @@ class DynamoDBClient:
                 UpdateTableReplicaAutoScalingOutput,
                 ("table_name", "global_secondary_index_updates", "provisioned_write_capacity_auto_scaling_update", "replica_updates", ),
                 ("table_name", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_table_replica_auto_scaling(params)
@@ -2044,6 +2101,7 @@ class DynamoDBClient:
                 UpdateTimeToLiveOutput,
                 ("table_name", "time_to_live_specification", ),
                 ("table_name", "time_to_live_specification", ),
+                service_name='DynamoDB',
             )
             return _response
         _response = await self._native.update_time_to_live(params)

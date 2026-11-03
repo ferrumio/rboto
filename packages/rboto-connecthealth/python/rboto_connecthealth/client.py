@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import ConnectHealthClient as NativeClient, ActivateSubscriptionOutput, CreateDomainOutput, CreateSubscriptionOutput, DeactivateSubscriptionOutput, DeleteDomainOutput, GetDomainOutput, GetMedicalScribeListeningSessionOutput, GetPatientInsightsJobOutput, GetSubscriptionOutput, ListDomainsOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, StartPatientInsightsJobOutput
 from .types import (
@@ -85,6 +85,7 @@ class ConnectHealthClient:
                 ActivateSubscriptionOutput,
                 ("domain_id", "subscription_id", ),
                 ("domain_id", "subscription_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.activate_subscription(params)
@@ -117,6 +118,7 @@ class ConnectHealthClient:
                 CreateDomainOutput,
                 ("name", "kms_key_arn", "web_app_setup_configuration", "tags", ),
                 ("name", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.create_domain(params)
@@ -140,6 +142,7 @@ class ConnectHealthClient:
                 CreateSubscriptionOutput,
                 ("domain_id", ),
                 ("domain_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.create_subscription(params)
@@ -165,6 +168,7 @@ class ConnectHealthClient:
                 DeactivateSubscriptionOutput,
                 ("domain_id", "subscription_id", ),
                 ("domain_id", "subscription_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.deactivate_subscription(params)
@@ -188,6 +192,7 @@ class ConnectHealthClient:
                 DeleteDomainOutput,
                 ("domain_id", ),
                 ("domain_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.delete_domain(params)
@@ -211,6 +216,7 @@ class ConnectHealthClient:
                 GetDomainOutput,
                 ("domain_id", ),
                 ("domain_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.get_domain(params)
@@ -238,6 +244,7 @@ class ConnectHealthClient:
                 GetMedicalScribeListeningSessionOutput,
                 ("session_id", "domain_id", "subscription_id", ),
                 ("session_id", "domain_id", "subscription_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.get_medical_scribe_listening_session(params)
@@ -263,6 +270,7 @@ class ConnectHealthClient:
                 GetPatientInsightsJobOutput,
                 ("domain_id", "job_id", ),
                 ("domain_id", "job_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.get_patient_insights_job(params)
@@ -288,6 +296,7 @@ class ConnectHealthClient:
                 GetSubscriptionOutput,
                 ("domain_id", "subscription_id", ),
                 ("domain_id", "subscription_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.get_subscription(params)
@@ -318,6 +327,7 @@ class ConnectHealthClient:
                 ListDomainsOutput,
                 ("status", "max_results", "next_token", ),
                 (),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.list_domains(params)
@@ -347,6 +357,7 @@ class ConnectHealthClient:
                 ListSubscriptionsOutput,
                 ("domain_id", "max_results", "next_token", ),
                 ("domain_id", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.list_subscriptions(params)
@@ -370,6 +381,7 @@ class ConnectHealthClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -406,6 +418,7 @@ class ConnectHealthClient:
                 dict,
                 ("session_id", "domain_id", "subscription_id", "language_code", "media_sample_rate_hertz", "media_encoding", "input_stream", ),
                 ("session_id", "domain_id", "subscription_id", "language_code", "media_sample_rate_hertz", "media_encoding", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.start_medical_scribe_listening_session(params)
@@ -444,6 +457,7 @@ class ConnectHealthClient:
                 StartPatientInsightsJobOutput,
                 ("domain_id", "patient_context", "insights_context", "encounter_context", "user_context", "input_data_config", "output_data_config", "client_token", ),
                 ("domain_id", "patient_context", "insights_context", "encounter_context", "user_context", "input_data_config", "output_data_config", ),
+                service_name='ConnectHealth',
             )
             return _response
         _response = await self._native.start_patient_insights_job(params)
@@ -469,6 +483,7 @@ class ConnectHealthClient:
                 type(None),
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='ConnectHealth',
             )
             return None
         await self._native.tag_resource(params)
@@ -494,6 +509,7 @@ class ConnectHealthClient:
                 type(None),
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='ConnectHealth',
             )
             return None
         await self._native.untag_resource(params)

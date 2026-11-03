@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SageMakerRuntimeHTTP2Client as NativeClient
 from .types import (
@@ -74,6 +74,7 @@ class SageMakerRuntimeHTTP2Client:
                 dict,
                 ("endpoint_name", "body", "target_variant", "model_invocation_path", "model_query_string", ),
                 ("endpoint_name", "body", ),
+                service_name='SageMaker Runtime HTTP2',
             )
             return _response
         _response = await self._native.invoke_endpoint_with_bidirectional_stream(params)

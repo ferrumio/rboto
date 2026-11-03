@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import BedrockAgentCoreControlClient as NativeClient, AddDatasetExamplesOutput, BatchPutGatewayRateLimitsOutput, CreateAgentRuntimeEndpointOutput, CreateAgentRuntimeOutput, CreateApiKeyCredentialProviderOutput, CreateBrowserOutput, CreateBrowserProfileOutput, CreateCapacityProviderOutput, CreateCodeInterpreterOutput, CreateConfigurationBundleOutput, CreateConsentPortalOutput, CreateDatasetOutput, CreateDatasetVersionOutput, CreateEvaluatorOutput, CreateGatewayOutput, CreateGatewayRateLimitOutput, CreateGatewayRuleOutput, CreateGatewayTargetOutput, CreateHarnessEndpointOutput, CreateHarnessOutput, CreateMemoryOutput, CreateOauth2CredentialProviderOutput, CreateOnlineEvaluationConfigOutput, CreatePaymentConnectorOutput, CreatePaymentCredentialProviderOutput, CreatePaymentManagerOutput, CreatePolicyEngineOutput, CreatePolicyOutput, CreateRegistryOutput, CreateRegistryRecordOutput, CreateWorkloadIdentityOutput, DeleteAgentRuntimeEndpointOutput, DeleteAgentRuntimeOutput, DeleteApiKeyCredentialProviderOutput, DeleteBrowserOutput, DeleteBrowserProfileOutput, DeleteCapacityProviderOutput, DeleteCodeInterpreterOutput, DeleteConfigurationBundleOutput, DeleteConsentPortalOutput, DeleteDatasetExamplesOutput, DeleteDatasetOutput, DeleteEvaluatorOutput, DeleteGatewayOutput, DeleteGatewayRateLimitOutput, DeleteGatewayRuleOutput, DeleteGatewayTargetOutput, DeleteHarnessEndpointOutput, DeleteHarnessOutput, DeleteMemoryOutput, DeleteOauth2CredentialProviderOutput, DeleteOnlineEvaluationConfigOutput, DeletePaymentConnectorOutput, DeletePaymentCredentialProviderOutput, DeletePaymentManagerOutput, DeletePolicyEngineOutput, DeletePolicyOutput, DeleteRegistryOutput, DeleteRegistryRecordOutput, DeleteResourcePolicyOutput, DeleteWorkloadIdentityOutput, GetAgentRuntimeEndpointOutput, GetAgentRuntimeOutput, GetApiKeyCredentialProviderOutput, GetBrowserOutput, GetBrowserProfileOutput, GetCapacityProviderOutput, GetCodeInterpreterOutput, GetConfigurationBundleOutput, GetConfigurationBundleVersionOutput, GetConsentPortalOutput, GetDatasetOutput, GetEvaluatorOutput, GetGatewayOutput, GetGatewayRateLimitOutput, GetGatewayRuleOutput, GetGatewayTargetOutput, GetHarnessEndpointOutput, GetHarnessOutput, GetMemoryOutput, GetOauth2CredentialProviderOutput, GetOnlineEvaluationConfigOutput, GetPaymentConnectorOutput, GetPaymentCredentialProviderOutput, GetPaymentManagerOutput, GetPolicyEngineOutput, GetPolicyEngineSummaryOutput, GetPolicyGenerationOutput, GetPolicyGenerationSummaryOutput, GetPolicyOutput, GetPolicySummaryOutput, GetRegistryOutput, GetRegistryRecordOutput, GetResourcePolicyOutput, GetTokenVaultOutput, GetWorkloadIdentityOutput, ListAgentRuntimeEndpointsOutput, ListAgentRuntimeVersionsByCapacityProviderOutput, ListAgentRuntimeVersionsOutput, ListAgentRuntimesOutput, ListApiKeyCredentialProvidersOutput, ListBrowserProfilesOutput, ListBrowsersOutput, ListCapacityProvidersOutput, ListCodeInterpretersOutput, ListConfigurationBundleVersionsOutput, ListConfigurationBundlesOutput, ListConsentPortalsOutput, ListDatasetExamplesOutput, ListDatasetVersionsOutput, ListDatasetsOutput, ListEvaluatorsOutput, ListGatewayRateLimitsOutput, ListGatewayRulesOutput, ListGatewayTargetsOutput, ListGatewaysOutput, ListHarnessEndpointsOutput, ListHarnessVersionsOutput, ListHarnessesOutput, ListMemoriesOutput, ListOauth2CredentialProvidersOutput, ListOnlineEvaluationConfigsOutput, ListPaymentConnectorsOutput, ListPaymentCredentialProvidersOutput, ListPaymentManagersOutput, ListPoliciesOutput, ListPolicyEngineSummariesOutput, ListPolicyEnginesOutput, ListPolicyGenerationAssetsOutput, ListPolicyGenerationSummariesOutput, ListPolicyGenerationsOutput, ListPolicySummariesOutput, ListRegistriesOutput, ListRegistryRecordsOutput, ListTagsForResourceOutput, ListWorkloadIdentitiesOutput, PutResourcePolicyOutput, RotatePaymentConnectorCredentialsOutput, SetTokenVaultCMKOutput, StartPolicyGenerationOutput, SubmitRegistryRecordForApprovalOutput, SynchronizeGatewayTargetsOutput, TagResourceOutput, UntagResourceOutput, UpdateAgentRuntimeEndpointOutput, UpdateAgentRuntimeOutput, UpdateApiKeyCredentialProviderOutput, UpdateCapacityProviderOutput, UpdateConfigurationBundleOutput, UpdateConsentPortalOutput, UpdateDatasetExamplesOutput, UpdateDatasetOutput, UpdateEvaluatorOutput, UpdateGatewayOutput, UpdateGatewayRateLimitOutput, UpdateGatewayRuleOutput, UpdateGatewayTargetOutput, UpdateHarnessEndpointOutput, UpdateHarnessOutput, UpdateMemoryOutput, UpdateOauth2CredentialProviderOutput, UpdateOnlineEvaluationConfigOutput, UpdatePaymentConnectorOutput, UpdatePaymentCredentialProviderOutput, UpdatePaymentManagerOutput, UpdatePolicyEngineOutput, UpdatePolicyOutput, UpdateRegistryOutput, UpdateRegistryRecordOutput, UpdateRegistryRecordStatusOutput, UpdateWorkloadIdentityOutput
 from .types import (
@@ -189,6 +189,7 @@ class BedrockAgentCoreControlClient:
                 AddDatasetExamplesOutput,
                 ("dataset_id", "source", "client_token", ),
                 ("dataset_id", "source", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.add_dataset_examples(params)
@@ -217,6 +218,7 @@ class BedrockAgentCoreControlClient:
                 BatchPutGatewayRateLimitsOutput,
                 ("gateway_identifier", "rate_limits", "client_token", ),
                 ("gateway_identifier", "rate_limits", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.batch_put_gateway_rate_limits(params)
@@ -280,6 +282,7 @@ class BedrockAgentCoreControlClient:
                 CreateAgentRuntimeOutput,
                 ("agent_runtime_name", "agent_runtime_artifact", "role_arn", "network_configuration", "client_token", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "tags", "platform_version", ),
                 ("agent_runtime_name", "agent_runtime_artifact", "role_arn", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_agent_runtime(params)
@@ -317,6 +320,7 @@ class BedrockAgentCoreControlClient:
                 CreateAgentRuntimeEndpointOutput,
                 ("agent_runtime_id", "name", "agent_runtime_version", "description", "client_token", "tags", ),
                 ("agent_runtime_id", "name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_agent_runtime_endpoint(params)
@@ -352,6 +356,7 @@ class BedrockAgentCoreControlClient:
                 CreateApiKeyCredentialProviderOutput,
                 ("name", "api_key", "api_key_secret_config", "api_key_secret_source", "tags", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_api_key_credential_provider(params)
@@ -404,6 +409,7 @@ class BedrockAgentCoreControlClient:
                 CreateBrowserOutput,
                 ("name", "network_configuration", "description", "execution_role_arn", "recording", "browser_signing", "enterprise_policies", "certificates", "filesystem_configurations", "client_token", "tags", ),
                 ("name", "network_configuration", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_browser(params)
@@ -436,6 +442,7 @@ class BedrockAgentCoreControlClient:
                 CreateBrowserProfileOutput,
                 ("name", "description", "client_token", "tags", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_browser_profile(params)
@@ -472,6 +479,7 @@ class BedrockAgentCoreControlClient:
                 CreateCapacityProviderOutput,
                 ("name", "permissions_configuration", "compute_configuration", "description", "client_token", "tags", ),
                 ("name", "permissions_configuration", "compute_configuration", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_capacity_provider(params)
@@ -515,6 +523,7 @@ class BedrockAgentCoreControlClient:
                 CreateCodeInterpreterOutput,
                 ("name", "network_configuration", "description", "execution_role_arn", "certificates", "filesystem_configurations", "client_token", "tags", ),
                 ("name", "network_configuration", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_code_interpreter(params)
@@ -561,6 +570,7 @@ class BedrockAgentCoreControlClient:
                 CreateConfigurationBundleOutput,
                 ("bundle_name", "components", "client_token", "description", "branch_name", "commit_message", "created_by", "kms_key_arn", "tags", ),
                 ("bundle_name", "components", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_configuration_bundle(params)
@@ -596,6 +606,7 @@ class BedrockAgentCoreControlClient:
                 CreateConsentPortalOutput,
                 ("execution_role_arn", "idp_config", "name", "sources", "description", "tags", ),
                 ("execution_role_arn", "idp_config", "name", "sources", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_consent_portal(params)
@@ -635,6 +646,7 @@ class BedrockAgentCoreControlClient:
                 CreateDatasetOutput,
                 ("dataset_name", "source", "schema_type", "client_token", "description", "kms_key_arn", "tags", ),
                 ("dataset_name", "source", "schema_type", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_dataset(params)
@@ -661,6 +673,7 @@ class BedrockAgentCoreControlClient:
                 CreateDatasetVersionOutput,
                 ("dataset_id", "client_token", ),
                 ("dataset_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_dataset_version(params)
@@ -700,6 +713,7 @@ class BedrockAgentCoreControlClient:
                 CreateEvaluatorOutput,
                 ("evaluator_name", "evaluator_config", "level", "client_token", "description", "kms_key_arn", "tags", ),
                 ("evaluator_name", "evaluator_config", "level", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_evaluator(params)
@@ -757,6 +771,7 @@ class BedrockAgentCoreControlClient:
                 CreateGatewayOutput,
                 ("name", "role_arn", "authorizer_type", "description", "client_token", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "interceptor_configurations", "policy_engine_configuration", "exception_level", "tags", ),
                 ("name", "role_arn", "authorizer_type", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_gateway(params)
@@ -793,6 +808,7 @@ class BedrockAgentCoreControlClient:
                 CreateGatewayRateLimitOutput,
                 ("gateway_identifier", "dimension_keys", "entries", "client_token", "rate_limit_id", "description", ),
                 ("gateway_identifier", "dimension_keys", "entries", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_gateway_rate_limit(params)
@@ -829,6 +845,7 @@ class BedrockAgentCoreControlClient:
                 CreateGatewayRuleOutput,
                 ("gateway_identifier", "priority", "actions", "client_token", "conditions", "description", ),
                 ("gateway_identifier", "priority", "actions", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_gateway_rule(params)
@@ -875,6 +892,7 @@ class BedrockAgentCoreControlClient:
                 CreateGatewayTargetOutput,
                 ("gateway_identifier", "target_configuration", "name", "description", "client_token", "credential_provider_configurations", "metadata_configuration", "private_endpoint", "certificate_configurations", ),
                 ("gateway_identifier", "target_configuration", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_gateway_target(params)
@@ -951,6 +969,7 @@ class BedrockAgentCoreControlClient:
                 CreateHarnessOutput,
                 ("harness_name", "execution_role_arn", "client_token", "environment", "environment_artifact", "environment_variables", "authorizer_configuration", "model", "system_prompt", "tools", "skills", "allowed_tools", "memory", "truncation", "hooks", "max_iterations", "max_tokens", "timeout_seconds", "tags", ),
                 ("harness_name", "execution_role_arn", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_harness(params)
@@ -988,6 +1007,7 @@ class BedrockAgentCoreControlClient:
                 CreateHarnessEndpointOutput,
                 ("harness_id", "endpoint_name", "target_version", "description", "client_token", "tags", ),
                 ("harness_id", "endpoint_name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_harness_endpoint(params)
@@ -1040,6 +1060,7 @@ class BedrockAgentCoreControlClient:
                 CreateMemoryOutput,
                 ("name", "event_expiry_duration", "client_token", "description", "encryption_key_arn", "memory_execution_role_arn", "memory_strategies", "indexed_keys", "namespace_keys", "stream_delivery_resources", "tags", ),
                 ("name", "event_expiry_duration", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_memory(params)
@@ -1070,6 +1091,7 @@ class BedrockAgentCoreControlClient:
                 CreateOauth2CredentialProviderOutput,
                 ("name", "credential_provider_vendor", "oauth2_provider_config_input", "tags", ),
                 ("name", "credential_provider_vendor", "oauth2_provider_config_input", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_oauth2_credential_provider(params)
@@ -1122,6 +1144,7 @@ class BedrockAgentCoreControlClient:
                 CreateOnlineEvaluationConfigOutput,
                 ("online_evaluation_config_name", "rule", "data_source_config", "evaluation_execution_role_arn", "enable_on_create", "client_token", "description", "evaluators", "insights", "clustering_config", "output_config", "tags", ),
                 ("online_evaluation_config_name", "rule", "data_source_config", "evaluation_execution_role_arn", "enable_on_create", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_online_evaluation_config(params)
@@ -1160,6 +1183,7 @@ class BedrockAgentCoreControlClient:
                 CreatePaymentConnectorOutput,
                 ("payment_manager_id", "name", "type", "credential_provider_configurations", "description", "provision_mode", "client_token", ),
                 ("payment_manager_id", "name", "type", "credential_provider_configurations", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_payment_connector(params)
@@ -1190,6 +1214,7 @@ class BedrockAgentCoreControlClient:
                 CreatePaymentCredentialProviderOutput,
                 ("name", "credential_provider_vendor", "provider_configuration_input", "tags", ),
                 ("name", "credential_provider_vendor", "provider_configuration_input", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_payment_credential_provider(params)
@@ -1232,6 +1257,7 @@ class BedrockAgentCoreControlClient:
                 CreatePaymentManagerOutput,
                 ("name", "authorizer_type", "role_arn", "description", "authorizer_configuration", "client_token", "tags", "kms_key_arn", ),
                 ("name", "authorizer_type", "role_arn", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_payment_manager(params)
@@ -1271,6 +1297,7 @@ class BedrockAgentCoreControlClient:
                 CreatePolicyOutput,
                 ("name", "definition", "policy_engine_id", "description", "validation_mode", "enforcement_mode", "client_token", ),
                 ("name", "definition", "policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_policy(params)
@@ -1306,6 +1333,7 @@ class BedrockAgentCoreControlClient:
                 CreatePolicyEngineOutput,
                 ("name", "description", "client_token", "encryption_key_arn", "tags", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_policy_engine(params)
@@ -1344,6 +1372,7 @@ class BedrockAgentCoreControlClient:
                 CreateRegistryOutput,
                 ("name", "description", "authorizer_type", "authorizer_configuration", "client_token", "approval_configuration", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_registry(params)
@@ -1389,6 +1418,7 @@ class BedrockAgentCoreControlClient:
                 CreateRegistryRecordOutput,
                 ("registry_id", "name", "descriptor_type", "description", "descriptors", "record_version", "synchronization_type", "synchronization_configuration", "client_token", ),
                 ("registry_id", "name", "descriptor_type", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_registry_record(params)
@@ -1418,6 +1448,7 @@ class BedrockAgentCoreControlClient:
                 CreateWorkloadIdentityOutput,
                 ("name", "allowed_resource_oauth2_return_urls", "tags", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.create_workload_identity(params)
@@ -1447,6 +1478,7 @@ class BedrockAgentCoreControlClient:
                 DeleteAgentRuntimeOutput,
                 ("agent_runtime_id", "agent_runtime_version", "client_token", ),
                 ("agent_runtime_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_agent_runtime(params)
@@ -1475,6 +1507,7 @@ class BedrockAgentCoreControlClient:
                 DeleteAgentRuntimeEndpointOutput,
                 ("agent_runtime_id", "endpoint_name", "client_token", ),
                 ("agent_runtime_id", "endpoint_name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_agent_runtime_endpoint(params)
@@ -1498,6 +1531,7 @@ class BedrockAgentCoreControlClient:
                 DeleteApiKeyCredentialProviderOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_api_key_credential_provider(params)
@@ -1524,6 +1558,7 @@ class BedrockAgentCoreControlClient:
                 DeleteBrowserOutput,
                 ("browser_id", "client_token", ),
                 ("browser_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_browser(params)
@@ -1550,6 +1585,7 @@ class BedrockAgentCoreControlClient:
                 DeleteBrowserProfileOutput,
                 ("profile_id", "client_token", ),
                 ("profile_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_browser_profile(params)
@@ -1576,6 +1612,7 @@ class BedrockAgentCoreControlClient:
                 DeleteCapacityProviderOutput,
                 ("capacity_provider_id", "client_token", ),
                 ("capacity_provider_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_capacity_provider(params)
@@ -1602,6 +1639,7 @@ class BedrockAgentCoreControlClient:
                 DeleteCodeInterpreterOutput,
                 ("code_interpreter_id", "client_token", ),
                 ("code_interpreter_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_code_interpreter(params)
@@ -1625,6 +1663,7 @@ class BedrockAgentCoreControlClient:
                 DeleteConfigurationBundleOutput,
                 ("bundle_id", ),
                 ("bundle_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_configuration_bundle(params)
@@ -1648,6 +1687,7 @@ class BedrockAgentCoreControlClient:
                 DeleteConsentPortalOutput,
                 ("consent_portal_identifier", ),
                 ("consent_portal_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_consent_portal(params)
@@ -1674,6 +1714,7 @@ class BedrockAgentCoreControlClient:
                 DeleteDatasetOutput,
                 ("dataset_id", "dataset_version", ),
                 ("dataset_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_dataset(params)
@@ -1702,6 +1743,7 @@ class BedrockAgentCoreControlClient:
                 DeleteDatasetExamplesOutput,
                 ("dataset_id", "example_ids", "client_token", ),
                 ("dataset_id", "example_ids", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_dataset_examples(params)
@@ -1725,6 +1767,7 @@ class BedrockAgentCoreControlClient:
                 DeleteEvaluatorOutput,
                 ("evaluator_id", ),
                 ("evaluator_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_evaluator(params)
@@ -1748,6 +1791,7 @@ class BedrockAgentCoreControlClient:
                 DeleteGatewayOutput,
                 ("gateway_identifier", ),
                 ("gateway_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_gateway(params)
@@ -1773,6 +1817,7 @@ class BedrockAgentCoreControlClient:
                 DeleteGatewayRateLimitOutput,
                 ("gateway_identifier", "rate_limit_id", ),
                 ("gateway_identifier", "rate_limit_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_gateway_rate_limit(params)
@@ -1798,6 +1843,7 @@ class BedrockAgentCoreControlClient:
                 DeleteGatewayRuleOutput,
                 ("gateway_identifier", "rule_id", ),
                 ("gateway_identifier", "rule_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_gateway_rule(params)
@@ -1823,6 +1869,7 @@ class BedrockAgentCoreControlClient:
                 DeleteGatewayTargetOutput,
                 ("gateway_identifier", "target_id", ),
                 ("gateway_identifier", "target_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_gateway_target(params)
@@ -1852,6 +1899,7 @@ class BedrockAgentCoreControlClient:
                 DeleteHarnessOutput,
                 ("harness_id", "client_token", "delete_managed_memory", ),
                 ("harness_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_harness(params)
@@ -1880,6 +1928,7 @@ class BedrockAgentCoreControlClient:
                 DeleteHarnessEndpointOutput,
                 ("harness_id", "endpoint_name", "client_token", ),
                 ("harness_id", "endpoint_name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_harness_endpoint(params)
@@ -1906,6 +1955,7 @@ class BedrockAgentCoreControlClient:
                 DeleteMemoryOutput,
                 ("memory_id", "client_token", ),
                 ("memory_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_memory(params)
@@ -1929,6 +1979,7 @@ class BedrockAgentCoreControlClient:
                 DeleteOauth2CredentialProviderOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_oauth2_credential_provider(params)
@@ -1952,6 +2003,7 @@ class BedrockAgentCoreControlClient:
                 DeleteOnlineEvaluationConfigOutput,
                 ("online_evaluation_config_id", ),
                 ("online_evaluation_config_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_online_evaluation_config(params)
@@ -1980,6 +2032,7 @@ class BedrockAgentCoreControlClient:
                 DeletePaymentConnectorOutput,
                 ("payment_manager_id", "payment_connector_id", "client_token", ),
                 ("payment_manager_id", "payment_connector_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_payment_connector(params)
@@ -2003,6 +2056,7 @@ class BedrockAgentCoreControlClient:
                 DeletePaymentCredentialProviderOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_payment_credential_provider(params)
@@ -2029,6 +2083,7 @@ class BedrockAgentCoreControlClient:
                 DeletePaymentManagerOutput,
                 ("payment_manager_id", "client_token", ),
                 ("payment_manager_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_payment_manager(params)
@@ -2054,6 +2109,7 @@ class BedrockAgentCoreControlClient:
                 DeletePolicyOutput,
                 ("policy_engine_id", "policy_id", ),
                 ("policy_engine_id", "policy_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_policy(params)
@@ -2077,6 +2133,7 @@ class BedrockAgentCoreControlClient:
                 DeletePolicyEngineOutput,
                 ("policy_engine_id", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_policy_engine(params)
@@ -2100,6 +2157,7 @@ class BedrockAgentCoreControlClient:
                 DeleteRegistryOutput,
                 ("registry_id", ),
                 ("registry_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_registry(params)
@@ -2125,6 +2183,7 @@ class BedrockAgentCoreControlClient:
                 DeleteRegistryRecordOutput,
                 ("registry_id", "record_id", ),
                 ("registry_id", "record_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_registry_record(params)
@@ -2148,6 +2207,7 @@ class BedrockAgentCoreControlClient:
                 DeleteResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -2171,6 +2231,7 @@ class BedrockAgentCoreControlClient:
                 DeleteWorkloadIdentityOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.delete_workload_identity(params)
@@ -2197,6 +2258,7 @@ class BedrockAgentCoreControlClient:
                 GetAgentRuntimeOutput,
                 ("agent_runtime_id", "agent_runtime_version", ),
                 ("agent_runtime_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_agent_runtime(params)
@@ -2222,6 +2284,7 @@ class BedrockAgentCoreControlClient:
                 GetAgentRuntimeEndpointOutput,
                 ("agent_runtime_id", "endpoint_name", ),
                 ("agent_runtime_id", "endpoint_name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_agent_runtime_endpoint(params)
@@ -2245,6 +2308,7 @@ class BedrockAgentCoreControlClient:
                 GetApiKeyCredentialProviderOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_api_key_credential_provider(params)
@@ -2268,6 +2332,7 @@ class BedrockAgentCoreControlClient:
                 GetBrowserOutput,
                 ("browser_id", ),
                 ("browser_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_browser(params)
@@ -2291,6 +2356,7 @@ class BedrockAgentCoreControlClient:
                 GetBrowserProfileOutput,
                 ("profile_id", ),
                 ("profile_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_browser_profile(params)
@@ -2314,6 +2380,7 @@ class BedrockAgentCoreControlClient:
                 GetCapacityProviderOutput,
                 ("capacity_provider_id", ),
                 ("capacity_provider_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_capacity_provider(params)
@@ -2337,6 +2404,7 @@ class BedrockAgentCoreControlClient:
                 GetCodeInterpreterOutput,
                 ("code_interpreter_id", ),
                 ("code_interpreter_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_code_interpreter(params)
@@ -2363,6 +2431,7 @@ class BedrockAgentCoreControlClient:
                 GetConfigurationBundleOutput,
                 ("bundle_id", "branch_name", ),
                 ("bundle_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_configuration_bundle(params)
@@ -2388,6 +2457,7 @@ class BedrockAgentCoreControlClient:
                 GetConfigurationBundleVersionOutput,
                 ("bundle_id", "version_id", ),
                 ("bundle_id", "version_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_configuration_bundle_version(params)
@@ -2411,6 +2481,7 @@ class BedrockAgentCoreControlClient:
                 GetConsentPortalOutput,
                 ("consent_portal_identifier", ),
                 ("consent_portal_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_consent_portal(params)
@@ -2437,6 +2508,7 @@ class BedrockAgentCoreControlClient:
                 GetDatasetOutput,
                 ("dataset_id", "dataset_version", ),
                 ("dataset_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_dataset(params)
@@ -2463,6 +2535,7 @@ class BedrockAgentCoreControlClient:
                 GetEvaluatorOutput,
                 ("evaluator_id", "included_data", ),
                 ("evaluator_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_evaluator(params)
@@ -2486,6 +2559,7 @@ class BedrockAgentCoreControlClient:
                 GetGatewayOutput,
                 ("gateway_identifier", ),
                 ("gateway_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_gateway(params)
@@ -2511,6 +2585,7 @@ class BedrockAgentCoreControlClient:
                 GetGatewayRateLimitOutput,
                 ("gateway_identifier", "rate_limit_id", ),
                 ("gateway_identifier", "rate_limit_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_gateway_rate_limit(params)
@@ -2536,6 +2611,7 @@ class BedrockAgentCoreControlClient:
                 GetGatewayRuleOutput,
                 ("gateway_identifier", "rule_id", ),
                 ("gateway_identifier", "rule_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_gateway_rule(params)
@@ -2561,6 +2637,7 @@ class BedrockAgentCoreControlClient:
                 GetGatewayTargetOutput,
                 ("gateway_identifier", "target_id", ),
                 ("gateway_identifier", "target_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_gateway_target(params)
@@ -2587,6 +2664,7 @@ class BedrockAgentCoreControlClient:
                 GetHarnessOutput,
                 ("harness_id", "harness_version", ),
                 ("harness_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_harness(params)
@@ -2612,6 +2690,7 @@ class BedrockAgentCoreControlClient:
                 GetHarnessEndpointOutput,
                 ("harness_id", "endpoint_name", ),
                 ("harness_id", "endpoint_name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_harness_endpoint(params)
@@ -2638,6 +2717,7 @@ class BedrockAgentCoreControlClient:
                 GetMemoryOutput,
                 ("memory_id", "view", ),
                 ("memory_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_memory(params)
@@ -2661,6 +2741,7 @@ class BedrockAgentCoreControlClient:
                 GetOauth2CredentialProviderOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_oauth2_credential_provider(params)
@@ -2684,6 +2765,7 @@ class BedrockAgentCoreControlClient:
                 GetOnlineEvaluationConfigOutput,
                 ("online_evaluation_config_id", ),
                 ("online_evaluation_config_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_online_evaluation_config(params)
@@ -2709,6 +2791,7 @@ class BedrockAgentCoreControlClient:
                 GetPaymentConnectorOutput,
                 ("payment_manager_id", "payment_connector_id", ),
                 ("payment_manager_id", "payment_connector_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_payment_connector(params)
@@ -2732,6 +2815,7 @@ class BedrockAgentCoreControlClient:
                 GetPaymentCredentialProviderOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_payment_credential_provider(params)
@@ -2755,6 +2839,7 @@ class BedrockAgentCoreControlClient:
                 GetPaymentManagerOutput,
                 ("payment_manager_id", ),
                 ("payment_manager_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_payment_manager(params)
@@ -2780,6 +2865,7 @@ class BedrockAgentCoreControlClient:
                 GetPolicyOutput,
                 ("policy_engine_id", "policy_id", ),
                 ("policy_engine_id", "policy_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_policy(params)
@@ -2803,6 +2889,7 @@ class BedrockAgentCoreControlClient:
                 GetPolicyEngineOutput,
                 ("policy_engine_id", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_policy_engine(params)
@@ -2826,6 +2913,7 @@ class BedrockAgentCoreControlClient:
                 GetPolicyEngineSummaryOutput,
                 ("policy_engine_id", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_policy_engine_summary(params)
@@ -2851,6 +2939,7 @@ class BedrockAgentCoreControlClient:
                 GetPolicyGenerationOutput,
                 ("policy_generation_id", "policy_engine_id", ),
                 ("policy_generation_id", "policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_policy_generation(params)
@@ -2876,6 +2965,7 @@ class BedrockAgentCoreControlClient:
                 GetPolicyGenerationSummaryOutput,
                 ("policy_generation_id", "policy_engine_id", ),
                 ("policy_generation_id", "policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_policy_generation_summary(params)
@@ -2901,6 +2991,7 @@ class BedrockAgentCoreControlClient:
                 GetPolicySummaryOutput,
                 ("policy_engine_id", "policy_id", ),
                 ("policy_engine_id", "policy_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_policy_summary(params)
@@ -2924,6 +3015,7 @@ class BedrockAgentCoreControlClient:
                 GetRegistryOutput,
                 ("registry_id", ),
                 ("registry_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_registry(params)
@@ -2949,6 +3041,7 @@ class BedrockAgentCoreControlClient:
                 GetRegistryRecordOutput,
                 ("registry_id", "record_id", ),
                 ("registry_id", "record_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_registry_record(params)
@@ -2972,6 +3065,7 @@ class BedrockAgentCoreControlClient:
                 GetResourcePolicyOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -2996,6 +3090,7 @@ class BedrockAgentCoreControlClient:
                 GetTokenVaultOutput,
                 ("token_vault_id", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_token_vault(params)
@@ -3019,6 +3114,7 @@ class BedrockAgentCoreControlClient:
                 GetWorkloadIdentityOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.get_workload_identity(params)
@@ -3048,6 +3144,7 @@ class BedrockAgentCoreControlClient:
                 ListAgentRuntimeEndpointsOutput,
                 ("agent_runtime_id", "max_results", "next_token", ),
                 ("agent_runtime_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_agent_runtime_endpoints(params)
@@ -3077,6 +3174,7 @@ class BedrockAgentCoreControlClient:
                 ListAgentRuntimeVersionsOutput,
                 ("agent_runtime_id", "max_results", "next_token", ),
                 ("agent_runtime_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_agent_runtime_versions(params)
@@ -3106,6 +3204,7 @@ class BedrockAgentCoreControlClient:
                 ListAgentRuntimeVersionsByCapacityProviderOutput,
                 ("capacity_provider_id", "max_results", "next_token", ),
                 ("capacity_provider_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_agent_runtime_versions_by_capacity_provider(params)
@@ -3133,6 +3232,7 @@ class BedrockAgentCoreControlClient:
                 ListAgentRuntimesOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_agent_runtimes(params)
@@ -3160,6 +3260,7 @@ class BedrockAgentCoreControlClient:
                 ListApiKeyCredentialProvidersOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_api_key_credential_providers(params)
@@ -3190,6 +3291,7 @@ class BedrockAgentCoreControlClient:
                 ListBrowserProfilesOutput,
                 ("max_results", "next_token", "name", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_browser_profiles(params)
@@ -3220,6 +3322,7 @@ class BedrockAgentCoreControlClient:
                 ListBrowsersOutput,
                 ("max_results", "next_token", "type", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_browsers(params)
@@ -3247,6 +3350,7 @@ class BedrockAgentCoreControlClient:
                 ListCapacityProvidersOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_capacity_providers(params)
@@ -3277,6 +3381,7 @@ class BedrockAgentCoreControlClient:
                 ListCodeInterpretersOutput,
                 ("max_results", "next_token", "type", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_code_interpreters(params)
@@ -3309,6 +3414,7 @@ class BedrockAgentCoreControlClient:
                 ListConfigurationBundleVersionsOutput,
                 ("bundle_id", "next_token", "max_results", "filter", ),
                 ("bundle_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_configuration_bundle_versions(params)
@@ -3336,6 +3442,7 @@ class BedrockAgentCoreControlClient:
                 ListConfigurationBundlesOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_configuration_bundles(params)
@@ -3363,6 +3470,7 @@ class BedrockAgentCoreControlClient:
                 ListConsentPortalsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_consent_portals(params)
@@ -3395,6 +3503,7 @@ class BedrockAgentCoreControlClient:
                 ListDatasetExamplesOutput,
                 ("dataset_id", "dataset_version", "max_results", "next_token", ),
                 ("dataset_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_dataset_examples(params)
@@ -3424,6 +3533,7 @@ class BedrockAgentCoreControlClient:
                 ListDatasetVersionsOutput,
                 ("dataset_id", "next_token", "max_results", ),
                 ("dataset_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_dataset_versions(params)
@@ -3451,6 +3561,7 @@ class BedrockAgentCoreControlClient:
                 ListDatasetsOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_datasets(params)
@@ -3478,6 +3589,7 @@ class BedrockAgentCoreControlClient:
                 ListEvaluatorsOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_evaluators(params)
@@ -3507,6 +3619,7 @@ class BedrockAgentCoreControlClient:
                 ListGatewayRateLimitsOutput,
                 ("gateway_identifier", "max_results", "next_token", ),
                 ("gateway_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_gateway_rate_limits(params)
@@ -3536,6 +3649,7 @@ class BedrockAgentCoreControlClient:
                 ListGatewayRulesOutput,
                 ("gateway_identifier", "max_results", "next_token", ),
                 ("gateway_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_gateway_rules(params)
@@ -3565,6 +3679,7 @@ class BedrockAgentCoreControlClient:
                 ListGatewayTargetsOutput,
                 ("gateway_identifier", "max_results", "next_token", ),
                 ("gateway_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_gateway_targets(params)
@@ -3592,6 +3707,7 @@ class BedrockAgentCoreControlClient:
                 ListGatewaysOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_gateways(params)
@@ -3621,6 +3737,7 @@ class BedrockAgentCoreControlClient:
                 ListHarnessEndpointsOutput,
                 ("harness_id", "max_results", "next_token", ),
                 ("harness_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_harness_endpoints(params)
@@ -3650,6 +3767,7 @@ class BedrockAgentCoreControlClient:
                 ListHarnessVersionsOutput,
                 ("harness_id", "max_results", "next_token", ),
                 ("harness_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_harness_versions(params)
@@ -3677,6 +3795,7 @@ class BedrockAgentCoreControlClient:
                 ListHarnessesOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_harnesses(params)
@@ -3704,6 +3823,7 @@ class BedrockAgentCoreControlClient:
                 ListMemoriesOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_memories(params)
@@ -3731,6 +3851,7 @@ class BedrockAgentCoreControlClient:
                 ListOauth2CredentialProvidersOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_oauth2_credential_providers(params)
@@ -3758,6 +3879,7 @@ class BedrockAgentCoreControlClient:
                 ListOnlineEvaluationConfigsOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_online_evaluation_configs(params)
@@ -3787,6 +3909,7 @@ class BedrockAgentCoreControlClient:
                 ListPaymentConnectorsOutput,
                 ("payment_manager_id", "max_results", "next_token", ),
                 ("payment_manager_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_payment_connectors(params)
@@ -3814,6 +3937,7 @@ class BedrockAgentCoreControlClient:
                 ListPaymentCredentialProvidersOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_payment_credential_providers(params)
@@ -3841,6 +3965,7 @@ class BedrockAgentCoreControlClient:
                 ListPaymentManagersOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_payment_managers(params)
@@ -3873,6 +3998,7 @@ class BedrockAgentCoreControlClient:
                 ListPoliciesOutput,
                 ("policy_engine_id", "next_token", "max_results", "target_resource_scope", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_policies(params)
@@ -3900,6 +4026,7 @@ class BedrockAgentCoreControlClient:
                 ListPolicyEngineSummariesOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_policy_engine_summaries(params)
@@ -3927,6 +4054,7 @@ class BedrockAgentCoreControlClient:
                 ListPolicyEnginesOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_policy_engines(params)
@@ -3958,6 +4086,7 @@ class BedrockAgentCoreControlClient:
                 ListPolicyGenerationAssetsOutput,
                 ("policy_generation_id", "policy_engine_id", "next_token", "max_results", ),
                 ("policy_generation_id", "policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_policy_generation_assets(params)
@@ -3987,6 +4116,7 @@ class BedrockAgentCoreControlClient:
                 ListPolicyGenerationSummariesOutput,
                 ("policy_engine_id", "next_token", "max_results", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_policy_generation_summaries(params)
@@ -4016,6 +4146,7 @@ class BedrockAgentCoreControlClient:
                 ListPolicyGenerationsOutput,
                 ("policy_engine_id", "next_token", "max_results", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_policy_generations(params)
@@ -4048,6 +4179,7 @@ class BedrockAgentCoreControlClient:
                 ListPolicySummariesOutput,
                 ("policy_engine_id", "next_token", "max_results", "target_resource_scope", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_policy_summaries(params)
@@ -4081,6 +4213,7 @@ class BedrockAgentCoreControlClient:
                 ListRegistriesOutput,
                 ("max_results", "next_token", "status", "authorizer_type", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_registries(params)
@@ -4119,6 +4252,7 @@ class BedrockAgentCoreControlClient:
                 ListRegistryRecordsOutput,
                 ("registry_id", "max_results", "next_token", "name", "status", "descriptor_type", ),
                 ("registry_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_registry_records(params)
@@ -4142,6 +4276,7 @@ class BedrockAgentCoreControlClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -4169,6 +4304,7 @@ class BedrockAgentCoreControlClient:
                 ListWorkloadIdentitiesOutput,
                 ("next_token", "max_results", ),
                 (),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.list_workload_identities(params)
@@ -4194,6 +4330,7 @@ class BedrockAgentCoreControlClient:
                 PutResourcePolicyOutput,
                 ("resource_arn", "policy", ),
                 ("resource_arn", "policy", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -4224,6 +4361,7 @@ class BedrockAgentCoreControlClient:
                 RotatePaymentConnectorCredentialsOutput,
                 ("payment_manager_id", "payment_connector_id", "credentials_to_rotate", "client_token", ),
                 ("payment_manager_id", "payment_connector_id", "credentials_to_rotate", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.rotate_payment_connector_credentials(params)
@@ -4250,6 +4388,7 @@ class BedrockAgentCoreControlClient:
                 SetTokenVaultCMKOutput,
                 ("kms_configuration", "token_vault_id", ),
                 ("kms_configuration", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.set_token_vault_cmk(params)
@@ -4282,6 +4421,7 @@ class BedrockAgentCoreControlClient:
                 StartPolicyGenerationOutput,
                 ("policy_engine_id", "resource", "content", "name", "client_token", ),
                 ("policy_engine_id", "resource", "content", "name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.start_policy_generation(params)
@@ -4307,6 +4447,7 @@ class BedrockAgentCoreControlClient:
                 SubmitRegistryRecordForApprovalOutput,
                 ("registry_id", "record_id", ),
                 ("registry_id", "record_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.submit_registry_record_for_approval(params)
@@ -4332,6 +4473,7 @@ class BedrockAgentCoreControlClient:
                 SynchronizeGatewayTargetsOutput,
                 ("gateway_identifier", "target_id_list", ),
                 ("gateway_identifier", "target_id_list", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.synchronize_gateway_targets(params)
@@ -4357,6 +4499,7 @@ class BedrockAgentCoreControlClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -4382,6 +4525,7 @@ class BedrockAgentCoreControlClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -4445,6 +4589,7 @@ class BedrockAgentCoreControlClient:
                 UpdateAgentRuntimeOutput,
                 ("agent_runtime_id", "agent_runtime_artifact", "role_arn", "network_configuration", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "metadata_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "platform_version", "client_token", ),
                 ("agent_runtime_id", "agent_runtime_artifact", "role_arn", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_agent_runtime(params)
@@ -4479,6 +4624,7 @@ class BedrockAgentCoreControlClient:
                 UpdateAgentRuntimeEndpointOutput,
                 ("agent_runtime_id", "endpoint_name", "agent_runtime_version", "description", "client_token", ),
                 ("agent_runtime_id", "endpoint_name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_agent_runtime_endpoint(params)
@@ -4511,6 +4657,7 @@ class BedrockAgentCoreControlClient:
                 UpdateApiKeyCredentialProviderOutput,
                 ("name", "api_key", "api_key_secret_config", "api_key_secret_source", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_api_key_credential_provider(params)
@@ -4540,6 +4687,7 @@ class BedrockAgentCoreControlClient:
                 UpdateCapacityProviderOutput,
                 ("capacity_provider_id", "description", "client_token", ),
                 ("capacity_provider_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_capacity_provider(params)
@@ -4588,6 +4736,7 @@ class BedrockAgentCoreControlClient:
                 UpdateConfigurationBundleOutput,
                 ("bundle_id", "parent_version_ids", "commit_message", "client_token", "bundle_name", "description", "components", "branch_name", "created_by", "kms_key_arn", ),
                 ("bundle_id", "parent_version_ids", "commit_message", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_configuration_bundle(params)
@@ -4620,6 +4769,7 @@ class BedrockAgentCoreControlClient:
                 UpdateConsentPortalOutput,
                 ("consent_portal_identifier", "execution_role_arn", "idp_config", "description", ),
                 ("consent_portal_identifier", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_consent_portal(params)
@@ -4649,6 +4799,7 @@ class BedrockAgentCoreControlClient:
                 UpdateDatasetOutput,
                 ("dataset_id", "client_token", "description", ),
                 ("dataset_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_dataset(params)
@@ -4677,6 +4828,7 @@ class BedrockAgentCoreControlClient:
                 UpdateDatasetExamplesOutput,
                 ("dataset_id", "examples", "client_token", ),
                 ("dataset_id", "examples", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_dataset_examples(params)
@@ -4715,6 +4867,7 @@ class BedrockAgentCoreControlClient:
                 UpdateEvaluatorOutput,
                 ("evaluator_id", "client_token", "description", "evaluator_config", "level", "kms_key_arn", ),
                 ("evaluator_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_evaluator(params)
@@ -4774,6 +4927,7 @@ class BedrockAgentCoreControlClient:
                 UpdateGatewayOutput,
                 ("gateway_identifier", "name", "role_arn", "authorizer_type", "description", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "custom_transform_configuration", "interceptor_configurations", "policy_engine_configuration", "exception_level", "waf_configuration", ),
                 ("gateway_identifier", "name", "role_arn", "authorizer_type", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_gateway(params)
@@ -4804,6 +4958,7 @@ class BedrockAgentCoreControlClient:
                 UpdateGatewayRateLimitOutput,
                 ("gateway_identifier", "rate_limit_id", "entries", "description", ),
                 ("gateway_identifier", "rate_limit_id", "entries", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_gateway_rate_limit(params)
@@ -4841,6 +4996,7 @@ class BedrockAgentCoreControlClient:
                 UpdateGatewayRuleOutput,
                 ("gateway_identifier", "rule_id", "priority", "conditions", "actions", "description", ),
                 ("gateway_identifier", "rule_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_gateway_rule(params)
@@ -4886,6 +5042,7 @@ class BedrockAgentCoreControlClient:
                 UpdateGatewayTargetOutput,
                 ("gateway_identifier", "target_id", "target_configuration", "name", "description", "credential_provider_configurations", "metadata_configuration", "private_endpoint", "certificate_configurations", ),
                 ("gateway_identifier", "target_id", "target_configuration", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_gateway_target(params)
@@ -4960,6 +5117,7 @@ class BedrockAgentCoreControlClient:
                 UpdateHarnessOutput,
                 ("harness_id", "client_token", "execution_role_arn", "environment", "environment_artifact", "environment_variables", "authorizer_configuration", "model", "system_prompt", "tools", "skills", "allowed_tools", "memory", "truncation", "hooks", "max_iterations", "max_tokens", "timeout_seconds", ),
                 ("harness_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_harness(params)
@@ -4994,6 +5152,7 @@ class BedrockAgentCoreControlClient:
                 UpdateHarnessEndpointOutput,
                 ("harness_id", "endpoint_name", "target_version", "description", "client_token", ),
                 ("harness_id", "endpoint_name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_harness_endpoint(params)
@@ -5041,6 +5200,7 @@ class BedrockAgentCoreControlClient:
                 UpdateMemoryOutput,
                 ("memory_id", "client_token", "description", "event_expiry_duration", "memory_execution_role_arn", "memory_strategies", "add_indexed_keys", "namespace_keys", "stream_delivery_resources", ),
                 ("memory_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_memory(params)
@@ -5068,6 +5228,7 @@ class BedrockAgentCoreControlClient:
                 UpdateOauth2CredentialProviderOutput,
                 ("name", "credential_provider_vendor", "oauth2_provider_config_input", ),
                 ("name", "credential_provider_vendor", "oauth2_provider_config_input", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_oauth2_credential_provider(params)
@@ -5121,6 +5282,7 @@ class BedrockAgentCoreControlClient:
                 UpdateOnlineEvaluationConfigOutput,
                 ("online_evaluation_config_id", "client_token", "description", "rule", "data_source_config", "evaluators", "insights", "clustering_config", "output_config", "evaluation_execution_role_arn", "execution_status", ),
                 ("online_evaluation_config_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_online_evaluation_config(params)
@@ -5158,6 +5320,7 @@ class BedrockAgentCoreControlClient:
                 UpdatePaymentConnectorOutput,
                 ("payment_manager_id", "payment_connector_id", "description", "type", "credential_provider_configurations", "client_token", ),
                 ("payment_manager_id", "payment_connector_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_payment_connector(params)
@@ -5185,6 +5348,7 @@ class BedrockAgentCoreControlClient:
                 UpdatePaymentCredentialProviderOutput,
                 ("name", "credential_provider_vendor", "provider_configuration_input", ),
                 ("name", "credential_provider_vendor", "provider_configuration_input", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_payment_credential_provider(params)
@@ -5226,6 +5390,7 @@ class BedrockAgentCoreControlClient:
                 UpdatePaymentManagerOutput,
                 ("payment_manager_id", "description", "authorizer_type", "authorizer_configuration", "role_arn", "client_token", "kms_key_arn", ),
                 ("payment_manager_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_payment_manager(params)
@@ -5263,6 +5428,7 @@ class BedrockAgentCoreControlClient:
                 UpdatePolicyOutput,
                 ("policy_engine_id", "policy_id", "description", "definition", "validation_mode", "enforcement_mode", ),
                 ("policy_engine_id", "policy_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_policy(params)
@@ -5289,6 +5455,7 @@ class BedrockAgentCoreControlClient:
                 UpdatePolicyEngineOutput,
                 ("policy_engine_id", "description", ),
                 ("policy_engine_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_policy_engine(params)
@@ -5324,6 +5491,7 @@ class BedrockAgentCoreControlClient:
                 UpdateRegistryOutput,
                 ("registry_id", "name", "description", "authorizer_configuration", "approval_configuration", ),
                 ("registry_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_registry(params)
@@ -5373,6 +5541,7 @@ class BedrockAgentCoreControlClient:
                 UpdateRegistryRecordOutput,
                 ("registry_id", "record_id", "name", "description", "descriptor_type", "descriptors", "record_version", "synchronization_type", "synchronization_configuration", "trigger_synchronization", ),
                 ("registry_id", "record_id", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_registry_record(params)
@@ -5402,6 +5571,7 @@ class BedrockAgentCoreControlClient:
                 UpdateRegistryRecordStatusOutput,
                 ("registry_id", "record_id", "status", "status_reason", ),
                 ("registry_id", "record_id", "status", "status_reason", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_registry_record_status(params)
@@ -5428,6 +5598,7 @@ class BedrockAgentCoreControlClient:
                 UpdateWorkloadIdentityOutput,
                 ("name", "allowed_resource_oauth2_return_urls", ),
                 ("name", ),
+                service_name='Bedrock AgentCore Control',
             )
             return _response
         _response = await self._native.update_workload_identity(params)

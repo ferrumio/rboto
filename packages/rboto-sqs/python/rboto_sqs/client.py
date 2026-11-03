@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SQSClient as NativeClient, CancelMessageMoveTaskOutput, ChangeMessageVisibilityBatchOutput, CreateQueueOutput, DeleteMessageBatchOutput, GetQueueAttributesOutput, GetQueueUrlOutput, ListDeadLetterSourceQueuesOutput, ListMessageMoveTasksOutput, ListQueueTagsOutput, ListQueuesOutput, ReceiveMessageOutput, SendMessageBatchOutput, SendMessageOutput, StartMessageMoveTaskOutput
 from .types import (
@@ -85,6 +85,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", "label", "aws_account_ids", "actions", ),
                 ("queue_url", "label", "aws_account_ids", "actions", ),
+                service_name='SQS',
             )
             return None
         await self._native.add_permission(params)
@@ -108,6 +109,7 @@ class SQSClient:
                 CancelMessageMoveTaskOutput,
                 ("task_handle", ),
                 ("task_handle", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.cancel_message_move_task(params)
@@ -135,6 +137,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", "receipt_handle", "visibility_timeout", ),
                 ("queue_url", "receipt_handle", "visibility_timeout", ),
+                service_name='SQS',
             )
             return None
         await self._native.change_message_visibility(params)
@@ -160,6 +163,7 @@ class SQSClient:
                 ChangeMessageVisibilityBatchOutput,
                 ("queue_url", "entries", ),
                 ("queue_url", "entries", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.change_message_visibility_batch(params)
@@ -189,6 +193,7 @@ class SQSClient:
                 CreateQueueOutput,
                 ("queue_name", "attributes", "tags", ),
                 ("queue_name", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.create_queue(params)
@@ -214,6 +219,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", "receipt_handle", ),
                 ("queue_url", "receipt_handle", ),
+                service_name='SQS',
             )
             return None
         await self._native.delete_message(params)
@@ -239,6 +245,7 @@ class SQSClient:
                 DeleteMessageBatchOutput,
                 ("queue_url", "entries", ),
                 ("queue_url", "entries", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.delete_message_batch(params)
@@ -262,6 +269,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", ),
                 ("queue_url", ),
+                service_name='SQS',
             )
             return None
         await self._native.delete_queue(params)
@@ -288,6 +296,7 @@ class SQSClient:
                 GetQueueAttributesOutput,
                 ("queue_url", "attribute_names", ),
                 ("queue_url", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.get_queue_attributes(params)
@@ -314,6 +323,7 @@ class SQSClient:
                 GetQueueUrlOutput,
                 ("queue_name", "queue_owner_aws_account_id", ),
                 ("queue_name", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.get_queue_url(params)
@@ -343,6 +353,7 @@ class SQSClient:
                 ListDeadLetterSourceQueuesOutput,
                 ("queue_url", "next_token", "max_results", ),
                 ("queue_url", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.list_dead_letter_source_queues(params)
@@ -369,6 +380,7 @@ class SQSClient:
                 ListMessageMoveTasksOutput,
                 ("source_arn", "max_results", ),
                 ("source_arn", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.list_message_move_tasks(params)
@@ -392,6 +404,7 @@ class SQSClient:
                 ListQueueTagsOutput,
                 ("queue_url", ),
                 ("queue_url", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.list_queue_tags(params)
@@ -422,6 +435,7 @@ class SQSClient:
                 ListQueuesOutput,
                 ("queue_name_prefix", "next_token", "max_results", ),
                 (),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.list_queues(params)
@@ -445,6 +459,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", ),
                 ("queue_url", ),
+                service_name='SQS',
             )
             return None
         await self._native.purge_queue(params)
@@ -489,6 +504,7 @@ class SQSClient:
                 ReceiveMessageOutput,
                 ("queue_url", "attribute_names", "message_system_attribute_names", "message_attribute_names", "max_number_of_messages", "visibility_timeout", "wait_time_seconds", "receive_request_attempt_id", ),
                 ("queue_url", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.receive_message(params)
@@ -514,6 +530,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", "label", ),
                 ("queue_url", "label", ),
+                service_name='SQS',
             )
             return None
         await self._native.remove_permission(params)
@@ -554,6 +571,7 @@ class SQSClient:
                 SendMessageOutput,
                 ("queue_url", "message_body", "delay_seconds", "message_attributes", "message_system_attributes", "message_deduplication_id", "message_group_id", ),
                 ("queue_url", "message_body", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.send_message(params)
@@ -579,6 +597,7 @@ class SQSClient:
                 SendMessageBatchOutput,
                 ("queue_url", "entries", ),
                 ("queue_url", "entries", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.send_message_batch(params)
@@ -604,6 +623,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", "attributes", ),
                 ("queue_url", "attributes", ),
+                service_name='SQS',
             )
             return None
         await self._native.set_queue_attributes(params)
@@ -633,6 +653,7 @@ class SQSClient:
                 StartMessageMoveTaskOutput,
                 ("source_arn", "destination_arn", "max_number_of_messages_per_second", ),
                 ("source_arn", ),
+                service_name='SQS',
             )
             return _response
         _response = await self._native.start_message_move_task(params)
@@ -658,6 +679,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", "tags", ),
                 ("queue_url", "tags", ),
+                service_name='SQS',
             )
             return None
         await self._native.tag_queue(params)
@@ -683,6 +705,7 @@ class SQSClient:
                 type(None),
                 ("queue_url", "tag_keys", ),
                 ("queue_url", "tag_keys", ),
+                service_name='SQS',
             )
             return None
         await self._native.untag_queue(params)

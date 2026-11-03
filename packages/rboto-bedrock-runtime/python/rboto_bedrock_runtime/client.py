@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import BedrockRuntimeClient as NativeClient, ApplyGuardrailOutput, ConverseOutput, CountTokensOutput, GetAsyncInvokeOutput, InvokeGuardrailChecksOutput, InvokeModelOutput, ListAsyncInvokesOutput, StartAsyncInvokeOutput
 from .types import (
@@ -109,6 +109,7 @@ class BedrockRuntimeClient:
                 ApplyGuardrailOutput,
                 ("guardrail_identifier", "guardrail_version", "source", "content", "output_scope", ),
                 ("guardrail_identifier", "guardrail_version", "source", "content", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.apply_guardrail(params)
@@ -168,6 +169,7 @@ class BedrockRuntimeClient:
                 ConverseOutput,
                 ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
                 ("model_id", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.converse(params)
@@ -227,6 +229,7 @@ class BedrockRuntimeClient:
                 dict,
                 ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
                 ("model_id", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.converse_stream(params)
@@ -252,6 +255,7 @@ class BedrockRuntimeClient:
                 CountTokensOutput,
                 ("model_id", "input", ),
                 ("model_id", "input", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.count_tokens(params)
@@ -275,6 +279,7 @@ class BedrockRuntimeClient:
                 GetAsyncInvokeOutput,
                 ("invocation_arn", ),
                 ("invocation_arn", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.get_async_invoke(params)
@@ -300,6 +305,7 @@ class BedrockRuntimeClient:
                 InvokeGuardrailChecksOutput,
                 ("messages", "checks", ),
                 ("messages", "checks", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.invoke_guardrail_checks(params)
@@ -350,6 +356,7 @@ class BedrockRuntimeClient:
                 InvokeModelOutput,
                 ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
                 ("model_id", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.invoke_model(params)
@@ -375,6 +382,7 @@ class BedrockRuntimeClient:
                 dict,
                 ("model_id", "body", ),
                 ("model_id", "body", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.invoke_model_with_bidirectional_stream(params)
@@ -425,6 +433,7 @@ class BedrockRuntimeClient:
                 dict,
                 ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
                 ("model_id", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.invoke_model_with_response_stream(params)
@@ -467,6 +476,7 @@ class BedrockRuntimeClient:
                 ListAsyncInvokesOutput,
                 ("submit_time_after", "submit_time_before", "status_equals", "max_results", "next_token", "sort_by", "sort_order", ),
                 (),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.list_async_invokes(params)
@@ -500,6 +510,7 @@ class BedrockRuntimeClient:
                 StartAsyncInvokeOutput,
                 ("model_id", "model_input", "output_data_config", "client_request_token", "tags", ),
                 ("model_id", "model_input", "output_data_config", ),
+                service_name='Bedrock Runtime',
             )
             return _response
         _response = await self._native.start_async_invoke(params)

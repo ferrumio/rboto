@@ -13,6 +13,7 @@ from threading import RLock
 from time import perf_counter
 from typing import Literal, NotRequired, TextIO, TypedDict, cast
 
+from ._telemetry import operation_trace
 from .exceptions import ClientError
 from .interceptors import Interceptor, Next, OperationRequest, OperationResponse
 
@@ -148,15 +149,16 @@ class _LoggingInterceptor:
             native_error_code=metadata.error_code,
             native_error_type=metadata.error_type,
         )
-        if self.trace_context is not None:
-            try:
-                trace = self.trace_context()
-                if trace is not None:
-                    fields["trace_id"] = trace.trace_id
-                    fields["span_id"] = trace.span_id
-            except Exception:
-                # Trace lookup is best effort; still emit the operation record.
-                pass
+        try:
+            trace = (
+                self.trace_context() if self.trace_context is not None else operation_trace.get()
+            )
+            if trace is not None:
+                fields["trace_id"] = trace.trace_id
+                fields["span_id"] = trace.span_id
+        except Exception:
+            # Trace lookup is best effort; still emit the operation record.
+            pass
         if completed:
             logger.log(level, "operation.completed", extra={"rboto": fields})
         if retries:

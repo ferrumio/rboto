@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import CognitoIdentityClient as NativeClient, CreateIdentityPoolOutput, DeleteIdentitiesOutput, DescribeIdentityOutput, DescribeIdentityPoolOutput, GetCredentialsForIdentityOutput, GetIdOutput, GetIdentityPoolRolesOutput, GetOpenIdTokenForDeveloperIdentityOutput, GetOpenIdTokenOutput, GetPrincipalTagAttributeMapOutput, ListIdentitiesOutput, ListIdentityPoolsOutput, ListTagsForResourceOutput, LookupDeveloperIdentityOutput, MergeDeveloperIdentitiesOutput, SetPrincipalTagAttributeMapOutput, TagResourceOutput, UntagResourceOutput, UpdateIdentityPoolOutput
 from .types import (
@@ -96,6 +96,7 @@ class CognitoIdentityClient:
                 CreateIdentityPoolOutput,
                 ("identity_pool_name", "allow_unauthenticated_identities", "allow_classic_flow", "supported_login_providers", "developer_provider_name", "open_id_connect_provider_arns", "cognito_identity_providers", "saml_provider_arns", "identity_pool_tags", ),
                 ("identity_pool_name", "allow_unauthenticated_identities", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.create_identity_pool(params)
@@ -119,6 +120,7 @@ class CognitoIdentityClient:
                 DeleteIdentitiesOutput,
                 ("identity_ids_to_delete", ),
                 ("identity_ids_to_delete", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.delete_identities(params)
@@ -142,6 +144,7 @@ class CognitoIdentityClient:
                 type(None),
                 ("identity_pool_id", ),
                 ("identity_pool_id", ),
+                service_name='Cognito Identity',
             )
             return None
         await self._native.delete_identity_pool(params)
@@ -165,6 +168,7 @@ class CognitoIdentityClient:
                 DescribeIdentityOutput,
                 ("identity_id", ),
                 ("identity_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.describe_identity(params)
@@ -188,6 +192,7 @@ class CognitoIdentityClient:
                 DescribeIdentityPoolOutput,
                 ("identity_pool_id", ),
                 ("identity_pool_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.describe_identity_pool(params)
@@ -217,6 +222,7 @@ class CognitoIdentityClient:
                 GetCredentialsForIdentityOutput,
                 ("identity_id", "logins", "custom_role_arn", ),
                 ("identity_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.get_credentials_for_identity(params)
@@ -246,6 +252,7 @@ class CognitoIdentityClient:
                 GetIdOutput,
                 ("identity_pool_id", "account_id", "logins", ),
                 ("identity_pool_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.get_id(params)
@@ -269,6 +276,7 @@ class CognitoIdentityClient:
                 GetIdentityPoolRolesOutput,
                 ("identity_pool_id", ),
                 ("identity_pool_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.get_identity_pool_roles(params)
@@ -295,6 +303,7 @@ class CognitoIdentityClient:
                 GetOpenIdTokenOutput,
                 ("identity_id", "logins", ),
                 ("identity_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.get_open_id_token(params)
@@ -329,6 +338,7 @@ class CognitoIdentityClient:
                 GetOpenIdTokenForDeveloperIdentityOutput,
                 ("identity_pool_id", "logins", "identity_id", "principal_tags", "token_duration", ),
                 ("identity_pool_id", "logins", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.get_open_id_token_for_developer_identity(params)
@@ -354,6 +364,7 @@ class CognitoIdentityClient:
                 GetPrincipalTagAttributeMapOutput,
                 ("identity_pool_id", "identity_provider_name", ),
                 ("identity_pool_id", "identity_provider_name", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.get_principal_tag_attribute_map(params)
@@ -385,6 +396,7 @@ class CognitoIdentityClient:
                 ListIdentitiesOutput,
                 ("identity_pool_id", "max_results", "next_token", "hide_disabled", ),
                 ("identity_pool_id", "max_results", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.list_identities(params)
@@ -411,6 +423,7 @@ class CognitoIdentityClient:
                 ListIdentityPoolsOutput,
                 ("max_results", "next_token", ),
                 ("max_results", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.list_identity_pools(params)
@@ -434,6 +447,7 @@ class CognitoIdentityClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -469,6 +483,7 @@ class CognitoIdentityClient:
                 LookupDeveloperIdentityOutput,
                 ("identity_pool_id", "identity_id", "developer_user_identifier", "max_results", "next_token", ),
                 ("identity_pool_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.lookup_developer_identity(params)
@@ -498,6 +513,7 @@ class CognitoIdentityClient:
                 MergeDeveloperIdentitiesOutput,
                 ("source_user_identifier", "destination_user_identifier", "developer_provider_name", "identity_pool_id", ),
                 ("source_user_identifier", "destination_user_identifier", "developer_provider_name", "identity_pool_id", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.merge_developer_identities(params)
@@ -526,6 +542,7 @@ class CognitoIdentityClient:
                 type(None),
                 ("identity_pool_id", "roles", "role_mappings", ),
                 ("identity_pool_id", "roles", ),
+                service_name='Cognito Identity',
             )
             return None
         await self._native.set_identity_pool_roles(params)
@@ -557,6 +574,7 @@ class CognitoIdentityClient:
                 SetPrincipalTagAttributeMapOutput,
                 ("identity_pool_id", "identity_provider_name", "use_defaults", "principal_tags", ),
                 ("identity_pool_id", "identity_provider_name", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.set_principal_tag_attribute_map(params)
@@ -582,6 +600,7 @@ class CognitoIdentityClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -611,6 +630,7 @@ class CognitoIdentityClient:
                 type(None),
                 ("identity_id", "identity_pool_id", "developer_provider_name", "developer_user_identifier", ),
                 ("identity_id", "identity_pool_id", "developer_provider_name", "developer_user_identifier", ),
+                service_name='Cognito Identity',
             )
             return None
         await self._native.unlink_developer_identity(params)
@@ -638,6 +658,7 @@ class CognitoIdentityClient:
                 type(None),
                 ("identity_id", "logins", "logins_to_remove", ),
                 ("identity_id", "logins", "logins_to_remove", ),
+                service_name='Cognito Identity',
             )
             return None
         await self._native.unlink_identity(params)
@@ -663,6 +684,7 @@ class CognitoIdentityClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -711,6 +733,7 @@ class CognitoIdentityClient:
                 UpdateIdentityPoolOutput,
                 ("identity_pool_id", "identity_pool_name", "allow_unauthenticated_identities", "allow_classic_flow", "supported_login_providers", "developer_provider_name", "open_id_connect_provider_arns", "cognito_identity_providers", "saml_provider_arns", "identity_pool_tags", ),
                 ("identity_pool_id", "identity_pool_name", "allow_unauthenticated_identities", ),
+                service_name='Cognito Identity',
             )
             return _response
         _response = await self._native.update_identity_pool(params)

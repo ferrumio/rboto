@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import EventBridgeClient as NativeClient, CancelReplayOutput, CreateApiDestinationOutput, CreateArchiveOutput, CreateConnectionOutput, CreateEndpointOutput, CreateEventBusOutput, CreatePartnerEventSourceOutput, DeauthorizeConnectionOutput, DeleteApiDestinationOutput, DeleteArchiveOutput, DeleteConnectionOutput, DeleteEndpointOutput, DescribeApiDestinationOutput, DescribeArchiveOutput, DescribeConnectionOutput, DescribeEndpointOutput, DescribeEventBusOutput, DescribeEventSourceOutput, DescribePartnerEventSourceOutput, DescribeReplayOutput, DescribeRuleOutput, ListApiDestinationsOutput, ListArchivesOutput, ListConnectionsOutput, ListEndpointsOutput, ListEventBusesOutput, ListEventSourcesOutput, ListPartnerEventSourceAccountsOutput, ListPartnerEventSourcesOutput, ListReplaysOutput, ListRuleNamesByTargetOutput, ListRulesOutput, ListTagsForResourceOutput, ListTargetsByRuleOutput, PutEventsOutput, PutPartnerEventsOutput, PutRuleOutput, PutTargetsOutput, RemoveTargetsOutput, StartReplayOutput, TagResourceOutput, TestEventPatternOutput, UntagResourceOutput, UpdateApiDestinationOutput, UpdateArchiveOutput, UpdateConnectionOutput, UpdateEndpointOutput, UpdateEventBusOutput
 from .types import (
@@ -91,6 +91,7 @@ class EventBridgeClient:
                 type(None),
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return None
         await self._native.activate_event_source(params)
@@ -114,6 +115,7 @@ class EventBridgeClient:
                 CancelReplayOutput,
                 ("replay_name", ),
                 ("replay_name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.cancel_replay(params)
@@ -149,6 +151,7 @@ class EventBridgeClient:
                 CreateApiDestinationOutput,
                 ("name", "connection_arn", "invocation_endpoint", "http_method", "description", "invocation_rate_limit_per_second", ),
                 ("name", "connection_arn", "invocation_endpoint", "http_method", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.create_api_destination(params)
@@ -186,6 +189,7 @@ class EventBridgeClient:
                 CreateArchiveOutput,
                 ("archive_name", "event_source_arn", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
                 ("archive_name", "event_source_arn", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.create_archive(params)
@@ -222,6 +226,7 @@ class EventBridgeClient:
                 CreateConnectionOutput,
                 ("name", "authorization_type", "auth_parameters", "description", "invocation_connectivity_parameters", "kms_key_identifier", ),
                 ("name", "authorization_type", "auth_parameters", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.create_connection(params)
@@ -258,6 +263,7 @@ class EventBridgeClient:
                 CreateEndpointOutput,
                 ("name", "routing_config", "event_buses", "description", "replication_config", "role_arn", ),
                 ("name", "routing_config", "event_buses", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.create_endpoint(params)
@@ -299,6 +305,7 @@ class EventBridgeClient:
                 CreateEventBusOutput,
                 ("name", "event_source_name", "description", "kms_key_identifier", "dead_letter_config", "log_config", "tags", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.create_event_bus(params)
@@ -324,6 +331,7 @@ class EventBridgeClient:
                 CreatePartnerEventSourceOutput,
                 ("name", "account", ),
                 ("name", "account", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.create_partner_event_source(params)
@@ -347,6 +355,7 @@ class EventBridgeClient:
                 type(None),
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return None
         await self._native.deactivate_event_source(params)
@@ -370,6 +379,7 @@ class EventBridgeClient:
                 DeauthorizeConnectionOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.deauthorize_connection(params)
@@ -393,6 +403,7 @@ class EventBridgeClient:
                 DeleteApiDestinationOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.delete_api_destination(params)
@@ -416,6 +427,7 @@ class EventBridgeClient:
                 DeleteArchiveOutput,
                 ("archive_name", ),
                 ("archive_name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.delete_archive(params)
@@ -439,6 +451,7 @@ class EventBridgeClient:
                 DeleteConnectionOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.delete_connection(params)
@@ -462,6 +475,7 @@ class EventBridgeClient:
                 DeleteEndpointOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.delete_endpoint(params)
@@ -485,6 +499,7 @@ class EventBridgeClient:
                 type(None),
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return None
         await self._native.delete_event_bus(params)
@@ -510,6 +525,7 @@ class EventBridgeClient:
                 type(None),
                 ("name", "account", ),
                 ("name", "account", ),
+                service_name='EventBridge',
             )
             return None
         await self._native.delete_partner_event_source(params)
@@ -539,6 +555,7 @@ class EventBridgeClient:
                 type(None),
                 ("name", "event_bus_name", "force", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return None
         await self._native.delete_rule(params)
@@ -562,6 +579,7 @@ class EventBridgeClient:
                 DescribeApiDestinationOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_api_destination(params)
@@ -585,6 +603,7 @@ class EventBridgeClient:
                 DescribeArchiveOutput,
                 ("archive_name", ),
                 ("archive_name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_archive(params)
@@ -608,6 +627,7 @@ class EventBridgeClient:
                 DescribeConnectionOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_connection(params)
@@ -634,6 +654,7 @@ class EventBridgeClient:
                 DescribeEndpointOutput,
                 ("name", "home_region", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_endpoint(params)
@@ -658,6 +679,7 @@ class EventBridgeClient:
                 DescribeEventBusOutput,
                 ("name", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_event_bus(params)
@@ -681,6 +703,7 @@ class EventBridgeClient:
                 DescribeEventSourceOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_event_source(params)
@@ -704,6 +727,7 @@ class EventBridgeClient:
                 DescribePartnerEventSourceOutput,
                 ("name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_partner_event_source(params)
@@ -727,6 +751,7 @@ class EventBridgeClient:
                 DescribeReplayOutput,
                 ("replay_name", ),
                 ("replay_name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_replay(params)
@@ -753,6 +778,7 @@ class EventBridgeClient:
                 DescribeRuleOutput,
                 ("name", "event_bus_name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.describe_rule(params)
@@ -779,6 +805,7 @@ class EventBridgeClient:
                 type(None),
                 ("name", "event_bus_name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return None
         await self._native.disable_rule(params)
@@ -805,6 +832,7 @@ class EventBridgeClient:
                 type(None),
                 ("name", "event_bus_name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return None
         await self._native.enable_rule(params)
@@ -838,6 +866,7 @@ class EventBridgeClient:
                 ListApiDestinationsOutput,
                 ("name_prefix", "connection_arn", "next_token", "limit", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_api_destinations(params)
@@ -874,6 +903,7 @@ class EventBridgeClient:
                 ListArchivesOutput,
                 ("name_prefix", "event_source_arn", "state", "next_token", "limit", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_archives(params)
@@ -907,6 +937,7 @@ class EventBridgeClient:
                 ListConnectionsOutput,
                 ("name_prefix", "connection_state", "next_token", "limit", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_connections(params)
@@ -940,6 +971,7 @@ class EventBridgeClient:
                 ListEndpointsOutput,
                 ("name_prefix", "home_region", "next_token", "max_results", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_endpoints(params)
@@ -970,6 +1002,7 @@ class EventBridgeClient:
                 ListEventBusesOutput,
                 ("name_prefix", "next_token", "limit", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_event_buses(params)
@@ -1000,6 +1033,7 @@ class EventBridgeClient:
                 ListEventSourcesOutput,
                 ("name_prefix", "next_token", "limit", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_event_sources(params)
@@ -1029,6 +1063,7 @@ class EventBridgeClient:
                 ListPartnerEventSourceAccountsOutput,
                 ("event_source_name", "next_token", "limit", ),
                 ("event_source_name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_partner_event_source_accounts(params)
@@ -1058,6 +1093,7 @@ class EventBridgeClient:
                 ListPartnerEventSourcesOutput,
                 ("name_prefix", "next_token", "limit", ),
                 ("name_prefix", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_partner_event_sources(params)
@@ -1094,6 +1130,7 @@ class EventBridgeClient:
                 ListReplaysOutput,
                 ("name_prefix", "state", "event_source_arn", "next_token", "limit", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_replays(params)
@@ -1126,6 +1163,7 @@ class EventBridgeClient:
                 ListRuleNamesByTargetOutput,
                 ("target_arn", "event_bus_name", "next_token", "limit", ),
                 ("target_arn", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_rule_names_by_target(params)
@@ -1159,6 +1197,7 @@ class EventBridgeClient:
                 ListRulesOutput,
                 ("name_prefix", "event_bus_name", "next_token", "limit", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_rules(params)
@@ -1182,6 +1221,7 @@ class EventBridgeClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -1214,6 +1254,7 @@ class EventBridgeClient:
                 ListTargetsByRuleOutput,
                 ("rule", "event_bus_name", "next_token", "limit", ),
                 ("rule", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.list_targets_by_rule(params)
@@ -1240,6 +1281,7 @@ class EventBridgeClient:
                 PutEventsOutput,
                 ("entries", "endpoint_id", ),
                 ("entries", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.put_events(params)
@@ -1263,6 +1305,7 @@ class EventBridgeClient:
                 PutPartnerEventsOutput,
                 ("entries", ),
                 ("entries", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.put_partner_events(params)
@@ -1302,6 +1345,7 @@ class EventBridgeClient:
                 type(None),
                 ("event_bus_name", "action", "principal", "statement_id", "condition", "policy", ),
                 (),
+                service_name='EventBridge',
             )
             return None
         await self._native.put_permission(params)
@@ -1346,6 +1390,7 @@ class EventBridgeClient:
                 PutRuleOutput,
                 ("name", "schedule_expression", "event_pattern", "state", "description", "role_arn", "tags", "event_bus_name", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.put_rule(params)
@@ -1374,6 +1419,7 @@ class EventBridgeClient:
                 PutTargetsOutput,
                 ("rule", "targets", "event_bus_name", ),
                 ("rule", "targets", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.put_targets(params)
@@ -1404,6 +1450,7 @@ class EventBridgeClient:
                 type(None),
                 ("statement_id", "remove_all_permissions", "event_bus_name", ),
                 (),
+                service_name='EventBridge',
             )
             return None
         await self._native.remove_permission(params)
@@ -1435,6 +1482,7 @@ class EventBridgeClient:
                 RemoveTargetsOutput,
                 ("rule", "ids", "event_bus_name", "force", ),
                 ("rule", "ids", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.remove_targets(params)
@@ -1469,6 +1517,7 @@ class EventBridgeClient:
                 StartReplayOutput,
                 ("replay_name", "event_source_arn", "event_start_time", "event_end_time", "destination", "description", ),
                 ("replay_name", "event_source_arn", "event_start_time", "event_end_time", "destination", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.start_replay(params)
@@ -1494,6 +1543,7 @@ class EventBridgeClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -1519,6 +1569,7 @@ class EventBridgeClient:
                 TestEventPatternOutput,
                 ("event_pattern", "event", ),
                 ("event_pattern", "event", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.test_event_pattern(params)
@@ -1544,6 +1595,7 @@ class EventBridgeClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -1582,6 +1634,7 @@ class EventBridgeClient:
                 UpdateApiDestinationOutput,
                 ("name", "description", "connection_arn", "invocation_endpoint", "http_method", "invocation_rate_limit_per_second", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.update_api_destination(params)
@@ -1617,6 +1670,7 @@ class EventBridgeClient:
                 UpdateArchiveOutput,
                 ("archive_name", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
                 ("archive_name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.update_archive(params)
@@ -1655,6 +1709,7 @@ class EventBridgeClient:
                 UpdateConnectionOutput,
                 ("name", "description", "authorization_type", "auth_parameters", "invocation_connectivity_parameters", "kms_key_identifier", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.update_connection(params)
@@ -1693,6 +1748,7 @@ class EventBridgeClient:
                 UpdateEndpointOutput,
                 ("name", "description", "routing_config", "replication_config", "event_buses", "role_arn", ),
                 ("name", ),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.update_endpoint(params)
@@ -1729,6 +1785,7 @@ class EventBridgeClient:
                 UpdateEventBusOutput,
                 ("name", "kms_key_identifier", "description", "dead_letter_config", "log_config", ),
                 (),
+                service_name='EventBridge',
             )
             return _response
         _response = await self._native.update_event_bus(params)

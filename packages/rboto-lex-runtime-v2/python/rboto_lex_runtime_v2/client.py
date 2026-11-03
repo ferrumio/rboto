@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import LexRuntimeV2Client as NativeClient, DeleteSessionOutput, GetSessionOutput, PutSessionOutput, RecognizeTextOutput, RecognizeUtteranceOutput
 from .types import (
@@ -72,6 +72,7 @@ class LexRuntimeV2Client:
                 DeleteSessionOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
+                service_name='Lex Runtime V2',
             )
             return _response
         _response = await self._native.delete_session(params)
@@ -101,6 +102,7 @@ class LexRuntimeV2Client:
                 GetSessionOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
+                service_name='Lex Runtime V2',
             )
             return _response
         _response = await self._native.get_session(params)
@@ -141,6 +143,7 @@ class LexRuntimeV2Client:
                 PutSessionOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "session_state", "messages", "request_attributes", "response_content_type", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "session_state", ),
+                service_name='Lex Runtime V2',
             )
             return _response
         _response = await self._native.put_session(params)
@@ -178,6 +181,7 @@ class LexRuntimeV2Client:
                 RecognizeTextOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "text", "session_state", "request_attributes", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "text", ),
+                service_name='Lex Runtime V2',
             )
             return _response
         _response = await self._native.recognize_text(params)
@@ -221,6 +225,7 @@ class LexRuntimeV2Client:
                 RecognizeUtteranceOutput,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_content_type", "session_state", "request_attributes", "response_content_type", "input_stream", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_content_type", ),
+                service_name='Lex Runtime V2',
             )
             return _response
         _response = await self._native.recognize_utterance(params)
@@ -255,6 +260,7 @@ class LexRuntimeV2Client:
                 dict,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_event_stream", "conversation_mode", ),
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_event_stream", ),
+                service_name='Lex Runtime V2',
             )
             return _response
         _response = await self._native.start_conversation(params)

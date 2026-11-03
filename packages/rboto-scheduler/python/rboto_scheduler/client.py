@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import SchedulerClient as NativeClient, CreateScheduleGroupOutput, CreateScheduleOutput, DeleteScheduleGroupOutput, DeleteScheduleOutput, GetScheduleGroupOutput, GetScheduleOutput, ListScheduleGroupsOutput, ListSchedulesOutput, ListTagsForResourceOutput, TagResourceOutput, UntagResourceOutput, UpdateScheduleOutput
 from .types import (
@@ -109,6 +109,7 @@ class EventBridgeSchedulerClient:
                 CreateScheduleOutput,
                 ("name", "schedule_expression", "target", "flexible_time_window", "group_name", "start_date", "end_date", "description", "schedule_expression_timezone", "state", "kms_key_arn", "client_token", "action_after_completion", ),
                 ("name", "schedule_expression", "target", "flexible_time_window", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.create_schedule(params)
@@ -138,6 +139,7 @@ class EventBridgeSchedulerClient:
                 CreateScheduleGroupOutput,
                 ("name", "tags", "client_token", ),
                 ("name", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.create_schedule_group(params)
@@ -167,6 +169,7 @@ class EventBridgeSchedulerClient:
                 DeleteScheduleOutput,
                 ("name", "group_name", "client_token", ),
                 ("name", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.delete_schedule(params)
@@ -193,6 +196,7 @@ class EventBridgeSchedulerClient:
                 DeleteScheduleGroupOutput,
                 ("name", "client_token", ),
                 ("name", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.delete_schedule_group(params)
@@ -219,6 +223,7 @@ class EventBridgeSchedulerClient:
                 GetScheduleOutput,
                 ("name", "group_name", ),
                 ("name", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.get_schedule(params)
@@ -242,6 +247,7 @@ class EventBridgeSchedulerClient:
                 GetScheduleGroupOutput,
                 ("name", ),
                 ("name", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.get_schedule_group(params)
@@ -272,6 +278,7 @@ class EventBridgeSchedulerClient:
                 ListScheduleGroupsOutput,
                 ("name_prefix", "next_token", "max_results", ),
                 (),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.list_schedule_groups(params)
@@ -308,6 +315,7 @@ class EventBridgeSchedulerClient:
                 ListSchedulesOutput,
                 ("group_name", "name_prefix", "state", "next_token", "max_results", ),
                 (),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.list_schedules(params)
@@ -331,6 +339,7 @@ class EventBridgeSchedulerClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -356,6 +365,7 @@ class EventBridgeSchedulerClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -381,6 +391,7 @@ class EventBridgeSchedulerClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -437,6 +448,7 @@ class EventBridgeSchedulerClient:
                 UpdateScheduleOutput,
                 ("name", "schedule_expression", "target", "flexible_time_window", "group_name", "start_date", "end_date", "description", "schedule_expression_timezone", "state", "kms_key_arn", "client_token", "action_after_completion", ),
                 ("name", "schedule_expression", "target", "flexible_time_window", ),
+                service_name='Scheduler',
             )
             return _response
         _response = await self._native.update_schedule(params)

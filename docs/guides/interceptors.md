@@ -110,7 +110,8 @@ The sequence is copied at construction. Without middleware, operations take the
 direct native path. Compatibility factories accept the same setting.
 
 `request.context` is immutable. It provides `service`, `operation`,
-`operation_id`, and `correlation_id`. Each invocation has a unique ID.
+`operation_id`, and `correlation_id`. `service_name` contains the modeled SDK
+service name used by telemetry. Each invocation has a unique ID.
 `operation_context(correlation_id=...)` attaches an application ID to calls in
 that block, including child tasks created there. Nested blocks restore the
 previous ID on exit.

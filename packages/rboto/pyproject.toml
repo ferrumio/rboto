@@ -36,6 +36,7 @@ Issues = "https://github.com/ferrumio/rboto/issues"
 Changelog = "https://github.com/ferrumio/rboto/releases"
 
 [project.optional-dependencies]
+opentelemetry = ["opentelemetry-api>=1.39,<2"]
 api-gateway = ["rboto-api-gateway==0.1.0"]
 bedrock = ["rboto-bedrock==0.1.0"]
 bedrock-agent = ["rboto-bedrock-agent==0.1.0"]

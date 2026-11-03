@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence as _Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import GuardDutyClient as NativeClient, AcceptAdministratorInvitationOutput, AcceptInvitationOutput, ArchiveFindingsOutput, CreateCustomDetectionRuleAssociationOutput, CreateCustomDetectionRuleOrgConfigurationOutput, CreateDetectorOutput, CreateFilterOutput, CreateIPSetOutput, CreateInvestigationOutput, CreateMalwareProtectionPlanOutput, CreateMembersOutput, CreatePublishingDestinationOutput, CreateSampleFindingsOutput, CreateThreatEntitySetOutput, CreateThreatIntelSetOutput, CreateTrustedEntitySetOutput, DeclineInvitationsOutput, DeleteCustomDetectionRuleAssociationOutput, DeleteCustomDetectionRuleOrgConfigurationOutput, DeleteDetectorOutput, DeleteFilterOutput, DeleteIPSetOutput, DeleteInvitationsOutput, DeleteMembersOutput, DeletePublishingDestinationOutput, DeleteThreatEntitySetOutput, DeleteThreatIntelSetOutput, DeleteTrustedEntitySetOutput, DescribeMalwareScansOutput, DescribeOrganizationConfigurationOutput, DescribePublishingDestinationOutput, DisableOrganizationAdminAccountOutput, DisassociateFromAdministratorAccountOutput, DisassociateFromMasterAccountOutput, DisassociateMembersOutput, EnableOrganizationAdminAccountOutput, GetAdministratorAccountOutput, GetCoverageStatisticsOutput, GetCustomDetectionRuleAssociationOutput, GetCustomDetectionRuleOrgConfigurationOutput, GetCustomDetectionRuleOutput, GetDetectorOutput, GetFilterOutput, GetFindingsOutput, GetFindingsStatisticsOutput, GetIPSetOutput, GetInvestigationOutput, GetInvitationsCountOutput, GetMalwareProtectionPlanOutput, GetMalwareScanOutput, GetMalwareScanSettingsOutput, GetMasterAccountOutput, GetMemberDetectorsOutput, GetMembersOutput, GetOrganizationStatisticsOutput, GetRemainingFreeTrialDaysOutput, GetThreatEntitySetOutput, GetThreatIntelSetOutput, GetTrustedEntitySetOutput, GetUsageStatisticsOutput, InviteMembersOutput, ListCoverageOutput, ListCustomDetectionRuleAssociationsOutput, ListCustomDetectionRuleOrgConfigurationsOutput, ListCustomDetectionRulesOutput, ListDetectorsOutput, ListFiltersOutput, ListFindingsOutput, ListIPSetsOutput, ListInvestigationsOutput, ListInvitationsOutput, ListMalwareProtectionPlansOutput, ListMalwareScansOutput, ListMembersOutput, ListOrganizationAdminAccountsOutput, ListPublishingDestinationsOutput, ListTagsForResourceOutput, ListThreatEntitySetsOutput, ListThreatIntelSetsOutput, ListTrustedEntitySetsOutput, SendObjectMalwareScanOutput, StartMalwareScanOutput, StartMonitoringMembersOutput, StopMonitoringMembersOutput, TagResourceOutput, UnarchiveFindingsOutput, UntagResourceOutput, UpdateCustomDetectionRuleAssociationOutput, UpdateCustomDetectionRuleOrgConfigurationOutput, UpdateDetectorOutput, UpdateFilterOutput, UpdateFindingsFeedbackOutput, UpdateIPSetOutput, UpdateMalwareScanSettingsOutput, UpdateMemberDetectorsOutput, UpdateOrganizationConfigurationOutput, UpdatePublishingDestinationOutput, UpdateThreatEntitySetOutput, UpdateThreatIntelSetOutput, UpdateTrustedEntitySetOutput
 from .types import (
@@ -114,6 +114,7 @@ class GuardDutyClient:
                 AcceptAdministratorInvitationOutput,
                 ("detector_id", "administrator_id", "invitation_id", ),
                 ("detector_id", "administrator_id", "invitation_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.accept_administrator_invitation(params)
@@ -141,6 +142,7 @@ class GuardDutyClient:
                 AcceptInvitationOutput,
                 ("detector_id", "master_id", "invitation_id", ),
                 ("detector_id", "master_id", "invitation_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.accept_invitation(params)
@@ -166,6 +168,7 @@ class GuardDutyClient:
                 ArchiveFindingsOutput,
                 ("detector_id", "finding_ids", ),
                 ("detector_id", "finding_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.archive_findings(params)
@@ -197,6 +200,7 @@ class GuardDutyClient:
                 CreateCustomDetectionRuleAssociationOutput,
                 ("rule_id", "mode", "client_token", "tags", ),
                 ("rule_id", "mode", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_custom_detection_rule_association(params)
@@ -231,6 +235,7 @@ class GuardDutyClient:
                 CreateCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", "include_account_ids", "exclude_account_ids", "client_token", ),
                 ("rule_id", "mode", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_custom_detection_rule_org_configuration(params)
@@ -269,6 +274,7 @@ class GuardDutyClient:
                 CreateDetectorOutput,
                 ("enable", "client_token", "finding_publishing_frequency", "data_sources", "tags", "features", ),
                 ("enable", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_detector(params)
@@ -311,6 +317,7 @@ class GuardDutyClient:
                 CreateFilterOutput,
                 ("detector_id", "name", "finding_criteria", "description", "action", "rank", "client_token", "tags", ),
                 ("detector_id", "name", "finding_criteria", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_filter(params)
@@ -351,6 +358,7 @@ class GuardDutyClient:
                 CreateIPSetOutput,
                 ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
                 ("detector_id", "name", "format", "location", "activate", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_ip_set(params)
@@ -379,6 +387,7 @@ class GuardDutyClient:
                 CreateInvestigationOutput,
                 ("detector_id", "trigger_prompt", "client_token", ),
                 ("detector_id", "trigger_prompt", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_investigation(params)
@@ -413,6 +422,7 @@ class GuardDutyClient:
                 CreateMalwareProtectionPlanOutput,
                 ("role", "protected_resource", "client_token", "actions", "tags", ),
                 ("role", "protected_resource", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_malware_protection_plan(params)
@@ -438,6 +448,7 @@ class GuardDutyClient:
                 CreateMembersOutput,
                 ("detector_id", "account_details", ),
                 ("detector_id", "account_details", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_members(params)
@@ -471,6 +482,7 @@ class GuardDutyClient:
                 CreatePublishingDestinationOutput,
                 ("detector_id", "destination_type", "destination_properties", "client_token", "tags", ),
                 ("detector_id", "destination_type", "destination_properties", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_publishing_destination(params)
@@ -497,6 +509,7 @@ class GuardDutyClient:
                 CreateSampleFindingsOutput,
                 ("detector_id", "finding_types", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_sample_findings(params)
@@ -537,6 +550,7 @@ class GuardDutyClient:
                 CreateThreatEntitySetOutput,
                 ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
                 ("detector_id", "name", "format", "location", "activate", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_threat_entity_set(params)
@@ -577,6 +591,7 @@ class GuardDutyClient:
                 CreateThreatIntelSetOutput,
                 ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
                 ("detector_id", "name", "format", "location", "activate", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_threat_intel_set(params)
@@ -617,6 +632,7 @@ class GuardDutyClient:
                 CreateTrustedEntitySetOutput,
                 ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
                 ("detector_id", "name", "format", "location", "activate", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.create_trusted_entity_set(params)
@@ -640,6 +656,7 @@ class GuardDutyClient:
                 DeclineInvitationsOutput,
                 ("account_ids", ),
                 ("account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.decline_invitations(params)
@@ -665,6 +682,7 @@ class GuardDutyClient:
                 DeleteCustomDetectionRuleAssociationOutput,
                 ("rule_id", "association_id", ),
                 ("rule_id", "association_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_custom_detection_rule_association(params)
@@ -690,6 +708,7 @@ class GuardDutyClient:
                 DeleteCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", ),
                 ("rule_id", "mode", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_custom_detection_rule_org_configuration(params)
@@ -713,6 +732,7 @@ class GuardDutyClient:
                 DeleteDetectorOutput,
                 ("detector_id", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_detector(params)
@@ -738,6 +758,7 @@ class GuardDutyClient:
                 DeleteFilterOutput,
                 ("detector_id", "filter_name", ),
                 ("detector_id", "filter_name", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_filter(params)
@@ -763,6 +784,7 @@ class GuardDutyClient:
                 DeleteIPSetOutput,
                 ("detector_id", "ip_set_id", ),
                 ("detector_id", "ip_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_ip_set(params)
@@ -786,6 +808,7 @@ class GuardDutyClient:
                 DeleteInvitationsOutput,
                 ("account_ids", ),
                 ("account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_invitations(params)
@@ -809,6 +832,7 @@ class GuardDutyClient:
                 type(None),
                 ("malware_protection_plan_id", ),
                 ("malware_protection_plan_id", ),
+                service_name='GuardDuty',
             )
             return None
         await self._native.delete_malware_protection_plan(params)
@@ -834,6 +858,7 @@ class GuardDutyClient:
                 DeleteMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_members(params)
@@ -859,6 +884,7 @@ class GuardDutyClient:
                 DeletePublishingDestinationOutput,
                 ("detector_id", "destination_id", ),
                 ("detector_id", "destination_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_publishing_destination(params)
@@ -884,6 +910,7 @@ class GuardDutyClient:
                 DeleteThreatEntitySetOutput,
                 ("detector_id", "threat_entity_set_id", ),
                 ("detector_id", "threat_entity_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_threat_entity_set(params)
@@ -909,6 +936,7 @@ class GuardDutyClient:
                 DeleteThreatIntelSetOutput,
                 ("detector_id", "threat_intel_set_id", ),
                 ("detector_id", "threat_intel_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_threat_intel_set(params)
@@ -934,6 +962,7 @@ class GuardDutyClient:
                 DeleteTrustedEntitySetOutput,
                 ("detector_id", "trusted_entity_set_id", ),
                 ("detector_id", "trusted_entity_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.delete_trusted_entity_set(params)
@@ -969,6 +998,7 @@ class GuardDutyClient:
                 DescribeMalwareScansOutput,
                 ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.describe_malware_scans(params)
@@ -998,6 +1028,7 @@ class GuardDutyClient:
                 DescribeOrganizationConfigurationOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.describe_organization_configuration(params)
@@ -1023,6 +1054,7 @@ class GuardDutyClient:
                 DescribePublishingDestinationOutput,
                 ("detector_id", "destination_id", ),
                 ("detector_id", "destination_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.describe_publishing_destination(params)
@@ -1046,6 +1078,7 @@ class GuardDutyClient:
                 DisableOrganizationAdminAccountOutput,
                 ("admin_account_id", ),
                 ("admin_account_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.disable_organization_admin_account(params)
@@ -1069,6 +1102,7 @@ class GuardDutyClient:
                 DisassociateFromAdministratorAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.disassociate_from_administrator_account(params)
@@ -1092,6 +1126,7 @@ class GuardDutyClient:
                 DisassociateFromMasterAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.disassociate_from_master_account(params)
@@ -1117,6 +1152,7 @@ class GuardDutyClient:
                 DisassociateMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.disassociate_members(params)
@@ -1140,6 +1176,7 @@ class GuardDutyClient:
                 EnableOrganizationAdminAccountOutput,
                 ("admin_account_id", ),
                 ("admin_account_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.enable_organization_admin_account(params)
@@ -1163,6 +1200,7 @@ class GuardDutyClient:
                 GetAdministratorAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_administrator_account(params)
@@ -1191,6 +1229,7 @@ class GuardDutyClient:
                 GetCoverageStatisticsOutput,
                 ("detector_id", "statistics_type", "filter_criteria", ),
                 ("detector_id", "statistics_type", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_coverage_statistics(params)
@@ -1214,6 +1253,7 @@ class GuardDutyClient:
                 GetCustomDetectionRuleOutput,
                 ("rule_id", ),
                 ("rule_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_custom_detection_rule(params)
@@ -1239,6 +1279,7 @@ class GuardDutyClient:
                 GetCustomDetectionRuleAssociationOutput,
                 ("rule_id", "association_id", ),
                 ("rule_id", "association_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_custom_detection_rule_association(params)
@@ -1264,6 +1305,7 @@ class GuardDutyClient:
                 GetCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", ),
                 ("rule_id", "mode", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_custom_detection_rule_org_configuration(params)
@@ -1287,6 +1329,7 @@ class GuardDutyClient:
                 GetDetectorOutput,
                 ("detector_id", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_detector(params)
@@ -1312,6 +1355,7 @@ class GuardDutyClient:
                 GetFilterOutput,
                 ("detector_id", "filter_name", ),
                 ("detector_id", "filter_name", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_filter(params)
@@ -1340,6 +1384,7 @@ class GuardDutyClient:
                 GetFindingsOutput,
                 ("detector_id", "finding_ids", "sort_criteria", ),
                 ("detector_id", "finding_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_findings(params)
@@ -1378,6 +1423,7 @@ class GuardDutyClient:
                 GetFindingsStatisticsOutput,
                 ("detector_id", "finding_statistic_types", "finding_criteria", "group_by", "order_by", "max_results", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_findings_statistics(params)
@@ -1403,6 +1449,7 @@ class GuardDutyClient:
                 GetIPSetOutput,
                 ("detector_id", "ip_set_id", ),
                 ("detector_id", "ip_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_ip_set(params)
@@ -1428,6 +1475,7 @@ class GuardDutyClient:
                 GetInvestigationOutput,
                 ("detector_id", "investigation_id", ),
                 ("detector_id", "investigation_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_investigation(params)
@@ -1448,6 +1496,7 @@ class GuardDutyClient:
                 GetInvitationsCountOutput,
                 (),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_invitations_count(params)
@@ -1471,6 +1520,7 @@ class GuardDutyClient:
                 GetMalwareProtectionPlanOutput,
                 ("malware_protection_plan_id", ),
                 ("malware_protection_plan_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_malware_protection_plan(params)
@@ -1494,6 +1544,7 @@ class GuardDutyClient:
                 GetMalwareScanOutput,
                 ("scan_id", ),
                 ("scan_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_malware_scan(params)
@@ -1517,6 +1568,7 @@ class GuardDutyClient:
                 GetMalwareScanSettingsOutput,
                 ("detector_id", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_malware_scan_settings(params)
@@ -1540,6 +1592,7 @@ class GuardDutyClient:
                 GetMasterAccountOutput,
                 ("detector_id", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_master_account(params)
@@ -1565,6 +1618,7 @@ class GuardDutyClient:
                 GetMemberDetectorsOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_member_detectors(params)
@@ -1590,6 +1644,7 @@ class GuardDutyClient:
                 GetMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_members(params)
@@ -1610,6 +1665,7 @@ class GuardDutyClient:
                 GetOrganizationStatisticsOutput,
                 (),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_organization_statistics(params)
@@ -1635,6 +1691,7 @@ class GuardDutyClient:
                 GetRemainingFreeTrialDaysOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_remaining_free_trial_days(params)
@@ -1660,6 +1717,7 @@ class GuardDutyClient:
                 GetThreatEntitySetOutput,
                 ("detector_id", "threat_entity_set_id", ),
                 ("detector_id", "threat_entity_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_threat_entity_set(params)
@@ -1685,6 +1743,7 @@ class GuardDutyClient:
                 GetThreatIntelSetOutput,
                 ("detector_id", "threat_intel_set_id", ),
                 ("detector_id", "threat_intel_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_threat_intel_set(params)
@@ -1710,6 +1769,7 @@ class GuardDutyClient:
                 GetTrustedEntitySetOutput,
                 ("detector_id", "trusted_entity_set_id", ),
                 ("detector_id", "trusted_entity_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_trusted_entity_set(params)
@@ -1746,6 +1806,7 @@ class GuardDutyClient:
                 GetUsageStatisticsOutput,
                 ("detector_id", "usage_statistic_type", "usage_criteria", "unit", "max_results", "next_token", ),
                 ("detector_id", "usage_statistic_type", "usage_criteria", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.get_usage_statistics(params)
@@ -1777,6 +1838,7 @@ class GuardDutyClient:
                 InviteMembersOutput,
                 ("detector_id", "account_ids", "disable_email_notification", "message", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.invite_members(params)
@@ -1812,6 +1874,7 @@ class GuardDutyClient:
                 ListCoverageOutput,
                 ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_coverage(params)
@@ -1845,6 +1908,7 @@ class GuardDutyClient:
                 ListCustomDetectionRuleAssociationsOutput,
                 ("max_results", "next_token", "rule_id", "mode", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_custom_detection_rule_associations(params)
@@ -1875,6 +1939,7 @@ class GuardDutyClient:
                 ListCustomDetectionRuleOrgConfigurationsOutput,
                 ("max_results", "next_token", "status", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_custom_detection_rule_org_configurations(params)
@@ -1905,6 +1970,7 @@ class GuardDutyClient:
                 ListCustomDetectionRulesOutput,
                 ("max_results", "next_token", "filters", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_custom_detection_rules(params)
@@ -1932,6 +1998,7 @@ class GuardDutyClient:
                 ListDetectorsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_detectors(params)
@@ -1961,6 +2028,7 @@ class GuardDutyClient:
                 ListFiltersOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_filters(params)
@@ -1996,6 +2064,7 @@ class GuardDutyClient:
                 ListFindingsOutput,
                 ("detector_id", "finding_criteria", "sort_criteria", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_findings(params)
@@ -2025,6 +2094,7 @@ class GuardDutyClient:
                 ListIPSetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_ip_sets(params)
@@ -2057,6 +2127,7 @@ class GuardDutyClient:
                 ListInvestigationsOutput,
                 ("detector_id", "sort_criteria", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_investigations(params)
@@ -2084,6 +2155,7 @@ class GuardDutyClient:
                 ListInvitationsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_invitations(params)
@@ -2108,6 +2180,7 @@ class GuardDutyClient:
                 ListMalwareProtectionPlansOutput,
                 ("next_token", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_malware_protection_plans(params)
@@ -2141,6 +2214,7 @@ class GuardDutyClient:
                 ListMalwareScansOutput,
                 ("max_results", "next_token", "filter_criteria", "sort_criteria", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_malware_scans(params)
@@ -2173,6 +2247,7 @@ class GuardDutyClient:
                 ListMembersOutput,
                 ("detector_id", "max_results", "next_token", "only_associated", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_members(params)
@@ -2200,6 +2275,7 @@ class GuardDutyClient:
                 ListOrganizationAdminAccountsOutput,
                 ("max_results", "next_token", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_organization_admin_accounts(params)
@@ -2229,6 +2305,7 @@ class GuardDutyClient:
                 ListPublishingDestinationsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_publishing_destinations(params)
@@ -2252,6 +2329,7 @@ class GuardDutyClient:
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
                 ("resource_arn", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -2281,6 +2359,7 @@ class GuardDutyClient:
                 ListThreatEntitySetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_threat_entity_sets(params)
@@ -2310,6 +2389,7 @@ class GuardDutyClient:
                 ListThreatIntelSetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_threat_intel_sets(params)
@@ -2339,6 +2419,7 @@ class GuardDutyClient:
                 ListTrustedEntitySetsOutput,
                 ("detector_id", "max_results", "next_token", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.list_trusted_entity_sets(params)
@@ -2363,6 +2444,7 @@ class GuardDutyClient:
                 SendObjectMalwareScanOutput,
                 ("s3_object", ),
                 (),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.send_object_malware_scan(params)
@@ -2392,6 +2474,7 @@ class GuardDutyClient:
                 StartMalwareScanOutput,
                 ("resource_arn", "client_token", "scan_configuration", ),
                 ("resource_arn", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.start_malware_scan(params)
@@ -2417,6 +2500,7 @@ class GuardDutyClient:
                 StartMonitoringMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.start_monitoring_members(params)
@@ -2442,6 +2526,7 @@ class GuardDutyClient:
                 StopMonitoringMembersOutput,
                 ("detector_id", "account_ids", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.stop_monitoring_members(params)
@@ -2467,6 +2552,7 @@ class GuardDutyClient:
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -2492,6 +2578,7 @@ class GuardDutyClient:
                 UnarchiveFindingsOutput,
                 ("detector_id", "finding_ids", ),
                 ("detector_id", "finding_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.unarchive_findings(params)
@@ -2517,6 +2604,7 @@ class GuardDutyClient:
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -2544,6 +2632,7 @@ class GuardDutyClient:
                 UpdateCustomDetectionRuleAssociationOutput,
                 ("rule_id", "association_id", "mode", ),
                 ("rule_id", "association_id", "mode", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_custom_detection_rule_association(params)
@@ -2575,6 +2664,7 @@ class GuardDutyClient:
                 UpdateCustomDetectionRuleOrgConfigurationOutput,
                 ("rule_id", "mode", "include_account_ids", "exclude_account_ids", ),
                 ("rule_id", "mode", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_custom_detection_rule_org_configuration(params)
@@ -2610,6 +2700,7 @@ class GuardDutyClient:
                 UpdateDetectorOutput,
                 ("detector_id", "enable", "finding_publishing_frequency", "data_sources", "features", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_detector(params)
@@ -2647,6 +2738,7 @@ class GuardDutyClient:
                 UpdateFilterOutput,
                 ("detector_id", "filter_name", "description", "action", "rank", "finding_criteria", ),
                 ("detector_id", "filter_name", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_filter(params)
@@ -2677,6 +2769,7 @@ class GuardDutyClient:
                 UpdateFindingsFeedbackOutput,
                 ("detector_id", "finding_ids", "feedback", "comments", ),
                 ("detector_id", "finding_ids", "feedback", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_findings_feedback(params)
@@ -2714,6 +2807,7 @@ class GuardDutyClient:
                 UpdateIPSetOutput,
                 ("detector_id", "ip_set_id", "name", "location", "activate", "expected_bucket_owner", ),
                 ("detector_id", "ip_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_ip_set(params)
@@ -2746,6 +2840,7 @@ class GuardDutyClient:
                 type(None),
                 ("malware_protection_plan_id", "role", "actions", "protected_resource", ),
                 ("malware_protection_plan_id", ),
+                service_name='GuardDuty',
             )
             return None
         await self._native.update_malware_protection_plan(params)
@@ -2775,6 +2870,7 @@ class GuardDutyClient:
                 UpdateMalwareScanSettingsOutput,
                 ("detector_id", "scan_resource_criteria", "ebs_snapshot_preservation", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_malware_scan_settings(params)
@@ -2806,6 +2902,7 @@ class GuardDutyClient:
                 UpdateMemberDetectorsOutput,
                 ("detector_id", "account_ids", "data_sources", "features", ),
                 ("detector_id", "account_ids", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_member_detectors(params)
@@ -2841,6 +2938,7 @@ class GuardDutyClient:
                 UpdateOrganizationConfigurationOutput,
                 ("detector_id", "auto_enable", "data_sources", "features", "auto_enable_organization_members", ),
                 ("detector_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_organization_configuration(params)
@@ -2869,6 +2967,7 @@ class GuardDutyClient:
                 UpdatePublishingDestinationOutput,
                 ("detector_id", "destination_id", "destination_properties", ),
                 ("detector_id", "destination_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_publishing_destination(params)
@@ -2906,6 +3005,7 @@ class GuardDutyClient:
                 UpdateThreatEntitySetOutput,
                 ("detector_id", "threat_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),
                 ("detector_id", "threat_entity_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_threat_entity_set(params)
@@ -2943,6 +3043,7 @@ class GuardDutyClient:
                 UpdateThreatIntelSetOutput,
                 ("detector_id", "threat_intel_set_id", "name", "location", "activate", "expected_bucket_owner", ),
                 ("detector_id", "threat_intel_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_threat_intel_set(params)
@@ -2980,6 +3081,7 @@ class GuardDutyClient:
                 UpdateTrustedEntitySetOutput,
                 ("detector_id", "trusted_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),
                 ("detector_id", "trusted_entity_set_id", ),
+                service_name='GuardDuty',
             )
             return _response
         _response = await self._native.update_trusted_entity_set(params)

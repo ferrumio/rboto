@@ -50,7 +50,7 @@ jobs:
         run: |
           python -m venv .venv
           .venv/bin/pip install "maturin>=1.15,<2" pytest pytest-asyncio "pydantic>=2,<3"
-          .venv/bin/pip install -e packages/rboto -e codegen
+          .venv/bin/pip install -e "packages/rboto[opentelemetry]" "opentelemetry-sdk>=1.39,<2" -e codegen
           (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --locked)
           (cd packages/rboto-sns && ../../.venv/bin/maturin develop --locked)
           (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --locked)

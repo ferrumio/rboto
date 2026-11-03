@@ -7,7 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
-from rboto.logging import operation_interceptors
+from rboto._observability import operation_interceptors
 
 from ._native import APIGatewayClient as NativeClient, CreateApiKeyOutput, CreateAuthorizerOutput, CreateBasePathMappingOutput, CreateDeploymentOutput, CreateDocumentationPartOutput, CreateDocumentationVersionOutput, CreateDomainNameAccessAssociationOutput, CreateDomainNameOutput, CreateModelOutput, CreateRequestValidatorOutput, CreateResourceOutput, CreateRestApiOutput, CreateStageOutput, CreateUsagePlanKeyOutput, CreateUsagePlanOutput, CreateVpcLinkOutput, GenerateClientCertificateOutput, GetAccountOutput, GetApiKeyOutput, GetApiKeysOutput, GetAuthorizerOutput, GetAuthorizersOutput, GetBasePathMappingOutput, GetBasePathMappingsOutput, GetClientCertificateOutput, GetClientCertificatesOutput, GetDeploymentOutput, GetDeploymentsOutput, GetDocumentationPartOutput, GetDocumentationPartsOutput, GetDocumentationVersionOutput, GetDocumentationVersionsOutput, GetDomainNameAccessAssociationsOutput, GetDomainNameOutput, GetDomainNamesOutput, GetExportOutput, GetGatewayResponseOutput, GetGatewayResponsesOutput, GetIntegrationOutput, GetIntegrationResponseOutput, GetMethodOutput, GetMethodResponseOutput, GetModelOutput, GetModelTemplateOutput, GetModelsOutput, GetRequestValidatorOutput, GetRequestValidatorsOutput, GetResourceOutput, GetResourcesOutput, GetRestApiOutput, GetRestApisOutput, GetSdkOutput, GetSdkTypeOutput, GetSdkTypesOutput, GetStageOutput, GetStagesOutput, GetTagsOutput, GetUsageOutput, GetUsagePlanKeyOutput, GetUsagePlanKeysOutput, GetUsagePlanOutput, GetUsagePlansOutput, GetVpcLinkOutput, GetVpcLinksOutput, ImportApiKeysOutput, ImportDocumentationPartsOutput, ImportRestApiOutput, PutGatewayResponseOutput, PutIntegrationOutput, PutIntegrationResponseOutput, PutMethodOutput, PutMethodResponseOutput, PutRestApiOutput, TestInvokeAuthorizerOutput, TestInvokeMethodOutput, UpdateAccountOutput, UpdateApiKeyOutput, UpdateAuthorizerOutput, UpdateBasePathMappingOutput, UpdateClientCertificateOutput, UpdateDeploymentOutput, UpdateDocumentationPartOutput, UpdateDocumentationVersionOutput, UpdateDomainNameOutput, UpdateGatewayResponseOutput, UpdateIntegrationOutput, UpdateIntegrationResponseOutput, UpdateMethodOutput, UpdateMethodResponseOutput, UpdateModelOutput, UpdateRequestValidatorOutput, UpdateResourceOutput, UpdateRestApiOutput, UpdateStageOutput, UpdateUsageOutput, UpdateUsagePlanOutput, UpdateVpcLinkOutput
 from .types import (
@@ -121,6 +121,7 @@ class APIGatewayClient:
                 CreateApiKeyOutput,
                 ("name", "description", "enabled", "generate_distinct_id", "value", "stage_keys", "customer_id", "tags", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_api_key(params)
@@ -169,6 +170,7 @@ class APIGatewayClient:
                 CreateAuthorizerOutput,
                 ("rest_api_id", "name", "type", "provider_arns", "auth_type", "authorizer_uri", "authorizer_credentials", "identity_source", "identity_validation_expression", "authorizer_result_ttl_in_seconds", ),
                 ("rest_api_id", "name", "type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_authorizer(params)
@@ -203,6 +205,7 @@ class APIGatewayClient:
                 CreateBasePathMappingOutput,
                 ("domain_name", "rest_api_id", "domain_name_id", "base_path", "stage", ),
                 ("domain_name", "rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_base_path_mapping(params)
@@ -250,6 +253,7 @@ class APIGatewayClient:
                 CreateDeploymentOutput,
                 ("rest_api_id", "stage_name", "stage_description", "description", "cache_cluster_enabled", "cache_cluster_size", "variables", "canary_settings", "tracing_enabled", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_deployment(params)
@@ -277,6 +281,7 @@ class APIGatewayClient:
                 CreateDocumentationPartOutput,
                 ("rest_api_id", "location", "properties", ),
                 ("rest_api_id", "location", "properties", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_documentation_part(params)
@@ -308,6 +313,7 @@ class APIGatewayClient:
                 CreateDocumentationVersionOutput,
                 ("rest_api_id", "documentation_version", "stage_name", "description", ),
                 ("rest_api_id", "documentation_version", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_documentation_version(params)
@@ -376,6 +382,7 @@ class APIGatewayClient:
                 CreateDomainNameOutput,
                 ("domain_name", "certificate_name", "certificate_body", "certificate_private_key", "certificate_chain", "certificate_arn", "regional_certificate_name", "regional_certificate_arn", "endpoint_configuration", "tags", "security_policy", "endpoint_access_mode", "mutual_tls_authentication", "ownership_verification_certificate_arn", "policy", "routing_mode", ),
                 ("domain_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_domain_name(params)
@@ -406,6 +413,7 @@ class APIGatewayClient:
                 CreateDomainNameAccessAssociationOutput,
                 ("domain_name_arn", "access_association_source_type", "access_association_source", "tags", ),
                 ("domain_name_arn", "access_association_source_type", "access_association_source", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_domain_name_access_association(params)
@@ -439,6 +447,7 @@ class APIGatewayClient:
                 CreateModelOutput,
                 ("rest_api_id", "name", "content_type", "description", "schema", ),
                 ("rest_api_id", "name", "content_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_model(params)
@@ -471,6 +480,7 @@ class APIGatewayClient:
                 CreateRequestValidatorOutput,
                 ("rest_api_id", "name", "validate_request_body", "validate_request_parameters", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_request_validator(params)
@@ -498,6 +508,7 @@ class APIGatewayClient:
                 CreateResourceOutput,
                 ("rest_api_id", "parent_id", "path_part", ),
                 ("rest_api_id", "parent_id", "path_part", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_resource(params)
@@ -557,6 +568,7 @@ class APIGatewayClient:
                 CreateRestApiOutput,
                 ("name", "description", "version", "clone_from", "binary_media_types", "minimum_compression_size", "api_key_source", "endpoint_configuration", "policy", "tags", "disable_execute_api_endpoint", "security_policy", "endpoint_access_mode", ),
                 ("name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_rest_api(params)
@@ -608,6 +620,7 @@ class APIGatewayClient:
                 CreateStageOutput,
                 ("rest_api_id", "stage_name", "deployment_id", "description", "cache_cluster_enabled", "cache_cluster_size", "variables", "documentation_version", "canary_settings", "tracing_enabled", "tags", ),
                 ("rest_api_id", "stage_name", "deployment_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_stage(params)
@@ -646,6 +659,7 @@ class APIGatewayClient:
                 CreateUsagePlanOutput,
                 ("name", "description", "api_stages", "throttle", "quota", "tags", ),
                 ("name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_usage_plan(params)
@@ -673,6 +687,7 @@ class APIGatewayClient:
                 CreateUsagePlanKeyOutput,
                 ("usage_plan_id", "key_id", "key_type", ),
                 ("usage_plan_id", "key_id", "key_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_usage_plan_key(params)
@@ -704,6 +719,7 @@ class APIGatewayClient:
                 CreateVpcLinkOutput,
                 ("name", "target_arns", "description", "tags", ),
                 ("name", "target_arns", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.create_vpc_link(params)
@@ -727,6 +743,7 @@ class APIGatewayClient:
                 type(None),
                 ("api_key", ),
                 ("api_key", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_api_key(params)
@@ -752,6 +769,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "authorizer_id", ),
                 ("rest_api_id", "authorizer_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_authorizer(params)
@@ -780,6 +798,7 @@ class APIGatewayClient:
                 type(None),
                 ("domain_name", "base_path", "domain_name_id", ),
                 ("domain_name", "base_path", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_base_path_mapping(params)
@@ -803,6 +822,7 @@ class APIGatewayClient:
                 type(None),
                 ("client_certificate_id", ),
                 ("client_certificate_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_client_certificate(params)
@@ -828,6 +848,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "deployment_id", ),
                 ("rest_api_id", "deployment_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_deployment(params)
@@ -853,6 +874,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "documentation_part_id", ),
                 ("rest_api_id", "documentation_part_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_documentation_part(params)
@@ -878,6 +900,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "documentation_version", ),
                 ("rest_api_id", "documentation_version", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_documentation_version(params)
@@ -904,6 +927,7 @@ class APIGatewayClient:
                 type(None),
                 ("domain_name", "domain_name_id", ),
                 ("domain_name", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_domain_name(params)
@@ -927,6 +951,7 @@ class APIGatewayClient:
                 type(None),
                 ("domain_name_access_association_arn", ),
                 ("domain_name_access_association_arn", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_domain_name_access_association(params)
@@ -952,6 +977,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "response_type", ),
                 ("rest_api_id", "response_type", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_gateway_response(params)
@@ -979,6 +1005,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", ),
                 ("rest_api_id", "resource_id", "http_method", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_integration(params)
@@ -1008,6 +1035,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_integration_response(params)
@@ -1035,6 +1063,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", ),
                 ("rest_api_id", "resource_id", "http_method", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_method(params)
@@ -1064,6 +1093,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_method_response(params)
@@ -1089,6 +1119,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "model_name", ),
                 ("rest_api_id", "model_name", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_model(params)
@@ -1114,6 +1145,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "request_validator_id", ),
                 ("rest_api_id", "request_validator_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_request_validator(params)
@@ -1139,6 +1171,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "resource_id", ),
                 ("rest_api_id", "resource_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_resource(params)
@@ -1162,6 +1195,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_rest_api(params)
@@ -1187,6 +1221,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "stage_name", ),
                 ("rest_api_id", "stage_name", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_stage(params)
@@ -1210,6 +1245,7 @@ class APIGatewayClient:
                 type(None),
                 ("usage_plan_id", ),
                 ("usage_plan_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_usage_plan(params)
@@ -1235,6 +1271,7 @@ class APIGatewayClient:
                 type(None),
                 ("usage_plan_id", "key_id", ),
                 ("usage_plan_id", "key_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_usage_plan_key(params)
@@ -1258,6 +1295,7 @@ class APIGatewayClient:
                 type(None),
                 ("vpc_link_id", ),
                 ("vpc_link_id", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.delete_vpc_link(params)
@@ -1283,6 +1321,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "stage_name", ),
                 ("rest_api_id", "stage_name", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.flush_stage_authorizers_cache(params)
@@ -1308,6 +1347,7 @@ class APIGatewayClient:
                 type(None),
                 ("rest_api_id", "stage_name", ),
                 ("rest_api_id", "stage_name", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.flush_stage_cache(params)
@@ -1335,6 +1375,7 @@ class APIGatewayClient:
                 GenerateClientCertificateOutput,
                 ("description", "tags", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.generate_client_certificate(params)
@@ -1355,6 +1396,7 @@ class APIGatewayClient:
                 GetAccountOutput,
                 (),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_account(params)
@@ -1381,6 +1423,7 @@ class APIGatewayClient:
                 GetApiKeyOutput,
                 ("api_key", "include_value", ),
                 ("api_key", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_api_key(params)
@@ -1417,6 +1460,7 @@ class APIGatewayClient:
                 GetApiKeysOutput,
                 ("position", "limit", "name_query", "customer_id", "include_values", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_api_keys(params)
@@ -1442,6 +1486,7 @@ class APIGatewayClient:
                 GetAuthorizerOutput,
                 ("rest_api_id", "authorizer_id", ),
                 ("rest_api_id", "authorizer_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_authorizer(params)
@@ -1471,6 +1516,7 @@ class APIGatewayClient:
                 GetAuthorizersOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_authorizers(params)
@@ -1499,6 +1545,7 @@ class APIGatewayClient:
                 GetBasePathMappingOutput,
                 ("domain_name", "base_path", "domain_name_id", ),
                 ("domain_name", "base_path", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_base_path_mapping(params)
@@ -1531,6 +1578,7 @@ class APIGatewayClient:
                 GetBasePathMappingsOutput,
                 ("domain_name", "domain_name_id", "position", "limit", ),
                 ("domain_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_base_path_mappings(params)
@@ -1554,6 +1602,7 @@ class APIGatewayClient:
                 GetClientCertificateOutput,
                 ("client_certificate_id", ),
                 ("client_certificate_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_client_certificate(params)
@@ -1581,6 +1630,7 @@ class APIGatewayClient:
                 GetClientCertificatesOutput,
                 ("position", "limit", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_client_certificates(params)
@@ -1609,6 +1659,7 @@ class APIGatewayClient:
                 GetDeploymentOutput,
                 ("rest_api_id", "deployment_id", "embed", ),
                 ("rest_api_id", "deployment_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_deployment(params)
@@ -1638,6 +1689,7 @@ class APIGatewayClient:
                 GetDeploymentsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_deployments(params)
@@ -1663,6 +1715,7 @@ class APIGatewayClient:
                 GetDocumentationPartOutput,
                 ("rest_api_id", "documentation_part_id", ),
                 ("rest_api_id", "documentation_part_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_documentation_part(params)
@@ -1704,6 +1757,7 @@ class APIGatewayClient:
                 GetDocumentationPartsOutput,
                 ("rest_api_id", "type", "name_query", "path", "position", "limit", "location_status", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_documentation_parts(params)
@@ -1729,6 +1783,7 @@ class APIGatewayClient:
                 GetDocumentationVersionOutput,
                 ("rest_api_id", "documentation_version", ),
                 ("rest_api_id", "documentation_version", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_documentation_version(params)
@@ -1758,6 +1813,7 @@ class APIGatewayClient:
                 GetDocumentationVersionsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_documentation_versions(params)
@@ -1784,6 +1840,7 @@ class APIGatewayClient:
                 GetDomainNameOutput,
                 ("domain_name", "domain_name_id", ),
                 ("domain_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_domain_name(params)
@@ -1814,6 +1871,7 @@ class APIGatewayClient:
                 GetDomainNameAccessAssociationsOutput,
                 ("position", "limit", "resource_owner", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_domain_name_access_associations(params)
@@ -1844,6 +1902,7 @@ class APIGatewayClient:
                 GetDomainNamesOutput,
                 ("position", "limit", "resource_owner", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_domain_names(params)
@@ -1877,6 +1936,7 @@ class APIGatewayClient:
                 GetExportOutput,
                 ("rest_api_id", "stage_name", "export_type", "parameters", "accepts", ),
                 ("rest_api_id", "stage_name", "export_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_export(params)
@@ -1902,6 +1962,7 @@ class APIGatewayClient:
                 GetGatewayResponseOutput,
                 ("rest_api_id", "response_type", ),
                 ("rest_api_id", "response_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_gateway_response(params)
@@ -1931,6 +1992,7 @@ class APIGatewayClient:
                 GetGatewayResponsesOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_gateway_responses(params)
@@ -1958,6 +2020,7 @@ class APIGatewayClient:
                 GetIntegrationOutput,
                 ("rest_api_id", "resource_id", "http_method", ),
                 ("rest_api_id", "resource_id", "http_method", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_integration(params)
@@ -1987,6 +2050,7 @@ class APIGatewayClient:
                 GetIntegrationResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_integration_response(params)
@@ -2014,6 +2078,7 @@ class APIGatewayClient:
                 GetMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", ),
                 ("rest_api_id", "resource_id", "http_method", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_method(params)
@@ -2043,6 +2108,7 @@ class APIGatewayClient:
                 GetMethodResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_method_response(params)
@@ -2071,6 +2137,7 @@ class APIGatewayClient:
                 GetModelOutput,
                 ("rest_api_id", "model_name", "flatten", ),
                 ("rest_api_id", "model_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_model(params)
@@ -2096,6 +2163,7 @@ class APIGatewayClient:
                 GetModelTemplateOutput,
                 ("rest_api_id", "model_name", ),
                 ("rest_api_id", "model_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_model_template(params)
@@ -2125,6 +2193,7 @@ class APIGatewayClient:
                 GetModelsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_models(params)
@@ -2150,6 +2219,7 @@ class APIGatewayClient:
                 GetRequestValidatorOutput,
                 ("rest_api_id", "request_validator_id", ),
                 ("rest_api_id", "request_validator_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_request_validator(params)
@@ -2179,6 +2249,7 @@ class APIGatewayClient:
                 GetRequestValidatorsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_request_validators(params)
@@ -2207,6 +2278,7 @@ class APIGatewayClient:
                 GetResourceOutput,
                 ("rest_api_id", "resource_id", "embed", ),
                 ("rest_api_id", "resource_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_resource(params)
@@ -2239,6 +2311,7 @@ class APIGatewayClient:
                 GetResourcesOutput,
                 ("rest_api_id", "position", "limit", "embed", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_resources(params)
@@ -2262,6 +2335,7 @@ class APIGatewayClient:
                 GetRestApiOutput,
                 ("rest_api_id", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_rest_api(params)
@@ -2289,6 +2363,7 @@ class APIGatewayClient:
                 GetRestApisOutput,
                 ("position", "limit", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_rest_apis(params)
@@ -2319,6 +2394,7 @@ class APIGatewayClient:
                 GetSdkOutput,
                 ("rest_api_id", "stage_name", "sdk_type", "parameters", ),
                 ("rest_api_id", "stage_name", "sdk_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_sdk(params)
@@ -2342,6 +2418,7 @@ class APIGatewayClient:
                 GetSdkTypeOutput,
                 ("id", ),
                 ("id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_sdk_type(params)
@@ -2369,6 +2446,7 @@ class APIGatewayClient:
                 GetSdkTypesOutput,
                 ("position", "limit", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_sdk_types(params)
@@ -2394,6 +2472,7 @@ class APIGatewayClient:
                 GetStageOutput,
                 ("rest_api_id", "stage_name", ),
                 ("rest_api_id", "stage_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_stage(params)
@@ -2420,6 +2499,7 @@ class APIGatewayClient:
                 GetStagesOutput,
                 ("rest_api_id", "deployment_id", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_stages(params)
@@ -2449,6 +2529,7 @@ class APIGatewayClient:
                 GetTagsOutput,
                 ("resource_arn", "position", "limit", ),
                 ("resource_arn", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_tags(params)
@@ -2485,6 +2566,7 @@ class APIGatewayClient:
                 GetUsageOutput,
                 ("usage_plan_id", "start_date", "end_date", "key_id", "position", "limit", ),
                 ("usage_plan_id", "start_date", "end_date", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_usage(params)
@@ -2508,6 +2590,7 @@ class APIGatewayClient:
                 GetUsagePlanOutput,
                 ("usage_plan_id", ),
                 ("usage_plan_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_usage_plan(params)
@@ -2533,6 +2616,7 @@ class APIGatewayClient:
                 GetUsagePlanKeyOutput,
                 ("usage_plan_id", "key_id", ),
                 ("usage_plan_id", "key_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_usage_plan_key(params)
@@ -2565,6 +2649,7 @@ class APIGatewayClient:
                 GetUsagePlanKeysOutput,
                 ("usage_plan_id", "position", "limit", "name_query", ),
                 ("usage_plan_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_usage_plan_keys(params)
@@ -2595,6 +2680,7 @@ class APIGatewayClient:
                 GetUsagePlansOutput,
                 ("position", "key_id", "limit", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_usage_plans(params)
@@ -2618,6 +2704,7 @@ class APIGatewayClient:
                 GetVpcLinkOutput,
                 ("vpc_link_id", ),
                 ("vpc_link_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_vpc_link(params)
@@ -2645,6 +2732,7 @@ class APIGatewayClient:
                 GetVpcLinksOutput,
                 ("position", "limit", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.get_vpc_links(params)
@@ -2673,6 +2761,7 @@ class APIGatewayClient:
                 ImportApiKeysOutput,
                 ("body", "format", "fail_on_warnings", ),
                 ("body", "format", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.import_api_keys(params)
@@ -2704,6 +2793,7 @@ class APIGatewayClient:
                 ImportDocumentationPartsOutput,
                 ("rest_api_id", "body", "mode", "fail_on_warnings", ),
                 ("rest_api_id", "body", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.import_documentation_parts(params)
@@ -2733,6 +2823,7 @@ class APIGatewayClient:
                 ImportRestApiOutput,
                 ("body", "fail_on_warnings", "parameters", ),
                 ("body", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.import_rest_api(params)
@@ -2767,6 +2858,7 @@ class APIGatewayClient:
                 PutGatewayResponseOutput,
                 ("rest_api_id", "response_type", "status_code", "response_parameters", "response_templates", ),
                 ("rest_api_id", "response_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.put_gateway_response(params)
@@ -2841,6 +2933,7 @@ class APIGatewayClient:
                 PutIntegrationOutput,
                 ("rest_api_id", "resource_id", "http_method", "type", "integration_http_method", "uri", "connection_type", "connection_id", "credentials", "request_parameters", "request_templates", "passthrough_behavior", "cache_namespace", "cache_key_parameters", "content_handling", "timeout_in_millis", "tls_config", "response_transfer_mode", "integration_target", ),
                 ("rest_api_id", "resource_id", "http_method", "type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.put_integration(params)
@@ -2882,6 +2975,7 @@ class APIGatewayClient:
                 PutIntegrationResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "selection_pattern", "response_parameters", "response_templates", "content_handling", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.put_integration_response(params)
@@ -2932,6 +3026,7 @@ class APIGatewayClient:
                 PutMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", "authorization_type", "authorizer_id", "api_key_required", "operation_name", "request_parameters", "request_models", "request_validator_id", "authorization_scopes", ),
                 ("rest_api_id", "resource_id", "http_method", "authorization_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.put_method(params)
@@ -2967,6 +3062,7 @@ class APIGatewayClient:
                 PutMethodResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "response_parameters", "response_models", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.put_method_response(params)
@@ -3001,6 +3097,7 @@ class APIGatewayClient:
                 PutRestApiOutput,
                 ("rest_api_id", "body", "mode", "fail_on_warnings", "parameters", ),
                 ("rest_api_id", "body", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.put_rest_api(params)
@@ -3026,6 +3123,7 @@ class APIGatewayClient:
                 type(None),
                 ("domain_name_access_association_arn", "domain_name_arn", ),
                 ("domain_name_access_association_arn", "domain_name_arn", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.reject_domain_name_access_association(params)
@@ -3051,6 +3149,7 @@ class APIGatewayClient:
                 type(None),
                 ("resource_arn", "tags", ),
                 ("resource_arn", "tags", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.tag_resource(params)
@@ -3094,6 +3193,7 @@ class APIGatewayClient:
                 TestInvokeAuthorizerOutput,
                 ("rest_api_id", "authorizer_id", "headers", "multi_value_headers", "path_with_query_string", "body", "stage_variables", "additional_context", ),
                 ("rest_api_id", "authorizer_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.test_invoke_authorizer(params)
@@ -3139,6 +3239,7 @@ class APIGatewayClient:
                 TestInvokeMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", "path_with_query_string", "body", "headers", "multi_value_headers", "client_certificate_id", "stage_variables", ),
                 ("rest_api_id", "resource_id", "http_method", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.test_invoke_method(params)
@@ -3164,6 +3265,7 @@ class APIGatewayClient:
                 type(None),
                 ("resource_arn", "tag_keys", ),
                 ("resource_arn", "tag_keys", ),
+                service_name='API Gateway',
             )
             return None
         await self._native.untag_resource(params)
@@ -3188,6 +3290,7 @@ class APIGatewayClient:
                 UpdateAccountOutput,
                 ("patch_operations", ),
                 (),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_account(params)
@@ -3214,6 +3317,7 @@ class APIGatewayClient:
                 UpdateApiKeyOutput,
                 ("api_key", "patch_operations", ),
                 ("api_key", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_api_key(params)
@@ -3242,6 +3346,7 @@ class APIGatewayClient:
                 UpdateAuthorizerOutput,
                 ("rest_api_id", "authorizer_id", "patch_operations", ),
                 ("rest_api_id", "authorizer_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_authorizer(params)
@@ -3273,6 +3378,7 @@ class APIGatewayClient:
                 UpdateBasePathMappingOutput,
                 ("domain_name", "base_path", "domain_name_id", "patch_operations", ),
                 ("domain_name", "base_path", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_base_path_mapping(params)
@@ -3299,6 +3405,7 @@ class APIGatewayClient:
                 UpdateClientCertificateOutput,
                 ("client_certificate_id", "patch_operations", ),
                 ("client_certificate_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_client_certificate(params)
@@ -3327,6 +3434,7 @@ class APIGatewayClient:
                 UpdateDeploymentOutput,
                 ("rest_api_id", "deployment_id", "patch_operations", ),
                 ("rest_api_id", "deployment_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_deployment(params)
@@ -3355,6 +3463,7 @@ class APIGatewayClient:
                 UpdateDocumentationPartOutput,
                 ("rest_api_id", "documentation_part_id", "patch_operations", ),
                 ("rest_api_id", "documentation_part_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_documentation_part(params)
@@ -3383,6 +3492,7 @@ class APIGatewayClient:
                 UpdateDocumentationVersionOutput,
                 ("rest_api_id", "documentation_version", "patch_operations", ),
                 ("rest_api_id", "documentation_version", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_documentation_version(params)
@@ -3412,6 +3522,7 @@ class APIGatewayClient:
                 UpdateDomainNameOutput,
                 ("domain_name", "domain_name_id", "patch_operations", ),
                 ("domain_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_domain_name(params)
@@ -3440,6 +3551,7 @@ class APIGatewayClient:
                 UpdateGatewayResponseOutput,
                 ("rest_api_id", "response_type", "patch_operations", ),
                 ("rest_api_id", "response_type", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_gateway_response(params)
@@ -3470,6 +3582,7 @@ class APIGatewayClient:
                 UpdateIntegrationOutput,
                 ("rest_api_id", "resource_id", "http_method", "patch_operations", ),
                 ("rest_api_id", "resource_id", "http_method", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_integration(params)
@@ -3502,6 +3615,7 @@ class APIGatewayClient:
                 UpdateIntegrationResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "patch_operations", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_integration_response(params)
@@ -3532,6 +3646,7 @@ class APIGatewayClient:
                 UpdateMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", "patch_operations", ),
                 ("rest_api_id", "resource_id", "http_method", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_method(params)
@@ -3564,6 +3679,7 @@ class APIGatewayClient:
                 UpdateMethodResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "patch_operations", ),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_method_response(params)
@@ -3592,6 +3708,7 @@ class APIGatewayClient:
                 UpdateModelOutput,
                 ("rest_api_id", "model_name", "patch_operations", ),
                 ("rest_api_id", "model_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_model(params)
@@ -3620,6 +3737,7 @@ class APIGatewayClient:
                 UpdateRequestValidatorOutput,
                 ("rest_api_id", "request_validator_id", "patch_operations", ),
                 ("rest_api_id", "request_validator_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_request_validator(params)
@@ -3648,6 +3766,7 @@ class APIGatewayClient:
                 UpdateResourceOutput,
                 ("rest_api_id", "resource_id", "patch_operations", ),
                 ("rest_api_id", "resource_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_resource(params)
@@ -3674,6 +3793,7 @@ class APIGatewayClient:
                 UpdateRestApiOutput,
                 ("rest_api_id", "patch_operations", ),
                 ("rest_api_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_rest_api(params)
@@ -3702,6 +3822,7 @@ class APIGatewayClient:
                 UpdateStageOutput,
                 ("rest_api_id", "stage_name", "patch_operations", ),
                 ("rest_api_id", "stage_name", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_stage(params)
@@ -3730,6 +3851,7 @@ class APIGatewayClient:
                 UpdateUsageOutput,
                 ("usage_plan_id", "key_id", "patch_operations", ),
                 ("usage_plan_id", "key_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_usage(params)
@@ -3756,6 +3878,7 @@ class APIGatewayClient:
                 UpdateUsagePlanOutput,
                 ("usage_plan_id", "patch_operations", ),
                 ("usage_plan_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_usage_plan(params)
@@ -3782,6 +3905,7 @@ class APIGatewayClient:
                 UpdateVpcLinkOutput,
                 ("vpc_link_id", "patch_operations", ),
                 ("vpc_link_id", ),
+                service_name='API Gateway',
             )
             return _response
         _response = await self._native.update_vpc_link(params)

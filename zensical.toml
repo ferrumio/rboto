@@ -22,6 +22,7 @@ nav = [
         { "Errors" = "guides/errors.md" },
         { "Interceptors" = "guides/interceptors.md" },
         { "Logging" = "guides/logging.md" },
+        { "OpenTelemetry" = "guides/opentelemetry.md" },
         { "Testing" = "guides/testing.md" },
     ] },
     { "Service guides" = [
