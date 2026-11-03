@@ -45,6 +45,9 @@ def test_generated_ownership_moves_payloads_and_releases_siblings(tmp_path: Path
               "::std::string::String, crate::types::TestLeaf>"),
         field("empty", "crate::types::TestLeaf", optional=True),
         field("scalar", "::std::boxed::Box<i32>"),
+        field("profiles", "::std::collections::HashMap<::std::string::String, "
+              "::std::collections::HashMap<::std::string::String, "
+              "::std::vec::Vec<crate::types::TestLeaf>>>", optional=True),
     )
     node = structure(
         "TestNode",
@@ -64,11 +67,15 @@ use std::sync::Arc;
 mod aws_sdk_sqs {
     pub mod types {
         pub struct TestLeaf { pub body: String }
+        pub type TestProfiles = std::collections::HashMap<
+            String, std::collections::HashMap<String, Vec<TestLeaf>>,
+        >;
         pub struct TestBranch {
             pub children: Vec<Option<Box<TestLeaf>>>,
             pub named: std::collections::HashMap<String, TestLeaf>,
             pub empty: Option<TestLeaf>,
             pub scalar: Box<i32>,
+            pub profiles: Option<TestProfiles>,
         }
         pub struct TestNode {
             pub body: String,
@@ -87,17 +94,23 @@ fn main() {
     let address = body.as_ptr() as usize;
     let raw = HashMap::from([("keep".into(), vec!["untouched".into()])]);
     let map_address = &raw["keep"] as *const Vec<String> as usize;
+    let profile_body = "profile".repeat(1024);
+    let profile_address = profile_body.as_ptr() as usize;
     let original = TestRoot { branches: vec![TestBranch {
         children: vec![Some(Box::new(TestLeaf { body })), None],
         named: HashMap::from([("sibling".into(), TestLeaf { body: "b".repeat(1024 * 1024) })]),
         empty: None,
         scalar: Box::new(42),
+        profiles: Some(HashMap::from([("outer".into(), HashMap::from([
+            ("inner".into(), vec![TestLeaf { body: profile_body }]),
+        ]))])),
     }], raw };
     let output = SharedTestRoot::from(original);
     assert_eq!(&output.raw["keep"] as *const Vec<String> as usize, map_address);
     let branch = Arc::clone(&output.branches[0]);
     let leaf = Arc::clone(branch.children[0].as_ref().unwrap());
     let sibling = Arc::downgrade(branch.named.get("sibling").unwrap());
+    let profile = Arc::clone(&branch.profiles.as_ref().unwrap()["outer"]["inner"][0]);
     assert!(branch.empty.is_none());
     assert!(branch.children[1].is_none());
     assert_eq!(*branch.scalar, 42); // Boxes without native nodes retain their representation.
@@ -107,6 +120,8 @@ fn main() {
     assert!(sibling.upgrade().is_none()); // Keeping a child cannot retain siblings.
     assert_eq!(Arc::strong_count(&leaf), 1);
     assert_eq!(leaf.body.len(), 1024 * 1024);
+    assert_eq!(profile.body.as_ptr() as usize, profile_address);
+    assert_eq!(Arc::strong_count(&profile), 1);
     std::thread::spawn(move || assert_eq!(leaf.body.as_ptr() as usize, address)).join().unwrap();
     let body = "recursive".repeat(1024);
     let address = body.as_ptr() as usize;
@@ -127,7 +142,8 @@ fn main() {
     build = subprocess.run(
         [
             "clippy-driver", "--edition=2024", "-Dwarnings",
-            "-Dclippy::redundant_allocation", str(path), "-o", str(executable),
+            "-Dclippy::redundant_allocation", "-Dclippy::type_complexity",
+            str(path), "-o", str(executable),
         ],
         capture_output=True, text=True, check=False,
     )

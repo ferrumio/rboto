@@ -21424,6 +21424,7 @@ fn workload_identity_type_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedA2aDescriptor {
     agent_card: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::AgentCardDefinition>>,
 }
@@ -21702,6 +21703,7 @@ impl PyAgentRuntimeVersionSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentSkillsDescriptor {
     skill_md: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::SkillMdDefinition>>,
     skill_definition: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::SkillDefinition>>,
@@ -21889,6 +21891,7 @@ impl PyBrowserEnterprisePolicy {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBrowserNetworkConfiguration {
     network_mode: aws_sdk_bedrockagentcorecontrol::types::BrowserNetworkMode,
     vpc_config: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::VpcConfig>>,
@@ -22311,6 +22314,7 @@ impl PyClusteringConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCodeInterpreterNetworkConfiguration {
     network_mode: aws_sdk_bedrockagentcorecontrol::types::CodeInterpreterNetworkMode,
     vpc_config: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::VpcConfig>>,
@@ -22532,6 +22536,7 @@ impl PyConfigurationBundleSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConfigurationBundleVersionSummary {
     bundle_arn: ::std::string::String,
     bundle_id: ::std::string::String,
@@ -22712,6 +22717,7 @@ impl PyConsentPortalSource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConsentPortalSummary {
     sources: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::ConsentPortalSource>>,
     consent_portal_arn: ::std::string::String,
@@ -22934,6 +22940,7 @@ impl PyCustomDescriptor {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCustomTransformConfiguration {
     lambda: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::LambdaTransformConfiguration>>,
 }
@@ -23113,6 +23120,7 @@ impl PyDatasetVersionSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDescriptors {
     mcp: Option<Arc<SharedMcpDescriptor>>,
     a2_a: Option<Arc<SharedA2aDescriptor>>,
@@ -23429,6 +23437,7 @@ impl PyFinding {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFromUrlSynchronizationConfiguration {
     url: ::std::string::String,
     credential_provider_configurations: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::RegistryRecordCredentialProviderConfiguration>>>,
@@ -23520,6 +23529,7 @@ impl PyFromUrlSynchronizationConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGatewayInterceptorConfiguration {
     interceptor: Option<aws_sdk_bedrockagentcorecontrol::types::InterceptorConfiguration>,
     interception_points:
@@ -23652,6 +23662,7 @@ impl PyGatewayPolicyEngineConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGatewayRateLimitDetail {
     rate_limit_id: ::std::string::String,
     gateway_identifier: ::std::string::String,
@@ -23806,6 +23817,7 @@ impl PyGatewayRateLimitDetail {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGatewayRuleDetail {
     rule_id: ::std::string::String,
     gateway_arn: ::std::string::String,
@@ -24067,6 +24079,7 @@ impl PyGatewaySummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGatewayTarget {
     gateway_arn: ::std::string::String,
     target_id: ::std::string::String,
@@ -24423,6 +24436,7 @@ impl PyGatewayTarget {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedHarness {
     harness_id: ::std::string::String,
     harness_name: ::std::string::String,
@@ -25232,6 +25246,7 @@ impl PyInsight {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInterceptorInputConfiguration {
     pass_request_headers: bool,
     payload_filter: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::InterceptorPayloadFilter>>,
@@ -25456,6 +25471,7 @@ impl PyLifecycleConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLimitEntry {
     dimensions: ::std::collections::HashMap<::std::string::String, ::std::string::String>,
     requests: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::RateConfig>>>,
@@ -25673,6 +25689,7 @@ impl PyManagedResourceDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMcpDescriptor {
     server: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::ServerDefinition>>,
     tools: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::ToolsDefinition>>,
@@ -25753,6 +25770,7 @@ impl PyMcpDescriptor {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMemory {
     arn: ::std::string::String,
     id: ::std::string::String,
@@ -26089,6 +26107,7 @@ impl PyMemory {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMemoryRecordSchema {
     metadata_schema:
         Option<::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::MetadataSchemaEntry>>>,
@@ -26164,6 +26183,7 @@ impl PyMemoryRecordSchema {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMemoryStrategy {
     strategy_id: ::std::string::String,
     name: ::std::string::String,
@@ -26592,6 +26612,7 @@ impl PyMetadataSchemaEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNamespaceKeyEntry {
     key: ::std::string::String,
     validation: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::NamespaceKeyValidation>>,
@@ -26702,6 +26723,7 @@ impl PyNamespaceKeyValidation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNetworkConfiguration {
     network_mode: aws_sdk_bedrockagentcorecontrol::types::NetworkMode,
     network_mode_config: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::VpcConfig>>,
@@ -26825,6 +26847,7 @@ impl PyOauth2CredentialProviderItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOnlineEvaluationConfigSummary {
     online_evaluation_config_arn: ::std::string::String,
     online_evaluation_config_id: ::std::string::String,
@@ -27043,6 +27066,7 @@ impl PyOnlineEvaluationConfigSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOutputConfig {
     cloud_watch_config: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::CloudWatchOutputConfig>>,
 }
@@ -27654,6 +27678,7 @@ impl PyPolicyGeneration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPolicyGenerationAsset {
     policy_generation_asset_id: ::std::string::String,
     definition: Option<aws_sdk_bedrockagentcorecontrol::types::PolicyDefinition>,
@@ -27958,6 +27983,7 @@ impl PyRateConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRecordingConfig {
     enabled: bool,
     s3_location: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::S3Location>>,
@@ -28224,6 +28250,7 @@ impl PyRegistrySummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRule {
     sampling_config: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::SamplingConfig>>,
     filters: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::Filter>>>,
@@ -28449,6 +28476,7 @@ impl PySecret {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSelfManagedConfiguration {
     trigger_conditions: ::std::vec::Vec<aws_sdk_bedrockagentcorecontrol::types::TriggerCondition>,
     invocation_configuration:
@@ -28667,6 +28695,7 @@ impl PySkillMdDefinition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStrategyConfiguration {
     r#type: Option<aws_sdk_bedrockagentcorecontrol::types::OverrideType>,
     extraction: Option<aws_sdk_bedrockagentcorecontrol::types::ExtractionConfiguration>,
@@ -28829,6 +28858,7 @@ impl PyStreamDeliveryResources {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSynchronizationConfiguration {
     from_url: Option<Arc<SharedFromUrlSynchronizationConfiguration>>,
 }
@@ -29089,6 +29119,7 @@ impl PyVersionCreatedBySource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVersionLineageMetadata {
     parent_version_ids: Option<::std::vec::Vec<::std::string::String>>,
     branch_name: Option<::std::string::String>,
@@ -29418,6 +29449,7 @@ impl PyOperationAddDatasetExamplesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchPutGatewayRateLimitsOutput {
     rate_limits: ::std::vec::Vec<Arc<SharedGatewayRateLimitDetail>>,
 }
@@ -29472,6 +29504,7 @@ impl PyOperationBatchPutGatewayRateLimitsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateAgentRuntimeOutput {
     agent_runtime_arn: ::std::string::String,
     workload_identity_details:
@@ -29677,6 +29710,7 @@ impl PyOperationCreateAgentRuntimeEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateApiKeyCredentialProviderOutput {
     api_key_secret_arn: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::Secret>>,
     api_key_secret_json_key: Option<::std::string::String>,
@@ -30046,6 +30080,7 @@ impl PyOperationCreateConfigurationBundleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateConsentPortalOutput {
     sources: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::ConsentPortalSource>>,
     consent_portal_arn: ::std::string::String,
@@ -30403,6 +30438,7 @@ impl PyOperationCreateEvaluatorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateGatewayOutput {
     gateway_arn: ::std::string::String,
     gateway_id: ::std::string::String,
@@ -30833,6 +30869,7 @@ impl PyOperationCreateGatewayOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateGatewayRateLimitOutput {
     rate_limit_id: ::std::string::String,
     gateway_identifier: ::std::string::String,
@@ -30975,6 +31012,7 @@ impl PyOperationCreateGatewayRateLimitOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateGatewayRuleOutput {
     rule_id: ::std::string::String,
     gateway_arn: ::std::string::String,
@@ -31147,6 +31185,7 @@ impl PyOperationCreateGatewayRuleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateGatewayTargetOutput {
     gateway_arn: ::std::string::String,
     target_id: ::std::string::String,
@@ -31489,6 +31528,7 @@ impl PyOperationCreateGatewayTargetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateHarnessOutput {
     harness: Option<Arc<SharedHarness>>,
 }
@@ -31547,6 +31587,7 @@ impl PyOperationCreateHarnessOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateHarnessEndpointOutput {
     endpoint: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::HarnessEndpoint>>,
 }
@@ -31599,6 +31640,7 @@ impl PyOperationCreateHarnessEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateMemoryOutput {
     memory: Option<Arc<SharedMemory>>,
 }
@@ -31655,6 +31697,7 @@ impl PyOperationCreateMemoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateOauth2CredentialProviderOutput {
     client_secret_arn: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::Secret>>,
     client_secret_json_key: Option<::std::string::String>,
@@ -31822,6 +31865,7 @@ impl PyOperationCreateOauth2CredentialProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateOnlineEvaluationConfigOutput {
     online_evaluation_config_arn: ::std::string::String,
     online_evaluation_config_id: ::std::string::String,
@@ -32118,6 +32162,7 @@ impl PyOperationCreatePaymentCredentialProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreatePaymentManagerOutput {
     payment_manager_arn: ::std::string::String,
     payment_manager_id: ::std::string::String,
@@ -33405,6 +33450,7 @@ impl PyOperationDeleteGatewayTargetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteHarnessOutput {
     harness: Option<Arc<SharedHarness>>,
 }
@@ -33463,6 +33509,7 @@ impl PyOperationDeleteHarnessOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteHarnessEndpointOutput {
     endpoint: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::HarnessEndpoint>>,
 }
@@ -34044,6 +34091,7 @@ impl PyOperationDeleteWorkloadIdentityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAgentRuntimeOutput {
     agent_runtime_arn: ::std::string::String,
     agent_runtime_name: ::std::string::String,
@@ -34624,6 +34672,7 @@ impl PyOperationGetAgentRuntimeEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetApiKeyCredentialProviderOutput {
     api_key_secret_arn: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::Secret>>,
     api_key_secret_json_key: Option<::std::string::String>,
@@ -34760,6 +34809,7 @@ impl PyOperationGetApiKeyCredentialProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBrowserOutput {
     browser_id: ::std::string::String,
     browser_arn: ::std::string::String,
@@ -35222,6 +35272,7 @@ impl PyOperationGetBrowserProfileOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCapacityProviderOutput {
     capacity_provider_id: ::std::string::String,
     capacity_provider_arn: ::std::string::String,
@@ -35415,6 +35466,7 @@ impl PyOperationGetCapacityProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCodeInterpreterOutput {
     code_interpreter_id: ::std::string::String,
     code_interpreter_arn: ::std::string::String,
@@ -35661,6 +35713,7 @@ impl PyOperationGetCodeInterpreterOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetConfigurationBundleOutput {
     bundle_arn: ::std::string::String,
     bundle_id: ::std::string::String,
@@ -35840,6 +35893,7 @@ impl PyOperationGetConfigurationBundleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetConfigurationBundleVersionOutput {
     bundle_arn: ::std::string::String,
     bundle_id: ::std::string::String,
@@ -36023,6 +36077,7 @@ impl PyOperationGetConfigurationBundleVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetConsentPortalOutput {
     sources: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::ConsentPortalSource>>,
     consent_portal_arn: ::std::string::String,
@@ -36614,6 +36669,7 @@ impl PyOperationGetEvaluatorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetGatewayOutput {
     gateway_arn: ::std::string::String,
     gateway_id: ::std::string::String,
@@ -37044,6 +37100,7 @@ impl PyOperationGetGatewayOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetGatewayRateLimitOutput {
     rate_limit_id: ::std::string::String,
     gateway_identifier: ::std::string::String,
@@ -37186,6 +37243,7 @@ impl PyOperationGetGatewayRateLimitOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetGatewayRuleOutput {
     rule_id: ::std::string::String,
     gateway_arn: ::std::string::String,
@@ -37376,6 +37434,7 @@ impl PyOperationGetGatewayRuleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetGatewayTargetOutput {
     gateway_arn: ::std::string::String,
     target_id: ::std::string::String,
@@ -37732,6 +37791,7 @@ impl PyOperationGetGatewayTargetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetHarnessOutput {
     harness: Option<Arc<SharedHarness>>,
 }
@@ -37790,6 +37850,7 @@ impl PyOperationGetHarnessOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetHarnessEndpointOutput {
     endpoint: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::HarnessEndpoint>>,
 }
@@ -37847,6 +37908,7 @@ impl PyOperationGetHarnessEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMemoryOutput {
     memory: Option<Arc<SharedMemory>>,
 }
@@ -37903,6 +37965,7 @@ impl PyOperationGetMemoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetOauth2CredentialProviderOutput {
     client_secret_arn: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::Secret>>,
     client_secret_json_key: Option<::std::string::String>,
@@ -38127,6 +38190,7 @@ impl PyOperationGetOauth2CredentialProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetOnlineEvaluationConfigOutput {
     online_evaluation_config_arn: ::std::string::String,
     online_evaluation_config_id: ::std::string::String,
@@ -38699,6 +38763,7 @@ impl PyOperationGetPaymentCredentialProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPaymentManagerOutput {
     payment_manager_arn: ::std::string::String,
     payment_manager_id: ::std::string::String,
@@ -39573,6 +39638,7 @@ impl PyOperationGetPolicySummaryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetRegistryOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -39763,6 +39829,7 @@ impl PyOperationGetRegistryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetRegistryRecordOutput {
     registry_arn: ::std::string::String,
     record_arn: ::std::string::String,
@@ -40032,6 +40099,7 @@ impl PyOperationGetResourcePolicyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetTokenVaultOutput {
     token_vault_id: ::std::string::String,
     kms_configuration: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::KmsConfiguration>>,
@@ -40195,6 +40263,7 @@ impl PyOperationGetWorkloadIdentityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentRuntimeEndpointsOutput {
     runtime_endpoints:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::AgentRuntimeEndpoint>>,
@@ -40268,6 +40337,7 @@ impl PyOperationListAgentRuntimeEndpointsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentRuntimeVersionsOutput {
     agent_runtimes: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::AgentRuntime>>,
     next_token: Option<::std::string::String>,
@@ -40340,6 +40410,7 @@ impl PyOperationListAgentRuntimeVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentRuntimeVersionsByCapacityProviderOutput {
     agent_runtimes:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::AgentRuntimeVersionSummary>>,
@@ -40413,6 +40484,7 @@ impl PyOperationListAgentRuntimeVersionsByCapacityProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAgentRuntimesOutput {
     agent_runtimes: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::AgentRuntime>>,
     next_token: Option<::std::string::String>,
@@ -40492,6 +40564,7 @@ impl PyOperationListAgentRuntimesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListApiKeyCredentialProvidersOutput {
     credential_providers:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::ApiKeyCredentialProviderItem>>,
@@ -40565,6 +40638,7 @@ impl PyOperationListApiKeyCredentialProvidersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBrowserProfilesOutput {
     profile_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::BrowserProfileSummary>>,
@@ -40638,6 +40712,7 @@ impl PyOperationListBrowserProfilesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBrowsersOutput {
     browser_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::BrowserSummary>>,
     next_token: Option<::std::string::String>,
@@ -40717,6 +40792,7 @@ impl PyOperationListBrowsersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCapacityProvidersOutput {
     capacity_providers:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::CapacityProviderSummary>>,
@@ -40790,6 +40866,7 @@ impl PyOperationListCapacityProvidersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCodeInterpretersOutput {
     code_interpreter_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::CodeInterpreterSummary>>,
@@ -40863,6 +40940,7 @@ impl PyOperationListCodeInterpretersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListConfigurationBundleVersionsOutput {
     versions: ::std::vec::Vec<Arc<SharedConfigurationBundleVersionSummary>>,
     next_token: Option<::std::string::String>,
@@ -40936,6 +41014,7 @@ impl PyOperationListConfigurationBundleVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListConfigurationBundlesOutput {
     bundles:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::ConfigurationBundleSummary>>,
@@ -41009,6 +41088,7 @@ impl PyOperationListConfigurationBundlesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListConsentPortalsOutput {
     consent_portals: ::std::vec::Vec<Arc<SharedConsentPortalSummary>>,
     next_token: Option<::std::string::String>,
@@ -41164,6 +41244,7 @@ impl PyOperationListDatasetExamplesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDatasetVersionsOutput {
     versions: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::DatasetVersionSummary>>,
     next_token: Option<::std::string::String>,
@@ -41236,6 +41317,7 @@ impl PyOperationListDatasetVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDatasetsOutput {
     datasets: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::DatasetSummary>>,
     next_token: Option<::std::string::String>,
@@ -41315,6 +41397,7 @@ impl PyOperationListDatasetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEvaluatorsOutput {
     evaluators: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::EvaluatorSummary>>,
     next_token: Option<::std::string::String>,
@@ -41394,6 +41477,7 @@ impl PyOperationListEvaluatorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGatewayRateLimitsOutput {
     rate_limits: ::std::vec::Vec<Arc<SharedGatewayRateLimitDetail>>,
     next_token: Option<::std::string::String>,
@@ -41466,6 +41550,7 @@ impl PyOperationListGatewayRateLimitsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGatewayRulesOutput {
     gateway_rules: ::std::vec::Vec<Arc<SharedGatewayRuleDetail>>,
     next_token: Option<::std::string::String>,
@@ -41545,6 +41630,7 @@ impl PyOperationListGatewayRulesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGatewayTargetsOutput {
     items: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::TargetSummary>>,
     next_token: Option<::std::string::String>,
@@ -41625,6 +41711,7 @@ impl PyOperationListGatewayTargetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGatewaysOutput {
     items: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::GatewaySummary>>,
     next_token: Option<::std::string::String>,
@@ -41704,6 +41791,7 @@ impl PyOperationListGatewaysOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListHarnessEndpointsOutput {
     endpoints: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::HarnessEndpoint>>,
     next_token: Option<::std::string::String>,
@@ -41776,6 +41864,7 @@ impl PyOperationListHarnessEndpointsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListHarnessVersionsOutput {
     harness_versions:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::HarnessVersionSummary>>,
@@ -41849,6 +41938,7 @@ impl PyOperationListHarnessVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListHarnessesOutput {
     harnesses: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::HarnessSummary>>,
     next_token: Option<::std::string::String>,
@@ -41928,6 +42018,7 @@ impl PyOperationListHarnessesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMemoriesOutput {
     memories: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::MemorySummary>>,
     next_token: Option<::std::string::String>,
@@ -42007,6 +42098,7 @@ impl PyOperationListMemoriesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListOauth2CredentialProvidersOutput {
     credential_providers:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::Oauth2CredentialProviderItem>>,
@@ -42080,6 +42172,7 @@ impl PyOperationListOauth2CredentialProvidersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListOnlineEvaluationConfigsOutput {
     online_evaluation_configs: ::std::vec::Vec<Arc<SharedOnlineEvaluationConfigSummary>>,
     next_token: Option<::std::string::String>,
@@ -42152,6 +42245,7 @@ impl PyOperationListOnlineEvaluationConfigsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPaymentConnectorsOutput {
     payment_connectors:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PaymentConnectorSummary>>,
@@ -42225,6 +42319,7 @@ impl PyOperationListPaymentConnectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPaymentCredentialProvidersOutput {
     credential_providers:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PaymentCredentialProviderItem>>,
@@ -42298,6 +42393,7 @@ impl PyOperationListPaymentCredentialProvidersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPaymentManagersOutput {
     payment_managers:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PaymentManagerSummary>>,
@@ -42371,6 +42467,7 @@ impl PyOperationListPaymentManagersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPoliciesOutput {
     policies: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::Policy>>,
     next_token: Option<::std::string::String>,
@@ -42450,6 +42547,7 @@ impl PyOperationListPoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPolicyEngineSummariesOutput {
     policy_engines:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PolicyEngineSummary>>,
@@ -42523,6 +42621,7 @@ impl PyOperationListPolicyEngineSummariesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPolicyEnginesOutput {
     policy_engines: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PolicyEngine>>,
     next_token: Option<::std::string::String>,
@@ -42602,6 +42701,7 @@ impl PyOperationListPolicyEnginesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPolicyGenerationAssetsOutput {
     policy_generation_assets: Option<::std::vec::Vec<Arc<SharedPolicyGenerationAsset>>>,
     next_token: Option<::std::string::String>,
@@ -42682,6 +42782,7 @@ impl PyOperationListPolicyGenerationAssetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPolicyGenerationSummariesOutput {
     policy_generations:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PolicyGenerationSummary>>,
@@ -42755,6 +42856,7 @@ impl PyOperationListPolicyGenerationSummariesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPolicyGenerationsOutput {
     policy_generations:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PolicyGeneration>>,
@@ -42828,6 +42930,7 @@ impl PyOperationListPolicyGenerationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPolicySummariesOutput {
     policies: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::PolicySummary>>,
     next_token: Option<::std::string::String>,
@@ -42900,6 +43003,7 @@ impl PyOperationListPolicySummariesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRegistriesOutput {
     registries: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::RegistrySummary>>,
     next_token: Option<::std::string::String>,
@@ -42979,6 +43083,7 @@ impl PyOperationListRegistriesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRegistryRecordsOutput {
     registry_records:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::RegistryRecordSummary>>,
@@ -43097,6 +43202,7 @@ impl PyOperationListTagsForResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListWorkloadIdentitiesOutput {
     workload_identities:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::WorkloadIdentityType>>,
@@ -43248,6 +43354,7 @@ impl PyOperationRotatePaymentConnectorCredentialsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSetTokenVaultCMKOutput {
     token_vault_id: ::std::string::String,
     kms_configuration: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::KmsConfiguration>>,
@@ -43516,6 +43623,7 @@ impl PyOperationSubmitRegistryRecordForApprovalOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSynchronizeGatewayTargetsOutput {
     targets: Option<::std::vec::Vec<Arc<SharedGatewayTarget>>>,
 }
@@ -43612,6 +43720,7 @@ impl PyOperationUntagResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAgentRuntimeOutput {
     agent_runtime_arn: ::std::string::String,
     agent_runtime_id: ::std::string::String,
@@ -43827,6 +43936,7 @@ impl PyOperationUpdateAgentRuntimeEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateApiKeyCredentialProviderOutput {
     api_key_secret_arn: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::Secret>>,
     api_key_secret_json_key: Option<::std::string::String>,
@@ -44085,6 +44195,7 @@ impl PyOperationUpdateConfigurationBundleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateConsentPortalOutput {
     sources: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcorecontrol::types::ConsentPortalSource>>,
     consent_portal_arn: ::std::string::String,
@@ -44434,6 +44545,7 @@ impl PyOperationUpdateEvaluatorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateGatewayOutput {
     gateway_arn: ::std::string::String,
     gateway_id: ::std::string::String,
@@ -44864,6 +44976,7 @@ impl PyOperationUpdateGatewayOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateGatewayRateLimitOutput {
     rate_limit_id: ::std::string::String,
     gateway_identifier: ::std::string::String,
@@ -45006,6 +45119,7 @@ impl PyOperationUpdateGatewayRateLimitOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateGatewayRuleOutput {
     rule_id: ::std::string::String,
     gateway_arn: ::std::string::String,
@@ -45196,6 +45310,7 @@ impl PyOperationUpdateGatewayRuleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateGatewayTargetOutput {
     gateway_arn: ::std::string::String,
     target_id: ::std::string::String,
@@ -45538,6 +45653,7 @@ impl PyOperationUpdateGatewayTargetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateHarnessOutput {
     harness: Option<Arc<SharedHarness>>,
 }
@@ -45596,6 +45712,7 @@ impl PyOperationUpdateHarnessOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateHarnessEndpointOutput {
     endpoint: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::HarnessEndpoint>>,
 }
@@ -45648,6 +45765,7 @@ impl PyOperationUpdateHarnessEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateMemoryOutput {
     memory: Option<Arc<SharedMemory>>,
 }
@@ -45704,6 +45822,7 @@ impl PyOperationUpdateMemoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateOauth2CredentialProviderOutput {
     client_secret_arn: Option<Arc<aws_sdk_bedrockagentcorecontrol::types::Secret>>,
     client_secret_json_key: Option<::std::string::String>,
@@ -46179,6 +46298,7 @@ impl PyOperationUpdatePaymentCredentialProviderOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdatePaymentManagerOutput {
     payment_manager_arn: ::std::string::String,
     payment_manager_id: ::std::string::String,
@@ -46567,6 +46687,7 @@ impl PyOperationUpdatePolicyEngineOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateRegistryOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -46757,6 +46878,7 @@ impl PyOperationUpdateRegistryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateRegistryRecordOutput {
     registry_arn: ::std::string::String,
     record_arn: ::std::string::String,

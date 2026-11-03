@@ -440,6 +440,7 @@ impl PyAccessToken {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCreateOAuth2TokenResponseBody {
     access_token: Option<Arc<aws_sdk_signin::types::AccessToken>>,
     token_type: ::std::string::String,
@@ -688,6 +689,7 @@ impl PyPolicyStatement {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSigninResourceBasedPolicy {
     version: Option<::std::string::String>,
     statement: Option<::std::vec::Vec<Arc<aws_sdk_signin::types::PolicyStatement>>>,
@@ -780,6 +782,7 @@ impl PySigninResourceBasedPolicy {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateOAuth2TokenOutput {
     token_output: Option<Arc<SharedCreateOAuth2TokenResponseBody>>,
 }
@@ -986,6 +989,7 @@ impl PyOperationGetConsoleAuthorizationConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetResourcePolicyOutput {
     signin_resource_based_policy: Option<Arc<SharedSigninResourceBasedPolicy>>,
 }
@@ -1277,6 +1281,7 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListResourcePermissionStatementsOutput {
     permission_statements: ::std::vec::Vec<Arc<aws_sdk_signin::types::PermissionStatementSummary>>,
     next_token: Option<::std::string::String>,

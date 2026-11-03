@@ -284,6 +284,7 @@ impl PyFederatedUser {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationAssumeRoleOutput {
     credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
     assumed_role_user: Option<Arc<aws_sdk_sts::types::AssumedRoleUser>>,
@@ -430,6 +431,7 @@ impl PyOperationAssumeRoleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationAssumeRoleWithSAMLOutput {
     credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
     assumed_role_user: Option<Arc<aws_sdk_sts::types::AssumedRoleUser>>,
@@ -672,6 +674,7 @@ impl PyOperationAssumeRoleWithSAMLOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationAssumeRoleWithWebIdentityOutput {
     credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
     subject_from_web_identity_token: Option<::std::string::String>,
@@ -878,6 +881,7 @@ impl PyOperationAssumeRoleWithWebIdentityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationAssumeRootOutput {
     credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
     source_identity: Option<::std::string::String>,
@@ -1105,6 +1109,7 @@ impl PyOperationGetCallerIdentityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDelegatedAccessTokenOutput {
     credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
     packed_policy_size: Option<i32>,
@@ -1197,6 +1202,7 @@ impl PyOperationGetDelegatedAccessTokenOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFederationTokenOutput {
     credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
     federated_user: Option<Arc<aws_sdk_sts::types::FederatedUser>>,
@@ -1329,6 +1335,7 @@ impl PyOperationGetFederationTokenOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetSessionTokenOutput {
     credentials: Option<Arc<aws_sdk_sts::types::Credentials>>,
     session_token_utilization: Option<i32>,

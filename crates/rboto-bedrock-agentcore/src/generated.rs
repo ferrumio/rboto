@@ -12837,6 +12837,7 @@ fn view_port_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedA2aDescriptor {
     agent_card: Option<Arc<aws_sdk_bedrockagentcore::types::AgentCardDefinition>>,
 }
@@ -12893,6 +12894,7 @@ impl PyA2aDescriptor {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAbTestResults {
     analysis_timestamp: Option<::aws_smithy_types::DateTime>,
     evaluator_metrics: ::std::vec::Vec<Arc<SharedEvaluatorMetric>>,
@@ -13075,6 +13077,7 @@ impl PyActorSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAffectedSession {
     session_id: ::std::string::String,
     explanation: ::std::string::String,
@@ -13215,6 +13218,7 @@ impl PyAgentCardDefinition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAgentSkillsDescriptor {
     skill_md: Option<Arc<aws_sdk_bedrockagentcore::types::SkillMdDefinition>>,
     skill_definition: Option<Arc<aws_sdk_bedrockagentcore::types::SkillDefinition>>,
@@ -13350,6 +13354,7 @@ impl PyAutomationStream {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAvailableLimits {
     available_spend_amount: Option<Arc<aws_sdk_bedrockagentcore::types::Amount>>,
     updated_at: Option<::aws_smithy_types::DateTime>,
@@ -13427,6 +13432,7 @@ impl PyAvailableLimits {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBatchEvaluationSummary {
     batch_evaluation_id: ::std::string::String,
     batch_evaluation_arn: ::std::string::String,
@@ -13816,6 +13822,7 @@ impl PyBrowserProfileConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedBrowserSessionStream {
     automation_stream: Option<Arc<aws_sdk_bedrockagentcore::types::AutomationStream>>,
     live_view_stream: Option<Arc<aws_sdk_bedrockagentcore::types::LiveViewStream>>,
@@ -14171,6 +14178,7 @@ impl PyCustomDescriptor {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDescriptors {
     mcp: Option<Arc<SharedMcpDescriptor>>,
     a2_a: Option<Arc<SharedA2aDescriptor>>,
@@ -14305,6 +14313,7 @@ impl PyDescriptors {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvaluationJobResults {
     number_of_sessions_completed: Option<i32>,
     number_of_sessions_in_progress: Option<i32>,
@@ -14469,6 +14478,7 @@ impl PyEvaluationJobResults {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvaluationResultContent {
     evaluator_arn: ::std::string::String,
     evaluator_id: ::std::string::String,
@@ -14732,6 +14742,7 @@ impl PyEvaluator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvaluatorMetric {
     evaluator_arn: ::std::string::String,
     control_stats: Option<Arc<aws_sdk_bedrockagentcore::types::ControlStats>>,
@@ -14856,6 +14867,7 @@ impl PyEvaluatorStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvaluatorSummary {
     evaluator_id: Option<::std::string::String>,
     evaluation_dimension_name: Option<::std::string::String>,
@@ -14987,6 +14999,7 @@ impl PyEvaluatorSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvent {
     memory_id: ::std::string::String,
     actor_id: ::std::string::String,
@@ -15178,6 +15191,7 @@ impl PyExecutionSummaryAffectedSession {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionSummaryCluster {
     cluster_id: i32,
     name: ::std::string::String,
@@ -15287,6 +15301,7 @@ impl PyExecutionSummaryCluster {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExecutionSummaryClusteringResultContent {
     execution_summaries: ::std::vec::Vec<Arc<SharedExecutionSummaryCluster>>,
 }
@@ -15437,6 +15452,7 @@ impl PyExtractionJobMetadata {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFailureAnalysisResultContent {
     failures: ::std::vec::Vec<Arc<SharedFailureCategoryCluster>>,
 }
@@ -15503,6 +15519,7 @@ impl PyFailureAnalysisResultContent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFailureCategoryCluster {
     cluster_id: i32,
     name: ::std::string::String,
@@ -15611,6 +15628,7 @@ impl PyFailureCategoryCluster {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFailureSpanDetail {
     span_id: ::std::string::String,
     trace_id: ::std::string::String,
@@ -15695,6 +15713,7 @@ impl PyFailureSpanDetail {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFailureSubCategoryCluster {
     cluster_id: i32,
     name: ::std::string::String,
@@ -15852,6 +15871,7 @@ impl PyInsight {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInsightResult {
     r#type: aws_sdk_bedrockagentcore::types::InsightType,
     name: ::std::string::String,
@@ -16020,6 +16040,7 @@ impl PyInsightResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInsightRootCause {
     name: ::std::string::String,
     explanation: ::std::string::String,
@@ -16210,6 +16231,7 @@ impl PyLiveViewStream {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMcpDescriptor {
     server: Option<Arc<aws_sdk_bedrockagentcore::types::ServerDefinition>>,
     tools: Option<Arc<aws_sdk_bedrockagentcore::types::ToolsDefinition>>,
@@ -16680,6 +16702,7 @@ impl PyPaymentInstrumentSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPaymentSession {
     payment_session_id: ::std::string::String,
     payment_manager_arn: ::std::string::String,
@@ -16914,6 +16937,7 @@ impl PyProxyBypass {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedProxyConfiguration {
     proxies: ::std::vec::Vec<aws_sdk_bedrockagentcore::types::Proxy>,
     bypass: Option<Arc<aws_sdk_bedrockagentcore::types::ProxyBypass>>,
@@ -17061,6 +17085,7 @@ impl PyRecommendationSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRegistryRecordSummary {
     registry_arn: ::std::string::String,
     record_arn: ::std::string::String,
@@ -17230,6 +17255,7 @@ impl PyRegistryRecordSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRootCauseCluster {
     cluster_id: i32,
     name: ::std::string::String,
@@ -17346,6 +17372,7 @@ impl PyRootCauseCluster {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSampleSession {
     session_id: ::std::string::String,
     last_seen_at: Option<::aws_smithy_types::DateTime>,
@@ -17543,6 +17570,7 @@ impl PySessionFinding {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSessionLimits {
     max_spend_amount: Option<Arc<aws_sdk_bedrockagentcore::types::Amount>>,
 }
@@ -17874,6 +17902,7 @@ impl PyUserIntentAffectedSession {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUserIntentCluster {
     cluster_id: i32,
     name: ::std::string::String,
@@ -17981,6 +18010,7 @@ impl PyUserIntentCluster {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUserIntentClusteringResultContent {
     user_intents: ::std::vec::Vec<Arc<SharedUserIntentCluster>>,
 }
@@ -18047,6 +18077,7 @@ impl PyUserIntentClusteringResultContent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVariant {
     name: ::std::string::String,
     weight: i32,
@@ -18121,6 +18152,7 @@ impl PyVariant {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVariantConfiguration {
     configuration_bundle: Option<Arc<aws_sdk_bedrockagentcore::types::ConfigurationBundleRef>>,
     target: Option<Arc<aws_sdk_bedrockagentcore::types::TargetRef>>,
@@ -18204,6 +18236,7 @@ impl PyVariantConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVariantResult {
     variant_name: ::std::string::String,
     sample_size: i32,
@@ -18378,6 +18411,7 @@ impl PyViewPort {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchCreateMemoryRecordsOutput {
     successful_records: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordOutput>>,
     failed_records: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordOutput>>,
@@ -18458,6 +18492,7 @@ impl PyOperationBatchCreateMemoryRecordsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchDeleteMemoryRecordsOutput {
     successful_records: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordOutput>>,
     failed_records: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordOutput>>,
@@ -18538,6 +18573,7 @@ impl PyOperationBatchDeleteMemoryRecordsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchUpdateMemoryRecordsOutput {
     successful_records: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordOutput>>,
     failed_records: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordOutput>>,
@@ -18708,6 +18744,7 @@ impl PyOperationCreateABTestOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateEventOutput {
     event: Option<Arc<SharedEvent>>,
 }
@@ -18762,6 +18799,7 @@ impl PyOperationCreateEventOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreatePaymentInstrumentOutput {
     payment_instrument: Option<Arc<aws_sdk_bedrockagentcore::types::PaymentInstrument>>,
 }
@@ -18814,6 +18852,7 @@ impl PyOperationCreatePaymentInstrumentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreatePaymentSessionOutput {
     payment_session: Option<Arc<SharedPaymentSession>>,
 }
@@ -19137,6 +19176,7 @@ impl PyOperationDeleteRecommendationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationEvaluateOutput {
     evaluation_results: ::std::vec::Vec<Arc<SharedEvaluationResultContent>>,
 }
@@ -19196,6 +19236,7 @@ impl PyOperationEvaluateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetABTestOutput {
     ab_test_id: ::std::string::String,
     ab_test_arn: ::std::string::String,
@@ -19596,6 +19637,7 @@ impl PyOperationGetAgentCardOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBatchEvaluationOutput {
     batch_evaluation_id: ::std::string::String,
     batch_evaluation_arn: ::std::string::String,
@@ -20026,6 +20068,7 @@ impl PyOperationGetBatchEvaluationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBrowserSessionOutput {
     browser_identifier: ::std::string::String,
     session_id: ::std::string::String,
@@ -20426,6 +20469,7 @@ impl PyOperationGetBrowserSessionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCodeInterpreterSessionOutput {
     code_interpreter_identifier: ::std::string::String,
     session_id: ::std::string::String,
@@ -20605,6 +20649,7 @@ impl PyOperationGetCodeInterpreterSessionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEventOutput {
     event: Option<Arc<SharedEvent>>,
 }
@@ -20659,6 +20704,7 @@ impl PyOperationGetEventOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMemoryRecordOutput {
     memory_record: Option<Arc<aws_sdk_bedrockagentcore::types::MemoryRecord>>,
 }
@@ -20715,6 +20761,7 @@ impl PyOperationGetMemoryRecordOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPaymentInstrumentOutput {
     payment_instrument: Option<Arc<aws_sdk_bedrockagentcore::types::PaymentInstrument>>,
 }
@@ -20771,6 +20818,7 @@ impl PyOperationGetPaymentInstrumentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPaymentInstrumentBalanceOutput {
     payment_instrument_id: ::std::string::String,
     token_balance: Option<Arc<aws_sdk_bedrockagentcore::types::TokenBalance>>,
@@ -20837,6 +20885,7 @@ impl PyOperationGetPaymentInstrumentBalanceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPaymentSessionOutput {
     payment_session: Option<Arc<SharedPaymentSession>>,
 }
@@ -21484,6 +21533,7 @@ impl PyOperationInvokeBrowserOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListABTestsOutput {
     ab_tests: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::AbTestSummary>>,
     next_token: Option<::std::string::String>,
@@ -21561,6 +21611,7 @@ impl PyOperationListABTestsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListActorsOutput {
     actor_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::ActorSummary>>,
     next_token: Option<::std::string::String>,
@@ -21638,6 +21689,7 @@ impl PyOperationListActorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBatchEvaluationsOutput {
     batch_evaluations: ::std::vec::Vec<Arc<SharedBatchEvaluationSummary>>,
     next_token: Option<::std::string::String>,
@@ -21717,6 +21769,7 @@ impl PyOperationListBatchEvaluationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListBrowserSessionsOutput {
     items: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::BrowserSessionSummary>>,
     next_token: Option<::std::string::String>,
@@ -21796,6 +21849,7 @@ impl PyOperationListBrowserSessionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCodeInterpreterSessionsOutput {
     items: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::CodeInterpreterSessionSummary>>,
     next_token: Option<::std::string::String>,
@@ -21868,6 +21922,7 @@ impl PyOperationListCodeInterpreterSessionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEventsOutput {
     events: ::std::vec::Vec<Arc<SharedEvent>>,
     next_token: Option<::std::string::String>,
@@ -21945,6 +22000,7 @@ impl PyOperationListEventsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMemoryExtractionJobsOutput {
     jobs: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::ExtractionJobMetadata>>,
     next_token: Option<::std::string::String>,
@@ -22017,6 +22073,7 @@ impl PyOperationListMemoryExtractionJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMemoryRecordsOutput {
     memory_record_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordSummary>>,
@@ -22097,6 +22154,7 @@ impl PyOperationListMemoryRecordsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPaymentInstrumentsOutput {
     payment_instruments:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::PaymentInstrumentSummary>>,
@@ -22179,6 +22237,7 @@ impl PyOperationListPaymentInstrumentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPaymentSessionsOutput {
     payment_sessions: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::PaymentSessionSummary>>,
     next_token: Option<::std::string::String>,
@@ -22258,6 +22317,7 @@ impl PyOperationListPaymentSessionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRecommendationsOutput {
     recommendation_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::RecommendationSummary>>,
@@ -22338,6 +22398,7 @@ impl PyOperationListRecommendationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSessionsOutput {
     session_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::SessionSummary>>,
     next_token: Option<::std::string::String>,
@@ -22516,6 +22577,7 @@ impl PyOperationProcessPaymentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRetrieveMemoryRecordsOutput {
     memory_record_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentcore::types::MemoryRecordSummary>>,
@@ -22645,6 +22707,7 @@ impl PyOperationSaveBrowserSessionProfileOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSearchRegistryRecordsOutput {
     registry_records: ::std::vec::Vec<Arc<SharedRegistryRecordSummary>>,
 }
@@ -22706,6 +22769,7 @@ impl PyOperationSearchRegistryRecordsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStartBatchEvaluationOutput {
     batch_evaluation_id: ::std::string::String,
     batch_evaluation_arn: ::std::string::String,
@@ -22958,6 +23022,7 @@ impl PyOperationStartBatchEvaluationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationStartBrowserSessionOutput {
     browser_identifier: ::std::string::String,
     session_id: ::std::string::String,
@@ -23474,6 +23539,7 @@ impl PyOperationUpdateABTestOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateBrowserStreamOutput {
     browser_identifier: ::std::string::String,
     session_id: ::std::string::String,

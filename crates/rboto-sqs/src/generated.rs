@@ -914,6 +914,7 @@ impl PyListMessageMoveTasksResultEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMessage {
     message_id: Option<::std::string::String>,
     receipt_handle: Option<::std::string::String>,
@@ -1274,6 +1275,7 @@ impl PyOperationCancelMessageMoveTaskOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationChangeMessageVisibilityBatchOutput {
     successful: ::std::vec::Vec<Arc<aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry>>,
     failed: ::std::vec::Vec<Arc<aws_sdk_sqs::types::BatchResultErrorEntry>>,
@@ -1396,6 +1398,7 @@ impl PyOperationCreateQueueOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteMessageBatchOutput {
     successful: ::std::vec::Vec<Arc<aws_sdk_sqs::types::DeleteMessageBatchResultEntry>>,
     failed: ::std::vec::Vec<Arc<aws_sdk_sqs::types::BatchResultErrorEntry>>,
@@ -1609,6 +1612,7 @@ impl PyOperationListDeadLetterSourceQueuesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMessageMoveTasksOutput {
     results: Option<::std::vec::Vec<Arc<aws_sdk_sqs::types::ListMessageMoveTasksResultEntry>>>,
 }
@@ -1776,6 +1780,7 @@ impl PyOperationListQueuesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationReceiveMessageOutput {
     messages: Option<::std::vec::Vec<Arc<SharedMessage>>>,
 }
@@ -1934,6 +1939,7 @@ impl PyOperationSendMessageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSendMessageBatchOutput {
     successful: ::std::vec::Vec<Arc<aws_sdk_sqs::types::SendMessageBatchResultEntry>>,
     failed: ::std::vec::Vec<Arc<aws_sdk_sqs::types::BatchResultErrorEntry>>,

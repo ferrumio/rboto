@@ -7505,6 +7505,7 @@ fn web_experience_auth_configuration_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActionConfiguration {
     action: ::std::string::String,
     filter_configuration: Option<Arc<SharedActionFilterConfiguration>>,
@@ -7576,6 +7577,7 @@ impl PyActionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActionExecution {
     plugin_id: ::std::string::String,
     payload: ::std::collections::HashMap<
@@ -7687,6 +7689,7 @@ impl PyActionExecutionPayloadField {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActionFilterConfiguration {
     document_attribute_filter: Option<Arc<SharedAttributeFilter>>,
 }
@@ -7748,6 +7751,7 @@ impl PyActionFilterConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActionReview {
     plugin_id: Option<::std::string::String>,
     plugin_type: Option<aws_sdk_qbusiness::types::PluginType>,
@@ -7878,6 +7882,7 @@ impl PyActionReview {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActionReviewPayloadField {
     display_name: Option<::std::string::String>,
     display_order: Option<i32>,
@@ -8187,6 +8192,7 @@ impl PyActionSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedApplication {
     display_name: Option<::std::string::String>,
     application_id: Option<::std::string::String>,
@@ -8483,6 +8489,7 @@ impl PyAssociatedUser {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAttachment {
     attachment_id: Option<::std::string::String>,
     conversation_id: Option<::std::string::String>,
@@ -8697,6 +8704,7 @@ impl PyAttachment {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAttachmentOutput {
     name: Option<::std::string::String>,
     status: Option<aws_sdk_qbusiness::types::AttachmentStatus>,
@@ -8824,6 +8832,7 @@ impl PyAttachmentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAttributeFilter {
     and_all_filters: Option<::std::vec::Vec<Arc<SharedAttributeFilter>>>,
     or_all_filters: Option<::std::vec::Vec<Arc<SharedAttributeFilter>>>,
@@ -9347,6 +9356,7 @@ impl PyChatResponseConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedChatResponseConfigurationDetail {
     response_configurations: Option<
         ::std::collections::HashMap<
@@ -9646,6 +9656,7 @@ impl PyCustomizationConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataAccessor {
     display_name: Option<::std::string::String>,
     data_accessor_id: Option<::std::string::String>,
@@ -9943,6 +9954,7 @@ impl PyDataSource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDataSourceSyncJob {
     execution_id: Option<::std::string::String>,
     start_time: Option<::aws_smithy_types::DateTime>,
@@ -10216,6 +10228,7 @@ impl PyDataSourceVpcConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentAcl {
     allowlist: Option<Arc<SharedDocumentAclMembership>>,
     deny_list: Option<Arc<SharedDocumentAclMembership>>,
@@ -10296,6 +10309,7 @@ impl PyDocumentAcl {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentAclCondition {
     member_relation: Option<aws_sdk_qbusiness::types::MemberRelation>,
     users: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::DocumentAclUser>>>,
@@ -10459,6 +10473,7 @@ impl PyDocumentAclGroup {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentAclMembership {
     member_relation: Option<aws_sdk_qbusiness::types::MemberRelation>,
     conditions: Option<::std::vec::Vec<Arc<SharedDocumentAclCondition>>>,
@@ -10737,6 +10752,7 @@ impl PyDocumentAttributeTarget {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentDetails {
     document_id: Option<::std::string::String>,
     status: Option<aws_sdk_qbusiness::types::DocumentStatus>,
@@ -10864,6 +10880,7 @@ impl PyDocumentDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentEnrichmentConfiguration {
     inline_configurations:
         Option<::std::vec::Vec<Arc<SharedInlineDocumentEnrichmentConfiguration>>>,
@@ -11056,6 +11073,7 @@ impl PyErrorDetail {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFailedDocument {
     id: Option<::std::string::String>,
     error: Option<Arc<aws_sdk_qbusiness::types::ErrorDetail>>,
@@ -11147,6 +11165,7 @@ impl PyFailedDocument {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGroupStatusDetail {
     status: Option<aws_sdk_qbusiness::types::GroupStatus>,
     last_updated_at: Option<::aws_smithy_types::DateTime>,
@@ -11286,6 +11305,7 @@ impl PyHallucinationReductionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedHookConfiguration {
     invocation_condition: Option<Arc<aws_sdk_qbusiness::types::DocumentAttributeCondition>>,
     lambda_arn: Option<::std::string::String>,
@@ -11507,6 +11527,7 @@ impl PyIndexCapacityConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIndexStatistics {
     text_document_statistics: Option<Arc<aws_sdk_qbusiness::types::TextDocumentStatistics>>,
 }
@@ -11562,6 +11583,7 @@ impl PyIndexStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInlineDocumentEnrichmentConfiguration {
     condition: Option<Arc<aws_sdk_qbusiness::types::DocumentAttributeCondition>>,
     target: Option<Arc<aws_sdk_qbusiness::types::DocumentAttributeTarget>>,
@@ -11761,6 +11783,7 @@ impl PyInstructionCollection {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMediaExtractionConfiguration {
     image_extraction_configuration:
         Option<Arc<aws_sdk_qbusiness::types::ImageExtractionConfiguration>>,
@@ -11879,6 +11902,7 @@ impl PyMediaExtractionConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMessage {
     message_id: Option<::std::string::String>,
     body: Option<::std::string::String>,
@@ -12329,6 +12353,7 @@ impl PyQuickSightConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRelevantContent {
     content: Option<::std::string::String>,
     document_id: Option<::std::string::String>,
@@ -12495,6 +12520,7 @@ impl PyRelevantContent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResponseConfiguration {
     instruction_collection: Option<Arc<aws_sdk_qbusiness::types::InstructionCollection>>,
 }
@@ -12616,6 +12642,7 @@ impl PyRetriever {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRule {
     included_users_and_groups: Option<Arc<aws_sdk_qbusiness::types::UsersAndGroups>>,
     excluded_users_and_groups: Option<Arc<aws_sdk_qbusiness::types::UsersAndGroups>>,
@@ -12764,6 +12791,7 @@ impl PySnippetExcerpt {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSourceAttribution {
     title: Option<::std::string::String>,
     snippet: Option<::std::string::String>,
@@ -12978,6 +13006,7 @@ impl PySourceAttribution {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSubscription {
     subscription_id: Option<::std::string::String>,
     subscription_arn: Option<::std::string::String>,
@@ -13194,6 +13223,7 @@ impl PyTextDocumentStatistics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTextSegment {
     begin_offset: Option<i32>,
     end_offset: Option<i32>,
@@ -13336,6 +13366,7 @@ impl PyTextSegment {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTopicConfiguration {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -13655,6 +13686,7 @@ impl PyOperationAssociatePermissionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchDeleteDocumentOutput {
     failed_documents: Option<::std::vec::Vec<Arc<SharedFailedDocument>>>,
 }
@@ -13726,6 +13758,7 @@ impl PyOperationBatchDeleteDocumentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchPutDocumentOutput {
     failed_documents: Option<::std::vec::Vec<Arc<SharedFailedDocument>>>,
 }
@@ -13797,6 +13830,7 @@ impl PyOperationBatchPutDocumentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCancelSubscriptionOutput {
     subscription_arn: Option<::std::string::String>,
     current_subscription: Option<Arc<aws_sdk_qbusiness::types::SubscriptionDetails>>,
@@ -13895,6 +13929,7 @@ impl PyOperationCancelSubscriptionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationChatSyncOutput {
     conversation_id: Option<::std::string::String>,
     system_message: Option<::std::string::String>,
@@ -14135,6 +14170,7 @@ impl PyOperationChatSyncOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCheckDocumentAccessOutput {
     user_groups: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::AssociatedGroup>>>,
     user_aliases: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::AssociatedUser>>>,
@@ -14661,6 +14697,7 @@ impl PyOperationCreateRetrieverOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateSubscriptionOutput {
     subscription_id: Option<::std::string::String>,
     subscription_arn: Option<::std::string::String>,
@@ -15065,6 +15102,7 @@ impl PyOperationDisassociatePermissionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetApplicationOutput {
     display_name: Option<::std::string::String>,
     application_id: Option<::std::string::String>,
@@ -15496,6 +15534,7 @@ impl PyOperationGetApplicationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetChatControlsConfigurationOutput {
     response_scope: Option<aws_sdk_qbusiness::types::ResponseScope>,
     orchestration_configuration:
@@ -15693,6 +15732,7 @@ impl PyOperationGetChatControlsConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetChatResponseConfigurationOutput {
     chat_response_configuration_id: Option<::std::string::String>,
     chat_response_configuration_arn: Option<::std::string::String>,
@@ -15841,6 +15881,7 @@ impl PyOperationGetChatResponseConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDataAccessorOutput {
     display_name: Option<::std::string::String>,
     data_accessor_id: Option<::std::string::String>,
@@ -16078,6 +16119,7 @@ impl PyOperationGetDataAccessorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDataSourceOutput {
     application_id: Option<::std::string::String>,
     index_id: Option<::std::string::String>,
@@ -16475,6 +16517,7 @@ impl PyOperationGetDocumentContentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetGroupOutput {
     status: Option<Arc<SharedGroupStatusDetail>>,
     status_history: Option<::std::vec::Vec<Arc<SharedGroupStatusDetail>>>,
@@ -16566,6 +16609,7 @@ impl PyOperationGetGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetIndexOutput {
     application_id: Option<::std::string::String>,
     index_id: Option<::std::string::String>,
@@ -16915,6 +16959,7 @@ impl PyOperationGetMediaOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPluginOutput {
     application_id: Option<::std::string::String>,
     plugin_id: Option<::std::string::String>,
@@ -17371,6 +17416,7 @@ impl PyOperationGetRetrieverOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetUserOutput {
     user_aliases: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::UserAlias>>>,
 }
@@ -17436,6 +17482,7 @@ impl PyOperationGetUserOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetWebExperienceOutput {
     application_id: Option<::std::string::String>,
     web_experience_id: Option<::std::string::String>,
@@ -17827,6 +17874,7 @@ impl PyOperationGetWebExperienceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListApplicationsOutput {
     next_token: Option<::std::string::String>,
     applications: Option<::std::vec::Vec<Arc<SharedApplication>>>,
@@ -17916,6 +17964,7 @@ impl PyOperationListApplicationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAttachmentsOutput {
     attachments: Option<::std::vec::Vec<Arc<SharedAttachment>>>,
     next_token: Option<::std::string::String>,
@@ -18003,6 +18052,7 @@ impl PyOperationListAttachmentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListChatResponseConfigurationsOutput {
     chat_response_configurations:
         Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::ChatResponseConfiguration>>>,
@@ -18084,6 +18134,7 @@ impl PyOperationListChatResponseConfigurationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListConversationsOutput {
     next_token: Option<::std::string::String>,
     conversations: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::Conversation>>>,
@@ -18173,6 +18224,7 @@ impl PyOperationListConversationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDataAccessorsOutput {
     data_accessors: Option<::std::vec::Vec<Arc<SharedDataAccessor>>>,
     next_token: Option<::std::string::String>,
@@ -18262,6 +18314,7 @@ impl PyOperationListDataAccessorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDataSourceSyncJobsOutput {
     history: Option<::std::vec::Vec<Arc<SharedDataSourceSyncJob>>>,
     next_token: Option<::std::string::String>,
@@ -18351,6 +18404,7 @@ impl PyOperationListDataSourceSyncJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDataSourcesOutput {
     data_sources: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::DataSource>>>,
     next_token: Option<::std::string::String>,
@@ -18438,6 +18492,7 @@ impl PyOperationListDataSourcesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDocumentsOutput {
     document_detail_list: Option<::std::vec::Vec<Arc<SharedDocumentDetails>>>,
     next_token: Option<::std::string::String>,
@@ -18525,6 +18580,7 @@ impl PyOperationListDocumentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGroupsOutput {
     next_token: Option<::std::string::String>,
     items: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::GroupSummary>>>,
@@ -18608,6 +18664,7 @@ impl PyOperationListGroupsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListIndicesOutput {
     next_token: Option<::std::string::String>,
     indices: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::Index>>>,
@@ -18691,6 +18748,7 @@ impl PyOperationListIndicesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMessagesOutput {
     messages: Option<::std::vec::Vec<Arc<SharedMessage>>>,
     next_token: Option<::std::string::String>,
@@ -18778,6 +18836,7 @@ impl PyOperationListMessagesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPluginActionsOutput {
     next_token: Option<::std::string::String>,
     items: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::ActionSummary>>>,
@@ -18867,6 +18926,7 @@ impl PyOperationListPluginActionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPluginTypeActionsOutput {
     next_token: Option<::std::string::String>,
     items: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::ActionSummary>>>,
@@ -18956,6 +19016,7 @@ impl PyOperationListPluginTypeActionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPluginTypeMetadataOutput {
     next_token: Option<::std::string::String>,
     items: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::PluginTypeMetadataSummary>>>,
@@ -19045,6 +19106,7 @@ impl PyOperationListPluginTypeMetadataOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPluginsOutput {
     next_token: Option<::std::string::String>,
     plugins: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::Plugin>>>,
@@ -19128,6 +19190,7 @@ impl PyOperationListPluginsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRetrieversOutput {
     retrievers: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::Retriever>>>,
     next_token: Option<::std::string::String>,
@@ -19215,6 +19278,7 @@ impl PyOperationListRetrieversOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSubscriptionsOutput {
     next_token: Option<::std::string::String>,
     subscriptions: Option<::std::vec::Vec<Arc<SharedSubscription>>>,
@@ -19304,6 +19368,7 @@ impl PyOperationListSubscriptionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::Tag>>>,
 }
@@ -19375,6 +19440,7 @@ impl PyOperationListTagsForResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListWebExperiencesOutput {
     web_experiences: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::WebExperience>>>,
     next_token: Option<::std::string::String>,
@@ -19477,6 +19543,7 @@ impl PyOperationPutGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSearchRelevantContentOutput {
     relevant_content: Option<::std::vec::Vec<Arc<SharedRelevantContent>>>,
     next_token: Option<::std::string::String>,
@@ -19778,6 +19845,7 @@ impl PyOperationUpdateRetrieverOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateSubscriptionOutput {
     subscription_arn: Option<::std::string::String>,
     current_subscription: Option<Arc<aws_sdk_qbusiness::types::SubscriptionDetails>>,
@@ -19876,6 +19944,7 @@ impl PyOperationUpdateSubscriptionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateUserOutput {
     user_aliases_added: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::UserAlias>>>,
     user_aliases_updated: Option<::std::vec::Vec<Arc<aws_sdk_qbusiness::types::UserAlias>>>,

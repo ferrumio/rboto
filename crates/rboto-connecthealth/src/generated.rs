@@ -1674,6 +1674,7 @@ impl PyArtifactDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedClinicalNoteGenerationResult {
     note_result: Option<Arc<aws_sdk_connecthealth::types::ArtifactDetails>>,
     transcript_result: Option<Arc<aws_sdk_connecthealth::types::ArtifactDetails>>,
@@ -1911,6 +1912,7 @@ impl PyFhirServer {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInputDataConfig {
     fhir_server: Option<Arc<aws_sdk_connecthealth::types::FhirServer>>,
     s3_sources: Option<::std::vec::Vec<Arc<aws_sdk_connecthealth::types::S3Source>>>,
@@ -2081,6 +2083,7 @@ impl PyMedicalScribeChannelDefinition {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMedicalScribeListeningSessionDetails {
     session_id: Option<::std::string::String>,
     domain_id: Option<::std::string::String>,
@@ -2393,6 +2396,7 @@ impl PyMedicalScribeListeningSessionDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMedicalScribePostStreamActionSettingsResponse {
     output_s3_uri: ::std::string::String,
     clinical_note_generation_settings:
@@ -2469,6 +2473,7 @@ impl PyMedicalScribePostStreamActionSettingsResponse {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMedicalScribePostStreamActionsResult {
     clinical_note_generation_result: Option<Arc<SharedClinicalNoteGenerationResult>>,
 }
@@ -2776,6 +2781,7 @@ impl PyWebAppConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationActivateSubscriptionOutput {
     subscription: Option<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
 }
@@ -2832,6 +2838,7 @@ impl PyOperationActivateSubscriptionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDomainOutput {
     domain_id: ::std::string::String,
     arn: ::std::string::String,
@@ -3093,6 +3100,7 @@ impl PyOperationCreateSubscriptionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeactivateSubscriptionOutput {
     subscription: Option<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
 }
@@ -3190,6 +3198,7 @@ impl PyOperationDeleteDomainOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDomainOutput {
     domain_id: ::std::string::String,
     arn: ::std::string::String,
@@ -3384,6 +3393,7 @@ impl PyOperationGetDomainOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMedicalScribeListeningSessionOutput {
     medical_scribe_listening_session_details:
         Option<Arc<SharedMedicalScribeListeningSessionDetails>>,
@@ -3437,6 +3447,7 @@ impl PyOperationGetMedicalScribeListeningSessionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPatientInsightsJobOutput {
     job_id: ::std::string::String,
     job_arn: ::std::string::String,
@@ -3723,6 +3734,7 @@ impl PyOperationGetPatientInsightsJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetSubscriptionOutput {
     subscription: Option<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
 }
@@ -3779,6 +3791,7 @@ impl PyOperationGetSubscriptionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDomainsOutput {
     domains: ::std::vec::Vec<Arc<aws_sdk_connecthealth::types::DomainSummary>>,
     next_token: Option<::std::string::String>,
@@ -3856,6 +3869,7 @@ impl PyOperationListDomainsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSubscriptionsOutput {
     subscriptions: ::std::vec::Vec<Arc<aws_sdk_connecthealth::types::SubscriptionDescription>>,
     next_token: Option<::std::string::String>,

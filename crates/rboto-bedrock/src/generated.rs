@@ -13605,6 +13605,7 @@ fn vpc_config_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAccountEnforcedGuardrailOutputConfiguration {
     config_id: Option<::std::string::String>,
     guardrail_arn: Option<::std::string::String>,
@@ -14048,6 +14049,7 @@ impl PyAutomatedReasoningPolicyBuildWorkflowSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAutomatedReasoningPolicyDefinition {
     version: ::std::string::String,
     types: Option<::std::vec::Vec<Arc<SharedAutomatedReasoningPolicyDefinitionType>>>,
@@ -14261,6 +14263,7 @@ impl PyAutomatedReasoningPolicyDefinitionRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAutomatedReasoningPolicyDefinitionType {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -14602,6 +14605,7 @@ impl PyAutomatedReasoningPolicyTestCase {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAutomatedReasoningPolicyTestResult {
     test_case: Option<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase>>,
     policy_arn: ::std::string::String,
@@ -14889,6 +14893,7 @@ impl PyBatchDeleteEvaluationJobItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCloudWatchConfig {
     log_group_name: ::std::string::String,
     role_arn: ::std::string::String,
@@ -15270,6 +15275,7 @@ impl PyDimensionalPriceRate {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvaluationInferenceConfigSummary {
     model_config_summary: Option<Arc<aws_sdk_bedrock::types::EvaluationModelConfigSummary>>,
     rag_config_summary: Option<Arc<aws_sdk_bedrock::types::EvaluationRagConfigSummary>>,
@@ -15469,6 +15475,7 @@ impl PyEvaluationRagConfigSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEvaluationSummary {
     job_arn: ::std::string::String,
     job_name: ::std::string::String,
@@ -15719,6 +15726,7 @@ impl PyEvaluationSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFoundationModelDetails {
     model_arn: ::std::string::String,
     model_id: ::std::string::String,
@@ -16026,6 +16034,7 @@ impl PyFoundationModelLifecycle {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFoundationModelSummary {
     model_arn: ::std::string::String,
     model_id: ::std::string::String,
@@ -16434,6 +16443,7 @@ impl PyGuardrailContentFiltersTier {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailContentPolicy {
     filters: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailContentFilter>>>,
     tier: Option<Arc<aws_sdk_bedrock::types::GuardrailContentFiltersTier>>,
@@ -16580,6 +16590,7 @@ impl PyGuardrailContextualGroundingFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailContextualGroundingPolicy {
     filters: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailContextualGroundingFilter>>,
     tier: Option<Arc<aws_sdk_bedrock::types::GuardrailContextualGroundingTier>>,
@@ -16934,6 +16945,7 @@ impl PyGuardrailRegex {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailSensitiveInformationPolicy {
     pii_entities: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailPiiEntity>>>,
     regexes: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailRegex>>>,
@@ -17049,6 +17061,7 @@ impl PyGuardrailSensitiveInformationPolicy {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailSummary {
     id: ::std::string::String,
     arn: ::std::string::String,
@@ -17281,6 +17294,7 @@ impl PyGuardrailTopic {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailTopicPolicy {
     topics: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailTopic>>,
     tier: Option<Arc<aws_sdk_bedrock::types::GuardrailTopicsTier>>,
@@ -17445,6 +17459,7 @@ impl PyGuardrailWord {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailWordPolicy {
     words: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailWord>>>,
     managed_word_lists: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::GuardrailManagedWords>>>,
@@ -17695,6 +17710,7 @@ impl PyInferenceProfileModel {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInferenceProfileSummary {
     inference_profile_name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -17935,6 +17951,7 @@ impl PyLegalTerm {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedLoggingConfig {
     cloud_watch_config: Option<Arc<SharedCloudWatchConfig>>,
     s3_config: Option<Arc<aws_sdk_bedrock::types::S3Config>>,
@@ -18253,6 +18270,7 @@ impl PyMarketplaceModelEndpointSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedModelConfiguration {
     model_id: ::std::string::String,
     inference_config: Option<Arc<aws_sdk_bedrock::types::InferenceConfiguration>>,
@@ -18349,6 +18367,7 @@ impl PyModelConfiguration {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedModelCopyJobSummary {
     job_arn: ::std::string::String,
     status: aws_sdk_bedrock::types::ModelCopyJobStatus,
@@ -18551,6 +18570,7 @@ impl PyModelCopyJobSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedModelCustomizationJobSummary {
     job_arn: ::std::string::String,
     base_model_arn: ::std::string::String,
@@ -18868,6 +18888,7 @@ impl PyModelImportJobSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedModelInvocationJobSummary {
     job_arn: ::std::string::String,
     job_name: ::std::string::String,
@@ -19229,6 +19250,7 @@ impl PyModelInvocationJobSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOffer {
     offer_id: Option<::std::string::String>,
     offer_token: ::std::string::String,
@@ -19329,6 +19351,7 @@ impl PyOutputDataConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPricingTerm {
     rate_card: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::DimensionalPriceRate>>,
 }
@@ -19386,6 +19409,7 @@ impl PyPricingTerm {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPromptRouterSummary {
     prompt_router_name: ::std::string::String,
     routing_criteria: Option<Arc<aws_sdk_bedrock::types::RoutingCriteria>>,
@@ -19804,6 +19828,7 @@ impl PySelectiveContentGuarding {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStatusDetails {
     validation_details: Option<Arc<aws_sdk_bedrock::types::ValidationDetails>>,
     data_processing_details: Option<Arc<aws_sdk_bedrock::types::DataProcessingDetails>>,
@@ -19950,6 +19975,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTermDetails {
     usage_based_pricing_term: Option<Arc<SharedPricingTerm>>,
     legal_term: Option<Arc<aws_sdk_bedrock::types::LegalTerm>>,
@@ -20076,6 +20102,7 @@ impl PyTermDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTrainingDataConfig {
     s3_uri: Option<::std::string::String>,
     invocation_logs_config: Option<Arc<aws_sdk_bedrock::types::InvocationLogsConfig>>,
@@ -20213,6 +20240,7 @@ impl PyTrainingMetrics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedValidationDataConfig {
     validators: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::Validator>>,
 }
@@ -20415,6 +20443,7 @@ impl PyVpcConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
     errors:
         ::std::vec::Vec<Arc<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError>>,
@@ -20499,6 +20528,7 @@ impl PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchDeleteEvaluationJobOutput {
     errors: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::BatchDeleteEvaluationJobError>>,
     evaluation_jobs: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem>>,
@@ -21057,6 +21087,7 @@ impl PyOperationCreateInferenceProfileOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateMarketplaceModelEndpointOutput {
     marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
 }
@@ -21543,6 +21574,7 @@ impl PyOperationDeregisterMarketplaceModelEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationExportAutomatedReasoningPolicyVersionOutput {
     policy_definition: Option<Arc<SharedAutomatedReasoningPolicyDefinition>>,
 }
@@ -21636,6 +21668,7 @@ impl PyOperationGetAccountDataRetentionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAdvancedPromptOptimizationJobOutput {
     job_arn: ::std::string::String,
     job_name: ::std::string::String,
@@ -22200,6 +22233,7 @@ impl PyOperationGetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
     policy_arn: ::std::string::String,
     scenario: Option<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario>>,
@@ -22262,6 +22296,7 @@ impl PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAutomatedReasoningPolicyTestCaseOutput {
     policy_arn: ::std::string::String,
     test_case: Option<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase>>,
@@ -22324,6 +22359,7 @@ impl PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAutomatedReasoningPolicyTestResultOutput {
     test_result: Option<Arc<SharedAutomatedReasoningPolicyTestResult>>,
 }
@@ -22376,6 +22412,7 @@ impl PyOperationGetAutomatedReasoningPolicyTestResultOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCustomModelOutput {
     model_arn: ::std::string::String,
     model_name: ::std::string::String,
@@ -22750,6 +22787,7 @@ impl PyOperationGetCustomModelOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCustomModelDeploymentOutput {
     custom_model_deployment_arn: ::std::string::String,
     model_deployment_name: ::std::string::String,
@@ -22918,6 +22956,7 @@ impl PyOperationGetCustomModelDeploymentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEvaluationJobOutput {
     job_name: ::std::string::String,
     status: aws_sdk_bedrock::types::EvaluationJobStatus,
@@ -23168,6 +23207,7 @@ impl PyOperationGetEvaluationJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFoundationModelOutput {
     model_details: Option<Arc<SharedFoundationModelDetails>>,
 }
@@ -23226,6 +23266,7 @@ impl PyOperationGetFoundationModelOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFoundationModelAvailabilityOutput {
     model_id: ::std::string::String,
     agreement_availability: Option<Arc<aws_sdk_bedrock::types::AgreementAvailability>>,
@@ -23326,6 +23367,7 @@ impl PyOperationGetFoundationModelAvailabilityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetGuardrailOutput {
     name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -23721,6 +23763,7 @@ impl PyOperationGetGuardrailOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetImportedModelOutput {
     model_arn: Option<::std::string::String>,
     model_name: Option<::std::string::String>,
@@ -23937,6 +23980,7 @@ impl PyOperationGetImportedModelOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetInferenceProfileOutput {
     inference_profile_name: ::std::string::String,
     description: Option<::std::string::String>,
@@ -24114,6 +24158,7 @@ impl PyOperationGetInferenceProfileOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMarketplaceModelEndpointOutput {
     marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
 }
@@ -24166,6 +24211,7 @@ impl PyOperationGetMarketplaceModelEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetModelCopyJobOutput {
     job_arn: ::std::string::String,
     status: aws_sdk_bedrock::types::ModelCopyJobStatus,
@@ -24367,6 +24413,7 @@ impl PyOperationGetModelCopyJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetModelCustomizationJobOutput {
     job_arn: ::std::string::String,
     job_name: ::std::string::String,
@@ -24841,6 +24888,7 @@ impl PyOperationGetModelCustomizationJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetModelImportJobOutput {
     job_arn: Option<::std::string::String>,
     job_name: Option<::std::string::String>,
@@ -25113,6 +25161,7 @@ impl PyOperationGetModelImportJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetModelInvocationJobOutput {
     job_arn: ::std::string::String,
     job_name: Option<::std::string::String>,
@@ -25479,6 +25528,7 @@ impl PyOperationGetModelInvocationJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetModelInvocationLoggingConfigurationOutput {
     logging_config: Option<Arc<SharedLoggingConfig>>,
 }
@@ -25531,6 +25581,7 @@ impl PyOperationGetModelInvocationLoggingConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPromptRouterOutput {
     prompt_router_name: ::std::string::String,
     routing_criteria: Option<Arc<aws_sdk_bedrock::types::RoutingCriteria>>,
@@ -25960,6 +26011,7 @@ impl PyOperationGetUseCaseForModelAccessOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAdvancedPromptOptimizationJobsOutput {
     job_summaries:
         Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary>>>,
@@ -26042,6 +26094,7 @@ impl PyOperationListAdvancedPromptOptimizationJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAutomatedReasoningPoliciesOutput {
     automated_reasoning_policy_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicySummary>>,
@@ -26115,6 +26168,7 @@ impl PyOperationListAutomatedReasoningPoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
     automated_reasoning_policy_build_workflow_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary>>,
@@ -26201,6 +26255,7 @@ impl PyOperationListAutomatedReasoningPolicyBuildWorkflowsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAutomatedReasoningPolicyTestCasesOutput {
     test_cases: ::std::vec::Vec<Arc<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase>>,
     next_token: Option<::std::string::String>,
@@ -26273,6 +26328,7 @@ impl PyOperationListAutomatedReasoningPolicyTestCasesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAutomatedReasoningPolicyTestResultsOutput {
     test_results: ::std::vec::Vec<Arc<SharedAutomatedReasoningPolicyTestResult>>,
     next_token: Option<::std::string::String>,
@@ -26346,6 +26402,7 @@ impl PyOperationListAutomatedReasoningPolicyTestResultsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCustomModelDeploymentsOutput {
     next_token: Option<::std::string::String>,
     model_deployment_summaries:
@@ -26438,6 +26495,7 @@ impl PyOperationListCustomModelDeploymentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCustomModelsOutput {
     next_token: Option<::std::string::String>,
     model_summaries: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::CustomModelSummary>>>,
@@ -26525,6 +26583,7 @@ impl PyOperationListCustomModelsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEnforcedGuardrailsConfigurationOutput {
     guardrails_config: ::std::vec::Vec<Arc<SharedAccountEnforcedGuardrailOutputConfiguration>>,
     next_token: Option<::std::string::String>,
@@ -26598,6 +26657,7 @@ impl PyOperationListEnforcedGuardrailsConfigurationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEvaluationJobsOutput {
     next_token: Option<::std::string::String>,
     job_summaries: Option<::std::vec::Vec<Arc<SharedEvaluationSummary>>>,
@@ -26687,6 +26747,7 @@ impl PyOperationListEvaluationJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFoundationModelAgreementOffersOutput {
     model_id: ::std::string::String,
     offers: ::std::vec::Vec<Arc<SharedOffer>>,
@@ -26751,6 +26812,7 @@ impl PyOperationListFoundationModelAgreementOffersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFoundationModelsOutput {
     model_summaries: Option<::std::vec::Vec<Arc<SharedFoundationModelSummary>>>,
 }
@@ -26822,6 +26884,7 @@ impl PyOperationListFoundationModelsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListGuardrailsOutput {
     guardrails: ::std::vec::Vec<Arc<SharedGuardrailSummary>>,
     next_token: Option<::std::string::String>,
@@ -26899,6 +26962,7 @@ impl PyOperationListGuardrailsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListImportedModelsOutput {
     next_token: Option<::std::string::String>,
     model_summaries: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::ImportedModelSummary>>>,
@@ -26988,6 +27052,7 @@ impl PyOperationListImportedModelsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListInferenceProfilesOutput {
     inference_profile_summaries: Option<::std::vec::Vec<Arc<SharedInferenceProfileSummary>>>,
     next_token: Option<::std::string::String>,
@@ -27077,6 +27142,7 @@ impl PyOperationListInferenceProfilesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMarketplaceModelEndpointsOutput {
     marketplace_model_endpoints:
         Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpointSummary>>>,
@@ -27158,6 +27224,7 @@ impl PyOperationListMarketplaceModelEndpointsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListModelCopyJobsOutput {
     next_token: Option<::std::string::String>,
     model_copy_job_summaries: Option<::std::vec::Vec<Arc<SharedModelCopyJobSummary>>>,
@@ -27247,6 +27314,7 @@ impl PyOperationListModelCopyJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListModelCustomizationJobsOutput {
     next_token: Option<::std::string::String>,
     model_customization_job_summaries:
@@ -27344,6 +27412,7 @@ impl PyOperationListModelCustomizationJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListModelImportJobsOutput {
     next_token: Option<::std::string::String>,
     model_import_job_summaries:
@@ -27434,6 +27503,7 @@ impl PyOperationListModelImportJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListModelInvocationJobsOutput {
     next_token: Option<::std::string::String>,
     invocation_job_summaries: Option<::std::vec::Vec<Arc<SharedModelInvocationJobSummary>>>,
@@ -27523,6 +27593,7 @@ impl PyOperationListModelInvocationJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListPromptRoutersOutput {
     prompt_router_summaries: Option<::std::vec::Vec<Arc<SharedPromptRouterSummary>>>,
     next_token: Option<::std::string::String>,
@@ -27612,6 +27683,7 @@ impl PyOperationListPromptRoutersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListProvisionedModelThroughputsOutput {
     next_token: Option<::std::string::String>,
     provisioned_model_summaries:
@@ -27693,6 +27765,7 @@ impl PyOperationListProvisionedModelThroughputsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrock::types::Tag>>>,
 }
@@ -27938,6 +28011,7 @@ impl PyOperationPutUseCaseForModelAccessOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRegisterMarketplaceModelEndpointOutput {
     marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
 }
@@ -28352,6 +28426,7 @@ impl PyOperationUpdateGuardrailOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateMarketplaceModelEndpointOutput {
     marketplace_model_endpoint: Option<Arc<aws_sdk_bedrock::types::MarketplaceModelEndpoint>>,
 }

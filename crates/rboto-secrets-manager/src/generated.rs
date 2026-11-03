@@ -1046,6 +1046,7 @@ impl PyRotationRulesType {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSecretListEntry {
     arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -1752,6 +1753,7 @@ impl PyValidationErrorsEntry {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchGetSecretValueOutput {
     secret_values: Option<::std::vec::Vec<Arc<aws_sdk_secretsmanager::types::SecretValueEntry>>>,
     next_token: Option<::std::string::String>,
@@ -1945,6 +1947,7 @@ impl PyOperationCancelRotateSecretOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateSecretOutput {
     arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -2183,6 +2186,7 @@ impl PyOperationDeleteSecretOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeSecretOutput {
     arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -2929,6 +2933,7 @@ impl PyOperationGetSecretValueOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSecretVersionIdsOutput {
     versions: Option<::std::vec::Vec<Arc<aws_sdk_secretsmanager::types::SecretVersionsListEntry>>>,
     next_token: Option<::std::string::String>,
@@ -3054,6 +3059,7 @@ impl PyOperationListSecretVersionIdsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSecretsOutput {
     secret_list: Option<::std::vec::Vec<Arc<SharedSecretListEntry>>>,
     next_token: Option<::std::string::String>,
@@ -3281,6 +3287,7 @@ impl PyOperationPutSecretValueOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRemoveRegionsFromReplicationOutput {
     arn: Option<::std::string::String>,
     replication_status:
@@ -3362,6 +3369,7 @@ impl PyOperationRemoveRegionsFromReplicationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationReplicateSecretToRegionsOutput {
     arn: Option<::std::string::String>,
     replication_status:
@@ -3704,6 +3712,7 @@ impl PyOperationUpdateSecretVersionStageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationValidateResourcePolicyOutput {
     policy_validation_passed: bool,
     validation_errors:

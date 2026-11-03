@@ -1109,6 +1109,7 @@ impl PyDeadLetterConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEcsParameters {
     task_definition_arn: ::std::string::String,
     task_count: Option<i32>,
@@ -1556,6 +1557,7 @@ impl PyKinesisParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNetworkConfiguration {
     awsvpc_configuration: Option<Arc<aws_sdk_scheduler::types::AwsVpcConfiguration>>,
 }
@@ -1743,6 +1745,7 @@ impl PySageMakerPipelineParameter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSageMakerPipelineParameters {
     pipeline_parameter_list:
         Option<::std::vec::Vec<Arc<aws_sdk_scheduler::types::SageMakerPipelineParameter>>>,
@@ -1886,6 +1889,7 @@ impl PyScheduleGroupSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedScheduleSummary {
     arn: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -2095,6 +2099,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTarget {
     arn: ::std::string::String,
     role_arn: ::std::string::String,
@@ -2435,6 +2440,7 @@ impl PyOperationDeleteScheduleGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetScheduleOutput {
     arn: Option<::std::string::String>,
     group_name: Option<::std::string::String>,
@@ -2840,6 +2846,7 @@ impl PyOperationGetScheduleGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListScheduleGroupsOutput {
     next_token: Option<::std::string::String>,
     schedule_groups: ::std::vec::Vec<Arc<aws_sdk_scheduler::types::ScheduleGroupSummary>>,
@@ -2919,6 +2926,7 @@ impl PyOperationListScheduleGroupsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSchedulesOutput {
     next_token: Option<::std::string::String>,
     schedules: ::std::vec::Vec<Arc<SharedScheduleSummary>>,
@@ -2996,6 +3004,7 @@ impl PyOperationListSchedulesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_scheduler::types::Tag>>>,
 }

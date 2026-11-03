@@ -14388,6 +14388,7 @@ impl PyAudioSegment {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCitation {
     generated_response_part: Option<Arc<SharedGeneratedResponsePart>>,
     retrieved_references: Option<::std::vec::Vec<Arc<SharedRetrievedReference>>>,
@@ -14485,6 +14486,7 @@ impl PyCitation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentAcl {
     allow_list: Option<Arc<SharedDocumentAclMembership>>,
     deny_list: Option<Arc<SharedDocumentAclMembership>>,
@@ -14569,6 +14571,7 @@ impl PyDocumentAcl {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentAclCondition {
     condition_operator: Option<aws_sdk_bedrockagentruntime::types::DocumentAclMemberRelation>,
     users: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagentruntime::types::DocumentAclUser>>>,
@@ -14728,6 +14731,7 @@ impl PyDocumentAclGroup {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentAclMembership {
     member_relation: Option<aws_sdk_bedrockagentruntime::types::DocumentAclMemberRelation>,
     conditions: Option<::std::vec::Vec<Arc<SharedDocumentAclCondition>>>,
@@ -14996,6 +15000,7 @@ impl PyGeneratedQuery {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGeneratedResponsePart {
     text_response_part: Option<Arc<SharedTextResponsePart>>,
 }
@@ -15187,6 +15192,7 @@ impl PyInvocationSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedKnowledgeBaseRetrievalResult {
     content: Option<Arc<SharedRetrievalResultContent>>,
     location: Option<Arc<SharedRetrievalResultLocation>>,
@@ -15343,6 +15349,7 @@ impl PyKnowledgeBaseRetrievalResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRerankDocument {
     r#type: aws_sdk_bedrockagentruntime::types::RerankDocumentType,
     text_document: Option<Arc<aws_sdk_bedrockagentruntime::types::RerankTextDocument>>,
@@ -15430,6 +15437,7 @@ impl PyRerankDocument {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRerankResult {
     index: i32,
     relevance_score: f32,
@@ -15560,6 +15568,7 @@ impl PyRetrievalResultConfluenceLocation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRetrievalResultContent {
     r#type: Option<aws_sdk_bedrockagentruntime::types::RetrievalResultContentType>,
     text: ::std::string::String,
@@ -15856,6 +15865,7 @@ impl PyRetrievalResultKendraDocumentLocation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRetrievalResultLocation {
     r#type: aws_sdk_bedrockagentruntime::types::RetrievalResultLocationType,
     s3_location: Option<Arc<aws_sdk_bedrockagentruntime::types::RetrievalResultS3Location>>,
@@ -16328,6 +16338,7 @@ impl PyRetrieveAndGenerateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRetrievedReference {
     content: Option<Arc<SharedRetrievalResultContent>>,
     location: Option<Arc<SharedRetrievalResultLocation>>,
@@ -16524,6 +16535,7 @@ impl PySpan {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTextResponsePart {
     text: Option<::std::string::String>,
     span: Option<Arc<aws_sdk_bedrockagentruntime::types::Span>>,
@@ -16823,6 +16835,7 @@ impl PyOperationEndSessionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGenerateQueryOutput {
     queries: Option<::std::vec::Vec<Arc<aws_sdk_bedrockagentruntime::types::GeneratedQuery>>>,
 }
@@ -17079,6 +17092,7 @@ impl PyOperationGetExecutionFlowSnapshotOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetFlowExecutionOutput {
     execution_arn: ::std::string::String,
     status: aws_sdk_bedrockagentruntime::types::FlowExecutionStatus,
@@ -17232,6 +17246,7 @@ impl PyOperationGetFlowExecutionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetIngestedDocumentAclOutput {
     document_acl: Option<Arc<SharedDocumentAcl>>,
 }
@@ -17284,6 +17299,7 @@ impl PyOperationGetIngestedDocumentAclOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetInvocationStepOutput {
     invocation_step: Option<Arc<aws_sdk_bedrockagentruntime::types::InvocationStep>>,
 }
@@ -17492,6 +17508,7 @@ impl PyOperationListFlowExecutionEventsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListFlowExecutionsOutput {
     flow_execution_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentruntime::types::FlowExecutionSummary>>,
@@ -17572,6 +17589,7 @@ impl PyOperationListFlowExecutionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListInvocationStepsOutput {
     invocation_step_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentruntime::types::InvocationStepSummary>>,
@@ -17652,6 +17670,7 @@ impl PyOperationListInvocationStepsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListInvocationsOutput {
     invocation_summaries:
         ::std::vec::Vec<Arc<aws_sdk_bedrockagentruntime::types::InvocationSummary>>,
@@ -17732,6 +17751,7 @@ impl PyOperationListInvocationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSessionsOutput {
     session_summaries: ::std::vec::Vec<Arc<aws_sdk_bedrockagentruntime::types::SessionSummary>>,
     next_token: Option<::std::string::String>,
@@ -17882,6 +17902,7 @@ impl PyOperationPutInvocationStepOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRerankOutput {
     results: ::std::vec::Vec<Arc<SharedRerankResult>>,
     next_token: Option<::std::string::String>,
@@ -17959,6 +17980,7 @@ impl PyOperationRerankOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRetrieveOutput {
     retrieval_results: ::std::vec::Vec<Arc<SharedKnowledgeBaseRetrievalResult>>,
     guardrail_action: Option<aws_sdk_bedrockagentruntime::types::GuadrailAction>,
@@ -18054,6 +18076,7 @@ impl PyOperationRetrieveOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationRetrieveAndGenerateOutput {
     session_id: ::std::string::String,
     output: Option<Arc<aws_sdk_bedrockagentruntime::types::RetrieveAndGenerateOutput>>,

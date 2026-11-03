@@ -7393,6 +7393,7 @@ impl PyConverseMetrics {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedConverseTrace {
     guardrail: Option<Arc<SharedGuardrailTraceAssessment>>,
     prompt_router: Option<Arc<aws_sdk_bedrockruntime::types::PromptRouterTrace>>,
@@ -7475,6 +7476,7 @@ impl PyConverseTrace {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailAssessment {
     topic_policy: Option<Arc<SharedGuardrailTopicPolicyAssessment>>,
     content_policy: Option<Arc<SharedGuardrailContentPolicyAssessment>>,
@@ -7753,6 +7755,7 @@ impl PyGuardrailAutomatedReasoningPolicyAssessment {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailChecksContentFilterResult {
     results: ::std::vec::Vec<
         Arc<aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResultEntry>,
@@ -7872,6 +7875,7 @@ impl PyGuardrailChecksContentFilterUsage {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailChecksPromptAttackResult {
     results:
         ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResultEntry>>,
@@ -7989,6 +7993,7 @@ impl PyGuardrailChecksPromptAttackUsage {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailChecksResults {
     content_filter: Option<Arc<SharedGuardrailChecksContentFilterResult>>,
     prompt_attack: Option<Arc<SharedGuardrailChecksPromptAttackResult>>,
@@ -8102,6 +8107,7 @@ impl PyGuardrailChecksResults {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailChecksSensitiveInformationResult {
     results: ::std::vec::Vec<
         Arc<aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResultEntry>,
@@ -8265,6 +8271,7 @@ impl PyGuardrailChecksSensitiveInformationUsage {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailChecksUsageResults {
     content_filter: Option<Arc<aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterUsage>>,
     prompt_attack: Option<Arc<aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackUsage>>,
@@ -8429,6 +8436,7 @@ impl PyGuardrailContentFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailContentPolicyAssessment {
     filters: ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailContentFilter>>,
 }
@@ -8545,6 +8553,7 @@ impl PyGuardrailContextualGroundingFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailContextualGroundingPolicyAssessment {
     filters: Option<
         ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailContextualGroundingFilter>>,
@@ -8625,6 +8634,7 @@ impl PyGuardrailContextualGroundingPolicyAssessment {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailCoverage {
     text_characters: Option<Arc<aws_sdk_bedrockruntime::types::GuardrailTextCharactersCoverage>>,
     images: Option<Arc<aws_sdk_bedrockruntime::types::GuardrailImageCoverage>>,
@@ -8782,6 +8792,7 @@ impl PyGuardrailImageCoverage {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailInvocationMetrics {
     guardrail_processing_latency: Option<i64>,
     usage: Option<Arc<aws_sdk_bedrockruntime::types::GuardrailUsage>>,
@@ -9063,6 +9074,7 @@ impl PyGuardrailRegexFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailSensitiveInformationPolicyAssessment {
     pii_entities: ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailPiiEntityFilter>>,
     regexes: ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailRegexFilter>>,
@@ -9240,6 +9252,7 @@ impl PyGuardrailTopic {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailTopicPolicyAssessment {
     topics: ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailTopic>>,
 }
@@ -9306,6 +9319,7 @@ impl PyGuardrailTopicPolicyAssessment {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailTraceAssessment {
     model_output: Option<::std::vec::Vec<::std::string::String>>,
     input_assessment:
@@ -9591,6 +9605,7 @@ impl PyGuardrailUsage {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedGuardrailWordPolicyAssessment {
     custom_words: ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailCustomWord>>,
     managed_word_lists: ::std::vec::Vec<Arc<aws_sdk_bedrockruntime::types::GuardrailManagedWord>>,
@@ -9752,6 +9767,7 @@ impl PyServiceTier {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTokenUsage {
     input_tokens: i32,
     output_tokens: i32,
@@ -9885,6 +9901,7 @@ impl PyTokenUsage {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationApplyGuardrailOutput {
     usage: Option<Arc<aws_sdk_bedrockruntime::types::GuardrailUsage>>,
     action: aws_sdk_bedrockruntime::types::GuardrailAction,
@@ -10053,6 +10070,7 @@ impl PyOperationApplyGuardrailOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationConverseOutput {
     output: Option<aws_sdk_bedrockruntime::types::ConverseOutput>,
     stop_reason: aws_sdk_bedrockruntime::types::StopReason,
@@ -10407,6 +10425,7 @@ impl PyOperationGetAsyncInvokeOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationInvokeGuardrailChecksOutput {
     results: Option<Arc<SharedGuardrailChecksResults>>,
     usage: Option<Arc<SharedGuardrailChecksUsageResults>>,
@@ -10560,6 +10579,7 @@ impl PyOperationInvokeModelOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAsyncInvokesOutput {
     next_token: Option<::std::string::String>,
     async_invoke_summaries:

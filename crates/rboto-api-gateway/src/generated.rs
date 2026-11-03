@@ -3550,6 +3550,7 @@ impl PyApiKey {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedApiStage {
     api_id: Option<::std::string::String>,
     stage: Option<::std::string::String>,
@@ -3951,6 +3952,7 @@ impl PyClientCertificate {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDeployment {
     id: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -4102,6 +4104,7 @@ impl PyDeployment {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentationPart {
     id: Option<::std::string::String>,
     location: Option<Arc<aws_sdk_apigateway::types::DocumentationPartLocation>>,
@@ -4305,6 +4308,7 @@ impl PyDocumentationVersion {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDomainName {
     domain_name: Option<::std::string::String>,
     domain_name_id: Option<::std::string::String>,
@@ -4969,6 +4973,7 @@ impl PyGatewayResponse {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIntegration {
     r#type: Option<aws_sdk_apigateway::types::IntegrationType>,
     http_method: Option<::std::string::String>,
@@ -5443,6 +5448,7 @@ impl PyIntegrationResponse {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMethod {
     http_method: Option<::std::string::String>,
     authorization_type: Option<::std::string::String>,
@@ -6113,6 +6119,7 @@ impl PyRequestValidator {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResource {
     id: Option<::std::string::String>,
     parent_id: Option<::std::string::String>,
@@ -6254,6 +6261,7 @@ impl PyResource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRestApi {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -6702,6 +6710,7 @@ impl PySdkConfigurationProperty {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSdkType {
     id: Option<::std::string::String>,
     friendly_name: Option<::std::string::String>,
@@ -6824,6 +6833,7 @@ impl PySdkType {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStage {
     deployment_id: Option<::std::string::String>,
     client_certificate_id: Option<::std::string::String>,
@@ -7256,6 +7266,7 @@ impl PyTlsConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedUsagePlan {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -8061,6 +8072,7 @@ impl PyOperationCreateBasePathMappingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDeploymentOutput {
     id: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -8216,6 +8228,7 @@ impl PyOperationCreateDeploymentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDocumentationPartOutput {
     id: Option<::std::string::String>,
     location: Option<Arc<aws_sdk_apigateway::types::DocumentationPartLocation>>,
@@ -8373,6 +8386,7 @@ impl PyOperationCreateDocumentationVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDomainNameOutput {
     domain_name: Option<::std::string::String>,
     domain_name_id: Option<::std::string::String>,
@@ -9122,6 +9136,7 @@ impl PyOperationCreateRequestValidatorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateResourceOutput {
     id: Option<::std::string::String>,
     parent_id: Option<::std::string::String>,
@@ -9265,6 +9280,7 @@ impl PyOperationCreateResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateRestApiOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -9653,6 +9669,7 @@ impl PyOperationCreateRestApiOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateStageOutput {
     deployment_id: Option<::std::string::String>,
     client_certificate_id: Option<::std::string::String>,
@@ -10041,6 +10058,7 @@ impl PyOperationCreateStageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateUsagePlanOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -10620,6 +10638,7 @@ impl PyOperationGenerateClientCertificateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAccountOutput {
     cloudwatch_role_arn: Option<::std::string::String>,
     throttle_settings: Option<Arc<aws_sdk_apigateway::types::ThrottleSettings>>,
@@ -10925,6 +10944,7 @@ impl PyOperationGetApiKeyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetApiKeysOutput {
     warnings: Option<::std::vec::Vec<::std::string::String>>,
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::ApiKey>>>,
@@ -11227,6 +11247,7 @@ impl PyOperationGetAuthorizerOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAuthorizersOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::Authorizer>>>,
     position: Option<::std::string::String>,
@@ -11379,6 +11400,7 @@ impl PyOperationGetBasePathMappingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBasePathMappingsOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::BasePathMapping>>>,
     position: Option<::std::string::String>,
@@ -11593,6 +11615,7 @@ impl PyOperationGetClientCertificateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetClientCertificatesOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::ClientCertificate>>>,
     position: Option<::std::string::String>,
@@ -11682,6 +11705,7 @@ impl PyOperationGetClientCertificatesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeploymentOutput {
     id: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -11835,6 +11859,7 @@ impl PyOperationGetDeploymentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeploymentsOutput {
     items: Option<::std::vec::Vec<Arc<SharedDeployment>>>,
     position: Option<::std::string::String>,
@@ -11922,6 +11947,7 @@ impl PyOperationGetDeploymentsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDocumentationPartOutput {
     id: Option<::std::string::String>,
     location: Option<Arc<aws_sdk_apigateway::types::DocumentationPartLocation>>,
@@ -12014,6 +12040,7 @@ impl PyOperationGetDocumentationPartOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDocumentationPartsOutput {
     items: Option<::std::vec::Vec<Arc<SharedDocumentationPart>>>,
     position: Option<::std::string::String>,
@@ -12168,6 +12195,7 @@ impl PyOperationGetDocumentationVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDocumentationVersionsOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::DocumentationVersion>>>,
     position: Option<::std::string::String>,
@@ -12257,6 +12285,7 @@ impl PyOperationGetDocumentationVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDomainNameOutput {
     domain_name: Option<::std::string::String>,
     domain_name_id: Option<::std::string::String>,
@@ -12725,6 +12754,7 @@ impl PyOperationGetDomainNameOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDomainNameAccessAssociationsOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::DomainNameAccessAssociation>>>,
     position: Option<::std::string::String>,
@@ -12805,6 +12835,7 @@ impl PyOperationGetDomainNameAccessAssociationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDomainNamesOutput {
     items: Option<::std::vec::Vec<Arc<SharedDomainName>>>,
     position: Option<::std::string::String>,
@@ -13066,6 +13097,7 @@ impl PyOperationGetGatewayResponseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetGatewayResponsesOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::GatewayResponse>>>,
     position: Option<::std::string::String>,
@@ -13155,6 +13187,7 @@ impl PyOperationGetGatewayResponsesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetIntegrationOutput {
     r#type: Option<aws_sdk_apigateway::types::IntegrationType>,
     http_method: Option<::std::string::String>,
@@ -13674,6 +13707,7 @@ impl PyOperationGetIntegrationResponseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMethodOutput {
     http_method: Option<::std::string::String>,
     authorization_type: Option<::std::string::String>,
@@ -14184,6 +14218,7 @@ impl PyOperationGetModelTemplateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetModelsOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::Model>>>,
     position: Option<::std::string::String>,
@@ -14340,6 +14375,7 @@ impl PyOperationGetRequestValidatorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetRequestValidatorsOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::RequestValidator>>>,
     position: Option<::std::string::String>,
@@ -14429,6 +14465,7 @@ impl PyOperationGetRequestValidatorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetResourceOutput {
     id: Option<::std::string::String>,
     parent_id: Option<::std::string::String>,
@@ -14572,6 +14609,7 @@ impl PyOperationGetResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetResourcesOutput {
     items: Option<::std::vec::Vec<Arc<SharedResource>>>,
     position: Option<::std::string::String>,
@@ -14659,6 +14697,7 @@ impl PyOperationGetResourcesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetRestApiOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -15047,6 +15086,7 @@ impl PyOperationGetRestApiOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetRestApisOutput {
     items: Option<::std::vec::Vec<Arc<SharedRestApi>>>,
     position: Option<::std::string::String>,
@@ -15195,6 +15235,7 @@ impl PyOperationGetSdkOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetSdkTypeOutput {
     id: Option<::std::string::String>,
     friendly_name: Option<::std::string::String>,
@@ -15319,6 +15360,7 @@ impl PyOperationGetSdkTypeOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetSdkTypesOutput {
     items: Option<::std::vec::Vec<Arc<SharedSdkType>>>,
 }
@@ -15388,6 +15430,7 @@ impl PyOperationGetSdkTypesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetStageOutput {
     deployment_id: Option<::std::string::String>,
     client_certificate_id: Option<::std::string::String>,
@@ -15772,6 +15815,7 @@ impl PyOperationGetStageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetStagesOutput {
     item: Option<::std::vec::Vec<Arc<SharedStage>>>,
 }
@@ -16003,6 +16047,7 @@ impl PyOperationGetUsageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetUsagePlanOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -16303,6 +16348,7 @@ impl PyOperationGetUsagePlanKeyOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetUsagePlanKeysOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::UsagePlanKey>>>,
     position: Option<::std::string::String>,
@@ -16392,6 +16438,7 @@ impl PyOperationGetUsagePlanKeysOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetUsagePlansOutput {
     items: Option<::std::vec::Vec<Arc<SharedUsagePlan>>>,
     position: Option<::std::string::String>,
@@ -16630,6 +16677,7 @@ impl PyOperationGetVpcLinkOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetVpcLinksOutput {
     items: Option<::std::vec::Vec<Arc<aws_sdk_apigateway::types::VpcLink>>>,
     position: Option<::std::string::String>,
@@ -16856,6 +16904,7 @@ impl PyOperationImportDocumentationPartsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationImportRestApiOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -17357,6 +17406,7 @@ impl PyOperationPutGatewayResponseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutIntegrationOutput {
     r#type: Option<aws_sdk_apigateway::types::IntegrationType>,
     http_method: Option<::std::string::String>,
@@ -17876,6 +17926,7 @@ impl PyOperationPutIntegrationResponseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutMethodOutput {
     http_method: Option<::std::string::String>,
     authorization_type: Option<::std::string::String>,
@@ -18260,6 +18311,7 @@ impl PyOperationPutMethodResponseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationPutRestApiOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -18926,6 +18978,7 @@ impl PyOperationTestInvokeMethodOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAccountOutput {
     cloudwatch_role_arn: Option<::std::string::String>,
     throttle_settings: Option<Arc<aws_sdk_apigateway::types::ThrottleSettings>>,
@@ -19612,6 +19665,7 @@ impl PyOperationUpdateClientCertificateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateDeploymentOutput {
     id: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -19767,6 +19821,7 @@ impl PyOperationUpdateDeploymentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateDocumentationPartOutput {
     id: Option<::std::string::String>,
     location: Option<Arc<aws_sdk_apigateway::types::DocumentationPartLocation>>,
@@ -19924,6 +19979,7 @@ impl PyOperationUpdateDocumentationVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateDomainNameOutput {
     domain_name: Option<::std::string::String>,
     domain_name_id: Option<::std::string::String>,
@@ -20507,6 +20563,7 @@ impl PyOperationUpdateGatewayResponseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateIntegrationOutput {
     r#type: Option<aws_sdk_apigateway::types::IntegrationType>,
     http_method: Option<::std::string::String>,
@@ -21029,6 +21086,7 @@ impl PyOperationUpdateIntegrationResponseOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateMethodOutput {
     http_method: Option<::std::string::String>,
     authorization_type: Option<::std::string::String>,
@@ -21587,6 +21645,7 @@ impl PyOperationUpdateRequestValidatorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateResourceOutput {
     id: Option<::std::string::String>,
     parent_id: Option<::std::string::String>,
@@ -21730,6 +21789,7 @@ impl PyOperationUpdateResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateRestApiOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -22118,6 +22178,7 @@ impl PyOperationUpdateRestApiOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateStageOutput {
     deployment_id: Option<::std::string::String>,
     client_certificate_id: Option<::std::string::String>,
@@ -22635,6 +22696,7 @@ impl PyOperationUpdateUsageOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateUsagePlanOutput {
     id: Option<::std::string::String>,
     name: Option<::std::string::String>,

@@ -6032,6 +6032,7 @@ fn volume_statistics_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAccountDetails {
     mail_type: Option<aws_sdk_sesv2::types::MailType>,
     website_url: Option<::std::string::String>,
@@ -6335,6 +6336,7 @@ impl PyBulkEmailEntryResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCloudWatchDestination {
     dimension_configurations:
         ::std::vec::Vec<Arc<aws_sdk_sesv2::types::CloudWatchDimensionConfiguration>>,
@@ -6466,6 +6468,7 @@ impl PyComplaint {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedContact {
     email_address: Option<::std::string::String>,
     topic_preferences: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::TopicPreference>>>,
@@ -6747,6 +6750,7 @@ impl PyCustomVerificationEmailTemplateMetadata {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDailyVolume {
     start_date: Option<::aws_smithy_types::DateTime>,
     volume_statistics: Option<Arc<aws_sdk_sesv2::types::VolumeStatistics>>,
@@ -7343,6 +7347,7 @@ impl PyDomainDeliverabilityCampaign {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDomainDeliverabilityTrackingOption {
     domain: Option<::std::string::String>,
     subscription_start_date: Option<::aws_smithy_types::DateTime>,
@@ -7505,6 +7510,7 @@ impl PyDomainIspPlacement {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEmailAddressInsightsMailboxEvaluations {
     has_valid_syntax: Option<Arc<aws_sdk_sesv2::types::EmailAddressInsightsVerdict>>,
     has_valid_dns_records: Option<Arc<aws_sdk_sesv2::types::EmailAddressInsightsVerdict>>,
@@ -7712,6 +7718,7 @@ impl PyEmailAddressInsightsVerdict {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEmailInsights {
     destination: Option<::std::string::String>,
     isp: Option<::std::string::String>,
@@ -7911,6 +7918,7 @@ impl PyEventBridgeDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEventDestination {
     name: ::std::string::String,
     enabled: bool,
@@ -8106,6 +8114,7 @@ impl PyEventDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEventDetails {
     bounce: Option<Arc<aws_sdk_sesv2::types::Bounce>>,
     complaint: Option<Arc<aws_sdk_sesv2::types::Complaint>>,
@@ -8182,6 +8191,7 @@ impl PyEventDetails {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedExportDataSource {
     metrics_data_source: Option<Arc<SharedMetricsDataSource>>,
     message_insights_data_source: Option<Arc<SharedMessageInsightsDataSource>>,
@@ -8620,6 +8630,7 @@ impl PyImportDataSource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImportDestination {
     suppression_list_destination: Option<Arc<aws_sdk_sesv2::types::SuppressionListDestination>>,
     contact_list_destination: Option<Arc<aws_sdk_sesv2::types::ContactListDestination>>,
@@ -8701,6 +8712,7 @@ impl PyImportDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedImportJobSummary {
     job_id: Option<::std::string::String>,
     import_destination: Option<Arc<SharedImportDestination>>,
@@ -8885,6 +8897,7 @@ impl PyInboxPlacementTrackingOption {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInsightsEvent {
     timestamp: Option<::aws_smithy_types::DateTime>,
     r#type: Option<aws_sdk_sesv2::types::EventType>,
@@ -8975,6 +8988,7 @@ impl PyInsightsEvent {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedIspPlacement {
     isp_name: Option<::std::string::String>,
     placement_statistics: Option<Arc<aws_sdk_sesv2::types::PlacementStatistics>>,
@@ -9107,6 +9121,7 @@ impl PyMailFromAttributes {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMailboxValidation {
     is_valid: Option<Arc<aws_sdk_sesv2::types::EmailAddressInsightsVerdict>>,
     evaluations: Option<Arc<SharedEmailAddressInsightsMailboxEvaluations>>,
@@ -9188,6 +9203,7 @@ impl PyMailboxValidation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMessageInsightsDataSource {
     start_date: ::aws_smithy_types::DateTime,
     end_date: ::aws_smithy_types::DateTime,
@@ -9575,6 +9591,7 @@ impl PyMetricDataResult {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMetricsDataSource {
     dimensions: ::std::collections::HashMap<
         aws_sdk_sesv2::types::MetricDimensionName,
@@ -9777,6 +9794,7 @@ impl PyMultiRegionEndpoint {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOverallVolume {
     volume_statistics: Option<Arc<aws_sdk_sesv2::types::VolumeStatistics>>,
     read_rate_percent: Option<f64>,
@@ -10084,6 +10102,7 @@ impl PyRecommendation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedReputationEntity {
     reputation_entity_reference: Option<::std::string::String>,
     reputation_entity_type: Option<aws_sdk_sesv2::types::ReputationEntityType>,
@@ -10535,6 +10554,7 @@ impl PyStatusRecord {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSuppressedDestination {
     email_address: ::std::string::String,
     reason: aws_sdk_sesv2::types::SuppressionListReason,
@@ -10708,6 +10728,7 @@ impl PySuppressedDestinationSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSuppressionAttributes {
     suppressed_reasons: Option<::std::vec::Vec<aws_sdk_sesv2::types::SuppressionListReason>>,
     validation_attributes: Option<Arc<SharedSuppressionValidationAttributes>>,
@@ -10793,6 +10814,7 @@ impl PySuppressionAttributes {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSuppressionConditionThreshold {
     condition_threshold_enabled: aws_sdk_sesv2::types::FeatureStatus,
     overall_confidence_threshold: Option<Arc<aws_sdk_sesv2::types::SuppressionConfidenceThreshold>>,
@@ -10918,6 +10940,7 @@ impl PySuppressionListDestination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSuppressionOptions {
     suppressed_reasons: Option<::std::vec::Vec<aws_sdk_sesv2::types::SuppressionListReason>>,
     suppression_scope: Option<aws_sdk_sesv2::types::SuppressionListScope>,
@@ -11021,6 +11044,7 @@ impl PySuppressionOptions {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSuppressionValidationAttributes {
     condition_threshold: Option<Arc<SharedSuppressionConditionThreshold>>,
 }
@@ -11084,6 +11108,7 @@ impl PySuppressionValidationAttributes {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSuppressionValidationOptions {
     condition_threshold: Option<Arc<SharedSuppressionConditionThreshold>>,
 }
@@ -11171,6 +11196,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTenant {
     tenant_name: Option<::std::string::String>,
     tenant_id: Option<::std::string::String>,
@@ -11583,6 +11609,7 @@ impl PyTrackingOptions {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVdmAttributes {
     vdm_enabled: aws_sdk_sesv2::types::FeatureStatus,
     dashboard_attributes: Option<Arc<aws_sdk_sesv2::types::DashboardAttributes>>,
@@ -11669,6 +11696,7 @@ impl PyVdmAttributes {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVdmOptions {
     dashboard_options: Option<Arc<aws_sdk_sesv2::types::DashboardOptions>>,
     guardian_options: Option<Arc<aws_sdk_sesv2::types::GuardianOptions>>,
@@ -11745,6 +11773,7 @@ impl PyVdmOptions {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedVerificationInfo {
     last_checked_timestamp: Option<::aws_smithy_types::DateTime>,
     last_success_timestamp: Option<::aws_smithy_types::DateTime>,
@@ -11923,6 +11952,7 @@ impl PyOperationAssociateEmailIdentityCertificateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationBatchGetMetricDataOutput {
     results: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::MetricDataResult>>>,
     errors: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::MetricDataError>>>,
@@ -12181,6 +12211,7 @@ impl PyOperationCreateDeliverabilityTestReportOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateEmailIdentityOutput {
     identity_type: Option<aws_sdk_sesv2::types::IdentityType>,
     verified_for_sending_status: bool,
@@ -12410,6 +12441,7 @@ impl PyOperationCreateMultiRegionEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateTenantOutput {
     tenant_name: Option<::std::string::String>,
     tenant_id: Option<::std::string::String>,
@@ -12853,6 +12885,7 @@ impl PyOperationDisassociateEmailIdentityCertificateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAccountOutput {
     dedicated_ip_auto_warmup_enabled: bool,
     enforcement_status: Option<::std::string::String>,
@@ -13061,6 +13094,7 @@ impl PyOperationGetAccountOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetBlacklistReportsOutput {
     blacklist_report: ::std::collections::HashMap<
         ::std::string::String,
@@ -13145,6 +13179,7 @@ impl PyOperationGetBlacklistReportsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetConfigurationSetOutput {
     configuration_set_name: Option<::std::string::String>,
     tracking_options: Option<Arc<aws_sdk_sesv2::types::TrackingOptions>>,
@@ -13430,6 +13465,7 @@ impl PyOperationGetConfigurationSetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetConfigurationSetEventDestinationsOutput {
     event_destinations: Option<::std::vec::Vec<Arc<SharedEventDestination>>>,
 }
@@ -13492,6 +13528,7 @@ impl PyOperationGetConfigurationSetEventDestinationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetContactOutput {
     contact_list_name: Option<::std::string::String>,
     email_address: Option<::std::string::String>,
@@ -13696,6 +13733,7 @@ impl PyOperationGetContactOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetContactListOutput {
     contact_list_name: Option<::std::string::String>,
     topics: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::Topic>>>,
@@ -13872,6 +13910,7 @@ impl PyOperationGetContactListOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCustomVerificationEmailTemplateOutput {
     template_name: Option<::std::string::String>,
     from_email_address: Option<::std::string::String>,
@@ -14043,6 +14082,7 @@ impl PyOperationGetCustomVerificationEmailTemplateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDedicatedIpOutput {
     dedicated_ip: Option<Arc<aws_sdk_sesv2::types::DedicatedIp>>,
 }
@@ -14093,6 +14133,7 @@ impl PyOperationGetDedicatedIpOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDedicatedIpPoolOutput {
     dedicated_ip_pool: Option<Arc<aws_sdk_sesv2::types::DedicatedIpPool>>,
 }
@@ -14149,6 +14190,7 @@ impl PyOperationGetDedicatedIpPoolOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDedicatedIpsOutput {
     dedicated_ips: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::DedicatedIp>>>,
     next_token: Option<::std::string::String>,
@@ -14232,6 +14274,7 @@ impl PyOperationGetDedicatedIpsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeliverabilityDashboardOptionsOutput {
     dashboard_enabled: bool,
     subscription_expiry_date: Option<::aws_smithy_types::DateTime>,
@@ -14378,6 +14421,7 @@ impl PyOperationGetDeliverabilityDashboardOptionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDeliverabilityTestReportOutput {
     deliverability_test_report: Option<Arc<aws_sdk_sesv2::types::DeliverabilityTestReport>>,
     overall_placement: Option<Arc<aws_sdk_sesv2::types::PlacementStatistics>>,
@@ -14546,6 +14590,7 @@ impl PyOperationGetDeliverabilityTestReportOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDomainDeliverabilityCampaignOutput {
     domain_deliverability_campaign: Option<Arc<aws_sdk_sesv2::types::DomainDeliverabilityCampaign>>,
 }
@@ -14598,6 +14643,7 @@ impl PyOperationGetDomainDeliverabilityCampaignOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDomainStatisticsReportOutput {
     overall_volume: Option<Arc<SharedOverallVolume>>,
     daily_volumes: ::std::vec::Vec<Arc<SharedDailyVolume>>,
@@ -14685,6 +14731,7 @@ impl PyOperationGetDomainStatisticsReportOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEmailAddressInsightsOutput {
     mailbox_validation: Option<Arc<SharedMailboxValidation>>,
 }
@@ -14743,6 +14790,7 @@ impl PyOperationGetEmailAddressInsightsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEmailIdentityOutput {
     identity_type: Option<aws_sdk_sesv2::types::IdentityType>,
     feedback_forwarding_status: bool,
@@ -15043,6 +15091,7 @@ impl PyOperationGetEmailIdentityPoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetEmailTemplateOutput {
     template_name: ::std::string::String,
     template_content: Option<Arc<aws_sdk_sesv2::types::EmailTemplateContent>>,
@@ -15146,6 +15195,7 @@ impl PyOperationGetEmailTemplateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetExportJobOutput {
     job_id: Option<::std::string::String>,
     export_source_type: Option<aws_sdk_sesv2::types::ExportSourceType>,
@@ -15360,6 +15410,7 @@ impl PyOperationGetExportJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetImportJobOutput {
     job_id: Option<::std::string::String>,
     import_destination: Option<Arc<SharedImportDestination>>,
@@ -15568,6 +15619,7 @@ impl PyOperationGetImportJobOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMessageInsightsOutput {
     message_id: Option<::std::string::String>,
     from_email_address: Option<::std::string::String>,
@@ -15733,6 +15785,7 @@ impl PyOperationGetMessageInsightsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMultiRegionEndpointOutput {
     endpoint_name: Option<::std::string::String>,
     endpoint_id: Option<::std::string::String>,
@@ -15894,6 +15947,7 @@ impl PyOperationGetMultiRegionEndpointOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetReputationEntityOutput {
     reputation_entity: Option<Arc<SharedReputationEntity>>,
 }
@@ -15952,6 +16006,7 @@ impl PyOperationGetReputationEntityOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetSuppressedDestinationOutput {
     suppressed_destination: Option<Arc<SharedSuppressedDestination>>,
 }
@@ -16010,6 +16065,7 @@ impl PyOperationGetSuppressedDestinationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetTenantOutput {
     tenant: Option<Arc<SharedTenant>>,
 }
@@ -16119,6 +16175,7 @@ impl PyOperationListConfigurationSetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListContactListsOutput {
     contact_lists: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::ContactList>>>,
     next_token: Option<::std::string::String>,
@@ -16206,6 +16263,7 @@ impl PyOperationListContactListsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListContactsOutput {
     contacts: Option<::std::vec::Vec<Arc<SharedContact>>>,
     next_token: Option<::std::string::String>,
@@ -16289,6 +16347,7 @@ impl PyOperationListContactsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCustomVerificationEmailTemplatesOutput {
     custom_verification_email_templates:
         Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::CustomVerificationEmailTemplateMetadata>>>,
@@ -16430,6 +16489,7 @@ impl PyOperationListDedicatedIpPoolsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDeliverabilityTestReportsOutput {
     deliverability_test_reports:
         ::std::vec::Vec<Arc<aws_sdk_sesv2::types::DeliverabilityTestReport>>,
@@ -16503,6 +16563,7 @@ impl PyOperationListDeliverabilityTestReportsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDomainDeliverabilityCampaignsOutput {
     domain_deliverability_campaigns:
         ::std::vec::Vec<Arc<aws_sdk_sesv2::types::DomainDeliverabilityCampaign>>,
@@ -16576,6 +16637,7 @@ impl PyOperationListDomainDeliverabilityCampaignsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEmailIdentitiesOutput {
     email_identities: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::IdentityInfo>>>,
     next_token: Option<::std::string::String>,
@@ -16665,6 +16727,7 @@ impl PyOperationListEmailIdentitiesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEmailIdentityCertificatesOutput {
     certificates: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::IdentityCertificate>>>,
     next_token: Option<::std::string::String>,
@@ -16745,6 +16808,7 @@ impl PyOperationListEmailIdentityCertificatesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListEmailTemplatesOutput {
     templates_metadata: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::EmailTemplateMetadata>>>,
     next_token: Option<::std::string::String>,
@@ -16834,6 +16898,7 @@ impl PyOperationListEmailTemplatesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListExportJobsOutput {
     export_jobs: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::ExportJobSummary>>>,
     next_token: Option<::std::string::String>,
@@ -16917,6 +16982,7 @@ impl PyOperationListExportJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListImportJobsOutput {
     import_jobs: Option<::std::vec::Vec<Arc<SharedImportJobSummary>>>,
     next_token: Option<::std::string::String>,
@@ -17000,6 +17066,7 @@ impl PyOperationListImportJobsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListMultiRegionEndpointsOutput {
     multi_region_endpoints: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::MultiRegionEndpoint>>>,
     next_token: Option<::std::string::String>,
@@ -17089,6 +17156,7 @@ impl PyOperationListMultiRegionEndpointsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListRecommendationsOutput {
     recommendations: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::Recommendation>>>,
     next_token: Option<::std::string::String>,
@@ -17178,6 +17246,7 @@ impl PyOperationListRecommendationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListReputationEntitiesOutput {
     reputation_entities: Option<::std::vec::Vec<Arc<SharedReputationEntity>>>,
     next_token: Option<::std::string::String>,
@@ -17267,6 +17336,7 @@ impl PyOperationListReputationEntitiesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListResourceTenantsOutput {
     resource_tenants: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::ResourceTenantMetadata>>>,
     next_token: Option<::std::string::String>,
@@ -17356,6 +17426,7 @@ impl PyOperationListResourceTenantsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListSuppressedDestinationsOutput {
     suppressed_destination_summaries:
         Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::SuppressedDestinationSummary>>>,
@@ -17446,6 +17517,7 @@ impl PyOperationListSuppressedDestinationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: ::std::vec::Vec<Arc<aws_sdk_sesv2::types::Tag>>,
 }
@@ -17507,6 +17579,7 @@ impl PyOperationListTagsForResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTenantResourcesOutput {
     tenant_resources: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::TenantResource>>>,
     next_token: Option<::std::string::String>,
@@ -17596,6 +17669,7 @@ impl PyOperationListTenantResourcesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTenantsOutput {
     tenants: Option<::std::vec::Vec<Arc<aws_sdk_sesv2::types::TenantInfo>>>,
     next_token: Option<::std::string::String>,
@@ -18147,6 +18221,7 @@ impl PyOperationPutTenantSuppressionAttributesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSendBulkEmailOutput {
     bulk_email_entry_results: ::std::vec::Vec<Arc<aws_sdk_sesv2::types::BulkEmailEntryResult>>,
 }

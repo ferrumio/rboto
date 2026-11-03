@@ -805,7 +805,9 @@ class ServiceGenerator:
     def _shared_storage(self, name: str, rust_type: str, fields: tuple[RustField, ...]) -> str:
         # Streams are extracted into Python owners before constructing this value.
         fields = tuple(field for field in fields if self._kind(field.rust_type) != "byte_stream")
-        lines = [f"struct {name} {{"]
+        # Nested collection types mirror the model. Restrict this style allowance
+        # to generated storage declarations; conversions and getters remain linted.
+        lines = ["#[allow(clippy::type_complexity)]", f"struct {name} {{"]
         for field in fields:
             field_type = self._shared_type(field.rust_type)
             if field.optional:

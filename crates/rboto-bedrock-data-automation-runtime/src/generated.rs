@@ -582,6 +582,7 @@ impl PyTag {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDataAutomationStatusOutput {
     status: Option<aws_sdk_bedrockdataautomationruntime::types::AutomationJobStatus>,
     error_type: Option<::std::string::String>,
@@ -743,6 +744,7 @@ impl PyOperationGetDataAutomationStatusOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationInvokeDataAutomationOutput {
     output_configuration:
         Option<Arc<aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration>>,
@@ -858,6 +860,7 @@ impl PyOperationInvokeDataAutomationAsyncOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tags: Option<::std::vec::Vec<Arc<aws_sdk_bedrockdataautomationruntime::types::Tag>>>,
 }

@@ -15408,6 +15408,7 @@ impl PyAccountSharingInfo {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedActivation {
     activation_id: Option<::std::string::String>,
     description: Option<::std::string::String>,
@@ -15647,6 +15648,7 @@ impl PyAlarm {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAlarmConfiguration {
     ignore_poll_alarm_failure: bool,
     alarms: ::std::vec::Vec<Arc<aws_sdk_ssm::types::Alarm>>,
@@ -15745,6 +15747,7 @@ impl PyAlarmStateInformation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAssociation {
     name: Option<::std::string::String>,
     instance_id: Option<::std::string::String>,
@@ -16073,6 +16076,7 @@ impl PyAssociation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAssociationDescription {
     name: Option<::std::string::String>,
     instance_id: Option<::std::string::String>,
@@ -16804,6 +16808,7 @@ impl PyAssociationDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAssociationExecution {
     association_id: Option<::std::string::String>,
     association_version: Option<::std::string::String>,
@@ -17044,6 +17049,7 @@ impl PyAssociationExecution {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAssociationExecutionTarget {
     association_id: Option<::std::string::String>,
     association_version: Option<::std::string::String>,
@@ -17335,6 +17341,7 @@ impl PyAssociationStatus {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAssociationVersionInfo {
     association_id: Option<::std::string::String>,
     association_version: Option<::std::string::String>,
@@ -17943,6 +17950,7 @@ impl PyAttachmentInformation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAutomationExecution {
     automation_execution_id: Option<::std::string::String>,
     document_name: Option<::std::string::String>,
@@ -18854,6 +18862,7 @@ impl PyAutomationExecution {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedAutomationExecutionMetadata {
     automation_execution_id: Option<::std::string::String>,
     document_name: Option<::std::string::String>,
@@ -19707,6 +19716,7 @@ impl PyCloudWatchOutputConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCommand {
     command_id: Option<::std::string::String>,
     document_name: Option<::std::string::String>,
@@ -20271,6 +20281,7 @@ impl PyCommand {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCommandInvocation {
     command_id: Option<::std::string::String>,
     instance_id: Option<::std::string::String>,
@@ -20793,6 +20804,7 @@ impl PyComplianceExecutionSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedComplianceItem {
     compliance_type: Option<::std::string::String>,
     resource_type: Option<::std::string::String>,
@@ -21004,6 +21016,7 @@ impl PyComplianceItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedComplianceSummaryItem {
     compliance_type: Option<::std::string::String>,
     compliant_summary: Option<Arc<SharedCompliantSummary>>,
@@ -21105,6 +21118,7 @@ impl PyComplianceSummaryItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCompliantSummary {
     compliant_count: i32,
     severity_summary: Option<Arc<aws_sdk_ssm::types::SeveritySummary>>,
@@ -21170,6 +21184,7 @@ impl PyCompliantSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedCreateAssociationBatchRequestEntry {
     name: ::std::string::String,
     instance_id: Option<::std::string::String>,
@@ -21768,6 +21783,7 @@ impl PyDocumentDefaultVersionDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentDescription {
     sha1: Option<::std::string::String>,
     hash: Option<::std::string::String>,
@@ -22475,6 +22491,7 @@ impl PyDocumentDescription {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentIdentifier {
     name: Option<::std::string::String>,
     created_date: Option<::aws_smithy_types::DateTime>,
@@ -22828,6 +22845,7 @@ impl PyDocumentIdentifier {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentMetadataResponseInfo {
     reviewer_response: Option<::std::vec::Vec<Arc<SharedDocumentReviewerResponseSource>>>,
 }
@@ -23041,6 +23059,7 @@ impl PyDocumentReviewCommentSource {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedDocumentReviewerResponseSource {
     create_time: Option<::aws_smithy_types::DateTime>,
     updated_time: Option<::aws_smithy_types::DateTime>,
@@ -23299,6 +23318,7 @@ impl PyDocumentVersionInfo {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedEffectivePatch {
     patch: Option<Arc<aws_sdk_ssm::types::Patch>>,
     patch_status: Option<Arc<aws_sdk_ssm::types::PatchStatus>>,
@@ -23378,6 +23398,7 @@ impl PyEffectivePatch {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedFailedCreateAssociation {
     entry: Option<Arc<SharedCreateAssociationBatchRequestEntry>>,
     message: Option<::std::string::String>,
@@ -23664,6 +23685,7 @@ impl PyInstanceAssociation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInstanceAssociationOutputLocation {
     s3_location: Option<Arc<aws_sdk_ssm::types::S3OutputLocation>>,
 }
@@ -23725,6 +23747,7 @@ impl PyInstanceAssociationOutputLocation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInstanceAssociationOutputUrl {
     s3_output_url: Option<Arc<aws_sdk_ssm::types::S3OutputUrl>>,
 }
@@ -23784,6 +23807,7 @@ impl PyInstanceAssociationOutputUrl {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInstanceAssociationStatusInfo {
     association_id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -24045,6 +24069,7 @@ impl PyInstanceAssociationStatusInfo {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInstanceInformation {
     instance_id: Option<::std::string::String>,
     ping_status: Option<aws_sdk_ssm::types::PingStatus>,
@@ -24685,6 +24710,7 @@ impl PyInstancePatchState {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInstanceProperty {
     name: Option<::std::string::String>,
     instance_id: Option<::std::string::String>,
@@ -25227,6 +25253,7 @@ impl PyInstanceProperty {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryDeletionStatusItem {
     deletion_id: Option<::std::string::String>,
     type_name: Option<::std::string::String>,
@@ -25396,6 +25423,7 @@ impl PyInventoryDeletionStatusItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryDeletionSummary {
     total_count: i32,
     remaining_count: i32,
@@ -25552,6 +25580,7 @@ impl PyInventoryItemAttribute {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryItemSchema {
     type_name: ::std::string::String,
     version: Option<::std::string::String>,
@@ -25658,6 +25687,7 @@ impl PyInventoryItemSchema {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedInventoryResultEntity {
     id: Option<::std::string::String>,
     data: Option<
@@ -25971,6 +26001,7 @@ impl PyMaintenanceWindowExecution {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMaintenanceWindowExecutionTaskIdentity {
     window_execution_id: Option<::std::string::String>,
     task_execution_id: Option<::std::string::String>,
@@ -26563,6 +26594,7 @@ impl PyMaintenanceWindowLambdaParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMaintenanceWindowRunCommandParameters {
     comment: Option<::std::string::String>,
     cloud_watch_output_config: Option<Arc<aws_sdk_ssm::types::CloudWatchOutputConfig>>,
@@ -26870,6 +26902,7 @@ impl PyMaintenanceWindowStepFunctionsParameters {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMaintenanceWindowTarget {
     window_id: Option<::std::string::String>,
     window_target_id: Option<::std::string::String>,
@@ -27048,6 +27081,7 @@ impl PyMaintenanceWindowTarget {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMaintenanceWindowTask {
     window_id: Option<::std::string::String>,
     window_task_id: Option<::std::string::String>,
@@ -27405,6 +27439,7 @@ impl PyMaintenanceWindowTask {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedMaintenanceWindowTaskInvocationParameters {
     run_command: Option<Arc<SharedMaintenanceWindowRunCommandParameters>>,
     automation: Option<Arc<aws_sdk_ssm::types::MaintenanceWindowAutomationParameters>>,
@@ -27593,6 +27628,7 @@ impl PyMetadataValue {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNode {
     capture_time: Option<::aws_smithy_types::DateTime>,
     id: Option<::std::string::String>,
@@ -27759,6 +27795,7 @@ impl PyNodeOwnerInfo {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedNonCompliantSummary {
     non_compliant_count: i32,
     severity_summary: Option<Arc<aws_sdk_ssm::types::SeveritySummary>>,
@@ -27873,6 +27910,7 @@ impl PyNotificationConfig {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOpsEntity {
     id: Option<::std::string::String>,
     data: Option<
@@ -28005,6 +28043,7 @@ impl PyOpsEntityItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOpsItem {
     created_by: Option<::std::string::String>,
     ops_item_type: Option<::std::string::String>,
@@ -28531,6 +28570,7 @@ impl PyOpsItemDataValue {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOpsItemEventSummary {
     ops_item_id: Option<::std::string::String>,
     event_id: Option<::std::string::String>,
@@ -28738,6 +28778,7 @@ impl PyOpsItemNotification {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOpsItemRelatedItemSummary {
     ops_item_id: Option<::std::string::String>,
     association_id: Option<::std::string::String>,
@@ -28947,6 +28988,7 @@ impl PyOpsItemRelatedItemSummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedOpsItemSummary {
     created_by: Option<::std::string::String>,
     created_time: Option<::aws_smithy_types::DateTime>,
@@ -29504,6 +29546,7 @@ impl PyParameter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedParameterHistory {
     name: Option<::std::string::String>,
     r#type: Option<aws_sdk_ssm::types::ParameterType>,
@@ -29834,6 +29877,7 @@ impl PyParameterInlinePolicy {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedParameterMetadata {
     name: Option<::std::string::String>,
     arn: Option<::std::string::String>,
@@ -30554,6 +30598,7 @@ impl PyPatchFilter {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPatchFilterGroup {
     patch_filters: ::std::vec::Vec<Arc<aws_sdk_ssm::types::PatchFilter>>,
 }
@@ -30614,6 +30659,7 @@ impl PyPatchFilterGroup {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPatchGroupPatchBaselineMapping {
     patch_group: Option<::std::string::String>,
     baseline_identity: Option<Arc<aws_sdk_ssm::types::PatchBaselineIdentity>>,
@@ -30693,6 +30739,7 @@ impl PyPatchGroupPatchBaselineMapping {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPatchRule {
     patch_filter_group: Option<Arc<SharedPatchFilterGroup>>,
     compliance_level: Option<aws_sdk_ssm::types::PatchComplianceLevel>,
@@ -30819,6 +30866,7 @@ impl PyPatchRule {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPatchRuleGroup {
     patch_rules: ::std::vec::Vec<Arc<SharedPatchRule>>,
 }
@@ -31049,6 +31097,7 @@ impl PyResolvedTargets {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceComplianceSummaryItem {
     compliance_type: Option<::std::string::String>,
     resource_type: Option<::std::string::String>,
@@ -31252,6 +31301,7 @@ impl PyResourceComplianceSummaryItem {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceDataSyncAwsOrganizationsSource {
     organization_source_type: ::std::string::String,
     organizational_units:
@@ -31367,6 +31417,7 @@ impl PyResourceDataSyncDestinationDataSharing {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceDataSyncItem {
     sync_name: Option<::std::string::String>,
     sync_type: Option<::std::string::String>,
@@ -31620,6 +31671,7 @@ impl PyResourceDataSyncOrganizationalUnit {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceDataSyncS3Destination {
     bucket_name: ::std::string::String,
     prefix: Option<::std::string::String>,
@@ -31748,6 +31800,7 @@ impl PyResourceDataSyncS3Destination {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedResourceDataSyncSourceWithState {
     source_type: Option<::std::string::String>,
     aws_organizations_source: Option<Arc<SharedResourceDataSyncAwsOrganizationsSource>>,
@@ -31943,6 +31996,7 @@ impl PyReviewInformation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedRunbook {
     document_name: ::std::string::String,
     document_version: Option<::std::string::String>,
@@ -32412,6 +32466,7 @@ impl PyServiceSetting {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedSession {
     session_id: Option<::std::string::String>,
     target: Option<::std::string::String>,
@@ -32744,6 +32799,7 @@ impl PySeveritySummary {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedStepExecution {
     step_name: Option<::std::string::String>,
     action: Option<::std::string::String>,
@@ -33415,6 +33471,7 @@ impl PyTarget {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedTargetLocation {
     accounts: Option<::std::vec::Vec<::std::string::String>>,
     regions: Option<::std::vec::Vec<::std::string::String>>,
@@ -33699,6 +33756,7 @@ impl PyTargetLocation {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedValidationFinding {
     r#type: Option<aws_sdk_ssm::types::ValidationFindingType>,
     code: Option<aws_sdk_ssm::types::ValidationFindingCode>,
@@ -33996,6 +34054,7 @@ impl PyOperationCreateActivationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateAssociationOutput {
     association_description: Option<Arc<SharedAssociationDescription>>,
 }
@@ -34048,6 +34107,7 @@ impl PyOperationCreateAssociationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateAssociationBatchOutput {
     successful: Option<::std::vec::Vec<Arc<SharedAssociationDescription>>>,
     failed: Option<::std::vec::Vec<Arc<SharedFailedCreateAssociation>>>,
@@ -34191,6 +34251,7 @@ impl PyOperationCreateCloudConnectorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationCreateDocumentOutput {
     document_description: Option<Arc<SharedDocumentDescription>>,
 }
@@ -34472,6 +34533,7 @@ impl PyOperationDeleteDocumentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDeleteInventoryOutput {
     deletion_id: Option<::std::string::String>,
     type_name: Option<::std::string::String>,
@@ -34928,6 +34990,7 @@ impl PyOperationDeregisterTaskFromMaintenanceWindowOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeActivationsOutput {
     activation_list: Option<::std::vec::Vec<Arc<SharedActivation>>>,
     next_token: Option<::std::string::String>,
@@ -35017,6 +35080,7 @@ impl PyOperationDescribeActivationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeAssociationOutput {
     association_description: Option<Arc<SharedAssociationDescription>>,
 }
@@ -35075,6 +35139,7 @@ impl PyOperationDescribeAssociationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeAssociationExecutionTargetsOutput {
     association_execution_targets: Option<::std::vec::Vec<Arc<SharedAssociationExecutionTarget>>>,
     next_token: Option<::std::string::String>,
@@ -35155,6 +35220,7 @@ impl PyOperationDescribeAssociationExecutionTargetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeAssociationExecutionsOutput {
     association_executions: Option<::std::vec::Vec<Arc<SharedAssociationExecution>>>,
     next_token: Option<::std::string::String>,
@@ -35235,6 +35301,7 @@ impl PyOperationDescribeAssociationExecutionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeAutomationExecutionsOutput {
     automation_execution_metadata_list:
         Option<::std::vec::Vec<Arc<SharedAutomationExecutionMetadata>>>,
@@ -35331,6 +35398,7 @@ impl PyOperationDescribeAutomationExecutionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeAutomationStepExecutionsOutput {
     step_executions: Option<::std::vec::Vec<Arc<SharedStepExecution>>>,
     next_token: Option<::std::string::String>,
@@ -35411,6 +35479,7 @@ impl PyOperationDescribeAutomationStepExecutionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeAvailablePatchesOutput {
     patches: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::Patch>>>,
     next_token: Option<::std::string::String>,
@@ -35500,6 +35569,7 @@ impl PyOperationDescribeAvailablePatchesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeDocumentOutput {
     document: Option<Arc<SharedDocumentDescription>>,
 }
@@ -35552,6 +35622,7 @@ impl PyOperationDescribeDocumentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeDocumentPermissionOutput {
     account_ids: Option<::std::vec::Vec<::std::string::String>>,
     account_sharing_info_list: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::AccountSharingInfo>>>,
@@ -35669,6 +35740,7 @@ impl PyOperationDescribeDocumentPermissionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeEffectiveInstanceAssociationsOutput {
     associations: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::InstanceAssociation>>>,
     next_token: Option<::std::string::String>,
@@ -35749,6 +35821,7 @@ impl PyOperationDescribeEffectiveInstanceAssociationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeEffectivePatchesForPatchBaselineOutput {
     effective_patches: Option<::std::vec::Vec<Arc<SharedEffectivePatch>>>,
     next_token: Option<::std::string::String>,
@@ -35829,6 +35902,7 @@ impl PyOperationDescribeEffectivePatchesForPatchBaselineOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeInstanceAssociationsStatusOutput {
     instance_association_status_infos:
         Option<::std::vec::Vec<Arc<SharedInstanceAssociationStatusInfo>>>,
@@ -35911,6 +35985,7 @@ impl PyOperationDescribeInstanceAssociationsStatusOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeInstanceInformationOutput {
     instance_information_list: Option<::std::vec::Vec<Arc<SharedInstanceInformation>>>,
     next_token: Option<::std::string::String>,
@@ -36000,6 +36075,7 @@ impl PyOperationDescribeInstanceInformationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeInstancePatchStatesOutput {
     instance_patch_states: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::InstancePatchState>>>,
     next_token: Option<::std::string::String>,
@@ -36089,6 +36165,7 @@ impl PyOperationDescribeInstancePatchStatesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeInstancePatchStatesForPatchGroupOutput {
     instance_patch_states: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::InstancePatchState>>>,
     next_token: Option<::std::string::String>,
@@ -36169,6 +36246,7 @@ impl PyOperationDescribeInstancePatchStatesForPatchGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeInstancePatchesOutput {
     patches: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::PatchComplianceData>>>,
     next_token: Option<::std::string::String>,
@@ -36258,6 +36336,7 @@ impl PyOperationDescribeInstancePatchesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeInstancePropertiesOutput {
     instance_properties: Option<::std::vec::Vec<Arc<SharedInstanceProperty>>>,
     next_token: Option<::std::string::String>,
@@ -36347,6 +36426,7 @@ impl PyOperationDescribeInstancePropertiesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeInventoryDeletionsOutput {
     inventory_deletions: Option<::std::vec::Vec<Arc<SharedInventoryDeletionStatusItem>>>,
     next_token: Option<::std::string::String>,
@@ -36437,6 +36517,7 @@ impl PyOperationDescribeInventoryDeletionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowExecutionTaskInvocationsOutput {
     window_execution_task_invocation_identities: Option<
         ::std::vec::Vec<Arc<aws_sdk_ssm::types::MaintenanceWindowExecutionTaskInvocationIdentity>>,
@@ -36523,6 +36604,7 @@ impl PyOperationDescribeMaintenanceWindowExecutionTaskInvocationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowExecutionTasksOutput {
     window_execution_task_identities:
         Option<::std::vec::Vec<Arc<SharedMaintenanceWindowExecutionTaskIdentity>>>,
@@ -36605,6 +36687,7 @@ impl PyOperationDescribeMaintenanceWindowExecutionTasksOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowExecutionsOutput {
     window_executions: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::MaintenanceWindowExecution>>>,
     next_token: Option<::std::string::String>,
@@ -36685,6 +36768,7 @@ impl PyOperationDescribeMaintenanceWindowExecutionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowScheduleOutput {
     scheduled_window_executions:
         Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::ScheduledWindowExecution>>>,
@@ -36766,6 +36850,7 @@ impl PyOperationDescribeMaintenanceWindowScheduleOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowTargetsOutput {
     targets: Option<::std::vec::Vec<Arc<SharedMaintenanceWindowTarget>>>,
     next_token: Option<::std::string::String>,
@@ -36846,6 +36931,7 @@ impl PyOperationDescribeMaintenanceWindowTargetsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowTasksOutput {
     tasks: Option<::std::vec::Vec<Arc<SharedMaintenanceWindowTask>>>,
     next_token: Option<::std::string::String>,
@@ -36926,6 +37012,7 @@ impl PyOperationDescribeMaintenanceWindowTasksOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowsOutput {
     window_identities: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::MaintenanceWindowIdentity>>>,
     next_token: Option<::std::string::String>,
@@ -37015,6 +37102,7 @@ impl PyOperationDescribeMaintenanceWindowsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeMaintenanceWindowsForTargetOutput {
     window_identities:
         Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::MaintenanceWindowIdentityForTarget>>>,
@@ -37097,6 +37185,7 @@ impl PyOperationDescribeMaintenanceWindowsForTargetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeOpsItemsOutput {
     next_token: Option<::std::string::String>,
     ops_item_summaries: Option<::std::vec::Vec<Arc<SharedOpsItemSummary>>>,
@@ -37180,6 +37269,7 @@ impl PyOperationDescribeOpsItemsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeParametersOutput {
     parameters: Option<::std::vec::Vec<Arc<SharedParameterMetadata>>>,
     next_token: Option<::std::string::String>,
@@ -37267,6 +37357,7 @@ impl PyOperationDescribeParametersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribePatchBaselinesOutput {
     baseline_identities: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::PatchBaselineIdentity>>>,
     next_token: Option<::std::string::String>,
@@ -37574,6 +37665,7 @@ impl PyOperationDescribePatchGroupStateOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribePatchGroupsOutput {
     mappings: Option<::std::vec::Vec<Arc<SharedPatchGroupPatchBaselineMapping>>>,
     next_token: Option<::std::string::String>,
@@ -37737,6 +37829,7 @@ impl PyOperationDescribePatchPropertiesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationDescribeSessionsOutput {
     sessions: Option<::std::vec::Vec<Arc<SharedSession>>>,
     next_token: Option<::std::string::String>,
@@ -37837,6 +37930,7 @@ impl PyOperationDisassociateOpsItemRelatedItemOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAccessTokenOutput {
     credentials: Option<Arc<aws_sdk_ssm::types::Credentials>>,
     access_request_status: Option<aws_sdk_ssm::types::AccessRequestStatus>,
@@ -37905,6 +37999,7 @@ impl PyOperationGetAccessTokenOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetAutomationExecutionOutput {
     automation_execution: Option<Arc<SharedAutomationExecution>>,
 }
@@ -38165,6 +38260,7 @@ impl PyOperationGetCloudConnectorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetCommandInvocationOutput {
     command_id: Option<::std::string::String>,
     instance_id: Option<::std::string::String>,
@@ -38680,6 +38776,7 @@ impl PyOperationGetDeployablePatchSnapshotForInstanceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetDocumentOutput {
     name: Option<::std::string::String>,
     created_date: Option<::aws_smithy_types::DateTime>,
@@ -39079,6 +39176,7 @@ impl PyOperationGetExecutionPreviewOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetInventoryOutput {
     entities: Option<::std::vec::Vec<Arc<SharedInventoryResultEntity>>>,
     next_token: Option<::std::string::String>,
@@ -39162,6 +39260,7 @@ impl PyOperationGetInventoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetInventorySchemaOutput {
     schemas: Option<::std::vec::Vec<Arc<SharedInventoryItemSchema>>>,
     next_token: Option<::std::string::String>,
@@ -39609,6 +39708,7 @@ impl PyOperationGetMaintenanceWindowExecutionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMaintenanceWindowExecutionTaskOutput {
     window_execution_id: Option<::std::string::String>,
     task_execution_id: Option<::std::string::String>,
@@ -40166,6 +40266,7 @@ impl PyOperationGetMaintenanceWindowExecutionTaskInvocationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetMaintenanceWindowTaskOutput {
     window_id: Option<::std::string::String>,
     window_task_id: Option<::std::string::String>,
@@ -40551,6 +40652,7 @@ impl PyOperationGetMaintenanceWindowTaskOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetOpsItemOutput {
     ops_item: Option<Arc<SharedOpsItem>>,
 }
@@ -40603,6 +40705,7 @@ impl PyOperationGetOpsItemOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetOpsMetadataOutput {
     resource_id: Option<::std::string::String>,
     metadata: Option<
@@ -40708,6 +40811,7 @@ impl PyOperationGetOpsMetadataOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetOpsSummaryOutput {
     entities: Option<::std::vec::Vec<Arc<SharedOpsEntity>>>,
     next_token: Option<::std::string::String>,
@@ -40791,6 +40895,7 @@ impl PyOperationGetOpsSummaryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetParameterOutput {
     parameter: Option<Arc<aws_sdk_ssm::types::Parameter>>,
 }
@@ -40841,6 +40946,7 @@ impl PyOperationGetParameterOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetParameterHistoryOutput {
     parameters: Option<::std::vec::Vec<Arc<SharedParameterHistory>>>,
     next_token: Option<::std::string::String>,
@@ -40930,6 +41036,7 @@ impl PyOperationGetParameterHistoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetParametersOutput {
     parameters: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::Parameter>>>,
     invalid_parameters: Option<::std::vec::Vec<::std::string::String>>,
@@ -41023,6 +41130,7 @@ impl PyOperationGetParametersOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetParametersByPathOutput {
     parameters: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::Parameter>>>,
     next_token: Option<::std::string::String>,
@@ -41112,6 +41220,7 @@ impl PyOperationGetParametersByPathOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetPatchBaselineOutput {
     baseline_id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -41562,6 +41671,7 @@ impl PyOperationGetPatchBaselineForPatchGroupOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetResourcePoliciesOutput {
     next_token: Option<::std::string::String>,
     policies: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::GetResourcePoliciesResponseEntry>>>,
@@ -41652,6 +41762,7 @@ impl PyOperationGetResourcePoliciesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationGetServiceSettingOutput {
     service_setting: Option<Arc<aws_sdk_ssm::types::ServiceSetting>>,
 }
@@ -41753,6 +41864,7 @@ impl PyOperationLabelParameterVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAssociationVersionsOutput {
     association_versions: Option<::std::vec::Vec<Arc<SharedAssociationVersionInfo>>>,
     next_token: Option<::std::string::String>,
@@ -41842,6 +41954,7 @@ impl PyOperationListAssociationVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListAssociationsOutput {
     associations: Option<::std::vec::Vec<Arc<SharedAssociation>>>,
     next_token: Option<::std::string::String>,
@@ -41925,6 +42038,7 @@ impl PyOperationListAssociationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCloudConnectorsOutput {
     cloud_connectors: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::CloudConnectorSummary>>>,
     next_token: Option<::std::string::String>,
@@ -42014,6 +42128,7 @@ impl PyOperationListCloudConnectorsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCommandInvocationsOutput {
     command_invocations: Option<::std::vec::Vec<Arc<SharedCommandInvocation>>>,
     next_token: Option<::std::string::String>,
@@ -42103,6 +42218,7 @@ impl PyOperationListCommandInvocationsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListCommandsOutput {
     commands: Option<::std::vec::Vec<Arc<SharedCommand>>>,
     next_token: Option<::std::string::String>,
@@ -42186,6 +42302,7 @@ impl PyOperationListCommandsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListComplianceItemsOutput {
     compliance_items: Option<::std::vec::Vec<Arc<SharedComplianceItem>>>,
     next_token: Option<::std::string::String>,
@@ -42275,6 +42392,7 @@ impl PyOperationListComplianceItemsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListComplianceSummariesOutput {
     compliance_summary_items: Option<::std::vec::Vec<Arc<SharedComplianceSummaryItem>>>,
     next_token: Option<::std::string::String>,
@@ -42364,6 +42482,7 @@ impl PyOperationListComplianceSummariesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDocumentMetadataHistoryOutput {
     name: Option<::std::string::String>,
     document_version: Option<::std::string::String>,
@@ -42494,6 +42613,7 @@ impl PyOperationListDocumentMetadataHistoryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDocumentVersionsOutput {
     document_versions: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::DocumentVersionInfo>>>,
     next_token: Option<::std::string::String>,
@@ -42583,6 +42703,7 @@ impl PyOperationListDocumentVersionsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListDocumentsOutput {
     document_identifiers: Option<::std::vec::Vec<Arc<SharedDocumentIdentifier>>>,
     next_token: Option<::std::string::String>,
@@ -42801,6 +42922,7 @@ impl PyOperationListInventoryEntriesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListNodesOutput {
     nodes: Option<::std::vec::Vec<Arc<SharedNode>>>,
     next_token: Option<::std::string::String>,
@@ -42951,6 +43073,7 @@ impl PyOperationListNodesSummaryOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListOpsItemEventsOutput {
     next_token: Option<::std::string::String>,
     summaries: Option<::std::vec::Vec<Arc<SharedOpsItemEventSummary>>>,
@@ -43034,6 +43157,7 @@ impl PyOperationListOpsItemEventsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListOpsItemRelatedItemsOutput {
     next_token: Option<::std::string::String>,
     summaries: Option<::std::vec::Vec<Arc<SharedOpsItemRelatedItemSummary>>>,
@@ -43124,6 +43248,7 @@ impl PyOperationListOpsItemRelatedItemsOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListOpsMetadataOutput {
     ops_metadata_list: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::OpsMetadata>>>,
     next_token: Option<::std::string::String>,
@@ -43207,6 +43332,7 @@ impl PyOperationListOpsMetadataOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListResourceComplianceSummariesOutput {
     resource_compliance_summary_items:
         Option<::std::vec::Vec<Arc<SharedResourceComplianceSummaryItem>>>,
@@ -43289,6 +43415,7 @@ impl PyOperationListResourceComplianceSummariesOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListResourceDataSyncOutput {
     resource_data_sync_items: Option<::std::vec::Vec<Arc<SharedResourceDataSyncItem>>>,
     next_token: Option<::std::string::String>,
@@ -43378,6 +43505,7 @@ impl PyOperationListResourceDataSyncOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationListTagsForResourceOutput {
     tag_list: Option<::std::vec::Vec<Arc<aws_sdk_ssm::types::Tag>>>,
 }
@@ -43760,6 +43888,7 @@ impl PyOperationRemoveTagsFromResourceOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationResetServiceSettingOutput {
     service_setting: Option<Arc<aws_sdk_ssm::types::ServiceSetting>>,
 }
@@ -43894,6 +44023,7 @@ impl PyOperationSendAutomationSignalOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationSendCommandOutput {
     command: Option<Arc<SharedCommand>>,
 }
@@ -44272,6 +44402,7 @@ impl PyOperationUnlabelParameterVersionOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAssociationOutput {
     association_description: Option<Arc<SharedAssociationDescription>>,
 }
@@ -44324,6 +44455,7 @@ impl PyOperationUpdateAssociationOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateAssociationStatusOutput {
     association_description: Option<Arc<SharedAssociationDescription>>,
 }
@@ -44415,6 +44547,7 @@ impl PyOperationUpdateCloudConnectorOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateDocumentOutput {
     document_description: Option<Arc<SharedDocumentDescription>>,
 }
@@ -44467,6 +44600,7 @@ impl PyOperationUpdateDocumentOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateDocumentDefaultVersionOutput {
     description: Option<Arc<aws_sdk_ssm::types::DocumentDefaultVersionDescription>>,
 }
@@ -44731,6 +44865,7 @@ impl PyOperationUpdateMaintenanceWindowOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateMaintenanceWindowTargetOutput {
     window_id: Option<::std::string::String>,
     window_target_id: Option<::std::string::String>,
@@ -44883,6 +45018,7 @@ impl PyOperationUpdateMaintenanceWindowTargetOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdateMaintenanceWindowTaskOutput {
     window_id: Option<::std::string::String>,
     window_task_id: Option<::std::string::String>,
@@ -45309,6 +45445,7 @@ impl PyOperationUpdateOpsMetadataOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationUpdatePatchBaselineOutput {
     baseline_id: Option<::std::string::String>,
     name: Option<::std::string::String>,
@@ -45706,6 +45843,7 @@ impl PyOperationUpdateServiceSettingOutput {
     }
 }
 
+#[allow(clippy::type_complexity)]
 struct SharedPyOperationValidateCloudConnectorOutput {
     validation_findings: Option<::std::vec::Vec<Arc<SharedValidationFinding>>>,
     next_token: Option<::std::string::String>,
