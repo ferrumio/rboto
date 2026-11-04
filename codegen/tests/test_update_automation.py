@@ -10,6 +10,7 @@ from types import ModuleType
 from urllib.error import URLError
 
 import pytest
+from rboto_codegen.generator import ServiceGenerator
 from rboto_codegen.manifests import generate_manifests
 from rboto_codegen.registry import get_service, list_services
 from rboto_codegen.rust_crate import find_crate
@@ -44,6 +45,9 @@ def seed_repository(root: Path) -> None:
         path = root / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text((ROOT / relative).read_text())
+    setter = load_script("set_version")
+    for relative in ("Cargo.toml", "codegen/pyproject.toml"):
+        setter.replace_first_version(root / relative, "0.1.0")
     core = root / "packages/rboto/pyproject.toml"
     core.parent.mkdir(parents=True)
     core.write_text(
@@ -51,6 +55,9 @@ def seed_repository(root: Path) -> None:
         '[project.optional-dependencies]\nkms = ["rboto-kms==0.1.0"]\n'
         'all = ["rboto-kms==0.1.0"]\n'
     )
+    runtime = root / "packages/rboto/src/rboto/__init__.py"
+    runtime.parent.mkdir(parents=True)
+    runtime.write_text('__version__ = "0.1.0"\n')
 
 
 def test_manifests_bootstrap_a_crate_that_is_not_downloaded(tmp_path: Path) -> None:
@@ -65,7 +72,7 @@ def test_manifests_bootstrap_a_crate_that_is_not_downloaded(tmp_path: Path) -> N
     assert not (cargo.parent / "src/generated.rs").exists()
 
 
-@pytest.mark.parametrize("broken_pin", [None, "service", "extra", "all"])
+@pytest.mark.parametrize("broken_pin", [None, "service", "extra", "all", "runtime"])
 def test_version_bump_keeps_package_dependencies_synchronized(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, broken_pin: str | None
 ) -> None:
@@ -75,6 +82,13 @@ def test_version_bump_keeps_package_dependencies_synchronized(
     monkeypatch.setattr(sys, "argv", ["set_version.py", "0.2.1"])
     setter.main()
     _, package = generate_manifests(get_service("kms"), tmp_path)
+    generator = ServiceGenerator(
+        get_service("kms"), ROOT / "codegen/models/kms.json", tmp_path,
+    )
+    example = tmp_path / "examples/clients/kms.py"
+    example.parent.mkdir(parents=True)
+    example.write_text((ROOT / "examples/clients/kms.py").read_text())
+    runtime = generator.generate().core_init
     checker = load_script("check_version")
     monkeypatch.setattr(checker, "ROOT", tmp_path)
     monkeypatch.setattr(sys, "argv", ["check_version.py", "--expected", "0.2.1"])
@@ -87,11 +101,13 @@ def test_version_bump_keeps_package_dependencies_synchronized(
         return
     if broken_pin == "service":
         package.write_text(package.read_text().replace("rboto==0.2.1", "rboto==0.1.0"))
+    elif broken_pin == "runtime":
+        runtime.write_text('__version__ = "0.1.0"\n')
     else:
         core = tmp_path / "packages/rboto/pyproject.toml"
         old = f'{broken_pin if broken_pin == "all" else "kms"} = ["rboto-kms==0.2.1"]'
         core.write_text(core.read_text().replace(old, old.replace("0.2.1", "0.1.0")))
-    with pytest.raises(SystemExit, match="must"):
+    with pytest.raises(SystemExit, match="synchronized" if broken_pin == "runtime" else "must"):
         checker.main()
 
 

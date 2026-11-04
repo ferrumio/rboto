@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import tomllib
 from pathlib import Path
 from typing import cast
@@ -27,6 +28,19 @@ def workspace_version() -> str:
     return version
 
 
+def runtime_version() -> str:
+    path = ROOT / "packages/rboto/src/rboto/__init__.py"
+    for node in ast.parse(path.read_text()).body:
+        if isinstance(node, ast.Assign) and any(
+            isinstance(target, ast.Name) and target.id == "__version__"
+            for target in node.targets
+        ):
+            if isinstance(node.value, ast.Constant) and isinstance(node.value.value, str):
+                return node.value.value
+            break
+    raise SystemExit(f"{path.relative_to(ROOT)} must define a literal __version__")
+
+
 def check_dependencies(version: str) -> None:
     core = tomllib.loads((ROOT / "packages/rboto/pyproject.toml").read_text())["project"]
     expected_all: set[str] = set()
@@ -49,7 +63,10 @@ def main() -> None:
     parser.add_argument("--expected")
     args = parser.parse_args()
 
-    versions = {"Cargo workspace": workspace_version()}
+    versions = {
+        "Cargo workspace": workspace_version(),
+        "rboto.__version__": runtime_version(),
+    }
     for path in sorted((ROOT / "packages").glob("*/pyproject.toml")):
         versions[str(path.relative_to(ROOT))] = project_version(path)
     versions["codegen/pyproject.toml"] = project_version(

@@ -91,7 +91,7 @@ if TYPE_CHECKING:
     from rboto_sts import STSClient
     from rboto_transcribe_streaming import TranscribeStreamingClient
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __all__ = [
     "Attempt",
     "ClientConfig",

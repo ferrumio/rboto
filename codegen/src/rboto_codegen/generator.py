@@ -1533,7 +1533,9 @@ class ServiceGenerator:
         return self.templates.get_template("services.py.j2").render(services=list_services())
 
     def _render_core_init(self) -> str:
-        return self.templates.get_template("core_init.py.j2").render(services=list_services())
+        return self.templates.get_template("core_init.py.j2").render(
+            services=list_services(), version=package_version(self.repository_root),
+        )
 
     def _python_type(self, target: str, *, output: bool = False) -> str:
         target = target.replace("smithy.api#Primitive", "smithy.api#")
