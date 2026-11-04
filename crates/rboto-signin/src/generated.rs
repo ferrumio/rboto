@@ -1791,7 +1791,7 @@ impl SignInClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -1799,8 +1799,34 @@ impl SignInClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -1810,7 +1836,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_input_value = if let Some(value) = dict_value(params, "token_input")? {
             let converted_121 = (|| -> PyResult<_> {
                 let converted_121 = create_o_auth2_token_request_body_from_py(&value)?;
@@ -1831,7 +1857,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_o_auth2_token()
@@ -1864,7 +1890,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let grant_type_value = if let Some(value) = dict_value(params, "grant_type")? {
             let converted_122 = (|| -> PyResult<_> {
                 let converted_122: String = value.extract()?;
@@ -1901,7 +1927,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_o_auth2_token_with_iam()
@@ -1933,7 +1959,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
             let converted_124 = (|| -> PyResult<_> {
                 let converted_124: String = value.extract()?;
@@ -1954,7 +1980,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_console_authorization_configuration()
@@ -1987,7 +2013,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_id_value = if let Some(value) = dict_value(params, "statement_id")? {
             let converted_125 = (|| -> PyResult<_> {
                 let converted_125: String = value.extract()?;
@@ -2028,7 +2054,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_resource_permission_statement()
@@ -2062,7 +2088,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
             let converted_127 = (|| -> PyResult<_> {
                 let converted_127: String = value.extract()?;
@@ -2083,7 +2109,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_console_authorization_configuration()
@@ -2116,8 +2142,8 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_resource_policy();
             let result = if let Some(sink) = observation {
@@ -2148,7 +2174,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_value = if let Some(value) = dict_value(params, "token")? {
             let converted_128 = (|| -> PyResult<_> {
                 let converted_128: String = value.extract()?;
@@ -2185,7 +2211,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .introspect_o_auth2_token_with_iam()
@@ -2217,7 +2243,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_130 = (|| -> PyResult<_> {
                 let converted_130: i32 = value.extract()?;
@@ -2258,7 +2284,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_resource_permission_statements()
@@ -2292,7 +2318,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
             let converted_132 = (|| -> PyResult<_> {
                 let converted_132: String = value.extract()?;
@@ -2313,7 +2339,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_console_authorization_configuration()
@@ -2346,7 +2372,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let source_vpc_value = if let Some(value) = dict_value(params, "source_vpc")? {
             let converted_133 = (|| -> PyResult<_> {
                 let converted_133: String = value.extract()?;
@@ -2510,7 +2536,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_resource_permission_statement()
@@ -2548,7 +2574,7 @@ impl SignInClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_value = if let Some(value) = dict_value(params, "token")? {
             let converted_141 = (|| -> PyResult<_> {
                 let converted_141: String = value.extract()?;
@@ -2565,7 +2591,7 @@ impl SignInClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .revoke_o_auth2_token_with_iam()

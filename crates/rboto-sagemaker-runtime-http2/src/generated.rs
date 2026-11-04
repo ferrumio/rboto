@@ -294,12 +294,10 @@ fn response_stream_event_to_py(
 )]
 struct PyResponseStreamEventReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_sagemakerruntimehttp2::primitives::event_stream::EventReceiver<
-                    aws_sdk_sagemakerruntimehttp2::types::ResponseStreamEvent,
-                    aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError,
-                >,
+        ManagedResource<
+            aws_sdk_sagemakerruntimehttp2::primitives::event_stream::EventReceiver<
+                aws_sdk_sagemakerruntimehttp2::types::ResponseStreamEvent,
+                aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError,
             >,
         >,
     >,
@@ -315,7 +313,7 @@ impl PyResponseStreamEventReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -327,33 +325,60 @@ impl PyResponseStreamEventReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| response_stream_event_to_py(py, &event)),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| response_stream_event_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError::ModelStreamError(_)) => Some("ModelStreamError"),
                         Some(aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError::InternalStreamFailure(_)) => Some("InternalStreamFailure"),
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -379,7 +404,7 @@ impl SageMakerRuntimeHTTP2Client {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -387,8 +412,34 @@ impl SageMakerRuntimeHTTP2Client {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -398,7 +449,7 @@ impl SageMakerRuntimeHTTP2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let endpoint_name_value = if let Some(value) = dict_value(params, "endpoint_name")? {
             let converted_23 = (|| -> PyResult<_> {
                 let converted_23: String = value.extract()?;
@@ -493,7 +544,7 @@ impl SageMakerRuntimeHTTP2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_endpoint_with_bidirectional_stream()

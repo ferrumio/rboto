@@ -15121,7 +15121,7 @@ impl EventBridgeClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -15129,8 +15129,34 @@ impl EventBridgeClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -15140,7 +15166,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_673 = (|| -> PyResult<_> {
                 let converted_673: String = value.extract()?;
@@ -15157,7 +15183,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.activate_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -15186,7 +15212,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let replay_name_value = if let Some(value) = dict_value(params, "replay_name")? {
             let converted_674 = (|| -> PyResult<_> {
                 let converted_674: String = value.extract()?;
@@ -15207,7 +15233,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_replay().set_replay_name(replay_name_value);
             let result = if let Some(sink) = observation {
@@ -15236,7 +15262,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_675 = (|| -> PyResult<_> {
                 let converted_675: String = value.extract()?;
@@ -15358,7 +15384,7 @@ impl EventBridgeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_api_destination()
@@ -15394,7 +15420,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let archive_name_value = if let Some(value) = dict_value(params, "archive_name")? {
             let converted_682 = (|| -> PyResult<_> {
                 let converted_682: String = value.extract()?;
@@ -15516,7 +15542,7 @@ impl EventBridgeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_archive()
@@ -15552,7 +15578,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_688 = (|| -> PyResult<_> {
                 let converted_688: String = value.extract()?;
@@ -15676,7 +15702,7 @@ impl EventBridgeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_connection()
@@ -15712,7 +15738,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_695 = (|| -> PyResult<_> {
                 let converted_695: String = value.extract()?;
@@ -15849,7 +15875,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_endpoint()
@@ -15887,7 +15913,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_705 = (|| -> PyResult<_> {
                 let converted_705: String = value.extract()?;
@@ -16050,7 +16076,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_event_bus()
@@ -16089,7 +16115,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_716 = (|| -> PyResult<_> {
                 let converted_716: String = value.extract()?;
@@ -16122,7 +16148,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_partner_event_source()
@@ -16154,7 +16180,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_718 = (|| -> PyResult<_> {
                 let converted_718: String = value.extract()?;
@@ -16171,7 +16197,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.deactivate_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16200,7 +16226,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_719 = (|| -> PyResult<_> {
                 let converted_719: String = value.extract()?;
@@ -16217,7 +16243,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.deauthorize_connection().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16246,7 +16272,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_720 = (|| -> PyResult<_> {
                 let converted_720: String = value.extract()?;
@@ -16263,7 +16289,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_api_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16292,7 +16318,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let archive_name_value = if let Some(value) = dict_value(params, "archive_name")? {
             let converted_721 = (|| -> PyResult<_> {
                 let converted_721: String = value.extract()?;
@@ -16313,7 +16339,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_archive().set_archive_name(archive_name_value);
             let result = if let Some(sink) = observation {
@@ -16342,7 +16368,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_722 = (|| -> PyResult<_> {
                 let converted_722: String = value.extract()?;
@@ -16359,7 +16385,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_connection().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16388,7 +16414,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_723 = (|| -> PyResult<_> {
                 let converted_723: String = value.extract()?;
@@ -16405,7 +16431,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_endpoint().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16434,7 +16460,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_724 = (|| -> PyResult<_> {
                 let converted_724: String = value.extract()?;
@@ -16451,7 +16477,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_event_bus().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16480,7 +16506,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_725 = (|| -> PyResult<_> {
                 let converted_725: String = value.extract()?;
@@ -16513,7 +16539,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_partner_event_source()
@@ -16545,7 +16571,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_727 = (|| -> PyResult<_> {
                 let converted_727: String = value.extract()?;
@@ -16598,7 +16624,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_rule()
@@ -16630,7 +16656,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_730 = (|| -> PyResult<_> {
                 let converted_730: String = value.extract()?;
@@ -16647,7 +16673,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_api_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16676,7 +16702,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let archive_name_value = if let Some(value) = dict_value(params, "archive_name")? {
             let converted_731 = (|| -> PyResult<_> {
                 let converted_731: String = value.extract()?;
@@ -16697,7 +16723,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_archive()
@@ -16728,7 +16754,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_732 = (|| -> PyResult<_> {
                 let converted_732: String = value.extract()?;
@@ -16745,7 +16771,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_connection().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16776,7 +16802,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_733 = (|| -> PyResult<_> {
                 let converted_733: String = value.extract()?;
@@ -16813,7 +16839,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_endpoint()
@@ -16847,7 +16873,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_735 = (|| -> PyResult<_> {
                 let converted_735: String = value.extract()?;
@@ -16864,7 +16890,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_event_bus().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16895,7 +16921,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_736 = (|| -> PyResult<_> {
                 let converted_736: String = value.extract()?;
@@ -16912,7 +16938,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16941,7 +16967,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_737 = (|| -> PyResult<_> {
                 let converted_737: String = value.extract()?;
@@ -16958,7 +16984,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_partner_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16987,7 +17013,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let replay_name_value = if let Some(value) = dict_value(params, "replay_name")? {
             let converted_738 = (|| -> PyResult<_> {
                 let converted_738: String = value.extract()?;
@@ -17008,7 +17034,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_replay().set_replay_name(replay_name_value);
             let result = if let Some(sink) = observation {
@@ -17039,7 +17065,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_739 = (|| -> PyResult<_> {
                 let converted_739: String = value.extract()?;
@@ -17076,7 +17102,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_rule()
@@ -17108,7 +17134,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_741 = (|| -> PyResult<_> {
                 let converted_741: String = value.extract()?;
@@ -17145,7 +17171,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disable_rule()
@@ -17176,7 +17202,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_743 = (|| -> PyResult<_> {
                 let converted_743: String = value.extract()?;
@@ -17213,7 +17239,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .enable_rule()
@@ -17244,7 +17270,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_745 = (|| -> PyResult<_> {
                 let converted_745: String = value.extract()?;
@@ -17321,7 +17347,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_api_destinations()
@@ -17357,7 +17383,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_749 = (|| -> PyResult<_> {
                 let converted_749: String = value.extract()?;
@@ -17456,7 +17482,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_archives()
@@ -17493,7 +17519,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_755 = (|| -> PyResult<_> {
                 let converted_755: String = value.extract()?;
@@ -17572,7 +17598,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_connections()
@@ -17608,7 +17634,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_760 = (|| -> PyResult<_> {
                 let converted_760: String = value.extract()?;
@@ -17689,7 +17715,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_endpoints()
@@ -17725,7 +17751,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_764 = (|| -> PyResult<_> {
                 let converted_764: String = value.extract()?;
@@ -17782,7 +17808,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_event_buses()
@@ -17817,7 +17843,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_767 = (|| -> PyResult<_> {
                 let converted_767: String = value.extract()?;
@@ -17874,7 +17900,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_event_sources()
@@ -17909,7 +17935,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_source_name_value = if let Some(value) = dict_value(params, "event_source_name")?
         {
             let converted_770 = (|| -> PyResult<_> {
@@ -17967,7 +17993,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_partner_event_source_accounts()
@@ -18002,7 +18028,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_773 = (|| -> PyResult<_> {
                 let converted_773: String = value.extract()?;
@@ -18059,7 +18085,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_partner_event_sources()
@@ -18094,7 +18120,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_776 = (|| -> PyResult<_> {
                 let converted_776: String = value.extract()?;
@@ -18193,7 +18219,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_replays()
@@ -18229,7 +18255,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_arn_value = if let Some(value) = dict_value(params, "target_arn")? {
             let converted_782 = (|| -> PyResult<_> {
                 let converted_782: String = value.extract()?;
@@ -18306,7 +18332,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_rule_names_by_target()
@@ -18340,7 +18366,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_786 = (|| -> PyResult<_> {
                 let converted_786: String = value.extract()?;
@@ -18417,7 +18443,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_rules()
@@ -18452,7 +18478,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_790 = (|| -> PyResult<_> {
                 let converted_790: String = value.extract()?;
@@ -18473,7 +18499,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -18506,7 +18532,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_value = if let Some(value) = dict_value(params, "rule")? {
             let converted_791 = (|| -> PyResult<_> {
                 let converted_791: String = value.extract()?;
@@ -18579,7 +18605,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_targets_by_rule()
@@ -18615,7 +18641,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
             let converted_795 = (|| -> PyResult<_> {
                 let mut converted_795 =
@@ -18679,7 +18705,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_events()
@@ -18712,7 +18738,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
             let converted_801 = (|| -> PyResult<_> {
                 let mut converted_801 =
@@ -18757,7 +18783,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.put_partner_events().set_entries(entries_value);
             let result = if let Some(sink) = observation {
@@ -18788,7 +18814,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_bus_name_value = if let Some(value) = dict_value(params, "event_bus_name")? {
             let converted_806 = (|| -> PyResult<_> {
                 let converted_806: String = value.extract()?;
@@ -18901,7 +18927,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_permission()
@@ -18937,7 +18963,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_812 = (|| -> PyResult<_> {
                 let converted_812: String = value.extract()?;
@@ -19116,7 +19142,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_rule()
@@ -19153,7 +19179,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_value = if let Some(value) = dict_value(params, "rule")? {
             let converted_825 = (|| -> PyResult<_> {
                 let converted_825: String = value.extract()?;
@@ -19233,7 +19259,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_targets()
@@ -19267,7 +19293,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_id_value = if let Some(value) = dict_value(params, "statement_id")? {
             let converted_832 = (|| -> PyResult<_> {
                 let converted_832: String = value.extract()?;
@@ -19329,7 +19355,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .remove_permission()
@@ -19362,7 +19388,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_value = if let Some(value) = dict_value(params, "rule")? {
             let converted_835 = (|| -> PyResult<_> {
                 let converted_835: String = value.extract()?;
@@ -19454,7 +19480,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .remove_targets()
@@ -19490,7 +19516,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let replay_name_value = if let Some(value) = dict_value(params, "replay_name")? {
             let converted_843 = (|| -> PyResult<_> {
                 let converted_843: String = value.extract()?;
@@ -19621,7 +19647,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_replay()
@@ -19656,7 +19682,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_851 = (|| -> PyResult<_> {
                 let converted_851: String = value.extract()?;
@@ -19720,7 +19746,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -19751,7 +19777,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_pattern_value = if let Some(value) = dict_value(params, "event_pattern")? {
             let converted_857 = (|| -> PyResult<_> {
                 let converted_857: String = value.extract()?;
@@ -19788,7 +19814,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .test_event_pattern()
@@ -19820,7 +19846,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_859 = (|| -> PyResult<_> {
                 let converted_859: String = value.extract()?;
@@ -19884,7 +19910,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -19916,7 +19942,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_865 = (|| -> PyResult<_> {
                 let converted_865: String = value.extract()?;
@@ -20038,7 +20064,7 @@ impl EventBridgeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_api_destination()
@@ -20074,7 +20100,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let archive_name_value = if let Some(value) = dict_value(params, "archive_name")? {
             let converted_872 = (|| -> PyResult<_> {
                 let converted_872: String = value.extract()?;
@@ -20176,7 +20202,7 @@ impl EventBridgeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_archive()
@@ -20211,7 +20237,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_877 = (|| -> PyResult<_> {
                 let converted_877: String = value.extract()?;
@@ -20335,7 +20361,7 @@ impl EventBridgeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_connection()
@@ -20371,7 +20397,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_884 = (|| -> PyResult<_> {
                 let converted_884: String = value.extract()?;
@@ -20508,7 +20534,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_endpoint()
@@ -20546,7 +20572,7 @@ impl EventBridgeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_894 = (|| -> PyResult<_> {
                 let converted_894: String = value.extract()?;
@@ -20645,7 +20671,7 @@ impl EventBridgeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_event_bus()

@@ -6,6 +6,7 @@ mod document;
 mod error;
 mod event_stream;
 mod input_error;
+mod lifecycle;
 mod observation;
 mod runtime;
 mod stream;
@@ -16,6 +17,9 @@ pub use document::{document_from_py, document_to_py};
 pub use error::{http_sdk_error_to_py, raise_core_error, sdk_error_to_py};
 pub use event_stream::python_event_stream;
 pub use input_error::{InputPath, input_builder_error, input_error, input_operation, input_rule};
+pub use lifecycle::{
+    ManagedResource, client_closed, client_future_into_py, ready_future, stream_closed,
+};
 pub use observation::OperationObservation;
 pub use runtime::{future_into_py, runtime_worker_threads};
 pub use stream::collected_body_to_bytes;

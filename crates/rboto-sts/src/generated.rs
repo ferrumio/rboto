@@ -1620,7 +1620,7 @@ impl STSClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -1628,8 +1628,34 @@ impl STSClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -1639,7 +1665,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
             let converted_28 = (|| -> PyResult<_> {
                 let converted_28: String = value.extract()?;
@@ -1988,7 +2014,7 @@ impl STSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .assume_role()
@@ -2032,7 +2058,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
             let converted_57 = (|| -> PyResult<_> {
                 let converted_57: String = value.extract()?;
@@ -2189,7 +2215,7 @@ impl STSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .assume_role_with_saml()
@@ -2228,7 +2254,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
             let converted_68 = (|| -> PyResult<_> {
                 let converted_68: String = value.extract()?;
@@ -2407,7 +2433,7 @@ impl STSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .assume_role_with_web_identity()
@@ -2447,7 +2473,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_principal_value = if let Some(value) = dict_value(params, "target_principal")? {
             let converted_80 = (|| -> PyResult<_> {
                 let converted_80: String = value.extract()?;
@@ -2529,7 +2555,7 @@ impl STSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .assume_root()
@@ -2564,7 +2590,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let encoded_message_value = if let Some(value) = dict_value(params, "encoded_message")? {
             let converted_84 = (|| -> PyResult<_> {
                 let converted_84: String = value.extract()?;
@@ -2585,7 +2611,7 @@ impl STSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .decode_authorization_message()
@@ -2616,7 +2642,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let access_key_id_value = if let Some(value) = dict_value(params, "access_key_id")? {
             let converted_85 = (|| -> PyResult<_> {
                 let converted_85: String = value.extract()?;
@@ -2637,7 +2663,7 @@ impl STSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_access_key_info()
@@ -2668,8 +2694,8 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_caller_identity();
             let result = if let Some(sink) = observation {
@@ -2698,7 +2724,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trade_in_token_value = if let Some(value) = dict_value(params, "trade_in_token")? {
             let converted_86 = (|| -> PyResult<_> {
                 let converted_86: String = value.extract()?;
@@ -2719,7 +2745,7 @@ impl STSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_delegated_access_token()
@@ -2752,7 +2778,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_87 = (|| -> PyResult<_> {
                 let converted_87: String = value.extract()?;
@@ -2912,7 +2938,7 @@ impl STSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_federation_token()
@@ -2950,7 +2976,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
             let converted_101 = (|| -> PyResult<_> {
                 let converted_101: i32 = value.extract()?;
@@ -3032,7 +3058,7 @@ impl STSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_session_token()
@@ -3068,7 +3094,7 @@ impl STSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let audience_value = if let Some(value) = dict_value(params, "audience")? {
             let converted_105 = (|| -> PyResult<_> {
                 let mut converted_105 =
@@ -3196,7 +3222,7 @@ impl STSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_web_identity_token()

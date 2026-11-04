@@ -27622,7 +27622,14 @@ impl PyOperationUpdateSessionOutput {
     module = "rboto_bedrock_agent_runtime._native"
 )]
 struct PyAgenticRetrieveStreamResponseOutputReceiver {
-    inner: Arc<Mutex<Option<aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver< aws_sdk_bedrockagentruntime::types::AgenticRetrieveStreamResponseOutput, aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError, >>>>,
+    inner: Arc<
+        ManagedResource<
+            aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentruntime::types::AgenticRetrieveStreamResponseOutput,
+                aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError,
+            >,
+        >,
+    >,
     operation: &'static str,
 }
 
@@ -27635,7 +27642,7 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -27647,24 +27654,50 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| agentic_retrieve_stream_response_output_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::ValidationException(_)) => Some("ValidationException"),
@@ -27678,11 +27711,10 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -27693,12 +27725,10 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
 )]
 struct PyFlowResponseStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockagentruntime::types::FlowResponseStream,
-                    aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentruntime::types::FlowResponseStream,
+                aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError,
             >,
         >,
     >,
@@ -27714,7 +27744,7 @@ impl PyFlowResponseStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -27726,22 +27756,50 @@ impl PyFlowResponseStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| flow_response_stream_to_py(py, &event)),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| flow_response_stream_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::ValidationException(_)) => Some("ValidationException"),
@@ -27755,11 +27813,10 @@ impl PyFlowResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -27770,12 +27827,10 @@ impl PyFlowResponseStreamReceiver {
 )]
 struct PyInlineAgentResponseStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockagentruntime::types::InlineAgentResponseStream,
-                    aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentruntime::types::InlineAgentResponseStream,
+                aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError,
             >,
         >,
     >,
@@ -27791,7 +27846,7 @@ impl PyInlineAgentResponseStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -27803,24 +27858,50 @@ impl PyInlineAgentResponseStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| inline_agent_response_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::ValidationException(_)) => Some("ValidationException"),
@@ -27834,11 +27915,10 @@ impl PyInlineAgentResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -27849,12 +27929,10 @@ impl PyInlineAgentResponseStreamReceiver {
 )]
 struct PyOptimizedPromptStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockagentruntime::types::OptimizedPromptStream,
-                    aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentruntime::types::OptimizedPromptStream,
+                aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError,
             >,
         >,
     >,
@@ -27870,7 +27948,7 @@ impl PyOptimizedPromptStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -27882,22 +27960,50 @@ impl PyOptimizedPromptStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| optimized_prompt_stream_to_py(py, &event)),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| optimized_prompt_stream_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
@@ -27908,11 +28014,10 @@ impl PyOptimizedPromptStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -27923,12 +28028,10 @@ impl PyOptimizedPromptStreamReceiver {
 )]
 struct PyResponseStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockagentruntime::types::ResponseStream,
-                    aws_sdk_bedrockagentruntime::types::error::ResponseStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentruntime::types::ResponseStream,
+                aws_sdk_bedrockagentruntime::types::error::ResponseStreamError,
             >,
         >,
     >,
@@ -27944,7 +28047,7 @@ impl PyResponseStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -27956,22 +28059,50 @@ impl PyResponseStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| response_stream_to_py(py, &event)),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| response_stream_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::ValidationException(_)) => Some("ValidationException"),
@@ -27986,11 +28117,10 @@ impl PyResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -28000,7 +28130,7 @@ impl PyResponseStreamReceiver {
     module = "rboto_bedrock_agent_runtime._native"
 )]
 struct PyRetrieveAndGenerateStreamResponseOutputReceiver {
-    inner: Arc<Mutex<Option<aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver< aws_sdk_bedrockagentruntime::types::RetrieveAndGenerateStreamResponseOutput, aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError, >>>>,
+    inner: Arc<ManagedResource<aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver< aws_sdk_bedrockagentruntime::types::RetrieveAndGenerateStreamResponseOutput, aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError, >>>,
     operation: &'static str,
 }
 
@@ -28013,7 +28143,7 @@ impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -28025,24 +28155,50 @@ impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| {
-                    retrieve_and_generate_stream_response_output_to_py(py, &event)
-                }),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| retrieve_and_generate_stream_response_output_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::ValidationException(_)) => Some("ValidationException"),
@@ -28056,11 +28212,10 @@ impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -28158,7 +28313,7 @@ impl BedrockAgentRuntimeClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -28166,8 +28321,34 @@ impl BedrockAgentRuntimeClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -28177,7 +28358,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
             let converted_2446 = (|| -> PyResult<_> {
                 let mut converted_2446 =
@@ -28410,7 +28591,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .agentic_retrieve_stream()
@@ -28460,7 +28641,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
         {
             let converted_2463 = (|| -> PyResult<_> {
@@ -28542,7 +28723,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .check_ingested_document_acl()
@@ -28576,7 +28757,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let invocation_id_value = if let Some(value) = dict_value(params, "invocation_id")? {
             let converted_2467 = (|| -> PyResult<_> {
                 let converted_2467: String = value.extract()?;
@@ -28638,7 +28819,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_invocation()
@@ -28671,7 +28852,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_metadata_value = if let Some(value) = dict_value(params, "session_metadata")? {
             let converted_2470 = (|| -> PyResult<_> {
                 let mapping_2471 = value.cast::<PyDict>()?;
@@ -28781,7 +28962,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_session()
@@ -28814,7 +28995,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let agent_id_value = if let Some(value) = dict_value(params, "agent_id")? {
             let converted_2485 = (|| -> PyResult<_> {
                 let converted_2485: String = value.extract()?;
@@ -28891,7 +29072,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_agent_memory()
@@ -28925,7 +29106,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_identifier_value =
             if let Some(value) = dict_value(params, "session_identifier")? {
                 let converted_2489 = (|| -> PyResult<_> {
@@ -28947,7 +29128,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_session()
@@ -28978,7 +29159,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_identifier_value =
             if let Some(value) = dict_value(params, "session_identifier")? {
                 let converted_2490 = (|| -> PyResult<_> {
@@ -29000,7 +29181,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .end_session()
@@ -29030,7 +29211,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_generation_input_value =
             if let Some(value) = dict_value(params, "query_generation_input")? {
                 let converted_2491 = (|| -> PyResult<_> {
@@ -29073,7 +29254,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_query()
@@ -29107,7 +29288,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_2493 = (|| -> PyResult<_> {
                 let converted_2493: String = value.extract()?;
@@ -29226,7 +29407,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_agent_memory()
@@ -29262,7 +29443,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
         {
             let converted_2500 = (|| -> PyResult<_> {
@@ -29367,7 +29548,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_document_content()
@@ -29402,7 +29583,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
             let converted_2506 = (|| -> PyResult<_> {
                 let converted_2506: String = value.extract()?;
@@ -29465,7 +29646,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_execution_flow_snapshot()
@@ -29498,7 +29679,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
             let converted_2509 = (|| -> PyResult<_> {
                 let converted_2509: String = value.extract()?;
@@ -29561,7 +29742,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_flow_execution()
@@ -29596,7 +29777,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
         {
             let converted_2512 = (|| -> PyResult<_> {
@@ -29658,7 +29839,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_ingested_document_acl()
@@ -29693,7 +29874,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let invocation_identifier_value =
             if let Some(value) = dict_value(params, "invocation_identifier")? {
                 let converted_2515 = (|| -> PyResult<_> {
@@ -29757,7 +29938,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_invocation_step()
@@ -29792,7 +29973,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_identifier_value =
             if let Some(value) = dict_value(params, "session_identifier")? {
                 let converted_2518 = (|| -> PyResult<_> {
@@ -29814,7 +29995,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_session()
@@ -29844,7 +30025,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_state_value = if let Some(value) = dict_value(params, "session_state")? {
             let converted_2519 = (|| -> PyResult<_> {
                 let converted_2519 = session_state_from_py(&value)?;
@@ -30084,7 +30265,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_agent()
@@ -30143,7 +30324,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
             let converted_2534 = (|| -> PyResult<_> {
                 let converted_2534: String = value.extract()?;
@@ -30289,7 +30470,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_flow()
@@ -30338,7 +30519,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let customer_encryption_key_arn_value =
             if let Some(value) = dict_value(params, "customer_encryption_key_arn")? {
                 let converted_2545 = (|| -> PyResult<_> {
@@ -30892,7 +31073,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_inline_agent()
@@ -30959,7 +31140,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
             let converted_2587 = (|| -> PyResult<_> {
                 let converted_2587: String = value.extract()?;
@@ -31086,7 +31267,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_flow_execution_events()
@@ -31122,7 +31303,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
             let converted_2594 = (|| -> PyResult<_> {
                 let converted_2594: String = value.extract()?;
@@ -31204,7 +31385,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_flow_executions()
@@ -31240,7 +31421,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let invocation_identifier_value =
             if let Some(value) = dict_value(params, "invocation_identifier")? {
                 let converted_2598 = (|| -> PyResult<_> {
@@ -31323,7 +31504,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_invocation_steps()
@@ -31359,7 +31540,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_2602 = (|| -> PyResult<_> {
                 let converted_2602: String = value.extract()?;
@@ -31421,7 +31602,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_invocations()
@@ -31456,7 +31637,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_2605 = (|| -> PyResult<_> {
                 let converted_2605: i32 = value.extract()?;
@@ -31497,7 +31678,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_sessions()
@@ -31531,7 +31712,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_2607 = (|| -> PyResult<_> {
                 let converted_2607: String = value.extract()?;
@@ -31552,7 +31733,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -31583,7 +31764,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let input_value = if let Some(value) = dict_value(params, "input")? {
             let converted_2608 = (|| -> PyResult<_> {
                 let converted_2608 = input_prompt_from_py(&value)?;
@@ -31624,7 +31805,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .optimize_prompt()
@@ -31664,7 +31845,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_identifier_value =
             if let Some(value) = dict_value(params, "session_identifier")? {
                 let converted_2610 = (|| -> PyResult<_> {
@@ -31774,7 +31955,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_invocation_step()
@@ -31809,7 +31990,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queries_value = if let Some(value) = dict_value(params, "queries")? {
             let converted_2616 = (|| -> PyResult<_> {
                 let mut converted_2616 =
@@ -31937,7 +32118,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .rerank()
@@ -31972,7 +32153,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
         {
             let converted_2628 = (|| -> PyResult<_> {
@@ -32096,7 +32277,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .retrieve()
@@ -32133,7 +32314,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_2634 = (|| -> PyResult<_> {
                 let converted_2634: String = value.extract()?;
@@ -32237,7 +32418,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .retrieve_and_generate()
@@ -32274,7 +32455,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_2639 = (|| -> PyResult<_> {
                 let converted_2639: String = value.extract()?;
@@ -32378,7 +32559,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .retrieve_and_generate_stream()
@@ -32426,7 +32607,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
             let converted_2645 = (|| -> PyResult<_> {
                 let converted_2645: String = value.extract()?;
@@ -32553,7 +32734,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_flow_execution()
@@ -32588,7 +32769,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
             let converted_2654 = (|| -> PyResult<_> {
                 let converted_2654: String = value.extract()?;
@@ -32651,7 +32832,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_flow_execution()
@@ -32684,7 +32865,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_2657 = (|| -> PyResult<_> {
                 let converted_2657: String = value.extract()?;
@@ -32747,7 +32928,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -32778,7 +32959,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_2665 = (|| -> PyResult<_> {
                 let converted_2665: String = value.extract()?;
@@ -32842,7 +33023,7 @@ impl BedrockAgentRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -32874,7 +33055,7 @@ impl BedrockAgentRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_metadata_value = if let Some(value) = dict_value(params, "session_metadata")? {
             let converted_2671 = (|| -> PyResult<_> {
                 let mapping_2672 = value.cast::<PyDict>()?;
@@ -32942,7 +33123,7 @@ impl BedrockAgentRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_session()

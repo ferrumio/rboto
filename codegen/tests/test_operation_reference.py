@@ -64,7 +64,10 @@ def test_every_reference_matches_the_current_public_contract(
     # Independently compare published signatures with the Python methods.
     client = next(node for node in ast.parse(client_source).body
                   if isinstance(node, ast.ClassDef) and node.name == descriptor.client_class)
-    methods = {node.name: node for node in client.body if isinstance(node, ast.AsyncFunctionDef)}
+    methods = {
+        node.name: node for node in client.body if isinstance(node, ast.AsyncFunctionDef)
+        and node.name not in {"aclose", "__aenter__", "__aexit__"}
+    }
     assert {p.stem for p in (reference / "operations").glob("*.md")} == methods.keys()
     exports = types_from_contract(types_source, stub_source)
     for name, method in methods.items():

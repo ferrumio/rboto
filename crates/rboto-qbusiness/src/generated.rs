@@ -24901,12 +24901,10 @@ impl PyOperationUpdateWebExperienceOutput {
 #[pyclass(name = "ChatOutputStreamReceiver", module = "rboto_qbusiness._native")]
 struct PyChatOutputStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_qbusiness::primitives::event_stream::EventReceiver<
-                    aws_sdk_qbusiness::types::ChatOutputStream,
-                    aws_sdk_qbusiness::types::error::ChatOutputStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_qbusiness::primitives::event_stream::EventReceiver<
+                aws_sdk_qbusiness::types::ChatOutputStream,
+                aws_sdk_qbusiness::types::error::ChatOutputStreamError,
             >,
         >,
     >,
@@ -24922,7 +24920,7 @@ impl PyChatOutputStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -24934,29 +24932,61 @@ impl PyChatOutputStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| chat_output_stream_to_py(py, &event)),
-                Ok(None) => {
-                    *guard = None;
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    *guard = None;
-                    let code = None;
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
+                    };
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| chat_output_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            let code = None;
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
-                }
-            }
+                            Err(Python::attach(|py| {
+                                sdk_error_to_py_with_code(py, &error, operation, code)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -25145,7 +25175,7 @@ impl QBusinessClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -25153,8 +25183,34 @@ impl QBusinessClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -25164,7 +25220,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1272 = (|| -> PyResult<_> {
                 let converted_1272: String = value.extract()?;
@@ -25311,7 +25367,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .associate_permission()
@@ -25346,7 +25402,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1285 = (|| -> PyResult<_> {
                 let converted_1285: String = value.extract()?;
@@ -25447,7 +25503,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_delete_document()
@@ -25483,7 +25539,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1293 = (|| -> PyResult<_> {
                 let converted_1293: String = value.extract()?;
@@ -25600,7 +25656,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_put_document()
@@ -25637,7 +25693,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1302 = (|| -> PyResult<_> {
                 let converted_1302: String = value.extract()?;
@@ -25678,7 +25734,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .cancel_subscription()
@@ -25712,7 +25768,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1304 = (|| -> PyResult<_> {
                 let converted_1304: String = value.extract()?;
@@ -25881,7 +25937,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .chat()
@@ -25925,7 +25981,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1315 = (|| -> PyResult<_> {
                 let converted_1315: String = value.extract()?;
@@ -26233,7 +26289,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .chat_sync()
@@ -26277,7 +26333,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1337 = (|| -> PyResult<_> {
                 let converted_1337: String = value.extract()?;
@@ -26370,7 +26426,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .check_document_access()
@@ -26407,7 +26463,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1342 = (|| -> PyResult<_> {
                 let converted_1342: String = value.extract()?;
@@ -26470,7 +26526,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_anonymous_web_experience_url()
@@ -26503,7 +26559,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let display_name_value = if let Some(value) = dict_value(params, "display_name")? {
             let converted_1345 = (|| -> PyResult<_> {
                 let converted_1345: String = value.extract()?;
@@ -26836,7 +26892,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_application()
@@ -26880,7 +26936,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1368 = (|| -> PyResult<_> {
                 let converted_1368: String = value.extract()?;
@@ -27035,7 +27091,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_chat_response_configuration()
@@ -27070,7 +27126,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1384 = (|| -> PyResult<_> {
                 let converted_1384: String = value.extract()?;
@@ -27259,7 +27315,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_data_accessor()
@@ -27296,7 +27352,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1399 = (|| -> PyResult<_> {
                 let converted_1399: String = value.extract()?;
@@ -27555,7 +27611,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_data_source()
@@ -27597,7 +27653,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1415 = (|| -> PyResult<_> {
                 let converted_1415: String = value.extract()?;
@@ -27764,7 +27820,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_index()
@@ -27800,7 +27856,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1427 = (|| -> PyResult<_> {
                 let converted_1427: String = value.extract()?;
@@ -27988,7 +28044,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_plugin()
@@ -28026,7 +28082,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1440 = (|| -> PyResult<_> {
                 let converted_1440: String = value.extract()?;
@@ -28188,7 +28244,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_retriever()
@@ -28225,7 +28281,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1452 = (|| -> PyResult<_> {
                 let converted_1452: String = value.extract()?;
@@ -28308,7 +28364,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_subscription()
@@ -28344,7 +28400,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1457 = (|| -> PyResult<_> {
                 let converted_1457: String = value.extract()?;
@@ -28444,7 +28500,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_user()
@@ -28477,7 +28533,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1465 = (|| -> PyResult<_> {
                 let converted_1465: String = value.extract()?;
@@ -28760,7 +28816,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_web_experience()
@@ -28802,7 +28858,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1486 = (|| -> PyResult<_> {
                 let converted_1486: String = value.extract()?;
@@ -28823,7 +28879,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_application()
@@ -28854,7 +28910,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1487 = (|| -> PyResult<_> {
                 let converted_1487: String = value.extract()?;
@@ -28931,7 +28987,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_attachment()
@@ -28965,7 +29021,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1491 = (|| -> PyResult<_> {
                 let converted_1491: String = value.extract()?;
@@ -28986,7 +29042,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_chat_controls_configuration()
@@ -29017,7 +29073,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1492 = (|| -> PyResult<_> {
                 let converted_1492: String = value.extract()?;
@@ -29059,7 +29115,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_chat_response_configuration()
@@ -29091,7 +29147,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let conversation_id_value = if let Some(value) = dict_value(params, "conversation_id")? {
             let converted_1494 = (|| -> PyResult<_> {
                 let converted_1494: String = value.extract()?;
@@ -29148,7 +29204,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_conversation()
@@ -29181,7 +29237,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1497 = (|| -> PyResult<_> {
                 let converted_1497: String = value.extract()?;
@@ -29222,7 +29278,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_data_accessor()
@@ -29254,7 +29310,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1499 = (|| -> PyResult<_> {
                 let converted_1499: String = value.extract()?;
@@ -29311,7 +29367,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_data_source()
@@ -29344,7 +29400,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1502 = (|| -> PyResult<_> {
                 let converted_1502: String = value.extract()?;
@@ -29421,7 +29477,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_group()
@@ -29454,7 +29510,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1506 = (|| -> PyResult<_> {
                 let converted_1506: String = value.extract()?;
@@ -29491,7 +29547,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_index()
@@ -29522,7 +29578,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1508 = (|| -> PyResult<_> {
                 let converted_1508: String = value.extract()?;
@@ -29563,7 +29619,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_plugin()
@@ -29595,7 +29651,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1510 = (|| -> PyResult<_> {
                 let converted_1510: String = value.extract()?;
@@ -29636,7 +29692,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_retriever()
@@ -29668,7 +29724,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1512 = (|| -> PyResult<_> {
                 let converted_1512: String = value.extract()?;
@@ -29705,7 +29761,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_user()
@@ -29736,7 +29792,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1514 = (|| -> PyResult<_> {
                 let converted_1514: String = value.extract()?;
@@ -29778,7 +29834,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_web_experience()
@@ -29810,7 +29866,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1516 = (|| -> PyResult<_> {
                 let converted_1516: String = value.extract()?;
@@ -29851,7 +29907,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disassociate_permission()
@@ -29883,7 +29939,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1518 = (|| -> PyResult<_> {
                 let converted_1518: String = value.extract()?;
@@ -29904,7 +29960,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_application()
@@ -29937,7 +29993,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1519 = (|| -> PyResult<_> {
                 let converted_1519: String = value.extract()?;
@@ -29998,7 +30054,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_chat_controls_configuration()
@@ -30033,7 +30089,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1522 = (|| -> PyResult<_> {
                 let converted_1522: String = value.extract()?;
@@ -30075,7 +30131,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_chat_response_configuration()
@@ -30109,7 +30165,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1524 = (|| -> PyResult<_> {
                 let converted_1524: String = value.extract()?;
@@ -30150,7 +30206,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_accessor()
@@ -30184,7 +30240,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1526 = (|| -> PyResult<_> {
                 let converted_1526: String = value.extract()?;
@@ -30241,7 +30297,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_source()
@@ -30276,7 +30332,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1529 = (|| -> PyResult<_> {
                 let converted_1529: String = value.extract()?;
@@ -30375,7 +30431,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_document_content()
@@ -30410,7 +30466,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1535 = (|| -> PyResult<_> {
                 let converted_1535: String = value.extract()?;
@@ -30487,7 +30543,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_group()
@@ -30522,7 +30578,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1539 = (|| -> PyResult<_> {
                 let converted_1539: String = value.extract()?;
@@ -30559,7 +30615,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_index()
@@ -30592,7 +30648,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1541 = (|| -> PyResult<_> {
                 let converted_1541: String = value.extract()?;
@@ -30669,7 +30725,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_media()
@@ -30702,7 +30758,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1545 = (|| -> PyResult<_> {
                 let converted_1545: String = value.extract()?;
@@ -30743,7 +30799,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_plugin()
@@ -30776,7 +30832,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1547 = (|| -> PyResult<_> {
                 let converted_1547: String = value.extract()?;
@@ -30797,7 +30853,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_policy().set_application_id(application_id_value);
             let result = if let Some(sink) = observation {
@@ -30825,7 +30881,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1548 = (|| -> PyResult<_> {
                 let converted_1548: String = value.extract()?;
@@ -30866,7 +30922,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_retriever()
@@ -30898,7 +30954,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1550 = (|| -> PyResult<_> {
                 let converted_1550: String = value.extract()?;
@@ -30935,7 +30991,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_user()
@@ -30968,7 +31024,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1552 = (|| -> PyResult<_> {
                 let converted_1552: String = value.extract()?;
@@ -31010,7 +31066,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_web_experience()
@@ -31044,7 +31100,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1554 = (|| -> PyResult<_> {
                 let converted_1554: String = value.extract()?;
@@ -31085,7 +31141,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_applications()
@@ -31119,7 +31175,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1556 = (|| -> PyResult<_> {
                 let converted_1556: String = value.extract()?;
@@ -31216,7 +31272,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_attachments()
@@ -31253,7 +31309,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1561 = (|| -> PyResult<_> {
                 let converted_1561: String = value.extract()?;
@@ -31314,7 +31370,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_chat_response_configurations()
@@ -31349,7 +31405,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1564 = (|| -> PyResult<_> {
                 let converted_1564: String = value.extract()?;
@@ -31426,7 +31482,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_conversations()
@@ -31462,7 +31518,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1568 = (|| -> PyResult<_> {
                 let converted_1568: String = value.extract()?;
@@ -31523,7 +31579,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_accessors()
@@ -31558,7 +31614,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let data_source_id_value = if let Some(value) = dict_value(params, "data_source_id")? {
             let converted_1571 = (|| -> PyResult<_> {
                 let converted_1571: String = value.extract()?;
@@ -31728,7 +31784,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_source_sync_jobs()
@@ -31768,7 +31824,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1582 = (|| -> PyResult<_> {
                 let converted_1582: String = value.extract()?;
@@ -31845,7 +31901,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_sources()
@@ -31881,7 +31937,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1586 = (|| -> PyResult<_> {
                 let converted_1586: String = value.extract()?;
@@ -32001,7 +32057,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_documents()
@@ -32038,7 +32094,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1595 = (|| -> PyResult<_> {
                 let converted_1595: String = value.extract()?;
@@ -32161,7 +32217,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_groups()
@@ -32198,7 +32254,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1602 = (|| -> PyResult<_> {
                 let converted_1602: String = value.extract()?;
@@ -32259,7 +32315,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_indices()
@@ -32293,7 +32349,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let conversation_id_value = if let Some(value) = dict_value(params, "conversation_id")? {
             let converted_1605 = (|| -> PyResult<_> {
                 let converted_1605: String = value.extract()?;
@@ -32390,7 +32446,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_messages()
@@ -32427,7 +32483,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1610 = (|| -> PyResult<_> {
                 let converted_1610: String = value.extract()?;
@@ -32508,7 +32564,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_plugin_actions()
@@ -32544,7 +32600,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let plugin_type_value = if let Some(value) = dict_value(params, "plugin_type")? {
             let converted_1614 = (|| -> PyResult<_> {
                 let enum_value_1615: String = value.extract()?;
@@ -32607,7 +32663,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_plugin_type_actions()
@@ -32642,7 +32698,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1618 = (|| -> PyResult<_> {
                 let converted_1618: String = value.extract()?;
@@ -32683,7 +32739,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_plugin_type_metadata()
@@ -32717,7 +32773,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1620 = (|| -> PyResult<_> {
                 let converted_1620: String = value.extract()?;
@@ -32778,7 +32834,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_plugins()
@@ -32812,7 +32868,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1623 = (|| -> PyResult<_> {
                 let converted_1623: String = value.extract()?;
@@ -32873,7 +32929,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_retrievers()
@@ -32908,7 +32964,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1626 = (|| -> PyResult<_> {
                 let converted_1626: String = value.extract()?;
@@ -32969,7 +33025,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_subscriptions()
@@ -33004,7 +33060,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1629 = (|| -> PyResult<_> {
                 let converted_1629: String = value.extract()?;
@@ -33025,7 +33081,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -33058,7 +33114,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1630 = (|| -> PyResult<_> {
                 let converted_1630: String = value.extract()?;
@@ -33119,7 +33175,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_web_experiences()
@@ -33154,7 +33210,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1633 = (|| -> PyResult<_> {
                 let converted_1633: String = value.extract()?;
@@ -33278,7 +33334,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_feedback()
@@ -33313,7 +33369,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1640 = (|| -> PyResult<_> {
                 let converted_1640: String = value.extract()?;
@@ -33448,7 +33504,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_group()
@@ -33484,7 +33540,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1648 = (|| -> PyResult<_> {
                 let converted_1648: String = value.extract()?;
@@ -33605,7 +33661,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .search_relevant_content()
@@ -33643,7 +33699,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let data_source_id_value = if let Some(value) = dict_value(params, "data_source_id")? {
             let converted_1654 = (|| -> PyResult<_> {
                 let converted_1654: String = value.extract()?;
@@ -33700,7 +33756,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_data_source_sync_job()
@@ -33733,7 +33789,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let data_source_id_value = if let Some(value) = dict_value(params, "data_source_id")? {
             let converted_1657 = (|| -> PyResult<_> {
                 let converted_1657: String = value.extract()?;
@@ -33790,7 +33846,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_data_source_sync_job()
@@ -33823,7 +33879,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1660 = (|| -> PyResult<_> {
                 let converted_1660: String = value.extract()?;
@@ -33887,7 +33943,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -33918,7 +33974,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1666 = (|| -> PyResult<_> {
                 let converted_1666: String = value.extract()?;
@@ -33982,7 +34038,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -34014,7 +34070,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1672 = (|| -> PyResult<_> {
                 let converted_1672: String = value.extract()?;
@@ -34196,7 +34252,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_application()
@@ -34235,7 +34291,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1681 = (|| -> PyResult<_> {
                 let converted_1681: String = value.extract()?;
@@ -34471,7 +34527,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_chat_controls_configuration()
@@ -34516,7 +34572,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1699 = (|| -> PyResult<_> {
                 let converted_1699: String = value.extract()?;
@@ -34649,7 +34705,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_chat_response_configuration()
@@ -34684,7 +34740,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1711 = (|| -> PyResult<_> {
                 let converted_1711: String = value.extract()?;
@@ -34810,7 +34866,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_data_accessor()
@@ -34845,7 +34901,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1720 = (|| -> PyResult<_> {
                 let converted_1720: String = value.extract()?;
@@ -35061,7 +35117,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_data_source()
@@ -35102,7 +35158,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1731 = (|| -> PyResult<_> {
                 let converted_1731: String = value.extract()?;
@@ -35245,7 +35301,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_index()
@@ -35280,7 +35336,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1741 = (|| -> PyResult<_> {
                 let converted_1741: String = value.extract()?;
@@ -35425,7 +35481,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_plugin()
@@ -35462,7 +35518,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1749 = (|| -> PyResult<_> {
                 let converted_1749: String = value.extract()?;
@@ -35559,7 +35615,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_retriever()
@@ -35594,7 +35650,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1754 = (|| -> PyResult<_> {
                 let converted_1754: String = value.extract()?;
@@ -35657,7 +35713,7 @@ impl QBusinessClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_subscription()
@@ -35692,7 +35748,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1758 = (|| -> PyResult<_> {
                 let converted_1758: String = value.extract()?;
@@ -35817,7 +35873,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_user()
@@ -35852,7 +35908,7 @@ impl QBusinessClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let application_id_value = if let Some(value) = dict_value(params, "application_id")? {
             let converted_1770 = (|| -> PyResult<_> {
                 let converted_1770: String = value.extract()?;
@@ -36114,7 +36170,7 @@ impl QBusinessClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_web_experience()

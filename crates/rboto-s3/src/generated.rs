@@ -29941,12 +29941,10 @@ impl PyOperationUploadPartCopyOutput {
 )]
 struct PySelectObjectContentEventStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_s3::primitives::event_stream::EventReceiver<
-                    aws_sdk_s3::types::SelectObjectContentEventStream,
-                    aws_sdk_s3::types::error::SelectObjectContentEventStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_s3::primitives::event_stream::EventReceiver<
+                aws_sdk_s3::types::SelectObjectContentEventStream,
+                aws_sdk_s3::types::error::SelectObjectContentEventStreamError,
             >,
         >,
     >,
@@ -29962,7 +29960,7 @@ impl PySelectObjectContentEventStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -29974,31 +29972,63 @@ impl PySelectObjectContentEventStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    Python::attach(|py| select_object_content_event_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    *guard = None;
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    *guard = None;
-                    let code = None;
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
+                    };
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                select_object_content_event_stream_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            let code = None;
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
-                }
-            }
+                            Err(Python::attach(|py| {
+                                sdk_error_to_py_with_code(py, &error, operation, code)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -30203,7 +30233,7 @@ impl S3Client {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -30211,8 +30241,34 @@ impl S3Client {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -30222,7 +30278,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1333 = (|| -> PyResult<_> {
                 let converted_1333: String = value.extract()?;
@@ -30344,7 +30400,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .abort_multipart_upload()
@@ -30380,7 +30436,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1341 = (|| -> PyResult<_> {
                 let converted_1341: String = value.extract()?;
@@ -30839,7 +30895,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .complete_multipart_upload()
@@ -30892,7 +30948,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
             let converted_1366 = (|| -> PyResult<_> {
                 let enum_value_1367: String = value.extract()?;
@@ -31912,7 +31968,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .copy_object()
@@ -31994,7 +32050,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
             let converted_1434 = (|| -> PyResult<_> {
                 let enum_value_1435: String = value.extract()?;
@@ -32220,7 +32276,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_bucket()
@@ -32261,7 +32317,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1448 = (|| -> PyResult<_> {
                 let converted_1448: String = value.extract()?;
@@ -32363,7 +32419,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_bucket_metadata_configuration()
@@ -32400,7 +32456,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1454 = (|| -> PyResult<_> {
                 let converted_1454: String = value.extract()?;
@@ -32502,7 +32558,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_bucket_metadata_table_configuration()
@@ -32539,7 +32595,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
             let converted_1460 = (|| -> PyResult<_> {
                 let enum_value_1461: String = value.extract()?;
@@ -33278,7 +33334,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_multipart_upload()
@@ -33346,7 +33402,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_mode_value = if let Some(value) = dict_value(params, "session_mode")? {
             let converted_1511 = (|| -> PyResult<_> {
                 let enum_value_1512: String = value.extract()?;
@@ -33469,7 +33525,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_session()
@@ -33507,7 +33563,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1519 = (|| -> PyResult<_> {
                 let converted_1519: String = value.extract()?;
@@ -33545,7 +33601,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket()
@@ -33577,7 +33633,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1521 = (|| -> PyResult<_> {
                 let converted_1521: String = value.extract()?;
@@ -33631,7 +33687,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_analytics_configuration()
@@ -33666,7 +33722,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1524 = (|| -> PyResult<_> {
                 let converted_1524: String = value.extract()?;
@@ -33704,7 +33760,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_cors()
@@ -33736,7 +33792,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1526 = (|| -> PyResult<_> {
                 let converted_1526: String = value.extract()?;
@@ -33774,7 +33830,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_encryption()
@@ -33806,7 +33862,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1528 = (|| -> PyResult<_> {
                 let converted_1528: String = value.extract()?;
@@ -33860,7 +33916,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_intelligent_tiering_configuration()
@@ -33895,7 +33951,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1531 = (|| -> PyResult<_> {
                 let converted_1531: String = value.extract()?;
@@ -33949,7 +34005,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_inventory_configuration()
@@ -33984,7 +34040,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1534 = (|| -> PyResult<_> {
                 let converted_1534: String = value.extract()?;
@@ -34022,7 +34078,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_lifecycle()
@@ -34054,7 +34110,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1536 = (|| -> PyResult<_> {
                 let converted_1536: String = value.extract()?;
@@ -34092,7 +34148,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_metadata_configuration()
@@ -34126,7 +34182,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1538 = (|| -> PyResult<_> {
                 let converted_1538: String = value.extract()?;
@@ -34164,7 +34220,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_metadata_table_configuration()
@@ -34198,7 +34254,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1540 = (|| -> PyResult<_> {
                 let converted_1540: String = value.extract()?;
@@ -34252,7 +34308,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_metrics_configuration()
@@ -34285,7 +34341,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1543 = (|| -> PyResult<_> {
                 let converted_1543: String = value.extract()?;
@@ -34323,7 +34379,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_ownership_controls()
@@ -34355,7 +34411,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1545 = (|| -> PyResult<_> {
                 let converted_1545: String = value.extract()?;
@@ -34393,7 +34449,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_policy()
@@ -34425,7 +34481,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1547 = (|| -> PyResult<_> {
                 let converted_1547: String = value.extract()?;
@@ -34463,7 +34519,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_replication()
@@ -34495,7 +34551,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1549 = (|| -> PyResult<_> {
                 let converted_1549: String = value.extract()?;
@@ -34533,7 +34589,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_tagging()
@@ -34565,7 +34621,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1551 = (|| -> PyResult<_> {
                 let converted_1551: String = value.extract()?;
@@ -34603,7 +34659,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_bucket_website()
@@ -34635,7 +34691,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1553 = (|| -> PyResult<_> {
                 let converted_1553: String = value.extract()?;
@@ -34830,7 +34886,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_object()
@@ -34870,7 +34926,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1565 = (|| -> PyResult<_> {
                 let converted_1565: String = value.extract()?;
@@ -35006,7 +35062,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_object_annotation()
@@ -35043,7 +35099,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1573 = (|| -> PyResult<_> {
                 let converted_1573: String = value.extract()?;
@@ -35117,7 +35173,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_object_tagging()
@@ -35151,7 +35207,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1577 = (|| -> PyResult<_> {
                 let converted_1577: String = value.extract()?;
@@ -35291,7 +35347,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_objects()
@@ -35330,7 +35386,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1586 = (|| -> PyResult<_> {
                 let converted_1586: String = value.extract()?;
@@ -35368,7 +35424,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_public_access_block()
@@ -35400,7 +35456,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1588 = (|| -> PyResult<_> {
                 let converted_1588: String = value.extract()?;
@@ -35438,7 +35494,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_abac()
@@ -35472,7 +35528,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1590 = (|| -> PyResult<_> {
                 let converted_1590: String = value.extract()?;
@@ -35532,7 +35588,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_accelerate_configuration()
@@ -35565,7 +35621,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1594 = (|| -> PyResult<_> {
                 let converted_1594: String = value.extract()?;
@@ -35603,7 +35659,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_acl()
@@ -35637,7 +35693,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1596 = (|| -> PyResult<_> {
                 let converted_1596: String = value.extract()?;
@@ -35691,7 +35747,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_analytics_configuration()
@@ -35726,7 +35782,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1599 = (|| -> PyResult<_> {
                 let converted_1599: String = value.extract()?;
@@ -35764,7 +35820,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_cors()
@@ -35798,7 +35854,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1601 = (|| -> PyResult<_> {
                 let converted_1601: String = value.extract()?;
@@ -35836,7 +35892,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_encryption()
@@ -35870,7 +35926,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1603 = (|| -> PyResult<_> {
                 let converted_1603: String = value.extract()?;
@@ -35924,7 +35980,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_intelligent_tiering_configuration()
@@ -35961,7 +36017,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1606 = (|| -> PyResult<_> {
                 let converted_1606: String = value.extract()?;
@@ -36015,7 +36071,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_inventory_configuration()
@@ -36050,7 +36106,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1609 = (|| -> PyResult<_> {
                 let converted_1609: String = value.extract()?;
@@ -36088,7 +36144,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_lifecycle_configuration()
@@ -36122,7 +36178,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1611 = (|| -> PyResult<_> {
                 let converted_1611: String = value.extract()?;
@@ -36160,7 +36216,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_location()
@@ -36192,7 +36248,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1613 = (|| -> PyResult<_> {
                 let converted_1613: String = value.extract()?;
@@ -36230,7 +36286,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_logging()
@@ -36264,7 +36320,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1615 = (|| -> PyResult<_> {
                 let converted_1615: String = value.extract()?;
@@ -36302,7 +36358,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_metadata_configuration()
@@ -36336,7 +36392,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1617 = (|| -> PyResult<_> {
                 let converted_1617: String = value.extract()?;
@@ -36374,7 +36430,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_metadata_table_configuration()
@@ -36410,7 +36466,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1619 = (|| -> PyResult<_> {
                 let converted_1619: String = value.extract()?;
@@ -36464,7 +36520,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_metrics_configuration()
@@ -36499,7 +36555,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1622 = (|| -> PyResult<_> {
                 let converted_1622: String = value.extract()?;
@@ -36537,7 +36593,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_notification_configuration()
@@ -36573,7 +36629,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1624 = (|| -> PyResult<_> {
                 let converted_1624: String = value.extract()?;
@@ -36611,7 +36667,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_ownership_controls()
@@ -36645,7 +36701,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1626 = (|| -> PyResult<_> {
                 let converted_1626: String = value.extract()?;
@@ -36683,7 +36739,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_policy()
@@ -36715,7 +36771,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1628 = (|| -> PyResult<_> {
                 let converted_1628: String = value.extract()?;
@@ -36753,7 +36809,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_policy_status()
@@ -36787,7 +36843,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1630 = (|| -> PyResult<_> {
                 let converted_1630: String = value.extract()?;
@@ -36825,7 +36881,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_replication()
@@ -36859,7 +36915,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1632 = (|| -> PyResult<_> {
                 let converted_1632: String = value.extract()?;
@@ -36897,7 +36953,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_request_payment()
@@ -36929,7 +36985,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1634 = (|| -> PyResult<_> {
                 let converted_1634: String = value.extract()?;
@@ -36967,7 +37023,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_tagging()
@@ -37001,7 +37057,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1636 = (|| -> PyResult<_> {
                 let converted_1636: String = value.extract()?;
@@ -37039,7 +37095,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_versioning()
@@ -37071,7 +37127,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1638 = (|| -> PyResult<_> {
                 let converted_1638: String = value.extract()?;
@@ -37109,7 +37165,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_bucket_website()
@@ -37143,7 +37199,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1640 = (|| -> PyResult<_> {
                 let converted_1640: String = value.extract()?;
@@ -37577,7 +37633,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object()
@@ -37637,7 +37693,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1666 = (|| -> PyResult<_> {
                 let converted_1666: String = value.extract()?;
@@ -37733,7 +37789,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_acl()
@@ -37770,7 +37826,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1672 = (|| -> PyResult<_> {
                 let converted_1672: String = value.extract()?;
@@ -37908,7 +37964,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_annotation()
@@ -37955,7 +38011,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1681 = (|| -> PyResult<_> {
                 let converted_1681: String = value.extract()?;
@@ -38200,7 +38256,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_attributes()
@@ -38243,7 +38299,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1698 = (|| -> PyResult<_> {
                 let converted_1698: String = value.extract()?;
@@ -38339,7 +38395,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_legal_hold()
@@ -38376,7 +38432,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1704 = (|| -> PyResult<_> {
                 let converted_1704: String = value.extract()?;
@@ -38414,7 +38470,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_lock_configuration()
@@ -38448,7 +38504,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1706 = (|| -> PyResult<_> {
                 let converted_1706: String = value.extract()?;
@@ -38544,7 +38600,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_retention()
@@ -38581,7 +38637,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1712 = (|| -> PyResult<_> {
                 let converted_1712: String = value.extract()?;
@@ -38677,7 +38733,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_tagging()
@@ -38714,7 +38770,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1718 = (|| -> PyResult<_> {
                 let converted_1718: String = value.extract()?;
@@ -38790,7 +38846,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_object_torrent()
@@ -38834,7 +38890,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1723 = (|| -> PyResult<_> {
                 let converted_1723: String = value.extract()?;
@@ -38872,7 +38928,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_public_access_block()
@@ -38906,7 +38962,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1725 = (|| -> PyResult<_> {
                 let converted_1725: String = value.extract()?;
@@ -38944,7 +39000,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .head_bucket()
@@ -38975,7 +39031,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1727 = (|| -> PyResult<_> {
                 let converted_1727: String = value.extract()?;
@@ -39409,7 +39465,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .head_object()
@@ -39459,7 +39515,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1753 = (|| -> PyResult<_> {
                 let converted_1753: String = value.extract()?;
@@ -39518,7 +39574,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_bucket_analytics_configurations()
@@ -39555,7 +39611,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1756 = (|| -> PyResult<_> {
                 let converted_1756: String = value.extract()?;
@@ -39614,7 +39670,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_bucket_intelligent_tiering_configurations()
@@ -39653,7 +39709,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1759 = (|| -> PyResult<_> {
                 let converted_1759: String = value.extract()?;
@@ -39712,7 +39768,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_bucket_inventory_configurations()
@@ -39749,7 +39805,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1762 = (|| -> PyResult<_> {
                 let converted_1762: String = value.extract()?;
@@ -39808,7 +39864,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_bucket_metrics_configurations()
@@ -39843,7 +39899,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_buckets_value = if let Some(value) = dict_value(params, "max_buckets")? {
             let converted_1765 = (|| -> PyResult<_> {
                 let converted_1765: i32 = value.extract()?;
@@ -39921,7 +39977,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_buckets()
@@ -39956,7 +40012,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
                 let converted_1769 = (|| -> PyResult<_> {
@@ -39999,7 +40055,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_directory_buckets()
@@ -40033,7 +40089,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1771 = (|| -> PyResult<_> {
                 let converted_1771: String = value.extract()?;
@@ -40211,7 +40267,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_multipart_uploads()
@@ -40252,7 +40308,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1782 = (|| -> PyResult<_> {
                 let converted_1782: String = value.extract()?;
@@ -40411,7 +40467,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_object_annotations()
@@ -40451,7 +40507,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1791 = (|| -> PyResult<_> {
                 let converted_1791: String = value.extract()?;
@@ -40674,7 +40730,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_object_versions()
@@ -40716,7 +40772,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1808 = (|| -> PyResult<_> {
                 let converted_1808: String = value.extract()?;
@@ -40914,7 +40970,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_objects()
@@ -40954,7 +41010,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1824 = (|| -> PyResult<_> {
                 let converted_1824: String = value.extract()?;
@@ -41197,7 +41253,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_objects_v2()
@@ -41240,7 +41296,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1842 = (|| -> PyResult<_> {
                 let converted_1842: String = value.extract()?;
@@ -41439,7 +41495,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_parts()
@@ -41480,7 +41536,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1853 = (|| -> PyResult<_> {
                 let converted_1853: String = value.extract()?;
@@ -41581,7 +41637,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_abac()
@@ -41616,7 +41672,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1859 = (|| -> PyResult<_> {
                 let converted_1859: String = value.extract()?;
@@ -41698,7 +41754,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_accelerate_configuration()
@@ -41732,7 +41788,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
             let converted_1864 = (|| -> PyResult<_> {
                 let enum_value_1865: String = value.extract()?;
@@ -41957,7 +42013,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_acl()
@@ -41998,7 +42054,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1877 = (|| -> PyResult<_> {
                 let converted_1877: String = value.extract()?;
@@ -42073,7 +42129,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_analytics_configuration()
@@ -42107,7 +42163,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1881 = (|| -> PyResult<_> {
                 let converted_1881: String = value.extract()?;
@@ -42209,7 +42265,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_cors()
@@ -42244,7 +42300,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1887 = (|| -> PyResult<_> {
                 let converted_1887: String = value.extract()?;
@@ -42346,7 +42402,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_encryption()
@@ -42383,7 +42439,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1893 = (|| -> PyResult<_> {
                 let converted_1893: String = value.extract()?;
@@ -42458,7 +42514,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_intelligent_tiering_configuration()
@@ -42494,7 +42550,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1897 = (|| -> PyResult<_> {
                 let converted_1897: String = value.extract()?;
@@ -42569,7 +42625,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_inventory_configuration()
@@ -42603,7 +42659,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1901 = (|| -> PyResult<_> {
                 let converted_1901: String = value.extract()?;
@@ -42710,7 +42766,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_lifecycle_configuration()
@@ -42747,7 +42803,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1908 = (|| -> PyResult<_> {
                 let converted_1908: String = value.extract()?;
@@ -42849,7 +42905,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_logging()
@@ -42884,7 +42940,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1914 = (|| -> PyResult<_> {
                 let converted_1914: String = value.extract()?;
@@ -42959,7 +43015,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_metrics_configuration()
@@ -42993,7 +43049,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1918 = (|| -> PyResult<_> {
                 let converted_1918: String = value.extract()?;
@@ -43073,7 +43129,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_notification_configuration()
@@ -43109,7 +43165,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1922 = (|| -> PyResult<_> {
                 let converted_1922: String = value.extract()?;
@@ -43211,7 +43267,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_ownership_controls()
@@ -43246,7 +43302,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1928 = (|| -> PyResult<_> {
                 let converted_1928: String = value.extract()?;
@@ -43364,7 +43420,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_policy()
@@ -43400,7 +43456,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1935 = (|| -> PyResult<_> {
                 let converted_1935: String = value.extract()?;
@@ -43518,7 +43574,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_replication()
@@ -43554,7 +43610,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1942 = (|| -> PyResult<_> {
                 let converted_1942: String = value.extract()?;
@@ -43656,7 +43712,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_request_payment()
@@ -43691,7 +43747,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1948 = (|| -> PyResult<_> {
                 let converted_1948: String = value.extract()?;
@@ -43792,7 +43848,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_tagging()
@@ -43827,7 +43883,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1954 = (|| -> PyResult<_> {
                 let converted_1954: String = value.extract()?;
@@ -43945,7 +44001,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_versioning()
@@ -43981,7 +44037,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_1961 = (|| -> PyResult<_> {
                 let converted_1961: String = value.extract()?;
@@ -44083,7 +44139,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bucket_website()
@@ -44118,7 +44174,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
             let converted_1967 = (|| -> PyResult<_> {
                 let enum_value_1968: String = value.extract()?;
@@ -45152,7 +45208,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_object()
@@ -45234,7 +45290,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
             let converted_2033 = (|| -> PyResult<_> {
                 let enum_value_2034: String = value.extract()?;
@@ -45517,7 +45573,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_object_acl()
@@ -45561,7 +45617,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2050 = (|| -> PyResult<_> {
                 let converted_2050: String = value.extract()?;
@@ -45965,7 +46021,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_object_annotation()
@@ -46015,7 +46071,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2073 = (|| -> PyResult<_> {
                 let converted_2073: String = value.extract()?;
@@ -46174,7 +46230,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_object_legal_hold()
@@ -46212,7 +46268,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2083 = (|| -> PyResult<_> {
                 let converted_2083: String = value.extract()?;
@@ -46352,7 +46408,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_object_lock_configuration()
@@ -46389,7 +46445,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2092 = (|| -> PyResult<_> {
                 let converted_2092: String = value.extract()?;
@@ -46569,7 +46625,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_object_retention()
@@ -46608,7 +46664,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2103 = (|| -> PyResult<_> {
                 let converted_2103: String = value.extract()?;
@@ -46767,7 +46823,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_object_tagging()
@@ -46805,7 +46861,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2113 = (|| -> PyResult<_> {
                 let converted_2113: String = value.extract()?;
@@ -46907,7 +46963,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_public_access_block()
@@ -46942,7 +46998,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2119 = (|| -> PyResult<_> {
                 let converted_2119: String = value.extract()?;
@@ -47202,7 +47258,7 @@ impl S3Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .rename_object()
@@ -47244,7 +47300,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2135 = (|| -> PyResult<_> {
                 let converted_2135: String = value.extract()?;
@@ -47383,7 +47439,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .restore_object()
@@ -47420,7 +47476,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2144 = (|| -> PyResult<_> {
                 let converted_2144: String = value.extract()?;
@@ -47660,7 +47716,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .select_object_content()
@@ -47713,7 +47769,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2157 = (|| -> PyResult<_> {
                 let converted_2157: String = value.extract()?;
@@ -47815,7 +47871,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_bucket_metadata_annotation_table_configuration()
@@ -47856,7 +47912,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2163 = (|| -> PyResult<_> {
                 let converted_2163: String = value.extract()?;
@@ -47958,7 +48014,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_bucket_metadata_inventory_table_configuration()
@@ -47999,7 +48055,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2169 = (|| -> PyResult<_> {
                 let converted_2169: String = value.extract()?;
@@ -48101,7 +48157,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_bucket_metadata_journal_table_configuration()
@@ -48138,7 +48194,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2175 = (|| -> PyResult<_> {
                 let converted_2175: String = value.extract()?;
@@ -48298,7 +48354,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_object_encryption()
@@ -48336,7 +48392,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_2185 = (|| -> PyResult<_> {
                 let bytes_2186: Vec<u8> = value.extract()?;
@@ -48797,7 +48853,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .upload_part()
@@ -48849,7 +48905,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
             let converted_2211 = (|| -> PyResult<_> {
                 let converted_2211: String = value.extract()?;
@@ -49246,7 +49302,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .upload_part_copy()
@@ -49297,7 +49353,7 @@ impl S3Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let request_route_value = if let Some(value) = dict_value(params, "request_route")? {
             let converted_2233 = (|| -> PyResult<_> {
                 let converted_2233: String = value.extract()?;
@@ -50272,7 +50328,7 @@ impl S3Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .write_get_object_response()

@@ -4388,7 +4388,7 @@ impl SecretsManagerClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -4396,8 +4396,34 @@ impl SecretsManagerClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -4407,7 +4433,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_list_value = if let Some(value) = dict_value(params, "secret_id_list")? {
             let converted_172 = (|| -> PyResult<_> {
                 let mut converted_172 =
@@ -4534,7 +4560,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_get_secret_value()
@@ -4570,7 +4596,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_184 = (|| -> PyResult<_> {
                 let converted_184: String = value.extract()?;
@@ -4591,7 +4617,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_rotate_secret().set_secret_id(secret_id_value);
             let result = if let Some(sink) = observation {
@@ -4620,7 +4646,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_185 = (|| -> PyResult<_> {
                 let converted_185: String = value.extract()?;
@@ -4863,7 +4889,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_secret()
@@ -4905,7 +4931,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_204 = (|| -> PyResult<_> {
                 let converted_204: String = value.extract()?;
@@ -4926,7 +4952,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
@@ -4957,7 +4983,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_205 = (|| -> PyResult<_> {
                 let converted_205: String = value.extract()?;
@@ -5020,7 +5046,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_secret()
@@ -5053,7 +5079,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_208 = (|| -> PyResult<_> {
                 let converted_208: String = value.extract()?;
@@ -5074,7 +5100,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_secret().set_secret_id(secret_id_value);
             let result = if let Some(sink) = observation {
@@ -5105,7 +5131,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let password_length_value = if let Some(value) = dict_value(params, "password_length")? {
             let converted_209 = (|| -> PyResult<_> {
                 let converted_209: i64 = value.extract()?;
@@ -5271,7 +5297,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_random_password()
@@ -5309,7 +5335,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_217 = (|| -> PyResult<_> {
                 let converted_217: String = value.extract()?;
@@ -5330,7 +5356,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_resource_policy().set_secret_id(secret_id_value);
             let result = if let Some(sink) = observation {
@@ -5359,7 +5385,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_218 = (|| -> PyResult<_> {
                 let converted_218: String = value.extract()?;
@@ -5420,7 +5446,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_secret_value()
@@ -5453,7 +5479,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_221 = (|| -> PyResult<_> {
                 let converted_221: String = value.extract()?;
@@ -5535,7 +5561,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_secret_version_ids()
@@ -5571,7 +5597,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let include_planned_deletion_value =
             if let Some(value) = dict_value(params, "include_planned_deletion")? {
                 let converted_225 = (|| -> PyResult<_> {
@@ -5720,7 +5746,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_secrets()
@@ -5757,7 +5783,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_237 = (|| -> PyResult<_> {
                 let converted_237: String = value.extract()?;
@@ -5819,7 +5845,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_resource_policy()
@@ -5852,7 +5878,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_240 = (|| -> PyResult<_> {
                 let converted_240: String = value.extract()?;
@@ -5998,7 +6024,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_secret_value()
@@ -6034,7 +6060,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_251 = (|| -> PyResult<_> {
                 let converted_251: String = value.extract()?;
@@ -6099,7 +6125,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .remove_regions_from_replication()
@@ -6133,7 +6159,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_257 = (|| -> PyResult<_> {
                 let converted_257: String = value.extract()?;
@@ -6219,7 +6245,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .replicate_secret_to_regions()
@@ -6254,7 +6280,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_264 = (|| -> PyResult<_> {
                 let converted_264: String = value.extract()?;
@@ -6275,7 +6301,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.restore_secret().set_secret_id(secret_id_value);
             let result = if let Some(sink) = observation {
@@ -6304,7 +6330,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_265 = (|| -> PyResult<_> {
                 let converted_265: String = value.extract()?;
@@ -6474,7 +6500,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .rotate_secret()
@@ -6511,7 +6537,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_276 = (|| -> PyResult<_> {
                 let converted_276: String = value.extract()?;
@@ -6532,7 +6558,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_replication_to_replica()
@@ -6563,7 +6589,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_277 = (|| -> PyResult<_> {
                 let converted_277: String = value.extract()?;
@@ -6627,7 +6653,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -6658,7 +6684,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_283 = (|| -> PyResult<_> {
                 let converted_283: String = value.extract()?;
@@ -6722,7 +6748,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -6754,7 +6780,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_289 = (|| -> PyResult<_> {
                 let converted_289: String = value.extract()?;
@@ -6893,7 +6919,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_secret()
@@ -6930,7 +6956,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_297 = (|| -> PyResult<_> {
                 let converted_297: String = value.extract()?;
@@ -7013,7 +7039,7 @@ impl SecretsManagerClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_secret_version_stage()
@@ -7047,7 +7073,7 @@ impl SecretsManagerClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let secret_id_value = if let Some(value) = dict_value(params, "secret_id")? {
             let converted_301 = (|| -> PyResult<_> {
                 let converted_301: String = value.extract()?;
@@ -7088,7 +7114,7 @@ impl SecretsManagerClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .validate_resource_policy()

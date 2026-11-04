@@ -27610,7 +27610,7 @@ impl DynamoDBClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -27618,8 +27618,34 @@ impl DynamoDBClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -27629,7 +27655,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statements_value = if let Some(value) = dict_value(params, "statements")? {
             let converted_1736 = (|| -> PyResult<_> {
                 let mut converted_1736 =
@@ -27697,7 +27723,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_execute_statement()
@@ -27731,7 +27757,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let request_items_value = if let Some(value) = dict_value(params, "request_items")? {
             let converted_1743 = (|| -> PyResult<_> {
                 let mapping_1744 = value.cast::<PyDict>()?;
@@ -27802,7 +27828,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_get_item()
@@ -27836,7 +27862,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let request_items_value = if let Some(value) = dict_value(params, "request_items")? {
             let converted_1752 = (|| -> PyResult<_> {
                 let mapping_1753 = value.cast::<PyDict>()?;
@@ -27955,7 +27981,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_write_item()
@@ -27990,7 +28016,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1767 = (|| -> PyResult<_> {
                 let converted_1767: String = value.extract()?;
@@ -28031,7 +28057,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_backup()
@@ -28065,7 +28091,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
         {
             let converted_1769 = (|| -> PyResult<_> {
@@ -28131,7 +28157,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_global_table()
@@ -28165,7 +28191,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let attribute_definitions_value =
             if let Some(value) = dict_value(params, "attribute_definitions")? {
                 let converted_1775 = (|| -> PyResult<_> {
@@ -28682,7 +28708,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_table()
@@ -28733,7 +28759,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let backup_arn_value = if let Some(value) = dict_value(params, "backup_arn")? {
             let converted_1820 = (|| -> PyResult<_> {
                 let converted_1820: String = value.extract()?;
@@ -28754,7 +28780,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_backup().set_backup_arn(backup_arn_value);
             let result = if let Some(sink) = observation {
@@ -28785,7 +28811,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1821 = (|| -> PyResult<_> {
                 let converted_1821: String = value.extract()?;
@@ -29129,7 +29155,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_item()
@@ -29173,7 +29199,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1861 = (|| -> PyResult<_> {
                 let converted_1861: String = value.extract()?;
@@ -29215,7 +29241,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
@@ -29247,7 +29273,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1863 = (|| -> PyResult<_> {
                 let converted_1863: String = value.extract()?;
@@ -29268,7 +29294,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_table().set_table_name(table_name_value);
             let result = if let Some(sink) = observation {
@@ -29298,7 +29324,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let backup_arn_value = if let Some(value) = dict_value(params, "backup_arn")? {
             let converted_1864 = (|| -> PyResult<_> {
                 let converted_1864: String = value.extract()?;
@@ -29319,7 +29345,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_backup().set_backup_arn(backup_arn_value);
             let result = if let Some(sink) = observation {
@@ -29350,7 +29376,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1865 = (|| -> PyResult<_> {
                 let converted_1865: String = value.extract()?;
@@ -29371,7 +29397,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_continuous_backups()
@@ -29404,7 +29430,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1866 = (|| -> PyResult<_> {
                 let converted_1866: String = value.extract()?;
@@ -29445,7 +29471,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_contributor_insights()
@@ -29479,8 +29505,8 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_endpoints();
             let result = if let Some(sink) = observation {
@@ -29511,7 +29537,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let export_arn_value = if let Some(value) = dict_value(params, "export_arn")? {
             let converted_1868 = (|| -> PyResult<_> {
                 let converted_1868: String = value.extract()?;
@@ -29532,7 +29558,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_export().set_export_arn(export_arn_value);
             let result = if let Some(sink) = observation {
@@ -29563,7 +29589,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
         {
             let converted_1869 = (|| -> PyResult<_> {
@@ -29585,7 +29611,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_global_table()
@@ -29618,7 +29644,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
         {
             let converted_1870 = (|| -> PyResult<_> {
@@ -29640,7 +29666,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_global_table_settings()
@@ -29673,7 +29699,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_arn_value = if let Some(value) = dict_value(params, "import_arn")? {
             let converted_1871 = (|| -> PyResult<_> {
                 let converted_1871: String = value.extract()?;
@@ -29694,7 +29720,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_import().set_import_arn(import_arn_value);
             let result = if let Some(sink) = observation {
@@ -29725,7 +29751,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1872 = (|| -> PyResult<_> {
                 let converted_1872: String = value.extract()?;
@@ -29746,7 +29772,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_kinesis_streaming_destination()
@@ -29781,8 +29807,8 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_limits();
             let result = if let Some(sink) = observation {
@@ -29811,7 +29837,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1873 = (|| -> PyResult<_> {
                 let converted_1873: String = value.extract()?;
@@ -29832,7 +29858,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_table().set_table_name(table_name_value);
             let result = if let Some(sink) = observation {
@@ -29863,7 +29889,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1874 = (|| -> PyResult<_> {
                 let converted_1874: String = value.extract()?;
@@ -29884,7 +29910,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_table_replica_auto_scaling()
@@ -29917,7 +29943,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1875 = (|| -> PyResult<_> {
                 let converted_1875: String = value.extract()?;
@@ -29938,7 +29964,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_time_to_live()
@@ -29971,7 +29997,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1876 = (|| -> PyResult<_> {
                 let converted_1876: String = value.extract()?;
@@ -30033,7 +30059,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disable_kinesis_streaming_destination()
@@ -30072,7 +30098,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1879 = (|| -> PyResult<_> {
                 let converted_1879: String = value.extract()?;
@@ -30134,7 +30160,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .enable_kinesis_streaming_destination()
@@ -30173,7 +30199,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_value = if let Some(value) = dict_value(params, "statement")? {
             let converted_1882 = (|| -> PyResult<_> {
                 let converted_1882: String = value.extract()?;
@@ -30343,7 +30369,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .execute_statement()
@@ -30384,7 +30410,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let transact_statements_value =
             if let Some(value) = dict_value(params, "transact_statements")? {
                 let converted_1895 = (|| -> PyResult<_> {
@@ -30474,7 +30500,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .execute_transaction()
@@ -30509,7 +30535,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_arn_value = if let Some(value) = dict_value(params, "table_arn")? {
             let converted_1903 = (|| -> PyResult<_> {
                 let converted_1903: String = value.extract()?;
@@ -30764,7 +30790,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .export_table_to_point_in_time()
@@ -30808,7 +30834,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1919 = (|| -> PyResult<_> {
                 let converted_1919: String = value.extract()?;
@@ -31027,7 +31053,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_item()
@@ -31065,7 +31091,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1943 = (|| -> PyResult<_> {
                 let converted_1943: String = value.extract()?;
@@ -31086,7 +31112,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource_policy()
@@ -31117,7 +31143,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
             let converted_1944 = (|| -> PyResult<_> {
                 let converted_1944: String = value.extract()?;
@@ -31246,7 +31272,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .import_table()
@@ -31283,7 +31309,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1952 = (|| -> PyResult<_> {
                 let converted_1952: String = value.extract()?;
@@ -31415,7 +31441,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_backups()
@@ -31452,7 +31478,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1961 = (|| -> PyResult<_> {
                 let converted_1961: String = value.extract()?;
@@ -31513,7 +31539,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_contributor_insights()
@@ -31548,7 +31574,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_arn_value = if let Some(value) = dict_value(params, "table_arn")? {
             let converted_1964 = (|| -> PyResult<_> {
                 let converted_1964: String = value.extract()?;
@@ -31609,7 +31635,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_exports()
@@ -31643,7 +31669,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let exclusive_start_global_table_name_value =
             if let Some(value) = dict_value(params, "exclusive_start_global_table_name")? {
                 let converted_1967 = (|| -> PyResult<_> {
@@ -31701,7 +31727,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_global_tables()
@@ -31736,7 +31762,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_arn_value = if let Some(value) = dict_value(params, "table_arn")? {
             let converted_1970 = (|| -> PyResult<_> {
                 let converted_1970: String = value.extract()?;
@@ -31797,7 +31823,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_imports()
@@ -31831,7 +31857,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let exclusive_start_table_name_value =
             if let Some(value) = dict_value(params, "exclusive_start_table_name")? {
                 let converted_1973 = (|| -> PyResult<_> {
@@ -31869,7 +31895,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tables()
@@ -31900,7 +31926,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1975 = (|| -> PyResult<_> {
                 let converted_1975: String = value.extract()?;
@@ -31941,7 +31967,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_of_resource()
@@ -31975,7 +32001,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_1977 = (|| -> PyResult<_> {
                 let converted_1977: String = value.extract()?;
@@ -32319,7 +32345,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_item()
@@ -32363,7 +32389,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_2017 = (|| -> PyResult<_> {
                 let converted_2017: String = value.extract()?;
@@ -32442,7 +32468,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_resource_policy()
@@ -32476,7 +32502,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2021 = (|| -> PyResult<_> {
                 let converted_2021: String = value.extract()?;
@@ -32984,7 +33010,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .query()
@@ -33032,7 +33058,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_table_name_value = if let Some(value) = dict_value(params, "target_table_name")?
         {
             let converted_2075 = (|| -> PyResult<_> {
@@ -33292,7 +33318,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .restore_table_from_backup()
@@ -33333,7 +33359,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let source_table_arn_value = if let Some(value) = dict_value(params, "source_table_arn")? {
             let converted_2097 = (|| -> PyResult<_> {
                 let converted_2097: String = value.extract()?;
@@ -33661,7 +33687,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .restore_table_to_point_in_time()
@@ -33705,7 +33731,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2123 = (|| -> PyResult<_> {
                 let converted_2123: String = value.extract()?;
@@ -34161,7 +34187,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .scan()
@@ -34208,7 +34234,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2170 = (|| -> PyResult<_> {
                 let converted_2170: String = value.extract()?;
@@ -34468,7 +34494,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .search_vectors()
@@ -34509,7 +34535,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_2196 = (|| -> PyResult<_> {
                 let converted_2196: String = value.extract()?;
@@ -34573,7 +34599,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -34604,7 +34630,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let transact_items_value = if let Some(value) = dict_value(params, "transact_items")? {
             let converted_2202 = (|| -> PyResult<_> {
                 let mut converted_2202 =
@@ -34672,7 +34698,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .transact_get_items()
@@ -34706,7 +34732,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let transact_items_value = if let Some(value) = dict_value(params, "transact_items")? {
             let converted_2209 = (|| -> PyResult<_> {
                 let mut converted_2209 =
@@ -34819,7 +34845,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .transact_write_items()
@@ -34855,7 +34881,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_2219 = (|| -> PyResult<_> {
                 let converted_2219: String = value.extract()?;
@@ -34919,7 +34945,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -34951,7 +34977,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2225 = (|| -> PyResult<_> {
                 let converted_2225: String = value.extract()?;
@@ -34993,7 +35019,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_continuous_backups()
@@ -35029,7 +35055,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2227 = (|| -> PyResult<_> {
                 let converted_2227: String = value.extract()?;
@@ -35118,7 +35144,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_contributor_insights()
@@ -35152,7 +35178,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
         {
             let converted_2233 = (|| -> PyResult<_> {
@@ -35217,7 +35243,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_global_table()
@@ -35251,7 +35277,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
         {
             let converted_2239 = (|| -> PyResult<_> {
@@ -35429,7 +35455,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_global_table_settings()
@@ -35473,7 +35499,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2254 = (|| -> PyResult<_> {
                 let converted_2254: String = value.extract()?;
@@ -35885,7 +35911,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_item()
@@ -35931,7 +35957,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2302 = (|| -> PyResult<_> {
                 let converted_2302: String = value.extract()?;
@@ -35993,7 +36019,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_kinesis_streaming_destination()
@@ -36032,7 +36058,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let attribute_definitions_value =
             if let Some(value) = dict_value(params, "attribute_definitions")? {
                 let converted_2305 = (|| -> PyResult<_> {
@@ -36513,7 +36539,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_table()
@@ -36563,7 +36589,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let global_secondary_index_updates_value =
             if let Some(value) = dict_value(params, "global_secondary_index_updates")? {
                 let converted_2346 = (|| -> PyResult<_> {
@@ -36696,7 +36722,7 @@ impl DynamoDBClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_table_replica_auto_scaling()
@@ -36734,7 +36760,7 @@ impl DynamoDBClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
             let converted_2358 = (|| -> PyResult<_> {
                 let converted_2358: String = value.extract()?;
@@ -36776,7 +36802,7 @@ impl DynamoDBClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_time_to_live()

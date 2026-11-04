@@ -22752,7 +22752,7 @@ impl SESv2Client {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -22760,8 +22760,34 @@ impl SESv2Client {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -22771,7 +22797,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1103 = (|| -> PyResult<_> {
                 let converted_1103: String = value.extract()?;
@@ -22832,7 +22858,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .associate_email_identity_certificate()
@@ -22867,7 +22893,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queries_value = if let Some(value) = dict_value(params, "queries")? {
             let converted_1106 = (|| -> PyResult<_> {
                 let mut converted_1106 =
@@ -22911,7 +22937,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.batch_get_metric_data().set_queries(queries_value);
             let result = if let Some(sink) = observation {
@@ -22942,7 +22968,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let job_id_value = if let Some(value) = dict_value(params, "job_id")? {
             let converted_1111 = (|| -> PyResult<_> {
                 let converted_1111: String = value.extract()?;
@@ -22959,7 +22985,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_export_job().set_job_id(job_id_value);
             let result = if let Some(sink) = observation {
@@ -22988,7 +23014,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1112 = (|| -> PyResult<_> {
@@ -23217,7 +23243,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_configuration_set()
@@ -23257,7 +23283,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1126 = (|| -> PyResult<_> {
@@ -23321,7 +23347,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_configuration_set_event_destination()
@@ -23356,7 +23382,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1129 = (|| -> PyResult<_> {
@@ -23482,7 +23508,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_contact()
@@ -23517,7 +23543,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1138 = (|| -> PyResult<_> {
@@ -23645,7 +23671,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_contact_list()
@@ -23679,7 +23705,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1150 = (|| -> PyResult<_> {
                 let converted_1150: String = value.extract()?;
@@ -23846,7 +23872,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_custom_verification_email_template()
@@ -23885,7 +23911,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let pool_name_value = if let Some(value) = dict_value(params, "pool_name")? {
             let converted_1161 = (|| -> PyResult<_> {
                 let converted_1161: String = value.extract()?;
@@ -23971,7 +23997,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_dedicated_ip_pool()
@@ -24004,7 +24030,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let report_name_value = if let Some(value) = dict_value(params, "report_name")? {
             let converted_1169 = (|| -> PyResult<_> {
                 let converted_1169: String = value.extract()?;
@@ -24109,7 +24135,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_deliverability_test_report()
@@ -24143,7 +24169,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1177 = (|| -> PyResult<_> {
                 let converted_1177: String = value.extract()?;
@@ -24249,7 +24275,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_email_identity()
@@ -24285,7 +24311,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1185 = (|| -> PyResult<_> {
                 let converted_1185: String = value.extract()?;
@@ -24342,7 +24368,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_email_identity_policy()
@@ -24375,7 +24401,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1188 = (|| -> PyResult<_> {
                 let converted_1188: String = value.extract()?;
@@ -24459,7 +24485,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_email_template()
@@ -24492,7 +24518,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let export_data_source_value =
             if let Some(value) = dict_value(params, "export_data_source")? {
                 let converted_1195 = (|| -> PyResult<_> {
@@ -24535,7 +24561,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_export_job()
@@ -24567,7 +24593,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_destination_value =
             if let Some(value) = dict_value(params, "import_destination")? {
                 let converted_1197 = (|| -> PyResult<_> {
@@ -24610,7 +24636,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_import_job()
@@ -24642,7 +24668,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let endpoint_name_value = if let Some(value) = dict_value(params, "endpoint_name")? {
             let converted_1199 = (|| -> PyResult<_> {
                 let converted_1199: String = value.extract()?;
@@ -24726,7 +24752,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_multi_region_endpoint()
@@ -24759,7 +24785,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1206 = (|| -> PyResult<_> {
                 let converted_1206: String = value.extract()?;
@@ -24844,7 +24870,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_tenant()
@@ -24879,7 +24905,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1213 = (|| -> PyResult<_> {
                 let converted_1213: String = value.extract()?;
@@ -24920,7 +24946,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_tenant_resource_association()
@@ -24952,7 +24978,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1215 = (|| -> PyResult<_> {
@@ -24974,7 +25000,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_configuration_set()
@@ -25005,7 +25031,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1216 = (|| -> PyResult<_> {
@@ -25048,7 +25074,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_configuration_set_event_destination()
@@ -25082,7 +25108,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1218 = (|| -> PyResult<_> {
@@ -25124,7 +25150,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_contact()
@@ -25156,7 +25182,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1220 = (|| -> PyResult<_> {
@@ -25178,7 +25204,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_contact_list()
@@ -25209,7 +25235,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1221 = (|| -> PyResult<_> {
                 let converted_1221: String = value.extract()?;
@@ -25230,7 +25256,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_custom_verification_email_template()
@@ -25263,7 +25289,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let pool_name_value = if let Some(value) = dict_value(params, "pool_name")? {
             let converted_1222 = (|| -> PyResult<_> {
                 let converted_1222: String = value.extract()?;
@@ -25284,7 +25310,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_dedicated_ip_pool()
@@ -25315,7 +25341,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1223 = (|| -> PyResult<_> {
                 let converted_1223: String = value.extract()?;
@@ -25336,7 +25362,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_email_identity()
@@ -25367,7 +25393,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1224 = (|| -> PyResult<_> {
                 let converted_1224: String = value.extract()?;
@@ -25408,7 +25434,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_email_identity_policy()
@@ -25440,7 +25466,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1226 = (|| -> PyResult<_> {
                 let converted_1226: String = value.extract()?;
@@ -25461,7 +25487,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_email_template()
@@ -25492,7 +25518,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let endpoint_name_value = if let Some(value) = dict_value(params, "endpoint_name")? {
             let converted_1227 = (|| -> PyResult<_> {
                 let converted_1227: String = value.extract()?;
@@ -25513,7 +25539,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_multi_region_endpoint()
@@ -25544,7 +25570,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_address_value = if let Some(value) = dict_value(params, "email_address")? {
             let converted_1228 = (|| -> PyResult<_> {
                 let converted_1228: String = value.extract()?;
@@ -25585,7 +25611,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_suppressed_destination()
@@ -25617,7 +25643,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1230 = (|| -> PyResult<_> {
                 let converted_1230: String = value.extract()?;
@@ -25638,7 +25664,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_tenant().set_tenant_name(tenant_name_value);
             let result = if let Some(sink) = observation {
@@ -25667,7 +25693,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1231 = (|| -> PyResult<_> {
                 let converted_1231: String = value.extract()?;
@@ -25708,7 +25734,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_tenant_resource_association()
@@ -25740,7 +25766,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1233 = (|| -> PyResult<_> {
                 let converted_1233: String = value.extract()?;
@@ -25781,7 +25807,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disassociate_email_identity_certificate()
@@ -25815,8 +25841,8 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_account();
             let result = if let Some(sink) = observation {
@@ -25846,7 +25872,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blacklist_item_names_value =
             if let Some(value) = dict_value(params, "blacklist_item_names")? {
                 let converted_1235 = (|| -> PyResult<_> {
@@ -25891,7 +25917,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_blacklist_reports()
@@ -25924,7 +25950,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1240 = (|| -> PyResult<_> {
@@ -25946,7 +25972,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_configuration_set()
@@ -25979,7 +26005,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1241 = (|| -> PyResult<_> {
@@ -26001,7 +26027,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_configuration_set_event_destinations()
@@ -26036,7 +26062,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1242 = (|| -> PyResult<_> {
@@ -26078,7 +26104,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_contact()
@@ -26111,7 +26137,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1244 = (|| -> PyResult<_> {
@@ -26133,7 +26159,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_contact_list()
@@ -26166,7 +26192,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1245 = (|| -> PyResult<_> {
                 let converted_1245: String = value.extract()?;
@@ -26187,7 +26213,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_custom_verification_email_template()
@@ -26222,7 +26248,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ip_value = if let Some(value) = dict_value(params, "ip")? {
             let converted_1246 = (|| -> PyResult<_> {
                 let converted_1246: String = value.extract()?;
@@ -26239,7 +26265,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_dedicated_ip().set_ip(ip_value);
             let result = if let Some(sink) = observation {
@@ -26270,7 +26296,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let pool_name_value = if let Some(value) = dict_value(params, "pool_name")? {
             let converted_1247 = (|| -> PyResult<_> {
                 let converted_1247: String = value.extract()?;
@@ -26291,7 +26317,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_dedicated_ip_pool()
@@ -26324,7 +26350,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let pool_name_value = if let Some(value) = dict_value(params, "pool_name")? {
             let converted_1248 = (|| -> PyResult<_> {
                 let converted_1248: String = value.extract()?;
@@ -26385,7 +26411,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_dedicated_ips()
@@ -26420,8 +26446,8 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_deliverability_dashboard_options();
             let result = if let Some(sink) = observation {
@@ -26454,7 +26480,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let report_id_value = if let Some(value) = dict_value(params, "report_id")? {
             let converted_1251 = (|| -> PyResult<_> {
                 let converted_1251: String = value.extract()?;
@@ -26475,7 +26501,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_deliverability_test_report()
@@ -26508,7 +26534,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let campaign_id_value = if let Some(value) = dict_value(params, "campaign_id")? {
             let converted_1252 = (|| -> PyResult<_> {
                 let converted_1252: String = value.extract()?;
@@ -26529,7 +26555,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_domain_deliverability_campaign()
@@ -26562,7 +26588,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_value = if let Some(value) = dict_value(params, "domain")? {
             let converted_1253 = (|| -> PyResult<_> {
                 let converted_1253: String = value.extract()?;
@@ -26629,7 +26655,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_domain_statistics_report()
@@ -26664,7 +26690,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_address_value = if let Some(value) = dict_value(params, "email_address")? {
             let converted_1258 = (|| -> PyResult<_> {
                 let converted_1258: String = value.extract()?;
@@ -26685,7 +26711,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_email_address_insights()
@@ -26718,7 +26744,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1259 = (|| -> PyResult<_> {
                 let converted_1259: String = value.extract()?;
@@ -26739,7 +26765,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_email_identity()
@@ -26772,7 +26798,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1260 = (|| -> PyResult<_> {
                 let converted_1260: String = value.extract()?;
@@ -26793,7 +26819,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_email_identity_policies()
@@ -26824,7 +26850,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1261 = (|| -> PyResult<_> {
                 let converted_1261: String = value.extract()?;
@@ -26845,7 +26871,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_email_template()
@@ -26878,7 +26904,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let job_id_value = if let Some(value) = dict_value(params, "job_id")? {
             let converted_1262 = (|| -> PyResult<_> {
                 let converted_1262: String = value.extract()?;
@@ -26895,7 +26921,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_export_job().set_job_id(job_id_value);
             let result = if let Some(sink) = observation {
@@ -26926,7 +26952,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let job_id_value = if let Some(value) = dict_value(params, "job_id")? {
             let converted_1263 = (|| -> PyResult<_> {
                 let converted_1263: String = value.extract()?;
@@ -26943,7 +26969,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_import_job().set_job_id(job_id_value);
             let result = if let Some(sink) = observation {
@@ -26974,7 +27000,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let message_id_value = if let Some(value) = dict_value(params, "message_id")? {
             let converted_1264 = (|| -> PyResult<_> {
                 let converted_1264: String = value.extract()?;
@@ -26995,7 +27021,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_message_insights()
@@ -27028,7 +27054,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let endpoint_name_value = if let Some(value) = dict_value(params, "endpoint_name")? {
             let converted_1265 = (|| -> PyResult<_> {
                 let converted_1265: String = value.extract()?;
@@ -27049,7 +27075,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_multi_region_endpoint()
@@ -27082,7 +27108,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let reputation_entity_reference_value =
             if let Some(value) = dict_value(params, "reputation_entity_reference")? {
                 let converted_1266 = (|| -> PyResult<_> {
@@ -27127,7 +27153,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_reputation_entity()
@@ -27161,7 +27187,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_address_value = if let Some(value) = dict_value(params, "email_address")? {
             let converted_1269 = (|| -> PyResult<_> {
                 let converted_1269: String = value.extract()?;
@@ -27202,7 +27228,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_suppressed_destination()
@@ -27236,7 +27262,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1271 = (|| -> PyResult<_> {
                 let converted_1271: String = value.extract()?;
@@ -27257,7 +27283,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_tenant().set_tenant_name(tenant_name_value);
             let result = if let Some(sink) = observation {
@@ -27287,7 +27313,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let converted_1272 = (|| -> PyResult<_> {
                 let mapping_1273 = value.cast::<PyDict>()?;
@@ -27374,7 +27400,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_configuration_sets()
@@ -27407,7 +27433,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let page_size_value = if let Some(value) = dict_value(params, "page_size")? {
             let converted_1282 = (|| -> PyResult<_> {
                 let converted_1282: i32 = value.extract()?;
@@ -27448,7 +27474,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_contact_lists()
@@ -27482,7 +27508,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1284 = (|| -> PyResult<_> {
@@ -27564,7 +27590,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_contacts()
@@ -27600,7 +27626,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1288 = (|| -> PyResult<_> {
                 let converted_1288: String = value.extract()?;
@@ -27641,7 +27667,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_custom_verification_email_templates()
@@ -27677,7 +27703,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1290 = (|| -> PyResult<_> {
                 let converted_1290: String = value.extract()?;
@@ -27718,7 +27744,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_dedicated_ip_pools()
@@ -27750,7 +27776,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1292 = (|| -> PyResult<_> {
                 let converted_1292: String = value.extract()?;
@@ -27791,7 +27817,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_deliverability_test_reports()
@@ -27825,7 +27851,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let start_date_value = if let Some(value) = dict_value(params, "start_date")? {
             let converted_1294 = (|| -> PyResult<_> {
                 let timestamp_1295: String = value.extract()?;
@@ -27937,7 +27963,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_domain_deliverability_campaigns()
@@ -27976,7 +28002,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let converted_1301 = (|| -> PyResult<_> {
                 let mapping_1302 = value.cast::<PyDict>()?;
@@ -28061,7 +28087,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_email_identities()
@@ -28096,7 +28122,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1311 = (|| -> PyResult<_> {
                 let converted_1311: String = value.extract()?;
@@ -28157,7 +28183,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_email_identity_certificates()
@@ -28192,7 +28218,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1314 = (|| -> PyResult<_> {
                 let converted_1314: String = value.extract()?;
@@ -28233,7 +28259,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_email_templates()
@@ -28267,7 +28293,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1316 = (|| -> PyResult<_> {
                 let converted_1316: String = value.extract()?;
@@ -28353,7 +28379,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_export_jobs()
@@ -28389,7 +28415,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_destination_type_value =
             if let Some(value) = dict_value(params, "import_destination_type")? {
                 let converted_1322 = (|| -> PyResult<_> {
@@ -28453,7 +28479,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_import_jobs()
@@ -28488,7 +28514,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1326 = (|| -> PyResult<_> {
                 let converted_1326: String = value.extract()?;
@@ -28529,7 +28555,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_multi_region_endpoints()
@@ -28563,7 +28589,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let converted_1328 = (|| -> PyResult<_> {
                 let mapping_1329 = value.cast::<PyDict>()?;
@@ -28650,7 +28676,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_recommendations()
@@ -28685,7 +28711,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let converted_1338 = (|| -> PyResult<_> {
                 let mapping_1339 = value.cast::<PyDict>()?;
@@ -28772,7 +28798,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_reputation_entities()
@@ -28807,7 +28833,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1348 = (|| -> PyResult<_> {
                 let converted_1348: String = value.extract()?;
@@ -28868,7 +28894,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_resource_tenants()
@@ -28903,7 +28929,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1351 = (|| -> PyResult<_> {
                 let converted_1351: String = value.extract()?;
@@ -29060,7 +29086,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_suppressed_destinations()
@@ -29098,7 +29124,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1364 = (|| -> PyResult<_> {
                 let converted_1364: String = value.extract()?;
@@ -29119,7 +29145,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -29152,7 +29178,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1365 = (|| -> PyResult<_> {
                 let converted_1365: String = value.extract()?;
@@ -29259,7 +29285,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tenant_resources()
@@ -29295,7 +29321,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let converted_1376 = (|| -> PyResult<_> {
                 let mapping_1377 = value.cast::<PyDict>()?;
@@ -29381,7 +29407,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tenants()
@@ -29415,7 +29441,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let auto_warmup_enabled_value =
             if let Some(value) = dict_value(params, "auto_warmup_enabled")? {
                 let converted_1386 = (|| -> PyResult<_> {
@@ -29437,7 +29463,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_account_dedicated_ip_warmup_attributes()
@@ -29470,7 +29496,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let mail_type_value = if let Some(value) = dict_value(params, "mail_type")? {
             let converted_1387 = (|| -> PyResult<_> {
                 let enum_value_1388: String = value.extract()?;
@@ -29620,7 +29646,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_account_details()
@@ -29656,7 +29682,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let plan_value = if let Some(value) = dict_value(params, "plan")? {
             let converted_1399 = (|| -> PyResult<_> {
                 let enum_value_1400: String = value.extract()?;
@@ -29679,7 +29705,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.put_account_pricing_attributes().set_plan(plan_value);
             let result = if let Some(sink) = observation {
@@ -29708,7 +29734,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let sending_enabled_value = if let Some(value) = dict_value(params, "sending_enabled")? {
             let converted_1401 = (|| -> PyResult<_> {
                 let converted_1401: bool = value.extract()?;
@@ -29729,7 +29755,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_account_sending_attributes()
@@ -29760,7 +29786,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let suppressed_reasons_value = if let Some(value) =
             dict_value(params, "suppressed_reasons")?
         {
@@ -29830,7 +29856,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_account_suppression_attributes()
@@ -29862,7 +29888,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let vdm_attributes_value = if let Some(value) = dict_value(params, "vdm_attributes")? {
             let converted_1409 = (|| -> PyResult<_> {
                 let converted_1409 = vdm_attributes_from_py(&value)?;
@@ -29883,7 +29909,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_account_vdm_attributes()
@@ -29914,7 +29940,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1410 = (|| -> PyResult<_> {
@@ -29956,7 +29982,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_configuration_set_archiving_options()
@@ -29990,7 +30016,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1412 = (|| -> PyResult<_> {
@@ -30076,7 +30102,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_configuration_set_delivery_options()
@@ -30112,7 +30138,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1417 = (|| -> PyResult<_> {
@@ -30155,7 +30181,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_configuration_set_reputation_options()
@@ -30189,7 +30215,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1419 = (|| -> PyResult<_> {
@@ -30231,7 +30257,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_configuration_set_sending_options()
@@ -30265,7 +30291,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1421 = (|| -> PyResult<_> {
@@ -30379,7 +30405,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_configuration_set_suppression_options()
@@ -30415,7 +30441,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1431 = (|| -> PyResult<_> {
@@ -30480,7 +30506,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_configuration_set_tracking_options()
@@ -30515,7 +30541,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1435 = (|| -> PyResult<_> {
@@ -30557,7 +30583,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_configuration_set_vdm_options()
@@ -30589,7 +30615,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ip_value = if let Some(value) = dict_value(params, "ip")? {
             let converted_1437 = (|| -> PyResult<_> {
                 let converted_1437: String = value.extract()?;
@@ -30627,7 +30653,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_dedicated_ip_in_pool()
@@ -30659,7 +30685,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let pool_name_value = if let Some(value) = dict_value(params, "pool_name")? {
             let converted_1439 = (|| -> PyResult<_> {
                 let converted_1439: String = value.extract()?;
@@ -30702,7 +30728,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_dedicated_ip_pool_scaling_attributes()
@@ -30736,7 +30762,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ip_value = if let Some(value) = dict_value(params, "ip")? {
             let converted_1442 = (|| -> PyResult<_> {
                 let converted_1442: String = value.extract()?;
@@ -30774,7 +30800,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_dedicated_ip_warmup_attributes()
@@ -30806,7 +30832,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_enabled_value = if let Some(value) = dict_value(params, "dashboard_enabled")?
         {
             let converted_1444 = (|| -> PyResult<_> {
@@ -30873,7 +30899,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_deliverability_dashboard_option()
@@ -30905,7 +30931,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1450 = (|| -> PyResult<_> {
                 let converted_1450: String = value.extract()?;
@@ -30947,7 +30973,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_email_identity_configuration_set_attributes()
@@ -30981,7 +31007,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1452 = (|| -> PyResult<_> {
                 let converted_1452: String = value.extract()?;
@@ -31022,7 +31048,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_email_identity_dkim_attributes()
@@ -31054,7 +31080,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1454 = (|| -> PyResult<_> {
                 let converted_1454: String = value.extract()?;
@@ -31120,7 +31146,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_email_identity_dkim_signing_attributes()
@@ -31155,7 +31181,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1458 = (|| -> PyResult<_> {
                 let converted_1458: String = value.extract()?;
@@ -31197,7 +31223,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_email_identity_feedback_attributes()
@@ -31231,7 +31257,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1460 = (|| -> PyResult<_> {
                 let converted_1460: String = value.extract()?;
@@ -31295,7 +31321,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_email_identity_mail_from_attributes()
@@ -31330,7 +31356,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_address_value = if let Some(value) = dict_value(params, "email_address")? {
             let converted_1464 = (|| -> PyResult<_> {
                 let converted_1464: String = value.extract()?;
@@ -31393,7 +31419,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_suppressed_destination()
@@ -31426,7 +31452,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let tenant_name_value = if let Some(value) = dict_value(params, "tenant_name")? {
             let converted_1468 = (|| -> PyResult<_> {
                 let converted_1468: String = value.extract()?;
@@ -31518,7 +31544,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_tenant_suppression_attributes()
@@ -31551,7 +31577,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let from_email_address_value =
             if let Some(value) = dict_value(params, "from_email_address")? {
                 let converted_1477 = (|| -> PyResult<_> {
@@ -31873,7 +31899,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_bulk_email()
@@ -31919,7 +31945,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_address_value = if let Some(value) = dict_value(params, "email_address")? {
             let converted_1501 = (|| -> PyResult<_> {
                 let converted_1501: String = value.extract()?;
@@ -31981,7 +32007,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_custom_verification_email()
@@ -32014,7 +32040,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let from_email_address_value =
             if let Some(value) = dict_value(params, "from_email_address")? {
                 let converted_1504 = (|| -> PyResult<_> {
@@ -32332,7 +32358,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_email()
@@ -32376,7 +32402,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1525 = (|| -> PyResult<_> {
                 let converted_1525: String = value.extract()?;
@@ -32440,7 +32466,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -32471,7 +32497,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1531 = (|| -> PyResult<_> {
                 let converted_1531: String = value.extract()?;
@@ -32512,7 +32538,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .test_render_email_template()
@@ -32544,7 +32570,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1533 = (|| -> PyResult<_> {
                 let converted_1533: String = value.extract()?;
@@ -32608,7 +32634,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -32640,7 +32666,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1539 = (|| -> PyResult<_> {
@@ -32683,7 +32709,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_configuration_set()
@@ -32715,7 +32741,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let configuration_set_name_value =
             if let Some(value) = dict_value(params, "configuration_set_name")? {
                 let converted_1541 = (|| -> PyResult<_> {
@@ -32779,7 +32805,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_configuration_set_event_destination()
@@ -32814,7 +32840,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1544 = (|| -> PyResult<_> {
@@ -32940,7 +32966,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_contact()
@@ -32975,7 +33001,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let contact_list_name_value = if let Some(value) = dict_value(params, "contact_list_name")?
         {
             let converted_1553 = (|| -> PyResult<_> {
@@ -33060,7 +33086,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_contact_list()
@@ -33093,7 +33119,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1560 = (|| -> PyResult<_> {
                 let converted_1560: String = value.extract()?;
@@ -33217,7 +33243,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_custom_verification_email_template()
@@ -33255,7 +33281,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let email_identity_value = if let Some(value) = dict_value(params, "email_identity")? {
             let converted_1566 = (|| -> PyResult<_> {
                 let converted_1566: String = value.extract()?;
@@ -33312,7 +33338,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_email_identity_policy()
@@ -33345,7 +33371,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let template_name_value = if let Some(value) = dict_value(params, "template_name")? {
             let converted_1569 = (|| -> PyResult<_> {
                 let converted_1569: String = value.extract()?;
@@ -33386,7 +33412,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_email_template()
@@ -33418,7 +33444,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let reputation_entity_type_value =
             if let Some(value) = dict_value(params, "reputation_entity_type")? {
                 let converted_1571 = (|| -> PyResult<_> {
@@ -33485,7 +33511,7 @@ impl SESv2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_reputation_entity_customer_managed_status()
@@ -33520,7 +33546,7 @@ impl SESv2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let reputation_entity_type_value =
             if let Some(value) = dict_value(params, "reputation_entity_type")? {
                 let converted_1576 = (|| -> PyResult<_> {
@@ -33586,7 +33612,7 @@ impl SESv2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_reputation_entity_policy()

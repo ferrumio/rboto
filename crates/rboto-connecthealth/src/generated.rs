@@ -5028,12 +5028,10 @@ impl PyOperationStartPatientInsightsJobOutput {
 )]
 struct PyMedicalScribeOutputStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_connecthealth::primitives::event_stream::EventReceiver<
-                    aws_sdk_connecthealth::types::MedicalScribeOutputStream,
-                    aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_connecthealth::primitives::event_stream::EventReceiver<
+                aws_sdk_connecthealth::types::MedicalScribeOutputStream,
+                aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError,
             >,
         >,
     >,
@@ -5049,7 +5047,7 @@ impl PyMedicalScribeOutputStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -5061,35 +5059,60 @@ impl PyMedicalScribeOutputStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| medical_scribe_output_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError::ValidationException(_)) => Some("ValidationException"),
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5149,7 +5172,7 @@ impl ConnectHealthClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -5157,8 +5180,34 @@ impl ConnectHealthClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -5168,7 +5217,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_239 = (|| -> PyResult<_> {
                 let converted_239: String = value.extract()?;
@@ -5209,7 +5258,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .activate_subscription()
@@ -5243,7 +5292,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_241 = (|| -> PyResult<_> {
                 let converted_241: String = value.extract()?;
@@ -5343,7 +5392,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_domain()
@@ -5379,7 +5428,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_251 = (|| -> PyResult<_> {
                 let converted_251: String = value.extract()?;
@@ -5400,7 +5449,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.create_subscription().set_domain_id(domain_id_value);
             let result = if let Some(sink) = observation {
@@ -5429,7 +5478,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_252 = (|| -> PyResult<_> {
                 let converted_252: String = value.extract()?;
@@ -5470,7 +5519,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .deactivate_subscription()
@@ -5504,7 +5553,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_254 = (|| -> PyResult<_> {
                 let converted_254: String = value.extract()?;
@@ -5525,7 +5574,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_domain().set_domain_id(domain_id_value);
             let result = if let Some(sink) = observation {
@@ -5554,7 +5603,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_255 = (|| -> PyResult<_> {
                 let converted_255: String = value.extract()?;
@@ -5575,7 +5624,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_domain().set_domain_id(domain_id_value);
             let result = if let Some(sink) = observation {
@@ -5605,7 +5654,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_256 = (|| -> PyResult<_> {
                 let converted_256: String = value.extract()?;
@@ -5666,7 +5715,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_medical_scribe_listening_session()
@@ -5701,7 +5750,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_259 = (|| -> PyResult<_> {
                 let converted_259: String = value.extract()?;
@@ -5738,7 +5787,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_patient_insights_job()
@@ -5772,7 +5821,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_261 = (|| -> PyResult<_> {
                 let converted_261: String = value.extract()?;
@@ -5813,7 +5862,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_subscription()
@@ -5847,7 +5896,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let status_value = if let Some(value) = dict_value(params, "status")? {
             let converted_263 = (|| -> PyResult<_> {
                 let enum_value_264: String = value.extract()?;
@@ -5910,7 +5959,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_domains()
@@ -5944,7 +5993,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_267 = (|| -> PyResult<_> {
                 let converted_267: String = value.extract()?;
@@ -6005,7 +6054,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_subscriptions()
@@ -6040,7 +6089,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_270 = (|| -> PyResult<_> {
                 let converted_270: String = value.extract()?;
@@ -6061,7 +6110,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -6092,7 +6141,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_271 = (|| -> PyResult<_> {
                 let converted_271: String = value.extract()?;
@@ -6232,7 +6281,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_medical_scribe_listening_session()
@@ -6324,7 +6373,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
             let converted_287 = (|| -> PyResult<_> {
                 let converted_287: String = value.extract()?;
@@ -6488,7 +6537,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_patient_insights_job()
@@ -6526,7 +6575,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_295 = (|| -> PyResult<_> {
                 let converted_295: String = value.extract()?;
@@ -6589,7 +6638,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -6620,7 +6669,7 @@ impl ConnectHealthClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_303 = (|| -> PyResult<_> {
                 let converted_303: String = value.extract()?;
@@ -6684,7 +6733,7 @@ impl ConnectHealthClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()

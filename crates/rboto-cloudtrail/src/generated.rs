@@ -12899,7 +12899,7 @@ impl CloudTrailClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -12907,8 +12907,34 @@ impl CloudTrailClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -12918,7 +12944,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_id_value = if let Some(value) = dict_value(params, "resource_id")? {
             let converted_435 = (|| -> PyResult<_> {
                 let converted_435: String = value.extract()?;
@@ -12982,7 +13008,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .add_tags()
@@ -13013,7 +13039,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_441 = (|| -> PyResult<_> {
                 let converted_441: String = value.extract()?;
@@ -13071,7 +13097,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .cancel_query()
@@ -13103,7 +13129,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_444 = (|| -> PyResult<_> {
                 let converted_444: String = value.extract()?;
@@ -13222,7 +13248,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_channel()
@@ -13258,7 +13284,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_456 = (|| -> PyResult<_> {
                 let converted_456: String = value.extract()?;
@@ -13402,7 +13428,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_dashboard()
@@ -13439,7 +13465,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_469 = (|| -> PyResult<_> {
                 let converted_469: String = value.extract()?;
@@ -13688,7 +13714,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_event_data_store()
@@ -13730,7 +13756,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_488 = (|| -> PyResult<_> {
                 let converted_488: String = value.extract()?;
@@ -14017,7 +14043,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_trail()
@@ -14059,7 +14085,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let channel_value = if let Some(value) = dict_value(params, "channel")? {
             let converted_505 = (|| -> PyResult<_> {
                 let converted_505: String = value.extract()?;
@@ -14076,7 +14102,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_channel().set_channel(channel_value);
             let result = if let Some(sink) = observation {
@@ -14105,7 +14131,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
             let converted_506 = (|| -> PyResult<_> {
                 let converted_506: String = value.extract()?;
@@ -14126,7 +14152,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_dashboard()
@@ -14157,7 +14183,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_507 = (|| -> PyResult<_> {
                 let converted_507: String = value.extract()?;
@@ -14178,7 +14204,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_event_data_store()
@@ -14209,7 +14235,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_508 = (|| -> PyResult<_> {
                 let converted_508: String = value.extract()?;
@@ -14230,7 +14256,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
@@ -14261,7 +14287,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_509 = (|| -> PyResult<_> {
                 let converted_509: String = value.extract()?;
@@ -14278,7 +14304,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_trail().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -14306,7 +14332,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let delegated_admin_account_id_value =
             if let Some(value) = dict_value(params, "delegated_admin_account_id")? {
                 let converted_510 = (|| -> PyResult<_> {
@@ -14328,7 +14354,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .deregister_organization_delegated_admin()
@@ -14361,7 +14387,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_511 = (|| -> PyResult<_> {
                 let converted_511: String = value.extract()?;
@@ -14459,7 +14485,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_query()
@@ -14496,7 +14522,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_list_value = if let Some(value) = dict_value(params, "trail_name_list")? {
             let converted_516 = (|| -> PyResult<_> {
                 let mut converted_516 =
@@ -14561,7 +14587,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_trails()
@@ -14595,7 +14621,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_522 = (|| -> PyResult<_> {
                 let converted_522: String = value.extract()?;
@@ -14616,7 +14642,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disable_federation()
@@ -14647,7 +14673,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_523 = (|| -> PyResult<_> {
                 let converted_523: String = value.extract()?;
@@ -14689,7 +14715,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .enable_federation()
@@ -14721,7 +14747,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_stores_value = if let Some(value) = dict_value(params, "event_data_stores")?
         {
             let converted_525 = (|| -> PyResult<_> {
@@ -14782,7 +14808,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_query()
@@ -14814,7 +14840,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let channel_value = if let Some(value) = dict_value(params, "channel")? {
             let converted_531 = (|| -> PyResult<_> {
                 let converted_531: String = value.extract()?;
@@ -14831,7 +14857,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_channel().set_channel(channel_value);
             let result = if let Some(sink) = observation {
@@ -14861,7 +14887,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
             let converted_532 = (|| -> PyResult<_> {
                 let converted_532: String = value.extract()?;
@@ -14882,7 +14908,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_dashboard().set_dashboard_id(dashboard_id_value);
             let result = if let Some(sink) = observation {
@@ -14913,7 +14939,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
             let converted_533 = (|| -> PyResult<_> {
                 let converted_533: String = value.extract()?;
@@ -14954,7 +14980,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_event_configuration()
@@ -14988,7 +15014,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_535 = (|| -> PyResult<_> {
                 let converted_535: String = value.extract()?;
@@ -15009,7 +15035,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_event_data_store()
@@ -15042,7 +15068,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
             let converted_536 = (|| -> PyResult<_> {
                 let converted_536: String = value.extract()?;
@@ -15063,7 +15089,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_event_selectors()
@@ -15096,7 +15122,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
             let converted_537 = (|| -> PyResult<_> {
                 let converted_537: String = value.extract()?;
@@ -15117,7 +15143,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_import().set_import_id(import_id_value);
             let result = if let Some(sink) = observation {
@@ -15147,7 +15173,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
             let converted_538 = (|| -> PyResult<_> {
                 let converted_538: String = value.extract()?;
@@ -15188,7 +15214,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_insight_selectors()
@@ -15222,7 +15248,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_540 = (|| -> PyResult<_> {
                 let converted_540: String = value.extract()?;
@@ -15321,7 +15347,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_query_results()
@@ -15358,7 +15384,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_545 = (|| -> PyResult<_> {
                 let converted_545: String = value.extract()?;
@@ -15379,7 +15405,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource_policy()
@@ -15410,7 +15436,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_546 = (|| -> PyResult<_> {
                 let converted_546: String = value.extract()?;
@@ -15427,7 +15453,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_trail().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -15457,7 +15483,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_547 = (|| -> PyResult<_> {
                 let converted_547: String = value.extract()?;
@@ -15474,7 +15500,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_trail_status().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -15503,7 +15529,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_548 = (|| -> PyResult<_> {
                 let converted_548: i32 = value.extract()?;
@@ -15544,7 +15570,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_channels()
@@ -15578,7 +15604,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
             let converted_550 = (|| -> PyResult<_> {
                 let converted_550: String = value.extract()?;
@@ -15661,7 +15687,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_dashboards()
@@ -15697,7 +15723,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_555 = (|| -> PyResult<_> {
                 let converted_555: String = value.extract()?;
@@ -15738,7 +15764,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_event_data_stores()
@@ -15772,7 +15798,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
             let converted_557 = (|| -> PyResult<_> {
                 let converted_557: String = value.extract()?;
@@ -15833,7 +15859,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_import_failures()
@@ -15868,7 +15894,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_560 = (|| -> PyResult<_> {
                 let converted_560: i32 = value.extract()?;
@@ -15951,7 +15977,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_imports()
@@ -15986,7 +16012,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let insight_source_value = if let Some(value) = dict_value(params, "insight_source")? {
             let converted_565 = (|| -> PyResult<_> {
                 let converted_565: String = value.extract()?;
@@ -16169,7 +16195,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_insights_data()
@@ -16208,7 +16234,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
             let converted_582 = (|| -> PyResult<_> {
                 let converted_582: String = value.extract()?;
@@ -16440,7 +16466,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_insights_metric_data()
@@ -16481,7 +16507,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
             let converted_597 = (|| -> PyResult<_> {
                 let timestamp_598: String = value.extract()?;
@@ -16552,7 +16578,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_public_keys()
@@ -16587,7 +16613,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_602 = (|| -> PyResult<_> {
                 let converted_602: String = value.extract()?;
@@ -16720,7 +16746,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_queries()
@@ -16757,7 +16783,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_id_list_value = if let Some(value) = dict_value(params, "resource_id_list")? {
             let converted_611 = (|| -> PyResult<_> {
                 let mut converted_611 =
@@ -16821,7 +16847,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags()
@@ -16854,7 +16880,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_617 = (|| -> PyResult<_> {
                 let converted_617: String = value.extract()?;
@@ -16875,7 +16901,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_trails().set_next_token(next_token_value);
             let result = if let Some(sink) = observation {
@@ -16905,7 +16931,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let lookup_attributes_value = if let Some(value) = dict_value(params, "lookup_attributes")?
         {
             let converted_618 = (|| -> PyResult<_> {
@@ -17062,7 +17088,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .lookup_events()
@@ -17100,7 +17126,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
             let converted_631 = (|| -> PyResult<_> {
                 let converted_631: String = value.extract()?;
@@ -17251,7 +17277,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_event_configuration()
@@ -17288,7 +17314,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
             let converted_645 = (|| -> PyResult<_> {
                 let converted_645: String = value.extract()?;
@@ -17396,7 +17422,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_event_selectors()
@@ -17431,7 +17457,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
             let converted_656 = (|| -> PyResult<_> {
                 let converted_656: String = value.extract()?;
@@ -17537,7 +17563,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_insight_selectors()
@@ -17573,7 +17599,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_664 = (|| -> PyResult<_> {
                 let converted_664: String = value.extract()?;
@@ -17614,7 +17640,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_resource_policy()
@@ -17646,7 +17672,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let member_account_id_value = if let Some(value) = dict_value(params, "member_account_id")?
         {
             let converted_666 = (|| -> PyResult<_> {
@@ -17668,7 +17694,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .register_organization_delegated_admin()
@@ -17701,7 +17727,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_id_value = if let Some(value) = dict_value(params, "resource_id")? {
             let converted_667 = (|| -> PyResult<_> {
                 let converted_667: String = value.extract()?;
@@ -17765,7 +17791,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .remove_tags()
@@ -17796,7 +17822,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_673 = (|| -> PyResult<_> {
                 let converted_673: String = value.extract()?;
@@ -17817,7 +17843,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .restore_event_data_store()
@@ -17850,7 +17876,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let search_phrase_value = if let Some(value) = dict_value(params, "search_phrase")? {
             let converted_674 = (|| -> PyResult<_> {
                 let converted_674: String = value.extract()?;
@@ -17911,7 +17937,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .search_sample_queries()
@@ -17946,7 +17972,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
             let converted_677 = (|| -> PyResult<_> {
                 let converted_677: String = value.extract()?;
@@ -18014,7 +18040,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_dashboard_refresh()
@@ -18046,7 +18072,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_685 = (|| -> PyResult<_> {
                 let converted_685: String = value.extract()?;
@@ -18067,7 +18093,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_event_data_store_ingestion()
@@ -18098,7 +18124,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let destinations_value = if let Some(value) = dict_value(params, "destinations")? {
             let converted_686 = (|| -> PyResult<_> {
                 let mut converted_686 =
@@ -18232,7 +18258,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_import()
@@ -18268,7 +18294,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_697 = (|| -> PyResult<_> {
                 let converted_697: String = value.extract()?;
@@ -18285,7 +18311,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.start_logging().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -18314,7 +18340,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_statement_value = if let Some(value) = dict_value(params, "query_statement")? {
             let converted_698 = (|| -> PyResult<_> {
                 let converted_698: String = value.extract()?;
@@ -18439,7 +18465,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_query()
@@ -18473,7 +18499,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_707 = (|| -> PyResult<_> {
                 let converted_707: String = value.extract()?;
@@ -18494,7 +18520,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_event_data_store_ingestion()
@@ -18525,7 +18551,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
             let converted_708 = (|| -> PyResult<_> {
                 let converted_708: String = value.extract()?;
@@ -18546,7 +18572,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.stop_import().set_import_id(import_id_value);
             let result = if let Some(sink) = observation {
@@ -18576,7 +18602,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_709 = (|| -> PyResult<_> {
                 let converted_709: String = value.extract()?;
@@ -18593,7 +18619,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.stop_logging().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -18621,7 +18647,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let channel_value = if let Some(value) = dict_value(params, "channel")? {
             let converted_710 = (|| -> PyResult<_> {
                 let converted_710: String = value.extract()?;
@@ -18697,7 +18723,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_channel()
@@ -18732,7 +18758,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
             let converted_717 = (|| -> PyResult<_> {
                 let converted_717: String = value.extract()?;
@@ -18837,7 +18863,7 @@ impl CloudTrailClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_dashboard()
@@ -18873,7 +18899,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
             let converted_725 = (|| -> PyResult<_> {
                 let converted_725: String = value.extract()?;
@@ -19079,7 +19105,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_event_data_store()
@@ -19120,7 +19146,7 @@ impl CloudTrailClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_739 = (|| -> PyResult<_> {
                 let converted_739: String = value.extract()?;
@@ -19364,7 +19390,7 @@ impl CloudTrailClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_trail()

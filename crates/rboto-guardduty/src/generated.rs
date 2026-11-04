@@ -57033,7 +57033,7 @@ impl GuardDutyClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -57041,8 +57041,34 @@ impl GuardDutyClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -57052,7 +57078,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3119 = (|| -> PyResult<_> {
                 let converted_3119: String = value.extract()?;
@@ -57113,7 +57139,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .accept_administrator_invitation()
@@ -57146,7 +57172,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3122 = (|| -> PyResult<_> {
                 let converted_3122: String = value.extract()?;
@@ -57207,7 +57233,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .accept_invitation()
@@ -57240,7 +57266,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3125 = (|| -> PyResult<_> {
                 let converted_3125: String = value.extract()?;
@@ -57304,7 +57330,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .archive_findings()
@@ -57336,7 +57362,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3131 = (|| -> PyResult<_> {
                 let converted_3131: String = value.extract()?;
@@ -57437,7 +57463,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_custom_detection_rule_association()
@@ -57475,7 +57501,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3142 = (|| -> PyResult<_> {
                 let converted_3142: String = value.extract()?;
@@ -57622,7 +57648,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_custom_detection_rule_org_configuration()
@@ -57659,7 +57685,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let enable_value = if let Some(value) = dict_value(params, "enable")? {
             let converted_3156 = (|| -> PyResult<_> {
                 let converted_3156: bool = value.extract()?;
@@ -57826,7 +57852,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_detector()
@@ -57864,7 +57890,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3173 = (|| -> PyResult<_> {
                 let converted_3173: String = value.extract()?;
@@ -58041,7 +58067,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_filter()
@@ -58079,7 +58105,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3188 = (|| -> PyResult<_> {
                 let converted_3188: String = value.extract()?;
@@ -58257,7 +58283,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_ip_set()
@@ -58294,7 +58320,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3203 = (|| -> PyResult<_> {
                 let converted_3203: String = value.extract()?;
@@ -58355,7 +58381,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_investigation()
@@ -58388,7 +58414,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
             let converted_3206 = (|| -> PyResult<_> {
                 let converted_3206: String = value.extract()?;
@@ -58508,7 +58534,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_malware_protection_plan()
@@ -58543,7 +58569,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3217 = (|| -> PyResult<_> {
                 let converted_3217: String = value.extract()?;
@@ -58607,7 +58633,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_members()
@@ -58641,7 +58667,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3223 = (|| -> PyResult<_> {
                 let converted_3223: String = value.extract()?;
@@ -58767,7 +58793,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_publishing_destination()
@@ -58802,7 +58828,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3235 = (|| -> PyResult<_> {
                 let converted_3235: String = value.extract()?;
@@ -58866,7 +58892,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_sample_findings()
@@ -58898,7 +58924,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3241 = (|| -> PyResult<_> {
                 let converted_3241: String = value.extract()?;
@@ -59076,7 +59102,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_threat_entity_set()
@@ -59114,7 +59140,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3256 = (|| -> PyResult<_> {
                 let converted_3256: String = value.extract()?;
@@ -59292,7 +59318,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_threat_intel_set()
@@ -59330,7 +59356,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3271 = (|| -> PyResult<_> {
                 let converted_3271: String = value.extract()?;
@@ -59509,7 +59535,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_trusted_entity_set()
@@ -59547,7 +59573,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
             let converted_3286 = (|| -> PyResult<_> {
                 let mut converted_3286 =
@@ -59591,7 +59617,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .decline_invitations()
@@ -59624,7 +59650,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3291 = (|| -> PyResult<_> {
                 let converted_3291: String = value.extract()?;
@@ -59661,7 +59687,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_custom_detection_rule_association()
@@ -59695,7 +59721,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3293 = (|| -> PyResult<_> {
                 let converted_3293: String = value.extract()?;
@@ -59734,7 +59760,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_custom_detection_rule_org_configuration()
@@ -59768,7 +59794,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3296 = (|| -> PyResult<_> {
                 let converted_3296: String = value.extract()?;
@@ -59789,7 +59815,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_detector().set_detector_id(detector_id_value);
             let result = if let Some(sink) = observation {
@@ -59818,7 +59844,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3297 = (|| -> PyResult<_> {
                 let converted_3297: String = value.extract()?;
@@ -59859,7 +59885,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_filter()
@@ -59891,7 +59917,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3299 = (|| -> PyResult<_> {
                 let converted_3299: String = value.extract()?;
@@ -59932,7 +59958,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_ip_set()
@@ -59963,7 +59989,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
             let converted_3301 = (|| -> PyResult<_> {
                 let mut converted_3301 =
@@ -60007,7 +60033,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_invitations()
@@ -60040,7 +60066,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let malware_protection_plan_id_value =
             if let Some(value) = dict_value(params, "malware_protection_plan_id")? {
                 let converted_3306 = (|| -> PyResult<_> {
@@ -60062,7 +60088,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_malware_protection_plan()
@@ -60093,7 +60119,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3307 = (|| -> PyResult<_> {
                 let converted_3307: String = value.extract()?;
@@ -60157,7 +60183,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_members()
@@ -60191,7 +60217,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3313 = (|| -> PyResult<_> {
                 let converted_3313: String = value.extract()?;
@@ -60232,7 +60258,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_publishing_destination()
@@ -60264,7 +60290,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3315 = (|| -> PyResult<_> {
                 let converted_3315: String = value.extract()?;
@@ -60306,7 +60332,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_threat_entity_set()
@@ -60338,7 +60364,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3317 = (|| -> PyResult<_> {
                 let converted_3317: String = value.extract()?;
@@ -60380,7 +60406,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_threat_intel_set()
@@ -60412,7 +60438,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3319 = (|| -> PyResult<_> {
                 let converted_3319: String = value.extract()?;
@@ -60454,7 +60480,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_trusted_entity_set()
@@ -60486,7 +60512,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3321 = (|| -> PyResult<_> {
                 let converted_3321: String = value.extract()?;
@@ -60587,7 +60613,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_malware_scans()
@@ -60624,7 +60650,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3326 = (|| -> PyResult<_> {
                 let converted_3326: String = value.extract()?;
@@ -60685,7 +60711,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_organization_configuration()
@@ -60722,7 +60748,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3329 = (|| -> PyResult<_> {
                 let converted_3329: String = value.extract()?;
@@ -60763,7 +60789,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_publishing_destination()
@@ -60797,7 +60823,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let admin_account_id_value = if let Some(value) = dict_value(params, "admin_account_id")? {
             let converted_3331 = (|| -> PyResult<_> {
                 let converted_3331: String = value.extract()?;
@@ -60818,7 +60844,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disable_organization_admin_account()
@@ -60849,7 +60875,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3332 = (|| -> PyResult<_> {
                 let converted_3332: String = value.extract()?;
@@ -60870,7 +60896,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disassociate_from_administrator_account()
@@ -60903,7 +60929,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3333 = (|| -> PyResult<_> {
                 let converted_3333: String = value.extract()?;
@@ -60924,7 +60950,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disassociate_from_master_account()
@@ -60955,7 +60981,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3334 = (|| -> PyResult<_> {
                 let converted_3334: String = value.extract()?;
@@ -61019,7 +61045,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disassociate_members()
@@ -61053,7 +61079,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let admin_account_id_value = if let Some(value) = dict_value(params, "admin_account_id")? {
             let converted_3340 = (|| -> PyResult<_> {
                 let converted_3340: String = value.extract()?;
@@ -61074,7 +61100,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .enable_organization_admin_account()
@@ -61105,7 +61131,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3341 = (|| -> PyResult<_> {
                 let converted_3341: String = value.extract()?;
@@ -61126,7 +61152,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_administrator_account()
@@ -61159,7 +61185,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3342 = (|| -> PyResult<_> {
                 let converted_3342: String = value.extract()?;
@@ -61247,7 +61273,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_coverage_statistics()
@@ -61282,7 +61308,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3350 = (|| -> PyResult<_> {
                 let converted_3350: String = value.extract()?;
@@ -61299,7 +61325,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_custom_detection_rule()
@@ -61332,7 +61358,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3351 = (|| -> PyResult<_> {
                 let converted_3351: String = value.extract()?;
@@ -61369,7 +61395,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_custom_detection_rule_association()
@@ -61405,7 +61431,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3353 = (|| -> PyResult<_> {
                 let converted_3353: String = value.extract()?;
@@ -61444,7 +61470,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_custom_detection_rule_org_configuration()
@@ -61480,7 +61506,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3356 = (|| -> PyResult<_> {
                 let converted_3356: String = value.extract()?;
@@ -61501,7 +61527,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_detector().set_detector_id(detector_id_value);
             let result = if let Some(sink) = observation {
@@ -61531,7 +61557,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3357 = (|| -> PyResult<_> {
                 let converted_3357: String = value.extract()?;
@@ -61572,7 +61598,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_filter()
@@ -61605,7 +61631,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3359 = (|| -> PyResult<_> {
                 let converted_3359: String = value.extract()?;
@@ -61689,7 +61715,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_findings()
@@ -61723,7 +61749,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3366 = (|| -> PyResult<_> {
                 let converted_3366: String = value.extract()?;
@@ -61876,7 +61902,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_findings_statistics()
@@ -61914,7 +61940,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3379 = (|| -> PyResult<_> {
                 let converted_3379: String = value.extract()?;
@@ -61955,7 +61981,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_ip_set()
@@ -61986,7 +62012,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3381 = (|| -> PyResult<_> {
                 let converted_3381: String = value.extract()?;
@@ -62027,7 +62053,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_investigation()
@@ -62061,8 +62087,8 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_invitations_count();
             let result = if let Some(sink) = observation {
@@ -62091,7 +62117,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let malware_protection_plan_id_value =
             if let Some(value) = dict_value(params, "malware_protection_plan_id")? {
                 let converted_3383 = (|| -> PyResult<_> {
@@ -62113,7 +62139,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_malware_protection_plan()
@@ -62146,7 +62172,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let scan_id_value = if let Some(value) = dict_value(params, "scan_id")? {
             let converted_3384 = (|| -> PyResult<_> {
                 let converted_3384: String = value.extract()?;
@@ -62163,7 +62189,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_malware_scan().set_scan_id(scan_id_value);
             let result = if let Some(sink) = observation {
@@ -62194,7 +62220,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3385 = (|| -> PyResult<_> {
                 let converted_3385: String = value.extract()?;
@@ -62215,7 +62241,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_malware_scan_settings()
@@ -62248,7 +62274,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3386 = (|| -> PyResult<_> {
                 let converted_3386: String = value.extract()?;
@@ -62269,7 +62295,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_master_account()
@@ -62302,7 +62328,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3387 = (|| -> PyResult<_> {
                 let converted_3387: String = value.extract()?;
@@ -62366,7 +62392,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_member_detectors()
@@ -62400,7 +62426,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3393 = (|| -> PyResult<_> {
                 let converted_3393: String = value.extract()?;
@@ -62464,7 +62490,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_members()
@@ -62497,8 +62523,8 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_organization_statistics();
             let result = if let Some(sink) = observation {
@@ -62529,7 +62555,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3399 = (|| -> PyResult<_> {
                 let converted_3399: String = value.extract()?;
@@ -62593,7 +62619,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_remaining_free_trial_days()
@@ -62627,7 +62653,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3405 = (|| -> PyResult<_> {
                 let converted_3405: String = value.extract()?;
@@ -62669,7 +62695,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_threat_entity_set()
@@ -62701,7 +62727,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3407 = (|| -> PyResult<_> {
                 let converted_3407: String = value.extract()?;
@@ -62743,7 +62769,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_threat_intel_set()
@@ -62775,7 +62801,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3409 = (|| -> PyResult<_> {
                 let converted_3409: String = value.extract()?;
@@ -62817,7 +62843,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_trusted_entity_set()
@@ -62849,7 +62875,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3411 = (|| -> PyResult<_> {
                 let converted_3411: String = value.extract()?;
@@ -62970,7 +62996,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_usage_statistics()
@@ -63008,7 +63034,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3418 = (|| -> PyResult<_> {
                 let converted_3418: String = value.extract()?;
@@ -63109,7 +63135,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invite_members()
@@ -63145,7 +63171,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3426 = (|| -> PyResult<_> {
                 let converted_3426: String = value.extract()?;
@@ -63246,7 +63272,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_coverage()
@@ -63283,7 +63309,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_3431 = (|| -> PyResult<_> {
                 let converted_3431: i32 = value.extract()?;
@@ -63362,7 +63388,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_custom_detection_rule_associations()
@@ -63400,7 +63426,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_3436 = (|| -> PyResult<_> {
                 let converted_3436: i32 = value.extract()?;
@@ -63465,7 +63491,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_custom_detection_rule_org_configurations()
@@ -63502,7 +63528,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_3440 = (|| -> PyResult<_> {
                 let converted_3440: i32 = value.extract()?;
@@ -63586,7 +63612,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_custom_detection_rules()
@@ -63621,7 +63647,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_3447 = (|| -> PyResult<_> {
                 let converted_3447: i32 = value.extract()?;
@@ -63662,7 +63688,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_detectors()
@@ -63694,7 +63720,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3449 = (|| -> PyResult<_> {
                 let converted_3449: String = value.extract()?;
@@ -63755,7 +63781,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_filters()
@@ -63787,7 +63813,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3452 = (|| -> PyResult<_> {
                 let converted_3452: String = value.extract()?;
@@ -63888,7 +63914,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_findings()
@@ -63923,7 +63949,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3457 = (|| -> PyResult<_> {
                 let converted_3457: String = value.extract()?;
@@ -63984,7 +64010,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_ip_sets()
@@ -64016,7 +64042,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3460 = (|| -> PyResult<_> {
                 let converted_3460: String = value.extract()?;
@@ -64097,7 +64123,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_investigations()
@@ -64133,7 +64159,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_3464 = (|| -> PyResult<_> {
                 let converted_3464: i32 = value.extract()?;
@@ -64174,7 +64200,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_invitations()
@@ -64208,7 +64234,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_3466 = (|| -> PyResult<_> {
                 let converted_3466: String = value.extract()?;
@@ -64229,7 +64255,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_malware_protection_plans()
@@ -64262,7 +64288,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_3467 = (|| -> PyResult<_> {
                 let converted_3467: i32 = value.extract()?;
@@ -64343,7 +64369,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_malware_scans()
@@ -64379,7 +64405,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3471 = (|| -> PyResult<_> {
                 let converted_3471: String = value.extract()?;
@@ -64460,7 +64486,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_members()
@@ -64495,7 +64521,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_3475 = (|| -> PyResult<_> {
                 let converted_3475: i32 = value.extract()?;
@@ -64536,7 +64562,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_organization_admin_accounts()
@@ -64570,7 +64596,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3477 = (|| -> PyResult<_> {
                 let converted_3477: String = value.extract()?;
@@ -64631,7 +64657,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_publishing_destinations()
@@ -64666,7 +64692,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_3480 = (|| -> PyResult<_> {
                 let converted_3480: String = value.extract()?;
@@ -64687,7 +64713,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -64718,7 +64744,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3481 = (|| -> PyResult<_> {
                 let converted_3481: String = value.extract()?;
@@ -64779,7 +64805,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_threat_entity_sets()
@@ -64812,7 +64838,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3484 = (|| -> PyResult<_> {
                 let converted_3484: String = value.extract()?;
@@ -64873,7 +64899,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_threat_intel_sets()
@@ -64906,7 +64932,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3487 = (|| -> PyResult<_> {
                 let converted_3487: String = value.extract()?;
@@ -64967,7 +64993,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_trusted_entity_sets()
@@ -65000,7 +65026,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let s3_object_value = if let Some(value) = dict_value(params, "s3_object")? {
             let converted_3490 = (|| -> PyResult<_> {
                 let converted_3490 = s3_object_for_send_object_malware_scan_from_py(&value)?;
@@ -65021,7 +65047,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_object_malware_scan()
@@ -65052,7 +65078,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_3491 = (|| -> PyResult<_> {
                 let converted_3491: String = value.extract()?;
@@ -65114,7 +65140,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_malware_scan()
@@ -65147,7 +65173,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3494 = (|| -> PyResult<_> {
                 let converted_3494: String = value.extract()?;
@@ -65211,7 +65237,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_monitoring_members()
@@ -65245,7 +65271,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3500 = (|| -> PyResult<_> {
                 let converted_3500: String = value.extract()?;
@@ -65309,7 +65335,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_monitoring_members()
@@ -65343,7 +65369,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_3506 = (|| -> PyResult<_> {
                 let converted_3506: String = value.extract()?;
@@ -65406,7 +65432,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -65437,7 +65463,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3514 = (|| -> PyResult<_> {
                 let converted_3514: String = value.extract()?;
@@ -65501,7 +65527,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .unarchive_findings()
@@ -65533,7 +65559,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_3520 = (|| -> PyResult<_> {
                 let converted_3520: String = value.extract()?;
@@ -65597,7 +65623,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -65629,7 +65655,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3526 = (|| -> PyResult<_> {
                 let converted_3526: String = value.extract()?;
@@ -65688,7 +65714,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_custom_detection_rule_association()
@@ -65723,7 +65749,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rule_id_value = if let Some(value) = dict_value(params, "rule_id")? {
             let converted_3530 = (|| -> PyResult<_> {
                 let converted_3530: String = value.extract()?;
@@ -65850,7 +65876,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_custom_detection_rule_org_configuration()
@@ -65886,7 +65912,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3543 = (|| -> PyResult<_> {
                 let converted_3543: String = value.extract()?;
@@ -66011,7 +66037,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_detector()
@@ -66046,7 +66072,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3553 = (|| -> PyResult<_> {
                 let converted_3553: String = value.extract()?;
@@ -66165,7 +66191,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_filter()
@@ -66201,7 +66227,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3560 = (|| -> PyResult<_> {
                 let converted_3560: String = value.extract()?;
@@ -66303,7 +66329,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_findings_feedback()
@@ -66337,7 +66363,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3569 = (|| -> PyResult<_> {
                 let converted_3569: String = value.extract()?;
@@ -66451,7 +66477,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_ip_set()
@@ -66486,7 +66512,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let malware_protection_plan_id_value =
             if let Some(value) = dict_value(params, "malware_protection_plan_id")? {
                 let converted_3575 = (|| -> PyResult<_> {
@@ -66565,7 +66591,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_malware_protection_plan()
@@ -66599,7 +66625,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3579 = (|| -> PyResult<_> {
                 let converted_3579: String = value.extract()?;
@@ -66665,7 +66691,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_malware_scan_settings()
@@ -66698,7 +66724,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3583 = (|| -> PyResult<_> {
                 let converted_3583: String = value.extract()?;
@@ -66826,7 +66852,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_member_detectors()
@@ -66862,7 +66888,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3595 = (|| -> PyResult<_> {
                 let converted_3595: String = value.extract()?;
@@ -66990,7 +67016,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_organization_configuration()
@@ -67025,7 +67051,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3605 = (|| -> PyResult<_> {
                 let converted_3605: String = value.extract()?;
@@ -67087,7 +67113,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_publishing_destination()
@@ -67120,7 +67146,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3608 = (|| -> PyResult<_> {
                 let converted_3608: String = value.extract()?;
@@ -67235,7 +67261,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_threat_entity_set()
@@ -67271,7 +67297,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3614 = (|| -> PyResult<_> {
                 let converted_3614: String = value.extract()?;
@@ -67386,7 +67412,7 @@ impl GuardDutyClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_threat_intel_set()
@@ -67422,7 +67448,7 @@ impl GuardDutyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let detector_id_value = if let Some(value) = dict_value(params, "detector_id")? {
             let converted_3620 = (|| -> PyResult<_> {
                 let converted_3620: String = value.extract()?;
@@ -67537,7 +67563,7 @@ impl GuardDutyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_trusted_entity_set()

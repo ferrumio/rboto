@@ -25538,12 +25538,10 @@ impl PyOperationUpdateScheduledQueryOutput {
 )]
 struct PyGetLogObjectResponseStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_cloudwatchlogs::primitives::event_stream::EventReceiver<
-                    aws_sdk_cloudwatchlogs::types::GetLogObjectResponseStream,
-                    aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_cloudwatchlogs::primitives::event_stream::EventReceiver<
+                aws_sdk_cloudwatchlogs::types::GetLogObjectResponseStream,
+                aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError,
             >,
         >,
     >,
@@ -25559,7 +25557,7 @@ impl PyGetLogObjectResponseStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -25571,34 +25569,59 @@ impl PyGetLogObjectResponseStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| get_log_object_response_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError::InternalStreamingException(_)) => Some("InternalStreamingException"),
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -25609,12 +25632,10 @@ impl PyGetLogObjectResponseStreamReceiver {
 )]
 struct PyStartLiveTailResponseStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_cloudwatchlogs::primitives::event_stream::EventReceiver<
-                    aws_sdk_cloudwatchlogs::types::StartLiveTailResponseStream,
-                    aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_cloudwatchlogs::primitives::event_stream::EventReceiver<
+                aws_sdk_cloudwatchlogs::types::StartLiveTailResponseStream,
+                aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError,
             >,
         >,
     >,
@@ -25630,7 +25651,7 @@ impl PyStartLiveTailResponseStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -25642,35 +25663,60 @@ impl PyStartLiveTailResponseStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| start_live_tail_response_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError::SessionTimeoutException(_)) => Some("SessionTimeoutException"),
                         Some(aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError::SessionStreamingException(_)) => Some("SessionStreamingException"),
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -25870,7 +25916,7 @@ impl CloudWatchLogsClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -25878,8 +25924,34 @@ impl CloudWatchLogsClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -25889,7 +25961,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1351 = (|| -> PyResult<_> {
                 let converted_1351: String = value.extract()?;
@@ -25951,7 +26023,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .associate_kms_key()
@@ -25984,7 +26056,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let integration_arn_value = if let Some(value) = dict_value(params, "integration_arn")? {
             let converted_1354 = (|| -> PyResult<_> {
                 let converted_1354: String = value.extract()?;
@@ -26025,7 +26097,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .associate_source_to_s3_table_integration()
@@ -26059,7 +26131,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_id_value = if let Some(value) = dict_value(params, "task_id")? {
             let converted_1356 = (|| -> PyResult<_> {
                 let converted_1356: String = value.extract()?;
@@ -26076,7 +26148,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_export_task().set_task_id(task_id_value);
             let result = if let Some(sink) = observation {
@@ -26105,7 +26177,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
             let converted_1357 = (|| -> PyResult<_> {
                 let converted_1357: String = value.extract()?;
@@ -26126,7 +26198,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_import_task().set_import_id(import_id_value);
             let result = if let Some(sink) = observation {
@@ -26157,7 +26229,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let delivery_source_name_value =
             if let Some(value) = dict_value(params, "delivery_source_name")? {
                 let converted_1358 = (|| -> PyResult<_> {
@@ -26326,7 +26398,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_delivery()
@@ -26364,7 +26436,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_name_value = if let Some(value) = dict_value(params, "task_name")? {
             let converted_1374 = (|| -> PyResult<_> {
                 let converted_1374: String = value.extract()?;
@@ -26499,7 +26571,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_export_task()
@@ -26536,7 +26608,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_source_arn_value = if let Some(value) = dict_value(params, "import_source_arn")?
         {
             let converted_1381 = (|| -> PyResult<_> {
@@ -26598,7 +26670,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_import_task()
@@ -26631,7 +26703,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_arn_list_value =
             if let Some(value) = dict_value(params, "log_group_arn_list")? {
                 let converted_1384 = (|| -> PyResult<_> {
@@ -26823,7 +26895,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_log_anomaly_detector()
@@ -26860,7 +26932,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1402 = (|| -> PyResult<_> {
                 let converted_1402: String = value.extract()?;
@@ -26986,7 +27058,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_log_group()
@@ -27021,7 +27093,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1414 = (|| -> PyResult<_> {
                 let converted_1414: String = value.extract()?;
@@ -27062,7 +27134,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_log_stream()
@@ -27094,7 +27166,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let lookup_table_name_value = if let Some(value) = dict_value(params, "lookup_table_name")?
         {
             let converted_1416 = (|| -> PyResult<_> {
@@ -27234,7 +27306,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_lookup_table()
@@ -27270,7 +27342,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1428 = (|| -> PyResult<_> {
                 let converted_1428: String = value.extract()?;
@@ -27620,7 +27692,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_scheduled_query()
@@ -27665,7 +27737,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let policy_name_value = if let Some(value) = dict_value(params, "policy_name")? {
             let converted_1455 = (|| -> PyResult<_> {
                 let converted_1455: String = value.extract()?;
@@ -27708,7 +27780,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_account_policy()
@@ -27740,7 +27812,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1458 = (|| -> PyResult<_> {
@@ -27762,7 +27834,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_data_protection_policy()
@@ -27793,7 +27865,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let id_value = if let Some(value) = dict_value(params, "id")? {
             let converted_1459 = (|| -> PyResult<_> {
                 let converted_1459: String = value.extract()?;
@@ -27810,7 +27882,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_delivery().set_id(id_value);
             let result = if let Some(sink) = observation {
@@ -27839,7 +27911,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1460 = (|| -> PyResult<_> {
                 let converted_1460: String = value.extract()?;
@@ -27856,7 +27928,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_delivery_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -27885,7 +27957,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let delivery_destination_name_value =
             if let Some(value) = dict_value(params, "delivery_destination_name")? {
                 let converted_1461 = (|| -> PyResult<_> {
@@ -27907,7 +27979,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_delivery_destination_policy()
@@ -27938,7 +28010,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1462 = (|| -> PyResult<_> {
                 let converted_1462: String = value.extract()?;
@@ -27955,7 +28027,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_delivery_source().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -27984,7 +28056,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let destination_name_value = if let Some(value) = dict_value(params, "destination_name")? {
             let converted_1463 = (|| -> PyResult<_> {
                 let converted_1463: String = value.extract()?;
@@ -28005,7 +28077,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_destination()
@@ -28036,7 +28108,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1464 = (|| -> PyResult<_> {
@@ -28058,7 +28130,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_index_policy()
@@ -28089,7 +28161,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let integration_name_value = if let Some(value) = dict_value(params, "integration_name")? {
             let converted_1465 = (|| -> PyResult<_> {
                 let converted_1465: String = value.extract()?;
@@ -28126,7 +28198,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_integration()
@@ -28158,7 +28230,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let anomaly_detector_arn_value =
             if let Some(value) = dict_value(params, "anomaly_detector_arn")? {
                 let converted_1467 = (|| -> PyResult<_> {
@@ -28180,7 +28252,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_log_anomaly_detector()
@@ -28211,7 +28283,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1468 = (|| -> PyResult<_> {
                 let converted_1468: String = value.extract()?;
@@ -28232,7 +28304,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_log_group()
@@ -28263,7 +28335,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1469 = (|| -> PyResult<_> {
                 let converted_1469: String = value.extract()?;
@@ -28304,7 +28376,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_log_stream()
@@ -28336,7 +28408,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let lookup_table_arn_value = if let Some(value) = dict_value(params, "lookup_table_arn")? {
             let converted_1471 = (|| -> PyResult<_> {
                 let converted_1471: String = value.extract()?;
@@ -28357,7 +28429,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_lookup_table()
@@ -28388,7 +28460,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1472 = (|| -> PyResult<_> {
                 let converted_1472: String = value.extract()?;
@@ -28429,7 +28501,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_metric_filter()
@@ -28461,7 +28533,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_definition_id_value =
             if let Some(value) = dict_value(params, "query_definition_id")? {
                 let converted_1474 = (|| -> PyResult<_> {
@@ -28483,7 +28555,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_query_definition()
@@ -28514,7 +28586,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let policy_name_value = if let Some(value) = dict_value(params, "policy_name")? {
             let converted_1475 = (|| -> PyResult<_> {
                 let converted_1475: String = value.extract()?;
@@ -28576,7 +28648,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
@@ -28609,7 +28681,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1478 = (|| -> PyResult<_> {
                 let converted_1478: String = value.extract()?;
@@ -28630,7 +28702,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_retention_policy()
@@ -28661,7 +28733,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identifier_value = if let Some(value) = dict_value(params, "identifier")? {
             let converted_1479 = (|| -> PyResult<_> {
                 let converted_1479: String = value.extract()?;
@@ -28682,7 +28754,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_scheduled_query()
@@ -28713,7 +28785,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1480 = (|| -> PyResult<_> {
                 let converted_1480: String = value.extract()?;
@@ -28754,7 +28826,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_subscription_filter()
@@ -28786,7 +28858,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1482 = (|| -> PyResult<_> {
@@ -28828,7 +28900,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_syslog_configuration()
@@ -28860,7 +28932,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1484 = (|| -> PyResult<_> {
@@ -28882,7 +28954,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_transformer()
@@ -28913,7 +28985,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let policy_type_value = if let Some(value) = dict_value(params, "policy_type")? {
             let converted_1485 = (|| -> PyResult<_> {
                 let enum_value_1486: String = value.extract()?;
@@ -29020,7 +29092,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_account_policies()
@@ -29056,7 +29128,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let service_value = if let Some(value) = dict_value(params, "service")? {
             let converted_1494 = (|| -> PyResult<_> {
                 let converted_1494: String = value.extract()?;
@@ -29243,7 +29315,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_configuration_templates()
@@ -29281,7 +29353,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1513 = (|| -> PyResult<_> {
                 let converted_1513: String = value.extract()?;
@@ -29362,7 +29434,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_deliveries()
@@ -29397,7 +29469,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1520 = (|| -> PyResult<_> {
                 let converted_1520: String = value.extract()?;
@@ -29477,7 +29549,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_delivery_destinations()
@@ -29512,7 +29584,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1527 = (|| -> PyResult<_> {
                 let converted_1527: String = value.extract()?;
@@ -29592,7 +29664,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_delivery_sources()
@@ -29627,7 +29699,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let destination_name_prefix_value =
             if let Some(value) = dict_value(params, "destination_name_prefix")? {
                 let converted_1534 = (|| -> PyResult<_> {
@@ -29685,7 +29757,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_destinations()
@@ -29720,7 +29792,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_id_value = if let Some(value) = dict_value(params, "task_id")? {
             let converted_1537 = (|| -> PyResult<_> {
                 let converted_1537: String = value.extract()?;
@@ -29796,7 +29868,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_export_tasks()
@@ -29832,7 +29904,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
                 let converted_1542 = (|| -> PyResult<_> {
@@ -29944,7 +30016,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_field_indexes()
@@ -29979,7 +30051,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
             let converted_1554 = (|| -> PyResult<_> {
                 let converted_1554: String = value.extract()?;
@@ -30084,7 +30156,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_import_task_batches()
@@ -30120,7 +30192,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
             let converted_1563 = (|| -> PyResult<_> {
                 let converted_1563: String = value.extract()?;
@@ -30220,7 +30292,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_import_tasks()
@@ -30257,7 +30329,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
                 let converted_1569 = (|| -> PyResult<_> {
@@ -30322,7 +30394,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_index_policies()
@@ -30356,7 +30428,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let account_identifiers_value =
             if let Some(value) = dict_value(params, "account_identifiers")? {
                 let converted_1575 = (|| -> PyResult<_> {
@@ -30566,7 +30638,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_log_groups()
@@ -30606,7 +30678,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1592 = (|| -> PyResult<_> {
                 let converted_1592: String = value.extract()?;
@@ -30747,7 +30819,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_log_streams()
@@ -30786,7 +30858,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let lookup_table_name_prefix_value =
             if let Some(value) = dict_value(params, "lookup_table_name_prefix")? {
                 let converted_1600 = (|| -> PyResult<_> {
@@ -30848,7 +30920,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_lookup_tables()
@@ -30883,7 +30955,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1603 = (|| -> PyResult<_> {
                 let converted_1603: String = value.extract()?;
@@ -31001,7 +31073,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_metric_filters()
@@ -31039,7 +31111,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1609 = (|| -> PyResult<_> {
                 let converted_1609: String = value.extract()?;
@@ -31144,7 +31216,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_queries()
@@ -31181,7 +31253,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_language_value = if let Some(value) = dict_value(params, "query_language")? {
             let converted_1616 = (|| -> PyResult<_> {
                 let enum_value_1617: String = value.extract()?;
@@ -31265,7 +31337,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_query_definitions()
@@ -31301,7 +31373,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_1621 = (|| -> PyResult<_> {
                 let converted_1621: String = value.extract()?;
@@ -31380,7 +31452,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_resource_policies()
@@ -31416,7 +31488,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1626 = (|| -> PyResult<_> {
                 let converted_1626: String = value.extract()?;
@@ -31494,7 +31566,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_subscription_filters()
@@ -31530,7 +31602,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1630 = (|| -> PyResult<_> {
                 let converted_1630: String = value.extract()?;
@@ -31572,7 +31644,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disassociate_kms_key()
@@ -31604,7 +31676,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identifier_value = if let Some(value) = dict_value(params, "identifier")? {
             let converted_1632 = (|| -> PyResult<_> {
                 let converted_1632: String = value.extract()?;
@@ -31625,7 +31697,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disassociate_source_from_s3_table_integration()
@@ -31658,7 +31730,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1633 = (|| -> PyResult<_> {
                 let converted_1633: String = value.extract()?;
@@ -31912,7 +31984,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .filter_log_events()
@@ -31956,7 +32028,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1649 = (|| -> PyResult<_> {
@@ -31978,7 +32050,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_protection_policy()
@@ -32009,7 +32081,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let id_value = if let Some(value) = dict_value(params, "id")? {
             let converted_1650 = (|| -> PyResult<_> {
                 let converted_1650: String = value.extract()?;
@@ -32026,7 +32098,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_delivery().set_id(id_value);
             let result = if let Some(sink) = observation {
@@ -32056,7 +32128,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1651 = (|| -> PyResult<_> {
                 let converted_1651: String = value.extract()?;
@@ -32073,7 +32145,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_delivery_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -32104,7 +32176,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let delivery_destination_name_value =
             if let Some(value) = dict_value(params, "delivery_destination_name")? {
                 let converted_1652 = (|| -> PyResult<_> {
@@ -32126,7 +32198,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_delivery_destination_policy()
@@ -32159,7 +32231,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1653 = (|| -> PyResult<_> {
                 let converted_1653: String = value.extract()?;
@@ -32176,7 +32248,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_delivery_source().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -32207,7 +32279,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let integration_name_value = if let Some(value) = dict_value(params, "integration_name")? {
             let converted_1654 = (|| -> PyResult<_> {
                 let converted_1654: String = value.extract()?;
@@ -32228,7 +32300,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_integration()
@@ -32259,7 +32331,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let anomaly_detector_arn_value =
             if let Some(value) = dict_value(params, "anomaly_detector_arn")? {
                 let converted_1655 = (|| -> PyResult<_> {
@@ -32281,7 +32353,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_log_anomaly_detector()
@@ -32312,7 +32384,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1656 = (|| -> PyResult<_> {
                 let converted_1656: String = value.extract()?;
@@ -32482,7 +32554,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_log_events()
@@ -32523,7 +32595,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let data_source_name_value = if let Some(value) = dict_value(params, "data_source_name")? {
             let converted_1665 = (|| -> PyResult<_> {
                 let converted_1665: String = value.extract()?;
@@ -32564,7 +32636,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_log_fields()
@@ -32598,7 +32670,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1667 = (|| -> PyResult<_> {
                 let converted_1667: String = value.extract()?;
@@ -32656,7 +32728,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_log_group_fields()
@@ -32691,7 +32763,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let unmask_value = if let Some(value) = dict_value(params, "unmask")? {
             let converted_1670 = (|| -> PyResult<_> {
                 let converted_1670: bool = value.extract()?;
@@ -32729,7 +32801,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_log_object()
@@ -32769,7 +32841,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_record_pointer_value =
             if let Some(value) = dict_value(params, "log_record_pointer")? {
                 let converted_1672 = (|| -> PyResult<_> {
@@ -32807,7 +32879,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_log_record()
@@ -32839,7 +32911,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let lookup_table_arn_value = if let Some(value) = dict_value(params, "lookup_table_arn")? {
             let converted_1674 = (|| -> PyResult<_> {
                 let converted_1674: String = value.extract()?;
@@ -32860,7 +32932,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_lookup_table()
@@ -32891,7 +32963,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_id_value = if let Some(value) = dict_value(params, "query_id")? {
             let converted_1675 = (|| -> PyResult<_> {
                 let converted_1675: String = value.extract()?;
@@ -32948,7 +33020,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_query_results()
@@ -32983,7 +33055,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identifier_value = if let Some(value) = dict_value(params, "identifier")? {
             let converted_1678 = (|| -> PyResult<_> {
                 let converted_1678: String = value.extract()?;
@@ -33004,7 +33076,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_scheduled_query()
@@ -33037,7 +33109,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identifier_value = if let Some(value) = dict_value(params, "identifier")? {
             let converted_1679 = (|| -> PyResult<_> {
                 let converted_1679: String = value.extract()?;
@@ -33182,7 +33254,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_scheduled_query_history()
@@ -33220,8 +33292,8 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_storage_tier_policy();
             let result = if let Some(sink) = observation {
@@ -33250,7 +33322,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1690 = (|| -> PyResult<_> {
@@ -33272,7 +33344,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_transformer()
@@ -33305,7 +33377,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let account_identifiers_value =
             if let Some(value) = dict_value(params, "account_identifiers")? {
                 let converted_1691 = (|| -> PyResult<_> {
@@ -33517,7 +33589,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_aggregate_log_group_summaries()
@@ -33557,7 +33629,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let anomaly_detector_arn_value =
             if let Some(value) = dict_value(params, "anomaly_detector_arn")? {
                 let converted_1709 = (|| -> PyResult<_> {
@@ -33638,7 +33710,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_anomalies()
@@ -33674,7 +33746,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let integration_name_prefix_value =
             if let Some(value) = dict_value(params, "integration_name_prefix")? {
                 let converted_1714 = (|| -> PyResult<_> {
@@ -33742,7 +33814,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_integrations()
@@ -33777,7 +33849,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filter_log_group_arn_value =
             if let Some(value) = dict_value(params, "filter_log_group_arn")? {
                 let converted_1719 = (|| -> PyResult<_> {
@@ -33835,7 +33907,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_log_anomaly_detectors()
@@ -33870,7 +33942,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_pattern_value =
             if let Some(value) = dict_value(params, "log_group_name_pattern")? {
                 let converted_1722 = (|| -> PyResult<_> {
@@ -34145,7 +34217,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_log_groups()
@@ -34186,7 +34258,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_id_value = if let Some(value) = dict_value(params, "query_id")? {
             let converted_1748 = (|| -> PyResult<_> {
                 let converted_1748: String = value.extract()?;
@@ -34243,7 +34315,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_log_groups_for_query()
@@ -34276,7 +34348,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_1751 = (|| -> PyResult<_> {
                 let converted_1751: i32 = value.extract()?;
@@ -34362,7 +34434,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_scheduled_queries()
@@ -34398,7 +34470,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let integration_arn_value = if let Some(value) = dict_value(params, "integration_arn")? {
             let converted_1757 = (|| -> PyResult<_> {
                 let converted_1757: String = value.extract()?;
@@ -34459,7 +34531,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_sources_for_s3_table_integration()
@@ -34494,7 +34566,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1760 = (|| -> PyResult<_> {
@@ -34576,7 +34648,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_syslog_configurations()
@@ -34612,7 +34684,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1764 = (|| -> PyResult<_> {
                 let converted_1764: String = value.extract()?;
@@ -34633,7 +34705,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -34664,7 +34736,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1765 = (|| -> PyResult<_> {
                 let converted_1765: String = value.extract()?;
@@ -34685,7 +34757,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_log_group()
@@ -34716,7 +34788,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let policy_name_value = if let Some(value) = dict_value(params, "policy_name")? {
             let converted_1766 = (|| -> PyResult<_> {
                 let converted_1766: String = value.extract()?;
@@ -34822,7 +34894,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_account_policy()
@@ -34859,7 +34931,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1773 = (|| -> PyResult<_> {
@@ -34902,7 +34974,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_bearer_token_authentication()
@@ -34934,7 +35006,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1775 = (|| -> PyResult<_> {
@@ -34976,7 +35048,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_data_protection_policy()
@@ -35008,7 +35080,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1777 = (|| -> PyResult<_> {
                 let converted_1777: String = value.extract()?;
@@ -35151,7 +35223,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_delivery_destination()
@@ -35189,7 +35261,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let delivery_destination_name_value =
             if let Some(value) = dict_value(params, "delivery_destination_name")? {
                 let converted_1791 = (|| -> PyResult<_> {
@@ -35232,7 +35304,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_delivery_destination_policy()
@@ -35266,7 +35338,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1793 = (|| -> PyResult<_> {
                 let converted_1793: String = value.extract()?;
@@ -35408,7 +35480,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_delivery_source()
@@ -35445,7 +35517,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let destination_name_value = if let Some(value) = dict_value(params, "destination_name")? {
             let converted_1810 = (|| -> PyResult<_> {
                 let converted_1810: String = value.extract()?;
@@ -35544,7 +35616,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_destination()
@@ -35580,7 +35652,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let destination_name_value = if let Some(value) = dict_value(params, "destination_name")? {
             let converted_1820 = (|| -> PyResult<_> {
                 let converted_1820: String = value.extract()?;
@@ -35641,7 +35713,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_destination_policy()
@@ -35674,7 +35746,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1823 = (|| -> PyResult<_> {
@@ -35716,7 +35788,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_index_policy()
@@ -35750,7 +35822,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let integration_name_value = if let Some(value) = dict_value(params, "integration_name")? {
             let converted_1825 = (|| -> PyResult<_> {
                 let converted_1825: String = value.extract()?;
@@ -35813,7 +35885,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_integration()
@@ -35846,7 +35918,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1829 = (|| -> PyResult<_> {
                 let converted_1829: String = value.extract()?;
@@ -35970,7 +36042,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_log_events()
@@ -36007,7 +36079,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1838 = (|| -> PyResult<_> {
@@ -36050,7 +36122,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_log_group_deletion_protection()
@@ -36082,7 +36154,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1840 = (|| -> PyResult<_> {
                 let converted_1840: String = value.extract()?;
@@ -36273,7 +36345,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_metric_filter()
@@ -36310,7 +36382,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_language_value = if let Some(value) = dict_value(params, "query_language")? {
             let converted_1855 = (|| -> PyResult<_> {
                 let enum_value_1856: String = value.extract()?;
@@ -36496,7 +36568,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_query_definition()
@@ -36533,7 +36605,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let policy_name_value = if let Some(value) = dict_value(params, "policy_name")? {
             let converted_1871 = (|| -> PyResult<_> {
                 let converted_1871: String = value.extract()?;
@@ -36615,7 +36687,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_resource_policy()
@@ -36651,7 +36723,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1875 = (|| -> PyResult<_> {
                 let converted_1875: String = value.extract()?;
@@ -36693,7 +36765,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_retention_policy()
@@ -36725,7 +36797,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let storage_tier_value = if let Some(value) = dict_value(params, "storage_tier")? {
             let converted_1877 = (|| -> PyResult<_> {
                 let enum_value_1878: String = value.extract()?;
@@ -36748,7 +36820,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_storage_tier_policy()
@@ -36779,7 +36851,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1879 = (|| -> PyResult<_> {
                 let converted_1879: String = value.extract()?;
@@ -36984,7 +37056,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_subscription_filter()
@@ -37023,7 +37095,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1893 = (|| -> PyResult<_> {
@@ -37065,7 +37137,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_syslog_configuration()
@@ -37097,7 +37169,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifier_value =
             if let Some(value) = dict_value(params, "log_group_identifier")? {
                 let converted_1895 = (|| -> PyResult<_> {
@@ -37163,7 +37235,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_transformer()
@@ -37195,7 +37267,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
                 let converted_1901 = (|| -> PyResult<_> {
@@ -37348,7 +37420,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_live_tail()
@@ -37393,7 +37465,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_language_value = if let Some(value) = dict_value(params, "query_language")? {
             let converted_1917 = (|| -> PyResult<_> {
                 let enum_value_1918: String = value.extract()?;
@@ -37595,7 +37667,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_query()
@@ -37632,7 +37704,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_id_value = if let Some(value) = dict_value(params, "query_id")? {
             let converted_1934 = (|| -> PyResult<_> {
                 let converted_1934: String = value.extract()?;
@@ -37649,7 +37721,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.stop_query().set_query_id(query_id_value);
             let result = if let Some(sink) = observation {
@@ -37677,7 +37749,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1935 = (|| -> PyResult<_> {
                 let converted_1935: String = value.extract()?;
@@ -37740,7 +37812,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_log_group()
@@ -37771,7 +37843,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1943 = (|| -> PyResult<_> {
                 let converted_1943: String = value.extract()?;
@@ -37834,7 +37906,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -37865,7 +37937,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filter_pattern_value = if let Some(value) = dict_value(params, "filter_pattern")? {
             let converted_1951 = (|| -> PyResult<_> {
                 let converted_1951: String = value.extract()?;
@@ -37930,7 +38002,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .test_metric_filter()
@@ -37964,7 +38036,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let transformer_config_value =
             if let Some(value) = dict_value(params, "transformer_config")? {
                 let converted_1957 = (|| -> PyResult<_> {
@@ -38053,7 +38125,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .test_transformer()
@@ -38087,7 +38159,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let log_group_name_value = if let Some(value) = dict_value(params, "log_group_name")? {
             let converted_1967 = (|| -> PyResult<_> {
                 let converted_1967: String = value.extract()?;
@@ -38151,7 +38223,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_log_group()
@@ -38183,7 +38255,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1973 = (|| -> PyResult<_> {
                 let converted_1973: String = value.extract()?;
@@ -38247,7 +38319,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -38279,7 +38351,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let anomaly_id_value = if let Some(value) = dict_value(params, "anomaly_id")? {
             let converted_1979 = (|| -> PyResult<_> {
                 let converted_1979: String = value.extract()?;
@@ -38404,7 +38476,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_anomaly()
@@ -38440,7 +38512,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let id_value = if let Some(value) = dict_value(params, "id")? {
             let converted_1986 = (|| -> PyResult<_> {
                 let converted_1986: String = value.extract()?;
@@ -38541,7 +38613,7 @@ impl CloudWatchLogsClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_delivery_configuration()
@@ -38575,7 +38647,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let anomaly_detector_arn_value =
             if let Some(value) = dict_value(params, "anomaly_detector_arn")? {
                 let converted_1994 = (|| -> PyResult<_> {
@@ -38678,7 +38750,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_log_anomaly_detector()
@@ -38713,7 +38785,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let lookup_table_arn_value = if let Some(value) = dict_value(params, "lookup_table_arn")? {
             let converted_2000 = (|| -> PyResult<_> {
                 let converted_2000: String = value.extract()?;
@@ -38810,7 +38882,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_lookup_table()
@@ -38845,7 +38917,7 @@ impl CloudWatchLogsClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identifier_value = if let Some(value) = dict_value(params, "identifier")? {
             let converted_2005 = (|| -> PyResult<_> {
                 let converted_2005: String = value.extract()?;
@@ -39157,7 +39229,7 @@ impl CloudWatchLogsClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_scheduled_query()

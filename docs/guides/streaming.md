@@ -21,6 +21,9 @@ For a body that fits in memory:
 
 `.read()` collects the remaining bytes. Streams cannot be rewound. Each response
 owns its stream; give each stream one consumer.
+Use `async with response.body` or `await response.body.aclose()` to release a
+partially consumed body. Event receivers support the same lifecycle methods.
+See [Closing clients and streams](lifecycle.md) for cancellation and ownership.
 
 `put_object(body=...)` accepts bytes. Multipart operations are individual service
 methods; the Python API does not include a high-level transfer manager.

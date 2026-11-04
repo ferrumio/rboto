@@ -29,6 +29,9 @@ class NativeSpy:
         self.result = result
         self.calls: list[tuple[str, dict[str, object]]] = []
 
+    def _ensure_open(self) -> None:
+        pass
+
     def __getattr__(self, name: str) -> Callable[[dict[str, object]], Awaitable[object]]:
         async def call(
             params: dict[str, object], observation: dict[str, object] | None = None
@@ -44,6 +47,7 @@ def generated_methods(client_class: type[object]) -> dict[str, Callable[..., obj
         name: method
         for name, method in client_class.__dict__.items()
         if inspect.iscoroutinefunction(method)
+        and name not in {"aclose", "__aenter__", "__aexit__"}
     }
 
 
@@ -54,10 +58,15 @@ def test_every_python_method_has_a_native_rust_method(
     expected_count: int,
 ) -> None:
     python_methods = set(generated_methods(client_class))
-    native_methods = {name for name in dir(native_class) if not name.startswith("_")}
+    native_methods = {
+        name for name in dir(native_class) if not name.startswith("_") and name != "aclose"
+    }
 
     assert len(python_methods) == expected_count
     assert python_methods == native_methods
+    for name in ("aclose", "__aenter__", "__aexit__"):
+        assert inspect.iscoroutinefunction(getattr(client_class, name))
+        assert callable(getattr(native_class, name))
 
 
 @pytest.mark.asyncio
