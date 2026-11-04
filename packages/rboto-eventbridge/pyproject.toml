@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "rboto-eventbridge"
-version = "0.1.0"
+version = "0.2.0"
 description = "rboto: async-only, typed Python client for Amazon EventBridge, powered by Rust. Alpha preview."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -27,7 +27,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 keywords = ["rboto", "aws", "eventbridge", "asyncio", "typing", "rust"]
-dependencies = ["rboto==0.1.0"]
+dependencies = ["rboto==0.2.0"]
 
 [project.urls]
 Documentation = "https://ferrumio.github.io/rboto/guides/events/"

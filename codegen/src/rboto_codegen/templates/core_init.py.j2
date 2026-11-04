@@ -25,7 +25,7 @@ from .waiters import WaiterConfig
 if TYPE_CHECKING:
 {% for service in services %}    from {{ service.python_package }} import {{ service.client_class }}
 {% endfor %}
-__version__ = "0.1.0"
+__version__ = "{{ version }}"
 __all__ = [
     "Attempt",
     "ClientConfig",
