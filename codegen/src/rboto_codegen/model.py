@@ -43,6 +43,7 @@ class ServiceDescriptor:
     model_sha256: str
     aws_model_hash: str
     smithy_codegen_revision: str
+    rust_features: tuple[str, ...] = ()
     customization: str | None = None
     force_path_style_for_custom_endpoint: bool = False
     native_outputs: bool = False

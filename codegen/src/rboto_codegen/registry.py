@@ -35,6 +35,21 @@ def _boolean(data: dict[str, object], name: str) -> bool:
     return value
 
 
+def _rust_features(data: dict[str, object]) -> tuple[str, ...]:
+    value = data.get("rust_features", [])
+    if not isinstance(value, list):
+        raise ValueError("rust_features must be a list of feature names")
+    items = cast(list[object], value)
+    if any(not isinstance(item, str) or not item for item in items):
+        raise ValueError("rust_features must contain nonempty strings")
+    features = tuple(cast(list[str], items))
+    if len(set(features)) != len(features):
+        raise ValueError("rust_features must not contain duplicate features")
+    if {"default", "rustls"} & set(features):
+        raise ValueError("rust_features must not enable the legacy TLS client")
+    return features
+
+
 def _pagination(data: dict[str, object]) -> tuple[tuple[str, Pagination], ...]:
     raw = data.get("pagination", {})
     if not isinstance(raw, dict):
@@ -83,6 +98,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         model_sha256=_string(data, "model_sha256"),
         aws_model_hash=_string(data, "aws_model_hash"),
         smithy_codegen_revision=_string(data, "smithy_codegen_revision"),
+        rust_features=_rust_features(data),
         customization=_optional_string(data, "customization"),
         force_path_style_for_custom_endpoint=_boolean(data, "force_path_style_for_custom_endpoint"),
         native_outputs=_boolean(data, "native_outputs"),

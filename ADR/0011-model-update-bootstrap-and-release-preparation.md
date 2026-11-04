@@ -18,6 +18,12 @@ parsing crates. Update these manifests before resolving and fetching dependencie
 perform alignment and full generation. Regular generation uses the same renderers.
 Service package versions and their core pins derive from the Cargo workspace version.
 
+All shared `aws-*` dependencies have exact string version pins in
+`[workspace.dependencies]`. Native crates inherit them and configure features at
+the point of use. The updater discovers the workspace pins, including credential
+and HTTP clients, from the selected SDK release instead of maintaining a separate
+dependency list. Missing shared-crate metadata fails before any file is written.
+
 Use the built-in token to publish the generated branch. Create a PR when permitted; if
 organization/repository policy blocks bot-created PRs, retain the branch and provide a
 manual PR link. Explicitly dispatch CI, generated-source validation, and integration on

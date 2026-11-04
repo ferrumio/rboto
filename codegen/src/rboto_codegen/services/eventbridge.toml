@@ -8,6 +8,7 @@ client_class = "EventBridgeClient"
 adapter_crate = "rboto-eventbridge-native"
 rust_crate = "aws-sdk-eventbridge"
 rust_module = "aws_sdk_eventbridge"
+rust_features = ["sigv4a"]
 rust_crate_version = "1.125.0"
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/eventbridge.json"
 model_sha256 = "55dc4532838b71926afff18b6ce7a11892c6f4aadc81f4036b983eea24c4a449"

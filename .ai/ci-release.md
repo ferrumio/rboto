@@ -137,6 +137,12 @@ renders package manifests with `rboto-codegen generate-manifests --all`, resolve
 workspace lock, and fetches the pinned crates before model alignment and generation.
 Manifest generation does not need downloaded models or Rust sources.
 
+Keep every shared `aws-*` version as an exact string pin in
+`[workspace.dependencies]`; consuming crates inherit it and configure their own
+features. The updater discovers these pins from the workspace and updates them
+from the selected release's `versions.toml`, including HTTP and credential crates.
+Missing release metadata fails before any descriptor or workspace file is written.
+
 The updater publishes its branch after Python checks, locked Rust compilation, version/pin
 checks, and a second generation pass. It uses `GITHUB_TOKEN` and creates a PR when policy
 allows it. If the organization/repository forbids bot-created PRs, the workflow keeps the
