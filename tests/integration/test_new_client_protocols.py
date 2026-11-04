@@ -1093,3 +1093,55 @@ async def test_event_family_modeled_missing_resources(peer: Peer, service_name: 
         await getattr(client, operation)(name="missing")
     assert caught.value.error_code == error_code
     assert caught.value.operation_name == operation_name
+
+
+@pytest.mark.asyncio
+@service("athena")
+async def test_athena_results_paginator_preserves_cells_and_forwards_tokens(peer: Peer) -> None:
+    from rboto import AthenaClient
+    from rboto_athena.types import GetQueryResultsOutput
+
+    client = AthenaClient(region="us-east-1", endpoint_url=peer.endpoint)
+    peer.body = json.dumps({
+        "ResultSet": {
+            "Rows": [{"Data": [{"VarCharValue": "1"}, {}]}],
+            "ResultSetMetadata": {"ColumnInfo": [
+                {"Name": "n", "Type": "integer"}, {"Name": "label", "Type": "varchar"},
+            ]},
+        },
+        "NextToken": "page-two",
+    }).encode()
+    pages = client.paginators.get_query_results(query_execution_id="query-1", max_results=2)
+    first = await anext(pages)
+    assert isinstance(first, GetQueryResultsOutput)
+    assert first.result_set is not None and first.result_set.rows is not None
+    assert [cell.var_char_value for cell in first.result_set.rows[0].data or []] == ["1", None]
+    assert first.result_set.result_set_metadata is not None
+    assert [column.name for column in first.result_set.result_set_metadata.column_info or []] == [
+        "n", "label",
+    ]
+    peer.body = b'{"ResultSet":{"Rows":[{"Data":[{"VarCharValue":"2"},{"VarCharValue":"last"}]}]}}'
+    second = await anext(pages)
+    assert second.result_set is not None and second.result_set.rows is not None
+    assert [cell.var_char_value for cell in second.result_set.rows[0].data or []] == ["2", "last"]
+    with pytest.raises(StopAsyncIteration):
+        await anext(pages)
+    assert [json.loads(body) for _, body in peer.requests] == [
+        {"QueryExecutionId": "query-1", "MaxResults": 2},
+        {"QueryExecutionId": "query-1", "MaxResults": 2, "NextToken": "page-two"},
+    ]
+
+
+@pytest.mark.asyncio
+@service("athena")
+async def test_athena_maps_invalid_query_execution_to_modeled_error(peer: Peer) -> None:
+    from rboto import AthenaClient
+    from rboto_athena.exceptions import InvalidRequestError
+
+    peer.status = 400
+    peer.body = b'{"__type":"InvalidRequestException","message":"unknown query execution"}'
+    client = AthenaClient(region="us-east-1", endpoint_url=peer.endpoint)
+    with pytest.raises(InvalidRequestError) as caught:
+        await client.get_query_execution(query_execution_id="missing-query")
+    assert caught.value.error_code == "InvalidRequestException"
+    assert caught.value.operation_name == "GetQueryExecution"

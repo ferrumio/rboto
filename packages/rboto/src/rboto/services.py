@@ -11,6 +11,7 @@ from .session import Session
 
 SERVICE_IDS = frozenset((
     "api-gateway",
+    "athena",
     "bedrock",
     "bedrock-agent",
     "bedrock-agent-runtime",
@@ -48,6 +49,7 @@ SERVICE_IDS = frozenset((
 
 if TYPE_CHECKING:
     from rboto_api_gateway import APIGatewayClient
+    from rboto_athena import AthenaClient
     from rboto_bedrock import BedrockClient
     from rboto_bedrock_agent import BedrockAgentClient
     from rboto_bedrock_agent_runtime import BedrockAgentRuntimeClient
@@ -99,6 +101,32 @@ def api_gateway(
     client_class = cast(
         "type[APIGatewayClient]",
         getattr(module, "APIGatewayClient"),
+    )
+    return client_class(
+        session=session,
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+        config=config,
+        interceptors=interceptors,
+    )
+
+
+def athena(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
+    interceptors: Sequence[Interceptor] | None = None,
+) -> AthenaClient:
+    module = import_service(
+        "rboto_athena", "athena",
+    )
+    client_class = cast(
+        "type[AthenaClient]",
+        getattr(module, "AthenaClient"),
     )
     return client_class(
         session=session,

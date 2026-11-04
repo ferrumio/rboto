@@ -17,6 +17,7 @@ from .logging import LogLevel, LogTraceContext, configure_logging, get_logger
 from .runtime import configure_runtime
 from .services import (
     api_gateway,
+    athena,
     bedrock,
     bedrock_agent,
     bedrock_agent_runtime,
@@ -57,6 +58,7 @@ from .waiters import WaiterConfig
 
 if TYPE_CHECKING:
     from rboto_api_gateway import APIGatewayClient
+    from rboto_athena import AthenaClient
     from rboto_bedrock import BedrockClient
     from rboto_bedrock_agent import BedrockAgentClient
     from rboto_bedrock_agent_runtime import BedrockAgentRuntimeClient
@@ -111,6 +113,7 @@ __all__ = [
     "UnknownEnumValue",
     "WaiterConfig",
     "APIGatewayClient",
+    "AthenaClient",
     "BedrockClient",
     "BedrockAgentClient",
     "BedrockAgentRuntimeClient",
@@ -146,6 +149,7 @@ __all__ = [
     "TranscribeStreamingClient",
 
     "api_gateway",
+    "athena",
     "bedrock",
     "bedrock_agent",
     "bedrock_agent_runtime",
@@ -184,6 +188,9 @@ __all__ = [
 _CLIENT_MODULES = {
     "APIGatewayClient": (
         "rboto_api_gateway", "api-gateway",
+    ),
+    "AthenaClient": (
+        "rboto_athena", "athena",
     ),
     "BedrockClient": (
         "rboto_bedrock", "bedrock",

@@ -15,7 +15,7 @@ package; constructing it does not send a network request.
 
 ## Install the services you use
 
-The catalog contains 34 services and 1,865 operations. Each service has its own
+The catalog contains 35 services and 1,935 operations. Each service has its own
 package. `rboto[s3]` selects the matching `rboto-s3` dependency once packages are
 published. [Getting started](getting-started.md) covers source installation.
 
@@ -34,6 +34,7 @@ All classes in this table are available from `rboto`:
 | Client class | Service package | Operations |
 |---|---|---:|
 | `APIGatewayClient` | `rboto-api-gateway` | 124 |
+| `AthenaClient` | `rboto-athena` | 70 |
 | `BedrockAgentClient` | `rboto-bedrock-agent` | 86 |
 | `BedrockAgentCoreClient` | `rboto-bedrock-agentcore` | 67 |
 | `BedrockAgentCoreControlClient` | `rboto-bedrock-agentcore-control` | 171 |

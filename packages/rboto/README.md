@@ -61,13 +61,14 @@ items = DynamoDBClient(session=session)
 
 ## Clients and operation references
 
-The 34 service packages below each contain a usage example, a complete
+The 35 service packages below each contain a usage example, a complete
 operation catalog, required arguments, return types, and full Python signatures.
 Use the installed package's README and type definitions for its exact API.
 
 | Import from `rboto` | Service | Package and operation reference |
 |---|---|---|
 | `APIGatewayClient` | Amazon API Gateway | [rboto-api-gateway](https://github.com/ferrumio/rboto/tree/main/packages/rboto-api-gateway) |
+| `AthenaClient` | Amazon Athena | [rboto-athena](https://github.com/ferrumio/rboto/tree/main/packages/rboto-athena) |
 | `BedrockClient` | Amazon Bedrock | [rboto-bedrock](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock) |
 | `BedrockAgentClient` | Amazon Bedrock Agents | [rboto-bedrock-agent](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock-agent) |
 | `BedrockAgentRuntimeClient` | Amazon Bedrock Agent Runtime | [rboto-bedrock-agent-runtime](https://github.com/ferrumio/rboto/tree/main/packages/rboto-bedrock-agent-runtime) |

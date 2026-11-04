@@ -38,6 +38,7 @@ Changelog = "https://github.com/ferrumio/rboto/releases"
 [project.optional-dependencies]
 opentelemetry = ["opentelemetry-api>=1.39,<2"]
 api-gateway = ["rboto-api-gateway==0.2.0"]
+athena = ["rboto-athena==0.2.0"]
 bedrock = ["rboto-bedrock==0.2.0"]
 bedrock-agent = ["rboto-bedrock-agent==0.2.0"]
 bedrock-agent-runtime = ["rboto-bedrock-agent-runtime==0.2.0"]
@@ -73,6 +74,7 @@ sts = ["rboto-sts==0.2.0"]
 transcribe-streaming = ["rboto-transcribe-streaming==0.2.0"]
 all = [
     "rboto-api-gateway==0.2.0",
+    "rboto-athena==0.2.0",
     "rboto-bedrock==0.2.0",
     "rboto-bedrock-agent==0.2.0",
     "rboto-bedrock-agent-runtime==0.2.0",
