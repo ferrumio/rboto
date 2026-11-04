@@ -76,12 +76,18 @@ def updated_workspace_dependencies(versions: dict[str, object]) -> str:
     crates = cast(dict[str, object], versions["crates"])
     path = ROOT / "Cargo.toml"
     text = path.read_text()
-    for dependency in (
-        "aws-config",
-        "aws-smithy-async",
-        "aws-smithy-runtime-api",
-        "aws-smithy-types",
-    ):
+    workspace = cast(dict[str, object], tomllib.loads(text)["workspace"])
+    dependencies = cast(dict[str, object], workspace["dependencies"])
+    for dependency, requirement in dependencies.items():
+        if not dependency.startswith("aws-"):
+            continue
+        if not isinstance(requirement, str) or not requirement.startswith("="):
+            raise RuntimeError(
+                f"{dependency}: shared SDK versions must be exact workspace pins; "
+                "configure features in the consuming crate"
+            )
+        if dependency not in crates:
+            raise RuntimeError(f"shared SDK dependency missing from release: {dependency}")
         metadata = cast(dict[str, object], crates[dependency])
         version = cast(str, metadata["version"])
         pattern = rf'^{re.escape(dependency)} = "=.*"$'

@@ -8,6 +8,7 @@ client_class = "STSClient"
 adapter_crate = "rboto-sts-native"
 rust_crate = "aws-sdk-sts"
 rust_module = "aws_sdk_sts"
+rust_features = ["sigv4a"]
 rust_crate_version = "1.122.0"
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/sts.json"
 model_sha256 = "3012bfe1c6d44b4348ed03888085fd0b7a506e4da3335250280537b85e834864"

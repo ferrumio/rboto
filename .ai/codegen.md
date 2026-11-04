@@ -3,6 +3,12 @@
 ## Change the correct layer
 
 - Service metadata or feature toggle: edit `codegen/src/rboto_codegen/services/*.toml`.
+- Generated SDK dependencies disable default features and explicitly enable
+  `default-https-client` and `rt-tokio`. Descriptor `rust_features` preserves
+  additional SDK defaults such as `sigv4a` or `http-1x`. Do not enable `rustls`
+  or `default`: the SDK's `rustls` compatibility feature selects legacy TLS.
+  Tests compare the selected features against the pinned SDK's defaults and
+  reject vulnerable TLS versions in the lockfile.
 - Parsed descriptor fields: edit `model.py` and `registry.py`.
 - Type conversion or operation behavior: edit `generator.py`.
 - Repeated file structure: edit a Jinja template.

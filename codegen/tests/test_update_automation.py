@@ -41,7 +41,9 @@ def load_script(name: str) -> ModuleType:
 
 
 def seed_repository(root: Path) -> None:
-    for relative in ("Cargo.toml", "codegen/pyproject.toml", "LICENSE"):
+    for relative in (
+        "Cargo.toml", "crates/rboto-core/Cargo.toml", "codegen/pyproject.toml", "LICENSE",
+    ):
         path = root / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text((ROOT / relative).read_text())
@@ -64,7 +66,10 @@ def test_manifests_bootstrap_a_crate_that_is_not_downloaded(tmp_path: Path) -> N
     seed_repository(tmp_path)
     descriptor = replace(get_service("kms"), rust_crate_version="99.0.0")
     cargo, package = generate_manifests(descriptor, tmp_path)
-    assert tomllib.loads(cargo.read_text())["dependencies"]["aws-sdk-kms"] == "=99.0.0"
+    dependency = tomllib.loads(cargo.read_text())["dependencies"]["aws-sdk-kms"]
+    assert dependency["version"] == "=99.0.0"
+    assert dependency["default-features"] is False
+    assert dependency["features"] == ["default-https-client", "rt-tokio"]
     project = tomllib.loads(package.read_text())["project"]
     assert project["version"] == "0.1.0"
     assert project["dependencies"] == ["rboto==0.1.0"]
@@ -125,11 +130,20 @@ def test_invalid_package_version_does_not_modify_files(
     assert all(path.read_bytes() == content for path, content in before.items())
 
 
-@pytest.mark.parametrize("fail_second_model", [False, True])
+@pytest.mark.parametrize("failure", [None, "model", "shared_dependency"])
 def test_update_can_prepare_new_pins_without_partial_descriptor_writes(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, fail_second_model: bool
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, failure: str | None
 ) -> None:
     seed_repository(tmp_path)
+    workspace = tmp_path / "Cargo.toml"
+    workspace.write_text(workspace.read_text().replace(
+        "[workspace.dependencies]\n",
+        '[workspace.dependencies]\naws-smithy-future = "=1.0.0"\n',
+    ))
+    shared = {
+        name for name in tomllib.loads(workspace.read_text())["workspace"]["dependencies"]
+        if name.startswith("aws-")
+    }
     services = tmp_path / "codegen/src/rboto_codegen/services"
     services.mkdir(parents=True)
     for service in ("kms", "signin"):
@@ -137,17 +151,16 @@ def test_update_can_prepare_new_pins_without_partial_descriptor_writes(
             (ROOT / "codegen/src/rboto_codegen/services" / f"{service}.toml").read_text()
         )
     metadata = 'smithy_rs_revision = "new-revision"\n'
-    for crate in (
-        "aws-sdk-kms", "aws-sdk-signin", "aws-config", "aws-smithy-async",
-        "aws-smithy-runtime-api", "aws-smithy-types",
-    ):
+    for crate in sorted(shared | {"aws-sdk-kms", "aws-sdk-signin"}):
+        if failure == "shared_dependency" and crate == "aws-smithy-http-client":
+            continue
         metadata += f'[crates.{crate}]\nversion = "99.0.0"\nmodel_hash = "new-hash"\n'
     model = b'{"smithy":"2.0","shapes":{}}'
 
     def fetch(url: str) -> bytes:
         if url.endswith("/versions.toml"):
             return metadata.encode()
-        if fail_second_model and url.endswith("/signin.json"):
+        if failure == "model" and url.endswith("/signin.json"):
             raise URLError("model download failed")
         assert url.endswith(("/kms.json", "/signin.json"))
         return model
@@ -157,18 +170,24 @@ def test_update_can_prepare_new_pins_without_partial_descriptor_writes(
     monkeypatch.setattr(updater, "SERVICE_DIR", services)
     monkeypatch.setattr(updater, "fetch", fetch)
     before = {path: path.read_bytes() for path in tmp_path.rglob("*") if path.is_file()}
-    if fail_second_model:
-        with pytest.raises(URLError):
+    if failure is not None:
+        error = URLError if failure == "model" else RuntimeError
+        match = "model download" if failure == "model" else "aws-smithy-http-client"
+        with pytest.raises(error, match=match):
             updater.update("release-2026-10-26")
         assert all(path.read_bytes() == content for path, content in before.items())
         return
     updater.update("release-2026-10-26")
+    dependencies = tomllib.loads(workspace.read_text())["workspace"]["dependencies"]
+    assert all(dependencies[name] == "=99.0.0" for name in shared)
+    core = tmp_path / "crates/rboto-core/Cargo.toml"
+    assert core.read_bytes() == before[core]
     for descriptor in list_services(services):
         assert descriptor.rust_crate_version == "99.0.0"
         assert descriptor.model_sha256 == hashlib.sha256(model).hexdigest()
         cargo, _ = generate_manifests(descriptor, tmp_path)
         pin = tomllib.loads(cargo.read_text())["dependencies"][descriptor.rust_crate]
-        assert pin == "=99.0.0"
+        assert pin["version"] == "=99.0.0"
 
 
 @pytest.mark.parametrize("release", ["main", "../main", "release-2026-02-30", "release-2026-1-1"])

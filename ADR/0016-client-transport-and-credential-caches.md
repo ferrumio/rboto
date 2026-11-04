@@ -21,6 +21,14 @@ Connect/read deadlines and the SDK timer remain attached to custom connectors.
 No environment variables are written. Explicit transports do not inherit
 environment proxy rules.
 
+Generated service dependencies select `default-https-client` and `rt-tokio`
+explicitly. Their legacy `rustls` default feature must remain disabled: it pulls
+the older Hyper/Rustls transport into every service. Descriptor `rust_features`
+preserves other service defaults, including SigV4a and HTTP body support.
+The modern transport retains TLS certificate verification, system roots, and
+the existing per-client proxy/CA configuration. Lockfile tests reject the
+vulnerable legacy Rustls/WebPKI versions.
+
 ## Session and credentials
 
 Keep the current boundary: Session shares immutable settings, while each native
