@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import keyword
 from collections.abc import Awaitable, Callable, Generator, Sequence
 from contextlib import contextmanager
 from contextvars import ContextVar
@@ -11,6 +12,7 @@ from time import perf_counter
 from typing import Protocol, TypeVar, cast
 from uuid import uuid4
 
+from ._conversion import attach_conversion_context
 from ._telemetry import TelemetryInterceptor
 from .exceptions import ClientError
 
@@ -194,9 +196,18 @@ async def invoke(
                 if key not in current.parameters or current.parameters[key] is None
             ]
             if unknown:
-                raise TypeError(f"unknown operation parameters: {', '.join(sorted(unknown))}")
+                raise attach_conversion_context(
+                    TypeError("unknown operation parameters"),
+                    service, operation, "<request>", "modeled operation parameters",
+                    "unknown_parameter",
+                )
             if missing:
-                raise TypeError(f"missing required operation parameters: {', '.join(missing)}")
+                name = missing[0]
+                raise attach_conversion_context(
+                    TypeError("missing required operation parameters"),
+                    service, operation, name + "_" if keyword.iskeyword(name) else name,
+                    "required parameter", "missing",
+                )
             raw: dict[str, object] = {}
             started = perf_counter()
             error: BaseException | None = None

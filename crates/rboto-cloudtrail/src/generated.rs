@@ -10,28 +10,63 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn advanced_event_selector_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::AdvancedEventSelector> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::AdvancedEventSelector::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_1: String = value.extract()?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
         builder = builder.set_name(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "field_selectors")? {
-        let mut converted_2 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_3 in value.try_iter()? {
-            let item_4 = item_result_3?;
-            let converted_item_5 = advanced_field_selector_from_py(&item_4)?;
-            converted_2.push(converted_item_5);
-        }
+        let converted_2 = (|| -> PyResult<_> {
+            let mut converted_2 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_6, item_result_3) in value.try_iter()?.enumerate() {
+                let item_4 = item_result_3.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_6),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_5 = (|| -> PyResult<_> {
+                    let converted_item_5 = advanced_field_selector_from_py(&item_4)?;
+                    Ok(converted_item_5)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_6),
+                        "dict (AdvancedFieldSelector)",
+                    )
+                })?;
+                converted_2.push(converted_item_5);
+            }
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("field_selectors"),
+                "sequence",
+            )
+        })?;
         builder = builder.set_field_selectors(Some(converted_2));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("field_selectors", "field_selectors")])
+    })
 }
 
 fn advanced_event_selector_to_py(
@@ -40,18 +75,18 @@ fn advanced_event_selector_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_6 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_6)?;
+        let converted_7 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_7)?;
     } else {
         result.set_item("name", py.None())?;
     }
-    let converted_7_list = PyList::empty(py);
-    for item_8 in &value.field_selectors {
-        let converted_item_9 = advanced_field_selector_to_py(py, item_8)?;
-        converted_7_list.append(converted_item_9)?;
+    let converted_8_list = PyList::empty(py);
+    for item_9 in &value.field_selectors {
+        let converted_item_10 = advanced_field_selector_to_py(py, item_9)?;
+        converted_8_list.append(converted_item_10)?;
     }
-    let converted_7 = converted_7_list.into_any().unbind();
-    result.set_item("field_selectors", converted_7)?;
+    let converted_8 = converted_8_list.into_any().unbind();
+    result.set_item("field_selectors", converted_8)?;
     Ok(result.into_any().unbind())
 }
 
@@ -61,72 +96,208 @@ fn advanced_field_selector_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::AdvancedFieldSelector::builder();
     if let Some(value) = dict_value(values, "field")? {
-        let converted_10: String = value.extract()?;
-        builder = builder.set_field(Some(converted_10));
+        let converted_11 = (|| -> PyResult<_> {
+            let converted_11: String = value.extract()?;
+            Ok(converted_11)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("field"), "str")
+        })?;
+        builder = builder.set_field(Some(converted_11));
     }
     if let Some(value) = dict_value(values, "equals")? {
-        let mut converted_11 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_12 in value.try_iter()? {
-            let item_13 = item_result_12?;
-            let converted_item_14: String = item_13.extract()?;
-            converted_11.push(converted_item_14);
-        }
-        builder = builder.set_equals(Some(converted_11));
+        let converted_12 = (|| -> PyResult<_> {
+            let mut converted_12 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_16, item_result_13) in value.try_iter()?.enumerate() {
+                let item_14 = item_result_13.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_16),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_15 = (|| -> PyResult<_> {
+                    let converted_item_15: String = item_14.extract()?;
+                    Ok(converted_item_15)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_16), "str")
+                })?;
+                converted_12.push(converted_item_15);
+            }
+            Ok(converted_12)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("equals"), "sequence")
+        })?;
+        builder = builder.set_equals(Some(converted_12));
     }
     if let Some(value) = dict_value(values, "starts_with")? {
-        let mut converted_15 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_16 in value.try_iter()? {
-            let item_17 = item_result_16?;
-            let converted_item_18: String = item_17.extract()?;
-            converted_15.push(converted_item_18);
-        }
-        builder = builder.set_starts_with(Some(converted_15));
+        let converted_17 = (|| -> PyResult<_> {
+            let mut converted_17 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_21, item_result_18) in value.try_iter()?.enumerate() {
+                let item_19 = item_result_18.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_21),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_20 = (|| -> PyResult<_> {
+                    let converted_item_20: String = item_19.extract()?;
+                    Ok(converted_item_20)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_21), "str")
+                })?;
+                converted_17.push(converted_item_20);
+            }
+            Ok(converted_17)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("starts_with"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_starts_with(Some(converted_17));
     }
     if let Some(value) = dict_value(values, "ends_with")? {
-        let mut converted_19 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_20 in value.try_iter()? {
-            let item_21 = item_result_20?;
-            let converted_item_22: String = item_21.extract()?;
-            converted_19.push(converted_item_22);
-        }
-        builder = builder.set_ends_with(Some(converted_19));
+        let converted_22 = (|| -> PyResult<_> {
+            let mut converted_22 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_26, item_result_23) in value.try_iter()?.enumerate() {
+                let item_24 = item_result_23.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_26),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_25 = (|| -> PyResult<_> {
+                    let converted_item_25: String = item_24.extract()?;
+                    Ok(converted_item_25)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_26), "str")
+                })?;
+                converted_22.push(converted_item_25);
+            }
+            Ok(converted_22)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("ends_with"), "sequence")
+        })?;
+        builder = builder.set_ends_with(Some(converted_22));
     }
     if let Some(value) = dict_value(values, "not_equals")? {
-        let mut converted_23 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_24 in value.try_iter()? {
-            let item_25 = item_result_24?;
-            let converted_item_26: String = item_25.extract()?;
-            converted_23.push(converted_item_26);
-        }
-        builder = builder.set_not_equals(Some(converted_23));
+        let converted_27 = (|| -> PyResult<_> {
+            let mut converted_27 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_31, item_result_28) in value.try_iter()?.enumerate() {
+                let item_29 = item_result_28.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_31),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_30 = (|| -> PyResult<_> {
+                    let converted_item_30: String = item_29.extract()?;
+                    Ok(converted_item_30)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_31), "str")
+                })?;
+                converted_27.push(converted_item_30);
+            }
+            Ok(converted_27)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("not_equals"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_not_equals(Some(converted_27));
     }
     if let Some(value) = dict_value(values, "not_starts_with")? {
-        let mut converted_27 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_28 in value.try_iter()? {
-            let item_29 = item_result_28?;
-            let converted_item_30: String = item_29.extract()?;
-            converted_27.push(converted_item_30);
-        }
-        builder = builder.set_not_starts_with(Some(converted_27));
+        let converted_32 = (|| -> PyResult<_> {
+            let mut converted_32 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_36, item_result_33) in value.try_iter()?.enumerate() {
+                let item_34 = item_result_33.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_36),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_35 = (|| -> PyResult<_> {
+                    let converted_item_35: String = item_34.extract()?;
+                    Ok(converted_item_35)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_36), "str")
+                })?;
+                converted_32.push(converted_item_35);
+            }
+            Ok(converted_32)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("not_starts_with"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_not_starts_with(Some(converted_32));
     }
     if let Some(value) = dict_value(values, "not_ends_with")? {
-        let mut converted_31 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_32 in value.try_iter()? {
-            let item_33 = item_result_32?;
-            let converted_item_34: String = item_33.extract()?;
-            converted_31.push(converted_item_34);
-        }
-        builder = builder.set_not_ends_with(Some(converted_31));
+        let converted_37 = (|| -> PyResult<_> {
+            let mut converted_37 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_41, item_result_38) in value.try_iter()?.enumerate() {
+                let item_39 = item_result_38.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_41),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_40 = (|| -> PyResult<_> {
+                    let converted_item_40: String = item_39.extract()?;
+                    Ok(converted_item_40)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_41), "str")
+                })?;
+                converted_37.push(converted_item_40);
+            }
+            Ok(converted_37)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("not_ends_with"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_not_ends_with(Some(converted_37));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("field", "field")]))
 }
 
 fn advanced_field_selector_to_py(
@@ -134,71 +305,71 @@ fn advanced_field_selector_to_py(
     value: &aws_sdk_cloudtrail::types::AdvancedFieldSelector,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_35 = (&value.field).as_str().into_py_any(py)?;
-    result.set_item("field", converted_35)?;
+    let converted_42 = (&value.field).as_str().into_py_any(py)?;
+    result.set_item("field", converted_42)?;
     if let Some(value) = &value.equals {
-        let converted_36_list = PyList::empty(py);
-        for item_37 in value {
-            let converted_item_38 = (item_37).as_str().into_py_any(py)?;
-            converted_36_list.append(converted_item_38)?;
+        let converted_43_list = PyList::empty(py);
+        for item_44 in value {
+            let converted_item_45 = (item_44).as_str().into_py_any(py)?;
+            converted_43_list.append(converted_item_45)?;
         }
-        let converted_36 = converted_36_list.into_any().unbind();
-        result.set_item("equals", converted_36)?;
+        let converted_43 = converted_43_list.into_any().unbind();
+        result.set_item("equals", converted_43)?;
     } else {
         result.set_item("equals", py.None())?;
     }
     if let Some(value) = &value.starts_with {
-        let converted_39_list = PyList::empty(py);
-        for item_40 in value {
-            let converted_item_41 = (item_40).as_str().into_py_any(py)?;
-            converted_39_list.append(converted_item_41)?;
+        let converted_46_list = PyList::empty(py);
+        for item_47 in value {
+            let converted_item_48 = (item_47).as_str().into_py_any(py)?;
+            converted_46_list.append(converted_item_48)?;
         }
-        let converted_39 = converted_39_list.into_any().unbind();
-        result.set_item("starts_with", converted_39)?;
+        let converted_46 = converted_46_list.into_any().unbind();
+        result.set_item("starts_with", converted_46)?;
     } else {
         result.set_item("starts_with", py.None())?;
     }
     if let Some(value) = &value.ends_with {
-        let converted_42_list = PyList::empty(py);
-        for item_43 in value {
-            let converted_item_44 = (item_43).as_str().into_py_any(py)?;
-            converted_42_list.append(converted_item_44)?;
+        let converted_49_list = PyList::empty(py);
+        for item_50 in value {
+            let converted_item_51 = (item_50).as_str().into_py_any(py)?;
+            converted_49_list.append(converted_item_51)?;
         }
-        let converted_42 = converted_42_list.into_any().unbind();
-        result.set_item("ends_with", converted_42)?;
+        let converted_49 = converted_49_list.into_any().unbind();
+        result.set_item("ends_with", converted_49)?;
     } else {
         result.set_item("ends_with", py.None())?;
     }
     if let Some(value) = &value.not_equals {
-        let converted_45_list = PyList::empty(py);
-        for item_46 in value {
-            let converted_item_47 = (item_46).as_str().into_py_any(py)?;
-            converted_45_list.append(converted_item_47)?;
+        let converted_52_list = PyList::empty(py);
+        for item_53 in value {
+            let converted_item_54 = (item_53).as_str().into_py_any(py)?;
+            converted_52_list.append(converted_item_54)?;
         }
-        let converted_45 = converted_45_list.into_any().unbind();
-        result.set_item("not_equals", converted_45)?;
+        let converted_52 = converted_52_list.into_any().unbind();
+        result.set_item("not_equals", converted_52)?;
     } else {
         result.set_item("not_equals", py.None())?;
     }
     if let Some(value) = &value.not_starts_with {
-        let converted_48_list = PyList::empty(py);
-        for item_49 in value {
-            let converted_item_50 = (item_49).as_str().into_py_any(py)?;
-            converted_48_list.append(converted_item_50)?;
+        let converted_55_list = PyList::empty(py);
+        for item_56 in value {
+            let converted_item_57 = (item_56).as_str().into_py_any(py)?;
+            converted_55_list.append(converted_item_57)?;
         }
-        let converted_48 = converted_48_list.into_any().unbind();
-        result.set_item("not_starts_with", converted_48)?;
+        let converted_55 = converted_55_list.into_any().unbind();
+        result.set_item("not_starts_with", converted_55)?;
     } else {
         result.set_item("not_starts_with", py.None())?;
     }
     if let Some(value) = &value.not_ends_with {
-        let converted_51_list = PyList::empty(py);
-        for item_52 in value {
-            let converted_item_53 = (item_52).as_str().into_py_any(py)?;
-            converted_51_list.append(converted_item_53)?;
+        let converted_58_list = PyList::empty(py);
+        for item_59 in value {
+            let converted_item_60 = (item_59).as_str().into_py_any(py)?;
+            converted_58_list.append(converted_item_60)?;
         }
-        let converted_51 = converted_51_list.into_any().unbind();
-        result.set_item("not_ends_with", converted_51)?;
+        let converted_58 = converted_58_list.into_any().unbind();
+        result.set_item("not_ends_with", converted_58)?;
     } else {
         result.set_item("not_ends_with", py.None())?;
     }
@@ -211,26 +382,65 @@ fn aggregation_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::AggregationConfiguration::builder();
     if let Some(value) = dict_value(values, "templates")? {
-        let mut converted_54 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_55 in value.try_iter()? {
-            let item_56 = item_result_55?;
-            let enum_value_58: String = item_56.extract()?;
-            let converted_item_57 =
-                aws_sdk_cloudtrail::types::Template::from(enum_value_58.as_str());
-            converted_54.push(converted_item_57);
-        }
-        builder = builder.set_templates(Some(converted_54));
+        let converted_61 = (|| -> PyResult<_> {
+            let mut converted_61 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_65, item_result_62) in value.try_iter()?.enumerate() {
+                let item_63 = item_result_62.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_65),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_64 = (|| -> PyResult<_> {
+                    let enum_value_66: String = item_63.extract()?;
+                    let converted_item_64 =
+                        aws_sdk_cloudtrail::types::Template::from(enum_value_66.as_str());
+                    Ok(converted_item_64)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_65),
+                        "str (Template)",
+                    )
+                })?;
+                converted_61.push(converted_item_64);
+            }
+            Ok(converted_61)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("templates"), "sequence")
+        })?;
+        builder = builder.set_templates(Some(converted_61));
     }
     if let Some(value) = dict_value(values, "event_category")? {
-        let enum_value_60: String = value.extract()?;
-        let converted_59 =
-            aws_sdk_cloudtrail::types::EventCategoryAggregation::from(enum_value_60.as_str());
-        builder = builder.set_event_category(Some(converted_59));
+        let converted_67 = (|| -> PyResult<_> {
+            let enum_value_68: String = value.extract()?;
+            let converted_67 =
+                aws_sdk_cloudtrail::types::EventCategoryAggregation::from(enum_value_68.as_str());
+            Ok(converted_67)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("event_category"),
+                "str (EventCategoryAggregation)",
+            )
+        })?;
+        builder = builder.set_event_category(Some(converted_67));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("templates", "templates"),
+                ("event_category", "event_category"),
+            ],
+        )
+    })
 }
 
 fn aggregation_configuration_to_py(
@@ -238,15 +448,15 @@ fn aggregation_configuration_to_py(
     value: &aws_sdk_cloudtrail::types::AggregationConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_61_list = PyList::empty(py);
-    for item_62 in &value.templates {
-        let converted_item_63 = (item_62).as_str().into_py_any(py)?;
-        converted_61_list.append(converted_item_63)?;
+    let converted_69_list = PyList::empty(py);
+    for item_70 in &value.templates {
+        let converted_item_71 = (item_70).as_str().into_py_any(py)?;
+        converted_69_list.append(converted_item_71)?;
     }
-    let converted_61 = converted_61_list.into_any().unbind();
-    result.set_item("templates", converted_61)?;
-    let converted_64 = (&value.event_category).as_str().into_py_any(py)?;
-    result.set_item("event_category", converted_64)?;
+    let converted_69 = converted_69_list.into_any().unbind();
+    result.set_item("templates", converted_69)?;
+    let converted_72 = (&value.event_category).as_str().into_py_any(py)?;
+    result.set_item("event_category", converted_72)?;
     Ok(result.into_any().unbind())
 }
 
@@ -254,12 +464,24 @@ fn channel_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::typ
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Channel::builder();
     if let Some(value) = dict_value(values, "channel_arn")? {
-        let converted_65: String = value.extract()?;
-        builder = builder.set_channel_arn(Some(converted_65));
+        let converted_73 = (|| -> PyResult<_> {
+            let converted_73: String = value.extract()?;
+            Ok(converted_73)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("channel_arn"), "str")
+        })?;
+        builder = builder.set_channel_arn(Some(converted_73));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_66: String = value.extract()?;
-        builder = builder.set_name(Some(converted_66));
+        let converted_74 = (|| -> PyResult<_> {
+            let converted_74: String = value.extract()?;
+            Ok(converted_74)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_74));
     }
     Ok(builder.build())
 }
@@ -270,14 +492,14 @@ fn channel_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.channel_arn {
-        let converted_67 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_arn", converted_67)?;
+        let converted_75 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_arn", converted_75)?;
     } else {
         result.set_item("channel_arn", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_68 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_68)?;
+        let converted_76 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_76)?;
     } else {
         result.set_item("name", py.None())?;
     }
@@ -290,23 +512,48 @@ fn context_key_selector_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::ContextKeySelector::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_70: String = value.extract()?;
-        let converted_69 = aws_sdk_cloudtrail::types::Type::from(enum_value_70.as_str());
-        builder = builder.set_type(Some(converted_69));
+        let converted_77 = (|| -> PyResult<_> {
+            let enum_value_78: String = value.extract()?;
+            let converted_77 = aws_sdk_cloudtrail::types::Type::from(enum_value_78.as_str());
+            Ok(converted_77)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str (Type)")
+        })?;
+        builder = builder.set_type(Some(converted_77));
     }
     if let Some(value) = dict_value(values, "equals")? {
-        let mut converted_71 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_72 in value.try_iter()? {
-            let item_73 = item_result_72?;
-            let converted_item_74: String = item_73.extract()?;
-            converted_71.push(converted_item_74);
-        }
-        builder = builder.set_equals(Some(converted_71));
+        let converted_79 = (|| -> PyResult<_> {
+            let mut converted_79 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_83, item_result_80) in value.try_iter()?.enumerate() {
+                let item_81 = item_result_80.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_83),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_82 = (|| -> PyResult<_> {
+                    let converted_item_82: String = item_81.extract()?;
+                    Ok(converted_item_82)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_83), "str")
+                })?;
+                converted_79.push(converted_item_82);
+            }
+            Ok(converted_79)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("equals"), "sequence")
+        })?;
+        builder = builder.set_equals(Some(converted_79));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("type", "type"), ("equals", "equals")])
+    })
 }
 
 fn context_key_selector_to_py(
@@ -314,15 +561,15 @@ fn context_key_selector_to_py(
     value: &aws_sdk_cloudtrail::types::ContextKeySelector,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_75 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_75)?;
-    let converted_76_list = PyList::empty(py);
-    for item_77 in &value.equals {
-        let converted_item_78 = (item_77).as_str().into_py_any(py)?;
-        converted_76_list.append(converted_item_78)?;
+    let converted_84 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_84)?;
+    let converted_85_list = PyList::empty(py);
+    for item_86 in &value.equals {
+        let converted_item_87 = (item_86).as_str().into_py_any(py)?;
+        converted_85_list.append(converted_item_87)?;
     }
-    let converted_76 = converted_76_list.into_any().unbind();
-    result.set_item("equals", converted_76)?;
+    let converted_85 = converted_85_list.into_any().unbind();
+    result.set_item("equals", converted_85)?;
     Ok(result.into_any().unbind())
 }
 
@@ -332,13 +579,30 @@ fn dashboard_detail_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::DashboardDetail::builder();
     if let Some(value) = dict_value(values, "dashboard_arn")? {
-        let converted_79: String = value.extract()?;
-        builder = builder.set_dashboard_arn(Some(converted_79));
+        let converted_88 = (|| -> PyResult<_> {
+            let converted_88: String = value.extract()?;
+            Ok(converted_88)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("dashboard_arn"), "str")
+        })?;
+        builder = builder.set_dashboard_arn(Some(converted_88));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_81: String = value.extract()?;
-        let converted_80 = aws_sdk_cloudtrail::types::DashboardType::from(enum_value_81.as_str());
-        builder = builder.set_type(Some(converted_80));
+        let converted_89 = (|| -> PyResult<_> {
+            let enum_value_90: String = value.extract()?;
+            let converted_89 =
+                aws_sdk_cloudtrail::types::DashboardType::from(enum_value_90.as_str());
+            Ok(converted_89)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (DashboardType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_89));
     }
     Ok(builder.build())
 }
@@ -349,14 +613,14 @@ fn dashboard_detail_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.dashboard_arn {
-        let converted_82 = (value).as_str().into_py_any(py)?;
-        result.set_item("dashboard_arn", converted_82)?;
+        let converted_91 = (value).as_str().into_py_any(py)?;
+        result.set_item("dashboard_arn", converted_91)?;
     } else {
         result.set_item("dashboard_arn", py.None())?;
     }
     if let Some(value) = &value.r#type {
-        let converted_83 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_83)?;
+        let converted_92 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_92)?;
     } else {
         result.set_item("type", py.None())?;
     }
@@ -369,18 +633,43 @@ fn data_resource_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::DataResource::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let converted_84: String = value.extract()?;
-        builder = builder.set_type(Some(converted_84));
+        let converted_93 = (|| -> PyResult<_> {
+            let converted_93: String = value.extract()?;
+            Ok(converted_93)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str")
+        })?;
+        builder = builder.set_type(Some(converted_93));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_85 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_86 in value.try_iter()? {
-            let item_87 = item_result_86?;
-            let converted_item_88: String = item_87.extract()?;
-            converted_85.push(converted_item_88);
-        }
-        builder = builder.set_values(Some(converted_85));
+        let converted_94 = (|| -> PyResult<_> {
+            let mut converted_94 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_98, item_result_95) in value.try_iter()?.enumerate() {
+                let item_96 = item_result_95.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_98),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_97 = (|| -> PyResult<_> {
+                    let converted_item_97: String = item_96.extract()?;
+                    Ok(converted_item_97)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_98), "str")
+                })?;
+                converted_94.push(converted_item_97);
+            }
+            Ok(converted_94)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("values"), "sequence")
+        })?;
+        builder = builder.set_values(Some(converted_94));
     }
     Ok(builder.build())
 }
@@ -391,19 +680,19 @@ fn data_resource_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.r#type {
-        let converted_89 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_89)?;
+        let converted_99 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_99)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.values {
-        let converted_90_list = PyList::empty(py);
-        for item_91 in value {
-            let converted_item_92 = (item_91).as_str().into_py_any(py)?;
-            converted_90_list.append(converted_item_92)?;
+        let converted_100_list = PyList::empty(py);
+        for item_101 in value {
+            let converted_item_102 = (item_101).as_str().into_py_any(py)?;
+            converted_100_list.append(converted_item_102)?;
         }
-        let converted_90 = converted_90_list.into_any().unbind();
-        result.set_item("values", converted_90)?;
+        let converted_100 = converted_100_list.into_any().unbind();
+        result.set_item("values", converted_100)?;
     } else {
         result.set_item("values", py.None())?;
     }
@@ -416,17 +705,34 @@ fn destination_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Destination::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_94: String = value.extract()?;
-        let converted_93 = aws_sdk_cloudtrail::types::DestinationType::from(enum_value_94.as_str());
-        builder = builder.set_type(Some(converted_93));
+        let converted_103 = (|| -> PyResult<_> {
+            let enum_value_104: String = value.extract()?;
+            let converted_103 =
+                aws_sdk_cloudtrail::types::DestinationType::from(enum_value_104.as_str());
+            Ok(converted_103)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (DestinationType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_103));
     }
     if let Some(value) = dict_value(values, "location")? {
-        let converted_95: String = value.extract()?;
-        builder = builder.set_location(Some(converted_95));
+        let converted_105 = (|| -> PyResult<_> {
+            let converted_105: String = value.extract()?;
+            Ok(converted_105)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("location"), "str")
+        })?;
+        builder = builder.set_location(Some(converted_105));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("type", "type"), ("location", "location")])
+    })
 }
 
 fn destination_to_py(
@@ -434,10 +740,10 @@ fn destination_to_py(
     value: &aws_sdk_cloudtrail::types::Destination,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_96 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_96)?;
-    let converted_97 = (&value.location).as_str().into_py_any(py)?;
-    result.set_item("location", converted_97)?;
+    let converted_106 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_106)?;
+    let converted_107 = (&value.location).as_str().into_py_any(py)?;
+    result.set_item("location", converted_107)?;
     Ok(result.into_any().unbind())
 }
 
@@ -445,51 +751,130 @@ fn event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Event::builder();
     if let Some(value) = dict_value(values, "event_id")? {
-        let converted_98: String = value.extract()?;
-        builder = builder.set_event_id(Some(converted_98));
+        let converted_108 = (|| -> PyResult<_> {
+            let converted_108: String = value.extract()?;
+            Ok(converted_108)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("event_id"), "str")
+        })?;
+        builder = builder.set_event_id(Some(converted_108));
     }
     if let Some(value) = dict_value(values, "event_name")? {
-        let converted_99: String = value.extract()?;
-        builder = builder.set_event_name(Some(converted_99));
+        let converted_109 = (|| -> PyResult<_> {
+            let converted_109: String = value.extract()?;
+            Ok(converted_109)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("event_name"), "str")
+        })?;
+        builder = builder.set_event_name(Some(converted_109));
     }
     if let Some(value) = dict_value(values, "read_only")? {
-        let converted_100: String = value.extract()?;
-        builder = builder.set_read_only(Some(converted_100));
+        let converted_110 = (|| -> PyResult<_> {
+            let converted_110: String = value.extract()?;
+            Ok(converted_110)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("read_only"), "str")
+        })?;
+        builder = builder.set_read_only(Some(converted_110));
     }
     if let Some(value) = dict_value(values, "access_key_id")? {
-        let converted_101: String = value.extract()?;
-        builder = builder.set_access_key_id(Some(converted_101));
+        let converted_111 = (|| -> PyResult<_> {
+            let converted_111: String = value.extract()?;
+            Ok(converted_111)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("access_key_id"), "str")
+        })?;
+        builder = builder.set_access_key_id(Some(converted_111));
     }
     if let Some(value) = dict_value(values, "event_time")? {
-        let timestamp_103: String = value.extract()?;
-        let converted_102 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_103,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_event_time(Some(converted_102));
+        let converted_112 = (|| -> PyResult<_> {
+            let timestamp_113: String = value.extract()?;
+            let converted_112 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_113,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_112)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("event_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_event_time(Some(converted_112));
     }
     if let Some(value) = dict_value(values, "event_source")? {
-        let converted_104: String = value.extract()?;
-        builder = builder.set_event_source(Some(converted_104));
+        let converted_114 = (|| -> PyResult<_> {
+            let converted_114: String = value.extract()?;
+            Ok(converted_114)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("event_source"), "str")
+        })?;
+        builder = builder.set_event_source(Some(converted_114));
     }
     if let Some(value) = dict_value(values, "username")? {
-        let converted_105: String = value.extract()?;
-        builder = builder.set_username(Some(converted_105));
+        let converted_115 = (|| -> PyResult<_> {
+            let converted_115: String = value.extract()?;
+            Ok(converted_115)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("username"), "str")
+        })?;
+        builder = builder.set_username(Some(converted_115));
     }
     if let Some(value) = dict_value(values, "resources")? {
-        let mut converted_106 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_107 in value.try_iter()? {
-            let item_108 = item_result_107?;
-            let converted_item_109 = resource_from_py(&item_108)?;
-            converted_106.push(converted_item_109);
-        }
-        builder = builder.set_resources(Some(converted_106));
+        let converted_116 = (|| -> PyResult<_> {
+            let mut converted_116 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_120, item_result_117) in value.try_iter()?.enumerate() {
+                let item_118 = item_result_117.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_120),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_119 = (|| -> PyResult<_> {
+                    let converted_item_119 = resource_from_py(&item_118)?;
+                    Ok(converted_item_119)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_120),
+                        "dict (Resource)",
+                    )
+                })?;
+                converted_116.push(converted_item_119);
+            }
+            Ok(converted_116)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("resources"), "sequence")
+        })?;
+        builder = builder.set_resources(Some(converted_116));
     }
     if let Some(value) = dict_value(values, "cloud_trail_event")? {
-        let converted_110: String = value.extract()?;
-        builder = builder.set_cloud_trail_event(Some(converted_110));
+        let converted_121 = (|| -> PyResult<_> {
+            let converted_121: String = value.extract()?;
+            Ok(converted_121)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cloud_trail_event"),
+                "str",
+            )
+        })?;
+        builder = builder.set_cloud_trail_event(Some(converted_121));
     }
     Ok(builder.build())
 }
@@ -497,61 +882,61 @@ fn event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types
 fn event_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Event) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.event_id {
-        let converted_111 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_id", converted_111)?;
+        let converted_122 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_id", converted_122)?;
     } else {
         result.set_item("event_id", py.None())?;
     }
     if let Some(value) = &value.event_name {
-        let converted_112 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_name", converted_112)?;
+        let converted_123 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_name", converted_123)?;
     } else {
         result.set_item("event_name", py.None())?;
     }
     if let Some(value) = &value.read_only {
-        let converted_113 = (value).as_str().into_py_any(py)?;
-        result.set_item("read_only", converted_113)?;
+        let converted_124 = (value).as_str().into_py_any(py)?;
+        result.set_item("read_only", converted_124)?;
     } else {
         result.set_item("read_only", py.None())?;
     }
     if let Some(value) = &value.access_key_id {
-        let converted_114 = (value).as_str().into_py_any(py)?;
-        result.set_item("access_key_id", converted_114)?;
+        let converted_125 = (value).as_str().into_py_any(py)?;
+        result.set_item("access_key_id", converted_125)?;
     } else {
         result.set_item("access_key_id", py.None())?;
     }
     if let Some(value) = &value.event_time {
-        let converted_115 = (value).to_string().into_py_any(py)?;
-        result.set_item("event_time", converted_115)?;
+        let converted_126 = (value).to_string().into_py_any(py)?;
+        result.set_item("event_time", converted_126)?;
     } else {
         result.set_item("event_time", py.None())?;
     }
     if let Some(value) = &value.event_source {
-        let converted_116 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_source", converted_116)?;
+        let converted_127 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_source", converted_127)?;
     } else {
         result.set_item("event_source", py.None())?;
     }
     if let Some(value) = &value.username {
-        let converted_117 = (value).as_str().into_py_any(py)?;
-        result.set_item("username", converted_117)?;
+        let converted_128 = (value).as_str().into_py_any(py)?;
+        result.set_item("username", converted_128)?;
     } else {
         result.set_item("username", py.None())?;
     }
     if let Some(value) = &value.resources {
-        let converted_118_list = PyList::empty(py);
-        for item_119 in value {
-            let converted_item_120 = resource_to_py(py, item_119)?;
-            converted_118_list.append(converted_item_120)?;
+        let converted_129_list = PyList::empty(py);
+        for item_130 in value {
+            let converted_item_131 = resource_to_py(py, item_130)?;
+            converted_129_list.append(converted_item_131)?;
         }
-        let converted_118 = converted_118_list.into_any().unbind();
-        result.set_item("resources", converted_118)?;
+        let converted_129 = converted_129_list.into_any().unbind();
+        result.set_item("resources", converted_129)?;
     } else {
         result.set_item("resources", py.None())?;
     }
     if let Some(value) = &value.cloud_trail_event {
-        let converted_121 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_trail_event", converted_121)?;
+        let converted_132 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_trail_event", converted_132)?;
     } else {
         result.set_item("cloud_trail_event", py.None())?;
     }
@@ -564,62 +949,175 @@ fn event_data_store_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::EventDataStore::builder();
     if let Some(value) = dict_value(values, "event_data_store_arn")? {
-        let converted_122: String = value.extract()?;
-        builder = builder.set_event_data_store_arn(Some(converted_122));
+        let converted_133 = (|| -> PyResult<_> {
+            let converted_133: String = value.extract()?;
+            Ok(converted_133)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("event_data_store_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_event_data_store_arn(Some(converted_133));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_123: String = value.extract()?;
-        builder = builder.set_name(Some(converted_123));
+        let converted_134 = (|| -> PyResult<_> {
+            let converted_134: String = value.extract()?;
+            Ok(converted_134)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_134));
     }
     if let Some(value) = dict_value(values, "termination_protection_enabled")? {
-        let converted_124: bool = value.extract()?;
-        builder = builder.set_termination_protection_enabled(Some(converted_124));
+        let converted_135 = (|| -> PyResult<_> {
+            let converted_135: bool = value.extract()?;
+            Ok(converted_135)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("termination_protection_enabled"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_termination_protection_enabled(Some(converted_135));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_126: String = value.extract()?;
-        let converted_125 =
-            aws_sdk_cloudtrail::types::EventDataStoreStatus::from(enum_value_126.as_str());
-        builder = builder.set_status(Some(converted_125));
+        let converted_136 = (|| -> PyResult<_> {
+            let enum_value_137: String = value.extract()?;
+            let converted_136 =
+                aws_sdk_cloudtrail::types::EventDataStoreStatus::from(enum_value_137.as_str());
+            Ok(converted_136)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (EventDataStoreStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_136));
     }
     if let Some(value) = dict_value(values, "advanced_event_selectors")? {
-        let mut converted_127 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_128 in value.try_iter()? {
-            let item_129 = item_result_128?;
-            let converted_item_130 = advanced_event_selector_from_py(&item_129)?;
-            converted_127.push(converted_item_130);
-        }
-        builder = builder.set_advanced_event_selectors(Some(converted_127));
+        let converted_138 = (|| -> PyResult<_> {
+            let mut converted_138 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_142, item_result_139) in value.try_iter()?.enumerate() {
+                let item_140 = item_result_139.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_142),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_141 = (|| -> PyResult<_> {
+                    let converted_item_141 = advanced_event_selector_from_py(&item_140)?;
+                    Ok(converted_item_141)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_142),
+                        "dict (AdvancedEventSelector)",
+                    )
+                })?;
+                converted_138.push(converted_item_141);
+            }
+            Ok(converted_138)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("advanced_event_selectors"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_advanced_event_selectors(Some(converted_138));
     }
     if let Some(value) = dict_value(values, "multi_region_enabled")? {
-        let converted_131: bool = value.extract()?;
-        builder = builder.set_multi_region_enabled(Some(converted_131));
+        let converted_143 = (|| -> PyResult<_> {
+            let converted_143: bool = value.extract()?;
+            Ok(converted_143)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("multi_region_enabled"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_multi_region_enabled(Some(converted_143));
     }
     if let Some(value) = dict_value(values, "organization_enabled")? {
-        let converted_132: bool = value.extract()?;
-        builder = builder.set_organization_enabled(Some(converted_132));
+        let converted_144 = (|| -> PyResult<_> {
+            let converted_144: bool = value.extract()?;
+            Ok(converted_144)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("organization_enabled"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_organization_enabled(Some(converted_144));
     }
     if let Some(value) = dict_value(values, "retention_period")? {
-        let converted_133: i32 = value.extract()?;
-        builder = builder.set_retention_period(Some(converted_133));
+        let converted_145 = (|| -> PyResult<_> {
+            let converted_145: i32 = value.extract()?;
+            Ok(converted_145)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("retention_period"),
+                "int",
+            )
+        })?;
+        builder = builder.set_retention_period(Some(converted_145));
     }
     if let Some(value) = dict_value(values, "created_timestamp")? {
-        let timestamp_135: String = value.extract()?;
-        let converted_134 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_135,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_created_timestamp(Some(converted_134));
+        let converted_146 = (|| -> PyResult<_> {
+            let timestamp_147: String = value.extract()?;
+            let converted_146 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_147,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_146)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("created_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_created_timestamp(Some(converted_146));
     }
     if let Some(value) = dict_value(values, "updated_timestamp")? {
-        let timestamp_137: String = value.extract()?;
-        let converted_136 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_137,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_updated_timestamp(Some(converted_136));
+        let converted_148 = (|| -> PyResult<_> {
+            let timestamp_149: String = value.extract()?;
+            let converted_148 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_149,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_148)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("updated_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_updated_timestamp(Some(converted_148));
     }
     Ok(builder.build())
 }
@@ -630,67 +1128,67 @@ fn event_data_store_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.event_data_store_arn {
-        let converted_138 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_data_store_arn", converted_138)?;
+        let converted_150 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_data_store_arn", converted_150)?;
     } else {
         result.set_item("event_data_store_arn", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_139 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_139)?;
+        let converted_151 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_151)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.termination_protection_enabled {
-        let converted_140 = (value).to_owned().into_py_any(py)?;
-        result.set_item("termination_protection_enabled", converted_140)?;
+        let converted_152 = (value).to_owned().into_py_any(py)?;
+        result.set_item("termination_protection_enabled", converted_152)?;
     } else {
         result.set_item("termination_protection_enabled", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_141 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_141)?;
+        let converted_153 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_153)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.advanced_event_selectors {
-        let converted_142_list = PyList::empty(py);
-        for item_143 in value {
-            let converted_item_144 = advanced_event_selector_to_py(py, item_143)?;
-            converted_142_list.append(converted_item_144)?;
+        let converted_154_list = PyList::empty(py);
+        for item_155 in value {
+            let converted_item_156 = advanced_event_selector_to_py(py, item_155)?;
+            converted_154_list.append(converted_item_156)?;
         }
-        let converted_142 = converted_142_list.into_any().unbind();
-        result.set_item("advanced_event_selectors", converted_142)?;
+        let converted_154 = converted_154_list.into_any().unbind();
+        result.set_item("advanced_event_selectors", converted_154)?;
     } else {
         result.set_item("advanced_event_selectors", py.None())?;
     }
     if let Some(value) = &value.multi_region_enabled {
-        let converted_145 = (value).to_owned().into_py_any(py)?;
-        result.set_item("multi_region_enabled", converted_145)?;
+        let converted_157 = (value).to_owned().into_py_any(py)?;
+        result.set_item("multi_region_enabled", converted_157)?;
     } else {
         result.set_item("multi_region_enabled", py.None())?;
     }
     if let Some(value) = &value.organization_enabled {
-        let converted_146 = (value).to_owned().into_py_any(py)?;
-        result.set_item("organization_enabled", converted_146)?;
+        let converted_158 = (value).to_owned().into_py_any(py)?;
+        result.set_item("organization_enabled", converted_158)?;
     } else {
         result.set_item("organization_enabled", py.None())?;
     }
     if let Some(value) = &value.retention_period {
-        let converted_147 = (value).to_owned().into_py_any(py)?;
-        result.set_item("retention_period", converted_147)?;
+        let converted_159 = (value).to_owned().into_py_any(py)?;
+        result.set_item("retention_period", converted_159)?;
     } else {
         result.set_item("retention_period", py.None())?;
     }
     if let Some(value) = &value.created_timestamp {
-        let converted_148 = (value).to_string().into_py_any(py)?;
-        result.set_item("created_timestamp", converted_148)?;
+        let converted_160 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_timestamp", converted_160)?;
     } else {
         result.set_item("created_timestamp", py.None())?;
     }
     if let Some(value) = &value.updated_timestamp {
-        let converted_149 = (value).to_string().into_py_any(py)?;
-        result.set_item("updated_timestamp", converted_149)?;
+        let converted_161 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_timestamp", converted_161)?;
     } else {
         result.set_item("updated_timestamp", py.None())?;
     }
@@ -703,33 +1201,104 @@ fn event_selector_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::EventSelector::builder();
     if let Some(value) = dict_value(values, "read_write_type")? {
-        let enum_value_151: String = value.extract()?;
-        let converted_150 = aws_sdk_cloudtrail::types::ReadWriteType::from(enum_value_151.as_str());
-        builder = builder.set_read_write_type(Some(converted_150));
+        let converted_162 = (|| -> PyResult<_> {
+            let enum_value_163: String = value.extract()?;
+            let converted_162 =
+                aws_sdk_cloudtrail::types::ReadWriteType::from(enum_value_163.as_str());
+            Ok(converted_162)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("read_write_type"),
+                "str (ReadWriteType)",
+            )
+        })?;
+        builder = builder.set_read_write_type(Some(converted_162));
     }
     if let Some(value) = dict_value(values, "include_management_events")? {
-        let converted_152: bool = value.extract()?;
-        builder = builder.set_include_management_events(Some(converted_152));
+        let converted_164 = (|| -> PyResult<_> {
+            let converted_164: bool = value.extract()?;
+            Ok(converted_164)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("include_management_events"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_include_management_events(Some(converted_164));
     }
     if let Some(value) = dict_value(values, "data_resources")? {
-        let mut converted_153 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_154 in value.try_iter()? {
-            let item_155 = item_result_154?;
-            let converted_item_156 = data_resource_from_py(&item_155)?;
-            converted_153.push(converted_item_156);
-        }
-        builder = builder.set_data_resources(Some(converted_153));
+        let converted_165 = (|| -> PyResult<_> {
+            let mut converted_165 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_169, item_result_166) in value.try_iter()?.enumerate() {
+                let item_167 = item_result_166.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_169),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_168 = (|| -> PyResult<_> {
+                    let converted_item_168 = data_resource_from_py(&item_167)?;
+                    Ok(converted_item_168)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_169),
+                        "dict (DataResource)",
+                    )
+                })?;
+                converted_165.push(converted_item_168);
+            }
+            Ok(converted_165)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("data_resources"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_data_resources(Some(converted_165));
     }
     if let Some(value) = dict_value(values, "exclude_management_event_sources")? {
-        let mut converted_157 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_158 in value.try_iter()? {
-            let item_159 = item_result_158?;
-            let converted_item_160: String = item_159.extract()?;
-            converted_157.push(converted_item_160);
-        }
-        builder = builder.set_exclude_management_event_sources(Some(converted_157));
+        let converted_170 = (|| -> PyResult<_> {
+            let mut converted_170 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_174, item_result_171) in value.try_iter()?.enumerate() {
+                let item_172 = item_result_171.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_174),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_173 = (|| -> PyResult<_> {
+                    let converted_item_173: String = item_172.extract()?;
+                    Ok(converted_item_173)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_174), "str")
+                })?;
+                converted_170.push(converted_item_173);
+            }
+            Ok(converted_170)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("exclude_management_event_sources"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_exclude_management_event_sources(Some(converted_170));
     }
     Ok(builder.build())
 }
@@ -740,36 +1309,36 @@ fn event_selector_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.read_write_type {
-        let converted_161 = (value).as_str().into_py_any(py)?;
-        result.set_item("read_write_type", converted_161)?;
+        let converted_175 = (value).as_str().into_py_any(py)?;
+        result.set_item("read_write_type", converted_175)?;
     } else {
         result.set_item("read_write_type", py.None())?;
     }
     if let Some(value) = &value.include_management_events {
-        let converted_162 = (value).to_owned().into_py_any(py)?;
-        result.set_item("include_management_events", converted_162)?;
+        let converted_176 = (value).to_owned().into_py_any(py)?;
+        result.set_item("include_management_events", converted_176)?;
     } else {
         result.set_item("include_management_events", py.None())?;
     }
     if let Some(value) = &value.data_resources {
-        let converted_163_list = PyList::empty(py);
-        for item_164 in value {
-            let converted_item_165 = data_resource_to_py(py, item_164)?;
-            converted_163_list.append(converted_item_165)?;
+        let converted_177_list = PyList::empty(py);
+        for item_178 in value {
+            let converted_item_179 = data_resource_to_py(py, item_178)?;
+            converted_177_list.append(converted_item_179)?;
         }
-        let converted_163 = converted_163_list.into_any().unbind();
-        result.set_item("data_resources", converted_163)?;
+        let converted_177 = converted_177_list.into_any().unbind();
+        result.set_item("data_resources", converted_177)?;
     } else {
         result.set_item("data_resources", py.None())?;
     }
     if let Some(value) = &value.exclude_management_event_sources {
-        let converted_166_list = PyList::empty(py);
-        for item_167 in value {
-            let converted_item_168 = (item_167).as_str().into_py_any(py)?;
-            converted_166_list.append(converted_item_168)?;
+        let converted_180_list = PyList::empty(py);
+        for item_181 in value {
+            let converted_item_182 = (item_181).as_str().into_py_any(py)?;
+            converted_180_list.append(converted_item_182)?;
         }
-        let converted_166 = converted_166_list.into_any().unbind();
-        result.set_item("exclude_management_event_sources", converted_166)?;
+        let converted_180 = converted_180_list.into_any().unbind();
+        result.set_item("exclude_management_event_sources", converted_180)?;
     } else {
         result.set_item("exclude_management_event_sources", py.None())?;
     }
@@ -782,31 +1351,69 @@ fn import_failure_list_item_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::ImportFailureListItem::builder();
     if let Some(value) = dict_value(values, "location")? {
-        let converted_169: String = value.extract()?;
-        builder = builder.set_location(Some(converted_169));
+        let converted_183 = (|| -> PyResult<_> {
+            let converted_183: String = value.extract()?;
+            Ok(converted_183)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("location"), "str")
+        })?;
+        builder = builder.set_location(Some(converted_183));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_171: String = value.extract()?;
-        let converted_170 =
-            aws_sdk_cloudtrail::types::ImportFailureStatus::from(enum_value_171.as_str());
-        builder = builder.set_status(Some(converted_170));
+        let converted_184 = (|| -> PyResult<_> {
+            let enum_value_185: String = value.extract()?;
+            let converted_184 =
+                aws_sdk_cloudtrail::types::ImportFailureStatus::from(enum_value_185.as_str());
+            Ok(converted_184)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (ImportFailureStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_184));
     }
     if let Some(value) = dict_value(values, "error_type")? {
-        let converted_172: String = value.extract()?;
-        builder = builder.set_error_type(Some(converted_172));
+        let converted_186 = (|| -> PyResult<_> {
+            let converted_186: String = value.extract()?;
+            Ok(converted_186)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_type"), "str")
+        })?;
+        builder = builder.set_error_type(Some(converted_186));
     }
     if let Some(value) = dict_value(values, "error_message")? {
-        let converted_173: String = value.extract()?;
-        builder = builder.set_error_message(Some(converted_173));
+        let converted_187 = (|| -> PyResult<_> {
+            let converted_187: String = value.extract()?;
+            Ok(converted_187)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
+        })?;
+        builder = builder.set_error_message(Some(converted_187));
     }
     if let Some(value) = dict_value(values, "last_updated_time")? {
-        let timestamp_175: String = value.extract()?;
-        let converted_174 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_175,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_last_updated_time(Some(converted_174));
+        let converted_188 = (|| -> PyResult<_> {
+            let timestamp_189: String = value.extract()?;
+            let converted_188 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_189,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_188)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("last_updated_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_last_updated_time(Some(converted_188));
     }
     Ok(builder.build())
 }
@@ -817,32 +1424,32 @@ fn import_failure_list_item_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.location {
-        let converted_176 = (value).as_str().into_py_any(py)?;
-        result.set_item("location", converted_176)?;
+        let converted_190 = (value).as_str().into_py_any(py)?;
+        result.set_item("location", converted_190)?;
     } else {
         result.set_item("location", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_177 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_177)?;
+        let converted_191 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_191)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.error_type {
-        let converted_178 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_type", converted_178)?;
+        let converted_192 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_type", converted_192)?;
     } else {
         result.set_item("error_type", py.None())?;
     }
     if let Some(value) = &value.error_message {
-        let converted_179 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_message", converted_179)?;
+        let converted_193 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_193)?;
     } else {
         result.set_item("error_message", py.None())?;
     }
     if let Some(value) = &value.last_updated_time {
-        let converted_180 = (value).to_string().into_py_any(py)?;
-        result.set_item("last_updated_time", converted_180)?;
+        let converted_194 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_updated_time", converted_194)?;
     } else {
         result.set_item("last_updated_time", py.None())?;
     }
@@ -855,8 +1462,18 @@ fn import_source_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::ImportSource::builder();
     if let Some(value) = dict_value(values, "s3")? {
-        let converted_181 = s3_import_source_from_py(&value)?;
-        builder = builder.set_s3(Some(converted_181));
+        let converted_195 = (|| -> PyResult<_> {
+            let converted_195 = s3_import_source_from_py(&value)?;
+            Ok(converted_195)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3"),
+                "dict (S3ImportSource)",
+            )
+        })?;
+        builder = builder.set_s3(Some(converted_195));
     }
     Ok(builder.build())
 }
@@ -867,8 +1484,8 @@ fn import_source_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.s3 {
-        let converted_182 = s3_import_source_to_py(py, value)?;
-        result.set_item("s3", converted_182)?;
+        let converted_196 = s3_import_source_to_py(py, value)?;
+        result.set_item("s3", converted_196)?;
     } else {
         result.set_item("s3", py.None())?;
     }
@@ -881,24 +1498,66 @@ fn import_statistics_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::ImportStatistics::builder();
     if let Some(value) = dict_value(values, "prefixes_found")? {
-        let converted_183: i64 = value.extract()?;
-        builder = builder.set_prefixes_found(Some(converted_183));
+        let converted_197 = (|| -> PyResult<_> {
+            let converted_197: i64 = value.extract()?;
+            Ok(converted_197)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("prefixes_found"), "int")
+        })?;
+        builder = builder.set_prefixes_found(Some(converted_197));
     }
     if let Some(value) = dict_value(values, "prefixes_completed")? {
-        let converted_184: i64 = value.extract()?;
-        builder = builder.set_prefixes_completed(Some(converted_184));
+        let converted_198 = (|| -> PyResult<_> {
+            let converted_198: i64 = value.extract()?;
+            Ok(converted_198)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("prefixes_completed"),
+                "int",
+            )
+        })?;
+        builder = builder.set_prefixes_completed(Some(converted_198));
     }
     if let Some(value) = dict_value(values, "files_completed")? {
-        let converted_185: i64 = value.extract()?;
-        builder = builder.set_files_completed(Some(converted_185));
+        let converted_199 = (|| -> PyResult<_> {
+            let converted_199: i64 = value.extract()?;
+            Ok(converted_199)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("files_completed"),
+                "int",
+            )
+        })?;
+        builder = builder.set_files_completed(Some(converted_199));
     }
     if let Some(value) = dict_value(values, "events_completed")? {
-        let converted_186: i64 = value.extract()?;
-        builder = builder.set_events_completed(Some(converted_186));
+        let converted_200 = (|| -> PyResult<_> {
+            let converted_200: i64 = value.extract()?;
+            Ok(converted_200)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("events_completed"),
+                "int",
+            )
+        })?;
+        builder = builder.set_events_completed(Some(converted_200));
     }
     if let Some(value) = dict_value(values, "failed_entries")? {
-        let converted_187: i64 = value.extract()?;
-        builder = builder.set_failed_entries(Some(converted_187));
+        let converted_201 = (|| -> PyResult<_> {
+            let converted_201: i64 = value.extract()?;
+            Ok(converted_201)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("failed_entries"), "int")
+        })?;
+        builder = builder.set_failed_entries(Some(converted_201));
     }
     Ok(builder.build())
 }
@@ -909,32 +1568,32 @@ fn import_statistics_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefixes_found {
-        let converted_188 = (value).to_owned().into_py_any(py)?;
-        result.set_item("prefixes_found", converted_188)?;
+        let converted_202 = (value).to_owned().into_py_any(py)?;
+        result.set_item("prefixes_found", converted_202)?;
     } else {
         result.set_item("prefixes_found", py.None())?;
     }
     if let Some(value) = &value.prefixes_completed {
-        let converted_189 = (value).to_owned().into_py_any(py)?;
-        result.set_item("prefixes_completed", converted_189)?;
+        let converted_203 = (value).to_owned().into_py_any(py)?;
+        result.set_item("prefixes_completed", converted_203)?;
     } else {
         result.set_item("prefixes_completed", py.None())?;
     }
     if let Some(value) = &value.files_completed {
-        let converted_190 = (value).to_owned().into_py_any(py)?;
-        result.set_item("files_completed", converted_190)?;
+        let converted_204 = (value).to_owned().into_py_any(py)?;
+        result.set_item("files_completed", converted_204)?;
     } else {
         result.set_item("files_completed", py.None())?;
     }
     if let Some(value) = &value.events_completed {
-        let converted_191 = (value).to_owned().into_py_any(py)?;
-        result.set_item("events_completed", converted_191)?;
+        let converted_205 = (value).to_owned().into_py_any(py)?;
+        result.set_item("events_completed", converted_205)?;
     } else {
         result.set_item("events_completed", py.None())?;
     }
     if let Some(value) = &value.failed_entries {
-        let converted_192 = (value).to_owned().into_py_any(py)?;
-        result.set_item("failed_entries", converted_192)?;
+        let converted_206 = (value).to_owned().into_py_any(py)?;
+        result.set_item("failed_entries", converted_206)?;
     } else {
         result.set_item("failed_entries", py.None())?;
     }
@@ -947,41 +1606,101 @@ fn imports_list_item_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::ImportsListItem::builder();
     if let Some(value) = dict_value(values, "import_id")? {
-        let converted_193: String = value.extract()?;
-        builder = builder.set_import_id(Some(converted_193));
+        let converted_207 = (|| -> PyResult<_> {
+            let converted_207: String = value.extract()?;
+            Ok(converted_207)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("import_id"), "str")
+        })?;
+        builder = builder.set_import_id(Some(converted_207));
     }
     if let Some(value) = dict_value(values, "import_status")? {
-        let enum_value_195: String = value.extract()?;
-        let converted_194 = aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_195.as_str());
-        builder = builder.set_import_status(Some(converted_194));
+        let converted_208 = (|| -> PyResult<_> {
+            let enum_value_209: String = value.extract()?;
+            let converted_208 =
+                aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_209.as_str());
+            Ok(converted_208)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("import_status"),
+                "str (ImportStatus)",
+            )
+        })?;
+        builder = builder.set_import_status(Some(converted_208));
     }
     if let Some(value) = dict_value(values, "destinations")? {
-        let mut converted_196 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_197 in value.try_iter()? {
-            let item_198 = item_result_197?;
-            let converted_item_199: String = item_198.extract()?;
-            converted_196.push(converted_item_199);
-        }
-        builder = builder.set_destinations(Some(converted_196));
+        let converted_210 = (|| -> PyResult<_> {
+            let mut converted_210 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_214, item_result_211) in value.try_iter()?.enumerate() {
+                let item_212 = item_result_211.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_214),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_213 = (|| -> PyResult<_> {
+                    let converted_item_213: String = item_212.extract()?;
+                    Ok(converted_item_213)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_214), "str")
+                })?;
+                converted_210.push(converted_item_213);
+            }
+            Ok(converted_210)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("destinations"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_destinations(Some(converted_210));
     }
     if let Some(value) = dict_value(values, "created_timestamp")? {
-        let timestamp_201: String = value.extract()?;
-        let converted_200 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_201,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_created_timestamp(Some(converted_200));
+        let converted_215 = (|| -> PyResult<_> {
+            let timestamp_216: String = value.extract()?;
+            let converted_215 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_216,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_215)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("created_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_created_timestamp(Some(converted_215));
     }
     if let Some(value) = dict_value(values, "updated_timestamp")? {
-        let timestamp_203: String = value.extract()?;
-        let converted_202 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_203,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_updated_timestamp(Some(converted_202));
+        let converted_217 = (|| -> PyResult<_> {
+            let timestamp_218: String = value.extract()?;
+            let converted_217 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_218,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_217)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("updated_timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_updated_timestamp(Some(converted_217));
     }
     Ok(builder.build())
 }
@@ -992,37 +1711,37 @@ fn imports_list_item_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.import_id {
-        let converted_204 = (value).as_str().into_py_any(py)?;
-        result.set_item("import_id", converted_204)?;
+        let converted_219 = (value).as_str().into_py_any(py)?;
+        result.set_item("import_id", converted_219)?;
     } else {
         result.set_item("import_id", py.None())?;
     }
     if let Some(value) = &value.import_status {
-        let converted_205 = (value).as_str().into_py_any(py)?;
-        result.set_item("import_status", converted_205)?;
+        let converted_220 = (value).as_str().into_py_any(py)?;
+        result.set_item("import_status", converted_220)?;
     } else {
         result.set_item("import_status", py.None())?;
     }
     if let Some(value) = &value.destinations {
-        let converted_206_list = PyList::empty(py);
-        for item_207 in value {
-            let converted_item_208 = (item_207).as_str().into_py_any(py)?;
-            converted_206_list.append(converted_item_208)?;
+        let converted_221_list = PyList::empty(py);
+        for item_222 in value {
+            let converted_item_223 = (item_222).as_str().into_py_any(py)?;
+            converted_221_list.append(converted_item_223)?;
         }
-        let converted_206 = converted_206_list.into_any().unbind();
-        result.set_item("destinations", converted_206)?;
+        let converted_221 = converted_221_list.into_any().unbind();
+        result.set_item("destinations", converted_221)?;
     } else {
         result.set_item("destinations", py.None())?;
     }
     if let Some(value) = &value.created_timestamp {
-        let converted_209 = (value).to_string().into_py_any(py)?;
-        result.set_item("created_timestamp", converted_209)?;
+        let converted_224 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_timestamp", converted_224)?;
     } else {
         result.set_item("created_timestamp", py.None())?;
     }
     if let Some(value) = &value.updated_timestamp {
-        let converted_210 = (value).to_string().into_py_any(py)?;
-        result.set_item("updated_timestamp", converted_210)?;
+        let converted_225 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_timestamp", converted_225)?;
     } else {
         result.set_item("updated_timestamp", py.None())?;
     }
@@ -1035,34 +1754,84 @@ fn ingestion_status_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::IngestionStatus::builder();
     if let Some(value) = dict_value(values, "latest_ingestion_success_time")? {
-        let timestamp_212: String = value.extract()?;
-        let converted_211 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_212,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_latest_ingestion_success_time(Some(converted_211));
+        let converted_226 = (|| -> PyResult<_> {
+            let timestamp_227: String = value.extract()?;
+            let converted_226 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_227,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_226)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("latest_ingestion_success_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_latest_ingestion_success_time(Some(converted_226));
     }
     if let Some(value) = dict_value(values, "latest_ingestion_success_event_id")? {
-        let converted_213: String = value.extract()?;
-        builder = builder.set_latest_ingestion_success_event_id(Some(converted_213));
+        let converted_228 = (|| -> PyResult<_> {
+            let converted_228: String = value.extract()?;
+            Ok(converted_228)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("latest_ingestion_success_event_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_latest_ingestion_success_event_id(Some(converted_228));
     }
     if let Some(value) = dict_value(values, "latest_ingestion_error_code")? {
-        let converted_214: String = value.extract()?;
-        builder = builder.set_latest_ingestion_error_code(Some(converted_214));
+        let converted_229 = (|| -> PyResult<_> {
+            let converted_229: String = value.extract()?;
+            Ok(converted_229)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("latest_ingestion_error_code"),
+                "str",
+            )
+        })?;
+        builder = builder.set_latest_ingestion_error_code(Some(converted_229));
     }
     if let Some(value) = dict_value(values, "latest_ingestion_attempt_time")? {
-        let timestamp_216: String = value.extract()?;
-        let converted_215 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_216,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_latest_ingestion_attempt_time(Some(converted_215));
+        let converted_230 = (|| -> PyResult<_> {
+            let timestamp_231: String = value.extract()?;
+            let converted_230 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_231,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_230)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("latest_ingestion_attempt_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_latest_ingestion_attempt_time(Some(converted_230));
     }
     if let Some(value) = dict_value(values, "latest_ingestion_attempt_event_id")? {
-        let converted_217: String = value.extract()?;
-        builder = builder.set_latest_ingestion_attempt_event_id(Some(converted_217));
+        let converted_232 = (|| -> PyResult<_> {
+            let converted_232: String = value.extract()?;
+            Ok(converted_232)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("latest_ingestion_attempt_event_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_latest_ingestion_attempt_event_id(Some(converted_232));
     }
     Ok(builder.build())
 }
@@ -1073,32 +1842,32 @@ fn ingestion_status_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.latest_ingestion_success_time {
-        let converted_218 = (value).to_string().into_py_any(py)?;
-        result.set_item("latest_ingestion_success_time", converted_218)?;
+        let converted_233 = (value).to_string().into_py_any(py)?;
+        result.set_item("latest_ingestion_success_time", converted_233)?;
     } else {
         result.set_item("latest_ingestion_success_time", py.None())?;
     }
     if let Some(value) = &value.latest_ingestion_success_event_id {
-        let converted_219 = (value).as_str().into_py_any(py)?;
-        result.set_item("latest_ingestion_success_event_id", converted_219)?;
+        let converted_234 = (value).as_str().into_py_any(py)?;
+        result.set_item("latest_ingestion_success_event_id", converted_234)?;
     } else {
         result.set_item("latest_ingestion_success_event_id", py.None())?;
     }
     if let Some(value) = &value.latest_ingestion_error_code {
-        let converted_220 = (value).as_str().into_py_any(py)?;
-        result.set_item("latest_ingestion_error_code", converted_220)?;
+        let converted_235 = (value).as_str().into_py_any(py)?;
+        result.set_item("latest_ingestion_error_code", converted_235)?;
     } else {
         result.set_item("latest_ingestion_error_code", py.None())?;
     }
     if let Some(value) = &value.latest_ingestion_attempt_time {
-        let converted_221 = (value).to_string().into_py_any(py)?;
-        result.set_item("latest_ingestion_attempt_time", converted_221)?;
+        let converted_236 = (value).to_string().into_py_any(py)?;
+        result.set_item("latest_ingestion_attempt_time", converted_236)?;
     } else {
         result.set_item("latest_ingestion_attempt_time", py.None())?;
     }
     if let Some(value) = &value.latest_ingestion_attempt_event_id {
-        let converted_222 = (value).as_str().into_py_any(py)?;
-        result.set_item("latest_ingestion_attempt_event_id", converted_222)?;
+        let converted_237 = (value).as_str().into_py_any(py)?;
+        result.set_item("latest_ingestion_attempt_event_id", converted_237)?;
     } else {
         result.set_item("latest_ingestion_attempt_event_id", py.None())?;
     }
@@ -1111,21 +1880,60 @@ fn insight_selector_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::InsightSelector::builder();
     if let Some(value) = dict_value(values, "insight_type")? {
-        let enum_value_224: String = value.extract()?;
-        let converted_223 = aws_sdk_cloudtrail::types::InsightType::from(enum_value_224.as_str());
-        builder = builder.set_insight_type(Some(converted_223));
+        let converted_238 = (|| -> PyResult<_> {
+            let enum_value_239: String = value.extract()?;
+            let converted_238 =
+                aws_sdk_cloudtrail::types::InsightType::from(enum_value_239.as_str());
+            Ok(converted_238)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("insight_type"),
+                "str (InsightType)",
+            )
+        })?;
+        builder = builder.set_insight_type(Some(converted_238));
     }
     if let Some(value) = dict_value(values, "event_categories")? {
-        let mut converted_225 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_226 in value.try_iter()? {
-            let item_227 = item_result_226?;
-            let enum_value_229: String = item_227.extract()?;
-            let converted_item_228 =
-                aws_sdk_cloudtrail::types::SourceEventCategory::from(enum_value_229.as_str());
-            converted_225.push(converted_item_228);
-        }
-        builder = builder.set_event_categories(Some(converted_225));
+        let converted_240 = (|| -> PyResult<_> {
+            let mut converted_240 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_244, item_result_241) in value.try_iter()?.enumerate() {
+                let item_242 = item_result_241.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_244),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_243 = (|| -> PyResult<_> {
+                    let enum_value_245: String = item_242.extract()?;
+                    let converted_item_243 = aws_sdk_cloudtrail::types::SourceEventCategory::from(
+                        enum_value_245.as_str(),
+                    );
+                    Ok(converted_item_243)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_244),
+                        "str (SourceEventCategory)",
+                    )
+                })?;
+                converted_240.push(converted_item_243);
+            }
+            Ok(converted_240)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("event_categories"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_event_categories(Some(converted_240));
     }
     Ok(builder.build())
 }
@@ -1136,19 +1944,19 @@ fn insight_selector_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.insight_type {
-        let converted_230 = (value).as_str().into_py_any(py)?;
-        result.set_item("insight_type", converted_230)?;
+        let converted_246 = (value).as_str().into_py_any(py)?;
+        result.set_item("insight_type", converted_246)?;
     } else {
         result.set_item("insight_type", py.None())?;
     }
     if let Some(value) = &value.event_categories {
-        let converted_231_list = PyList::empty(py);
-        for item_232 in value {
-            let converted_item_233 = (item_232).as_str().into_py_any(py)?;
-            converted_231_list.append(converted_item_233)?;
+        let converted_247_list = PyList::empty(py);
+        for item_248 in value {
+            let converted_item_249 = (item_248).as_str().into_py_any(py)?;
+            converted_247_list.append(converted_item_249)?;
         }
-        let converted_231 = converted_231_list.into_any().unbind();
-        result.set_item("event_categories", converted_231)?;
+        let converted_247 = converted_247_list.into_any().unbind();
+        result.set_item("event_categories", converted_247)?;
     } else {
         result.set_item("event_categories", py.None())?;
     }
@@ -1161,18 +1969,44 @@ fn lookup_attribute_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::LookupAttribute::builder();
     if let Some(value) = dict_value(values, "attribute_key")? {
-        let enum_value_235: String = value.extract()?;
-        let converted_234 =
-            aws_sdk_cloudtrail::types::LookupAttributeKey::from(enum_value_235.as_str());
-        builder = builder.set_attribute_key(Some(converted_234));
+        let converted_250 = (|| -> PyResult<_> {
+            let enum_value_251: String = value.extract()?;
+            let converted_250 =
+                aws_sdk_cloudtrail::types::LookupAttributeKey::from(enum_value_251.as_str());
+            Ok(converted_250)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("attribute_key"),
+                "str (LookupAttributeKey)",
+            )
+        })?;
+        builder = builder.set_attribute_key(Some(converted_250));
     }
     if let Some(value) = dict_value(values, "attribute_value")? {
-        let converted_236: String = value.extract()?;
-        builder = builder.set_attribute_value(Some(converted_236));
+        let converted_252 = (|| -> PyResult<_> {
+            let converted_252: String = value.extract()?;
+            Ok(converted_252)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("attribute_value"),
+                "str",
+            )
+        })?;
+        builder = builder.set_attribute_value(Some(converted_252));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("attribute_key", "attribute_key"),
+                ("attribute_value", "attribute_value"),
+            ],
+        )
+    })
 }
 
 fn lookup_attribute_to_py(
@@ -1180,10 +2014,10 @@ fn lookup_attribute_to_py(
     value: &aws_sdk_cloudtrail::types::LookupAttribute,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_237 = (&value.attribute_key).as_str().into_py_any(py)?;
-    result.set_item("attribute_key", converted_237)?;
-    let converted_238 = (&value.attribute_value).as_str().into_py_any(py)?;
-    result.set_item("attribute_value", converted_238)?;
+    let converted_253 = (&value.attribute_key).as_str().into_py_any(py)?;
+    result.set_item("attribute_key", converted_253)?;
+    let converted_254 = (&value.attribute_value).as_str().into_py_any(py)?;
+    result.set_item("attribute_value", converted_254)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1193,16 +2027,28 @@ fn partition_key_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::PartitionKey::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_239: String = value.extract()?;
-        builder = builder.set_name(Some(converted_239));
+        let converted_255 = (|| -> PyResult<_> {
+            let converted_255: String = value.extract()?;
+            Ok(converted_255)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_255));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let converted_240: String = value.extract()?;
-        builder = builder.set_type(Some(converted_240));
+        let converted_256 = (|| -> PyResult<_> {
+            let converted_256: String = value.extract()?;
+            Ok(converted_256)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str")
+        })?;
+        builder = builder.set_type(Some(converted_256));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("name", "name"), ("type", "type")]))
 }
 
 fn partition_key_to_py(
@@ -1210,10 +2056,10 @@ fn partition_key_to_py(
     value: &aws_sdk_cloudtrail::types::PartitionKey,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_241 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_241)?;
-    let converted_242 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_242)?;
+    let converted_257 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_257)?;
+    let converted_258 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_258)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1221,31 +2067,63 @@ fn public_key_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::PublicKey::builder();
     if let Some(value) = dict_value(values, "value")? {
-        let bytes_244: Vec<u8> = value.extract()?;
-        let converted_243 = ::aws_smithy_types::Blob::new(bytes_244);
-        builder = builder.set_value(Some(converted_243));
+        let converted_259 = (|| -> PyResult<_> {
+            let bytes_260: Vec<u8> = value.extract()?;
+            let converted_259 = ::aws_smithy_types::Blob::new(bytes_260);
+            Ok(converted_259)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "bytes")
+        })?;
+        builder = builder.set_value(Some(converted_259));
     }
     if let Some(value) = dict_value(values, "validity_start_time")? {
-        let timestamp_246: String = value.extract()?;
-        let converted_245 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_246,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_validity_start_time(Some(converted_245));
+        let converted_261 = (|| -> PyResult<_> {
+            let timestamp_262: String = value.extract()?;
+            let converted_261 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_262,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_261)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("validity_start_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_validity_start_time(Some(converted_261));
     }
     if let Some(value) = dict_value(values, "validity_end_time")? {
-        let timestamp_248: String = value.extract()?;
-        let converted_247 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_248,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_validity_end_time(Some(converted_247));
+        let converted_263 = (|| -> PyResult<_> {
+            let timestamp_264: String = value.extract()?;
+            let converted_263 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_264,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_263)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("validity_end_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_validity_end_time(Some(converted_263));
     }
     if let Some(value) = dict_value(values, "fingerprint")? {
-        let converted_249: String = value.extract()?;
-        builder = builder.set_fingerprint(Some(converted_249));
+        let converted_265 = (|| -> PyResult<_> {
+            let converted_265: String = value.extract()?;
+            Ok(converted_265)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("fingerprint"), "str")
+        })?;
+        builder = builder.set_fingerprint(Some(converted_265));
     }
     Ok(builder.build())
 }
@@ -1256,26 +2134,26 @@ fn public_key_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.value {
-        let converted_250 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("value", converted_250)?;
+        let converted_266 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("value", converted_266)?;
     } else {
         result.set_item("value", py.None())?;
     }
     if let Some(value) = &value.validity_start_time {
-        let converted_251 = (value).to_string().into_py_any(py)?;
-        result.set_item("validity_start_time", converted_251)?;
+        let converted_267 = (value).to_string().into_py_any(py)?;
+        result.set_item("validity_start_time", converted_267)?;
     } else {
         result.set_item("validity_start_time", py.None())?;
     }
     if let Some(value) = &value.validity_end_time {
-        let converted_252 = (value).to_string().into_py_any(py)?;
-        result.set_item("validity_end_time", converted_252)?;
+        let converted_268 = (value).to_string().into_py_any(py)?;
+        result.set_item("validity_end_time", converted_268)?;
     } else {
         result.set_item("validity_end_time", py.None())?;
     }
     if let Some(value) = &value.fingerprint {
-        let converted_253 = (value).as_str().into_py_any(py)?;
-        result.set_item("fingerprint", converted_253)?;
+        let converted_269 = (value).as_str().into_py_any(py)?;
+        result.set_item("fingerprint", converted_269)?;
     } else {
         result.set_item("fingerprint", py.None())?;
     }
@@ -1286,22 +2164,49 @@ fn query_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Query::builder();
     if let Some(value) = dict_value(values, "query_id")? {
-        let converted_254: String = value.extract()?;
-        builder = builder.set_query_id(Some(converted_254));
+        let converted_270 = (|| -> PyResult<_> {
+            let converted_270: String = value.extract()?;
+            Ok(converted_270)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("query_id"), "str")
+        })?;
+        builder = builder.set_query_id(Some(converted_270));
     }
     if let Some(value) = dict_value(values, "query_status")? {
-        let enum_value_256: String = value.extract()?;
-        let converted_255 = aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_256.as_str());
-        builder = builder.set_query_status(Some(converted_255));
+        let converted_271 = (|| -> PyResult<_> {
+            let enum_value_272: String = value.extract()?;
+            let converted_271 =
+                aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_272.as_str());
+            Ok(converted_271)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("query_status"),
+                "str (QueryStatus)",
+            )
+        })?;
+        builder = builder.set_query_status(Some(converted_271));
     }
     if let Some(value) = dict_value(values, "creation_time")? {
-        let timestamp_258: String = value.extract()?;
-        let converted_257 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_258,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_creation_time(Some(converted_257));
+        let converted_273 = (|| -> PyResult<_> {
+            let timestamp_274: String = value.extract()?;
+            let converted_273 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_274,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_273)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("creation_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_creation_time(Some(converted_273));
     }
     Ok(builder.build())
 }
@@ -1309,20 +2214,20 @@ fn query_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types
 fn query_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Query) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.query_id {
-        let converted_259 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_id", converted_259)?;
+        let converted_275 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_id", converted_275)?;
     } else {
         result.set_item("query_id", py.None())?;
     }
     if let Some(value) = &value.query_status {
-        let converted_260 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_status", converted_260)?;
+        let converted_276 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_status", converted_276)?;
     } else {
         result.set_item("query_status", py.None())?;
     }
     if let Some(value) = &value.creation_time {
-        let converted_261 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_261)?;
+        let converted_277 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_277)?;
     } else {
         result.set_item("creation_time", py.None())?;
     }
@@ -1335,16 +2240,38 @@ fn query_statistics_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::QueryStatistics::builder();
     if let Some(value) = dict_value(values, "results_count")? {
-        let converted_262: i32 = value.extract()?;
-        builder = builder.set_results_count(Some(converted_262));
+        let converted_278 = (|| -> PyResult<_> {
+            let converted_278: i32 = value.extract()?;
+            Ok(converted_278)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("results_count"), "int")
+        })?;
+        builder = builder.set_results_count(Some(converted_278));
     }
     if let Some(value) = dict_value(values, "total_results_count")? {
-        let converted_263: i32 = value.extract()?;
-        builder = builder.set_total_results_count(Some(converted_263));
+        let converted_279 = (|| -> PyResult<_> {
+            let converted_279: i32 = value.extract()?;
+            Ok(converted_279)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("total_results_count"),
+                "int",
+            )
+        })?;
+        builder = builder.set_total_results_count(Some(converted_279));
     }
     if let Some(value) = dict_value(values, "bytes_scanned")? {
-        let converted_264: i64 = value.extract()?;
-        builder = builder.set_bytes_scanned(Some(converted_264));
+        let converted_280 = (|| -> PyResult<_> {
+            let converted_280: i64 = value.extract()?;
+            Ok(converted_280)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes_scanned"), "int")
+        })?;
+        builder = builder.set_bytes_scanned(Some(converted_280));
     }
     Ok(builder.build())
 }
@@ -1355,20 +2282,20 @@ fn query_statistics_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.results_count {
-        let converted_265 = (value).to_owned().into_py_any(py)?;
-        result.set_item("results_count", converted_265)?;
+        let converted_281 = (value).to_owned().into_py_any(py)?;
+        result.set_item("results_count", converted_281)?;
     } else {
         result.set_item("results_count", py.None())?;
     }
     if let Some(value) = &value.total_results_count {
-        let converted_266 = (value).to_owned().into_py_any(py)?;
-        result.set_item("total_results_count", converted_266)?;
+        let converted_282 = (value).to_owned().into_py_any(py)?;
+        result.set_item("total_results_count", converted_282)?;
     } else {
         result.set_item("total_results_count", py.None())?;
     }
     if let Some(value) = &value.bytes_scanned {
-        let converted_267 = (value).to_owned().into_py_any(py)?;
-        result.set_item("bytes_scanned", converted_267)?;
+        let converted_283 = (value).to_owned().into_py_any(py)?;
+        result.set_item("bytes_scanned", converted_283)?;
     } else {
         result.set_item("bytes_scanned", py.None())?;
     }
@@ -1381,29 +2308,67 @@ fn query_statistics_for_describe_query_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::QueryStatisticsForDescribeQuery::builder();
     if let Some(value) = dict_value(values, "events_matched")? {
-        let converted_268: i64 = value.extract()?;
-        builder = builder.set_events_matched(Some(converted_268));
+        let converted_284 = (|| -> PyResult<_> {
+            let converted_284: i64 = value.extract()?;
+            Ok(converted_284)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("events_matched"), "int")
+        })?;
+        builder = builder.set_events_matched(Some(converted_284));
     }
     if let Some(value) = dict_value(values, "events_scanned")? {
-        let converted_269: i64 = value.extract()?;
-        builder = builder.set_events_scanned(Some(converted_269));
+        let converted_285 = (|| -> PyResult<_> {
+            let converted_285: i64 = value.extract()?;
+            Ok(converted_285)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("events_scanned"), "int")
+        })?;
+        builder = builder.set_events_scanned(Some(converted_285));
     }
     if let Some(value) = dict_value(values, "bytes_scanned")? {
-        let converted_270: i64 = value.extract()?;
-        builder = builder.set_bytes_scanned(Some(converted_270));
+        let converted_286 = (|| -> PyResult<_> {
+            let converted_286: i64 = value.extract()?;
+            Ok(converted_286)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes_scanned"), "int")
+        })?;
+        builder = builder.set_bytes_scanned(Some(converted_286));
     }
     if let Some(value) = dict_value(values, "execution_time_in_millis")? {
-        let converted_271: i32 = value.extract()?;
-        builder = builder.set_execution_time_in_millis(Some(converted_271));
+        let converted_287 = (|| -> PyResult<_> {
+            let converted_287: i32 = value.extract()?;
+            Ok(converted_287)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("execution_time_in_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_execution_time_in_millis(Some(converted_287));
     }
     if let Some(value) = dict_value(values, "creation_time")? {
-        let timestamp_273: String = value.extract()?;
-        let converted_272 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_273,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_creation_time(Some(converted_272));
+        let converted_288 = (|| -> PyResult<_> {
+            let timestamp_289: String = value.extract()?;
+            let converted_288 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_289,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_288)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("creation_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_creation_time(Some(converted_288));
     }
     Ok(builder.build())
 }
@@ -1414,32 +2379,32 @@ fn query_statistics_for_describe_query_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.events_matched {
-        let converted_274 = (value).to_owned().into_py_any(py)?;
-        result.set_item("events_matched", converted_274)?;
+        let converted_290 = (value).to_owned().into_py_any(py)?;
+        result.set_item("events_matched", converted_290)?;
     } else {
         result.set_item("events_matched", py.None())?;
     }
     if let Some(value) = &value.events_scanned {
-        let converted_275 = (value).to_owned().into_py_any(py)?;
-        result.set_item("events_scanned", converted_275)?;
+        let converted_291 = (value).to_owned().into_py_any(py)?;
+        result.set_item("events_scanned", converted_291)?;
     } else {
         result.set_item("events_scanned", py.None())?;
     }
     if let Some(value) = &value.bytes_scanned {
-        let converted_276 = (value).to_owned().into_py_any(py)?;
-        result.set_item("bytes_scanned", converted_276)?;
+        let converted_292 = (value).to_owned().into_py_any(py)?;
+        result.set_item("bytes_scanned", converted_292)?;
     } else {
         result.set_item("bytes_scanned", py.None())?;
     }
     if let Some(value) = &value.execution_time_in_millis {
-        let converted_277 = (value).to_owned().into_py_any(py)?;
-        result.set_item("execution_time_in_millis", converted_277)?;
+        let converted_293 = (value).to_owned().into_py_any(py)?;
+        result.set_item("execution_time_in_millis", converted_293)?;
     } else {
         result.set_item("execution_time_in_millis", py.None())?;
     }
     if let Some(value) = &value.creation_time {
-        let converted_278 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_278)?;
+        let converted_294 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_294)?;
     } else {
         result.set_item("creation_time", py.None())?;
     }
@@ -1452,18 +2417,44 @@ fn refresh_schedule_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::RefreshSchedule::builder();
     if let Some(value) = dict_value(values, "frequency")? {
-        let converted_279 = refresh_schedule_frequency_from_py(&value)?;
-        builder = builder.set_frequency(Some(converted_279));
+        let converted_295 = (|| -> PyResult<_> {
+            let converted_295 = refresh_schedule_frequency_from_py(&value)?;
+            Ok(converted_295)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("frequency"),
+                "dict (RefreshScheduleFrequency)",
+            )
+        })?;
+        builder = builder.set_frequency(Some(converted_295));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_281: String = value.extract()?;
-        let converted_280 =
-            aws_sdk_cloudtrail::types::RefreshScheduleStatus::from(enum_value_281.as_str());
-        builder = builder.set_status(Some(converted_280));
+        let converted_296 = (|| -> PyResult<_> {
+            let enum_value_297: String = value.extract()?;
+            let converted_296 =
+                aws_sdk_cloudtrail::types::RefreshScheduleStatus::from(enum_value_297.as_str());
+            Ok(converted_296)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (RefreshScheduleStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_296));
     }
     if let Some(value) = dict_value(values, "time_of_day")? {
-        let converted_282: String = value.extract()?;
-        builder = builder.set_time_of_day(Some(converted_282));
+        let converted_298 = (|| -> PyResult<_> {
+            let converted_298: String = value.extract()?;
+            Ok(converted_298)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("time_of_day"), "str")
+        })?;
+        builder = builder.set_time_of_day(Some(converted_298));
     }
     Ok(builder.build())
 }
@@ -1474,20 +2465,20 @@ fn refresh_schedule_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.frequency {
-        let converted_283 = refresh_schedule_frequency_to_py(py, value)?;
-        result.set_item("frequency", converted_283)?;
+        let converted_299 = refresh_schedule_frequency_to_py(py, value)?;
+        result.set_item("frequency", converted_299)?;
     } else {
         result.set_item("frequency", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_284 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_284)?;
+        let converted_300 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_300)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.time_of_day {
-        let converted_285 = (value).as_str().into_py_any(py)?;
-        result.set_item("time_of_day", converted_285)?;
+        let converted_301 = (value).as_str().into_py_any(py)?;
+        result.set_item("time_of_day", converted_301)?;
     } else {
         result.set_item("time_of_day", py.None())?;
     }
@@ -1500,14 +2491,31 @@ fn refresh_schedule_frequency_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::RefreshScheduleFrequency::builder();
     if let Some(value) = dict_value(values, "unit")? {
-        let enum_value_287: String = value.extract()?;
-        let converted_286 =
-            aws_sdk_cloudtrail::types::RefreshScheduleFrequencyUnit::from(enum_value_287.as_str());
-        builder = builder.set_unit(Some(converted_286));
+        let converted_302 = (|| -> PyResult<_> {
+            let enum_value_303: String = value.extract()?;
+            let converted_302 = aws_sdk_cloudtrail::types::RefreshScheduleFrequencyUnit::from(
+                enum_value_303.as_str(),
+            );
+            Ok(converted_302)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("unit"),
+                "str (RefreshScheduleFrequencyUnit)",
+            )
+        })?;
+        builder = builder.set_unit(Some(converted_302));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_288: i32 = value.extract()?;
-        builder = builder.set_value(Some(converted_288));
+        let converted_304 = (|| -> PyResult<_> {
+            let converted_304: i32 = value.extract()?;
+            Ok(converted_304)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "int")
+        })?;
+        builder = builder.set_value(Some(converted_304));
     }
     Ok(builder.build())
 }
@@ -1518,14 +2526,14 @@ fn refresh_schedule_frequency_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.unit {
-        let converted_289 = (value).as_str().into_py_any(py)?;
-        result.set_item("unit", converted_289)?;
+        let converted_305 = (value).as_str().into_py_any(py)?;
+        result.set_item("unit", converted_305)?;
     } else {
         result.set_item("unit", py.None())?;
     }
     if let Some(value) = &value.value {
-        let converted_290 = (value).to_owned().into_py_any(py)?;
-        result.set_item("value", converted_290)?;
+        let converted_306 = (value).to_owned().into_py_any(py)?;
+        result.set_item("value", converted_306)?;
     } else {
         result.set_item("value", py.None())?;
     }
@@ -1538,32 +2546,97 @@ fn request_widget_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::RequestWidget::builder();
     if let Some(value) = dict_value(values, "query_statement")? {
-        let converted_291: String = value.extract()?;
-        builder = builder.set_query_statement(Some(converted_291));
+        let converted_307 = (|| -> PyResult<_> {
+            let converted_307: String = value.extract()?;
+            Ok(converted_307)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("query_statement"),
+                "str",
+            )
+        })?;
+        builder = builder.set_query_statement(Some(converted_307));
     }
     if let Some(value) = dict_value(values, "query_parameters")? {
-        let mut converted_292 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_293 in value.try_iter()? {
-            let item_294 = item_result_293?;
-            let converted_item_295: String = item_294.extract()?;
-            converted_292.push(converted_item_295);
-        }
-        builder = builder.set_query_parameters(Some(converted_292));
+        let converted_308 = (|| -> PyResult<_> {
+            let mut converted_308 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_312, item_result_309) in value.try_iter()?.enumerate() {
+                let item_310 = item_result_309.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_312),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_311 = (|| -> PyResult<_> {
+                    let converted_item_311: String = item_310.extract()?;
+                    Ok(converted_item_311)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_312), "str")
+                })?;
+                converted_308.push(converted_item_311);
+            }
+            Ok(converted_308)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("query_parameters"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_query_parameters(Some(converted_308));
     }
     if let Some(value) = dict_value(values, "view_properties")? {
-        let mapping_297 = value.cast::<PyDict>()?;
-        let mut converted_296 = HashMap::with_capacity(mapping_297.len());
-        for (key_298, value_299) in mapping_297.iter() {
-            let converted_key_300: String = key_298.extract()?;
-            let converted_value_301: String = value_299.extract()?;
-            converted_296.insert(converted_key_300, converted_value_301);
-        }
-        builder = builder.set_view_properties(Some(converted_296));
+        let converted_313 = (|| -> PyResult<_> {
+            let mapping_314 = value.cast::<PyDict>()?;
+            let mut converted_313 = HashMap::with_capacity(mapping_314.len());
+            for (index_319, (key_315, value_316)) in mapping_314.iter().enumerate() {
+                let converted_key_317 = (|| -> PyResult<_> {
+                    let converted_key_317: String = key_315.extract()?;
+                    Ok(converted_key_317)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_319), "str")
+                })?;
+                let converted_value_318 = (|| -> PyResult<_> {
+                    let converted_value_318: String = value_316.extract()?;
+                    Ok(converted_value_318)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_319),
+                        "str",
+                    )
+                })?;
+                converted_313.insert(converted_key_317, converted_value_318);
+            }
+            Ok(converted_313)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("view_properties"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_view_properties(Some(converted_313));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("query_statement", "query_statement"),
+                ("view_properties", "view_properties"),
+            ],
+        )
+    })
 }
 
 fn request_widget_to_py(
@@ -1571,27 +2644,27 @@ fn request_widget_to_py(
     value: &aws_sdk_cloudtrail::types::RequestWidget,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_302 = (&value.query_statement).as_str().into_py_any(py)?;
-    result.set_item("query_statement", converted_302)?;
+    let converted_320 = (&value.query_statement).as_str().into_py_any(py)?;
+    result.set_item("query_statement", converted_320)?;
     if let Some(value) = &value.query_parameters {
-        let converted_303_list = PyList::empty(py);
-        for item_304 in value {
-            let converted_item_305 = (item_304).as_str().into_py_any(py)?;
-            converted_303_list.append(converted_item_305)?;
+        let converted_321_list = PyList::empty(py);
+        for item_322 in value {
+            let converted_item_323 = (item_322).as_str().into_py_any(py)?;
+            converted_321_list.append(converted_item_323)?;
         }
-        let converted_303 = converted_303_list.into_any().unbind();
-        result.set_item("query_parameters", converted_303)?;
+        let converted_321 = converted_321_list.into_any().unbind();
+        result.set_item("query_parameters", converted_321)?;
     } else {
         result.set_item("query_parameters", py.None())?;
     }
-    let converted_306_dict = PyDict::new(py);
-    for (key_307, value_308) in &value.view_properties {
-        let converted_key_309 = (key_307).as_str().into_py_any(py)?;
-        let converted_value_310 = (value_308).as_str().into_py_any(py)?;
-        converted_306_dict.set_item(converted_key_309, converted_value_310)?;
+    let converted_324_dict = PyDict::new(py);
+    for (key_325, value_326) in &value.view_properties {
+        let converted_key_327 = (key_325).as_str().into_py_any(py)?;
+        let converted_value_328 = (value_326).as_str().into_py_any(py)?;
+        converted_324_dict.set_item(converted_key_327, converted_value_328)?;
     }
-    let converted_306 = converted_306_dict.into_any().unbind();
-    result.set_item("view_properties", converted_306)?;
+    let converted_324 = converted_324_dict.into_any().unbind();
+    result.set_item("view_properties", converted_324)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1599,12 +2672,24 @@ fn resource_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::ty
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Resource::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
-        let converted_311: String = value.extract()?;
-        builder = builder.set_resource_type(Some(converted_311));
+        let converted_329 = (|| -> PyResult<_> {
+            let converted_329: String = value.extract()?;
+            Ok(converted_329)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("resource_type"), "str")
+        })?;
+        builder = builder.set_resource_type(Some(converted_329));
     }
     if let Some(value) = dict_value(values, "resource_name")? {
-        let converted_312: String = value.extract()?;
-        builder = builder.set_resource_name(Some(converted_312));
+        let converted_330 = (|| -> PyResult<_> {
+            let converted_330: String = value.extract()?;
+            Ok(converted_330)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("resource_name"), "str")
+        })?;
+        builder = builder.set_resource_name(Some(converted_330));
     }
     Ok(builder.build())
 }
@@ -1615,14 +2700,14 @@ fn resource_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.resource_type {
-        let converted_313 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_type", converted_313)?;
+        let converted_331 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_type", converted_331)?;
     } else {
         result.set_item("resource_type", py.None())?;
     }
     if let Some(value) = &value.resource_name {
-        let converted_314 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_name", converted_314)?;
+        let converted_332 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", converted_332)?;
     } else {
         result.set_item("resource_name", py.None())?;
     }
@@ -1635,18 +2720,47 @@ fn resource_tag_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::ResourceTag::builder();
     if let Some(value) = dict_value(values, "resource_id")? {
-        let converted_315: String = value.extract()?;
-        builder = builder.set_resource_id(Some(converted_315));
+        let converted_333 = (|| -> PyResult<_> {
+            let converted_333: String = value.extract()?;
+            Ok(converted_333)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("resource_id"), "str")
+        })?;
+        builder = builder.set_resource_id(Some(converted_333));
     }
     if let Some(value) = dict_value(values, "tags_list")? {
-        let mut converted_316 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_317 in value.try_iter()? {
-            let item_318 = item_result_317?;
-            let converted_item_319 = tag_from_py(&item_318)?;
-            converted_316.push(converted_item_319);
-        }
-        builder = builder.set_tags_list(Some(converted_316));
+        let converted_334 = (|| -> PyResult<_> {
+            let mut converted_334 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_338, item_result_335) in value.try_iter()?.enumerate() {
+                let item_336 = item_result_335.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_338),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_337 = (|| -> PyResult<_> {
+                    let converted_item_337 = tag_from_py(&item_336)?;
+                    Ok(converted_item_337)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_338),
+                        "dict (Tag)",
+                    )
+                })?;
+                converted_334.push(converted_item_337);
+            }
+            Ok(converted_334)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tags_list"), "sequence")
+        })?;
+        builder = builder.set_tags_list(Some(converted_334));
     }
     Ok(builder.build())
 }
@@ -1657,19 +2771,19 @@ fn resource_tag_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.resource_id {
-        let converted_320 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_id", converted_320)?;
+        let converted_339 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_id", converted_339)?;
     } else {
         result.set_item("resource_id", py.None())?;
     }
     if let Some(value) = &value.tags_list {
-        let converted_321_list = PyList::empty(py);
-        for item_322 in value {
-            let converted_item_323 = tag_to_py(py, item_322)?;
-            converted_321_list.append(converted_item_323)?;
+        let converted_340_list = PyList::empty(py);
+        for item_341 in value {
+            let converted_item_342 = tag_to_py(py, item_341)?;
+            converted_340_list.append(converted_item_342)?;
         }
-        let converted_321 = converted_321_list.into_any().unbind();
-        result.set_item("tags_list", converted_321)?;
+        let converted_340 = converted_340_list.into_any().unbind();
+        result.set_item("tags_list", converted_340)?;
     } else {
         result.set_item("tags_list", py.None())?;
     }
@@ -1682,20 +2796,57 @@ fn s3_import_source_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::S3ImportSource::builder();
     if let Some(value) = dict_value(values, "s3_location_uri")? {
-        let converted_324: String = value.extract()?;
-        builder = builder.set_s3_location_uri(Some(converted_324));
+        let converted_343 = (|| -> PyResult<_> {
+            let converted_343: String = value.extract()?;
+            Ok(converted_343)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_location_uri"),
+                "str",
+            )
+        })?;
+        builder = builder.set_s3_location_uri(Some(converted_343));
     }
     if let Some(value) = dict_value(values, "s3_bucket_region")? {
-        let converted_325: String = value.extract()?;
-        builder = builder.set_s3_bucket_region(Some(converted_325));
+        let converted_344 = (|| -> PyResult<_> {
+            let converted_344: String = value.extract()?;
+            Ok(converted_344)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_bucket_region"),
+                "str",
+            )
+        })?;
+        builder = builder.set_s3_bucket_region(Some(converted_344));
     }
     if let Some(value) = dict_value(values, "s3_bucket_access_role_arn")? {
-        let converted_326: String = value.extract()?;
-        builder = builder.set_s3_bucket_access_role_arn(Some(converted_326));
+        let converted_345 = (|| -> PyResult<_> {
+            let converted_345: String = value.extract()?;
+            Ok(converted_345)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_bucket_access_role_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_s3_bucket_access_role_arn(Some(converted_345));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("s3_location_uri", "s3_location_uri"),
+                ("s3_bucket_region", "s3_bucket_region"),
+                ("s3_bucket_access_role_arn", "s3_bucket_access_role_arn"),
+            ],
+        )
+    })
 }
 
 fn s3_import_source_to_py(
@@ -1703,14 +2854,14 @@ fn s3_import_source_to_py(
     value: &aws_sdk_cloudtrail::types::S3ImportSource,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_327 = (&value.s3_location_uri).as_str().into_py_any(py)?;
-    result.set_item("s3_location_uri", converted_327)?;
-    let converted_328 = (&value.s3_bucket_region).as_str().into_py_any(py)?;
-    result.set_item("s3_bucket_region", converted_328)?;
-    let converted_329 = (&value.s3_bucket_access_role_arn)
+    let converted_346 = (&value.s3_location_uri).as_str().into_py_any(py)?;
+    result.set_item("s3_location_uri", converted_346)?;
+    let converted_347 = (&value.s3_bucket_region).as_str().into_py_any(py)?;
+    result.set_item("s3_bucket_region", converted_347)?;
+    let converted_348 = (&value.s3_bucket_access_role_arn)
         .as_str()
         .into_py_any(py)?;
-    result.set_item("s3_bucket_access_role_arn", converted_329)?;
+    result.set_item("s3_bucket_access_role_arn", converted_348)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1720,20 +2871,44 @@ fn search_sample_queries_search_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::SearchSampleQueriesSearchResult::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_330: String = value.extract()?;
-        builder = builder.set_name(Some(converted_330));
+        let converted_349 = (|| -> PyResult<_> {
+            let converted_349: String = value.extract()?;
+            Ok(converted_349)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_349));
     }
     if let Some(value) = dict_value(values, "description")? {
-        let converted_331: String = value.extract()?;
-        builder = builder.set_description(Some(converted_331));
+        let converted_350 = (|| -> PyResult<_> {
+            let converted_350: String = value.extract()?;
+            Ok(converted_350)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("description"), "str")
+        })?;
+        builder = builder.set_description(Some(converted_350));
     }
     if let Some(value) = dict_value(values, "sql")? {
-        let converted_332: String = value.extract()?;
-        builder = builder.set_sql(Some(converted_332));
+        let converted_351 = (|| -> PyResult<_> {
+            let converted_351: String = value.extract()?;
+            Ok(converted_351)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sql"), "str")
+        })?;
+        builder = builder.set_sql(Some(converted_351));
     }
     if let Some(value) = dict_value(values, "relevance")? {
-        let converted_333: f32 = value.extract()?;
-        builder = builder.set_relevance(Some(converted_333));
+        let converted_352 = (|| -> PyResult<_> {
+            let converted_352: f32 = value.extract()?;
+            Ok(converted_352)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("relevance"), "float")
+        })?;
+        builder = builder.set_relevance(Some(converted_352));
     }
     Ok(builder.build())
 }
@@ -1744,25 +2919,25 @@ fn search_sample_queries_search_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_334 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_334)?;
+        let converted_353 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_353)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_335 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_335)?;
+        let converted_354 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_354)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.sql {
-        let converted_336 = (value).as_str().into_py_any(py)?;
-        result.set_item("sql", converted_336)?;
+        let converted_355 = (value).as_str().into_py_any(py)?;
+        result.set_item("sql", converted_355)?;
     } else {
         result.set_item("sql", py.None())?;
     }
-    let converted_337 = (&value.relevance).to_owned().into_py_any(py)?;
-    result.set_item("relevance", converted_337)?;
+    let converted_356 = (&value.relevance).to_owned().into_py_any(py)?;
+    result.set_item("relevance", converted_356)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1772,18 +2947,55 @@ fn source_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::SourceConfig::builder();
     if let Some(value) = dict_value(values, "apply_to_all_regions")? {
-        let converted_338: bool = value.extract()?;
-        builder = builder.set_apply_to_all_regions(Some(converted_338));
+        let converted_357 = (|| -> PyResult<_> {
+            let converted_357: bool = value.extract()?;
+            Ok(converted_357)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("apply_to_all_regions"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_apply_to_all_regions(Some(converted_357));
     }
     if let Some(value) = dict_value(values, "advanced_event_selectors")? {
-        let mut converted_339 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_340 in value.try_iter()? {
-            let item_341 = item_result_340?;
-            let converted_item_342 = advanced_event_selector_from_py(&item_341)?;
-            converted_339.push(converted_item_342);
-        }
-        builder = builder.set_advanced_event_selectors(Some(converted_339));
+        let converted_358 = (|| -> PyResult<_> {
+            let mut converted_358 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_362, item_result_359) in value.try_iter()?.enumerate() {
+                let item_360 = item_result_359.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_362),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_361 = (|| -> PyResult<_> {
+                    let converted_item_361 = advanced_event_selector_from_py(&item_360)?;
+                    Ok(converted_item_361)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_362),
+                        "dict (AdvancedEventSelector)",
+                    )
+                })?;
+                converted_358.push(converted_item_361);
+            }
+            Ok(converted_358)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("advanced_event_selectors"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_advanced_event_selectors(Some(converted_358));
     }
     Ok(builder.build())
 }
@@ -1794,19 +3006,19 @@ fn source_config_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.apply_to_all_regions {
-        let converted_343 = (value).to_owned().into_py_any(py)?;
-        result.set_item("apply_to_all_regions", converted_343)?;
+        let converted_363 = (value).to_owned().into_py_any(py)?;
+        result.set_item("apply_to_all_regions", converted_363)?;
     } else {
         result.set_item("apply_to_all_regions", py.None())?;
     }
     if let Some(value) = &value.advanced_event_selectors {
-        let converted_344_list = PyList::empty(py);
-        for item_345 in value {
-            let converted_item_346 = advanced_event_selector_to_py(py, item_345)?;
-            converted_344_list.append(converted_item_346)?;
+        let converted_364_list = PyList::empty(py);
+        for item_365 in value {
+            let converted_item_366 = advanced_event_selector_to_py(py, item_365)?;
+            converted_364_list.append(converted_item_366)?;
         }
-        let converted_344 = converted_344_list.into_any().unbind();
-        result.set_item("advanced_event_selectors", converted_344)?;
+        let converted_364 = converted_364_list.into_any().unbind();
+        result.set_item("advanced_event_selectors", converted_364)?;
     } else {
         result.set_item("advanced_event_selectors", py.None())?;
     }
@@ -1817,25 +3029,37 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_347: String = value.extract()?;
-        builder = builder.set_key(Some(converted_347));
+        let converted_367 = (|| -> PyResult<_> {
+            let converted_367: String = value.extract()?;
+            Ok(converted_367)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
+        })?;
+        builder = builder.set_key(Some(converted_367));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_348: String = value.extract()?;
-        builder = builder.set_value(Some(converted_348));
+        let converted_368 = (|| -> PyResult<_> {
+            let converted_368: String = value.extract()?;
+            Ok(converted_368)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
+        })?;
+        builder = builder.set_value(Some(converted_368));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("key", "key")]))
 }
 
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_349 = (&value.key).as_str().into_py_any(py)?;
-    result.set_item("key", converted_349)?;
+    let converted_369 = (&value.key).as_str().into_py_any(py)?;
+    result.set_item("key", converted_369)?;
     if let Some(value) = &value.value {
-        let converted_350 = (value).as_str().into_py_any(py)?;
-        result.set_item("value", converted_350)?;
+        let converted_370 = (value).as_str().into_py_any(py)?;
+        result.set_item("value", converted_370)?;
     } else {
         result.set_item("value", py.None())?;
     }
@@ -1846,72 +3070,210 @@ fn trail_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Trail::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_351: String = value.extract()?;
-        builder = builder.set_name(Some(converted_351));
+        let converted_371 = (|| -> PyResult<_> {
+            let converted_371: String = value.extract()?;
+            Ok(converted_371)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_371));
     }
     if let Some(value) = dict_value(values, "s3_bucket_name")? {
-        let converted_352: String = value.extract()?;
-        builder = builder.set_s3_bucket_name(Some(converted_352));
+        let converted_372 = (|| -> PyResult<_> {
+            let converted_372: String = value.extract()?;
+            Ok(converted_372)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_bucket_name"), "str")
+        })?;
+        builder = builder.set_s3_bucket_name(Some(converted_372));
     }
     if let Some(value) = dict_value(values, "s3_key_prefix")? {
-        let converted_353: String = value.extract()?;
-        builder = builder.set_s3_key_prefix(Some(converted_353));
+        let converted_373 = (|| -> PyResult<_> {
+            let converted_373: String = value.extract()?;
+            Ok(converted_373)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_key_prefix"), "str")
+        })?;
+        builder = builder.set_s3_key_prefix(Some(converted_373));
     }
     if let Some(value) = dict_value(values, "sns_topic_name")? {
-        let converted_354: String = value.extract()?;
-        builder = builder.set_sns_topic_name(Some(converted_354));
+        let converted_374 = (|| -> PyResult<_> {
+            let converted_374: String = value.extract()?;
+            Ok(converted_374)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sns_topic_name"), "str")
+        })?;
+        builder = builder.set_sns_topic_name(Some(converted_374));
     }
     if let Some(value) = dict_value(values, "sns_topic_arn")? {
-        let converted_355: String = value.extract()?;
-        builder = builder.set_sns_topic_arn(Some(converted_355));
+        let converted_375 = (|| -> PyResult<_> {
+            let converted_375: String = value.extract()?;
+            Ok(converted_375)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sns_topic_arn"), "str")
+        })?;
+        builder = builder.set_sns_topic_arn(Some(converted_375));
     }
     if let Some(value) = dict_value(values, "include_global_service_events")? {
-        let converted_356: bool = value.extract()?;
-        builder = builder.set_include_global_service_events(Some(converted_356));
+        let converted_376 = (|| -> PyResult<_> {
+            let converted_376: bool = value.extract()?;
+            Ok(converted_376)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("include_global_service_events"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_include_global_service_events(Some(converted_376));
     }
     if let Some(value) = dict_value(values, "is_multi_region_trail")? {
-        let converted_357: bool = value.extract()?;
-        builder = builder.set_is_multi_region_trail(Some(converted_357));
+        let converted_377 = (|| -> PyResult<_> {
+            let converted_377: bool = value.extract()?;
+            Ok(converted_377)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("is_multi_region_trail"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_is_multi_region_trail(Some(converted_377));
     }
     if let Some(value) = dict_value(values, "home_region")? {
-        let converted_358: String = value.extract()?;
-        builder = builder.set_home_region(Some(converted_358));
+        let converted_378 = (|| -> PyResult<_> {
+            let converted_378: String = value.extract()?;
+            Ok(converted_378)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("home_region"), "str")
+        })?;
+        builder = builder.set_home_region(Some(converted_378));
     }
     if let Some(value) = dict_value(values, "trail_arn")? {
-        let converted_359: String = value.extract()?;
-        builder = builder.set_trail_arn(Some(converted_359));
+        let converted_379 = (|| -> PyResult<_> {
+            let converted_379: String = value.extract()?;
+            Ok(converted_379)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("trail_arn"), "str")
+        })?;
+        builder = builder.set_trail_arn(Some(converted_379));
     }
     if let Some(value) = dict_value(values, "log_file_validation_enabled")? {
-        let converted_360: bool = value.extract()?;
-        builder = builder.set_log_file_validation_enabled(Some(converted_360));
+        let converted_380 = (|| -> PyResult<_> {
+            let converted_380: bool = value.extract()?;
+            Ok(converted_380)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("log_file_validation_enabled"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_log_file_validation_enabled(Some(converted_380));
     }
     if let Some(value) = dict_value(values, "cloud_watch_logs_log_group_arn")? {
-        let converted_361: String = value.extract()?;
-        builder = builder.set_cloud_watch_logs_log_group_arn(Some(converted_361));
+        let converted_381 = (|| -> PyResult<_> {
+            let converted_381: String = value.extract()?;
+            Ok(converted_381)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cloud_watch_logs_log_group_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_cloud_watch_logs_log_group_arn(Some(converted_381));
     }
     if let Some(value) = dict_value(values, "cloud_watch_logs_role_arn")? {
-        let converted_362: String = value.extract()?;
-        builder = builder.set_cloud_watch_logs_role_arn(Some(converted_362));
+        let converted_382 = (|| -> PyResult<_> {
+            let converted_382: String = value.extract()?;
+            Ok(converted_382)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cloud_watch_logs_role_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_cloud_watch_logs_role_arn(Some(converted_382));
     }
     if let Some(value) = dict_value(values, "kms_key_id")? {
-        let converted_363: String = value.extract()?;
-        builder = builder.set_kms_key_id(Some(converted_363));
+        let converted_383 = (|| -> PyResult<_> {
+            let converted_383: String = value.extract()?;
+            Ok(converted_383)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("kms_key_id"), "str")
+        })?;
+        builder = builder.set_kms_key_id(Some(converted_383));
     }
     if let Some(value) = dict_value(values, "has_custom_event_selectors")? {
-        let converted_364: bool = value.extract()?;
-        builder = builder.set_has_custom_event_selectors(Some(converted_364));
+        let converted_384 = (|| -> PyResult<_> {
+            let converted_384: bool = value.extract()?;
+            Ok(converted_384)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("has_custom_event_selectors"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_has_custom_event_selectors(Some(converted_384));
     }
     if let Some(value) = dict_value(values, "has_insight_selectors")? {
-        let converted_365: bool = value.extract()?;
-        builder = builder.set_has_insight_selectors(Some(converted_365));
+        let converted_385 = (|| -> PyResult<_> {
+            let converted_385: bool = value.extract()?;
+            Ok(converted_385)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("has_insight_selectors"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_has_insight_selectors(Some(converted_385));
     }
     if let Some(value) = dict_value(values, "is_organization_trail")? {
-        let converted_366: bool = value.extract()?;
-        builder = builder.set_is_organization_trail(Some(converted_366));
+        let converted_386 = (|| -> PyResult<_> {
+            let converted_386: bool = value.extract()?;
+            Ok(converted_386)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("is_organization_trail"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_is_organization_trail(Some(converted_386));
     }
     if let Some(value) = dict_value(values, "recursive_logging")? {
-        let converted_367: bool = value.extract()?;
-        builder = builder.set_recursive_logging(Some(converted_367));
+        let converted_387 = (|| -> PyResult<_> {
+            let converted_387: bool = value.extract()?;
+            Ok(converted_387)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("recursive_logging"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_recursive_logging(Some(converted_387));
     }
     Ok(builder.build())
 }
@@ -1919,104 +3281,104 @@ fn trail_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types
 fn trail_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Trail) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_368 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_368)?;
+        let converted_388 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_388)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.s3_bucket_name {
-        let converted_369 = (value).as_str().into_py_any(py)?;
-        result.set_item("s3_bucket_name", converted_369)?;
+        let converted_389 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_bucket_name", converted_389)?;
     } else {
         result.set_item("s3_bucket_name", py.None())?;
     }
     if let Some(value) = &value.s3_key_prefix {
-        let converted_370 = (value).as_str().into_py_any(py)?;
-        result.set_item("s3_key_prefix", converted_370)?;
+        let converted_390 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_key_prefix", converted_390)?;
     } else {
         result.set_item("s3_key_prefix", py.None())?;
     }
     if let Some(value) = &value.sns_topic_name {
-        let converted_371 = (value).as_str().into_py_any(py)?;
-        result.set_item("sns_topic_name", converted_371)?;
+        let converted_391 = (value).as_str().into_py_any(py)?;
+        result.set_item("sns_topic_name", converted_391)?;
     } else {
         result.set_item("sns_topic_name", py.None())?;
     }
     if let Some(value) = &value.sns_topic_arn {
-        let converted_372 = (value).as_str().into_py_any(py)?;
-        result.set_item("sns_topic_arn", converted_372)?;
+        let converted_392 = (value).as_str().into_py_any(py)?;
+        result.set_item("sns_topic_arn", converted_392)?;
     } else {
         result.set_item("sns_topic_arn", py.None())?;
     }
     if let Some(value) = &value.include_global_service_events {
-        let converted_373 = (value).to_owned().into_py_any(py)?;
-        result.set_item("include_global_service_events", converted_373)?;
+        let converted_393 = (value).to_owned().into_py_any(py)?;
+        result.set_item("include_global_service_events", converted_393)?;
     } else {
         result.set_item("include_global_service_events", py.None())?;
     }
     if let Some(value) = &value.is_multi_region_trail {
-        let converted_374 = (value).to_owned().into_py_any(py)?;
-        result.set_item("is_multi_region_trail", converted_374)?;
+        let converted_394 = (value).to_owned().into_py_any(py)?;
+        result.set_item("is_multi_region_trail", converted_394)?;
     } else {
         result.set_item("is_multi_region_trail", py.None())?;
     }
     if let Some(value) = &value.home_region {
-        let converted_375 = (value).as_str().into_py_any(py)?;
-        result.set_item("home_region", converted_375)?;
+        let converted_395 = (value).as_str().into_py_any(py)?;
+        result.set_item("home_region", converted_395)?;
     } else {
         result.set_item("home_region", py.None())?;
     }
     if let Some(value) = &value.trail_arn {
-        let converted_376 = (value).as_str().into_py_any(py)?;
-        result.set_item("trail_arn", converted_376)?;
+        let converted_396 = (value).as_str().into_py_any(py)?;
+        result.set_item("trail_arn", converted_396)?;
     } else {
         result.set_item("trail_arn", py.None())?;
     }
     if let Some(value) = &value.log_file_validation_enabled {
-        let converted_377 = (value).to_owned().into_py_any(py)?;
-        result.set_item("log_file_validation_enabled", converted_377)?;
+        let converted_397 = (value).to_owned().into_py_any(py)?;
+        result.set_item("log_file_validation_enabled", converted_397)?;
     } else {
         result.set_item("log_file_validation_enabled", py.None())?;
     }
     if let Some(value) = &value.cloud_watch_logs_log_group_arn {
-        let converted_378 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_watch_logs_log_group_arn", converted_378)?;
+        let converted_398 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_watch_logs_log_group_arn", converted_398)?;
     } else {
         result.set_item("cloud_watch_logs_log_group_arn", py.None())?;
     }
     if let Some(value) = &value.cloud_watch_logs_role_arn {
-        let converted_379 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_watch_logs_role_arn", converted_379)?;
+        let converted_399 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_watch_logs_role_arn", converted_399)?;
     } else {
         result.set_item("cloud_watch_logs_role_arn", py.None())?;
     }
     if let Some(value) = &value.kms_key_id {
-        let converted_380 = (value).as_str().into_py_any(py)?;
-        result.set_item("kms_key_id", converted_380)?;
+        let converted_400 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_key_id", converted_400)?;
     } else {
         result.set_item("kms_key_id", py.None())?;
     }
     if let Some(value) = &value.has_custom_event_selectors {
-        let converted_381 = (value).to_owned().into_py_any(py)?;
-        result.set_item("has_custom_event_selectors", converted_381)?;
+        let converted_401 = (value).to_owned().into_py_any(py)?;
+        result.set_item("has_custom_event_selectors", converted_401)?;
     } else {
         result.set_item("has_custom_event_selectors", py.None())?;
     }
     if let Some(value) = &value.has_insight_selectors {
-        let converted_382 = (value).to_owned().into_py_any(py)?;
-        result.set_item("has_insight_selectors", converted_382)?;
+        let converted_402 = (value).to_owned().into_py_any(py)?;
+        result.set_item("has_insight_selectors", converted_402)?;
     } else {
         result.set_item("has_insight_selectors", py.None())?;
     }
     if let Some(value) = &value.is_organization_trail {
-        let converted_383 = (value).to_owned().into_py_any(py)?;
-        result.set_item("is_organization_trail", converted_383)?;
+        let converted_403 = (value).to_owned().into_py_any(py)?;
+        result.set_item("is_organization_trail", converted_403)?;
     } else {
         result.set_item("is_organization_trail", py.None())?;
     }
     if let Some(value) = &value.recursive_logging {
-        let converted_384 = (value).to_owned().into_py_any(py)?;
-        result.set_item("recursive_logging", converted_384)?;
+        let converted_404 = (value).to_owned().into_py_any(py)?;
+        result.set_item("recursive_logging", converted_404)?;
     } else {
         result.set_item("recursive_logging", py.None())?;
     }
@@ -2027,16 +3389,34 @@ fn trail_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::TrailInfo::builder();
     if let Some(value) = dict_value(values, "trail_arn")? {
-        let converted_385: String = value.extract()?;
-        builder = builder.set_trail_arn(Some(converted_385));
+        let converted_405 = (|| -> PyResult<_> {
+            let converted_405: String = value.extract()?;
+            Ok(converted_405)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("trail_arn"), "str")
+        })?;
+        builder = builder.set_trail_arn(Some(converted_405));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_386: String = value.extract()?;
-        builder = builder.set_name(Some(converted_386));
+        let converted_406 = (|| -> PyResult<_> {
+            let converted_406: String = value.extract()?;
+            Ok(converted_406)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_406));
     }
     if let Some(value) = dict_value(values, "home_region")? {
-        let converted_387: String = value.extract()?;
-        builder = builder.set_home_region(Some(converted_387));
+        let converted_407 = (|| -> PyResult<_> {
+            let converted_407: String = value.extract()?;
+            Ok(converted_407)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("home_region"), "str")
+        })?;
+        builder = builder.set_home_region(Some(converted_407));
     }
     Ok(builder.build())
 }
@@ -2047,20 +3427,20 @@ fn trail_info_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.trail_arn {
-        let converted_388 = (value).as_str().into_py_any(py)?;
-        result.set_item("trail_arn", converted_388)?;
+        let converted_408 = (value).as_str().into_py_any(py)?;
+        result.set_item("trail_arn", converted_408)?;
     } else {
         result.set_item("trail_arn", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_389 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_389)?;
+        let converted_409 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_409)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.home_region {
-        let converted_390 = (value).as_str().into_py_any(py)?;
-        result.set_item("home_region", converted_390)?;
+        let converted_410 = (value).as_str().into_py_any(py)?;
+        result.set_item("home_region", converted_410)?;
     } else {
         result.set_item("home_region", py.None())?;
     }
@@ -2071,32 +3451,97 @@ fn widget_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::type
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::Widget::builder();
     if let Some(value) = dict_value(values, "query_alias")? {
-        let converted_391: String = value.extract()?;
-        builder = builder.set_query_alias(Some(converted_391));
+        let converted_411 = (|| -> PyResult<_> {
+            let converted_411: String = value.extract()?;
+            Ok(converted_411)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("query_alias"), "str")
+        })?;
+        builder = builder.set_query_alias(Some(converted_411));
     }
     if let Some(value) = dict_value(values, "query_statement")? {
-        let converted_392: String = value.extract()?;
-        builder = builder.set_query_statement(Some(converted_392));
+        let converted_412 = (|| -> PyResult<_> {
+            let converted_412: String = value.extract()?;
+            Ok(converted_412)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("query_statement"),
+                "str",
+            )
+        })?;
+        builder = builder.set_query_statement(Some(converted_412));
     }
     if let Some(value) = dict_value(values, "query_parameters")? {
-        let mut converted_393 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_394 in value.try_iter()? {
-            let item_395 = item_result_394?;
-            let converted_item_396: String = item_395.extract()?;
-            converted_393.push(converted_item_396);
-        }
-        builder = builder.set_query_parameters(Some(converted_393));
+        let converted_413 = (|| -> PyResult<_> {
+            let mut converted_413 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_417, item_result_414) in value.try_iter()?.enumerate() {
+                let item_415 = item_result_414.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_417),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_416 = (|| -> PyResult<_> {
+                    let converted_item_416: String = item_415.extract()?;
+                    Ok(converted_item_416)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_417), "str")
+                })?;
+                converted_413.push(converted_item_416);
+            }
+            Ok(converted_413)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("query_parameters"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_query_parameters(Some(converted_413));
     }
     if let Some(value) = dict_value(values, "view_properties")? {
-        let mapping_398 = value.cast::<PyDict>()?;
-        let mut converted_397 = HashMap::with_capacity(mapping_398.len());
-        for (key_399, value_400) in mapping_398.iter() {
-            let converted_key_401: String = key_399.extract()?;
-            let converted_value_402: String = value_400.extract()?;
-            converted_397.insert(converted_key_401, converted_value_402);
-        }
-        builder = builder.set_view_properties(Some(converted_397));
+        let converted_418 = (|| -> PyResult<_> {
+            let mapping_419 = value.cast::<PyDict>()?;
+            let mut converted_418 = HashMap::with_capacity(mapping_419.len());
+            for (index_424, (key_420, value_421)) in mapping_419.iter().enumerate() {
+                let converted_key_422 = (|| -> PyResult<_> {
+                    let converted_key_422: String = key_420.extract()?;
+                    Ok(converted_key_422)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_424), "str")
+                })?;
+                let converted_value_423 = (|| -> PyResult<_> {
+                    let converted_value_423: String = value_421.extract()?;
+                    Ok(converted_value_423)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_424),
+                        "str",
+                    )
+                })?;
+                converted_418.insert(converted_key_422, converted_value_423);
+            }
+            Ok(converted_418)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("view_properties"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_view_properties(Some(converted_418));
     }
     Ok(builder.build())
 }
@@ -2104,37 +3549,37 @@ fn widget_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::type
 fn widget_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Widget) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.query_alias {
-        let converted_403 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_alias", converted_403)?;
+        let converted_425 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_alias", converted_425)?;
     } else {
         result.set_item("query_alias", py.None())?;
     }
     if let Some(value) = &value.query_statement {
-        let converted_404 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_statement", converted_404)?;
+        let converted_426 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_statement", converted_426)?;
     } else {
         result.set_item("query_statement", py.None())?;
     }
     if let Some(value) = &value.query_parameters {
-        let converted_405_list = PyList::empty(py);
-        for item_406 in value {
-            let converted_item_407 = (item_406).as_str().into_py_any(py)?;
-            converted_405_list.append(converted_item_407)?;
+        let converted_427_list = PyList::empty(py);
+        for item_428 in value {
+            let converted_item_429 = (item_428).as_str().into_py_any(py)?;
+            converted_427_list.append(converted_item_429)?;
         }
-        let converted_405 = converted_405_list.into_any().unbind();
-        result.set_item("query_parameters", converted_405)?;
+        let converted_427 = converted_427_list.into_any().unbind();
+        result.set_item("query_parameters", converted_427)?;
     } else {
         result.set_item("query_parameters", py.None())?;
     }
     if let Some(value) = &value.view_properties {
-        let converted_408_dict = PyDict::new(py);
-        for (key_409, value_410) in value {
-            let converted_key_411 = (key_409).as_str().into_py_any(py)?;
-            let converted_value_412 = (value_410).as_str().into_py_any(py)?;
-            converted_408_dict.set_item(converted_key_411, converted_value_412)?;
+        let converted_430_dict = PyDict::new(py);
+        for (key_431, value_432) in value {
+            let converted_key_433 = (key_431).as_str().into_py_any(py)?;
+            let converted_value_434 = (value_432).as_str().into_py_any(py)?;
+            converted_430_dict.set_item(converted_key_433, converted_value_434)?;
         }
-        let converted_408 = converted_408_dict.into_any().unbind();
-        result.set_item("view_properties", converted_408)?;
+        let converted_430 = converted_430_dict.into_any().unbind();
+        result.set_item("view_properties", converted_430)?;
     } else {
         result.set_item("view_properties", py.None())?;
     }
@@ -2154,7 +3599,7 @@ impl From<aws_sdk_cloudtrail::types::AdvancedEventSelector> for SharedAdvancedEv
             name: value.name,
             field_selectors: (value.field_selectors)
                 .into_iter()
-                .map(|owned_708| Arc::new(owned_708))
+                .map(|owned_755| Arc::new(owned_755))
                 .collect(),
         }
     }
@@ -2166,18 +3611,18 @@ fn advanced_event_selector_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_709 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_709)?;
+        let converted_756 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_756)?;
     } else {
         result.set_item("name", py.None())?;
     }
-    let converted_710_list = PyList::empty(py);
-    for item_711 in &value.field_selectors {
-        let converted_item_712 = advanced_field_selector_to_py(py, item_711)?;
-        converted_710_list.append(converted_item_712)?;
+    let converted_757_list = PyList::empty(py);
+    for item_758 in &value.field_selectors {
+        let converted_item_759 = advanced_field_selector_to_py(py, item_758)?;
+        converted_757_list.append(converted_item_759)?;
     }
-    let converted_710 = converted_710_list.into_any().unbind();
-    result.set_item("field_selectors", converted_710)?;
+    let converted_757 = converted_757_list.into_any().unbind();
+    result.set_item("field_selectors", converted_757)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2195,8 +3640,8 @@ impl PyAdvancedEventSelector {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_704 = (value).as_str().into_py_any(py)?;
-            Ok(converted_704)
+            let converted_751 = (value).as_str().into_py_any(py)?;
+            Ok(converted_751)
         } else {
             Ok(py.None())
         }
@@ -2204,19 +3649,19 @@ impl PyAdvancedEventSelector {
 
     #[getter]
     fn field_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_705_list = PyList::empty(py);
-        for item_706 in &self.inner.field_selectors {
-            let converted_item_707 = Py::new(
+        let converted_752_list = PyList::empty(py);
+        for item_753 in &self.inner.field_selectors {
+            let converted_item_754 = Py::new(
                 py,
                 PyAdvancedFieldSelector {
-                    inner: Arc::clone(item_706),
+                    inner: Arc::clone(item_753),
                 },
             )?
             .into_any();
-            converted_705_list.append(converted_item_707)?;
+            converted_752_list.append(converted_item_754)?;
         }
-        let converted_705 = converted_705_list.into_any().unbind();
-        Ok(converted_705)
+        let converted_752 = converted_752_list.into_any().unbind();
+        Ok(converted_752)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2237,20 +3682,20 @@ struct PyAdvancedFieldSelector {
 impl PyAdvancedFieldSelector {
     #[getter]
     fn field(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_713 = (&self.inner.field).as_str().into_py_any(py)?;
-        Ok(converted_713)
+        let converted_760 = (&self.inner.field).as_str().into_py_any(py)?;
+        Ok(converted_760)
     }
 
     #[getter]
     fn equals(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.equals {
-            let converted_714_list = PyList::empty(py);
-            for item_715 in value {
-                let converted_item_716 = (item_715).as_str().into_py_any(py)?;
-                converted_714_list.append(converted_item_716)?;
+            let converted_761_list = PyList::empty(py);
+            for item_762 in value {
+                let converted_item_763 = (item_762).as_str().into_py_any(py)?;
+                converted_761_list.append(converted_item_763)?;
             }
-            let converted_714 = converted_714_list.into_any().unbind();
-            Ok(converted_714)
+            let converted_761 = converted_761_list.into_any().unbind();
+            Ok(converted_761)
         } else {
             Ok(py.None())
         }
@@ -2259,13 +3704,13 @@ impl PyAdvancedFieldSelector {
     #[getter]
     fn starts_with(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.starts_with {
-            let converted_717_list = PyList::empty(py);
-            for item_718 in value {
-                let converted_item_719 = (item_718).as_str().into_py_any(py)?;
-                converted_717_list.append(converted_item_719)?;
+            let converted_764_list = PyList::empty(py);
+            for item_765 in value {
+                let converted_item_766 = (item_765).as_str().into_py_any(py)?;
+                converted_764_list.append(converted_item_766)?;
             }
-            let converted_717 = converted_717_list.into_any().unbind();
-            Ok(converted_717)
+            let converted_764 = converted_764_list.into_any().unbind();
+            Ok(converted_764)
         } else {
             Ok(py.None())
         }
@@ -2274,13 +3719,13 @@ impl PyAdvancedFieldSelector {
     #[getter]
     fn ends_with(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ends_with {
-            let converted_720_list = PyList::empty(py);
-            for item_721 in value {
-                let converted_item_722 = (item_721).as_str().into_py_any(py)?;
-                converted_720_list.append(converted_item_722)?;
+            let converted_767_list = PyList::empty(py);
+            for item_768 in value {
+                let converted_item_769 = (item_768).as_str().into_py_any(py)?;
+                converted_767_list.append(converted_item_769)?;
             }
-            let converted_720 = converted_720_list.into_any().unbind();
-            Ok(converted_720)
+            let converted_767 = converted_767_list.into_any().unbind();
+            Ok(converted_767)
         } else {
             Ok(py.None())
         }
@@ -2289,13 +3734,13 @@ impl PyAdvancedFieldSelector {
     #[getter]
     fn not_equals(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.not_equals {
-            let converted_723_list = PyList::empty(py);
-            for item_724 in value {
-                let converted_item_725 = (item_724).as_str().into_py_any(py)?;
-                converted_723_list.append(converted_item_725)?;
+            let converted_770_list = PyList::empty(py);
+            for item_771 in value {
+                let converted_item_772 = (item_771).as_str().into_py_any(py)?;
+                converted_770_list.append(converted_item_772)?;
             }
-            let converted_723 = converted_723_list.into_any().unbind();
-            Ok(converted_723)
+            let converted_770 = converted_770_list.into_any().unbind();
+            Ok(converted_770)
         } else {
             Ok(py.None())
         }
@@ -2304,13 +3749,13 @@ impl PyAdvancedFieldSelector {
     #[getter]
     fn not_starts_with(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.not_starts_with {
-            let converted_726_list = PyList::empty(py);
-            for item_727 in value {
-                let converted_item_728 = (item_727).as_str().into_py_any(py)?;
-                converted_726_list.append(converted_item_728)?;
+            let converted_773_list = PyList::empty(py);
+            for item_774 in value {
+                let converted_item_775 = (item_774).as_str().into_py_any(py)?;
+                converted_773_list.append(converted_item_775)?;
             }
-            let converted_726 = converted_726_list.into_any().unbind();
-            Ok(converted_726)
+            let converted_773 = converted_773_list.into_any().unbind();
+            Ok(converted_773)
         } else {
             Ok(py.None())
         }
@@ -2319,13 +3764,13 @@ impl PyAdvancedFieldSelector {
     #[getter]
     fn not_ends_with(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.not_ends_with {
-            let converted_729_list = PyList::empty(py);
-            for item_730 in value {
-                let converted_item_731 = (item_730).as_str().into_py_any(py)?;
-                converted_729_list.append(converted_item_731)?;
+            let converted_776_list = PyList::empty(py);
+            for item_777 in value {
+                let converted_item_778 = (item_777).as_str().into_py_any(py)?;
+                converted_776_list.append(converted_item_778)?;
             }
-            let converted_729 = converted_729_list.into_any().unbind();
-            Ok(converted_729)
+            let converted_776 = converted_776_list.into_any().unbind();
+            Ok(converted_776)
         } else {
             Ok(py.None())
         }
@@ -2349,19 +3794,19 @@ struct PyAggregationConfiguration {
 impl PyAggregationConfiguration {
     #[getter]
     fn templates(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_732_list = PyList::empty(py);
-        for item_733 in &self.inner.templates {
-            let converted_item_734 = (item_733).as_str().into_py_any(py)?;
-            converted_732_list.append(converted_item_734)?;
+        let converted_779_list = PyList::empty(py);
+        for item_780 in &self.inner.templates {
+            let converted_item_781 = (item_780).as_str().into_py_any(py)?;
+            converted_779_list.append(converted_item_781)?;
         }
-        let converted_732 = converted_732_list.into_any().unbind();
-        Ok(converted_732)
+        let converted_779 = converted_779_list.into_any().unbind();
+        Ok(converted_779)
     }
 
     #[getter]
     fn event_category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_735 = (&self.inner.event_category).as_str().into_py_any(py)?;
-        Ok(converted_735)
+        let converted_782 = (&self.inner.event_category).as_str().into_py_any(py)?;
+        Ok(converted_782)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2379,8 +3824,8 @@ impl PyChannel {
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_arn {
-            let converted_736 = (value).as_str().into_py_any(py)?;
-            Ok(converted_736)
+            let converted_783 = (value).as_str().into_py_any(py)?;
+            Ok(converted_783)
         } else {
             Ok(py.None())
         }
@@ -2389,8 +3834,8 @@ impl PyChannel {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_737 = (value).as_str().into_py_any(py)?;
-            Ok(converted_737)
+            let converted_784 = (value).as_str().into_py_any(py)?;
+            Ok(converted_784)
         } else {
             Ok(py.None())
         }
@@ -2414,19 +3859,19 @@ struct PyContextKeySelector {
 impl PyContextKeySelector {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_738 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_738)
+        let converted_785 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_785)
     }
 
     #[getter]
     fn equals(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_739_list = PyList::empty(py);
-        for item_740 in &self.inner.equals {
-            let converted_item_741 = (item_740).as_str().into_py_any(py)?;
-            converted_739_list.append(converted_item_741)?;
+        let converted_786_list = PyList::empty(py);
+        for item_787 in &self.inner.equals {
+            let converted_item_788 = (item_787).as_str().into_py_any(py)?;
+            converted_786_list.append(converted_item_788)?;
         }
-        let converted_739 = converted_739_list.into_any().unbind();
-        Ok(converted_739)
+        let converted_786 = converted_786_list.into_any().unbind();
+        Ok(converted_786)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2444,8 +3889,8 @@ impl PyDashboardDetail {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_742 = (value).as_str().into_py_any(py)?;
-            Ok(converted_742)
+            let converted_789 = (value).as_str().into_py_any(py)?;
+            Ok(converted_789)
         } else {
             Ok(py.None())
         }
@@ -2454,8 +3899,8 @@ impl PyDashboardDetail {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_743 = (value).as_str().into_py_any(py)?;
-            Ok(converted_743)
+            let converted_790 = (value).as_str().into_py_any(py)?;
+            Ok(converted_790)
         } else {
             Ok(py.None())
         }
@@ -2476,8 +3921,8 @@ impl PyDataResource {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_744 = (value).as_str().into_py_any(py)?;
-            Ok(converted_744)
+            let converted_791 = (value).as_str().into_py_any(py)?;
+            Ok(converted_791)
         } else {
             Ok(py.None())
         }
@@ -2486,13 +3931,13 @@ impl PyDataResource {
     #[getter]
     fn values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.values {
-            let converted_745_list = PyList::empty(py);
-            for item_746 in value {
-                let converted_item_747 = (item_746).as_str().into_py_any(py)?;
-                converted_745_list.append(converted_item_747)?;
+            let converted_792_list = PyList::empty(py);
+            for item_793 in value {
+                let converted_item_794 = (item_793).as_str().into_py_any(py)?;
+                converted_792_list.append(converted_item_794)?;
             }
-            let converted_745 = converted_745_list.into_any().unbind();
-            Ok(converted_745)
+            let converted_792 = converted_792_list.into_any().unbind();
+            Ok(converted_792)
         } else {
             Ok(py.None())
         }
@@ -2512,14 +3957,14 @@ struct PyDestination {
 impl PyDestination {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_748 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_748)
+        let converted_795 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_795)
     }
 
     #[getter]
     fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_749 = (&self.inner.location).as_str().into_py_any(py)?;
-        Ok(converted_749)
+        let converted_796 = (&self.inner.location).as_str().into_py_any(py)?;
+        Ok(converted_796)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2554,7 +3999,7 @@ impl From<aws_sdk_cloudtrail::types::Event> for SharedEvent {
             resources: value.resources.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_761| Arc::new(owned_761))
+                    .map(|owned_808| Arc::new(owned_808))
                     .collect()
             }),
             cloud_trail_event: value.cloud_trail_event,
@@ -2565,61 +4010,61 @@ impl From<aws_sdk_cloudtrail::types::Event> for SharedEvent {
 fn event_shared_to_py(py: Python<'_>, value: &SharedEvent) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.event_id {
-        let converted_762 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_id", converted_762)?;
+        let converted_809 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_id", converted_809)?;
     } else {
         result.set_item("event_id", py.None())?;
     }
     if let Some(value) = &value.event_name {
-        let converted_763 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_name", converted_763)?;
+        let converted_810 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_name", converted_810)?;
     } else {
         result.set_item("event_name", py.None())?;
     }
     if let Some(value) = &value.read_only {
-        let converted_764 = (value).as_str().into_py_any(py)?;
-        result.set_item("read_only", converted_764)?;
+        let converted_811 = (value).as_str().into_py_any(py)?;
+        result.set_item("read_only", converted_811)?;
     } else {
         result.set_item("read_only", py.None())?;
     }
     if let Some(value) = &value.access_key_id {
-        let converted_765 = (value).as_str().into_py_any(py)?;
-        result.set_item("access_key_id", converted_765)?;
+        let converted_812 = (value).as_str().into_py_any(py)?;
+        result.set_item("access_key_id", converted_812)?;
     } else {
         result.set_item("access_key_id", py.None())?;
     }
     if let Some(value) = &value.event_time {
-        let converted_766 = (value).to_string().into_py_any(py)?;
-        result.set_item("event_time", converted_766)?;
+        let converted_813 = (value).to_string().into_py_any(py)?;
+        result.set_item("event_time", converted_813)?;
     } else {
         result.set_item("event_time", py.None())?;
     }
     if let Some(value) = &value.event_source {
-        let converted_767 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_source", converted_767)?;
+        let converted_814 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_source", converted_814)?;
     } else {
         result.set_item("event_source", py.None())?;
     }
     if let Some(value) = &value.username {
-        let converted_768 = (value).as_str().into_py_any(py)?;
-        result.set_item("username", converted_768)?;
+        let converted_815 = (value).as_str().into_py_any(py)?;
+        result.set_item("username", converted_815)?;
     } else {
         result.set_item("username", py.None())?;
     }
     if let Some(value) = &value.resources {
-        let converted_769_list = PyList::empty(py);
-        for item_770 in value {
-            let converted_item_771 = resource_to_py(py, item_770)?;
-            converted_769_list.append(converted_item_771)?;
+        let converted_816_list = PyList::empty(py);
+        for item_817 in value {
+            let converted_item_818 = resource_to_py(py, item_817)?;
+            converted_816_list.append(converted_item_818)?;
         }
-        let converted_769 = converted_769_list.into_any().unbind();
-        result.set_item("resources", converted_769)?;
+        let converted_816 = converted_816_list.into_any().unbind();
+        result.set_item("resources", converted_816)?;
     } else {
         result.set_item("resources", py.None())?;
     }
     if let Some(value) = &value.cloud_trail_event {
-        let converted_772 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_trail_event", converted_772)?;
+        let converted_819 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_trail_event", converted_819)?;
     } else {
         result.set_item("cloud_trail_event", py.None())?;
     }
@@ -2636,8 +4081,8 @@ impl PyEvent {
     #[getter]
     fn event_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_id {
-            let converted_750 = (value).as_str().into_py_any(py)?;
-            Ok(converted_750)
+            let converted_797 = (value).as_str().into_py_any(py)?;
+            Ok(converted_797)
         } else {
             Ok(py.None())
         }
@@ -2646,8 +4091,8 @@ impl PyEvent {
     #[getter]
     fn event_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_name {
-            let converted_751 = (value).as_str().into_py_any(py)?;
-            Ok(converted_751)
+            let converted_798 = (value).as_str().into_py_any(py)?;
+            Ok(converted_798)
         } else {
             Ok(py.None())
         }
@@ -2656,8 +4101,8 @@ impl PyEvent {
     #[getter]
     fn read_only(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_only {
-            let converted_752 = (value).as_str().into_py_any(py)?;
-            Ok(converted_752)
+            let converted_799 = (value).as_str().into_py_any(py)?;
+            Ok(converted_799)
         } else {
             Ok(py.None())
         }
@@ -2666,8 +4111,8 @@ impl PyEvent {
     #[getter]
     fn access_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.access_key_id {
-            let converted_753 = (value).as_str().into_py_any(py)?;
-            Ok(converted_753)
+            let converted_800 = (value).as_str().into_py_any(py)?;
+            Ok(converted_800)
         } else {
             Ok(py.None())
         }
@@ -2676,8 +4121,8 @@ impl PyEvent {
     #[getter]
     fn event_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_time {
-            let converted_754 = (value).to_string().into_py_any(py)?;
-            Ok(converted_754)
+            let converted_801 = (value).to_string().into_py_any(py)?;
+            Ok(converted_801)
         } else {
             Ok(py.None())
         }
@@ -2686,8 +4131,8 @@ impl PyEvent {
     #[getter]
     fn event_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_source {
-            let converted_755 = (value).as_str().into_py_any(py)?;
-            Ok(converted_755)
+            let converted_802 = (value).as_str().into_py_any(py)?;
+            Ok(converted_802)
         } else {
             Ok(py.None())
         }
@@ -2696,8 +4141,8 @@ impl PyEvent {
     #[getter]
     fn username(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.username {
-            let converted_756 = (value).as_str().into_py_any(py)?;
-            Ok(converted_756)
+            let converted_803 = (value).as_str().into_py_any(py)?;
+            Ok(converted_803)
         } else {
             Ok(py.None())
         }
@@ -2706,19 +4151,19 @@ impl PyEvent {
     #[getter]
     fn resources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resources {
-            let converted_757_list = PyList::empty(py);
-            for item_758 in value {
-                let converted_item_759 = Py::new(
+            let converted_804_list = PyList::empty(py);
+            for item_805 in value {
+                let converted_item_806 = Py::new(
                     py,
                     PyResource {
-                        inner: Arc::clone(item_758),
+                        inner: Arc::clone(item_805),
                     },
                 )?
                 .into_any();
-                converted_757_list.append(converted_item_759)?;
+                converted_804_list.append(converted_item_806)?;
             }
-            let converted_757 = converted_757_list.into_any().unbind();
-            Ok(converted_757)
+            let converted_804 = converted_804_list.into_any().unbind();
+            Ok(converted_804)
         } else {
             Ok(py.None())
         }
@@ -2727,8 +4172,8 @@ impl PyEvent {
     #[getter]
     fn cloud_trail_event(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_trail_event {
-            let converted_760 = (value).as_str().into_py_any(py)?;
-            Ok(converted_760)
+            let converted_807 = (value).as_str().into_py_any(py)?;
+            Ok(converted_807)
         } else {
             Ok(py.None())
         }
@@ -2764,7 +4209,7 @@ impl From<aws_sdk_cloudtrail::types::EventDataStore> for SharedEventDataStore {
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_785| Arc::new(SharedAdvancedEventSelector::from(owned_785)))
+                    .map(|owned_832| Arc::new(SharedAdvancedEventSelector::from(owned_832)))
                     .collect()
             }),
             multi_region_enabled: value.multi_region_enabled,
@@ -2782,67 +4227,67 @@ fn event_data_store_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.event_data_store_arn {
-        let converted_786 = (value).as_str().into_py_any(py)?;
-        result.set_item("event_data_store_arn", converted_786)?;
+        let converted_833 = (value).as_str().into_py_any(py)?;
+        result.set_item("event_data_store_arn", converted_833)?;
     } else {
         result.set_item("event_data_store_arn", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_787 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_787)?;
+        let converted_834 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_834)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.termination_protection_enabled {
-        let converted_788 = (value).to_owned().into_py_any(py)?;
-        result.set_item("termination_protection_enabled", converted_788)?;
+        let converted_835 = (value).to_owned().into_py_any(py)?;
+        result.set_item("termination_protection_enabled", converted_835)?;
     } else {
         result.set_item("termination_protection_enabled", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_789 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_789)?;
+        let converted_836 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_836)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.advanced_event_selectors {
-        let converted_790_list = PyList::empty(py);
-        for item_791 in value {
-            let converted_item_792 = advanced_event_selector_shared_to_py(py, item_791)?;
-            converted_790_list.append(converted_item_792)?;
+        let converted_837_list = PyList::empty(py);
+        for item_838 in value {
+            let converted_item_839 = advanced_event_selector_shared_to_py(py, item_838)?;
+            converted_837_list.append(converted_item_839)?;
         }
-        let converted_790 = converted_790_list.into_any().unbind();
-        result.set_item("advanced_event_selectors", converted_790)?;
+        let converted_837 = converted_837_list.into_any().unbind();
+        result.set_item("advanced_event_selectors", converted_837)?;
     } else {
         result.set_item("advanced_event_selectors", py.None())?;
     }
     if let Some(value) = &value.multi_region_enabled {
-        let converted_793 = (value).to_owned().into_py_any(py)?;
-        result.set_item("multi_region_enabled", converted_793)?;
+        let converted_840 = (value).to_owned().into_py_any(py)?;
+        result.set_item("multi_region_enabled", converted_840)?;
     } else {
         result.set_item("multi_region_enabled", py.None())?;
     }
     if let Some(value) = &value.organization_enabled {
-        let converted_794 = (value).to_owned().into_py_any(py)?;
-        result.set_item("organization_enabled", converted_794)?;
+        let converted_841 = (value).to_owned().into_py_any(py)?;
+        result.set_item("organization_enabled", converted_841)?;
     } else {
         result.set_item("organization_enabled", py.None())?;
     }
     if let Some(value) = &value.retention_period {
-        let converted_795 = (value).to_owned().into_py_any(py)?;
-        result.set_item("retention_period", converted_795)?;
+        let converted_842 = (value).to_owned().into_py_any(py)?;
+        result.set_item("retention_period", converted_842)?;
     } else {
         result.set_item("retention_period", py.None())?;
     }
     if let Some(value) = &value.created_timestamp {
-        let converted_796 = (value).to_string().into_py_any(py)?;
-        result.set_item("created_timestamp", converted_796)?;
+        let converted_843 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_timestamp", converted_843)?;
     } else {
         result.set_item("created_timestamp", py.None())?;
     }
     if let Some(value) = &value.updated_timestamp {
-        let converted_797 = (value).to_string().into_py_any(py)?;
-        result.set_item("updated_timestamp", converted_797)?;
+        let converted_844 = (value).to_string().into_py_any(py)?;
+        result.set_item("updated_timestamp", converted_844)?;
     } else {
         result.set_item("updated_timestamp", py.None())?;
     }
@@ -2859,8 +4304,8 @@ impl PyEventDataStore {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_773 = (value).as_str().into_py_any(py)?;
-            Ok(converted_773)
+            let converted_820 = (value).as_str().into_py_any(py)?;
+            Ok(converted_820)
         } else {
             Ok(py.None())
         }
@@ -2869,8 +4314,8 @@ impl PyEventDataStore {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_774 = (value).as_str().into_py_any(py)?;
-            Ok(converted_774)
+            let converted_821 = (value).as_str().into_py_any(py)?;
+            Ok(converted_821)
         } else {
             Ok(py.None())
         }
@@ -2879,8 +4324,8 @@ impl PyEventDataStore {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_775 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_775)
+            let converted_822 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_822)
         } else {
             Ok(py.None())
         }
@@ -2889,8 +4334,8 @@ impl PyEventDataStore {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_776 = (value).as_str().into_py_any(py)?;
-            Ok(converted_776)
+            let converted_823 = (value).as_str().into_py_any(py)?;
+            Ok(converted_823)
         } else {
             Ok(py.None())
         }
@@ -2899,19 +4344,19 @@ impl PyEventDataStore {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_777_list = PyList::empty(py);
-            for item_778 in value {
-                let converted_item_779 = Py::new(
+            let converted_824_list = PyList::empty(py);
+            for item_825 in value {
+                let converted_item_826 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_778),
+                        inner: Arc::clone(item_825),
                     },
                 )?
                 .into_any();
-                converted_777_list.append(converted_item_779)?;
+                converted_824_list.append(converted_item_826)?;
             }
-            let converted_777 = converted_777_list.into_any().unbind();
-            Ok(converted_777)
+            let converted_824 = converted_824_list.into_any().unbind();
+            Ok(converted_824)
         } else {
             Ok(py.None())
         }
@@ -2920,8 +4365,8 @@ impl PyEventDataStore {
     #[getter]
     fn multi_region_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_780 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_780)
+            let converted_827 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_827)
         } else {
             Ok(py.None())
         }
@@ -2930,8 +4375,8 @@ impl PyEventDataStore {
     #[getter]
     fn organization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_781 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_781)
+            let converted_828 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_828)
         } else {
             Ok(py.None())
         }
@@ -2940,8 +4385,8 @@ impl PyEventDataStore {
     #[getter]
     fn retention_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retention_period {
-            let converted_782 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_782)
+            let converted_829 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_829)
         } else {
             Ok(py.None())
         }
@@ -2950,8 +4395,8 @@ impl PyEventDataStore {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_783 = (value).to_string().into_py_any(py)?;
-            Ok(converted_783)
+            let converted_830 = (value).to_string().into_py_any(py)?;
+            Ok(converted_830)
         } else {
             Ok(py.None())
         }
@@ -2960,8 +4405,8 @@ impl PyEventDataStore {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_784 = (value).to_string().into_py_any(py)?;
-            Ok(converted_784)
+            let converted_831 = (value).to_string().into_py_any(py)?;
+            Ok(converted_831)
         } else {
             Ok(py.None())
         }
@@ -2989,7 +4434,7 @@ impl From<aws_sdk_cloudtrail::types::EventSelector> for SharedEventSelector {
             data_resources: value.data_resources.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_806| Arc::new(owned_806))
+                    .map(|owned_853| Arc::new(owned_853))
                     .collect()
             }),
             exclude_management_event_sources: value.exclude_management_event_sources,
@@ -3000,36 +4445,36 @@ impl From<aws_sdk_cloudtrail::types::EventSelector> for SharedEventSelector {
 fn event_selector_shared_to_py(py: Python<'_>, value: &SharedEventSelector) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.read_write_type {
-        let converted_807 = (value).as_str().into_py_any(py)?;
-        result.set_item("read_write_type", converted_807)?;
+        let converted_854 = (value).as_str().into_py_any(py)?;
+        result.set_item("read_write_type", converted_854)?;
     } else {
         result.set_item("read_write_type", py.None())?;
     }
     if let Some(value) = &value.include_management_events {
-        let converted_808 = (value).to_owned().into_py_any(py)?;
-        result.set_item("include_management_events", converted_808)?;
+        let converted_855 = (value).to_owned().into_py_any(py)?;
+        result.set_item("include_management_events", converted_855)?;
     } else {
         result.set_item("include_management_events", py.None())?;
     }
     if let Some(value) = &value.data_resources {
-        let converted_809_list = PyList::empty(py);
-        for item_810 in value {
-            let converted_item_811 = data_resource_to_py(py, item_810)?;
-            converted_809_list.append(converted_item_811)?;
+        let converted_856_list = PyList::empty(py);
+        for item_857 in value {
+            let converted_item_858 = data_resource_to_py(py, item_857)?;
+            converted_856_list.append(converted_item_858)?;
         }
-        let converted_809 = converted_809_list.into_any().unbind();
-        result.set_item("data_resources", converted_809)?;
+        let converted_856 = converted_856_list.into_any().unbind();
+        result.set_item("data_resources", converted_856)?;
     } else {
         result.set_item("data_resources", py.None())?;
     }
     if let Some(value) = &value.exclude_management_event_sources {
-        let converted_812_list = PyList::empty(py);
-        for item_813 in value {
-            let converted_item_814 = (item_813).as_str().into_py_any(py)?;
-            converted_812_list.append(converted_item_814)?;
+        let converted_859_list = PyList::empty(py);
+        for item_860 in value {
+            let converted_item_861 = (item_860).as_str().into_py_any(py)?;
+            converted_859_list.append(converted_item_861)?;
         }
-        let converted_812 = converted_812_list.into_any().unbind();
-        result.set_item("exclude_management_event_sources", converted_812)?;
+        let converted_859 = converted_859_list.into_any().unbind();
+        result.set_item("exclude_management_event_sources", converted_859)?;
     } else {
         result.set_item("exclude_management_event_sources", py.None())?;
     }
@@ -3046,8 +4491,8 @@ impl PyEventSelector {
     #[getter]
     fn read_write_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.read_write_type {
-            let converted_798 = (value).as_str().into_py_any(py)?;
-            Ok(converted_798)
+            let converted_845 = (value).as_str().into_py_any(py)?;
+            Ok(converted_845)
         } else {
             Ok(py.None())
         }
@@ -3056,8 +4501,8 @@ impl PyEventSelector {
     #[getter]
     fn include_management_events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_management_events {
-            let converted_799 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_799)
+            let converted_846 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_846)
         } else {
             Ok(py.None())
         }
@@ -3066,19 +4511,19 @@ impl PyEventSelector {
     #[getter]
     fn data_resources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_resources {
-            let converted_800_list = PyList::empty(py);
-            for item_801 in value {
-                let converted_item_802 = Py::new(
+            let converted_847_list = PyList::empty(py);
+            for item_848 in value {
+                let converted_item_849 = Py::new(
                     py,
                     PyDataResource {
-                        inner: Arc::clone(item_801),
+                        inner: Arc::clone(item_848),
                     },
                 )?
                 .into_any();
-                converted_800_list.append(converted_item_802)?;
+                converted_847_list.append(converted_item_849)?;
             }
-            let converted_800 = converted_800_list.into_any().unbind();
-            Ok(converted_800)
+            let converted_847 = converted_847_list.into_any().unbind();
+            Ok(converted_847)
         } else {
             Ok(py.None())
         }
@@ -3087,13 +4532,13 @@ impl PyEventSelector {
     #[getter]
     fn exclude_management_event_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exclude_management_event_sources {
-            let converted_803_list = PyList::empty(py);
-            for item_804 in value {
-                let converted_item_805 = (item_804).as_str().into_py_any(py)?;
-                converted_803_list.append(converted_item_805)?;
+            let converted_850_list = PyList::empty(py);
+            for item_851 in value {
+                let converted_item_852 = (item_851).as_str().into_py_any(py)?;
+                converted_850_list.append(converted_item_852)?;
             }
-            let converted_803 = converted_803_list.into_any().unbind();
-            Ok(converted_803)
+            let converted_850 = converted_850_list.into_any().unbind();
+            Ok(converted_850)
         } else {
             Ok(py.None())
         }
@@ -3118,8 +4563,8 @@ impl PyImportFailureListItem {
     #[getter]
     fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.location {
-            let converted_815 = (value).as_str().into_py_any(py)?;
-            Ok(converted_815)
+            let converted_862 = (value).as_str().into_py_any(py)?;
+            Ok(converted_862)
         } else {
             Ok(py.None())
         }
@@ -3128,8 +4573,8 @@ impl PyImportFailureListItem {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_816 = (value).as_str().into_py_any(py)?;
-            Ok(converted_816)
+            let converted_863 = (value).as_str().into_py_any(py)?;
+            Ok(converted_863)
         } else {
             Ok(py.None())
         }
@@ -3138,8 +4583,8 @@ impl PyImportFailureListItem {
     #[getter]
     fn error_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_type {
-            let converted_817 = (value).as_str().into_py_any(py)?;
-            Ok(converted_817)
+            let converted_864 = (value).as_str().into_py_any(py)?;
+            Ok(converted_864)
         } else {
             Ok(py.None())
         }
@@ -3148,8 +4593,8 @@ impl PyImportFailureListItem {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_818 = (value).as_str().into_py_any(py)?;
-            Ok(converted_818)
+            let converted_865 = (value).as_str().into_py_any(py)?;
+            Ok(converted_865)
         } else {
             Ok(py.None())
         }
@@ -3158,8 +4603,8 @@ impl PyImportFailureListItem {
     #[getter]
     fn last_updated_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_updated_time {
-            let converted_819 = (value).to_string().into_py_any(py)?;
-            Ok(converted_819)
+            let converted_866 = (value).to_string().into_py_any(py)?;
+            Ok(converted_866)
         } else {
             Ok(py.None())
         }
@@ -3187,8 +4632,8 @@ impl From<aws_sdk_cloudtrail::types::ImportSource> for SharedImportSource {
 fn import_source_shared_to_py(py: Python<'_>, value: &SharedImportSource) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.s3 {
-        let converted_821 = s3_import_source_to_py(py, value)?;
-        result.set_item("s3", converted_821)?;
+        let converted_868 = s3_import_source_to_py(py, value)?;
+        result.set_item("s3", converted_868)?;
     } else {
         result.set_item("s3", py.None())?;
     }
@@ -3205,14 +4650,14 @@ impl PyImportSource {
     #[getter]
     fn s3(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3 {
-            let converted_820 = Py::new(
+            let converted_867 = Py::new(
                 py,
                 PyS3ImportSource {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_820)
+            Ok(converted_867)
         } else {
             Ok(py.None())
         }
@@ -3233,8 +4678,8 @@ impl PyImportStatistics {
     #[getter]
     fn prefixes_found(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prefixes_found {
-            let converted_822 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_822)
+            let converted_869 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_869)
         } else {
             Ok(py.None())
         }
@@ -3243,8 +4688,8 @@ impl PyImportStatistics {
     #[getter]
     fn prefixes_completed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prefixes_completed {
-            let converted_823 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_823)
+            let converted_870 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_870)
         } else {
             Ok(py.None())
         }
@@ -3253,8 +4698,8 @@ impl PyImportStatistics {
     #[getter]
     fn files_completed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.files_completed {
-            let converted_824 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_824)
+            let converted_871 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_871)
         } else {
             Ok(py.None())
         }
@@ -3263,8 +4708,8 @@ impl PyImportStatistics {
     #[getter]
     fn events_completed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events_completed {
-            let converted_825 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_825)
+            let converted_872 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_872)
         } else {
             Ok(py.None())
         }
@@ -3273,8 +4718,8 @@ impl PyImportStatistics {
     #[getter]
     fn failed_entries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failed_entries {
-            let converted_826 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_826)
+            let converted_873 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_873)
         } else {
             Ok(py.None())
         }
@@ -3295,8 +4740,8 @@ impl PyImportsListItem {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
-            let converted_827 = (value).as_str().into_py_any(py)?;
-            Ok(converted_827)
+            let converted_874 = (value).as_str().into_py_any(py)?;
+            Ok(converted_874)
         } else {
             Ok(py.None())
         }
@@ -3305,8 +4750,8 @@ impl PyImportsListItem {
     #[getter]
     fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_status {
-            let converted_828 = (value).as_str().into_py_any(py)?;
-            Ok(converted_828)
+            let converted_875 = (value).as_str().into_py_any(py)?;
+            Ok(converted_875)
         } else {
             Ok(py.None())
         }
@@ -3315,13 +4760,13 @@ impl PyImportsListItem {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_829_list = PyList::empty(py);
-            for item_830 in value {
-                let converted_item_831 = (item_830).as_str().into_py_any(py)?;
-                converted_829_list.append(converted_item_831)?;
+            let converted_876_list = PyList::empty(py);
+            for item_877 in value {
+                let converted_item_878 = (item_877).as_str().into_py_any(py)?;
+                converted_876_list.append(converted_item_878)?;
             }
-            let converted_829 = converted_829_list.into_any().unbind();
-            Ok(converted_829)
+            let converted_876 = converted_876_list.into_any().unbind();
+            Ok(converted_876)
         } else {
             Ok(py.None())
         }
@@ -3330,8 +4775,8 @@ impl PyImportsListItem {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_832 = (value).to_string().into_py_any(py)?;
-            Ok(converted_832)
+            let converted_879 = (value).to_string().into_py_any(py)?;
+            Ok(converted_879)
         } else {
             Ok(py.None())
         }
@@ -3340,8 +4785,8 @@ impl PyImportsListItem {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_833 = (value).to_string().into_py_any(py)?;
-            Ok(converted_833)
+            let converted_880 = (value).to_string().into_py_any(py)?;
+            Ok(converted_880)
         } else {
             Ok(py.None())
         }
@@ -3362,8 +4807,8 @@ impl PyIngestionStatus {
     #[getter]
     fn latest_ingestion_success_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_ingestion_success_time {
-            let converted_834 = (value).to_string().into_py_any(py)?;
-            Ok(converted_834)
+            let converted_881 = (value).to_string().into_py_any(py)?;
+            Ok(converted_881)
         } else {
             Ok(py.None())
         }
@@ -3372,8 +4817,8 @@ impl PyIngestionStatus {
     #[getter]
     fn latest_ingestion_success_event_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_ingestion_success_event_id {
-            let converted_835 = (value).as_str().into_py_any(py)?;
-            Ok(converted_835)
+            let converted_882 = (value).as_str().into_py_any(py)?;
+            Ok(converted_882)
         } else {
             Ok(py.None())
         }
@@ -3382,8 +4827,8 @@ impl PyIngestionStatus {
     #[getter]
     fn latest_ingestion_error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_ingestion_error_code {
-            let converted_836 = (value).as_str().into_py_any(py)?;
-            Ok(converted_836)
+            let converted_883 = (value).as_str().into_py_any(py)?;
+            Ok(converted_883)
         } else {
             Ok(py.None())
         }
@@ -3392,8 +4837,8 @@ impl PyIngestionStatus {
     #[getter]
     fn latest_ingestion_attempt_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_ingestion_attempt_time {
-            let converted_837 = (value).to_string().into_py_any(py)?;
-            Ok(converted_837)
+            let converted_884 = (value).to_string().into_py_any(py)?;
+            Ok(converted_884)
         } else {
             Ok(py.None())
         }
@@ -3402,8 +4847,8 @@ impl PyIngestionStatus {
     #[getter]
     fn latest_ingestion_attempt_event_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_ingestion_attempt_event_id {
-            let converted_838 = (value).as_str().into_py_any(py)?;
-            Ok(converted_838)
+            let converted_885 = (value).as_str().into_py_any(py)?;
+            Ok(converted_885)
         } else {
             Ok(py.None())
         }
@@ -3424,8 +4869,8 @@ impl PyInsightSelector {
     #[getter]
     fn insight_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insight_type {
-            let converted_839 = (value).as_str().into_py_any(py)?;
-            Ok(converted_839)
+            let converted_886 = (value).as_str().into_py_any(py)?;
+            Ok(converted_886)
         } else {
             Ok(py.None())
         }
@@ -3434,13 +4879,13 @@ impl PyInsightSelector {
     #[getter]
     fn event_categories(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_categories {
-            let converted_840_list = PyList::empty(py);
-            for item_841 in value {
-                let converted_item_842 = (item_841).as_str().into_py_any(py)?;
-                converted_840_list.append(converted_item_842)?;
+            let converted_887_list = PyList::empty(py);
+            for item_888 in value {
+                let converted_item_889 = (item_888).as_str().into_py_any(py)?;
+                converted_887_list.append(converted_item_889)?;
             }
-            let converted_840 = converted_840_list.into_any().unbind();
-            Ok(converted_840)
+            let converted_887 = converted_887_list.into_any().unbind();
+            Ok(converted_887)
         } else {
             Ok(py.None())
         }
@@ -3460,14 +4905,14 @@ struct PyPartitionKey {
 impl PyPartitionKey {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_843 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_843)
+        let converted_890 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_890)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_844 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_844)
+        let converted_891 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_891)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3485,8 +4930,8 @@ impl PyPublicKey {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_845 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_845)
+            let converted_892 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_892)
         } else {
             Ok(py.None())
         }
@@ -3495,8 +4940,8 @@ impl PyPublicKey {
     #[getter]
     fn validity_start_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validity_start_time {
-            let converted_846 = (value).to_string().into_py_any(py)?;
-            Ok(converted_846)
+            let converted_893 = (value).to_string().into_py_any(py)?;
+            Ok(converted_893)
         } else {
             Ok(py.None())
         }
@@ -3505,8 +4950,8 @@ impl PyPublicKey {
     #[getter]
     fn validity_end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.validity_end_time {
-            let converted_847 = (value).to_string().into_py_any(py)?;
-            Ok(converted_847)
+            let converted_894 = (value).to_string().into_py_any(py)?;
+            Ok(converted_894)
         } else {
             Ok(py.None())
         }
@@ -3515,8 +4960,8 @@ impl PyPublicKey {
     #[getter]
     fn fingerprint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.fingerprint {
-            let converted_848 = (value).as_str().into_py_any(py)?;
-            Ok(converted_848)
+            let converted_895 = (value).as_str().into_py_any(py)?;
+            Ok(converted_895)
         } else {
             Ok(py.None())
         }
@@ -3537,8 +4982,8 @@ impl PyQuery {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_id {
-            let converted_849 = (value).as_str().into_py_any(py)?;
-            Ok(converted_849)
+            let converted_896 = (value).as_str().into_py_any(py)?;
+            Ok(converted_896)
         } else {
             Ok(py.None())
         }
@@ -3547,8 +4992,8 @@ impl PyQuery {
     #[getter]
     fn query_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_status {
-            let converted_850 = (value).as_str().into_py_any(py)?;
-            Ok(converted_850)
+            let converted_897 = (value).as_str().into_py_any(py)?;
+            Ok(converted_897)
         } else {
             Ok(py.None())
         }
@@ -3557,8 +5002,8 @@ impl PyQuery {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_851 = (value).to_string().into_py_any(py)?;
-            Ok(converted_851)
+            let converted_898 = (value).to_string().into_py_any(py)?;
+            Ok(converted_898)
         } else {
             Ok(py.None())
         }
@@ -3579,8 +5024,8 @@ impl PyQueryStatistics {
     #[getter]
     fn results_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results_count {
-            let converted_852 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_852)
+            let converted_899 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_899)
         } else {
             Ok(py.None())
         }
@@ -3589,8 +5034,8 @@ impl PyQueryStatistics {
     #[getter]
     fn total_results_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total_results_count {
-            let converted_853 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_853)
+            let converted_900 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_900)
         } else {
             Ok(py.None())
         }
@@ -3599,8 +5044,8 @@ impl PyQueryStatistics {
     #[getter]
     fn bytes_scanned(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bytes_scanned {
-            let converted_854 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_854)
+            let converted_901 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_901)
         } else {
             Ok(py.None())
         }
@@ -3625,8 +5070,8 @@ impl PyQueryStatisticsForDescribeQuery {
     #[getter]
     fn events_matched(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events_matched {
-            let converted_855 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_855)
+            let converted_902 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_902)
         } else {
             Ok(py.None())
         }
@@ -3635,8 +5080,8 @@ impl PyQueryStatisticsForDescribeQuery {
     #[getter]
     fn events_scanned(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events_scanned {
-            let converted_856 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_856)
+            let converted_903 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_903)
         } else {
             Ok(py.None())
         }
@@ -3645,8 +5090,8 @@ impl PyQueryStatisticsForDescribeQuery {
     #[getter]
     fn bytes_scanned(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bytes_scanned {
-            let converted_857 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_857)
+            let converted_904 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_904)
         } else {
             Ok(py.None())
         }
@@ -3655,8 +5100,8 @@ impl PyQueryStatisticsForDescribeQuery {
     #[getter]
     fn execution_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_time_in_millis {
-            let converted_858 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_858)
+            let converted_905 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_905)
         } else {
             Ok(py.None())
         }
@@ -3665,8 +5110,8 @@ impl PyQueryStatisticsForDescribeQuery {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_859 = (value).to_string().into_py_any(py)?;
-            Ok(converted_859)
+            let converted_906 = (value).to_string().into_py_any(py)?;
+            Ok(converted_906)
         } else {
             Ok(py.None())
         }
@@ -3701,20 +5146,20 @@ fn refresh_schedule_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.frequency {
-        let converted_863 = refresh_schedule_frequency_to_py(py, value)?;
-        result.set_item("frequency", converted_863)?;
+        let converted_910 = refresh_schedule_frequency_to_py(py, value)?;
+        result.set_item("frequency", converted_910)?;
     } else {
         result.set_item("frequency", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_864 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_864)?;
+        let converted_911 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_911)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.time_of_day {
-        let converted_865 = (value).as_str().into_py_any(py)?;
-        result.set_item("time_of_day", converted_865)?;
+        let converted_912 = (value).as_str().into_py_any(py)?;
+        result.set_item("time_of_day", converted_912)?;
     } else {
         result.set_item("time_of_day", py.None())?;
     }
@@ -3731,14 +5176,14 @@ impl PyRefreshSchedule {
     #[getter]
     fn frequency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.frequency {
-            let converted_860 = Py::new(
+            let converted_907 = Py::new(
                 py,
                 PyRefreshScheduleFrequency {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_860)
+            Ok(converted_907)
         } else {
             Ok(py.None())
         }
@@ -3747,8 +5192,8 @@ impl PyRefreshSchedule {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_861 = (value).as_str().into_py_any(py)?;
-            Ok(converted_861)
+            let converted_908 = (value).as_str().into_py_any(py)?;
+            Ok(converted_908)
         } else {
             Ok(py.None())
         }
@@ -3757,8 +5202,8 @@ impl PyRefreshSchedule {
     #[getter]
     fn time_of_day(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_of_day {
-            let converted_862 = (value).as_str().into_py_any(py)?;
-            Ok(converted_862)
+            let converted_909 = (value).as_str().into_py_any(py)?;
+            Ok(converted_909)
         } else {
             Ok(py.None())
         }
@@ -3783,8 +5228,8 @@ impl PyRefreshScheduleFrequency {
     #[getter]
     fn unit(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unit {
-            let converted_866 = (value).as_str().into_py_any(py)?;
-            Ok(converted_866)
+            let converted_913 = (value).as_str().into_py_any(py)?;
+            Ok(converted_913)
         } else {
             Ok(py.None())
         }
@@ -3793,8 +5238,8 @@ impl PyRefreshScheduleFrequency {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_867 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_867)
+            let converted_914 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_914)
         } else {
             Ok(py.None())
         }
@@ -3815,8 +5260,8 @@ impl PyResource {
     #[getter]
     fn resource_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_type {
-            let converted_868 = (value).as_str().into_py_any(py)?;
-            Ok(converted_868)
+            let converted_915 = (value).as_str().into_py_any(py)?;
+            Ok(converted_915)
         } else {
             Ok(py.None())
         }
@@ -3825,8 +5270,8 @@ impl PyResource {
     #[getter]
     fn resource_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_name {
-            let converted_869 = (value).as_str().into_py_any(py)?;
-            Ok(converted_869)
+            let converted_916 = (value).as_str().into_py_any(py)?;
+            Ok(converted_916)
         } else {
             Ok(py.None())
         }
@@ -3851,7 +5296,7 @@ impl From<aws_sdk_cloudtrail::types::ResourceTag> for SharedResourceTag {
             tags_list: value.tags_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_874| Arc::new(owned_874))
+                    .map(|owned_921| Arc::new(owned_921))
                     .collect()
             }),
         }
@@ -3861,19 +5306,19 @@ impl From<aws_sdk_cloudtrail::types::ResourceTag> for SharedResourceTag {
 fn resource_tag_shared_to_py(py: Python<'_>, value: &SharedResourceTag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.resource_id {
-        let converted_875 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_id", converted_875)?;
+        let converted_922 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_id", converted_922)?;
     } else {
         result.set_item("resource_id", py.None())?;
     }
     if let Some(value) = &value.tags_list {
-        let converted_876_list = PyList::empty(py);
-        for item_877 in value {
-            let converted_item_878 = tag_to_py(py, item_877)?;
-            converted_876_list.append(converted_item_878)?;
+        let converted_923_list = PyList::empty(py);
+        for item_924 in value {
+            let converted_item_925 = tag_to_py(py, item_924)?;
+            converted_923_list.append(converted_item_925)?;
         }
-        let converted_876 = converted_876_list.into_any().unbind();
-        result.set_item("tags_list", converted_876)?;
+        let converted_923 = converted_923_list.into_any().unbind();
+        result.set_item("tags_list", converted_923)?;
     } else {
         result.set_item("tags_list", py.None())?;
     }
@@ -3890,8 +5335,8 @@ impl PyResourceTag {
     #[getter]
     fn resource_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_id {
-            let converted_870 = (value).as_str().into_py_any(py)?;
-            Ok(converted_870)
+            let converted_917 = (value).as_str().into_py_any(py)?;
+            Ok(converted_917)
         } else {
             Ok(py.None())
         }
@@ -3900,19 +5345,19 @@ impl PyResourceTag {
     #[getter]
     fn tags_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags_list {
-            let converted_871_list = PyList::empty(py);
-            for item_872 in value {
-                let converted_item_873 = Py::new(
+            let converted_918_list = PyList::empty(py);
+            for item_919 in value {
+                let converted_item_920 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_872),
+                        inner: Arc::clone(item_919),
                     },
                 )?
                 .into_any();
-                converted_871_list.append(converted_item_873)?;
+                converted_918_list.append(converted_item_920)?;
             }
-            let converted_871 = converted_871_list.into_any().unbind();
-            Ok(converted_871)
+            let converted_918 = converted_918_list.into_any().unbind();
+            Ok(converted_918)
         } else {
             Ok(py.None())
         }
@@ -3932,22 +5377,22 @@ struct PyS3ImportSource {
 impl PyS3ImportSource {
     #[getter]
     fn s3_location_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_879 = (&self.inner.s3_location_uri).as_str().into_py_any(py)?;
-        Ok(converted_879)
+        let converted_926 = (&self.inner.s3_location_uri).as_str().into_py_any(py)?;
+        Ok(converted_926)
     }
 
     #[getter]
     fn s3_bucket_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_880 = (&self.inner.s3_bucket_region).as_str().into_py_any(py)?;
-        Ok(converted_880)
+        let converted_927 = (&self.inner.s3_bucket_region).as_str().into_py_any(py)?;
+        Ok(converted_927)
     }
 
     #[getter]
     fn s3_bucket_access_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_881 = (&self.inner.s3_bucket_access_role_arn)
+        let converted_928 = (&self.inner.s3_bucket_access_role_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_881)
+        Ok(converted_928)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3969,8 +5414,8 @@ impl PySearchSampleQueriesSearchResult {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_882 = (value).as_str().into_py_any(py)?;
-            Ok(converted_882)
+            let converted_929 = (value).as_str().into_py_any(py)?;
+            Ok(converted_929)
         } else {
             Ok(py.None())
         }
@@ -3979,8 +5424,8 @@ impl PySearchSampleQueriesSearchResult {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_883 = (value).as_str().into_py_any(py)?;
-            Ok(converted_883)
+            let converted_930 = (value).as_str().into_py_any(py)?;
+            Ok(converted_930)
         } else {
             Ok(py.None())
         }
@@ -3989,8 +5434,8 @@ impl PySearchSampleQueriesSearchResult {
     #[getter]
     fn sql(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sql {
-            let converted_884 = (value).as_str().into_py_any(py)?;
-            Ok(converted_884)
+            let converted_931 = (value).as_str().into_py_any(py)?;
+            Ok(converted_931)
         } else {
             Ok(py.None())
         }
@@ -3998,8 +5443,8 @@ impl PySearchSampleQueriesSearchResult {
 
     #[getter]
     fn relevance(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_885 = (&self.inner.relevance).to_owned().into_py_any(py)?;
-        Ok(converted_885)
+        let converted_932 = (&self.inner.relevance).to_owned().into_py_any(py)?;
+        Ok(converted_932)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -4021,7 +5466,7 @@ impl From<aws_sdk_cloudtrail::types::SourceConfig> for SharedSourceConfig {
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_890| Arc::new(SharedAdvancedEventSelector::from(owned_890)))
+                    .map(|owned_937| Arc::new(SharedAdvancedEventSelector::from(owned_937)))
                     .collect()
             }),
         }
@@ -4031,19 +5476,19 @@ impl From<aws_sdk_cloudtrail::types::SourceConfig> for SharedSourceConfig {
 fn source_config_shared_to_py(py: Python<'_>, value: &SharedSourceConfig) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.apply_to_all_regions {
-        let converted_891 = (value).to_owned().into_py_any(py)?;
-        result.set_item("apply_to_all_regions", converted_891)?;
+        let converted_938 = (value).to_owned().into_py_any(py)?;
+        result.set_item("apply_to_all_regions", converted_938)?;
     } else {
         result.set_item("apply_to_all_regions", py.None())?;
     }
     if let Some(value) = &value.advanced_event_selectors {
-        let converted_892_list = PyList::empty(py);
-        for item_893 in value {
-            let converted_item_894 = advanced_event_selector_shared_to_py(py, item_893)?;
-            converted_892_list.append(converted_item_894)?;
+        let converted_939_list = PyList::empty(py);
+        for item_940 in value {
+            let converted_item_941 = advanced_event_selector_shared_to_py(py, item_940)?;
+            converted_939_list.append(converted_item_941)?;
         }
-        let converted_892 = converted_892_list.into_any().unbind();
-        result.set_item("advanced_event_selectors", converted_892)?;
+        let converted_939 = converted_939_list.into_any().unbind();
+        result.set_item("advanced_event_selectors", converted_939)?;
     } else {
         result.set_item("advanced_event_selectors", py.None())?;
     }
@@ -4060,8 +5505,8 @@ impl PySourceConfig {
     #[getter]
     fn apply_to_all_regions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.apply_to_all_regions {
-            let converted_886 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_886)
+            let converted_933 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_933)
         } else {
             Ok(py.None())
         }
@@ -4070,19 +5515,19 @@ impl PySourceConfig {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_887_list = PyList::empty(py);
-            for item_888 in value {
-                let converted_item_889 = Py::new(
+            let converted_934_list = PyList::empty(py);
+            for item_935 in value {
+                let converted_item_936 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_888),
+                        inner: Arc::clone(item_935),
                     },
                 )?
                 .into_any();
-                converted_887_list.append(converted_item_889)?;
+                converted_934_list.append(converted_item_936)?;
             }
-            let converted_887 = converted_887_list.into_any().unbind();
-            Ok(converted_887)
+            let converted_934 = converted_934_list.into_any().unbind();
+            Ok(converted_934)
         } else {
             Ok(py.None())
         }
@@ -4102,15 +5547,15 @@ struct PyTag {
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_895 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_895)
+        let converted_942 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_942)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_896 = (value).as_str().into_py_any(py)?;
-            Ok(converted_896)
+            let converted_943 = (value).as_str().into_py_any(py)?;
+            Ok(converted_943)
         } else {
             Ok(py.None())
         }
@@ -4131,8 +5576,8 @@ impl PyTrail {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_897 = (value).as_str().into_py_any(py)?;
-            Ok(converted_897)
+            let converted_944 = (value).as_str().into_py_any(py)?;
+            Ok(converted_944)
         } else {
             Ok(py.None())
         }
@@ -4141,8 +5586,8 @@ impl PyTrail {
     #[getter]
     fn s3_bucket_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_bucket_name {
-            let converted_898 = (value).as_str().into_py_any(py)?;
-            Ok(converted_898)
+            let converted_945 = (value).as_str().into_py_any(py)?;
+            Ok(converted_945)
         } else {
             Ok(py.None())
         }
@@ -4151,8 +5596,8 @@ impl PyTrail {
     #[getter]
     fn s3_key_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_key_prefix {
-            let converted_899 = (value).as_str().into_py_any(py)?;
-            Ok(converted_899)
+            let converted_946 = (value).as_str().into_py_any(py)?;
+            Ok(converted_946)
         } else {
             Ok(py.None())
         }
@@ -4161,8 +5606,8 @@ impl PyTrail {
     #[getter]
     fn sns_topic_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_name {
-            let converted_900 = (value).as_str().into_py_any(py)?;
-            Ok(converted_900)
+            let converted_947 = (value).as_str().into_py_any(py)?;
+            Ok(converted_947)
         } else {
             Ok(py.None())
         }
@@ -4171,8 +5616,8 @@ impl PyTrail {
     #[getter]
     fn sns_topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_arn {
-            let converted_901 = (value).as_str().into_py_any(py)?;
-            Ok(converted_901)
+            let converted_948 = (value).as_str().into_py_any(py)?;
+            Ok(converted_948)
         } else {
             Ok(py.None())
         }
@@ -4181,8 +5626,8 @@ impl PyTrail {
     #[getter]
     fn include_global_service_events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_global_service_events {
-            let converted_902 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_902)
+            let converted_949 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_949)
         } else {
             Ok(py.None())
         }
@@ -4191,8 +5636,8 @@ impl PyTrail {
     #[getter]
     fn is_multi_region_trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_multi_region_trail {
-            let converted_903 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_903)
+            let converted_950 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_950)
         } else {
             Ok(py.None())
         }
@@ -4201,8 +5646,8 @@ impl PyTrail {
     #[getter]
     fn home_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.home_region {
-            let converted_904 = (value).as_str().into_py_any(py)?;
-            Ok(converted_904)
+            let converted_951 = (value).as_str().into_py_any(py)?;
+            Ok(converted_951)
         } else {
             Ok(py.None())
         }
@@ -4211,8 +5656,8 @@ impl PyTrail {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_905 = (value).as_str().into_py_any(py)?;
-            Ok(converted_905)
+            let converted_952 = (value).as_str().into_py_any(py)?;
+            Ok(converted_952)
         } else {
             Ok(py.None())
         }
@@ -4221,8 +5666,8 @@ impl PyTrail {
     #[getter]
     fn log_file_validation_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_file_validation_enabled {
-            let converted_906 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_906)
+            let converted_953 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_953)
         } else {
             Ok(py.None())
         }
@@ -4231,8 +5676,8 @@ impl PyTrail {
     #[getter]
     fn cloud_watch_logs_log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_log_group_arn {
-            let converted_907 = (value).as_str().into_py_any(py)?;
-            Ok(converted_907)
+            let converted_954 = (value).as_str().into_py_any(py)?;
+            Ok(converted_954)
         } else {
             Ok(py.None())
         }
@@ -4241,8 +5686,8 @@ impl PyTrail {
     #[getter]
     fn cloud_watch_logs_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_role_arn {
-            let converted_908 = (value).as_str().into_py_any(py)?;
-            Ok(converted_908)
+            let converted_955 = (value).as_str().into_py_any(py)?;
+            Ok(converted_955)
         } else {
             Ok(py.None())
         }
@@ -4251,8 +5696,8 @@ impl PyTrail {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_909 = (value).as_str().into_py_any(py)?;
-            Ok(converted_909)
+            let converted_956 = (value).as_str().into_py_any(py)?;
+            Ok(converted_956)
         } else {
             Ok(py.None())
         }
@@ -4261,8 +5706,8 @@ impl PyTrail {
     #[getter]
     fn has_custom_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.has_custom_event_selectors {
-            let converted_910 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_910)
+            let converted_957 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_957)
         } else {
             Ok(py.None())
         }
@@ -4271,8 +5716,8 @@ impl PyTrail {
     #[getter]
     fn has_insight_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.has_insight_selectors {
-            let converted_911 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_911)
+            let converted_958 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_958)
         } else {
             Ok(py.None())
         }
@@ -4281,8 +5726,8 @@ impl PyTrail {
     #[getter]
     fn is_organization_trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_organization_trail {
-            let converted_912 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_912)
+            let converted_959 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_959)
         } else {
             Ok(py.None())
         }
@@ -4291,8 +5736,8 @@ impl PyTrail {
     #[getter]
     fn recursive_logging(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recursive_logging {
-            let converted_913 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_913)
+            let converted_960 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_960)
         } else {
             Ok(py.None())
         }
@@ -4313,8 +5758,8 @@ impl PyTrailInfo {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_914 = (value).as_str().into_py_any(py)?;
-            Ok(converted_914)
+            let converted_961 = (value).as_str().into_py_any(py)?;
+            Ok(converted_961)
         } else {
             Ok(py.None())
         }
@@ -4323,8 +5768,8 @@ impl PyTrailInfo {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_915 = (value).as_str().into_py_any(py)?;
-            Ok(converted_915)
+            let converted_962 = (value).as_str().into_py_any(py)?;
+            Ok(converted_962)
         } else {
             Ok(py.None())
         }
@@ -4333,8 +5778,8 @@ impl PyTrailInfo {
     #[getter]
     fn home_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.home_region {
-            let converted_916 = (value).as_str().into_py_any(py)?;
-            Ok(converted_916)
+            let converted_963 = (value).as_str().into_py_any(py)?;
+            Ok(converted_963)
         } else {
             Ok(py.None())
         }
@@ -4355,8 +5800,8 @@ impl PyWidget {
     #[getter]
     fn query_alias(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_alias {
-            let converted_917 = (value).as_str().into_py_any(py)?;
-            Ok(converted_917)
+            let converted_964 = (value).as_str().into_py_any(py)?;
+            Ok(converted_964)
         } else {
             Ok(py.None())
         }
@@ -4365,8 +5810,8 @@ impl PyWidget {
     #[getter]
     fn query_statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_statement {
-            let converted_918 = (value).as_str().into_py_any(py)?;
-            Ok(converted_918)
+            let converted_965 = (value).as_str().into_py_any(py)?;
+            Ok(converted_965)
         } else {
             Ok(py.None())
         }
@@ -4375,13 +5820,13 @@ impl PyWidget {
     #[getter]
     fn query_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_parameters {
-            let converted_919_list = PyList::empty(py);
-            for item_920 in value {
-                let converted_item_921 = (item_920).as_str().into_py_any(py)?;
-                converted_919_list.append(converted_item_921)?;
+            let converted_966_list = PyList::empty(py);
+            for item_967 in value {
+                let converted_item_968 = (item_967).as_str().into_py_any(py)?;
+                converted_966_list.append(converted_item_968)?;
             }
-            let converted_919 = converted_919_list.into_any().unbind();
-            Ok(converted_919)
+            let converted_966 = converted_966_list.into_any().unbind();
+            Ok(converted_966)
         } else {
             Ok(py.None())
         }
@@ -4390,14 +5835,14 @@ impl PyWidget {
     #[getter]
     fn view_properties(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.view_properties {
-            let converted_922_dict = PyDict::new(py);
-            for (key_923, value_924) in value {
-                let converted_key_925 = (key_923).as_str().into_py_any(py)?;
-                let converted_value_926 = (value_924).as_str().into_py_any(py)?;
-                converted_922_dict.set_item(converted_key_925, converted_value_926)?;
+            let converted_969_dict = PyDict::new(py);
+            for (key_970, value_971) in value {
+                let converted_key_972 = (key_970).as_str().into_py_any(py)?;
+                let converted_value_973 = (value_971).as_str().into_py_any(py)?;
+                converted_969_dict.set_item(converted_key_972, converted_value_973)?;
             }
-            let converted_922 = converted_922_dict.into_any().unbind();
-            Ok(converted_922)
+            let converted_969 = converted_969_dict.into_any().unbind();
+            Ok(converted_969)
         } else {
             Ok(py.None())
         }
@@ -4434,21 +5879,21 @@ struct PyOperationCancelQueryOutput {
 impl PyOperationCancelQueryOutput {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_927 = (&self.inner.query_id).as_str().into_py_any(py)?;
-        Ok(converted_927)
+        let converted_974 = (&self.inner.query_id).as_str().into_py_any(py)?;
+        Ok(converted_974)
     }
 
     #[getter]
     fn query_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_928 = (&self.inner.query_status).as_str().into_py_any(py)?;
-        Ok(converted_928)
+        let converted_975 = (&self.inner.query_status).as_str().into_py_any(py)?;
+        Ok(converted_975)
     }
 
     #[getter]
     fn event_data_store_owner_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_929 = (value).as_str().into_py_any(py)?;
-            Ok(converted_929)
+            let converted_976 = (value).as_str().into_py_any(py)?;
+            Ok(converted_976)
         } else {
             Ok(py.None())
         }
@@ -4456,13 +5901,13 @@ impl PyOperationCancelQueryOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_930 = (&self.inner.query_id).as_str().into_py_any(py)?;
-        result.set_item("query_id", converted_930)?;
-        let converted_931 = (&self.inner.query_status).as_str().into_py_any(py)?;
-        result.set_item("query_status", converted_931)?;
+        let converted_977 = (&self.inner.query_id).as_str().into_py_any(py)?;
+        result.set_item("query_id", converted_977)?;
+        let converted_978 = (&self.inner.query_status).as_str().into_py_any(py)?;
+        result.set_item("query_status", converted_978)?;
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_932 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_owner_account_id", converted_932)?;
+            let converted_979 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_owner_account_id", converted_979)?;
         } else {
             result.set_item("event_data_store_owner_account_id", py.None())?;
         }
@@ -4491,13 +5936,13 @@ impl From<aws_sdk_cloudtrail::operation::create_channel::CreateChannelOutput>
             destinations: value.destinations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_942| Arc::new(owned_942))
+                    .map(|owned_989| Arc::new(owned_989))
                     .collect()
             }),
             tags: value.tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_943| Arc::new(owned_943))
+                    .map(|owned_990| Arc::new(owned_990))
                     .collect()
             }),
         }
@@ -4518,8 +5963,8 @@ impl PyOperationCreateChannelOutput {
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_arn {
-            let converted_933 = (value).as_str().into_py_any(py)?;
-            Ok(converted_933)
+            let converted_980 = (value).as_str().into_py_any(py)?;
+            Ok(converted_980)
         } else {
             Ok(py.None())
         }
@@ -4528,8 +5973,8 @@ impl PyOperationCreateChannelOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_934 = (value).as_str().into_py_any(py)?;
-            Ok(converted_934)
+            let converted_981 = (value).as_str().into_py_any(py)?;
+            Ok(converted_981)
         } else {
             Ok(py.None())
         }
@@ -4538,8 +5983,8 @@ impl PyOperationCreateChannelOutput {
     #[getter]
     fn source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source {
-            let converted_935 = (value).as_str().into_py_any(py)?;
-            Ok(converted_935)
+            let converted_982 = (value).as_str().into_py_any(py)?;
+            Ok(converted_982)
         } else {
             Ok(py.None())
         }
@@ -4548,19 +5993,19 @@ impl PyOperationCreateChannelOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_936_list = PyList::empty(py);
-            for item_937 in value {
-                let converted_item_938 = Py::new(
+            let converted_983_list = PyList::empty(py);
+            for item_984 in value {
+                let converted_item_985 = Py::new(
                     py,
                     PyDestination {
-                        inner: Arc::clone(item_937),
+                        inner: Arc::clone(item_984),
                     },
                 )?
                 .into_any();
-                converted_936_list.append(converted_item_938)?;
+                converted_983_list.append(converted_item_985)?;
             }
-            let converted_936 = converted_936_list.into_any().unbind();
-            Ok(converted_936)
+            let converted_983 = converted_983_list.into_any().unbind();
+            Ok(converted_983)
         } else {
             Ok(py.None())
         }
@@ -4569,19 +6014,19 @@ impl PyOperationCreateChannelOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_939_list = PyList::empty(py);
-            for item_940 in value {
-                let converted_item_941 = Py::new(
+            let converted_986_list = PyList::empty(py);
+            for item_987 in value {
+                let converted_item_988 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_940),
+                        inner: Arc::clone(item_987),
                     },
                 )?
                 .into_any();
-                converted_939_list.append(converted_item_941)?;
+                converted_986_list.append(converted_item_988)?;
             }
-            let converted_939 = converted_939_list.into_any().unbind();
-            Ok(converted_939)
+            let converted_986 = converted_986_list.into_any().unbind();
+            Ok(converted_986)
         } else {
             Ok(py.None())
         }
@@ -4590,42 +6035,42 @@ impl PyOperationCreateChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.channel_arn {
-            let converted_944 = (value).as_str().into_py_any(py)?;
-            result.set_item("channel_arn", converted_944)?;
+            let converted_991 = (value).as_str().into_py_any(py)?;
+            result.set_item("channel_arn", converted_991)?;
         } else {
             result.set_item("channel_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_945 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_945)?;
+            let converted_992 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_992)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.source {
-            let converted_946 = (value).as_str().into_py_any(py)?;
-            result.set_item("source", converted_946)?;
+            let converted_993 = (value).as_str().into_py_any(py)?;
+            result.set_item("source", converted_993)?;
         } else {
             result.set_item("source", py.None())?;
         }
         if let Some(value) = &self.inner.destinations {
-            let converted_947_list = PyList::empty(py);
-            for item_948 in value {
-                let converted_item_949 = destination_to_py(py, item_948)?;
-                converted_947_list.append(converted_item_949)?;
+            let converted_994_list = PyList::empty(py);
+            for item_995 in value {
+                let converted_item_996 = destination_to_py(py, item_995)?;
+                converted_994_list.append(converted_item_996)?;
             }
-            let converted_947 = converted_947_list.into_any().unbind();
-            result.set_item("destinations", converted_947)?;
+            let converted_994 = converted_994_list.into_any().unbind();
+            result.set_item("destinations", converted_994)?;
         } else {
             result.set_item("destinations", py.None())?;
         }
         if let Some(value) = &self.inner.tags {
-            let converted_950_list = PyList::empty(py);
-            for item_951 in value {
-                let converted_item_952 = tag_to_py(py, item_951)?;
-                converted_950_list.append(converted_item_952)?;
+            let converted_997_list = PyList::empty(py);
+            for item_998 in value {
+                let converted_item_999 = tag_to_py(py, item_998)?;
+                converted_997_list.append(converted_item_999)?;
             }
-            let converted_950 = converted_950_list.into_any().unbind();
-            result.set_item("tags", converted_950)?;
+            let converted_997 = converted_997_list.into_any().unbind();
+            result.set_item("tags", converted_997)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -4656,13 +6101,13 @@ impl From<aws_sdk_cloudtrail::operation::create_dashboard::CreateDashboardOutput
             widgets: value.widgets.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_964| Arc::new(owned_964))
+                    .map(|owned_1011| Arc::new(owned_1011))
                     .collect()
             }),
             tags_list: value.tags_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_965| Arc::new(owned_965))
+                    .map(|owned_1012| Arc::new(owned_1012))
                     .collect()
             }),
             refresh_schedule: value
@@ -4687,8 +6132,8 @@ impl PyOperationCreateDashboardOutput {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_953 = (value).as_str().into_py_any(py)?;
-            Ok(converted_953)
+            let converted_1000 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1000)
         } else {
             Ok(py.None())
         }
@@ -4697,8 +6142,8 @@ impl PyOperationCreateDashboardOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_954 = (value).as_str().into_py_any(py)?;
-            Ok(converted_954)
+            let converted_1001 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1001)
         } else {
             Ok(py.None())
         }
@@ -4707,8 +6152,8 @@ impl PyOperationCreateDashboardOutput {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_955 = (value).as_str().into_py_any(py)?;
-            Ok(converted_955)
+            let converted_1002 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1002)
         } else {
             Ok(py.None())
         }
@@ -4717,19 +6162,19 @@ impl PyOperationCreateDashboardOutput {
     #[getter]
     fn widgets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.widgets {
-            let converted_956_list = PyList::empty(py);
-            for item_957 in value {
-                let converted_item_958 = Py::new(
+            let converted_1003_list = PyList::empty(py);
+            for item_1004 in value {
+                let converted_item_1005 = Py::new(
                     py,
                     PyWidget {
-                        inner: Arc::clone(item_957),
+                        inner: Arc::clone(item_1004),
                     },
                 )?
                 .into_any();
-                converted_956_list.append(converted_item_958)?;
+                converted_1003_list.append(converted_item_1005)?;
             }
-            let converted_956 = converted_956_list.into_any().unbind();
-            Ok(converted_956)
+            let converted_1003 = converted_1003_list.into_any().unbind();
+            Ok(converted_1003)
         } else {
             Ok(py.None())
         }
@@ -4738,19 +6183,19 @@ impl PyOperationCreateDashboardOutput {
     #[getter]
     fn tags_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags_list {
-            let converted_959_list = PyList::empty(py);
-            for item_960 in value {
-                let converted_item_961 = Py::new(
+            let converted_1006_list = PyList::empty(py);
+            for item_1007 in value {
+                let converted_item_1008 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_960),
+                        inner: Arc::clone(item_1007),
                     },
                 )?
                 .into_any();
-                converted_959_list.append(converted_item_961)?;
+                converted_1006_list.append(converted_item_1008)?;
             }
-            let converted_959 = converted_959_list.into_any().unbind();
-            Ok(converted_959)
+            let converted_1006 = converted_1006_list.into_any().unbind();
+            Ok(converted_1006)
         } else {
             Ok(py.None())
         }
@@ -4759,14 +6204,14 @@ impl PyOperationCreateDashboardOutput {
     #[getter]
     fn refresh_schedule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.refresh_schedule {
-            let converted_962 = Py::new(
+            let converted_1009 = Py::new(
                 py,
                 PyRefreshSchedule {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_962)
+            Ok(converted_1009)
         } else {
             Ok(py.None())
         }
@@ -4775,8 +6220,8 @@ impl PyOperationCreateDashboardOutput {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_963 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_963)
+            let converted_1010 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1010)
         } else {
             Ok(py.None())
         }
@@ -4785,54 +6230,54 @@ impl PyOperationCreateDashboardOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_966 = (value).as_str().into_py_any(py)?;
-            result.set_item("dashboard_arn", converted_966)?;
+            let converted_1013 = (value).as_str().into_py_any(py)?;
+            result.set_item("dashboard_arn", converted_1013)?;
         } else {
             result.set_item("dashboard_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_967 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_967)?;
+            let converted_1014 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1014)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.r#type {
-            let converted_968 = (value).as_str().into_py_any(py)?;
-            result.set_item("type", converted_968)?;
+            let converted_1015 = (value).as_str().into_py_any(py)?;
+            result.set_item("type", converted_1015)?;
         } else {
             result.set_item("type", py.None())?;
         }
         if let Some(value) = &self.inner.widgets {
-            let converted_969_list = PyList::empty(py);
-            for item_970 in value {
-                let converted_item_971 = widget_to_py(py, item_970)?;
-                converted_969_list.append(converted_item_971)?;
+            let converted_1016_list = PyList::empty(py);
+            for item_1017 in value {
+                let converted_item_1018 = widget_to_py(py, item_1017)?;
+                converted_1016_list.append(converted_item_1018)?;
             }
-            let converted_969 = converted_969_list.into_any().unbind();
-            result.set_item("widgets", converted_969)?;
+            let converted_1016 = converted_1016_list.into_any().unbind();
+            result.set_item("widgets", converted_1016)?;
         } else {
             result.set_item("widgets", py.None())?;
         }
         if let Some(value) = &self.inner.tags_list {
-            let converted_972_list = PyList::empty(py);
-            for item_973 in value {
-                let converted_item_974 = tag_to_py(py, item_973)?;
-                converted_972_list.append(converted_item_974)?;
+            let converted_1019_list = PyList::empty(py);
+            for item_1020 in value {
+                let converted_item_1021 = tag_to_py(py, item_1020)?;
+                converted_1019_list.append(converted_item_1021)?;
             }
-            let converted_972 = converted_972_list.into_any().unbind();
-            result.set_item("tags_list", converted_972)?;
+            let converted_1019 = converted_1019_list.into_any().unbind();
+            result.set_item("tags_list", converted_1019)?;
         } else {
             result.set_item("tags_list", py.None())?;
         }
         if let Some(value) = &self.inner.refresh_schedule {
-            let converted_975 = refresh_schedule_shared_to_py(py, value)?;
-            result.set_item("refresh_schedule", converted_975)?;
+            let converted_1022 = refresh_schedule_shared_to_py(py, value)?;
+            result.set_item("refresh_schedule", converted_1022)?;
         } else {
             result.set_item("refresh_schedule", py.None())?;
         }
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_976 = (value).to_owned().into_py_any(py)?;
-            result.set_item("termination_protection_enabled", converted_976)?;
+            let converted_1023 = (value).to_owned().into_py_any(py)?;
+            result.set_item("termination_protection_enabled", converted_1023)?;
         } else {
             result.set_item("termination_protection_enabled", py.None())?;
         }
@@ -4871,7 +6316,7 @@ impl From<aws_sdk_cloudtrail::operation::create_event_data_store::CreateEventDat
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_994| Arc::new(SharedAdvancedEventSelector::from(owned_994)))
+                    .map(|owned_1041| Arc::new(SharedAdvancedEventSelector::from(owned_1041)))
                     .collect()
             }),
             multi_region_enabled: value.multi_region_enabled,
@@ -4881,7 +6326,7 @@ impl From<aws_sdk_cloudtrail::operation::create_event_data_store::CreateEventDat
             tags_list: value.tags_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_995| Arc::new(owned_995))
+                    .map(|owned_1042| Arc::new(owned_1042))
                     .collect()
             }),
             created_timestamp: value.created_timestamp,
@@ -4906,8 +6351,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_977 = (value).as_str().into_py_any(py)?;
-            Ok(converted_977)
+            let converted_1024 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1024)
         } else {
             Ok(py.None())
         }
@@ -4916,8 +6361,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_978 = (value).as_str().into_py_any(py)?;
-            Ok(converted_978)
+            let converted_1025 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1025)
         } else {
             Ok(py.None())
         }
@@ -4926,8 +6371,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_979 = (value).as_str().into_py_any(py)?;
-            Ok(converted_979)
+            let converted_1026 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1026)
         } else {
             Ok(py.None())
         }
@@ -4936,19 +6381,19 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_980_list = PyList::empty(py);
-            for item_981 in value {
-                let converted_item_982 = Py::new(
+            let converted_1027_list = PyList::empty(py);
+            for item_1028 in value {
+                let converted_item_1029 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_981),
+                        inner: Arc::clone(item_1028),
                     },
                 )?
                 .into_any();
-                converted_980_list.append(converted_item_982)?;
+                converted_1027_list.append(converted_item_1029)?;
             }
-            let converted_980 = converted_980_list.into_any().unbind();
-            Ok(converted_980)
+            let converted_1027 = converted_1027_list.into_any().unbind();
+            Ok(converted_1027)
         } else {
             Ok(py.None())
         }
@@ -4957,8 +6402,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn multi_region_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_983 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_983)
+            let converted_1030 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1030)
         } else {
             Ok(py.None())
         }
@@ -4967,8 +6412,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn organization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_984 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_984)
+            let converted_1031 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1031)
         } else {
             Ok(py.None())
         }
@@ -4977,8 +6422,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn retention_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retention_period {
-            let converted_985 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_985)
+            let converted_1032 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1032)
         } else {
             Ok(py.None())
         }
@@ -4987,8 +6432,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_986 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_986)
+            let converted_1033 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1033)
         } else {
             Ok(py.None())
         }
@@ -4997,19 +6442,19 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn tags_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags_list {
-            let converted_987_list = PyList::empty(py);
-            for item_988 in value {
-                let converted_item_989 = Py::new(
+            let converted_1034_list = PyList::empty(py);
+            for item_1035 in value {
+                let converted_item_1036 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_988),
+                        inner: Arc::clone(item_1035),
                     },
                 )?
                 .into_any();
-                converted_987_list.append(converted_item_989)?;
+                converted_1034_list.append(converted_item_1036)?;
             }
-            let converted_987 = converted_987_list.into_any().unbind();
-            Ok(converted_987)
+            let converted_1034 = converted_1034_list.into_any().unbind();
+            Ok(converted_1034)
         } else {
             Ok(py.None())
         }
@@ -5018,8 +6463,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_990 = (value).to_string().into_py_any(py)?;
-            Ok(converted_990)
+            let converted_1037 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1037)
         } else {
             Ok(py.None())
         }
@@ -5028,8 +6473,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_991 = (value).to_string().into_py_any(py)?;
-            Ok(converted_991)
+            let converted_1038 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1038)
         } else {
             Ok(py.None())
         }
@@ -5038,8 +6483,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_992 = (value).as_str().into_py_any(py)?;
-            Ok(converted_992)
+            let converted_1039 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1039)
         } else {
             Ok(py.None())
         }
@@ -5048,8 +6493,8 @@ impl PyOperationCreateEventDataStoreOutput {
     #[getter]
     fn billing_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode {
-            let converted_993 = (value).as_str().into_py_any(py)?;
-            Ok(converted_993)
+            let converted_1040 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1040)
         } else {
             Ok(py.None())
         }
@@ -5058,90 +6503,90 @@ impl PyOperationCreateEventDataStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_996 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_996)?;
+            let converted_1043 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1043)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_997 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_997)?;
+            let converted_1044 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1044)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_998 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_998)?;
+            let converted_1045 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1045)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_999_list = PyList::empty(py);
-            for item_1000 in value {
-                let converted_item_1001 = advanced_event_selector_shared_to_py(py, item_1000)?;
-                converted_999_list.append(converted_item_1001)?;
+            let converted_1046_list = PyList::empty(py);
+            for item_1047 in value {
+                let converted_item_1048 = advanced_event_selector_shared_to_py(py, item_1047)?;
+                converted_1046_list.append(converted_item_1048)?;
             }
-            let converted_999 = converted_999_list.into_any().unbind();
-            result.set_item("advanced_event_selectors", converted_999)?;
+            let converted_1046 = converted_1046_list.into_any().unbind();
+            result.set_item("advanced_event_selectors", converted_1046)?;
         } else {
             result.set_item("advanced_event_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_1002 = (value).to_owned().into_py_any(py)?;
-            result.set_item("multi_region_enabled", converted_1002)?;
+            let converted_1049 = (value).to_owned().into_py_any(py)?;
+            result.set_item("multi_region_enabled", converted_1049)?;
         } else {
             result.set_item("multi_region_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_1003 = (value).to_owned().into_py_any(py)?;
-            result.set_item("organization_enabled", converted_1003)?;
+            let converted_1050 = (value).to_owned().into_py_any(py)?;
+            result.set_item("organization_enabled", converted_1050)?;
         } else {
             result.set_item("organization_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.retention_period {
-            let converted_1004 = (value).to_owned().into_py_any(py)?;
-            result.set_item("retention_period", converted_1004)?;
+            let converted_1051 = (value).to_owned().into_py_any(py)?;
+            result.set_item("retention_period", converted_1051)?;
         } else {
             result.set_item("retention_period", py.None())?;
         }
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1005 = (value).to_owned().into_py_any(py)?;
-            result.set_item("termination_protection_enabled", converted_1005)?;
+            let converted_1052 = (value).to_owned().into_py_any(py)?;
+            result.set_item("termination_protection_enabled", converted_1052)?;
         } else {
             result.set_item("termination_protection_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.tags_list {
-            let converted_1006_list = PyList::empty(py);
-            for item_1007 in value {
-                let converted_item_1008 = tag_to_py(py, item_1007)?;
-                converted_1006_list.append(converted_item_1008)?;
+            let converted_1053_list = PyList::empty(py);
+            for item_1054 in value {
+                let converted_item_1055 = tag_to_py(py, item_1054)?;
+                converted_1053_list.append(converted_item_1055)?;
             }
-            let converted_1006 = converted_1006_list.into_any().unbind();
-            result.set_item("tags_list", converted_1006)?;
+            let converted_1053 = converted_1053_list.into_any().unbind();
+            result.set_item("tags_list", converted_1053)?;
         } else {
             result.set_item("tags_list", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1009 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1009)?;
+            let converted_1056 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1056)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1010 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1010)?;
+            let converted_1057 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1057)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1011 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_id", converted_1011)?;
+            let converted_1058 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_id", converted_1058)?;
         } else {
             result.set_item("kms_key_id", py.None())?;
         }
         if let Some(value) = &self.inner.billing_mode {
-            let converted_1012 = (value).as_str().into_py_any(py)?;
-            result.set_item("billing_mode", converted_1012)?;
+            let converted_1059 = (value).as_str().into_py_any(py)?;
+            result.set_item("billing_mode", converted_1059)?;
         } else {
             result.set_item("billing_mode", py.None())?;
         }
@@ -5163,8 +6608,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1013 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1013)
+            let converted_1060 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1060)
         } else {
             Ok(py.None())
         }
@@ -5173,8 +6618,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn s3_bucket_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_bucket_name {
-            let converted_1014 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1014)
+            let converted_1061 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1061)
         } else {
             Ok(py.None())
         }
@@ -5183,8 +6628,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn s3_key_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_key_prefix {
-            let converted_1015 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1015)
+            let converted_1062 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1062)
         } else {
             Ok(py.None())
         }
@@ -5193,8 +6638,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn sns_topic_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_name {
-            let converted_1016 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1016)
+            let converted_1063 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1063)
         } else {
             Ok(py.None())
         }
@@ -5203,8 +6648,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn sns_topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_arn {
-            let converted_1017 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1017)
+            let converted_1064 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1064)
         } else {
             Ok(py.None())
         }
@@ -5213,8 +6658,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn include_global_service_events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_global_service_events {
-            let converted_1018 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1018)
+            let converted_1065 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1065)
         } else {
             Ok(py.None())
         }
@@ -5223,8 +6668,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn is_multi_region_trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_multi_region_trail {
-            let converted_1019 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1019)
+            let converted_1066 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1066)
         } else {
             Ok(py.None())
         }
@@ -5233,8 +6678,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1020 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1020)
+            let converted_1067 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1067)
         } else {
             Ok(py.None())
         }
@@ -5243,8 +6688,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn log_file_validation_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_file_validation_enabled {
-            let converted_1021 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1021)
+            let converted_1068 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1068)
         } else {
             Ok(py.None())
         }
@@ -5253,8 +6698,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn cloud_watch_logs_log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_log_group_arn {
-            let converted_1022 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1022)
+            let converted_1069 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1069)
         } else {
             Ok(py.None())
         }
@@ -5263,8 +6708,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn cloud_watch_logs_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_role_arn {
-            let converted_1023 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1023)
+            let converted_1070 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1070)
         } else {
             Ok(py.None())
         }
@@ -5273,8 +6718,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1024 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1024)
+            let converted_1071 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1071)
         } else {
             Ok(py.None())
         }
@@ -5283,8 +6728,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn is_organization_trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_organization_trail {
-            let converted_1025 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1025)
+            let converted_1072 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1072)
         } else {
             Ok(py.None())
         }
@@ -5293,8 +6738,8 @@ impl PyOperationCreateTrailOutput {
     #[getter]
     fn recursive_logging(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recursive_logging {
-            let converted_1026 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1026)
+            let converted_1073 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1073)
         } else {
             Ok(py.None())
         }
@@ -5303,86 +6748,86 @@ impl PyOperationCreateTrailOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.name {
-            let converted_1027 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1027)?;
+            let converted_1074 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1074)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.s3_bucket_name {
-            let converted_1028 = (value).as_str().into_py_any(py)?;
-            result.set_item("s3_bucket_name", converted_1028)?;
+            let converted_1075 = (value).as_str().into_py_any(py)?;
+            result.set_item("s3_bucket_name", converted_1075)?;
         } else {
             result.set_item("s3_bucket_name", py.None())?;
         }
         if let Some(value) = &self.inner.s3_key_prefix {
-            let converted_1029 = (value).as_str().into_py_any(py)?;
-            result.set_item("s3_key_prefix", converted_1029)?;
+            let converted_1076 = (value).as_str().into_py_any(py)?;
+            result.set_item("s3_key_prefix", converted_1076)?;
         } else {
             result.set_item("s3_key_prefix", py.None())?;
         }
         if let Some(value) = &self.inner.sns_topic_name {
-            let converted_1030 = (value).as_str().into_py_any(py)?;
-            result.set_item("sns_topic_name", converted_1030)?;
+            let converted_1077 = (value).as_str().into_py_any(py)?;
+            result.set_item("sns_topic_name", converted_1077)?;
         } else {
             result.set_item("sns_topic_name", py.None())?;
         }
         if let Some(value) = &self.inner.sns_topic_arn {
-            let converted_1031 = (value).as_str().into_py_any(py)?;
-            result.set_item("sns_topic_arn", converted_1031)?;
+            let converted_1078 = (value).as_str().into_py_any(py)?;
+            result.set_item("sns_topic_arn", converted_1078)?;
         } else {
             result.set_item("sns_topic_arn", py.None())?;
         }
         if let Some(value) = &self.inner.include_global_service_events {
-            let converted_1032 = (value).to_owned().into_py_any(py)?;
-            result.set_item("include_global_service_events", converted_1032)?;
+            let converted_1079 = (value).to_owned().into_py_any(py)?;
+            result.set_item("include_global_service_events", converted_1079)?;
         } else {
             result.set_item("include_global_service_events", py.None())?;
         }
         if let Some(value) = &self.inner.is_multi_region_trail {
-            let converted_1033 = (value).to_owned().into_py_any(py)?;
-            result.set_item("is_multi_region_trail", converted_1033)?;
+            let converted_1080 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_multi_region_trail", converted_1080)?;
         } else {
             result.set_item("is_multi_region_trail", py.None())?;
         }
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1034 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1034)?;
+            let converted_1081 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1081)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.log_file_validation_enabled {
-            let converted_1035 = (value).to_owned().into_py_any(py)?;
-            result.set_item("log_file_validation_enabled", converted_1035)?;
+            let converted_1082 = (value).to_owned().into_py_any(py)?;
+            result.set_item("log_file_validation_enabled", converted_1082)?;
         } else {
             result.set_item("log_file_validation_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.cloud_watch_logs_log_group_arn {
-            let converted_1036 = (value).as_str().into_py_any(py)?;
-            result.set_item("cloud_watch_logs_log_group_arn", converted_1036)?;
+            let converted_1083 = (value).as_str().into_py_any(py)?;
+            result.set_item("cloud_watch_logs_log_group_arn", converted_1083)?;
         } else {
             result.set_item("cloud_watch_logs_log_group_arn", py.None())?;
         }
         if let Some(value) = &self.inner.cloud_watch_logs_role_arn {
-            let converted_1037 = (value).as_str().into_py_any(py)?;
-            result.set_item("cloud_watch_logs_role_arn", converted_1037)?;
+            let converted_1084 = (value).as_str().into_py_any(py)?;
+            result.set_item("cloud_watch_logs_role_arn", converted_1084)?;
         } else {
             result.set_item("cloud_watch_logs_role_arn", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1038 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_id", converted_1038)?;
+            let converted_1085 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_id", converted_1085)?;
         } else {
             result.set_item("kms_key_id", py.None())?;
         }
         if let Some(value) = &self.inner.is_organization_trail {
-            let converted_1039 = (value).to_owned().into_py_any(py)?;
-            result.set_item("is_organization_trail", converted_1039)?;
+            let converted_1086 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_organization_trail", converted_1086)?;
         } else {
             result.set_item("is_organization_trail", py.None())?;
         }
         if let Some(value) = &self.inner.recursive_logging {
-            let converted_1040 = (value).to_owned().into_py_any(py)?;
-            result.set_item("recursive_logging", converted_1040)?;
+            let converted_1087 = (value).to_owned().into_py_any(py)?;
+            result.set_item("recursive_logging", converted_1087)?;
         } else {
             result.set_item("recursive_logging", py.None())?;
         }
@@ -5538,8 +6983,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_id {
-            let converted_1041 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1041)
+            let converted_1088 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1088)
         } else {
             Ok(py.None())
         }
@@ -5548,8 +6993,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn query_string(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_string {
-            let converted_1042 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1042)
+            let converted_1089 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1089)
         } else {
             Ok(py.None())
         }
@@ -5558,8 +7003,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn query_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_status {
-            let converted_1043 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1043)
+            let converted_1090 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1090)
         } else {
             Ok(py.None())
         }
@@ -5568,14 +7013,14 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn query_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_statistics {
-            let converted_1044 = Py::new(
+            let converted_1091 = Py::new(
                 py,
                 PyQueryStatisticsForDescribeQuery {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1044)
+            Ok(converted_1091)
         } else {
             Ok(py.None())
         }
@@ -5584,8 +7029,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_1045 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1045)
+            let converted_1092 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1092)
         } else {
             Ok(py.None())
         }
@@ -5594,8 +7039,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn delivery_s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_s3_uri {
-            let converted_1046 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1046)
+            let converted_1093 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1093)
         } else {
             Ok(py.None())
         }
@@ -5604,8 +7049,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn delivery_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delivery_status {
-            let converted_1047 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1047)
+            let converted_1094 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1094)
         } else {
             Ok(py.None())
         }
@@ -5614,8 +7059,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn prompt(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt {
-            let converted_1048 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1048)
+            let converted_1095 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1095)
         } else {
             Ok(py.None())
         }
@@ -5624,8 +7069,8 @@ impl PyOperationDescribeQueryOutput {
     #[getter]
     fn event_data_store_owner_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_1049 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1049)
+            let converted_1096 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1096)
         } else {
             Ok(py.None())
         }
@@ -5634,56 +7079,56 @@ impl PyOperationDescribeQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_id {
-            let converted_1050 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_id", converted_1050)?;
+            let converted_1097 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_id", converted_1097)?;
         } else {
             result.set_item("query_id", py.None())?;
         }
         if let Some(value) = &self.inner.query_string {
-            let converted_1051 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_string", converted_1051)?;
+            let converted_1098 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_string", converted_1098)?;
         } else {
             result.set_item("query_string", py.None())?;
         }
         if let Some(value) = &self.inner.query_status {
-            let converted_1052 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_status", converted_1052)?;
+            let converted_1099 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_status", converted_1099)?;
         } else {
             result.set_item("query_status", py.None())?;
         }
         if let Some(value) = &self.inner.query_statistics {
-            let converted_1053 = query_statistics_for_describe_query_to_py(py, value)?;
-            result.set_item("query_statistics", converted_1053)?;
+            let converted_1100 = query_statistics_for_describe_query_to_py(py, value)?;
+            result.set_item("query_statistics", converted_1100)?;
         } else {
             result.set_item("query_statistics", py.None())?;
         }
         if let Some(value) = &self.inner.error_message {
-            let converted_1054 = (value).as_str().into_py_any(py)?;
-            result.set_item("error_message", converted_1054)?;
+            let converted_1101 = (value).as_str().into_py_any(py)?;
+            result.set_item("error_message", converted_1101)?;
         } else {
             result.set_item("error_message", py.None())?;
         }
         if let Some(value) = &self.inner.delivery_s3_uri {
-            let converted_1055 = (value).as_str().into_py_any(py)?;
-            result.set_item("delivery_s3_uri", converted_1055)?;
+            let converted_1102 = (value).as_str().into_py_any(py)?;
+            result.set_item("delivery_s3_uri", converted_1102)?;
         } else {
             result.set_item("delivery_s3_uri", py.None())?;
         }
         if let Some(value) = &self.inner.delivery_status {
-            let converted_1056 = (value).as_str().into_py_any(py)?;
-            result.set_item("delivery_status", converted_1056)?;
+            let converted_1103 = (value).as_str().into_py_any(py)?;
+            result.set_item("delivery_status", converted_1103)?;
         } else {
             result.set_item("delivery_status", py.None())?;
         }
         if let Some(value) = &self.inner.prompt {
-            let converted_1057 = (value).as_str().into_py_any(py)?;
-            result.set_item("prompt", converted_1057)?;
+            let converted_1104 = (value).as_str().into_py_any(py)?;
+            result.set_item("prompt", converted_1104)?;
         } else {
             result.set_item("prompt", py.None())?;
         }
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_1058 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_owner_account_id", converted_1058)?;
+            let converted_1105 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_owner_account_id", converted_1105)?;
         } else {
             result.set_item("event_data_store_owner_account_id", py.None())?;
         }
@@ -5705,7 +7150,7 @@ impl From<aws_sdk_cloudtrail::operation::describe_trails::DescribeTrailsOutput>
             trail_list: value.trail_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1062| Arc::new(owned_1062))
+                    .map(|owned_1109| Arc::new(owned_1109))
                     .collect()
             }),
         }
@@ -5726,19 +7171,19 @@ impl PyOperationDescribeTrailsOutput {
     #[getter]
     fn trail_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_list {
-            let converted_1059_list = PyList::empty(py);
-            for item_1060 in value {
-                let converted_item_1061 = Py::new(
+            let converted_1106_list = PyList::empty(py);
+            for item_1107 in value {
+                let converted_item_1108 = Py::new(
                     py,
                     PyTrail {
-                        inner: Arc::clone(item_1060),
+                        inner: Arc::clone(item_1107),
                     },
                 )?
                 .into_any();
-                converted_1059_list.append(converted_item_1061)?;
+                converted_1106_list.append(converted_item_1108)?;
             }
-            let converted_1059 = converted_1059_list.into_any().unbind();
-            Ok(converted_1059)
+            let converted_1106 = converted_1106_list.into_any().unbind();
+            Ok(converted_1106)
         } else {
             Ok(py.None())
         }
@@ -5747,13 +7192,13 @@ impl PyOperationDescribeTrailsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_list {
-            let converted_1063_list = PyList::empty(py);
-            for item_1064 in value {
-                let converted_item_1065 = trail_to_py(py, item_1064)?;
-                converted_1063_list.append(converted_item_1065)?;
+            let converted_1110_list = PyList::empty(py);
+            for item_1111 in value {
+                let converted_item_1112 = trail_to_py(py, item_1111)?;
+                converted_1110_list.append(converted_item_1112)?;
             }
-            let converted_1063 = converted_1063_list.into_any().unbind();
-            result.set_item("trail_list", converted_1063)?;
+            let converted_1110 = converted_1110_list.into_any().unbind();
+            result.set_item("trail_list", converted_1110)?;
         } else {
             result.set_item("trail_list", py.None())?;
         }
@@ -5775,8 +7220,8 @@ impl PyOperationDisableFederationOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1066 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1066)
+            let converted_1113 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1113)
         } else {
             Ok(py.None())
         }
@@ -5785,8 +7230,8 @@ impl PyOperationDisableFederationOutput {
     #[getter]
     fn federation_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federation_status {
-            let converted_1067 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1067)
+            let converted_1114 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1114)
         } else {
             Ok(py.None())
         }
@@ -5795,14 +7240,14 @@ impl PyOperationDisableFederationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1068 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1068)?;
+            let converted_1115 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1115)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.federation_status {
-            let converted_1069 = (value).as_str().into_py_any(py)?;
-            result.set_item("federation_status", converted_1069)?;
+            let converted_1116 = (value).as_str().into_py_any(py)?;
+            result.set_item("federation_status", converted_1116)?;
         } else {
             result.set_item("federation_status", py.None())?;
         }
@@ -5824,8 +7269,8 @@ impl PyOperationEnableFederationOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1070 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1070)
+            let converted_1117 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1117)
         } else {
             Ok(py.None())
         }
@@ -5834,8 +7279,8 @@ impl PyOperationEnableFederationOutput {
     #[getter]
     fn federation_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federation_status {
-            let converted_1071 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1071)
+            let converted_1118 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1118)
         } else {
             Ok(py.None())
         }
@@ -5844,8 +7289,8 @@ impl PyOperationEnableFederationOutput {
     #[getter]
     fn federation_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federation_role_arn {
-            let converted_1072 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1072)
+            let converted_1119 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1119)
         } else {
             Ok(py.None())
         }
@@ -5854,20 +7299,20 @@ impl PyOperationEnableFederationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1073 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1073)?;
+            let converted_1120 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1120)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.federation_status {
-            let converted_1074 = (value).as_str().into_py_any(py)?;
-            result.set_item("federation_status", converted_1074)?;
+            let converted_1121 = (value).as_str().into_py_any(py)?;
+            result.set_item("federation_status", converted_1121)?;
         } else {
             result.set_item("federation_status", py.None())?;
         }
         if let Some(value) = &self.inner.federation_role_arn {
-            let converted_1075 = (value).as_str().into_py_any(py)?;
-            result.set_item("federation_role_arn", converted_1075)?;
+            let converted_1122 = (value).as_str().into_py_any(py)?;
+            result.set_item("federation_role_arn", converted_1122)?;
         } else {
             result.set_item("federation_role_arn", py.None())?;
         }
@@ -5889,8 +7334,8 @@ impl PyOperationGenerateQueryOutput {
     #[getter]
     fn query_statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_statement {
-            let converted_1076 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1076)
+            let converted_1123 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1123)
         } else {
             Ok(py.None())
         }
@@ -5899,8 +7344,8 @@ impl PyOperationGenerateQueryOutput {
     #[getter]
     fn query_alias(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_alias {
-            let converted_1077 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1077)
+            let converted_1124 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1124)
         } else {
             Ok(py.None())
         }
@@ -5909,8 +7354,8 @@ impl PyOperationGenerateQueryOutput {
     #[getter]
     fn event_data_store_owner_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_1078 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1078)
+            let converted_1125 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1125)
         } else {
             Ok(py.None())
         }
@@ -5919,20 +7364,20 @@ impl PyOperationGenerateQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_statement {
-            let converted_1079 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_statement", converted_1079)?;
+            let converted_1126 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_statement", converted_1126)?;
         } else {
             result.set_item("query_statement", py.None())?;
         }
         if let Some(value) = &self.inner.query_alias {
-            let converted_1080 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_alias", converted_1080)?;
+            let converted_1127 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_alias", converted_1127)?;
         } else {
             result.set_item("query_alias", py.None())?;
         }
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_1081 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_owner_account_id", converted_1081)?;
+            let converted_1128 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_owner_account_id", converted_1128)?;
         } else {
             result.set_item("event_data_store_owner_account_id", py.None())?;
         }
@@ -5965,7 +7410,7 @@ impl From<aws_sdk_cloudtrail::operation::get_channel::GetChannelOutput>
             destinations: value.destinations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1090| Arc::new(owned_1090))
+                    .map(|owned_1137| Arc::new(owned_1137))
                     .collect()
             }),
             ingestion_status: value.ingestion_status.map(|item| Arc::new(item)),
@@ -5983,8 +7428,8 @@ impl PyOperationGetChannelOutput {
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_arn {
-            let converted_1082 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1082)
+            let converted_1129 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1129)
         } else {
             Ok(py.None())
         }
@@ -5993,8 +7438,8 @@ impl PyOperationGetChannelOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1083 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1083)
+            let converted_1130 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1130)
         } else {
             Ok(py.None())
         }
@@ -6003,8 +7448,8 @@ impl PyOperationGetChannelOutput {
     #[getter]
     fn source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source {
-            let converted_1084 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1084)
+            let converted_1131 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1131)
         } else {
             Ok(py.None())
         }
@@ -6013,14 +7458,14 @@ impl PyOperationGetChannelOutput {
     #[getter]
     fn source_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_config {
-            let converted_1085 = Py::new(
+            let converted_1132 = Py::new(
                 py,
                 PySourceConfig {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1085)
+            Ok(converted_1132)
         } else {
             Ok(py.None())
         }
@@ -6029,19 +7474,19 @@ impl PyOperationGetChannelOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_1086_list = PyList::empty(py);
-            for item_1087 in value {
-                let converted_item_1088 = Py::new(
+            let converted_1133_list = PyList::empty(py);
+            for item_1134 in value {
+                let converted_item_1135 = Py::new(
                     py,
                     PyDestination {
-                        inner: Arc::clone(item_1087),
+                        inner: Arc::clone(item_1134),
                     },
                 )?
                 .into_any();
-                converted_1086_list.append(converted_item_1088)?;
+                converted_1133_list.append(converted_item_1135)?;
             }
-            let converted_1086 = converted_1086_list.into_any().unbind();
-            Ok(converted_1086)
+            let converted_1133 = converted_1133_list.into_any().unbind();
+            Ok(converted_1133)
         } else {
             Ok(py.None())
         }
@@ -6050,14 +7495,14 @@ impl PyOperationGetChannelOutput {
     #[getter]
     fn ingestion_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ingestion_status {
-            let converted_1089 = Py::new(
+            let converted_1136 = Py::new(
                 py,
                 PyIngestionStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1089)
+            Ok(converted_1136)
         } else {
             Ok(py.None())
         }
@@ -6066,43 +7511,43 @@ impl PyOperationGetChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.channel_arn {
-            let converted_1091 = (value).as_str().into_py_any(py)?;
-            result.set_item("channel_arn", converted_1091)?;
+            let converted_1138 = (value).as_str().into_py_any(py)?;
+            result.set_item("channel_arn", converted_1138)?;
         } else {
             result.set_item("channel_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1092 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1092)?;
+            let converted_1139 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1139)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.source {
-            let converted_1093 = (value).as_str().into_py_any(py)?;
-            result.set_item("source", converted_1093)?;
+            let converted_1140 = (value).as_str().into_py_any(py)?;
+            result.set_item("source", converted_1140)?;
         } else {
             result.set_item("source", py.None())?;
         }
         if let Some(value) = &self.inner.source_config {
-            let converted_1094 = source_config_shared_to_py(py, value)?;
-            result.set_item("source_config", converted_1094)?;
+            let converted_1141 = source_config_shared_to_py(py, value)?;
+            result.set_item("source_config", converted_1141)?;
         } else {
             result.set_item("source_config", py.None())?;
         }
         if let Some(value) = &self.inner.destinations {
-            let converted_1095_list = PyList::empty(py);
-            for item_1096 in value {
-                let converted_item_1097 = destination_to_py(py, item_1096)?;
-                converted_1095_list.append(converted_item_1097)?;
+            let converted_1142_list = PyList::empty(py);
+            for item_1143 in value {
+                let converted_item_1144 = destination_to_py(py, item_1143)?;
+                converted_1142_list.append(converted_item_1144)?;
             }
-            let converted_1095 = converted_1095_list.into_any().unbind();
-            result.set_item("destinations", converted_1095)?;
+            let converted_1142 = converted_1142_list.into_any().unbind();
+            result.set_item("destinations", converted_1142)?;
         } else {
             result.set_item("destinations", py.None())?;
         }
         if let Some(value) = &self.inner.ingestion_status {
-            let converted_1098 = ingestion_status_to_py(py, value)?;
-            result.set_item("ingestion_status", converted_1098)?;
+            let converted_1145 = ingestion_status_to_py(py, value)?;
+            result.set_item("ingestion_status", converted_1145)?;
         } else {
             result.set_item("ingestion_status", py.None())?;
         }
@@ -6136,7 +7581,7 @@ impl From<aws_sdk_cloudtrail::operation::get_dashboard::GetDashboardOutput>
             widgets: value.widgets.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1111| Arc::new(owned_1111))
+                    .map(|owned_1158| Arc::new(owned_1158))
                     .collect()
             }),
             refresh_schedule: value
@@ -6165,8 +7610,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_1099 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1099)
+            let converted_1146 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1146)
         } else {
             Ok(py.None())
         }
@@ -6175,8 +7620,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_1100 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1100)
+            let converted_1147 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1147)
         } else {
             Ok(py.None())
         }
@@ -6185,8 +7630,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1101 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1101)
+            let converted_1148 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1148)
         } else {
             Ok(py.None())
         }
@@ -6195,19 +7640,19 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn widgets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.widgets {
-            let converted_1102_list = PyList::empty(py);
-            for item_1103 in value {
-                let converted_item_1104 = Py::new(
+            let converted_1149_list = PyList::empty(py);
+            for item_1150 in value {
+                let converted_item_1151 = Py::new(
                     py,
                     PyWidget {
-                        inner: Arc::clone(item_1103),
+                        inner: Arc::clone(item_1150),
                     },
                 )?
                 .into_any();
-                converted_1102_list.append(converted_item_1104)?;
+                converted_1149_list.append(converted_item_1151)?;
             }
-            let converted_1102 = converted_1102_list.into_any().unbind();
-            Ok(converted_1102)
+            let converted_1149 = converted_1149_list.into_any().unbind();
+            Ok(converted_1149)
         } else {
             Ok(py.None())
         }
@@ -6216,14 +7661,14 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn refresh_schedule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.refresh_schedule {
-            let converted_1105 = Py::new(
+            let converted_1152 = Py::new(
                 py,
                 PyRefreshSchedule {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1105)
+            Ok(converted_1152)
         } else {
             Ok(py.None())
         }
@@ -6232,8 +7677,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1106 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1106)
+            let converted_1153 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1153)
         } else {
             Ok(py.None())
         }
@@ -6242,8 +7687,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1107 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1107)
+            let converted_1154 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1154)
         } else {
             Ok(py.None())
         }
@@ -6252,8 +7697,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn last_refresh_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_refresh_id {
-            let converted_1108 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1108)
+            let converted_1155 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1155)
         } else {
             Ok(py.None())
         }
@@ -6262,8 +7707,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn last_refresh_failure_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_refresh_failure_reason {
-            let converted_1109 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1109)
+            let converted_1156 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1156)
         } else {
             Ok(py.None())
         }
@@ -6272,8 +7717,8 @@ impl PyOperationGetDashboardOutput {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1110 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1110)
+            let converted_1157 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1157)
         } else {
             Ok(py.None())
         }
@@ -6282,67 +7727,67 @@ impl PyOperationGetDashboardOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_1112 = (value).as_str().into_py_any(py)?;
-            result.set_item("dashboard_arn", converted_1112)?;
+            let converted_1159 = (value).as_str().into_py_any(py)?;
+            result.set_item("dashboard_arn", converted_1159)?;
         } else {
             result.set_item("dashboard_arn", py.None())?;
         }
         if let Some(value) = &self.inner.r#type {
-            let converted_1113 = (value).as_str().into_py_any(py)?;
-            result.set_item("type", converted_1113)?;
+            let converted_1160 = (value).as_str().into_py_any(py)?;
+            result.set_item("type", converted_1160)?;
         } else {
             result.set_item("type", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1114 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1114)?;
+            let converted_1161 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1161)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.widgets {
-            let converted_1115_list = PyList::empty(py);
-            for item_1116 in value {
-                let converted_item_1117 = widget_to_py(py, item_1116)?;
-                converted_1115_list.append(converted_item_1117)?;
+            let converted_1162_list = PyList::empty(py);
+            for item_1163 in value {
+                let converted_item_1164 = widget_to_py(py, item_1163)?;
+                converted_1162_list.append(converted_item_1164)?;
             }
-            let converted_1115 = converted_1115_list.into_any().unbind();
-            result.set_item("widgets", converted_1115)?;
+            let converted_1162 = converted_1162_list.into_any().unbind();
+            result.set_item("widgets", converted_1162)?;
         } else {
             result.set_item("widgets", py.None())?;
         }
         if let Some(value) = &self.inner.refresh_schedule {
-            let converted_1118 = refresh_schedule_shared_to_py(py, value)?;
-            result.set_item("refresh_schedule", converted_1118)?;
+            let converted_1165 = refresh_schedule_shared_to_py(py, value)?;
+            result.set_item("refresh_schedule", converted_1165)?;
         } else {
             result.set_item("refresh_schedule", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1119 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1119)?;
+            let converted_1166 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1166)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1120 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1120)?;
+            let converted_1167 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1167)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.last_refresh_id {
-            let converted_1121 = (value).as_str().into_py_any(py)?;
-            result.set_item("last_refresh_id", converted_1121)?;
+            let converted_1168 = (value).as_str().into_py_any(py)?;
+            result.set_item("last_refresh_id", converted_1168)?;
         } else {
             result.set_item("last_refresh_id", py.None())?;
         }
         if let Some(value) = &self.inner.last_refresh_failure_reason {
-            let converted_1122 = (value).as_str().into_py_any(py)?;
-            result.set_item("last_refresh_failure_reason", converted_1122)?;
+            let converted_1169 = (value).as_str().into_py_any(py)?;
+            result.set_item("last_refresh_failure_reason", converted_1169)?;
         } else {
             result.set_item("last_refresh_failure_reason", py.None())?;
         }
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1123 = (value).to_owned().into_py_any(py)?;
-            result.set_item("termination_protection_enabled", converted_1123)?;
+            let converted_1170 = (value).to_owned().into_py_any(py)?;
+            result.set_item("termination_protection_enabled", converted_1170)?;
         } else {
             result.set_item("termination_protection_enabled", py.None())?;
         }
@@ -6375,13 +7820,13 @@ impl From<aws_sdk_cloudtrail::operation::get_event_configuration::GetEventConfig
             context_key_selectors: value.context_key_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1133| Arc::new(owned_1133))
+                    .map(|owned_1180| Arc::new(owned_1180))
                     .collect()
             }),
             aggregation_configurations: value.aggregation_configurations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1134| Arc::new(owned_1134))
+                    .map(|owned_1181| Arc::new(owned_1181))
                     .collect()
             }),
         }
@@ -6402,8 +7847,8 @@ impl PyOperationGetEventConfigurationOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1124 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1124)
+            let converted_1171 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1171)
         } else {
             Ok(py.None())
         }
@@ -6412,8 +7857,8 @@ impl PyOperationGetEventConfigurationOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1125 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1125)
+            let converted_1172 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1172)
         } else {
             Ok(py.None())
         }
@@ -6422,8 +7867,8 @@ impl PyOperationGetEventConfigurationOutput {
     #[getter]
     fn max_event_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_event_size {
-            let converted_1126 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1126)
+            let converted_1173 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1173)
         } else {
             Ok(py.None())
         }
@@ -6432,19 +7877,19 @@ impl PyOperationGetEventConfigurationOutput {
     #[getter]
     fn context_key_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.context_key_selectors {
-            let converted_1127_list = PyList::empty(py);
-            for item_1128 in value {
-                let converted_item_1129 = Py::new(
+            let converted_1174_list = PyList::empty(py);
+            for item_1175 in value {
+                let converted_item_1176 = Py::new(
                     py,
                     PyContextKeySelector {
-                        inner: Arc::clone(item_1128),
+                        inner: Arc::clone(item_1175),
                     },
                 )?
                 .into_any();
-                converted_1127_list.append(converted_item_1129)?;
+                converted_1174_list.append(converted_item_1176)?;
             }
-            let converted_1127 = converted_1127_list.into_any().unbind();
-            Ok(converted_1127)
+            let converted_1174 = converted_1174_list.into_any().unbind();
+            Ok(converted_1174)
         } else {
             Ok(py.None())
         }
@@ -6453,19 +7898,19 @@ impl PyOperationGetEventConfigurationOutput {
     #[getter]
     fn aggregation_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aggregation_configurations {
-            let converted_1130_list = PyList::empty(py);
-            for item_1131 in value {
-                let converted_item_1132 = Py::new(
+            let converted_1177_list = PyList::empty(py);
+            for item_1178 in value {
+                let converted_item_1179 = Py::new(
                     py,
                     PyAggregationConfiguration {
-                        inner: Arc::clone(item_1131),
+                        inner: Arc::clone(item_1178),
                     },
                 )?
                 .into_any();
-                converted_1130_list.append(converted_item_1132)?;
+                converted_1177_list.append(converted_item_1179)?;
             }
-            let converted_1130 = converted_1130_list.into_any().unbind();
-            Ok(converted_1130)
+            let converted_1177 = converted_1177_list.into_any().unbind();
+            Ok(converted_1177)
         } else {
             Ok(py.None())
         }
@@ -6474,42 +7919,42 @@ impl PyOperationGetEventConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1135 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1135)?;
+            let converted_1182 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1182)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1136 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1136)?;
+            let converted_1183 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1183)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.max_event_size {
-            let converted_1137 = (value).as_str().into_py_any(py)?;
-            result.set_item("max_event_size", converted_1137)?;
+            let converted_1184 = (value).as_str().into_py_any(py)?;
+            result.set_item("max_event_size", converted_1184)?;
         } else {
             result.set_item("max_event_size", py.None())?;
         }
         if let Some(value) = &self.inner.context_key_selectors {
-            let converted_1138_list = PyList::empty(py);
-            for item_1139 in value {
-                let converted_item_1140 = context_key_selector_to_py(py, item_1139)?;
-                converted_1138_list.append(converted_item_1140)?;
+            let converted_1185_list = PyList::empty(py);
+            for item_1186 in value {
+                let converted_item_1187 = context_key_selector_to_py(py, item_1186)?;
+                converted_1185_list.append(converted_item_1187)?;
             }
-            let converted_1138 = converted_1138_list.into_any().unbind();
-            result.set_item("context_key_selectors", converted_1138)?;
+            let converted_1185 = converted_1185_list.into_any().unbind();
+            result.set_item("context_key_selectors", converted_1185)?;
         } else {
             result.set_item("context_key_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.aggregation_configurations {
-            let converted_1141_list = PyList::empty(py);
-            for item_1142 in value {
-                let converted_item_1143 = aggregation_configuration_to_py(py, item_1142)?;
-                converted_1141_list.append(converted_item_1143)?;
+            let converted_1188_list = PyList::empty(py);
+            for item_1189 in value {
+                let converted_item_1190 = aggregation_configuration_to_py(py, item_1189)?;
+                converted_1188_list.append(converted_item_1190)?;
             }
-            let converted_1141 = converted_1141_list.into_any().unbind();
-            result.set_item("aggregation_configurations", converted_1141)?;
+            let converted_1188 = converted_1188_list.into_any().unbind();
+            result.set_item("aggregation_configurations", converted_1188)?;
         } else {
             result.set_item("aggregation_configurations", py.None())?;
         }
@@ -6550,7 +7995,7 @@ impl From<aws_sdk_cloudtrail::operation::get_event_data_store::GetEventDataStore
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1163| Arc::new(SharedAdvancedEventSelector::from(owned_1163)))
+                    .map(|owned_1210| Arc::new(SharedAdvancedEventSelector::from(owned_1210)))
                     .collect()
             }),
             multi_region_enabled: value.multi_region_enabled,
@@ -6566,7 +8011,7 @@ impl From<aws_sdk_cloudtrail::operation::get_event_data_store::GetEventDataStore
             partition_keys: value.partition_keys.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1164| Arc::new(owned_1164))
+                    .map(|owned_1211| Arc::new(owned_1211))
                     .collect()
             }),
         }
@@ -6587,8 +8032,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1144 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1144)
+            let converted_1191 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1191)
         } else {
             Ok(py.None())
         }
@@ -6597,8 +8042,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1145 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1145)
+            let converted_1192 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1192)
         } else {
             Ok(py.None())
         }
@@ -6607,8 +8052,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1146 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1146)
+            let converted_1193 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1193)
         } else {
             Ok(py.None())
         }
@@ -6617,19 +8062,19 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1147_list = PyList::empty(py);
-            for item_1148 in value {
-                let converted_item_1149 = Py::new(
+            let converted_1194_list = PyList::empty(py);
+            for item_1195 in value {
+                let converted_item_1196 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_1148),
+                        inner: Arc::clone(item_1195),
                     },
                 )?
                 .into_any();
-                converted_1147_list.append(converted_item_1149)?;
+                converted_1194_list.append(converted_item_1196)?;
             }
-            let converted_1147 = converted_1147_list.into_any().unbind();
-            Ok(converted_1147)
+            let converted_1194 = converted_1194_list.into_any().unbind();
+            Ok(converted_1194)
         } else {
             Ok(py.None())
         }
@@ -6638,8 +8083,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn multi_region_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_1150 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1150)
+            let converted_1197 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1197)
         } else {
             Ok(py.None())
         }
@@ -6648,8 +8093,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn organization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_1151 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1151)
+            let converted_1198 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1198)
         } else {
             Ok(py.None())
         }
@@ -6658,8 +8103,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn retention_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retention_period {
-            let converted_1152 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1152)
+            let converted_1199 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1199)
         } else {
             Ok(py.None())
         }
@@ -6668,8 +8113,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1153 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1153)
+            let converted_1200 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1200)
         } else {
             Ok(py.None())
         }
@@ -6678,8 +8123,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1154 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1154)
+            let converted_1201 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1201)
         } else {
             Ok(py.None())
         }
@@ -6688,8 +8133,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1155 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1155)
+            let converted_1202 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1202)
         } else {
             Ok(py.None())
         }
@@ -6698,8 +8143,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1156 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1156)
+            let converted_1203 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1203)
         } else {
             Ok(py.None())
         }
@@ -6708,8 +8153,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn billing_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode {
-            let converted_1157 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1157)
+            let converted_1204 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1204)
         } else {
             Ok(py.None())
         }
@@ -6718,8 +8163,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn federation_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federation_status {
-            let converted_1158 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1158)
+            let converted_1205 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1205)
         } else {
             Ok(py.None())
         }
@@ -6728,8 +8173,8 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn federation_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federation_role_arn {
-            let converted_1159 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1159)
+            let converted_1206 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1206)
         } else {
             Ok(py.None())
         }
@@ -6738,19 +8183,19 @@ impl PyOperationGetEventDataStoreOutput {
     #[getter]
     fn partition_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.partition_keys {
-            let converted_1160_list = PyList::empty(py);
-            for item_1161 in value {
-                let converted_item_1162 = Py::new(
+            let converted_1207_list = PyList::empty(py);
+            for item_1208 in value {
+                let converted_item_1209 = Py::new(
                     py,
                     PyPartitionKey {
-                        inner: Arc::clone(item_1161),
+                        inner: Arc::clone(item_1208),
                     },
                 )?
                 .into_any();
-                converted_1160_list.append(converted_item_1162)?;
+                converted_1207_list.append(converted_item_1209)?;
             }
-            let converted_1160 = converted_1160_list.into_any().unbind();
-            Ok(converted_1160)
+            let converted_1207 = converted_1207_list.into_any().unbind();
+            Ok(converted_1207)
         } else {
             Ok(py.None())
         }
@@ -6759,102 +8204,102 @@ impl PyOperationGetEventDataStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1165 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1165)?;
+            let converted_1212 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1212)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1166 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1166)?;
+            let converted_1213 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1213)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1167 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1167)?;
+            let converted_1214 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1214)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1168_list = PyList::empty(py);
-            for item_1169 in value {
-                let converted_item_1170 = advanced_event_selector_shared_to_py(py, item_1169)?;
-                converted_1168_list.append(converted_item_1170)?;
+            let converted_1215_list = PyList::empty(py);
+            for item_1216 in value {
+                let converted_item_1217 = advanced_event_selector_shared_to_py(py, item_1216)?;
+                converted_1215_list.append(converted_item_1217)?;
             }
-            let converted_1168 = converted_1168_list.into_any().unbind();
-            result.set_item("advanced_event_selectors", converted_1168)?;
+            let converted_1215 = converted_1215_list.into_any().unbind();
+            result.set_item("advanced_event_selectors", converted_1215)?;
         } else {
             result.set_item("advanced_event_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_1171 = (value).to_owned().into_py_any(py)?;
-            result.set_item("multi_region_enabled", converted_1171)?;
+            let converted_1218 = (value).to_owned().into_py_any(py)?;
+            result.set_item("multi_region_enabled", converted_1218)?;
         } else {
             result.set_item("multi_region_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_1172 = (value).to_owned().into_py_any(py)?;
-            result.set_item("organization_enabled", converted_1172)?;
+            let converted_1219 = (value).to_owned().into_py_any(py)?;
+            result.set_item("organization_enabled", converted_1219)?;
         } else {
             result.set_item("organization_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.retention_period {
-            let converted_1173 = (value).to_owned().into_py_any(py)?;
-            result.set_item("retention_period", converted_1173)?;
+            let converted_1220 = (value).to_owned().into_py_any(py)?;
+            result.set_item("retention_period", converted_1220)?;
         } else {
             result.set_item("retention_period", py.None())?;
         }
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1174 = (value).to_owned().into_py_any(py)?;
-            result.set_item("termination_protection_enabled", converted_1174)?;
+            let converted_1221 = (value).to_owned().into_py_any(py)?;
+            result.set_item("termination_protection_enabled", converted_1221)?;
         } else {
             result.set_item("termination_protection_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1175 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1175)?;
+            let converted_1222 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1222)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1176 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1176)?;
+            let converted_1223 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1223)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1177 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_id", converted_1177)?;
+            let converted_1224 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_id", converted_1224)?;
         } else {
             result.set_item("kms_key_id", py.None())?;
         }
         if let Some(value) = &self.inner.billing_mode {
-            let converted_1178 = (value).as_str().into_py_any(py)?;
-            result.set_item("billing_mode", converted_1178)?;
+            let converted_1225 = (value).as_str().into_py_any(py)?;
+            result.set_item("billing_mode", converted_1225)?;
         } else {
             result.set_item("billing_mode", py.None())?;
         }
         if let Some(value) = &self.inner.federation_status {
-            let converted_1179 = (value).as_str().into_py_any(py)?;
-            result.set_item("federation_status", converted_1179)?;
+            let converted_1226 = (value).as_str().into_py_any(py)?;
+            result.set_item("federation_status", converted_1226)?;
         } else {
             result.set_item("federation_status", py.None())?;
         }
         if let Some(value) = &self.inner.federation_role_arn {
-            let converted_1180 = (value).as_str().into_py_any(py)?;
-            result.set_item("federation_role_arn", converted_1180)?;
+            let converted_1227 = (value).as_str().into_py_any(py)?;
+            result.set_item("federation_role_arn", converted_1227)?;
         } else {
             result.set_item("federation_role_arn", py.None())?;
         }
         if let Some(value) = &self.inner.partition_keys {
-            let converted_1181_list = PyList::empty(py);
-            for item_1182 in value {
-                let converted_item_1183 = partition_key_to_py(py, item_1182)?;
-                converted_1181_list.append(converted_item_1183)?;
+            let converted_1228_list = PyList::empty(py);
+            for item_1229 in value {
+                let converted_item_1230 = partition_key_to_py(py, item_1229)?;
+                converted_1228_list.append(converted_item_1230)?;
             }
-            let converted_1181 = converted_1181_list.into_any().unbind();
-            result.set_item("partition_keys", converted_1181)?;
+            let converted_1228 = converted_1228_list.into_any().unbind();
+            result.set_item("partition_keys", converted_1228)?;
         } else {
             result.set_item("partition_keys", py.None())?;
         }
@@ -6881,13 +8326,13 @@ impl From<aws_sdk_cloudtrail::operation::get_event_selectors::GetEventSelectorsO
             event_selectors: value.event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1191| Arc::new(SharedEventSelector::from(owned_1191)))
+                    .map(|owned_1238| Arc::new(SharedEventSelector::from(owned_1238)))
                     .collect()
             }),
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1192| Arc::new(SharedAdvancedEventSelector::from(owned_1192)))
+                    .map(|owned_1239| Arc::new(SharedAdvancedEventSelector::from(owned_1239)))
                     .collect()
             }),
         }
@@ -6908,8 +8353,8 @@ impl PyOperationGetEventSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1184 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1184)
+            let converted_1231 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1231)
         } else {
             Ok(py.None())
         }
@@ -6918,19 +8363,19 @@ impl PyOperationGetEventSelectorsOutput {
     #[getter]
     fn event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_selectors {
-            let converted_1185_list = PyList::empty(py);
-            for item_1186 in value {
-                let converted_item_1187 = Py::new(
+            let converted_1232_list = PyList::empty(py);
+            for item_1233 in value {
+                let converted_item_1234 = Py::new(
                     py,
                     PyEventSelector {
-                        inner: Arc::clone(item_1186),
+                        inner: Arc::clone(item_1233),
                     },
                 )?
                 .into_any();
-                converted_1185_list.append(converted_item_1187)?;
+                converted_1232_list.append(converted_item_1234)?;
             }
-            let converted_1185 = converted_1185_list.into_any().unbind();
-            Ok(converted_1185)
+            let converted_1232 = converted_1232_list.into_any().unbind();
+            Ok(converted_1232)
         } else {
             Ok(py.None())
         }
@@ -6939,19 +8384,19 @@ impl PyOperationGetEventSelectorsOutput {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1188_list = PyList::empty(py);
-            for item_1189 in value {
-                let converted_item_1190 = Py::new(
+            let converted_1235_list = PyList::empty(py);
+            for item_1236 in value {
+                let converted_item_1237 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_1189),
+                        inner: Arc::clone(item_1236),
                     },
                 )?
                 .into_any();
-                converted_1188_list.append(converted_item_1190)?;
+                converted_1235_list.append(converted_item_1237)?;
             }
-            let converted_1188 = converted_1188_list.into_any().unbind();
-            Ok(converted_1188)
+            let converted_1235 = converted_1235_list.into_any().unbind();
+            Ok(converted_1235)
         } else {
             Ok(py.None())
         }
@@ -6960,30 +8405,30 @@ impl PyOperationGetEventSelectorsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1193 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1193)?;
+            let converted_1240 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1240)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.event_selectors {
-            let converted_1194_list = PyList::empty(py);
-            for item_1195 in value {
-                let converted_item_1196 = event_selector_shared_to_py(py, item_1195)?;
-                converted_1194_list.append(converted_item_1196)?;
+            let converted_1241_list = PyList::empty(py);
+            for item_1242 in value {
+                let converted_item_1243 = event_selector_shared_to_py(py, item_1242)?;
+                converted_1241_list.append(converted_item_1243)?;
             }
-            let converted_1194 = converted_1194_list.into_any().unbind();
-            result.set_item("event_selectors", converted_1194)?;
+            let converted_1241 = converted_1241_list.into_any().unbind();
+            result.set_item("event_selectors", converted_1241)?;
         } else {
             result.set_item("event_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1197_list = PyList::empty(py);
-            for item_1198 in value {
-                let converted_item_1199 = advanced_event_selector_shared_to_py(py, item_1198)?;
-                converted_1197_list.append(converted_item_1199)?;
+            let converted_1244_list = PyList::empty(py);
+            for item_1245 in value {
+                let converted_item_1246 = advanced_event_selector_shared_to_py(py, item_1245)?;
+                converted_1244_list.append(converted_item_1246)?;
             }
-            let converted_1197 = converted_1197_list.into_any().unbind();
-            result.set_item("advanced_event_selectors", converted_1197)?;
+            let converted_1244 = converted_1244_list.into_any().unbind();
+            result.set_item("advanced_event_selectors", converted_1244)?;
         } else {
             result.set_item("advanced_event_selectors", py.None())?;
         }
@@ -7035,8 +8480,8 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
-            let converted_1200 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1200)
+            let converted_1247 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1247)
         } else {
             Ok(py.None())
         }
@@ -7045,13 +8490,13 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_1201_list = PyList::empty(py);
-            for item_1202 in value {
-                let converted_item_1203 = (item_1202).as_str().into_py_any(py)?;
-                converted_1201_list.append(converted_item_1203)?;
+            let converted_1248_list = PyList::empty(py);
+            for item_1249 in value {
+                let converted_item_1250 = (item_1249).as_str().into_py_any(py)?;
+                converted_1248_list.append(converted_item_1250)?;
             }
-            let converted_1201 = converted_1201_list.into_any().unbind();
-            Ok(converted_1201)
+            let converted_1248 = converted_1248_list.into_any().unbind();
+            Ok(converted_1248)
         } else {
             Ok(py.None())
         }
@@ -7060,14 +8505,14 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn import_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_source {
-            let converted_1204 = Py::new(
+            let converted_1251 = Py::new(
                 py,
                 PyImportSource {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1204)
+            Ok(converted_1251)
         } else {
             Ok(py.None())
         }
@@ -7076,8 +8521,8 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn start_event_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_event_time {
-            let converted_1205 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1205)
+            let converted_1252 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1252)
         } else {
             Ok(py.None())
         }
@@ -7086,8 +8531,8 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn end_event_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_event_time {
-            let converted_1206 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1206)
+            let converted_1253 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1253)
         } else {
             Ok(py.None())
         }
@@ -7096,8 +8541,8 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_status {
-            let converted_1207 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1207)
+            let converted_1254 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1254)
         } else {
             Ok(py.None())
         }
@@ -7106,8 +8551,8 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1208 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1208)
+            let converted_1255 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1255)
         } else {
             Ok(py.None())
         }
@@ -7116,8 +8561,8 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1209 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1209)
+            let converted_1256 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1256)
         } else {
             Ok(py.None())
         }
@@ -7126,14 +8571,14 @@ impl PyOperationGetImportOutput {
     #[getter]
     fn import_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_statistics {
-            let converted_1210 = Py::new(
+            let converted_1257 = Py::new(
                 py,
                 PyImportStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1210)
+            Ok(converted_1257)
         } else {
             Ok(py.None())
         }
@@ -7142,61 +8587,61 @@ impl PyOperationGetImportOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.import_id {
-            let converted_1211 = (value).as_str().into_py_any(py)?;
-            result.set_item("import_id", converted_1211)?;
+            let converted_1258 = (value).as_str().into_py_any(py)?;
+            result.set_item("import_id", converted_1258)?;
         } else {
             result.set_item("import_id", py.None())?;
         }
         if let Some(value) = &self.inner.destinations {
-            let converted_1212_list = PyList::empty(py);
-            for item_1213 in value {
-                let converted_item_1214 = (item_1213).as_str().into_py_any(py)?;
-                converted_1212_list.append(converted_item_1214)?;
+            let converted_1259_list = PyList::empty(py);
+            for item_1260 in value {
+                let converted_item_1261 = (item_1260).as_str().into_py_any(py)?;
+                converted_1259_list.append(converted_item_1261)?;
             }
-            let converted_1212 = converted_1212_list.into_any().unbind();
-            result.set_item("destinations", converted_1212)?;
+            let converted_1259 = converted_1259_list.into_any().unbind();
+            result.set_item("destinations", converted_1259)?;
         } else {
             result.set_item("destinations", py.None())?;
         }
         if let Some(value) = &self.inner.import_source {
-            let converted_1215 = import_source_shared_to_py(py, value)?;
-            result.set_item("import_source", converted_1215)?;
+            let converted_1262 = import_source_shared_to_py(py, value)?;
+            result.set_item("import_source", converted_1262)?;
         } else {
             result.set_item("import_source", py.None())?;
         }
         if let Some(value) = &self.inner.start_event_time {
-            let converted_1216 = (value).to_string().into_py_any(py)?;
-            result.set_item("start_event_time", converted_1216)?;
+            let converted_1263 = (value).to_string().into_py_any(py)?;
+            result.set_item("start_event_time", converted_1263)?;
         } else {
             result.set_item("start_event_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_event_time {
-            let converted_1217 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_event_time", converted_1217)?;
+            let converted_1264 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_event_time", converted_1264)?;
         } else {
             result.set_item("end_event_time", py.None())?;
         }
         if let Some(value) = &self.inner.import_status {
-            let converted_1218 = (value).as_str().into_py_any(py)?;
-            result.set_item("import_status", converted_1218)?;
+            let converted_1265 = (value).as_str().into_py_any(py)?;
+            result.set_item("import_status", converted_1265)?;
         } else {
             result.set_item("import_status", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1219 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1219)?;
+            let converted_1266 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1266)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1220 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1220)?;
+            let converted_1267 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1267)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.import_statistics {
-            let converted_1221 = import_statistics_to_py(py, value)?;
-            result.set_item("import_statistics", converted_1221)?;
+            let converted_1268 = import_statistics_to_py(py, value)?;
+            result.set_item("import_statistics", converted_1268)?;
         } else {
             result.set_item("import_statistics", py.None())?;
         }
@@ -7224,7 +8669,7 @@ impl From<aws_sdk_cloudtrail::operation::get_insight_selectors::GetInsightSelect
             insight_selectors: value.insight_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1228| Arc::new(owned_1228))
+                    .map(|owned_1275| Arc::new(owned_1275))
                     .collect()
             }),
             event_data_store_arn: value.event_data_store_arn,
@@ -7247,8 +8692,8 @@ impl PyOperationGetInsightSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1222 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1222)
+            let converted_1269 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1269)
         } else {
             Ok(py.None())
         }
@@ -7257,19 +8702,19 @@ impl PyOperationGetInsightSelectorsOutput {
     #[getter]
     fn insight_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insight_selectors {
-            let converted_1223_list = PyList::empty(py);
-            for item_1224 in value {
-                let converted_item_1225 = Py::new(
+            let converted_1270_list = PyList::empty(py);
+            for item_1271 in value {
+                let converted_item_1272 = Py::new(
                     py,
                     PyInsightSelector {
-                        inner: Arc::clone(item_1224),
+                        inner: Arc::clone(item_1271),
                     },
                 )?
                 .into_any();
-                converted_1223_list.append(converted_item_1225)?;
+                converted_1270_list.append(converted_item_1272)?;
             }
-            let converted_1223 = converted_1223_list.into_any().unbind();
-            Ok(converted_1223)
+            let converted_1270 = converted_1270_list.into_any().unbind();
+            Ok(converted_1270)
         } else {
             Ok(py.None())
         }
@@ -7278,8 +8723,8 @@ impl PyOperationGetInsightSelectorsOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1226 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1226)
+            let converted_1273 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1273)
         } else {
             Ok(py.None())
         }
@@ -7288,8 +8733,8 @@ impl PyOperationGetInsightSelectorsOutput {
     #[getter]
     fn insights_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insights_destination {
-            let converted_1227 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1227)
+            let converted_1274 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1274)
         } else {
             Ok(py.None())
         }
@@ -7298,31 +8743,31 @@ impl PyOperationGetInsightSelectorsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1229 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1229)?;
+            let converted_1276 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1276)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.insight_selectors {
-            let converted_1230_list = PyList::empty(py);
-            for item_1231 in value {
-                let converted_item_1232 = insight_selector_to_py(py, item_1231)?;
-                converted_1230_list.append(converted_item_1232)?;
+            let converted_1277_list = PyList::empty(py);
+            for item_1278 in value {
+                let converted_item_1279 = insight_selector_to_py(py, item_1278)?;
+                converted_1277_list.append(converted_item_1279)?;
             }
-            let converted_1230 = converted_1230_list.into_any().unbind();
-            result.set_item("insight_selectors", converted_1230)?;
+            let converted_1277 = converted_1277_list.into_any().unbind();
+            result.set_item("insight_selectors", converted_1277)?;
         } else {
             result.set_item("insight_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1233 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1233)?;
+            let converted_1280 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1280)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.insights_destination {
-            let converted_1234 = (value).as_str().into_py_any(py)?;
-            result.set_item("insights_destination", converted_1234)?;
+            let converted_1281 = (value).as_str().into_py_any(py)?;
+            result.set_item("insights_destination", converted_1281)?;
         } else {
             result.set_item("insights_destination", py.None())?;
         }
@@ -7376,8 +8821,8 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn query_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_status {
-            let converted_1235 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1235)
+            let converted_1282 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1282)
         } else {
             Ok(py.None())
         }
@@ -7386,14 +8831,14 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn query_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_statistics {
-            let converted_1236 = Py::new(
+            let converted_1283 = Py::new(
                 py,
                 PyQueryStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1236)
+            Ok(converted_1283)
         } else {
             Ok(py.None())
         }
@@ -7402,25 +8847,25 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn query_result_rows(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_result_rows {
-            let converted_1237_list = PyList::empty(py);
-            for item_1238 in value {
-                let converted_item_1239_list = PyList::empty(py);
-                for item_1240 in item_1238 {
-                    let converted_item_1241_dict = PyDict::new(py);
-                    for (key_1242, value_1243) in item_1240 {
-                        let converted_key_1244 = (key_1242).as_str().into_py_any(py)?;
-                        let converted_value_1245 = (value_1243).as_str().into_py_any(py)?;
-                        converted_item_1241_dict
-                            .set_item(converted_key_1244, converted_value_1245)?;
+            let converted_1284_list = PyList::empty(py);
+            for item_1285 in value {
+                let converted_item_1286_list = PyList::empty(py);
+                for item_1287 in item_1285 {
+                    let converted_item_1288_dict = PyDict::new(py);
+                    for (key_1289, value_1290) in item_1287 {
+                        let converted_key_1291 = (key_1289).as_str().into_py_any(py)?;
+                        let converted_value_1292 = (value_1290).as_str().into_py_any(py)?;
+                        converted_item_1288_dict
+                            .set_item(converted_key_1291, converted_value_1292)?;
                     }
-                    let converted_item_1241 = converted_item_1241_dict.into_any().unbind();
-                    converted_item_1239_list.append(converted_item_1241)?;
+                    let converted_item_1288 = converted_item_1288_dict.into_any().unbind();
+                    converted_item_1286_list.append(converted_item_1288)?;
                 }
-                let converted_item_1239 = converted_item_1239_list.into_any().unbind();
-                converted_1237_list.append(converted_item_1239)?;
+                let converted_item_1286 = converted_item_1286_list.into_any().unbind();
+                converted_1284_list.append(converted_item_1286)?;
             }
-            let converted_1237 = converted_1237_list.into_any().unbind();
-            Ok(converted_1237)
+            let converted_1284 = converted_1284_list.into_any().unbind();
+            Ok(converted_1284)
         } else {
             Ok(py.None())
         }
@@ -7429,8 +8874,8 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1246 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1246)
+            let converted_1293 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1293)
         } else {
             Ok(py.None())
         }
@@ -7439,8 +8884,8 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_1247 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1247)
+            let converted_1294 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1294)
         } else {
             Ok(py.None())
         }
@@ -7449,49 +8894,49 @@ impl PyOperationGetQueryResultsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_status {
-            let converted_1248 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_status", converted_1248)?;
+            let converted_1295 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_status", converted_1295)?;
         } else {
             result.set_item("query_status", py.None())?;
         }
         if let Some(value) = &self.inner.query_statistics {
-            let converted_1249 = query_statistics_to_py(py, value)?;
-            result.set_item("query_statistics", converted_1249)?;
+            let converted_1296 = query_statistics_to_py(py, value)?;
+            result.set_item("query_statistics", converted_1296)?;
         } else {
             result.set_item("query_statistics", py.None())?;
         }
         if let Some(value) = &self.inner.query_result_rows {
-            let converted_1250_list = PyList::empty(py);
-            for item_1251 in value {
-                let converted_item_1252_list = PyList::empty(py);
-                for item_1253 in item_1251 {
-                    let converted_item_1254_dict = PyDict::new(py);
-                    for (key_1255, value_1256) in item_1253 {
-                        let converted_key_1257 = (key_1255).as_str().into_py_any(py)?;
-                        let converted_value_1258 = (value_1256).as_str().into_py_any(py)?;
-                        converted_item_1254_dict
-                            .set_item(converted_key_1257, converted_value_1258)?;
+            let converted_1297_list = PyList::empty(py);
+            for item_1298 in value {
+                let converted_item_1299_list = PyList::empty(py);
+                for item_1300 in item_1298 {
+                    let converted_item_1301_dict = PyDict::new(py);
+                    for (key_1302, value_1303) in item_1300 {
+                        let converted_key_1304 = (key_1302).as_str().into_py_any(py)?;
+                        let converted_value_1305 = (value_1303).as_str().into_py_any(py)?;
+                        converted_item_1301_dict
+                            .set_item(converted_key_1304, converted_value_1305)?;
                     }
-                    let converted_item_1254 = converted_item_1254_dict.into_any().unbind();
-                    converted_item_1252_list.append(converted_item_1254)?;
+                    let converted_item_1301 = converted_item_1301_dict.into_any().unbind();
+                    converted_item_1299_list.append(converted_item_1301)?;
                 }
-                let converted_item_1252 = converted_item_1252_list.into_any().unbind();
-                converted_1250_list.append(converted_item_1252)?;
+                let converted_item_1299 = converted_item_1299_list.into_any().unbind();
+                converted_1297_list.append(converted_item_1299)?;
             }
-            let converted_1250 = converted_1250_list.into_any().unbind();
-            result.set_item("query_result_rows", converted_1250)?;
+            let converted_1297 = converted_1297_list.into_any().unbind();
+            result.set_item("query_result_rows", converted_1297)?;
         } else {
             result.set_item("query_result_rows", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1259 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1259)?;
+            let converted_1306 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1306)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.error_message {
-            let converted_1260 = (value).as_str().into_py_any(py)?;
-            result.set_item("error_message", converted_1260)?;
+            let converted_1307 = (value).as_str().into_py_any(py)?;
+            result.set_item("error_message", converted_1307)?;
         } else {
             result.set_item("error_message", py.None())?;
         }
@@ -7513,8 +8958,8 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
-            let converted_1261 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1261)
+            let converted_1308 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1308)
         } else {
             Ok(py.None())
         }
@@ -7523,8 +8968,8 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn resource_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_policy {
-            let converted_1262 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1262)
+            let converted_1309 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1309)
         } else {
             Ok(py.None())
         }
@@ -7533,8 +8978,8 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn delegated_admin_resource_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delegated_admin_resource_policy {
-            let converted_1263 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1263)
+            let converted_1310 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1310)
         } else {
             Ok(py.None())
         }
@@ -7543,20 +8988,20 @@ impl PyOperationGetResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_arn {
-            let converted_1264 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource_arn", converted_1264)?;
+            let converted_1311 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource_arn", converted_1311)?;
         } else {
             result.set_item("resource_arn", py.None())?;
         }
         if let Some(value) = &self.inner.resource_policy {
-            let converted_1265 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource_policy", converted_1265)?;
+            let converted_1312 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource_policy", converted_1312)?;
         } else {
             result.set_item("resource_policy", py.None())?;
         }
         if let Some(value) = &self.inner.delegated_admin_resource_policy {
-            let converted_1266 = (value).as_str().into_py_any(py)?;
-            result.set_item("delegated_admin_resource_policy", converted_1266)?;
+            let converted_1313 = (value).as_str().into_py_any(py)?;
+            result.set_item("delegated_admin_resource_policy", converted_1313)?;
         } else {
             result.set_item("delegated_admin_resource_policy", py.None())?;
         }
@@ -7590,14 +9035,14 @@ impl PyOperationGetTrailOutput {
     #[getter]
     fn trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail {
-            let converted_1267 = Py::new(
+            let converted_1314 = Py::new(
                 py,
                 PyTrail {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1267)
+            Ok(converted_1314)
         } else {
             Ok(py.None())
         }
@@ -7606,8 +9051,8 @@ impl PyOperationGetTrailOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail {
-            let converted_1268 = trail_to_py(py, value)?;
-            result.set_item("trail", converted_1268)?;
+            let converted_1315 = trail_to_py(py, value)?;
+            result.set_item("trail", converted_1315)?;
         } else {
             result.set_item("trail", py.None())?;
         }
@@ -7629,8 +9074,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn is_logging(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_logging {
-            let converted_1269 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1269)
+            let converted_1316 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1316)
         } else {
             Ok(py.None())
         }
@@ -7639,8 +9084,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_delivery_error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_delivery_error {
-            let converted_1270 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1270)
+            let converted_1317 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1317)
         } else {
             Ok(py.None())
         }
@@ -7649,8 +9094,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_notification_error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_notification_error {
-            let converted_1271 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1271)
+            let converted_1318 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1318)
         } else {
             Ok(py.None())
         }
@@ -7659,8 +9104,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_delivery_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_delivery_time {
-            let converted_1272 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1272)
+            let converted_1319 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1319)
         } else {
             Ok(py.None())
         }
@@ -7669,8 +9114,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_notification_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_notification_time {
-            let converted_1273 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1273)
+            let converted_1320 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1320)
         } else {
             Ok(py.None())
         }
@@ -7679,8 +9124,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn start_logging_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_logging_time {
-            let converted_1274 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1274)
+            let converted_1321 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1321)
         } else {
             Ok(py.None())
         }
@@ -7689,8 +9134,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn stop_logging_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stop_logging_time {
-            let converted_1275 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1275)
+            let converted_1322 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1322)
         } else {
             Ok(py.None())
         }
@@ -7699,8 +9144,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_cloud_watch_logs_delivery_error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_cloud_watch_logs_delivery_error {
-            let converted_1276 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1276)
+            let converted_1323 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1323)
         } else {
             Ok(py.None())
         }
@@ -7709,8 +9154,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_cloud_watch_logs_delivery_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_cloud_watch_logs_delivery_time {
-            let converted_1277 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1277)
+            let converted_1324 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1324)
         } else {
             Ok(py.None())
         }
@@ -7719,8 +9164,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_digest_delivery_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_digest_delivery_time {
-            let converted_1278 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1278)
+            let converted_1325 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1325)
         } else {
             Ok(py.None())
         }
@@ -7729,8 +9174,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_digest_delivery_error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_digest_delivery_error {
-            let converted_1279 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1279)
+            let converted_1326 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1326)
         } else {
             Ok(py.None())
         }
@@ -7739,8 +9184,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_delivery_attempt_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_delivery_attempt_time {
-            let converted_1280 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1280)
+            let converted_1327 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1327)
         } else {
             Ok(py.None())
         }
@@ -7749,8 +9194,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_notification_attempt_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_notification_attempt_time {
-            let converted_1281 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1281)
+            let converted_1328 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1328)
         } else {
             Ok(py.None())
         }
@@ -7759,8 +9204,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_notification_attempt_succeeded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_notification_attempt_succeeded {
-            let converted_1282 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1282)
+            let converted_1329 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1329)
         } else {
             Ok(py.None())
         }
@@ -7769,8 +9214,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn latest_delivery_attempt_succeeded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.latest_delivery_attempt_succeeded {
-            let converted_1283 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1283)
+            let converted_1330 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1330)
         } else {
             Ok(py.None())
         }
@@ -7779,8 +9224,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn time_logging_started(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_logging_started {
-            let converted_1284 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1284)
+            let converted_1331 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1331)
         } else {
             Ok(py.None())
         }
@@ -7789,8 +9234,8 @@ impl PyOperationGetTrailStatusOutput {
     #[getter]
     fn time_logging_stopped(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_logging_stopped {
-            let converted_1285 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1285)
+            let converted_1332 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1332)
         } else {
             Ok(py.None())
         }
@@ -7799,104 +9244,104 @@ impl PyOperationGetTrailStatusOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.is_logging {
-            let converted_1286 = (value).to_owned().into_py_any(py)?;
-            result.set_item("is_logging", converted_1286)?;
+            let converted_1333 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_logging", converted_1333)?;
         } else {
             result.set_item("is_logging", py.None())?;
         }
         if let Some(value) = &self.inner.latest_delivery_error {
-            let converted_1287 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_delivery_error", converted_1287)?;
+            let converted_1334 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_delivery_error", converted_1334)?;
         } else {
             result.set_item("latest_delivery_error", py.None())?;
         }
         if let Some(value) = &self.inner.latest_notification_error {
-            let converted_1288 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_notification_error", converted_1288)?;
+            let converted_1335 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_notification_error", converted_1335)?;
         } else {
             result.set_item("latest_notification_error", py.None())?;
         }
         if let Some(value) = &self.inner.latest_delivery_time {
-            let converted_1289 = (value).to_string().into_py_any(py)?;
-            result.set_item("latest_delivery_time", converted_1289)?;
+            let converted_1336 = (value).to_string().into_py_any(py)?;
+            result.set_item("latest_delivery_time", converted_1336)?;
         } else {
             result.set_item("latest_delivery_time", py.None())?;
         }
         if let Some(value) = &self.inner.latest_notification_time {
-            let converted_1290 = (value).to_string().into_py_any(py)?;
-            result.set_item("latest_notification_time", converted_1290)?;
+            let converted_1337 = (value).to_string().into_py_any(py)?;
+            result.set_item("latest_notification_time", converted_1337)?;
         } else {
             result.set_item("latest_notification_time", py.None())?;
         }
         if let Some(value) = &self.inner.start_logging_time {
-            let converted_1291 = (value).to_string().into_py_any(py)?;
-            result.set_item("start_logging_time", converted_1291)?;
+            let converted_1338 = (value).to_string().into_py_any(py)?;
+            result.set_item("start_logging_time", converted_1338)?;
         } else {
             result.set_item("start_logging_time", py.None())?;
         }
         if let Some(value) = &self.inner.stop_logging_time {
-            let converted_1292 = (value).to_string().into_py_any(py)?;
-            result.set_item("stop_logging_time", converted_1292)?;
+            let converted_1339 = (value).to_string().into_py_any(py)?;
+            result.set_item("stop_logging_time", converted_1339)?;
         } else {
             result.set_item("stop_logging_time", py.None())?;
         }
         if let Some(value) = &self.inner.latest_cloud_watch_logs_delivery_error {
-            let converted_1293 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_cloud_watch_logs_delivery_error", converted_1293)?;
+            let converted_1340 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_cloud_watch_logs_delivery_error", converted_1340)?;
         } else {
             result.set_item("latest_cloud_watch_logs_delivery_error", py.None())?;
         }
         if let Some(value) = &self.inner.latest_cloud_watch_logs_delivery_time {
-            let converted_1294 = (value).to_string().into_py_any(py)?;
-            result.set_item("latest_cloud_watch_logs_delivery_time", converted_1294)?;
+            let converted_1341 = (value).to_string().into_py_any(py)?;
+            result.set_item("latest_cloud_watch_logs_delivery_time", converted_1341)?;
         } else {
             result.set_item("latest_cloud_watch_logs_delivery_time", py.None())?;
         }
         if let Some(value) = &self.inner.latest_digest_delivery_time {
-            let converted_1295 = (value).to_string().into_py_any(py)?;
-            result.set_item("latest_digest_delivery_time", converted_1295)?;
+            let converted_1342 = (value).to_string().into_py_any(py)?;
+            result.set_item("latest_digest_delivery_time", converted_1342)?;
         } else {
             result.set_item("latest_digest_delivery_time", py.None())?;
         }
         if let Some(value) = &self.inner.latest_digest_delivery_error {
-            let converted_1296 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_digest_delivery_error", converted_1296)?;
+            let converted_1343 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_digest_delivery_error", converted_1343)?;
         } else {
             result.set_item("latest_digest_delivery_error", py.None())?;
         }
         if let Some(value) = &self.inner.latest_delivery_attempt_time {
-            let converted_1297 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_delivery_attempt_time", converted_1297)?;
+            let converted_1344 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_delivery_attempt_time", converted_1344)?;
         } else {
             result.set_item("latest_delivery_attempt_time", py.None())?;
         }
         if let Some(value) = &self.inner.latest_notification_attempt_time {
-            let converted_1298 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_notification_attempt_time", converted_1298)?;
+            let converted_1345 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_notification_attempt_time", converted_1345)?;
         } else {
             result.set_item("latest_notification_attempt_time", py.None())?;
         }
         if let Some(value) = &self.inner.latest_notification_attempt_succeeded {
-            let converted_1299 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_notification_attempt_succeeded", converted_1299)?;
+            let converted_1346 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_notification_attempt_succeeded", converted_1346)?;
         } else {
             result.set_item("latest_notification_attempt_succeeded", py.None())?;
         }
         if let Some(value) = &self.inner.latest_delivery_attempt_succeeded {
-            let converted_1300 = (value).as_str().into_py_any(py)?;
-            result.set_item("latest_delivery_attempt_succeeded", converted_1300)?;
+            let converted_1347 = (value).as_str().into_py_any(py)?;
+            result.set_item("latest_delivery_attempt_succeeded", converted_1347)?;
         } else {
             result.set_item("latest_delivery_attempt_succeeded", py.None())?;
         }
         if let Some(value) = &self.inner.time_logging_started {
-            let converted_1301 = (value).as_str().into_py_any(py)?;
-            result.set_item("time_logging_started", converted_1301)?;
+            let converted_1348 = (value).as_str().into_py_any(py)?;
+            result.set_item("time_logging_started", converted_1348)?;
         } else {
             result.set_item("time_logging_started", py.None())?;
         }
         if let Some(value) = &self.inner.time_logging_stopped {
-            let converted_1302 = (value).as_str().into_py_any(py)?;
-            result.set_item("time_logging_stopped", converted_1302)?;
+            let converted_1349 = (value).as_str().into_py_any(py)?;
+            result.set_item("time_logging_stopped", converted_1349)?;
         } else {
             result.set_item("time_logging_stopped", py.None())?;
         }
@@ -7919,7 +9364,7 @@ impl From<aws_sdk_cloudtrail::operation::list_channels::ListChannelsOutput>
             channels: value.channels.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1307| Arc::new(owned_1307))
+                    .map(|owned_1354| Arc::new(owned_1354))
                     .collect()
             }),
             next_token: value.next_token,
@@ -7941,19 +9386,19 @@ impl PyOperationListChannelsOutput {
     #[getter]
     fn channels(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channels {
-            let converted_1303_list = PyList::empty(py);
-            for item_1304 in value {
-                let converted_item_1305 = Py::new(
+            let converted_1350_list = PyList::empty(py);
+            for item_1351 in value {
+                let converted_item_1352 = Py::new(
                     py,
                     PyChannel {
-                        inner: Arc::clone(item_1304),
+                        inner: Arc::clone(item_1351),
                     },
                 )?
                 .into_any();
-                converted_1303_list.append(converted_item_1305)?;
+                converted_1350_list.append(converted_item_1352)?;
             }
-            let converted_1303 = converted_1303_list.into_any().unbind();
-            Ok(converted_1303)
+            let converted_1350 = converted_1350_list.into_any().unbind();
+            Ok(converted_1350)
         } else {
             Ok(py.None())
         }
@@ -7962,8 +9407,8 @@ impl PyOperationListChannelsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1306 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1306)
+            let converted_1353 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1353)
         } else {
             Ok(py.None())
         }
@@ -7972,19 +9417,19 @@ impl PyOperationListChannelsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.channels {
-            let converted_1308_list = PyList::empty(py);
-            for item_1309 in value {
-                let converted_item_1310 = channel_to_py(py, item_1309)?;
-                converted_1308_list.append(converted_item_1310)?;
+            let converted_1355_list = PyList::empty(py);
+            for item_1356 in value {
+                let converted_item_1357 = channel_to_py(py, item_1356)?;
+                converted_1355_list.append(converted_item_1357)?;
             }
-            let converted_1308 = converted_1308_list.into_any().unbind();
-            result.set_item("channels", converted_1308)?;
+            let converted_1355 = converted_1355_list.into_any().unbind();
+            result.set_item("channels", converted_1355)?;
         } else {
             result.set_item("channels", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1311 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1311)?;
+            let converted_1358 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1358)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8007,7 +9452,7 @@ impl From<aws_sdk_cloudtrail::operation::list_dashboards::ListDashboardsOutput>
             dashboards: value.dashboards.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1316| Arc::new(owned_1316))
+                    .map(|owned_1363| Arc::new(owned_1363))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8029,19 +9474,19 @@ impl PyOperationListDashboardsOutput {
     #[getter]
     fn dashboards(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboards {
-            let converted_1312_list = PyList::empty(py);
-            for item_1313 in value {
-                let converted_item_1314 = Py::new(
+            let converted_1359_list = PyList::empty(py);
+            for item_1360 in value {
+                let converted_item_1361 = Py::new(
                     py,
                     PyDashboardDetail {
-                        inner: Arc::clone(item_1313),
+                        inner: Arc::clone(item_1360),
                     },
                 )?
                 .into_any();
-                converted_1312_list.append(converted_item_1314)?;
+                converted_1359_list.append(converted_item_1361)?;
             }
-            let converted_1312 = converted_1312_list.into_any().unbind();
-            Ok(converted_1312)
+            let converted_1359 = converted_1359_list.into_any().unbind();
+            Ok(converted_1359)
         } else {
             Ok(py.None())
         }
@@ -8050,8 +9495,8 @@ impl PyOperationListDashboardsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1315 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1315)
+            let converted_1362 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1362)
         } else {
             Ok(py.None())
         }
@@ -8060,19 +9505,19 @@ impl PyOperationListDashboardsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dashboards {
-            let converted_1317_list = PyList::empty(py);
-            for item_1318 in value {
-                let converted_item_1319 = dashboard_detail_to_py(py, item_1318)?;
-                converted_1317_list.append(converted_item_1319)?;
+            let converted_1364_list = PyList::empty(py);
+            for item_1365 in value {
+                let converted_item_1366 = dashboard_detail_to_py(py, item_1365)?;
+                converted_1364_list.append(converted_item_1366)?;
             }
-            let converted_1317 = converted_1317_list.into_any().unbind();
-            result.set_item("dashboards", converted_1317)?;
+            let converted_1364 = converted_1364_list.into_any().unbind();
+            result.set_item("dashboards", converted_1364)?;
         } else {
             result.set_item("dashboards", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1320 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1320)?;
+            let converted_1367 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1367)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8097,7 +9542,7 @@ impl From<aws_sdk_cloudtrail::operation::list_event_data_stores::ListEventDataSt
             event_data_stores: value.event_data_stores.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1325| Arc::new(SharedEventDataStore::from(owned_1325)))
+                    .map(|owned_1372| Arc::new(SharedEventDataStore::from(owned_1372)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8119,19 +9564,19 @@ impl PyOperationListEventDataStoresOutput {
     #[getter]
     fn event_data_stores(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_stores {
-            let converted_1321_list = PyList::empty(py);
-            for item_1322 in value {
-                let converted_item_1323 = Py::new(
+            let converted_1368_list = PyList::empty(py);
+            for item_1369 in value {
+                let converted_item_1370 = Py::new(
                     py,
                     PyEventDataStore {
-                        inner: Arc::clone(item_1322),
+                        inner: Arc::clone(item_1369),
                     },
                 )?
                 .into_any();
-                converted_1321_list.append(converted_item_1323)?;
+                converted_1368_list.append(converted_item_1370)?;
             }
-            let converted_1321 = converted_1321_list.into_any().unbind();
-            Ok(converted_1321)
+            let converted_1368 = converted_1368_list.into_any().unbind();
+            Ok(converted_1368)
         } else {
             Ok(py.None())
         }
@@ -8140,8 +9585,8 @@ impl PyOperationListEventDataStoresOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1324 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1324)
+            let converted_1371 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1371)
         } else {
             Ok(py.None())
         }
@@ -8150,19 +9595,19 @@ impl PyOperationListEventDataStoresOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.event_data_stores {
-            let converted_1326_list = PyList::empty(py);
-            for item_1327 in value {
-                let converted_item_1328 = event_data_store_shared_to_py(py, item_1327)?;
-                converted_1326_list.append(converted_item_1328)?;
+            let converted_1373_list = PyList::empty(py);
+            for item_1374 in value {
+                let converted_item_1375 = event_data_store_shared_to_py(py, item_1374)?;
+                converted_1373_list.append(converted_item_1375)?;
             }
-            let converted_1326 = converted_1326_list.into_any().unbind();
-            result.set_item("event_data_stores", converted_1326)?;
+            let converted_1373 = converted_1373_list.into_any().unbind();
+            result.set_item("event_data_stores", converted_1373)?;
         } else {
             result.set_item("event_data_stores", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1329 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1329)?;
+            let converted_1376 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1376)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8187,7 +9632,7 @@ impl From<aws_sdk_cloudtrail::operation::list_import_failures::ListImportFailure
             failures: value.failures.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1334| Arc::new(owned_1334))
+                    .map(|owned_1381| Arc::new(owned_1381))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8209,19 +9654,19 @@ impl PyOperationListImportFailuresOutput {
     #[getter]
     fn failures(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failures {
-            let converted_1330_list = PyList::empty(py);
-            for item_1331 in value {
-                let converted_item_1332 = Py::new(
+            let converted_1377_list = PyList::empty(py);
+            for item_1378 in value {
+                let converted_item_1379 = Py::new(
                     py,
                     PyImportFailureListItem {
-                        inner: Arc::clone(item_1331),
+                        inner: Arc::clone(item_1378),
                     },
                 )?
                 .into_any();
-                converted_1330_list.append(converted_item_1332)?;
+                converted_1377_list.append(converted_item_1379)?;
             }
-            let converted_1330 = converted_1330_list.into_any().unbind();
-            Ok(converted_1330)
+            let converted_1377 = converted_1377_list.into_any().unbind();
+            Ok(converted_1377)
         } else {
             Ok(py.None())
         }
@@ -8230,8 +9675,8 @@ impl PyOperationListImportFailuresOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1333 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1333)
+            let converted_1380 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1380)
         } else {
             Ok(py.None())
         }
@@ -8240,19 +9685,19 @@ impl PyOperationListImportFailuresOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.failures {
-            let converted_1335_list = PyList::empty(py);
-            for item_1336 in value {
-                let converted_item_1337 = import_failure_list_item_to_py(py, item_1336)?;
-                converted_1335_list.append(converted_item_1337)?;
+            let converted_1382_list = PyList::empty(py);
+            for item_1383 in value {
+                let converted_item_1384 = import_failure_list_item_to_py(py, item_1383)?;
+                converted_1382_list.append(converted_item_1384)?;
             }
-            let converted_1335 = converted_1335_list.into_any().unbind();
-            result.set_item("failures", converted_1335)?;
+            let converted_1382 = converted_1382_list.into_any().unbind();
+            result.set_item("failures", converted_1382)?;
         } else {
             result.set_item("failures", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1338 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1338)?;
+            let converted_1385 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1385)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8275,7 +9720,7 @@ impl From<aws_sdk_cloudtrail::operation::list_imports::ListImportsOutput>
             imports: value.imports.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1343| Arc::new(owned_1343))
+                    .map(|owned_1390| Arc::new(owned_1390))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8297,19 +9742,19 @@ impl PyOperationListImportsOutput {
     #[getter]
     fn imports(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.imports {
-            let converted_1339_list = PyList::empty(py);
-            for item_1340 in value {
-                let converted_item_1341 = Py::new(
+            let converted_1386_list = PyList::empty(py);
+            for item_1387 in value {
+                let converted_item_1388 = Py::new(
                     py,
                     PyImportsListItem {
-                        inner: Arc::clone(item_1340),
+                        inner: Arc::clone(item_1387),
                     },
                 )?
                 .into_any();
-                converted_1339_list.append(converted_item_1341)?;
+                converted_1386_list.append(converted_item_1388)?;
             }
-            let converted_1339 = converted_1339_list.into_any().unbind();
-            Ok(converted_1339)
+            let converted_1386 = converted_1386_list.into_any().unbind();
+            Ok(converted_1386)
         } else {
             Ok(py.None())
         }
@@ -8318,8 +9763,8 @@ impl PyOperationListImportsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1342 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1342)
+            let converted_1389 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1389)
         } else {
             Ok(py.None())
         }
@@ -8328,19 +9773,19 @@ impl PyOperationListImportsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.imports {
-            let converted_1344_list = PyList::empty(py);
-            for item_1345 in value {
-                let converted_item_1346 = imports_list_item_to_py(py, item_1345)?;
-                converted_1344_list.append(converted_item_1346)?;
+            let converted_1391_list = PyList::empty(py);
+            for item_1392 in value {
+                let converted_item_1393 = imports_list_item_to_py(py, item_1392)?;
+                converted_1391_list.append(converted_item_1393)?;
             }
-            let converted_1344 = converted_1344_list.into_any().unbind();
-            result.set_item("imports", converted_1344)?;
+            let converted_1391 = converted_1391_list.into_any().unbind();
+            result.set_item("imports", converted_1391)?;
         } else {
             result.set_item("imports", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1347 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1347)?;
+            let converted_1394 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1394)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8365,7 +9810,7 @@ impl From<aws_sdk_cloudtrail::operation::list_insights_data::ListInsightsDataOut
             events: value.events.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1352| Arc::new(SharedEvent::from(owned_1352)))
+                    .map(|owned_1399| Arc::new(SharedEvent::from(owned_1399)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8387,19 +9832,19 @@ impl PyOperationListInsightsDataOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events {
-            let converted_1348_list = PyList::empty(py);
-            for item_1349 in value {
-                let converted_item_1350 = Py::new(
+            let converted_1395_list = PyList::empty(py);
+            for item_1396 in value {
+                let converted_item_1397 = Py::new(
                     py,
                     PyEvent {
-                        inner: Arc::clone(item_1349),
+                        inner: Arc::clone(item_1396),
                     },
                 )?
                 .into_any();
-                converted_1348_list.append(converted_item_1350)?;
+                converted_1395_list.append(converted_item_1397)?;
             }
-            let converted_1348 = converted_1348_list.into_any().unbind();
-            Ok(converted_1348)
+            let converted_1395 = converted_1395_list.into_any().unbind();
+            Ok(converted_1395)
         } else {
             Ok(py.None())
         }
@@ -8408,8 +9853,8 @@ impl PyOperationListInsightsDataOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1351 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1351)
+            let converted_1398 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1398)
         } else {
             Ok(py.None())
         }
@@ -8418,19 +9863,19 @@ impl PyOperationListInsightsDataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.events {
-            let converted_1353_list = PyList::empty(py);
-            for item_1354 in value {
-                let converted_item_1355 = event_shared_to_py(py, item_1354)?;
-                converted_1353_list.append(converted_item_1355)?;
+            let converted_1400_list = PyList::empty(py);
+            for item_1401 in value {
+                let converted_item_1402 = event_shared_to_py(py, item_1401)?;
+                converted_1400_list.append(converted_item_1402)?;
             }
-            let converted_1353 = converted_1353_list.into_any().unbind();
-            result.set_item("events", converted_1353)?;
+            let converted_1400 = converted_1400_list.into_any().unbind();
+            result.set_item("events", converted_1400)?;
         } else {
             result.set_item("events", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1356 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1356)?;
+            let converted_1403 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1403)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8452,8 +9897,8 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1357 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1357)
+            let converted_1404 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1404)
         } else {
             Ok(py.None())
         }
@@ -8462,8 +9907,8 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn event_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_source {
-            let converted_1358 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1358)
+            let converted_1405 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1405)
         } else {
             Ok(py.None())
         }
@@ -8472,8 +9917,8 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn event_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_name {
-            let converted_1359 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1359)
+            let converted_1406 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1406)
         } else {
             Ok(py.None())
         }
@@ -8482,8 +9927,8 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn insight_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insight_type {
-            let converted_1360 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1360)
+            let converted_1407 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1407)
         } else {
             Ok(py.None())
         }
@@ -8492,8 +9937,8 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_code {
-            let converted_1361 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1361)
+            let converted_1408 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1408)
         } else {
             Ok(py.None())
         }
@@ -8502,13 +9947,13 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn timestamps(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamps {
-            let converted_1362_list = PyList::empty(py);
-            for item_1363 in value {
-                let converted_item_1364 = (item_1363).to_string().into_py_any(py)?;
-                converted_1362_list.append(converted_item_1364)?;
+            let converted_1409_list = PyList::empty(py);
+            for item_1410 in value {
+                let converted_item_1411 = (item_1410).to_string().into_py_any(py)?;
+                converted_1409_list.append(converted_item_1411)?;
             }
-            let converted_1362 = converted_1362_list.into_any().unbind();
-            Ok(converted_1362)
+            let converted_1409 = converted_1409_list.into_any().unbind();
+            Ok(converted_1409)
         } else {
             Ok(py.None())
         }
@@ -8517,13 +9962,13 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.values {
-            let converted_1365_list = PyList::empty(py);
-            for item_1366 in value {
-                let converted_item_1367 = (item_1366).to_owned().into_py_any(py)?;
-                converted_1365_list.append(converted_item_1367)?;
+            let converted_1412_list = PyList::empty(py);
+            for item_1413 in value {
+                let converted_item_1414 = (item_1413).to_owned().into_py_any(py)?;
+                converted_1412_list.append(converted_item_1414)?;
             }
-            let converted_1365 = converted_1365_list.into_any().unbind();
-            Ok(converted_1365)
+            let converted_1412 = converted_1412_list.into_any().unbind();
+            Ok(converted_1412)
         } else {
             Ok(py.None())
         }
@@ -8532,8 +9977,8 @@ impl PyOperationListInsightsMetricDataOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1368 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1368)
+            let converted_1415 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1415)
         } else {
             Ok(py.None())
         }
@@ -8542,60 +9987,60 @@ impl PyOperationListInsightsMetricDataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1369 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1369)?;
+            let converted_1416 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1416)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.event_source {
-            let converted_1370 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_source", converted_1370)?;
+            let converted_1417 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_source", converted_1417)?;
         } else {
             result.set_item("event_source", py.None())?;
         }
         if let Some(value) = &self.inner.event_name {
-            let converted_1371 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_name", converted_1371)?;
+            let converted_1418 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_name", converted_1418)?;
         } else {
             result.set_item("event_name", py.None())?;
         }
         if let Some(value) = &self.inner.insight_type {
-            let converted_1372 = (value).as_str().into_py_any(py)?;
-            result.set_item("insight_type", converted_1372)?;
+            let converted_1419 = (value).as_str().into_py_any(py)?;
+            result.set_item("insight_type", converted_1419)?;
         } else {
             result.set_item("insight_type", py.None())?;
         }
         if let Some(value) = &self.inner.error_code {
-            let converted_1373 = (value).as_str().into_py_any(py)?;
-            result.set_item("error_code", converted_1373)?;
+            let converted_1420 = (value).as_str().into_py_any(py)?;
+            result.set_item("error_code", converted_1420)?;
         } else {
             result.set_item("error_code", py.None())?;
         }
         if let Some(value) = &self.inner.timestamps {
-            let converted_1374_list = PyList::empty(py);
-            for item_1375 in value {
-                let converted_item_1376 = (item_1375).to_string().into_py_any(py)?;
-                converted_1374_list.append(converted_item_1376)?;
+            let converted_1421_list = PyList::empty(py);
+            for item_1422 in value {
+                let converted_item_1423 = (item_1422).to_string().into_py_any(py)?;
+                converted_1421_list.append(converted_item_1423)?;
             }
-            let converted_1374 = converted_1374_list.into_any().unbind();
-            result.set_item("timestamps", converted_1374)?;
+            let converted_1421 = converted_1421_list.into_any().unbind();
+            result.set_item("timestamps", converted_1421)?;
         } else {
             result.set_item("timestamps", py.None())?;
         }
         if let Some(value) = &self.inner.values {
-            let converted_1377_list = PyList::empty(py);
-            for item_1378 in value {
-                let converted_item_1379 = (item_1378).to_owned().into_py_any(py)?;
-                converted_1377_list.append(converted_item_1379)?;
+            let converted_1424_list = PyList::empty(py);
+            for item_1425 in value {
+                let converted_item_1426 = (item_1425).to_owned().into_py_any(py)?;
+                converted_1424_list.append(converted_item_1426)?;
             }
-            let converted_1377 = converted_1377_list.into_any().unbind();
-            result.set_item("values", converted_1377)?;
+            let converted_1424 = converted_1424_list.into_any().unbind();
+            result.set_item("values", converted_1424)?;
         } else {
             result.set_item("values", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1380 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1380)?;
+            let converted_1427 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1427)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8618,7 +10063,7 @@ impl From<aws_sdk_cloudtrail::operation::list_public_keys::ListPublicKeysOutput>
             public_key_list: value.public_key_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1385| Arc::new(owned_1385))
+                    .map(|owned_1432| Arc::new(owned_1432))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8640,19 +10085,19 @@ impl PyOperationListPublicKeysOutput {
     #[getter]
     fn public_key_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.public_key_list {
-            let converted_1381_list = PyList::empty(py);
-            for item_1382 in value {
-                let converted_item_1383 = Py::new(
+            let converted_1428_list = PyList::empty(py);
+            for item_1429 in value {
+                let converted_item_1430 = Py::new(
                     py,
                     PyPublicKey {
-                        inner: Arc::clone(item_1382),
+                        inner: Arc::clone(item_1429),
                     },
                 )?
                 .into_any();
-                converted_1381_list.append(converted_item_1383)?;
+                converted_1428_list.append(converted_item_1430)?;
             }
-            let converted_1381 = converted_1381_list.into_any().unbind();
-            Ok(converted_1381)
+            let converted_1428 = converted_1428_list.into_any().unbind();
+            Ok(converted_1428)
         } else {
             Ok(py.None())
         }
@@ -8661,8 +10106,8 @@ impl PyOperationListPublicKeysOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1384 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1384)
+            let converted_1431 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1431)
         } else {
             Ok(py.None())
         }
@@ -8671,19 +10116,19 @@ impl PyOperationListPublicKeysOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.public_key_list {
-            let converted_1386_list = PyList::empty(py);
-            for item_1387 in value {
-                let converted_item_1388 = public_key_to_py(py, item_1387)?;
-                converted_1386_list.append(converted_item_1388)?;
+            let converted_1433_list = PyList::empty(py);
+            for item_1434 in value {
+                let converted_item_1435 = public_key_to_py(py, item_1434)?;
+                converted_1433_list.append(converted_item_1435)?;
             }
-            let converted_1386 = converted_1386_list.into_any().unbind();
-            result.set_item("public_key_list", converted_1386)?;
+            let converted_1433 = converted_1433_list.into_any().unbind();
+            result.set_item("public_key_list", converted_1433)?;
         } else {
             result.set_item("public_key_list", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1389 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1389)?;
+            let converted_1436 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1436)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8706,7 +10151,7 @@ impl From<aws_sdk_cloudtrail::operation::list_queries::ListQueriesOutput>
             queries: value.queries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1394| Arc::new(owned_1394))
+                    .map(|owned_1441| Arc::new(owned_1441))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8728,19 +10173,19 @@ impl PyOperationListQueriesOutput {
     #[getter]
     fn queries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.queries {
-            let converted_1390_list = PyList::empty(py);
-            for item_1391 in value {
-                let converted_item_1392 = Py::new(
+            let converted_1437_list = PyList::empty(py);
+            for item_1438 in value {
+                let converted_item_1439 = Py::new(
                     py,
                     PyQuery {
-                        inner: Arc::clone(item_1391),
+                        inner: Arc::clone(item_1438),
                     },
                 )?
                 .into_any();
-                converted_1390_list.append(converted_item_1392)?;
+                converted_1437_list.append(converted_item_1439)?;
             }
-            let converted_1390 = converted_1390_list.into_any().unbind();
-            Ok(converted_1390)
+            let converted_1437 = converted_1437_list.into_any().unbind();
+            Ok(converted_1437)
         } else {
             Ok(py.None())
         }
@@ -8749,8 +10194,8 @@ impl PyOperationListQueriesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1393 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1393)
+            let converted_1440 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1440)
         } else {
             Ok(py.None())
         }
@@ -8759,19 +10204,19 @@ impl PyOperationListQueriesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.queries {
-            let converted_1395_list = PyList::empty(py);
-            for item_1396 in value {
-                let converted_item_1397 = query_to_py(py, item_1396)?;
-                converted_1395_list.append(converted_item_1397)?;
+            let converted_1442_list = PyList::empty(py);
+            for item_1443 in value {
+                let converted_item_1444 = query_to_py(py, item_1443)?;
+                converted_1442_list.append(converted_item_1444)?;
             }
-            let converted_1395 = converted_1395_list.into_any().unbind();
-            result.set_item("queries", converted_1395)?;
+            let converted_1442 = converted_1442_list.into_any().unbind();
+            result.set_item("queries", converted_1442)?;
         } else {
             result.set_item("queries", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1398 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1398)?;
+            let converted_1445 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1445)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8794,7 +10239,7 @@ impl From<aws_sdk_cloudtrail::operation::list_tags::ListTagsOutput>
             resource_tag_list: value.resource_tag_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1403| Arc::new(SharedResourceTag::from(owned_1403)))
+                    .map(|owned_1450| Arc::new(SharedResourceTag::from(owned_1450)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8812,19 +10257,19 @@ impl PyOperationListTagsOutput {
     #[getter]
     fn resource_tag_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_tag_list {
-            let converted_1399_list = PyList::empty(py);
-            for item_1400 in value {
-                let converted_item_1401 = Py::new(
+            let converted_1446_list = PyList::empty(py);
+            for item_1447 in value {
+                let converted_item_1448 = Py::new(
                     py,
                     PyResourceTag {
-                        inner: Arc::clone(item_1400),
+                        inner: Arc::clone(item_1447),
                     },
                 )?
                 .into_any();
-                converted_1399_list.append(converted_item_1401)?;
+                converted_1446_list.append(converted_item_1448)?;
             }
-            let converted_1399 = converted_1399_list.into_any().unbind();
-            Ok(converted_1399)
+            let converted_1446 = converted_1446_list.into_any().unbind();
+            Ok(converted_1446)
         } else {
             Ok(py.None())
         }
@@ -8833,8 +10278,8 @@ impl PyOperationListTagsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1402 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1402)
+            let converted_1449 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1449)
         } else {
             Ok(py.None())
         }
@@ -8843,19 +10288,19 @@ impl PyOperationListTagsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_tag_list {
-            let converted_1404_list = PyList::empty(py);
-            for item_1405 in value {
-                let converted_item_1406 = resource_tag_shared_to_py(py, item_1405)?;
-                converted_1404_list.append(converted_item_1406)?;
+            let converted_1451_list = PyList::empty(py);
+            for item_1452 in value {
+                let converted_item_1453 = resource_tag_shared_to_py(py, item_1452)?;
+                converted_1451_list.append(converted_item_1453)?;
             }
-            let converted_1404 = converted_1404_list.into_any().unbind();
-            result.set_item("resource_tag_list", converted_1404)?;
+            let converted_1451 = converted_1451_list.into_any().unbind();
+            result.set_item("resource_tag_list", converted_1451)?;
         } else {
             result.set_item("resource_tag_list", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1407 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1407)?;
+            let converted_1454 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1454)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8878,7 +10323,7 @@ impl From<aws_sdk_cloudtrail::operation::list_trails::ListTrailsOutput>
             trails: value.trails.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1412| Arc::new(owned_1412))
+                    .map(|owned_1459| Arc::new(owned_1459))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8896,19 +10341,19 @@ impl PyOperationListTrailsOutput {
     #[getter]
     fn trails(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trails {
-            let converted_1408_list = PyList::empty(py);
-            for item_1409 in value {
-                let converted_item_1410 = Py::new(
+            let converted_1455_list = PyList::empty(py);
+            for item_1456 in value {
+                let converted_item_1457 = Py::new(
                     py,
                     PyTrailInfo {
-                        inner: Arc::clone(item_1409),
+                        inner: Arc::clone(item_1456),
                     },
                 )?
                 .into_any();
-                converted_1408_list.append(converted_item_1410)?;
+                converted_1455_list.append(converted_item_1457)?;
             }
-            let converted_1408 = converted_1408_list.into_any().unbind();
-            Ok(converted_1408)
+            let converted_1455 = converted_1455_list.into_any().unbind();
+            Ok(converted_1455)
         } else {
             Ok(py.None())
         }
@@ -8917,8 +10362,8 @@ impl PyOperationListTrailsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1411 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1411)
+            let converted_1458 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1458)
         } else {
             Ok(py.None())
         }
@@ -8927,19 +10372,19 @@ impl PyOperationListTrailsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trails {
-            let converted_1413_list = PyList::empty(py);
-            for item_1414 in value {
-                let converted_item_1415 = trail_info_to_py(py, item_1414)?;
-                converted_1413_list.append(converted_item_1415)?;
+            let converted_1460_list = PyList::empty(py);
+            for item_1461 in value {
+                let converted_item_1462 = trail_info_to_py(py, item_1461)?;
+                converted_1460_list.append(converted_item_1462)?;
             }
-            let converted_1413 = converted_1413_list.into_any().unbind();
-            result.set_item("trails", converted_1413)?;
+            let converted_1460 = converted_1460_list.into_any().unbind();
+            result.set_item("trails", converted_1460)?;
         } else {
             result.set_item("trails", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1416 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1416)?;
+            let converted_1463 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1463)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -8962,7 +10407,7 @@ impl From<aws_sdk_cloudtrail::operation::lookup_events::LookupEventsOutput>
             events: value.events.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1421| Arc::new(SharedEvent::from(owned_1421)))
+                    .map(|owned_1468| Arc::new(SharedEvent::from(owned_1468)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -8984,19 +10429,19 @@ impl PyOperationLookupEventsOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.events {
-            let converted_1417_list = PyList::empty(py);
-            for item_1418 in value {
-                let converted_item_1419 = Py::new(
+            let converted_1464_list = PyList::empty(py);
+            for item_1465 in value {
+                let converted_item_1466 = Py::new(
                     py,
                     PyEvent {
-                        inner: Arc::clone(item_1418),
+                        inner: Arc::clone(item_1465),
                     },
                 )?
                 .into_any();
-                converted_1417_list.append(converted_item_1419)?;
+                converted_1464_list.append(converted_item_1466)?;
             }
-            let converted_1417 = converted_1417_list.into_any().unbind();
-            Ok(converted_1417)
+            let converted_1464 = converted_1464_list.into_any().unbind();
+            Ok(converted_1464)
         } else {
             Ok(py.None())
         }
@@ -9005,8 +10450,8 @@ impl PyOperationLookupEventsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1420 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1420)
+            let converted_1467 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1467)
         } else {
             Ok(py.None())
         }
@@ -9015,19 +10460,19 @@ impl PyOperationLookupEventsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.events {
-            let converted_1422_list = PyList::empty(py);
-            for item_1423 in value {
-                let converted_item_1424 = event_shared_to_py(py, item_1423)?;
-                converted_1422_list.append(converted_item_1424)?;
+            let converted_1469_list = PyList::empty(py);
+            for item_1470 in value {
+                let converted_item_1471 = event_shared_to_py(py, item_1470)?;
+                converted_1469_list.append(converted_item_1471)?;
             }
-            let converted_1422 = converted_1422_list.into_any().unbind();
-            result.set_item("events", converted_1422)?;
+            let converted_1469 = converted_1469_list.into_any().unbind();
+            result.set_item("events", converted_1469)?;
         } else {
             result.set_item("events", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1425 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1425)?;
+            let converted_1472 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1472)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -9060,13 +10505,13 @@ impl From<aws_sdk_cloudtrail::operation::put_event_configuration::PutEventConfig
             context_key_selectors: value.context_key_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1435| Arc::new(owned_1435))
+                    .map(|owned_1482| Arc::new(owned_1482))
                     .collect()
             }),
             aggregation_configurations: value.aggregation_configurations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1436| Arc::new(owned_1436))
+                    .map(|owned_1483| Arc::new(owned_1483))
                     .collect()
             }),
         }
@@ -9087,8 +10532,8 @@ impl PyOperationPutEventConfigurationOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1426 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1426)
+            let converted_1473 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1473)
         } else {
             Ok(py.None())
         }
@@ -9097,8 +10542,8 @@ impl PyOperationPutEventConfigurationOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1427 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1427)
+            let converted_1474 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1474)
         } else {
             Ok(py.None())
         }
@@ -9107,8 +10552,8 @@ impl PyOperationPutEventConfigurationOutput {
     #[getter]
     fn max_event_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_event_size {
-            let converted_1428 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1428)
+            let converted_1475 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1475)
         } else {
             Ok(py.None())
         }
@@ -9117,19 +10562,19 @@ impl PyOperationPutEventConfigurationOutput {
     #[getter]
     fn context_key_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.context_key_selectors {
-            let converted_1429_list = PyList::empty(py);
-            for item_1430 in value {
-                let converted_item_1431 = Py::new(
+            let converted_1476_list = PyList::empty(py);
+            for item_1477 in value {
+                let converted_item_1478 = Py::new(
                     py,
                     PyContextKeySelector {
-                        inner: Arc::clone(item_1430),
+                        inner: Arc::clone(item_1477),
                     },
                 )?
                 .into_any();
-                converted_1429_list.append(converted_item_1431)?;
+                converted_1476_list.append(converted_item_1478)?;
             }
-            let converted_1429 = converted_1429_list.into_any().unbind();
-            Ok(converted_1429)
+            let converted_1476 = converted_1476_list.into_any().unbind();
+            Ok(converted_1476)
         } else {
             Ok(py.None())
         }
@@ -9138,19 +10583,19 @@ impl PyOperationPutEventConfigurationOutput {
     #[getter]
     fn aggregation_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aggregation_configurations {
-            let converted_1432_list = PyList::empty(py);
-            for item_1433 in value {
-                let converted_item_1434 = Py::new(
+            let converted_1479_list = PyList::empty(py);
+            for item_1480 in value {
+                let converted_item_1481 = Py::new(
                     py,
                     PyAggregationConfiguration {
-                        inner: Arc::clone(item_1433),
+                        inner: Arc::clone(item_1480),
                     },
                 )?
                 .into_any();
-                converted_1432_list.append(converted_item_1434)?;
+                converted_1479_list.append(converted_item_1481)?;
             }
-            let converted_1432 = converted_1432_list.into_any().unbind();
-            Ok(converted_1432)
+            let converted_1479 = converted_1479_list.into_any().unbind();
+            Ok(converted_1479)
         } else {
             Ok(py.None())
         }
@@ -9159,42 +10604,42 @@ impl PyOperationPutEventConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1437 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1437)?;
+            let converted_1484 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1484)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1438 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1438)?;
+            let converted_1485 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1485)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.max_event_size {
-            let converted_1439 = (value).as_str().into_py_any(py)?;
-            result.set_item("max_event_size", converted_1439)?;
+            let converted_1486 = (value).as_str().into_py_any(py)?;
+            result.set_item("max_event_size", converted_1486)?;
         } else {
             result.set_item("max_event_size", py.None())?;
         }
         if let Some(value) = &self.inner.context_key_selectors {
-            let converted_1440_list = PyList::empty(py);
-            for item_1441 in value {
-                let converted_item_1442 = context_key_selector_to_py(py, item_1441)?;
-                converted_1440_list.append(converted_item_1442)?;
+            let converted_1487_list = PyList::empty(py);
+            for item_1488 in value {
+                let converted_item_1489 = context_key_selector_to_py(py, item_1488)?;
+                converted_1487_list.append(converted_item_1489)?;
             }
-            let converted_1440 = converted_1440_list.into_any().unbind();
-            result.set_item("context_key_selectors", converted_1440)?;
+            let converted_1487 = converted_1487_list.into_any().unbind();
+            result.set_item("context_key_selectors", converted_1487)?;
         } else {
             result.set_item("context_key_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.aggregation_configurations {
-            let converted_1443_list = PyList::empty(py);
-            for item_1444 in value {
-                let converted_item_1445 = aggregation_configuration_to_py(py, item_1444)?;
-                converted_1443_list.append(converted_item_1445)?;
+            let converted_1490_list = PyList::empty(py);
+            for item_1491 in value {
+                let converted_item_1492 = aggregation_configuration_to_py(py, item_1491)?;
+                converted_1490_list.append(converted_item_1492)?;
             }
-            let converted_1443 = converted_1443_list.into_any().unbind();
-            result.set_item("aggregation_configurations", converted_1443)?;
+            let converted_1490 = converted_1490_list.into_any().unbind();
+            result.set_item("aggregation_configurations", converted_1490)?;
         } else {
             result.set_item("aggregation_configurations", py.None())?;
         }
@@ -9221,13 +10666,13 @@ impl From<aws_sdk_cloudtrail::operation::put_event_selectors::PutEventSelectorsO
             event_selectors: value.event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1453| Arc::new(SharedEventSelector::from(owned_1453)))
+                    .map(|owned_1500| Arc::new(SharedEventSelector::from(owned_1500)))
                     .collect()
             }),
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1454| Arc::new(SharedAdvancedEventSelector::from(owned_1454)))
+                    .map(|owned_1501| Arc::new(SharedAdvancedEventSelector::from(owned_1501)))
                     .collect()
             }),
         }
@@ -9248,8 +10693,8 @@ impl PyOperationPutEventSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1446 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1446)
+            let converted_1493 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1493)
         } else {
             Ok(py.None())
         }
@@ -9258,19 +10703,19 @@ impl PyOperationPutEventSelectorsOutput {
     #[getter]
     fn event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_selectors {
-            let converted_1447_list = PyList::empty(py);
-            for item_1448 in value {
-                let converted_item_1449 = Py::new(
+            let converted_1494_list = PyList::empty(py);
+            for item_1495 in value {
+                let converted_item_1496 = Py::new(
                     py,
                     PyEventSelector {
-                        inner: Arc::clone(item_1448),
+                        inner: Arc::clone(item_1495),
                     },
                 )?
                 .into_any();
-                converted_1447_list.append(converted_item_1449)?;
+                converted_1494_list.append(converted_item_1496)?;
             }
-            let converted_1447 = converted_1447_list.into_any().unbind();
-            Ok(converted_1447)
+            let converted_1494 = converted_1494_list.into_any().unbind();
+            Ok(converted_1494)
         } else {
             Ok(py.None())
         }
@@ -9279,19 +10724,19 @@ impl PyOperationPutEventSelectorsOutput {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1450_list = PyList::empty(py);
-            for item_1451 in value {
-                let converted_item_1452 = Py::new(
+            let converted_1497_list = PyList::empty(py);
+            for item_1498 in value {
+                let converted_item_1499 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_1451),
+                        inner: Arc::clone(item_1498),
                     },
                 )?
                 .into_any();
-                converted_1450_list.append(converted_item_1452)?;
+                converted_1497_list.append(converted_item_1499)?;
             }
-            let converted_1450 = converted_1450_list.into_any().unbind();
-            Ok(converted_1450)
+            let converted_1497 = converted_1497_list.into_any().unbind();
+            Ok(converted_1497)
         } else {
             Ok(py.None())
         }
@@ -9300,30 +10745,30 @@ impl PyOperationPutEventSelectorsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1455 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1455)?;
+            let converted_1502 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1502)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.event_selectors {
-            let converted_1456_list = PyList::empty(py);
-            for item_1457 in value {
-                let converted_item_1458 = event_selector_shared_to_py(py, item_1457)?;
-                converted_1456_list.append(converted_item_1458)?;
+            let converted_1503_list = PyList::empty(py);
+            for item_1504 in value {
+                let converted_item_1505 = event_selector_shared_to_py(py, item_1504)?;
+                converted_1503_list.append(converted_item_1505)?;
             }
-            let converted_1456 = converted_1456_list.into_any().unbind();
-            result.set_item("event_selectors", converted_1456)?;
+            let converted_1503 = converted_1503_list.into_any().unbind();
+            result.set_item("event_selectors", converted_1503)?;
         } else {
             result.set_item("event_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1459_list = PyList::empty(py);
-            for item_1460 in value {
-                let converted_item_1461 = advanced_event_selector_shared_to_py(py, item_1460)?;
-                converted_1459_list.append(converted_item_1461)?;
+            let converted_1506_list = PyList::empty(py);
+            for item_1507 in value {
+                let converted_item_1508 = advanced_event_selector_shared_to_py(py, item_1507)?;
+                converted_1506_list.append(converted_item_1508)?;
             }
-            let converted_1459 = converted_1459_list.into_any().unbind();
-            result.set_item("advanced_event_selectors", converted_1459)?;
+            let converted_1506 = converted_1506_list.into_any().unbind();
+            result.set_item("advanced_event_selectors", converted_1506)?;
         } else {
             result.set_item("advanced_event_selectors", py.None())?;
         }
@@ -9351,7 +10796,7 @@ impl From<aws_sdk_cloudtrail::operation::put_insight_selectors::PutInsightSelect
             insight_selectors: value.insight_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1468| Arc::new(owned_1468))
+                    .map(|owned_1515| Arc::new(owned_1515))
                     .collect()
             }),
             event_data_store_arn: value.event_data_store_arn,
@@ -9374,8 +10819,8 @@ impl PyOperationPutInsightSelectorsOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1462 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1462)
+            let converted_1509 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1509)
         } else {
             Ok(py.None())
         }
@@ -9384,19 +10829,19 @@ impl PyOperationPutInsightSelectorsOutput {
     #[getter]
     fn insight_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insight_selectors {
-            let converted_1463_list = PyList::empty(py);
-            for item_1464 in value {
-                let converted_item_1465 = Py::new(
+            let converted_1510_list = PyList::empty(py);
+            for item_1511 in value {
+                let converted_item_1512 = Py::new(
                     py,
                     PyInsightSelector {
-                        inner: Arc::clone(item_1464),
+                        inner: Arc::clone(item_1511),
                     },
                 )?
                 .into_any();
-                converted_1463_list.append(converted_item_1465)?;
+                converted_1510_list.append(converted_item_1512)?;
             }
-            let converted_1463 = converted_1463_list.into_any().unbind();
-            Ok(converted_1463)
+            let converted_1510 = converted_1510_list.into_any().unbind();
+            Ok(converted_1510)
         } else {
             Ok(py.None())
         }
@@ -9405,8 +10850,8 @@ impl PyOperationPutInsightSelectorsOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1466 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1466)
+            let converted_1513 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1513)
         } else {
             Ok(py.None())
         }
@@ -9415,8 +10860,8 @@ impl PyOperationPutInsightSelectorsOutput {
     #[getter]
     fn insights_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insights_destination {
-            let converted_1467 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1467)
+            let converted_1514 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1514)
         } else {
             Ok(py.None())
         }
@@ -9425,31 +10870,31 @@ impl PyOperationPutInsightSelectorsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1469 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1469)?;
+            let converted_1516 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1516)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.insight_selectors {
-            let converted_1470_list = PyList::empty(py);
-            for item_1471 in value {
-                let converted_item_1472 = insight_selector_to_py(py, item_1471)?;
-                converted_1470_list.append(converted_item_1472)?;
+            let converted_1517_list = PyList::empty(py);
+            for item_1518 in value {
+                let converted_item_1519 = insight_selector_to_py(py, item_1518)?;
+                converted_1517_list.append(converted_item_1519)?;
             }
-            let converted_1470 = converted_1470_list.into_any().unbind();
-            result.set_item("insight_selectors", converted_1470)?;
+            let converted_1517 = converted_1517_list.into_any().unbind();
+            result.set_item("insight_selectors", converted_1517)?;
         } else {
             result.set_item("insight_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1473 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1473)?;
+            let converted_1520 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1520)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.insights_destination {
-            let converted_1474 = (value).as_str().into_py_any(py)?;
-            result.set_item("insights_destination", converted_1474)?;
+            let converted_1521 = (value).as_str().into_py_any(py)?;
+            result.set_item("insights_destination", converted_1521)?;
         } else {
             result.set_item("insights_destination", py.None())?;
         }
@@ -9471,8 +10916,8 @@ impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn resource_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_arn {
-            let converted_1475 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1475)
+            let converted_1522 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1522)
         } else {
             Ok(py.None())
         }
@@ -9481,8 +10926,8 @@ impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn resource_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_policy {
-            let converted_1476 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1476)
+            let converted_1523 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1523)
         } else {
             Ok(py.None())
         }
@@ -9491,8 +10936,8 @@ impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn delegated_admin_resource_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delegated_admin_resource_policy {
-            let converted_1477 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1477)
+            let converted_1524 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1524)
         } else {
             Ok(py.None())
         }
@@ -9501,20 +10946,20 @@ impl PyOperationPutResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.resource_arn {
-            let converted_1478 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource_arn", converted_1478)?;
+            let converted_1525 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource_arn", converted_1525)?;
         } else {
             result.set_item("resource_arn", py.None())?;
         }
         if let Some(value) = &self.inner.resource_policy {
-            let converted_1479 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource_policy", converted_1479)?;
+            let converted_1526 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource_policy", converted_1526)?;
         } else {
             result.set_item("resource_policy", py.None())?;
         }
         if let Some(value) = &self.inner.delegated_admin_resource_policy {
-            let converted_1480 = (value).as_str().into_py_any(py)?;
-            result.set_item("delegated_admin_resource_policy", converted_1480)?;
+            let converted_1527 = (value).as_str().into_py_any(py)?;
+            result.set_item("delegated_admin_resource_policy", converted_1527)?;
         } else {
             result.set_item("delegated_admin_resource_policy", py.None())?;
         }
@@ -9582,7 +11027,7 @@ impl From<aws_sdk_cloudtrail::operation::restore_event_data_store::RestoreEventD
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1495| Arc::new(SharedAdvancedEventSelector::from(owned_1495)))
+                    .map(|owned_1542| Arc::new(SharedAdvancedEventSelector::from(owned_1542)))
                     .collect()
             }),
             multi_region_enabled: value.multi_region_enabled,
@@ -9611,8 +11056,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1481 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1481)
+            let converted_1528 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1528)
         } else {
             Ok(py.None())
         }
@@ -9621,8 +11066,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1482 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1482)
+            let converted_1529 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1529)
         } else {
             Ok(py.None())
         }
@@ -9631,8 +11076,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1483 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1483)
+            let converted_1530 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1530)
         } else {
             Ok(py.None())
         }
@@ -9641,19 +11086,19 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1484_list = PyList::empty(py);
-            for item_1485 in value {
-                let converted_item_1486 = Py::new(
+            let converted_1531_list = PyList::empty(py);
+            for item_1532 in value {
+                let converted_item_1533 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_1485),
+                        inner: Arc::clone(item_1532),
                     },
                 )?
                 .into_any();
-                converted_1484_list.append(converted_item_1486)?;
+                converted_1531_list.append(converted_item_1533)?;
             }
-            let converted_1484 = converted_1484_list.into_any().unbind();
-            Ok(converted_1484)
+            let converted_1531 = converted_1531_list.into_any().unbind();
+            Ok(converted_1531)
         } else {
             Ok(py.None())
         }
@@ -9662,8 +11107,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn multi_region_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_1487 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1487)
+            let converted_1534 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1534)
         } else {
             Ok(py.None())
         }
@@ -9672,8 +11117,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn organization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_1488 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1488)
+            let converted_1535 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1535)
         } else {
             Ok(py.None())
         }
@@ -9682,8 +11127,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn retention_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retention_period {
-            let converted_1489 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1489)
+            let converted_1536 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1536)
         } else {
             Ok(py.None())
         }
@@ -9692,8 +11137,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1490 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1490)
+            let converted_1537 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1537)
         } else {
             Ok(py.None())
         }
@@ -9702,8 +11147,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1491 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1491)
+            let converted_1538 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1538)
         } else {
             Ok(py.None())
         }
@@ -9712,8 +11157,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1492 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1492)
+            let converted_1539 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1539)
         } else {
             Ok(py.None())
         }
@@ -9722,8 +11167,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1493 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1493)
+            let converted_1540 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1540)
         } else {
             Ok(py.None())
         }
@@ -9732,8 +11177,8 @@ impl PyOperationRestoreEventDataStoreOutput {
     #[getter]
     fn billing_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode {
-            let converted_1494 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1494)
+            let converted_1541 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1541)
         } else {
             Ok(py.None())
         }
@@ -9742,79 +11187,79 @@ impl PyOperationRestoreEventDataStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1496 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1496)?;
+            let converted_1543 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1543)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1497 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1497)?;
+            let converted_1544 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1544)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1498 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1498)?;
+            let converted_1545 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1545)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1499_list = PyList::empty(py);
-            for item_1500 in value {
-                let converted_item_1501 = advanced_event_selector_shared_to_py(py, item_1500)?;
-                converted_1499_list.append(converted_item_1501)?;
+            let converted_1546_list = PyList::empty(py);
+            for item_1547 in value {
+                let converted_item_1548 = advanced_event_selector_shared_to_py(py, item_1547)?;
+                converted_1546_list.append(converted_item_1548)?;
             }
-            let converted_1499 = converted_1499_list.into_any().unbind();
-            result.set_item("advanced_event_selectors", converted_1499)?;
+            let converted_1546 = converted_1546_list.into_any().unbind();
+            result.set_item("advanced_event_selectors", converted_1546)?;
         } else {
             result.set_item("advanced_event_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_1502 = (value).to_owned().into_py_any(py)?;
-            result.set_item("multi_region_enabled", converted_1502)?;
+            let converted_1549 = (value).to_owned().into_py_any(py)?;
+            result.set_item("multi_region_enabled", converted_1549)?;
         } else {
             result.set_item("multi_region_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_1503 = (value).to_owned().into_py_any(py)?;
-            result.set_item("organization_enabled", converted_1503)?;
+            let converted_1550 = (value).to_owned().into_py_any(py)?;
+            result.set_item("organization_enabled", converted_1550)?;
         } else {
             result.set_item("organization_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.retention_period {
-            let converted_1504 = (value).to_owned().into_py_any(py)?;
-            result.set_item("retention_period", converted_1504)?;
+            let converted_1551 = (value).to_owned().into_py_any(py)?;
+            result.set_item("retention_period", converted_1551)?;
         } else {
             result.set_item("retention_period", py.None())?;
         }
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1505 = (value).to_owned().into_py_any(py)?;
-            result.set_item("termination_protection_enabled", converted_1505)?;
+            let converted_1552 = (value).to_owned().into_py_any(py)?;
+            result.set_item("termination_protection_enabled", converted_1552)?;
         } else {
             result.set_item("termination_protection_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1506 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1506)?;
+            let converted_1553 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1553)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1507 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1507)?;
+            let converted_1554 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1554)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1508 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_id", converted_1508)?;
+            let converted_1555 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_id", converted_1555)?;
         } else {
             result.set_item("kms_key_id", py.None())?;
         }
         if let Some(value) = &self.inner.billing_mode {
-            let converted_1509 = (value).as_str().into_py_any(py)?;
-            result.set_item("billing_mode", converted_1509)?;
+            let converted_1556 = (value).as_str().into_py_any(py)?;
+            result.set_item("billing_mode", converted_1556)?;
         } else {
             result.set_item("billing_mode", py.None())?;
         }
@@ -9840,7 +11285,7 @@ impl From<aws_sdk_cloudtrail::operation::search_sample_queries::SearchSampleQuer
             search_results: value.search_results.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1514| Arc::new(owned_1514))
+                    .map(|owned_1561| Arc::new(owned_1561))
                     .collect()
             }),
             next_token: value.next_token,
@@ -9862,19 +11307,19 @@ impl PyOperationSearchSampleQueriesOutput {
     #[getter]
     fn search_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.search_results {
-            let converted_1510_list = PyList::empty(py);
-            for item_1511 in value {
-                let converted_item_1512 = Py::new(
+            let converted_1557_list = PyList::empty(py);
+            for item_1558 in value {
+                let converted_item_1559 = Py::new(
                     py,
                     PySearchSampleQueriesSearchResult {
-                        inner: Arc::clone(item_1511),
+                        inner: Arc::clone(item_1558),
                     },
                 )?
                 .into_any();
-                converted_1510_list.append(converted_item_1512)?;
+                converted_1557_list.append(converted_item_1559)?;
             }
-            let converted_1510 = converted_1510_list.into_any().unbind();
-            Ok(converted_1510)
+            let converted_1557 = converted_1557_list.into_any().unbind();
+            Ok(converted_1557)
         } else {
             Ok(py.None())
         }
@@ -9883,8 +11328,8 @@ impl PyOperationSearchSampleQueriesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1513 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1513)
+            let converted_1560 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1560)
         } else {
             Ok(py.None())
         }
@@ -9893,19 +11338,19 @@ impl PyOperationSearchSampleQueriesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.search_results {
-            let converted_1515_list = PyList::empty(py);
-            for item_1516 in value {
-                let converted_item_1517 = search_sample_queries_search_result_to_py(py, item_1516)?;
-                converted_1515_list.append(converted_item_1517)?;
+            let converted_1562_list = PyList::empty(py);
+            for item_1563 in value {
+                let converted_item_1564 = search_sample_queries_search_result_to_py(py, item_1563)?;
+                converted_1562_list.append(converted_item_1564)?;
             }
-            let converted_1515 = converted_1515_list.into_any().unbind();
-            result.set_item("search_results", converted_1515)?;
+            let converted_1562 = converted_1562_list.into_any().unbind();
+            result.set_item("search_results", converted_1562)?;
         } else {
             result.set_item("search_results", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1518 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1518)?;
+            let converted_1565 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1565)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -9927,8 +11372,8 @@ impl PyOperationStartDashboardRefreshOutput {
     #[getter]
     fn refresh_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.refresh_id {
-            let converted_1519 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1519)
+            let converted_1566 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1566)
         } else {
             Ok(py.None())
         }
@@ -9937,8 +11382,8 @@ impl PyOperationStartDashboardRefreshOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.refresh_id {
-            let converted_1520 = (value).as_str().into_py_any(py)?;
-            result.set_item("refresh_id", converted_1520)?;
+            let converted_1567 = (value).as_str().into_py_any(py)?;
+            result.set_item("refresh_id", converted_1567)?;
         } else {
             result.set_item("refresh_id", py.None())?;
         }
@@ -10009,8 +11454,8 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
-            let converted_1521 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1521)
+            let converted_1568 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1568)
         } else {
             Ok(py.None())
         }
@@ -10019,13 +11464,13 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_1522_list = PyList::empty(py);
-            for item_1523 in value {
-                let converted_item_1524 = (item_1523).as_str().into_py_any(py)?;
-                converted_1522_list.append(converted_item_1524)?;
+            let converted_1569_list = PyList::empty(py);
+            for item_1570 in value {
+                let converted_item_1571 = (item_1570).as_str().into_py_any(py)?;
+                converted_1569_list.append(converted_item_1571)?;
             }
-            let converted_1522 = converted_1522_list.into_any().unbind();
-            Ok(converted_1522)
+            let converted_1569 = converted_1569_list.into_any().unbind();
+            Ok(converted_1569)
         } else {
             Ok(py.None())
         }
@@ -10034,14 +11479,14 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn import_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_source {
-            let converted_1525 = Py::new(
+            let converted_1572 = Py::new(
                 py,
                 PyImportSource {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1525)
+            Ok(converted_1572)
         } else {
             Ok(py.None())
         }
@@ -10050,8 +11495,8 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn start_event_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_event_time {
-            let converted_1526 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1526)
+            let converted_1573 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1573)
         } else {
             Ok(py.None())
         }
@@ -10060,8 +11505,8 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn end_event_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_event_time {
-            let converted_1527 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1527)
+            let converted_1574 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1574)
         } else {
             Ok(py.None())
         }
@@ -10070,8 +11515,8 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_status {
-            let converted_1528 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1528)
+            let converted_1575 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1575)
         } else {
             Ok(py.None())
         }
@@ -10080,8 +11525,8 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1529 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1529)
+            let converted_1576 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1576)
         } else {
             Ok(py.None())
         }
@@ -10090,8 +11535,8 @@ impl PyOperationStartImportOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1530 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1530)
+            let converted_1577 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1577)
         } else {
             Ok(py.None())
         }
@@ -10100,55 +11545,55 @@ impl PyOperationStartImportOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.import_id {
-            let converted_1531 = (value).as_str().into_py_any(py)?;
-            result.set_item("import_id", converted_1531)?;
+            let converted_1578 = (value).as_str().into_py_any(py)?;
+            result.set_item("import_id", converted_1578)?;
         } else {
             result.set_item("import_id", py.None())?;
         }
         if let Some(value) = &self.inner.destinations {
-            let converted_1532_list = PyList::empty(py);
-            for item_1533 in value {
-                let converted_item_1534 = (item_1533).as_str().into_py_any(py)?;
-                converted_1532_list.append(converted_item_1534)?;
+            let converted_1579_list = PyList::empty(py);
+            for item_1580 in value {
+                let converted_item_1581 = (item_1580).as_str().into_py_any(py)?;
+                converted_1579_list.append(converted_item_1581)?;
             }
-            let converted_1532 = converted_1532_list.into_any().unbind();
-            result.set_item("destinations", converted_1532)?;
+            let converted_1579 = converted_1579_list.into_any().unbind();
+            result.set_item("destinations", converted_1579)?;
         } else {
             result.set_item("destinations", py.None())?;
         }
         if let Some(value) = &self.inner.import_source {
-            let converted_1535 = import_source_shared_to_py(py, value)?;
-            result.set_item("import_source", converted_1535)?;
+            let converted_1582 = import_source_shared_to_py(py, value)?;
+            result.set_item("import_source", converted_1582)?;
         } else {
             result.set_item("import_source", py.None())?;
         }
         if let Some(value) = &self.inner.start_event_time {
-            let converted_1536 = (value).to_string().into_py_any(py)?;
-            result.set_item("start_event_time", converted_1536)?;
+            let converted_1583 = (value).to_string().into_py_any(py)?;
+            result.set_item("start_event_time", converted_1583)?;
         } else {
             result.set_item("start_event_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_event_time {
-            let converted_1537 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_event_time", converted_1537)?;
+            let converted_1584 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_event_time", converted_1584)?;
         } else {
             result.set_item("end_event_time", py.None())?;
         }
         if let Some(value) = &self.inner.import_status {
-            let converted_1538 = (value).as_str().into_py_any(py)?;
-            result.set_item("import_status", converted_1538)?;
+            let converted_1585 = (value).as_str().into_py_any(py)?;
+            result.set_item("import_status", converted_1585)?;
         } else {
             result.set_item("import_status", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1539 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1539)?;
+            let converted_1586 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1586)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1540 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1540)?;
+            let converted_1587 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1587)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
@@ -10183,8 +11628,8 @@ impl PyOperationStartQueryOutput {
     #[getter]
     fn query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_id {
-            let converted_1541 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1541)
+            let converted_1588 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1588)
         } else {
             Ok(py.None())
         }
@@ -10193,8 +11638,8 @@ impl PyOperationStartQueryOutput {
     #[getter]
     fn event_data_store_owner_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_1542 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1542)
+            let converted_1589 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1589)
         } else {
             Ok(py.None())
         }
@@ -10203,14 +11648,14 @@ impl PyOperationStartQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_id {
-            let converted_1543 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_id", converted_1543)?;
+            let converted_1590 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_id", converted_1590)?;
         } else {
             result.set_item("query_id", py.None())?;
         }
         if let Some(value) = &self.inner.event_data_store_owner_account_id {
-            let converted_1544 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_owner_account_id", converted_1544)?;
+            let converted_1591 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_owner_account_id", converted_1591)?;
         } else {
             result.set_item("event_data_store_owner_account_id", py.None())?;
         }
@@ -10279,8 +11724,8 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn import_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_id {
-            let converted_1545 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1545)
+            let converted_1592 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1592)
         } else {
             Ok(py.None())
         }
@@ -10289,14 +11734,14 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn import_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_source {
-            let converted_1546 = Py::new(
+            let converted_1593 = Py::new(
                 py,
                 PyImportSource {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1546)
+            Ok(converted_1593)
         } else {
             Ok(py.None())
         }
@@ -10305,13 +11750,13 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_1547_list = PyList::empty(py);
-            for item_1548 in value {
-                let converted_item_1549 = (item_1548).as_str().into_py_any(py)?;
-                converted_1547_list.append(converted_item_1549)?;
+            let converted_1594_list = PyList::empty(py);
+            for item_1595 in value {
+                let converted_item_1596 = (item_1595).as_str().into_py_any(py)?;
+                converted_1594_list.append(converted_item_1596)?;
             }
-            let converted_1547 = converted_1547_list.into_any().unbind();
-            Ok(converted_1547)
+            let converted_1594 = converted_1594_list.into_any().unbind();
+            Ok(converted_1594)
         } else {
             Ok(py.None())
         }
@@ -10320,8 +11765,8 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn import_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_status {
-            let converted_1550 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1550)
+            let converted_1597 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1597)
         } else {
             Ok(py.None())
         }
@@ -10330,8 +11775,8 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1551 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1551)
+            let converted_1598 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1598)
         } else {
             Ok(py.None())
         }
@@ -10340,8 +11785,8 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1552 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1552)
+            let converted_1599 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1599)
         } else {
             Ok(py.None())
         }
@@ -10350,8 +11795,8 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn start_event_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_event_time {
-            let converted_1553 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1553)
+            let converted_1600 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1600)
         } else {
             Ok(py.None())
         }
@@ -10360,8 +11805,8 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn end_event_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_event_time {
-            let converted_1554 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1554)
+            let converted_1601 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1601)
         } else {
             Ok(py.None())
         }
@@ -10370,14 +11815,14 @@ impl PyOperationStopImportOutput {
     #[getter]
     fn import_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_statistics {
-            let converted_1555 = Py::new(
+            let converted_1602 = Py::new(
                 py,
                 PyImportStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1555)
+            Ok(converted_1602)
         } else {
             Ok(py.None())
         }
@@ -10386,61 +11831,61 @@ impl PyOperationStopImportOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.import_id {
-            let converted_1556 = (value).as_str().into_py_any(py)?;
-            result.set_item("import_id", converted_1556)?;
+            let converted_1603 = (value).as_str().into_py_any(py)?;
+            result.set_item("import_id", converted_1603)?;
         } else {
             result.set_item("import_id", py.None())?;
         }
         if let Some(value) = &self.inner.import_source {
-            let converted_1557 = import_source_shared_to_py(py, value)?;
-            result.set_item("import_source", converted_1557)?;
+            let converted_1604 = import_source_shared_to_py(py, value)?;
+            result.set_item("import_source", converted_1604)?;
         } else {
             result.set_item("import_source", py.None())?;
         }
         if let Some(value) = &self.inner.destinations {
-            let converted_1558_list = PyList::empty(py);
-            for item_1559 in value {
-                let converted_item_1560 = (item_1559).as_str().into_py_any(py)?;
-                converted_1558_list.append(converted_item_1560)?;
+            let converted_1605_list = PyList::empty(py);
+            for item_1606 in value {
+                let converted_item_1607 = (item_1606).as_str().into_py_any(py)?;
+                converted_1605_list.append(converted_item_1607)?;
             }
-            let converted_1558 = converted_1558_list.into_any().unbind();
-            result.set_item("destinations", converted_1558)?;
+            let converted_1605 = converted_1605_list.into_any().unbind();
+            result.set_item("destinations", converted_1605)?;
         } else {
             result.set_item("destinations", py.None())?;
         }
         if let Some(value) = &self.inner.import_status {
-            let converted_1561 = (value).as_str().into_py_any(py)?;
-            result.set_item("import_status", converted_1561)?;
+            let converted_1608 = (value).as_str().into_py_any(py)?;
+            result.set_item("import_status", converted_1608)?;
         } else {
             result.set_item("import_status", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1562 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1562)?;
+            let converted_1609 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1609)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1563 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1563)?;
+            let converted_1610 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1610)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.start_event_time {
-            let converted_1564 = (value).to_string().into_py_any(py)?;
-            result.set_item("start_event_time", converted_1564)?;
+            let converted_1611 = (value).to_string().into_py_any(py)?;
+            result.set_item("start_event_time", converted_1611)?;
         } else {
             result.set_item("start_event_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_event_time {
-            let converted_1565 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_event_time", converted_1565)?;
+            let converted_1612 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_event_time", converted_1612)?;
         } else {
             result.set_item("end_event_time", py.None())?;
         }
         if let Some(value) = &self.inner.import_statistics {
-            let converted_1566 = import_statistics_to_py(py, value)?;
-            result.set_item("import_statistics", converted_1566)?;
+            let converted_1613 = import_statistics_to_py(py, value)?;
+            result.set_item("import_statistics", converted_1613)?;
         } else {
             result.set_item("import_statistics", py.None())?;
         }
@@ -10485,7 +11930,7 @@ impl From<aws_sdk_cloudtrail::operation::update_channel::UpdateChannelOutput>
             destinations: value.destinations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1573| Arc::new(owned_1573))
+                    .map(|owned_1620| Arc::new(owned_1620))
                     .collect()
             }),
         }
@@ -10506,8 +11951,8 @@ impl PyOperationUpdateChannelOutput {
     #[getter]
     fn channel_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_arn {
-            let converted_1567 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1567)
+            let converted_1614 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1614)
         } else {
             Ok(py.None())
         }
@@ -10516,8 +11961,8 @@ impl PyOperationUpdateChannelOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1568 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1568)
+            let converted_1615 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1615)
         } else {
             Ok(py.None())
         }
@@ -10526,8 +11971,8 @@ impl PyOperationUpdateChannelOutput {
     #[getter]
     fn source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source {
-            let converted_1569 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1569)
+            let converted_1616 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1616)
         } else {
             Ok(py.None())
         }
@@ -10536,19 +11981,19 @@ impl PyOperationUpdateChannelOutput {
     #[getter]
     fn destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destinations {
-            let converted_1570_list = PyList::empty(py);
-            for item_1571 in value {
-                let converted_item_1572 = Py::new(
+            let converted_1617_list = PyList::empty(py);
+            for item_1618 in value {
+                let converted_item_1619 = Py::new(
                     py,
                     PyDestination {
-                        inner: Arc::clone(item_1571),
+                        inner: Arc::clone(item_1618),
                     },
                 )?
                 .into_any();
-                converted_1570_list.append(converted_item_1572)?;
+                converted_1617_list.append(converted_item_1619)?;
             }
-            let converted_1570 = converted_1570_list.into_any().unbind();
-            Ok(converted_1570)
+            let converted_1617 = converted_1617_list.into_any().unbind();
+            Ok(converted_1617)
         } else {
             Ok(py.None())
         }
@@ -10557,31 +12002,31 @@ impl PyOperationUpdateChannelOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.channel_arn {
-            let converted_1574 = (value).as_str().into_py_any(py)?;
-            result.set_item("channel_arn", converted_1574)?;
+            let converted_1621 = (value).as_str().into_py_any(py)?;
+            result.set_item("channel_arn", converted_1621)?;
         } else {
             result.set_item("channel_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1575 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1575)?;
+            let converted_1622 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1622)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.source {
-            let converted_1576 = (value).as_str().into_py_any(py)?;
-            result.set_item("source", converted_1576)?;
+            let converted_1623 = (value).as_str().into_py_any(py)?;
+            result.set_item("source", converted_1623)?;
         } else {
             result.set_item("source", py.None())?;
         }
         if let Some(value) = &self.inner.destinations {
-            let converted_1577_list = PyList::empty(py);
-            for item_1578 in value {
-                let converted_item_1579 = destination_to_py(py, item_1578)?;
-                converted_1577_list.append(converted_item_1579)?;
+            let converted_1624_list = PyList::empty(py);
+            for item_1625 in value {
+                let converted_item_1626 = destination_to_py(py, item_1625)?;
+                converted_1624_list.append(converted_item_1626)?;
             }
-            let converted_1577 = converted_1577_list.into_any().unbind();
-            result.set_item("destinations", converted_1577)?;
+            let converted_1624 = converted_1624_list.into_any().unbind();
+            result.set_item("destinations", converted_1624)?;
         } else {
             result.set_item("destinations", py.None())?;
         }
@@ -10613,7 +12058,7 @@ impl From<aws_sdk_cloudtrail::operation::update_dashboard::UpdateDashboardOutput
             widgets: value.widgets.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1590| Arc::new(owned_1590))
+                    .map(|owned_1637| Arc::new(owned_1637))
                     .collect()
             }),
             refresh_schedule: value
@@ -10640,8 +12085,8 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn dashboard_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_1580 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1580)
+            let converted_1627 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1627)
         } else {
             Ok(py.None())
         }
@@ -10650,8 +12095,8 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1581 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1581)
+            let converted_1628 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1628)
         } else {
             Ok(py.None())
         }
@@ -10660,8 +12105,8 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_1582 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1582)
+            let converted_1629 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1629)
         } else {
             Ok(py.None())
         }
@@ -10670,19 +12115,19 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn widgets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.widgets {
-            let converted_1583_list = PyList::empty(py);
-            for item_1584 in value {
-                let converted_item_1585 = Py::new(
+            let converted_1630_list = PyList::empty(py);
+            for item_1631 in value {
+                let converted_item_1632 = Py::new(
                     py,
                     PyWidget {
-                        inner: Arc::clone(item_1584),
+                        inner: Arc::clone(item_1631),
                     },
                 )?
                 .into_any();
-                converted_1583_list.append(converted_item_1585)?;
+                converted_1630_list.append(converted_item_1632)?;
             }
-            let converted_1583 = converted_1583_list.into_any().unbind();
-            Ok(converted_1583)
+            let converted_1630 = converted_1630_list.into_any().unbind();
+            Ok(converted_1630)
         } else {
             Ok(py.None())
         }
@@ -10691,14 +12136,14 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn refresh_schedule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.refresh_schedule {
-            let converted_1586 = Py::new(
+            let converted_1633 = Py::new(
                 py,
                 PyRefreshSchedule {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1586)
+            Ok(converted_1633)
         } else {
             Ok(py.None())
         }
@@ -10707,8 +12152,8 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1587 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1587)
+            let converted_1634 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1634)
         } else {
             Ok(py.None())
         }
@@ -10717,8 +12162,8 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1588 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1588)
+            let converted_1635 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1635)
         } else {
             Ok(py.None())
         }
@@ -10727,8 +12172,8 @@ impl PyOperationUpdateDashboardOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1589 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1589)
+            let converted_1636 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1636)
         } else {
             Ok(py.None())
         }
@@ -10737,55 +12182,55 @@ impl PyOperationUpdateDashboardOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.dashboard_arn {
-            let converted_1591 = (value).as_str().into_py_any(py)?;
-            result.set_item("dashboard_arn", converted_1591)?;
+            let converted_1638 = (value).as_str().into_py_any(py)?;
+            result.set_item("dashboard_arn", converted_1638)?;
         } else {
             result.set_item("dashboard_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1592 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1592)?;
+            let converted_1639 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1639)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.r#type {
-            let converted_1593 = (value).as_str().into_py_any(py)?;
-            result.set_item("type", converted_1593)?;
+            let converted_1640 = (value).as_str().into_py_any(py)?;
+            result.set_item("type", converted_1640)?;
         } else {
             result.set_item("type", py.None())?;
         }
         if let Some(value) = &self.inner.widgets {
-            let converted_1594_list = PyList::empty(py);
-            for item_1595 in value {
-                let converted_item_1596 = widget_to_py(py, item_1595)?;
-                converted_1594_list.append(converted_item_1596)?;
+            let converted_1641_list = PyList::empty(py);
+            for item_1642 in value {
+                let converted_item_1643 = widget_to_py(py, item_1642)?;
+                converted_1641_list.append(converted_item_1643)?;
             }
-            let converted_1594 = converted_1594_list.into_any().unbind();
-            result.set_item("widgets", converted_1594)?;
+            let converted_1641 = converted_1641_list.into_any().unbind();
+            result.set_item("widgets", converted_1641)?;
         } else {
             result.set_item("widgets", py.None())?;
         }
         if let Some(value) = &self.inner.refresh_schedule {
-            let converted_1597 = refresh_schedule_shared_to_py(py, value)?;
-            result.set_item("refresh_schedule", converted_1597)?;
+            let converted_1644 = refresh_schedule_shared_to_py(py, value)?;
+            result.set_item("refresh_schedule", converted_1644)?;
         } else {
             result.set_item("refresh_schedule", py.None())?;
         }
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1598 = (value).to_owned().into_py_any(py)?;
-            result.set_item("termination_protection_enabled", converted_1598)?;
+            let converted_1645 = (value).to_owned().into_py_any(py)?;
+            result.set_item("termination_protection_enabled", converted_1645)?;
         } else {
             result.set_item("termination_protection_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1599 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1599)?;
+            let converted_1646 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1646)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1600 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1600)?;
+            let converted_1647 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1647)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
@@ -10825,7 +12270,7 @@ impl From<aws_sdk_cloudtrail::operation::update_event_data_store::UpdateEventDat
             advanced_event_selectors: value.advanced_event_selectors.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1617| Arc::new(SharedAdvancedEventSelector::from(owned_1617)))
+                    .map(|owned_1664| Arc::new(SharedAdvancedEventSelector::from(owned_1664)))
                     .collect()
             }),
             multi_region_enabled: value.multi_region_enabled,
@@ -10856,8 +12301,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn event_data_store_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1601 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1601)
+            let converted_1648 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1648)
         } else {
             Ok(py.None())
         }
@@ -10866,8 +12311,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1602 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1602)
+            let converted_1649 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1649)
         } else {
             Ok(py.None())
         }
@@ -10876,8 +12321,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1603 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1603)
+            let converted_1650 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1650)
         } else {
             Ok(py.None())
         }
@@ -10886,19 +12331,19 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn advanced_event_selectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1604_list = PyList::empty(py);
-            for item_1605 in value {
-                let converted_item_1606 = Py::new(
+            let converted_1651_list = PyList::empty(py);
+            for item_1652 in value {
+                let converted_item_1653 = Py::new(
                     py,
                     PyAdvancedEventSelector {
-                        inner: Arc::clone(item_1605),
+                        inner: Arc::clone(item_1652),
                     },
                 )?
                 .into_any();
-                converted_1604_list.append(converted_item_1606)?;
+                converted_1651_list.append(converted_item_1653)?;
             }
-            let converted_1604 = converted_1604_list.into_any().unbind();
-            Ok(converted_1604)
+            let converted_1651 = converted_1651_list.into_any().unbind();
+            Ok(converted_1651)
         } else {
             Ok(py.None())
         }
@@ -10907,8 +12352,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn multi_region_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_1607 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1607)
+            let converted_1654 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1654)
         } else {
             Ok(py.None())
         }
@@ -10917,8 +12362,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn organization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_1608 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1608)
+            let converted_1655 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1655)
         } else {
             Ok(py.None())
         }
@@ -10927,8 +12372,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn retention_period(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retention_period {
-            let converted_1609 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1609)
+            let converted_1656 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1656)
         } else {
             Ok(py.None())
         }
@@ -10937,8 +12382,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn termination_protection_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1610 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1610)
+            let converted_1657 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1657)
         } else {
             Ok(py.None())
         }
@@ -10947,8 +12392,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn created_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1611 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1611)
+            let converted_1658 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1658)
         } else {
             Ok(py.None())
         }
@@ -10957,8 +12402,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn updated_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1612 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1612)
+            let converted_1659 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1659)
         } else {
             Ok(py.None())
         }
@@ -10967,8 +12412,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1613 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1613)
+            let converted_1660 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1660)
         } else {
             Ok(py.None())
         }
@@ -10977,8 +12422,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn billing_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.billing_mode {
-            let converted_1614 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1614)
+            let converted_1661 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1661)
         } else {
             Ok(py.None())
         }
@@ -10987,8 +12432,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn federation_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federation_status {
-            let converted_1615 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1615)
+            let converted_1662 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1662)
         } else {
             Ok(py.None())
         }
@@ -10997,8 +12442,8 @@ impl PyOperationUpdateEventDataStoreOutput {
     #[getter]
     fn federation_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.federation_role_arn {
-            let converted_1616 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1616)
+            let converted_1663 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1663)
         } else {
             Ok(py.None())
         }
@@ -11007,91 +12452,91 @@ impl PyOperationUpdateEventDataStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.event_data_store_arn {
-            let converted_1618 = (value).as_str().into_py_any(py)?;
-            result.set_item("event_data_store_arn", converted_1618)?;
+            let converted_1665 = (value).as_str().into_py_any(py)?;
+            result.set_item("event_data_store_arn", converted_1665)?;
         } else {
             result.set_item("event_data_store_arn", py.None())?;
         }
         if let Some(value) = &self.inner.name {
-            let converted_1619 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1619)?;
+            let converted_1666 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1666)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1620 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_1620)?;
+            let converted_1667 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_1667)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.advanced_event_selectors {
-            let converted_1621_list = PyList::empty(py);
-            for item_1622 in value {
-                let converted_item_1623 = advanced_event_selector_shared_to_py(py, item_1622)?;
-                converted_1621_list.append(converted_item_1623)?;
+            let converted_1668_list = PyList::empty(py);
+            for item_1669 in value {
+                let converted_item_1670 = advanced_event_selector_shared_to_py(py, item_1669)?;
+                converted_1668_list.append(converted_item_1670)?;
             }
-            let converted_1621 = converted_1621_list.into_any().unbind();
-            result.set_item("advanced_event_selectors", converted_1621)?;
+            let converted_1668 = converted_1668_list.into_any().unbind();
+            result.set_item("advanced_event_selectors", converted_1668)?;
         } else {
             result.set_item("advanced_event_selectors", py.None())?;
         }
         if let Some(value) = &self.inner.multi_region_enabled {
-            let converted_1624 = (value).to_owned().into_py_any(py)?;
-            result.set_item("multi_region_enabled", converted_1624)?;
+            let converted_1671 = (value).to_owned().into_py_any(py)?;
+            result.set_item("multi_region_enabled", converted_1671)?;
         } else {
             result.set_item("multi_region_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.organization_enabled {
-            let converted_1625 = (value).to_owned().into_py_any(py)?;
-            result.set_item("organization_enabled", converted_1625)?;
+            let converted_1672 = (value).to_owned().into_py_any(py)?;
+            result.set_item("organization_enabled", converted_1672)?;
         } else {
             result.set_item("organization_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.retention_period {
-            let converted_1626 = (value).to_owned().into_py_any(py)?;
-            result.set_item("retention_period", converted_1626)?;
+            let converted_1673 = (value).to_owned().into_py_any(py)?;
+            result.set_item("retention_period", converted_1673)?;
         } else {
             result.set_item("retention_period", py.None())?;
         }
         if let Some(value) = &self.inner.termination_protection_enabled {
-            let converted_1627 = (value).to_owned().into_py_any(py)?;
-            result.set_item("termination_protection_enabled", converted_1627)?;
+            let converted_1674 = (value).to_owned().into_py_any(py)?;
+            result.set_item("termination_protection_enabled", converted_1674)?;
         } else {
             result.set_item("termination_protection_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.created_timestamp {
-            let converted_1628 = (value).to_string().into_py_any(py)?;
-            result.set_item("created_timestamp", converted_1628)?;
+            let converted_1675 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_timestamp", converted_1675)?;
         } else {
             result.set_item("created_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.updated_timestamp {
-            let converted_1629 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_timestamp", converted_1629)?;
+            let converted_1676 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_timestamp", converted_1676)?;
         } else {
             result.set_item("updated_timestamp", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1630 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_id", converted_1630)?;
+            let converted_1677 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_id", converted_1677)?;
         } else {
             result.set_item("kms_key_id", py.None())?;
         }
         if let Some(value) = &self.inner.billing_mode {
-            let converted_1631 = (value).as_str().into_py_any(py)?;
-            result.set_item("billing_mode", converted_1631)?;
+            let converted_1678 = (value).as_str().into_py_any(py)?;
+            result.set_item("billing_mode", converted_1678)?;
         } else {
             result.set_item("billing_mode", py.None())?;
         }
         if let Some(value) = &self.inner.federation_status {
-            let converted_1632 = (value).as_str().into_py_any(py)?;
-            result.set_item("federation_status", converted_1632)?;
+            let converted_1679 = (value).as_str().into_py_any(py)?;
+            result.set_item("federation_status", converted_1679)?;
         } else {
             result.set_item("federation_status", py.None())?;
         }
         if let Some(value) = &self.inner.federation_role_arn {
-            let converted_1633 = (value).as_str().into_py_any(py)?;
-            result.set_item("federation_role_arn", converted_1633)?;
+            let converted_1680 = (value).as_str().into_py_any(py)?;
+            result.set_item("federation_role_arn", converted_1680)?;
         } else {
             result.set_item("federation_role_arn", py.None())?;
         }
@@ -11113,8 +12558,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1634 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1634)
+            let converted_1681 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1681)
         } else {
             Ok(py.None())
         }
@@ -11123,8 +12568,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn s3_bucket_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_bucket_name {
-            let converted_1635 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1635)
+            let converted_1682 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1682)
         } else {
             Ok(py.None())
         }
@@ -11133,8 +12578,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn s3_key_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_key_prefix {
-            let converted_1636 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1636)
+            let converted_1683 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1683)
         } else {
             Ok(py.None())
         }
@@ -11143,8 +12588,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn sns_topic_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_name {
-            let converted_1637 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1637)
+            let converted_1684 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1684)
         } else {
             Ok(py.None())
         }
@@ -11153,8 +12598,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn sns_topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_arn {
-            let converted_1638 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1638)
+            let converted_1685 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1685)
         } else {
             Ok(py.None())
         }
@@ -11163,8 +12608,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn include_global_service_events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.include_global_service_events {
-            let converted_1639 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1639)
+            let converted_1686 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1686)
         } else {
             Ok(py.None())
         }
@@ -11173,8 +12618,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn is_multi_region_trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_multi_region_trail {
-            let converted_1640 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1640)
+            let converted_1687 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1687)
         } else {
             Ok(py.None())
         }
@@ -11183,8 +12628,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn trail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1641 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1641)
+            let converted_1688 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1688)
         } else {
             Ok(py.None())
         }
@@ -11193,8 +12638,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn log_file_validation_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_file_validation_enabled {
-            let converted_1642 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1642)
+            let converted_1689 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1689)
         } else {
             Ok(py.None())
         }
@@ -11203,8 +12648,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn cloud_watch_logs_log_group_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_log_group_arn {
-            let converted_1643 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1643)
+            let converted_1690 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1690)
         } else {
             Ok(py.None())
         }
@@ -11213,8 +12658,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn cloud_watch_logs_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logs_role_arn {
-            let converted_1644 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1644)
+            let converted_1691 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1691)
         } else {
             Ok(py.None())
         }
@@ -11223,8 +12668,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1645 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1645)
+            let converted_1692 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1692)
         } else {
             Ok(py.None())
         }
@@ -11233,8 +12678,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn is_organization_trail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_organization_trail {
-            let converted_1646 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1646)
+            let converted_1693 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1693)
         } else {
             Ok(py.None())
         }
@@ -11243,8 +12688,8 @@ impl PyOperationUpdateTrailOutput {
     #[getter]
     fn recursive_logging(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recursive_logging {
-            let converted_1647 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1647)
+            let converted_1694 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1694)
         } else {
             Ok(py.None())
         }
@@ -11253,86 +12698,86 @@ impl PyOperationUpdateTrailOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.name {
-            let converted_1648 = (value).as_str().into_py_any(py)?;
-            result.set_item("name", converted_1648)?;
+            let converted_1695 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_1695)?;
         } else {
             result.set_item("name", py.None())?;
         }
         if let Some(value) = &self.inner.s3_bucket_name {
-            let converted_1649 = (value).as_str().into_py_any(py)?;
-            result.set_item("s3_bucket_name", converted_1649)?;
+            let converted_1696 = (value).as_str().into_py_any(py)?;
+            result.set_item("s3_bucket_name", converted_1696)?;
         } else {
             result.set_item("s3_bucket_name", py.None())?;
         }
         if let Some(value) = &self.inner.s3_key_prefix {
-            let converted_1650 = (value).as_str().into_py_any(py)?;
-            result.set_item("s3_key_prefix", converted_1650)?;
+            let converted_1697 = (value).as_str().into_py_any(py)?;
+            result.set_item("s3_key_prefix", converted_1697)?;
         } else {
             result.set_item("s3_key_prefix", py.None())?;
         }
         if let Some(value) = &self.inner.sns_topic_name {
-            let converted_1651 = (value).as_str().into_py_any(py)?;
-            result.set_item("sns_topic_name", converted_1651)?;
+            let converted_1698 = (value).as_str().into_py_any(py)?;
+            result.set_item("sns_topic_name", converted_1698)?;
         } else {
             result.set_item("sns_topic_name", py.None())?;
         }
         if let Some(value) = &self.inner.sns_topic_arn {
-            let converted_1652 = (value).as_str().into_py_any(py)?;
-            result.set_item("sns_topic_arn", converted_1652)?;
+            let converted_1699 = (value).as_str().into_py_any(py)?;
+            result.set_item("sns_topic_arn", converted_1699)?;
         } else {
             result.set_item("sns_topic_arn", py.None())?;
         }
         if let Some(value) = &self.inner.include_global_service_events {
-            let converted_1653 = (value).to_owned().into_py_any(py)?;
-            result.set_item("include_global_service_events", converted_1653)?;
+            let converted_1700 = (value).to_owned().into_py_any(py)?;
+            result.set_item("include_global_service_events", converted_1700)?;
         } else {
             result.set_item("include_global_service_events", py.None())?;
         }
         if let Some(value) = &self.inner.is_multi_region_trail {
-            let converted_1654 = (value).to_owned().into_py_any(py)?;
-            result.set_item("is_multi_region_trail", converted_1654)?;
+            let converted_1701 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_multi_region_trail", converted_1701)?;
         } else {
             result.set_item("is_multi_region_trail", py.None())?;
         }
         if let Some(value) = &self.inner.trail_arn {
-            let converted_1655 = (value).as_str().into_py_any(py)?;
-            result.set_item("trail_arn", converted_1655)?;
+            let converted_1702 = (value).as_str().into_py_any(py)?;
+            result.set_item("trail_arn", converted_1702)?;
         } else {
             result.set_item("trail_arn", py.None())?;
         }
         if let Some(value) = &self.inner.log_file_validation_enabled {
-            let converted_1656 = (value).to_owned().into_py_any(py)?;
-            result.set_item("log_file_validation_enabled", converted_1656)?;
+            let converted_1703 = (value).to_owned().into_py_any(py)?;
+            result.set_item("log_file_validation_enabled", converted_1703)?;
         } else {
             result.set_item("log_file_validation_enabled", py.None())?;
         }
         if let Some(value) = &self.inner.cloud_watch_logs_log_group_arn {
-            let converted_1657 = (value).as_str().into_py_any(py)?;
-            result.set_item("cloud_watch_logs_log_group_arn", converted_1657)?;
+            let converted_1704 = (value).as_str().into_py_any(py)?;
+            result.set_item("cloud_watch_logs_log_group_arn", converted_1704)?;
         } else {
             result.set_item("cloud_watch_logs_log_group_arn", py.None())?;
         }
         if let Some(value) = &self.inner.cloud_watch_logs_role_arn {
-            let converted_1658 = (value).as_str().into_py_any(py)?;
-            result.set_item("cloud_watch_logs_role_arn", converted_1658)?;
+            let converted_1705 = (value).as_str().into_py_any(py)?;
+            result.set_item("cloud_watch_logs_role_arn", converted_1705)?;
         } else {
             result.set_item("cloud_watch_logs_role_arn", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_id {
-            let converted_1659 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_id", converted_1659)?;
+            let converted_1706 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_id", converted_1706)?;
         } else {
             result.set_item("kms_key_id", py.None())?;
         }
         if let Some(value) = &self.inner.is_organization_trail {
-            let converted_1660 = (value).to_owned().into_py_any(py)?;
-            result.set_item("is_organization_trail", converted_1660)?;
+            let converted_1707 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_organization_trail", converted_1707)?;
         } else {
             result.set_item("is_organization_trail", py.None())?;
         }
         if let Some(value) = &self.inner.recursive_logging {
-            let converted_1661 = (value).to_owned().into_py_any(py)?;
-            result.set_item("recursive_logging", converted_1661)?;
+            let converted_1708 = (value).to_owned().into_py_any(py)?;
+            result.set_item("recursive_logging", converted_1708)?;
         } else {
             result.set_item("recursive_logging", py.None())?;
         }
@@ -11475,20 +12920,65 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_id_value = if let Some(value) = dict_value(params, "resource_id")? {
-            let converted_413: String = value.extract()?;
-            Some(converted_413)
+            let converted_435 = (|| -> PyResult<_> {
+                let converted_435: String = value.extract()?;
+                Ok(converted_435)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "AddTags",
+                )
+            })?;
+            Some(converted_435)
         } else {
             None
         };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_414 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_415 in value.try_iter()? {
-                let item_416 = item_result_415?;
-                let converted_item_417 = tag_from_py(&item_416)?;
-                converted_414.push(converted_item_417);
-            }
-            Some(converted_414)
+            let converted_436 = (|| -> PyResult<_> {
+                let mut converted_436 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_440, item_result_437) in value.try_iter()?.enumerate() {
+                    let item_438 = item_result_437.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_440),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_439 = (|| -> PyResult<_> {
+                        let converted_item_439 = tag_from_py(&item_438)?;
+                        Ok(converted_item_439)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_440),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_436.push(converted_item_439);
+                }
+                Ok(converted_436)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags_list"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "AddTags",
+                )
+            })?;
+            Some(converted_436)
         } else {
             None
         };
@@ -11525,21 +13015,59 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_418: String = value.extract()?;
-            Some(converted_418)
+            let converted_441 = (|| -> PyResult<_> {
+                let converted_441: String = value.extract()?;
+                Ok(converted_441)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "CancelQuery",
+                )
+            })?;
+            Some(converted_441)
         } else {
             None
         };
         let query_id_value = if let Some(value) = dict_value(params, "query_id")? {
-            let converted_419: String = value.extract()?;
-            Some(converted_419)
+            let converted_442 = (|| -> PyResult<_> {
+                let converted_442: String = value.extract()?;
+                Ok(converted_442)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("query_id"), "str"),
+                    "cloudtrail",
+                    "CancelQuery",
+                )
+            })?;
+            Some(converted_442)
         } else {
             None
         };
         let event_data_store_owner_account_id_value =
             if let Some(value) = dict_value(params, "event_data_store_owner_account_id")? {
-                let converted_420: String = value.extract()?;
-                Some(converted_420)
+                let converted_443 = (|| -> PyResult<_> {
+                    let converted_443: String = value.extract()?;
+                    Ok(converted_443)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("event_data_store_owner_account_id"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "CancelQuery",
+                    )
+                })?;
+                Some(converted_443)
             } else {
                 None
             };
@@ -11577,38 +13105,120 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_421: String = value.extract()?;
-            Some(converted_421)
+            let converted_444 = (|| -> PyResult<_> {
+                let converted_444: String = value.extract()?;
+                Ok(converted_444)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "CreateChannel",
+                )
+            })?;
+            Some(converted_444)
         } else {
             None
         };
         let source_value = if let Some(value) = dict_value(params, "source")? {
-            let converted_422: String = value.extract()?;
-            Some(converted_422)
+            let converted_445 = (|| -> PyResult<_> {
+                let converted_445: String = value.extract()?;
+                Ok(converted_445)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("source"), "str"),
+                    "cloudtrail",
+                    "CreateChannel",
+                )
+            })?;
+            Some(converted_445)
         } else {
             None
         };
         let destinations_value = if let Some(value) = dict_value(params, "destinations")? {
-            let mut converted_423 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_424 in value.try_iter()? {
-                let item_425 = item_result_424?;
-                let converted_item_426 = destination_from_py(&item_425)?;
-                converted_423.push(converted_item_426);
-            }
-            Some(converted_423)
+            let converted_446 = (|| -> PyResult<_> {
+                let mut converted_446 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_450, item_result_447) in value.try_iter()?.enumerate() {
+                    let item_448 = item_result_447.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_450),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_449 = (|| -> PyResult<_> {
+                        let converted_item_449 = destination_from_py(&item_448)?;
+                        Ok(converted_item_449)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_450),
+                            "dict (Destination)",
+                        )
+                    })?;
+                    converted_446.push(converted_item_449);
+                }
+                Ok(converted_446)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("destinations"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "CreateChannel",
+                )
+            })?;
+            Some(converted_446)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_427 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_428 in value.try_iter()? {
-                let item_429 = item_result_428?;
-                let converted_item_430 = tag_from_py(&item_429)?;
-                converted_427.push(converted_item_430);
-            }
-            Some(converted_427)
+            let converted_451 = (|| -> PyResult<_> {
+                let mut converted_451 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_455, item_result_452) in value.try_iter()?.enumerate() {
+                    let item_453 = item_result_452.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_455),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_454 = (|| -> PyResult<_> {
+                        let converted_item_454 = tag_from_py(&item_453)?;
+                        Ok(converted_item_454)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_455),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_451.push(converted_item_454);
+                }
+                Ok(converted_451)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "CreateChannel",
+                )
+            })?;
+            Some(converted_451)
         } else {
             None
         };
@@ -11650,45 +13260,145 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_431: String = value.extract()?;
-            Some(converted_431)
+            let converted_456 = (|| -> PyResult<_> {
+                let converted_456: String = value.extract()?;
+                Ok(converted_456)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "CreateDashboard",
+                )
+            })?;
+            Some(converted_456)
         } else {
             None
         };
         let refresh_schedule_value = if let Some(value) = dict_value(params, "refresh_schedule")? {
-            let converted_432 = refresh_schedule_from_py(&value)?;
-            Some(converted_432)
+            let converted_457 = (|| -> PyResult<_> {
+                let converted_457 = refresh_schedule_from_py(&value)?;
+                Ok(converted_457)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("refresh_schedule"),
+                        "dict (RefreshSchedule)",
+                    ),
+                    "cloudtrail",
+                    "CreateDashboard",
+                )
+            })?;
+            Some(converted_457)
         } else {
             None
         };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_433 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_434 in value.try_iter()? {
-                let item_435 = item_result_434?;
-                let converted_item_436 = tag_from_py(&item_435)?;
-                converted_433.push(converted_item_436);
-            }
-            Some(converted_433)
+            let converted_458 = (|| -> PyResult<_> {
+                let mut converted_458 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_462, item_result_459) in value.try_iter()?.enumerate() {
+                    let item_460 = item_result_459.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_462),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_461 = (|| -> PyResult<_> {
+                        let converted_item_461 = tag_from_py(&item_460)?;
+                        Ok(converted_item_461)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_462),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_458.push(converted_item_461);
+                }
+                Ok(converted_458)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags_list"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "CreateDashboard",
+                )
+            })?;
+            Some(converted_458)
         } else {
             None
         };
         let termination_protection_enabled_value =
             if let Some(value) = dict_value(params, "termination_protection_enabled")? {
-                let converted_437: bool = value.extract()?;
-                Some(converted_437)
+                let converted_463 = (|| -> PyResult<_> {
+                    let converted_463: bool = value.extract()?;
+                    Ok(converted_463)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("termination_protection_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateDashboard",
+                    )
+                })?;
+                Some(converted_463)
             } else {
                 None
             };
         let widgets_value = if let Some(value) = dict_value(params, "widgets")? {
-            let mut converted_438 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_439 in value.try_iter()? {
-                let item_440 = item_result_439?;
-                let converted_item_441 = request_widget_from_py(&item_440)?;
-                converted_438.push(converted_item_441);
-            }
-            Some(converted_438)
+            let converted_464 = (|| -> PyResult<_> {
+                let mut converted_464 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_468, item_result_465) in value.try_iter()?.enumerate() {
+                    let item_466 = item_result_465.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_468),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_467 = (|| -> PyResult<_> {
+                        let converted_item_467 = request_widget_from_py(&item_466)?;
+                        Ok(converted_item_467)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_468),
+                            "dict (RequestWidget)",
+                        )
+                    })?;
+                    converted_464.push(converted_item_467);
+                }
+                Ok(converted_464)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("widgets"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "CreateDashboard",
+                )
+            })?;
+            Some(converted_464)
         } else {
             None
         };
@@ -11731,80 +13441,250 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_442: String = value.extract()?;
-            Some(converted_442)
+            let converted_469 = (|| -> PyResult<_> {
+                let converted_469: String = value.extract()?;
+                Ok(converted_469)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "CreateEventDataStore",
+                )
+            })?;
+            Some(converted_469)
         } else {
             None
         };
         let advanced_event_selectors_value =
             if let Some(value) = dict_value(params, "advanced_event_selectors")? {
-                let mut converted_443 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_444 in value.try_iter()? {
-                    let item_445 = item_result_444?;
-                    let converted_item_446 = advanced_event_selector_from_py(&item_445)?;
-                    converted_443.push(converted_item_446);
-                }
-                Some(converted_443)
+                let converted_470 = (|| -> PyResult<_> {
+                    let mut converted_470 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_474, item_result_471) in value.try_iter()?.enumerate() {
+                        let item_472 = item_result_471.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_474),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_473 = (|| -> PyResult<_> {
+                            let converted_item_473 = advanced_event_selector_from_py(&item_472)?;
+                            Ok(converted_item_473)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_474),
+                                "dict (AdvancedEventSelector)",
+                            )
+                        })?;
+                        converted_470.push(converted_item_473);
+                    }
+                    Ok(converted_470)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("advanced_event_selectors"),
+                            "sequence",
+                        ),
+                        "cloudtrail",
+                        "CreateEventDataStore",
+                    )
+                })?;
+                Some(converted_470)
             } else {
                 None
             };
         let multi_region_enabled_value =
             if let Some(value) = dict_value(params, "multi_region_enabled")? {
-                let converted_447: bool = value.extract()?;
-                Some(converted_447)
+                let converted_475 = (|| -> PyResult<_> {
+                    let converted_475: bool = value.extract()?;
+                    Ok(converted_475)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("multi_region_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateEventDataStore",
+                    )
+                })?;
+                Some(converted_475)
             } else {
                 None
             };
         let organization_enabled_value =
             if let Some(value) = dict_value(params, "organization_enabled")? {
-                let converted_448: bool = value.extract()?;
-                Some(converted_448)
+                let converted_476 = (|| -> PyResult<_> {
+                    let converted_476: bool = value.extract()?;
+                    Ok(converted_476)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("organization_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateEventDataStore",
+                    )
+                })?;
+                Some(converted_476)
             } else {
                 None
             };
         let retention_period_value = if let Some(value) = dict_value(params, "retention_period")? {
-            let converted_449: i32 = value.extract()?;
-            Some(converted_449)
+            let converted_477 = (|| -> PyResult<_> {
+                let converted_477: i32 = value.extract()?;
+                Ok(converted_477)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("retention_period"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "CreateEventDataStore",
+                )
+            })?;
+            Some(converted_477)
         } else {
             None
         };
         let termination_protection_enabled_value =
             if let Some(value) = dict_value(params, "termination_protection_enabled")? {
-                let converted_450: bool = value.extract()?;
-                Some(converted_450)
+                let converted_478 = (|| -> PyResult<_> {
+                    let converted_478: bool = value.extract()?;
+                    Ok(converted_478)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("termination_protection_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateEventDataStore",
+                    )
+                })?;
+                Some(converted_478)
             } else {
                 None
             };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_451 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_452 in value.try_iter()? {
-                let item_453 = item_result_452?;
-                let converted_item_454 = tag_from_py(&item_453)?;
-                converted_451.push(converted_item_454);
-            }
-            Some(converted_451)
+            let converted_479 = (|| -> PyResult<_> {
+                let mut converted_479 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_483, item_result_480) in value.try_iter()?.enumerate() {
+                    let item_481 = item_result_480.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_483),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_482 = (|| -> PyResult<_> {
+                        let converted_item_482 = tag_from_py(&item_481)?;
+                        Ok(converted_item_482)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_483),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_479.push(converted_item_482);
+                }
+                Ok(converted_479)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags_list"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "CreateEventDataStore",
+                )
+            })?;
+            Some(converted_479)
         } else {
             None
         };
         let kms_key_id_value = if let Some(value) = dict_value(params, "kms_key_id")? {
-            let converted_455: String = value.extract()?;
-            Some(converted_455)
+            let converted_484 = (|| -> PyResult<_> {
+                let converted_484: String = value.extract()?;
+                Ok(converted_484)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("kms_key_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "CreateEventDataStore",
+                )
+            })?;
+            Some(converted_484)
         } else {
             None
         };
         let start_ingestion_value = if let Some(value) = dict_value(params, "start_ingestion")? {
-            let converted_456: bool = value.extract()?;
-            Some(converted_456)
+            let converted_485 = (|| -> PyResult<_> {
+                let converted_485: bool = value.extract()?;
+                Ok(converted_485)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("start_ingestion"),
+                        "bool",
+                    ),
+                    "cloudtrail",
+                    "CreateEventDataStore",
+                )
+            })?;
+            Some(converted_485)
         } else {
             None
         };
         let billing_mode_value = if let Some(value) = dict_value(params, "billing_mode")? {
-            let enum_value_458: String = value.extract()?;
-            let converted_457 =
-                aws_sdk_cloudtrail::types::BillingMode::from(enum_value_458.as_str());
-            Some(converted_457)
+            let converted_486 = (|| -> PyResult<_> {
+                let enum_value_487: String = value.extract()?;
+                let converted_486 =
+                    aws_sdk_cloudtrail::types::BillingMode::from(enum_value_487.as_str());
+                Ok(converted_486)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("billing_mode"),
+                        "str (BillingMode)",
+                    ),
+                    "cloudtrail",
+                    "CreateEventDataStore",
+                )
+            })?;
+            Some(converted_486)
         } else {
             None
         };
@@ -11852,93 +13732,288 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_459: String = value.extract()?;
-            Some(converted_459)
+            let converted_488 = (|| -> PyResult<_> {
+                let converted_488: String = value.extract()?;
+                Ok(converted_488)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "CreateTrail",
+                )
+            })?;
+            Some(converted_488)
         } else {
             None
         };
         let s3_bucket_name_value = if let Some(value) = dict_value(params, "s3_bucket_name")? {
-            let converted_460: String = value.extract()?;
-            Some(converted_460)
+            let converted_489 = (|| -> PyResult<_> {
+                let converted_489: String = value.extract()?;
+                Ok(converted_489)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("s3_bucket_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "CreateTrail",
+                )
+            })?;
+            Some(converted_489)
         } else {
             None
         };
         let s3_key_prefix_value = if let Some(value) = dict_value(params, "s3_key_prefix")? {
-            let converted_461: String = value.extract()?;
-            Some(converted_461)
+            let converted_490 = (|| -> PyResult<_> {
+                let converted_490: String = value.extract()?;
+                Ok(converted_490)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("s3_key_prefix"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "CreateTrail",
+                )
+            })?;
+            Some(converted_490)
         } else {
             None
         };
         let sns_topic_name_value = if let Some(value) = dict_value(params, "sns_topic_name")? {
-            let converted_462: String = value.extract()?;
-            Some(converted_462)
+            let converted_491 = (|| -> PyResult<_> {
+                let converted_491: String = value.extract()?;
+                Ok(converted_491)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("sns_topic_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "CreateTrail",
+                )
+            })?;
+            Some(converted_491)
         } else {
             None
         };
         let include_global_service_events_value =
             if let Some(value) = dict_value(params, "include_global_service_events")? {
-                let converted_463: bool = value.extract()?;
-                Some(converted_463)
+                let converted_492 = (|| -> PyResult<_> {
+                    let converted_492: bool = value.extract()?;
+                    Ok(converted_492)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("include_global_service_events"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateTrail",
+                    )
+                })?;
+                Some(converted_492)
             } else {
                 None
             };
         let is_multi_region_trail_value =
             if let Some(value) = dict_value(params, "is_multi_region_trail")? {
-                let converted_464: bool = value.extract()?;
-                Some(converted_464)
+                let converted_493 = (|| -> PyResult<_> {
+                    let converted_493: bool = value.extract()?;
+                    Ok(converted_493)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("is_multi_region_trail"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateTrail",
+                    )
+                })?;
+                Some(converted_493)
             } else {
                 None
             };
         let enable_log_file_validation_value =
             if let Some(value) = dict_value(params, "enable_log_file_validation")? {
-                let converted_465: bool = value.extract()?;
-                Some(converted_465)
+                let converted_494 = (|| -> PyResult<_> {
+                    let converted_494: bool = value.extract()?;
+                    Ok(converted_494)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("enable_log_file_validation"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateTrail",
+                    )
+                })?;
+                Some(converted_494)
             } else {
                 None
             };
         let cloud_watch_logs_log_group_arn_value =
             if let Some(value) = dict_value(params, "cloud_watch_logs_log_group_arn")? {
-                let converted_466: String = value.extract()?;
-                Some(converted_466)
+                let converted_495 = (|| -> PyResult<_> {
+                    let converted_495: String = value.extract()?;
+                    Ok(converted_495)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("cloud_watch_logs_log_group_arn"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "CreateTrail",
+                    )
+                })?;
+                Some(converted_495)
             } else {
                 None
             };
         let cloud_watch_logs_role_arn_value =
             if let Some(value) = dict_value(params, "cloud_watch_logs_role_arn")? {
-                let converted_467: String = value.extract()?;
-                Some(converted_467)
+                let converted_496 = (|| -> PyResult<_> {
+                    let converted_496: String = value.extract()?;
+                    Ok(converted_496)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("cloud_watch_logs_role_arn"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "CreateTrail",
+                    )
+                })?;
+                Some(converted_496)
             } else {
                 None
             };
         let kms_key_id_value = if let Some(value) = dict_value(params, "kms_key_id")? {
-            let converted_468: String = value.extract()?;
-            Some(converted_468)
+            let converted_497 = (|| -> PyResult<_> {
+                let converted_497: String = value.extract()?;
+                Ok(converted_497)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("kms_key_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "CreateTrail",
+                )
+            })?;
+            Some(converted_497)
         } else {
             None
         };
         let is_organization_trail_value =
             if let Some(value) = dict_value(params, "is_organization_trail")? {
-                let converted_469: bool = value.extract()?;
-                Some(converted_469)
+                let converted_498 = (|| -> PyResult<_> {
+                    let converted_498: bool = value.extract()?;
+                    Ok(converted_498)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("is_organization_trail"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "CreateTrail",
+                    )
+                })?;
+                Some(converted_498)
             } else {
                 None
             };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_470 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_471 in value.try_iter()? {
-                let item_472 = item_result_471?;
-                let converted_item_473 = tag_from_py(&item_472)?;
-                converted_470.push(converted_item_473);
-            }
-            Some(converted_470)
+            let converted_499 = (|| -> PyResult<_> {
+                let mut converted_499 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_503, item_result_500) in value.try_iter()?.enumerate() {
+                    let item_501 = item_result_500.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_503),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_502 = (|| -> PyResult<_> {
+                        let converted_item_502 = tag_from_py(&item_501)?;
+                        Ok(converted_item_502)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_503),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_499.push(converted_item_502);
+                }
+                Ok(converted_499)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags_list"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "CreateTrail",
+                )
+            })?;
+            Some(converted_499)
         } else {
             None
         };
         let recursive_logging_value = if let Some(value) = dict_value(params, "recursive_logging")?
         {
-            let converted_474: bool = value.extract()?;
-            Some(converted_474)
+            let converted_504 = (|| -> PyResult<_> {
+                let converted_504: bool = value.extract()?;
+                Ok(converted_504)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("recursive_logging"),
+                        "bool",
+                    ),
+                    "cloudtrail",
+                    "CreateTrail",
+                )
+            })?;
+            Some(converted_504)
         } else {
             None
         };
@@ -11986,8 +14061,18 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let channel_value = if let Some(value) = dict_value(params, "channel")? {
-            let converted_475: String = value.extract()?;
-            Some(converted_475)
+            let converted_505 = (|| -> PyResult<_> {
+                let converted_505: String = value.extract()?;
+                Ok(converted_505)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("channel"), "str"),
+                    "cloudtrail",
+                    "DeleteChannel",
+                )
+            })?;
+            Some(converted_505)
         } else {
             None
         };
@@ -12022,8 +14107,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
-            let converted_476: String = value.extract()?;
-            Some(converted_476)
+            let converted_506 = (|| -> PyResult<_> {
+                let converted_506: String = value.extract()?;
+                Ok(converted_506)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dashboard_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "DeleteDashboard",
+                )
+            })?;
+            Some(converted_506)
         } else {
             None
         };
@@ -12060,8 +14159,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_477: String = value.extract()?;
-            Some(converted_477)
+            let converted_507 = (|| -> PyResult<_> {
+                let converted_507: String = value.extract()?;
+                Ok(converted_507)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "DeleteEventDataStore",
+                )
+            })?;
+            Some(converted_507)
         } else {
             None
         };
@@ -12098,8 +14211,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_478: String = value.extract()?;
-            Some(converted_478)
+            let converted_508 = (|| -> PyResult<_> {
+                let converted_508: String = value.extract()?;
+                Ok(converted_508)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "DeleteResourcePolicy",
+                )
+            })?;
+            Some(converted_508)
         } else {
             None
         };
@@ -12136,8 +14263,18 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_479: String = value.extract()?;
-            Some(converted_479)
+            let converted_509 = (|| -> PyResult<_> {
+                let converted_509: String = value.extract()?;
+                Ok(converted_509)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "DeleteTrail",
+                )
+            })?;
+            Some(converted_509)
         } else {
             None
         };
@@ -12172,8 +14309,22 @@ impl CloudTrailClient {
         let state = self.state.clone();
         let delegated_admin_account_id_value =
             if let Some(value) = dict_value(params, "delegated_admin_account_id")? {
-                let converted_480: String = value.extract()?;
-                Some(converted_480)
+                let converted_510 = (|| -> PyResult<_> {
+                    let converted_510: String = value.extract()?;
+                    Ok(converted_510)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("delegated_admin_account_id"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "DeregisterOrganizationDelegatedAdmin",
+                    )
+                })?;
+                Some(converted_510)
             } else {
                 None
             };
@@ -12212,33 +14363,99 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_481: String = value.extract()?;
-            Some(converted_481)
+            let converted_511 = (|| -> PyResult<_> {
+                let converted_511: String = value.extract()?;
+                Ok(converted_511)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "DescribeQuery",
+                )
+            })?;
+            Some(converted_511)
         } else {
             None
         };
         let query_id_value = if let Some(value) = dict_value(params, "query_id")? {
-            let converted_482: String = value.extract()?;
-            Some(converted_482)
+            let converted_512 = (|| -> PyResult<_> {
+                let converted_512: String = value.extract()?;
+                Ok(converted_512)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("query_id"), "str"),
+                    "cloudtrail",
+                    "DescribeQuery",
+                )
+            })?;
+            Some(converted_512)
         } else {
             None
         };
         let query_alias_value = if let Some(value) = dict_value(params, "query_alias")? {
-            let converted_483: String = value.extract()?;
-            Some(converted_483)
+            let converted_513 = (|| -> PyResult<_> {
+                let converted_513: String = value.extract()?;
+                Ok(converted_513)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("query_alias"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "DescribeQuery",
+                )
+            })?;
+            Some(converted_513)
         } else {
             None
         };
         let refresh_id_value = if let Some(value) = dict_value(params, "refresh_id")? {
-            let converted_484: String = value.extract()?;
-            Some(converted_484)
+            let converted_514 = (|| -> PyResult<_> {
+                let converted_514: String = value.extract()?;
+                Ok(converted_514)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("refresh_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "DescribeQuery",
+                )
+            })?;
+            Some(converted_514)
         } else {
             None
         };
         let event_data_store_owner_account_id_value =
             if let Some(value) = dict_value(params, "event_data_store_owner_account_id")? {
-                let converted_485: String = value.extract()?;
-                Some(converted_485)
+                let converted_515 = (|| -> PyResult<_> {
+                    let converted_515: String = value.extract()?;
+                    Ok(converted_515)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("event_data_store_owner_account_id"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "DescribeQuery",
+                    )
+                })?;
+                Some(converted_515)
             } else {
                 None
             };
@@ -12281,21 +14498,66 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_list_value = if let Some(value) = dict_value(params, "trail_name_list")? {
-            let mut converted_486 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_487 in value.try_iter()? {
-                let item_488 = item_result_487?;
-                let converted_item_489: String = item_488.extract()?;
-                converted_486.push(converted_item_489);
-            }
-            Some(converted_486)
+            let converted_516 = (|| -> PyResult<_> {
+                let mut converted_516 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_520, item_result_517) in value.try_iter()?.enumerate() {
+                    let item_518 = item_result_517.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_520),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_519 = (|| -> PyResult<_> {
+                        let converted_item_519: String = item_518.extract()?;
+                        Ok(converted_item_519)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_520),
+                            "str",
+                        )
+                    })?;
+                    converted_516.push(converted_item_519);
+                }
+                Ok(converted_516)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name_list"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "DescribeTrails",
+                )
+            })?;
+            Some(converted_516)
         } else {
             None
         };
         let include_shadow_trails_value =
             if let Some(value) = dict_value(params, "include_shadow_trails")? {
-                let converted_490: bool = value.extract()?;
-                Some(converted_490)
+                let converted_521 = (|| -> PyResult<_> {
+                    let converted_521: bool = value.extract()?;
+                    Ok(converted_521)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("include_shadow_trails"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "DescribeTrails",
+                    )
+                })?;
+                Some(converted_521)
             } else {
                 None
             };
@@ -12335,8 +14597,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_491: String = value.extract()?;
-            Some(converted_491)
+            let converted_522 = (|| -> PyResult<_> {
+                let converted_522: String = value.extract()?;
+                Ok(converted_522)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "DisableFederation",
+                )
+            })?;
+            Some(converted_522)
         } else {
             None
         };
@@ -12373,15 +14649,43 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_492: String = value.extract()?;
-            Some(converted_492)
+            let converted_523 = (|| -> PyResult<_> {
+                let converted_523: String = value.extract()?;
+                Ok(converted_523)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "EnableFederation",
+                )
+            })?;
+            Some(converted_523)
         } else {
             None
         };
         let federation_role_arn_value =
             if let Some(value) = dict_value(params, "federation_role_arn")? {
-                let converted_493: String = value.extract()?;
-                Some(converted_493)
+                let converted_524 = (|| -> PyResult<_> {
+                    let converted_524: String = value.extract()?;
+                    Ok(converted_524)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("federation_role_arn"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "EnableFederation",
+                    )
+                })?;
+                Some(converted_524)
             } else {
                 None
             };
@@ -12420,20 +14724,61 @@ impl CloudTrailClient {
         let state = self.state.clone();
         let event_data_stores_value = if let Some(value) = dict_value(params, "event_data_stores")?
         {
-            let mut converted_494 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_495 in value.try_iter()? {
-                let item_496 = item_result_495?;
-                let converted_item_497: String = item_496.extract()?;
-                converted_494.push(converted_item_497);
-            }
-            Some(converted_494)
+            let converted_525 = (|| -> PyResult<_> {
+                let mut converted_525 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_529, item_result_526) in value.try_iter()?.enumerate() {
+                    let item_527 = item_result_526.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_529),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_528 = (|| -> PyResult<_> {
+                        let converted_item_528: String = item_527.extract()?;
+                        Ok(converted_item_528)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_529),
+                            "str",
+                        )
+                    })?;
+                    converted_525.push(converted_item_528);
+                }
+                Ok(converted_525)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_stores"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "GenerateQuery",
+                )
+            })?;
+            Some(converted_525)
         } else {
             None
         };
         let prompt_value = if let Some(value) = dict_value(params, "prompt")? {
-            let converted_498: String = value.extract()?;
-            Some(converted_498)
+            let converted_530 = (|| -> PyResult<_> {
+                let converted_530: String = value.extract()?;
+                Ok(converted_530)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("prompt"), "str"),
+                    "cloudtrail",
+                    "GenerateQuery",
+                )
+            })?;
+            Some(converted_530)
         } else {
             None
         };
@@ -12471,8 +14816,18 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let channel_value = if let Some(value) = dict_value(params, "channel")? {
-            let converted_499: String = value.extract()?;
-            Some(converted_499)
+            let converted_531 = (|| -> PyResult<_> {
+                let converted_531: String = value.extract()?;
+                Ok(converted_531)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("channel"), "str"),
+                    "cloudtrail",
+                    "GetChannel",
+                )
+            })?;
+            Some(converted_531)
         } else {
             None
         };
@@ -12508,8 +14863,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
-            let converted_500: String = value.extract()?;
-            Some(converted_500)
+            let converted_532 = (|| -> PyResult<_> {
+                let converted_532: String = value.extract()?;
+                Ok(converted_532)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dashboard_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetDashboard",
+                )
+            })?;
+            Some(converted_532)
         } else {
             None
         };
@@ -12546,14 +14915,42 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
-            let converted_501: String = value.extract()?;
-            Some(converted_501)
+            let converted_533 = (|| -> PyResult<_> {
+                let converted_533: String = value.extract()?;
+                Ok(converted_533)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetEventConfiguration",
+                )
+            })?;
+            Some(converted_533)
         } else {
             None
         };
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_502: String = value.extract()?;
-            Some(converted_502)
+            let converted_534 = (|| -> PyResult<_> {
+                let converted_534: String = value.extract()?;
+                Ok(converted_534)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetEventConfiguration",
+                )
+            })?;
+            Some(converted_534)
         } else {
             None
         };
@@ -12593,8 +14990,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_503: String = value.extract()?;
-            Some(converted_503)
+            let converted_535 = (|| -> PyResult<_> {
+                let converted_535: String = value.extract()?;
+                Ok(converted_535)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetEventDataStore",
+                )
+            })?;
+            Some(converted_535)
         } else {
             None
         };
@@ -12633,8 +15044,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
-            let converted_504: String = value.extract()?;
-            Some(converted_504)
+            let converted_536 = (|| -> PyResult<_> {
+                let converted_536: String = value.extract()?;
+                Ok(converted_536)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetEventSelectors",
+                )
+            })?;
+            Some(converted_536)
         } else {
             None
         };
@@ -12673,8 +15098,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
-            let converted_505: String = value.extract()?;
-            Some(converted_505)
+            let converted_537 = (|| -> PyResult<_> {
+                let converted_537: String = value.extract()?;
+                Ok(converted_537)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetImport",
+                )
+            })?;
+            Some(converted_537)
         } else {
             None
         };
@@ -12710,14 +15149,42 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
-            let converted_506: String = value.extract()?;
-            Some(converted_506)
+            let converted_538 = (|| -> PyResult<_> {
+                let converted_538: String = value.extract()?;
+                Ok(converted_538)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetInsightSelectors",
+                )
+            })?;
+            Some(converted_538)
         } else {
             None
         };
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_507: String = value.extract()?;
-            Some(converted_507)
+            let converted_539 = (|| -> PyResult<_> {
+                let converted_539: String = value.extract()?;
+                Ok(converted_539)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetInsightSelectors",
+                )
+            })?;
+            Some(converted_539)
         } else {
             None
         };
@@ -12757,34 +15224,100 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_508: String = value.extract()?;
-            Some(converted_508)
+            let converted_540 = (|| -> PyResult<_> {
+                let converted_540: String = value.extract()?;
+                Ok(converted_540)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetQueryResults",
+                )
+            })?;
+            Some(converted_540)
         } else {
             None
         };
         let query_id_value = if let Some(value) = dict_value(params, "query_id")? {
-            let converted_509: String = value.extract()?;
-            Some(converted_509)
+            let converted_541 = (|| -> PyResult<_> {
+                let converted_541: String = value.extract()?;
+                Ok(converted_541)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("query_id"), "str"),
+                    "cloudtrail",
+                    "GetQueryResults",
+                )
+            })?;
+            Some(converted_541)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_510: String = value.extract()?;
-            Some(converted_510)
+            let converted_542 = (|| -> PyResult<_> {
+                let converted_542: String = value.extract()?;
+                Ok(converted_542)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetQueryResults",
+                )
+            })?;
+            Some(converted_542)
         } else {
             None
         };
         let max_query_results_value = if let Some(value) = dict_value(params, "max_query_results")?
         {
-            let converted_511: i32 = value.extract()?;
-            Some(converted_511)
+            let converted_543 = (|| -> PyResult<_> {
+                let converted_543: i32 = value.extract()?;
+                Ok(converted_543)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_query_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "GetQueryResults",
+                )
+            })?;
+            Some(converted_543)
         } else {
             None
         };
         let event_data_store_owner_account_id_value =
             if let Some(value) = dict_value(params, "event_data_store_owner_account_id")? {
-                let converted_512: String = value.extract()?;
-                Some(converted_512)
+                let converted_544 = (|| -> PyResult<_> {
+                    let converted_544: String = value.extract()?;
+                    Ok(converted_544)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("event_data_store_owner_account_id"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "GetQueryResults",
+                    )
+                })?;
+                Some(converted_544)
             } else {
                 None
             };
@@ -12827,8 +15360,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_513: String = value.extract()?;
-            Some(converted_513)
+            let converted_545 = (|| -> PyResult<_> {
+                let converted_545: String = value.extract()?;
+                Ok(converted_545)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "GetResourcePolicy",
+                )
+            })?;
+            Some(converted_545)
         } else {
             None
         };
@@ -12865,8 +15412,18 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_514: String = value.extract()?;
-            Some(converted_514)
+            let converted_546 = (|| -> PyResult<_> {
+                let converted_546: String = value.extract()?;
+                Ok(converted_546)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "GetTrail",
+                )
+            })?;
+            Some(converted_546)
         } else {
             None
         };
@@ -12902,8 +15459,18 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_515: String = value.extract()?;
-            Some(converted_515)
+            let converted_547 = (|| -> PyResult<_> {
+                let converted_547: String = value.extract()?;
+                Ok(converted_547)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "GetTrailStatus",
+                )
+            })?;
+            Some(converted_547)
         } else {
             None
         };
@@ -12938,14 +15505,42 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_516: i32 = value.extract()?;
-            Some(converted_516)
+            let converted_548 = (|| -> PyResult<_> {
+                let converted_548: i32 = value.extract()?;
+                Ok(converted_548)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListChannels",
+                )
+            })?;
+            Some(converted_548)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_517: String = value.extract()?;
-            Some(converted_517)
+            let converted_549 = (|| -> PyResult<_> {
+                let converted_549: String = value.extract()?;
+                Ok(converted_549)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListChannels",
+                )
+            })?;
+            Some(converted_549)
         } else {
             None
         };
@@ -12985,28 +15580,84 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_prefix_value = if let Some(value) = dict_value(params, "name_prefix")? {
-            let converted_518: String = value.extract()?;
-            Some(converted_518)
+            let converted_550 = (|| -> PyResult<_> {
+                let converted_550: String = value.extract()?;
+                Ok(converted_550)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("name_prefix"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListDashboards",
+                )
+            })?;
+            Some(converted_550)
         } else {
             None
         };
         let type_value = if let Some(value) = dict_value(params, "type")? {
-            let enum_value_520: String = value.extract()?;
-            let converted_519 =
-                aws_sdk_cloudtrail::types::DashboardType::from(enum_value_520.as_str());
-            Some(converted_519)
+            let converted_551 = (|| -> PyResult<_> {
+                let enum_value_552: String = value.extract()?;
+                let converted_551 =
+                    aws_sdk_cloudtrail::types::DashboardType::from(enum_value_552.as_str());
+                Ok(converted_551)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("type"),
+                        "str (DashboardType)",
+                    ),
+                    "cloudtrail",
+                    "ListDashboards",
+                )
+            })?;
+            Some(converted_551)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_521: String = value.extract()?;
-            Some(converted_521)
+            let converted_553 = (|| -> PyResult<_> {
+                let converted_553: String = value.extract()?;
+                Ok(converted_553)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListDashboards",
+                )
+            })?;
+            Some(converted_553)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_522: i32 = value.extract()?;
-            Some(converted_522)
+            let converted_554 = (|| -> PyResult<_> {
+                let converted_554: i32 = value.extract()?;
+                Ok(converted_554)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListDashboards",
+                )
+            })?;
+            Some(converted_554)
         } else {
             None
         };
@@ -13048,14 +15699,42 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_523: String = value.extract()?;
-            Some(converted_523)
+            let converted_555 = (|| -> PyResult<_> {
+                let converted_555: String = value.extract()?;
+                Ok(converted_555)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListEventDataStores",
+                )
+            })?;
+            Some(converted_555)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_524: i32 = value.extract()?;
-            Some(converted_524)
+            let converted_556 = (|| -> PyResult<_> {
+                let converted_556: i32 = value.extract()?;
+                Ok(converted_556)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListEventDataStores",
+                )
+            })?;
+            Some(converted_556)
         } else {
             None
         };
@@ -13095,20 +15774,62 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
-            let converted_525: String = value.extract()?;
-            Some(converted_525)
+            let converted_557 = (|| -> PyResult<_> {
+                let converted_557: String = value.extract()?;
+                Ok(converted_557)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListImportFailures",
+                )
+            })?;
+            Some(converted_557)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_526: i32 = value.extract()?;
-            Some(converted_526)
+            let converted_558 = (|| -> PyResult<_> {
+                let converted_558: i32 = value.extract()?;
+                Ok(converted_558)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListImportFailures",
+                )
+            })?;
+            Some(converted_558)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_527: String = value.extract()?;
-            Some(converted_527)
+            let converted_559 = (|| -> PyResult<_> {
+                let converted_559: String = value.extract()?;
+                Ok(converted_559)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListImportFailures",
+                )
+            })?;
+            Some(converted_559)
         } else {
             None
         };
@@ -13149,28 +15870,84 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_528: i32 = value.extract()?;
-            Some(converted_528)
+            let converted_560 = (|| -> PyResult<_> {
+                let converted_560: i32 = value.extract()?;
+                Ok(converted_560)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListImports",
+                )
+            })?;
+            Some(converted_560)
         } else {
             None
         };
         let destination_value = if let Some(value) = dict_value(params, "destination")? {
-            let converted_529: String = value.extract()?;
-            Some(converted_529)
+            let converted_561 = (|| -> PyResult<_> {
+                let converted_561: String = value.extract()?;
+                Ok(converted_561)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("destination"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListImports",
+                )
+            })?;
+            Some(converted_561)
         } else {
             None
         };
         let import_status_value = if let Some(value) = dict_value(params, "import_status")? {
-            let enum_value_531: String = value.extract()?;
-            let converted_530 =
-                aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_531.as_str());
-            Some(converted_530)
+            let converted_562 = (|| -> PyResult<_> {
+                let enum_value_563: String = value.extract()?;
+                let converted_562 =
+                    aws_sdk_cloudtrail::types::ImportStatus::from(enum_value_563.as_str());
+                Ok(converted_562)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_status"),
+                        "str (ImportStatus)",
+                    ),
+                    "cloudtrail",
+                    "ListImports",
+                )
+            })?;
+            Some(converted_562)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_532: String = value.extract()?;
-            Some(converted_532)
+            let converted_564 = (|| -> PyResult<_> {
+                let converted_564: String = value.extract()?;
+                Ok(converted_564)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListImports",
+                )
+            })?;
+            Some(converted_564)
         } else {
             None
         };
@@ -13211,66 +15988,184 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let insight_source_value = if let Some(value) = dict_value(params, "insight_source")? {
-            let converted_533: String = value.extract()?;
-            Some(converted_533)
+            let converted_565 = (|| -> PyResult<_> {
+                let converted_565: String = value.extract()?;
+                Ok(converted_565)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("insight_source"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsData",
+                )
+            })?;
+            Some(converted_565)
         } else {
             None
         };
         let data_type_value = if let Some(value) = dict_value(params, "data_type")? {
-            let enum_value_535: String = value.extract()?;
-            let converted_534 =
-                aws_sdk_cloudtrail::types::ListInsightsDataType::from(enum_value_535.as_str());
-            Some(converted_534)
+            let converted_566 = (|| -> PyResult<_> {
+                let enum_value_567: String = value.extract()?;
+                let converted_566 =
+                    aws_sdk_cloudtrail::types::ListInsightsDataType::from(enum_value_567.as_str());
+                Ok(converted_566)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("data_type"),
+                        "str (ListInsightsDataType)",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsData",
+                )
+            })?;
+            Some(converted_566)
         } else {
             None
         };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
-            let mapping_537 = value.cast::<PyDict>()?;
-            let mut converted_536 = HashMap::with_capacity(mapping_537.len());
-            for (key_538, value_539) in mapping_537.iter() {
-                let enum_value_542: String = key_538.extract()?;
-                let converted_key_540 =
-                    aws_sdk_cloudtrail::types::ListInsightsDataDimensionKey::from(
-                        enum_value_542.as_str(),
-                    );
-                let converted_value_541: String = value_539.extract()?;
-                converted_536.insert(converted_key_540, converted_value_541);
-            }
-            Some(converted_536)
+            let converted_568 = (|| -> PyResult<_> {
+                let mapping_569 = value.cast::<PyDict>()?;
+                let mut converted_568 = HashMap::with_capacity(mapping_569.len());
+                for (index_574, (key_570, value_571)) in mapping_569.iter().enumerate() {
+                    let converted_key_572 = (|| -> PyResult<_> {
+                        let enum_value_575: String = key_570.extract()?;
+                        let converted_key_572 =
+                            aws_sdk_cloudtrail::types::ListInsightsDataDimensionKey::from(
+                                enum_value_575.as_str(),
+                            );
+                        Ok(converted_key_572)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_574),
+                            "str (ListInsightsDataDimensionKey)",
+                        )
+                    })?;
+                    let converted_value_573 = (|| -> PyResult<_> {
+                        let converted_value_573: String = value_571.extract()?;
+                        Ok(converted_value_573)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_574),
+                            "str",
+                        )
+                    })?;
+                    converted_568.insert(converted_key_572, converted_value_573);
+                }
+                Ok(converted_568)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dimensions"),
+                        "dict",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsData",
+                )
+            })?;
+            Some(converted_568)
         } else {
             None
         };
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let timestamp_544: String = value.extract()?;
-            let converted_543 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_544,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_543)
+            let converted_576 = (|| -> PyResult<_> {
+                let timestamp_577: String = value.extract()?;
+                let converted_576 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_577,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_576)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("start_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsData",
+                )
+            })?;
+            Some(converted_576)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let timestamp_546: String = value.extract()?;
-            let converted_545 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_546,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_545)
+            let converted_578 = (|| -> PyResult<_> {
+                let timestamp_579: String = value.extract()?;
+                let converted_578 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_579,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_578)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("end_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsData",
+                )
+            })?;
+            Some(converted_578)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_547: i32 = value.extract()?;
-            Some(converted_547)
+            let converted_580 = (|| -> PyResult<_> {
+                let converted_580: i32 = value.extract()?;
+                Ok(converted_580)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsData",
+                )
+            })?;
+            Some(converted_580)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_548: String = value.extract()?;
-            Some(converted_548)
+            let converted_581 = (|| -> PyResult<_> {
+                let converted_581: String = value.extract()?;
+                Ok(converted_581)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsData",
+                )
+            })?;
+            Some(converted_581)
         } else {
             None
         };
@@ -13315,82 +16210,233 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
-            let converted_549: String = value.extract()?;
-            Some(converted_549)
+            let converted_582 = (|| -> PyResult<_> {
+                let converted_582: String = value.extract()?;
+                Ok(converted_582)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_582)
         } else {
             None
         };
         let event_source_value = if let Some(value) = dict_value(params, "event_source")? {
-            let converted_550: String = value.extract()?;
-            Some(converted_550)
+            let converted_583 = (|| -> PyResult<_> {
+                let converted_583: String = value.extract()?;
+                Ok(converted_583)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_source"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_583)
         } else {
             None
         };
         let event_name_value = if let Some(value) = dict_value(params, "event_name")? {
-            let converted_551: String = value.extract()?;
-            Some(converted_551)
+            let converted_584 = (|| -> PyResult<_> {
+                let converted_584: String = value.extract()?;
+                Ok(converted_584)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_584)
         } else {
             None
         };
         let insight_type_value = if let Some(value) = dict_value(params, "insight_type")? {
-            let enum_value_553: String = value.extract()?;
-            let converted_552 =
-                aws_sdk_cloudtrail::types::InsightType::from(enum_value_553.as_str());
-            Some(converted_552)
+            let converted_585 = (|| -> PyResult<_> {
+                let enum_value_586: String = value.extract()?;
+                let converted_585 =
+                    aws_sdk_cloudtrail::types::InsightType::from(enum_value_586.as_str());
+                Ok(converted_585)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("insight_type"),
+                        "str (InsightType)",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_585)
         } else {
             None
         };
         let error_code_value = if let Some(value) = dict_value(params, "error_code")? {
-            let converted_554: String = value.extract()?;
-            Some(converted_554)
+            let converted_587 = (|| -> PyResult<_> {
+                let converted_587: String = value.extract()?;
+                Ok(converted_587)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("error_code"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_587)
         } else {
             None
         };
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let timestamp_556: String = value.extract()?;
-            let converted_555 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_556,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_555)
+            let converted_588 = (|| -> PyResult<_> {
+                let timestamp_589: String = value.extract()?;
+                let converted_588 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_589,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_588)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("start_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_588)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let timestamp_558: String = value.extract()?;
-            let converted_557 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_558,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_557)
+            let converted_590 = (|| -> PyResult<_> {
+                let timestamp_591: String = value.extract()?;
+                let converted_590 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_591,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_590)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("end_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_590)
         } else {
             None
         };
         let period_value = if let Some(value) = dict_value(params, "period")? {
-            let converted_559: i32 = value.extract()?;
-            Some(converted_559)
+            let converted_592 = (|| -> PyResult<_> {
+                let converted_592: i32 = value.extract()?;
+                Ok(converted_592)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("period"), "int"),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_592)
         } else {
             None
         };
         let data_type_value = if let Some(value) = dict_value(params, "data_type")? {
-            let enum_value_561: String = value.extract()?;
-            let converted_560 =
-                aws_sdk_cloudtrail::types::InsightsMetricDataType::from(enum_value_561.as_str());
-            Some(converted_560)
+            let converted_593 = (|| -> PyResult<_> {
+                let enum_value_594: String = value.extract()?;
+                let converted_593 = aws_sdk_cloudtrail::types::InsightsMetricDataType::from(
+                    enum_value_594.as_str(),
+                );
+                Ok(converted_593)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("data_type"),
+                        "str (InsightsMetricDataType)",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_593)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_562: i32 = value.extract()?;
-            Some(converted_562)
+            let converted_595 = (|| -> PyResult<_> {
+                let converted_595: i32 = value.extract()?;
+                Ok(converted_595)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_595)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_563: String = value.extract()?;
-            Some(converted_563)
+            let converted_596 = (|| -> PyResult<_> {
+                let converted_596: String = value.extract()?;
+                Ok(converted_596)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListInsightsMetricData",
+                )
+            })?;
+            Some(converted_596)
         } else {
             None
         };
@@ -13437,30 +16483,72 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let timestamp_565: String = value.extract()?;
-            let converted_564 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_565,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_564)
+            let converted_597 = (|| -> PyResult<_> {
+                let timestamp_598: String = value.extract()?;
+                let converted_597 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_598,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_597)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("start_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListPublicKeys",
+                )
+            })?;
+            Some(converted_597)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let timestamp_567: String = value.extract()?;
-            let converted_566 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_567,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_566)
+            let converted_599 = (|| -> PyResult<_> {
+                let timestamp_600: String = value.extract()?;
+                let converted_599 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_600,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_599)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("end_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListPublicKeys",
+                )
+            })?;
+            Some(converted_599)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_568: String = value.extract()?;
-            Some(converted_568)
+            let converted_601 = (|| -> PyResult<_> {
+                let converted_601: String = value.extract()?;
+                Ok(converted_601)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListPublicKeys",
+                )
+            })?;
+            Some(converted_601)
         } else {
             None
         };
@@ -13501,50 +16589,134 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_569: String = value.extract()?;
-            Some(converted_569)
+            let converted_602 = (|| -> PyResult<_> {
+                let converted_602: String = value.extract()?;
+                Ok(converted_602)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListQueries",
+                )
+            })?;
+            Some(converted_602)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_570: String = value.extract()?;
-            Some(converted_570)
+            let converted_603 = (|| -> PyResult<_> {
+                let converted_603: String = value.extract()?;
+                Ok(converted_603)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListQueries",
+                )
+            })?;
+            Some(converted_603)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_571: i32 = value.extract()?;
-            Some(converted_571)
+            let converted_604 = (|| -> PyResult<_> {
+                let converted_604: i32 = value.extract()?;
+                Ok(converted_604)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "ListQueries",
+                )
+            })?;
+            Some(converted_604)
         } else {
             None
         };
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let timestamp_573: String = value.extract()?;
-            let converted_572 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_573,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_572)
+            let converted_605 = (|| -> PyResult<_> {
+                let timestamp_606: String = value.extract()?;
+                let converted_605 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_606,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_605)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("start_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListQueries",
+                )
+            })?;
+            Some(converted_605)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let timestamp_575: String = value.extract()?;
-            let converted_574 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_575,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_574)
+            let converted_607 = (|| -> PyResult<_> {
+                let timestamp_608: String = value.extract()?;
+                let converted_607 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_608,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_607)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("end_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "ListQueries",
+                )
+            })?;
+            Some(converted_607)
         } else {
             None
         };
         let query_status_value = if let Some(value) = dict_value(params, "query_status")? {
-            let enum_value_577: String = value.extract()?;
-            let converted_576 =
-                aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_577.as_str());
-            Some(converted_576)
+            let converted_609 = (|| -> PyResult<_> {
+                let enum_value_610: String = value.extract()?;
+                let converted_609 =
+                    aws_sdk_cloudtrail::types::QueryStatus::from(enum_value_610.as_str());
+                Ok(converted_609)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("query_status"),
+                        "str (QueryStatus)",
+                    ),
+                    "cloudtrail",
+                    "ListQueries",
+                )
+            })?;
+            Some(converted_609)
         } else {
             None
         };
@@ -13587,20 +16759,65 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_id_list_value = if let Some(value) = dict_value(params, "resource_id_list")? {
-            let mut converted_578 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_579 in value.try_iter()? {
-                let item_580 = item_result_579?;
-                let converted_item_581: String = item_580.extract()?;
-                converted_578.push(converted_item_581);
-            }
-            Some(converted_578)
+            let converted_611 = (|| -> PyResult<_> {
+                let mut converted_611 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_615, item_result_612) in value.try_iter()?.enumerate() {
+                    let item_613 = item_result_612.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_615),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_614 = (|| -> PyResult<_> {
+                        let converted_item_614: String = item_613.extract()?;
+                        Ok(converted_item_614)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_615),
+                            "str",
+                        )
+                    })?;
+                    converted_611.push(converted_item_614);
+                }
+                Ok(converted_611)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_id_list"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "ListTags",
+                )
+            })?;
+            Some(converted_611)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_582: String = value.extract()?;
-            Some(converted_582)
+            let converted_616 = (|| -> PyResult<_> {
+                let converted_616: String = value.extract()?;
+                Ok(converted_616)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListTags",
+                )
+            })?;
+            Some(converted_616)
         } else {
             None
         };
@@ -13639,8 +16856,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_583: String = value.extract()?;
-            Some(converted_583)
+            let converted_617 = (|| -> PyResult<_> {
+                let converted_617: String = value.extract()?;
+                Ok(converted_617)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "ListTrails",
+                )
+            })?;
+            Some(converted_617)
         } else {
             None
         };
@@ -13677,56 +16908,157 @@ impl CloudTrailClient {
         let state = self.state.clone();
         let lookup_attributes_value = if let Some(value) = dict_value(params, "lookup_attributes")?
         {
-            let mut converted_584 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_585 in value.try_iter()? {
-                let item_586 = item_result_585?;
-                let converted_item_587 = lookup_attribute_from_py(&item_586)?;
-                converted_584.push(converted_item_587);
-            }
-            Some(converted_584)
+            let converted_618 = (|| -> PyResult<_> {
+                let mut converted_618 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_622, item_result_619) in value.try_iter()?.enumerate() {
+                    let item_620 = item_result_619.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_622),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_621 = (|| -> PyResult<_> {
+                        let converted_item_621 = lookup_attribute_from_py(&item_620)?;
+                        Ok(converted_item_621)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_622),
+                            "dict (LookupAttribute)",
+                        )
+                    })?;
+                    converted_618.push(converted_item_621);
+                }
+                Ok(converted_618)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("lookup_attributes"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "LookupEvents",
+                )
+            })?;
+            Some(converted_618)
         } else {
             None
         };
         let start_time_value = if let Some(value) = dict_value(params, "start_time")? {
-            let timestamp_589: String = value.extract()?;
-            let converted_588 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_589,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_588)
+            let converted_623 = (|| -> PyResult<_> {
+                let timestamp_624: String = value.extract()?;
+                let converted_623 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_624,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_623)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("start_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "LookupEvents",
+                )
+            })?;
+            Some(converted_623)
         } else {
             None
         };
         let end_time_value = if let Some(value) = dict_value(params, "end_time")? {
-            let timestamp_591: String = value.extract()?;
-            let converted_590 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_591,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_590)
+            let converted_625 = (|| -> PyResult<_> {
+                let timestamp_626: String = value.extract()?;
+                let converted_625 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_626,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_625)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("end_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "LookupEvents",
+                )
+            })?;
+            Some(converted_625)
         } else {
             None
         };
         let event_category_value = if let Some(value) = dict_value(params, "event_category")? {
-            let enum_value_593: String = value.extract()?;
-            let converted_592 =
-                aws_sdk_cloudtrail::types::EventCategory::from(enum_value_593.as_str());
-            Some(converted_592)
+            let converted_627 = (|| -> PyResult<_> {
+                let enum_value_628: String = value.extract()?;
+                let converted_627 =
+                    aws_sdk_cloudtrail::types::EventCategory::from(enum_value_628.as_str());
+                Ok(converted_627)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_category"),
+                        "str (EventCategory)",
+                    ),
+                    "cloudtrail",
+                    "LookupEvents",
+                )
+            })?;
+            Some(converted_627)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_594: i32 = value.extract()?;
-            Some(converted_594)
+            let converted_629 = (|| -> PyResult<_> {
+                let converted_629: i32 = value.extract()?;
+                Ok(converted_629)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "LookupEvents",
+                )
+            })?;
+            Some(converted_629)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_595: String = value.extract()?;
-            Some(converted_595)
+            let converted_630 = (|| -> PyResult<_> {
+                let converted_630: String = value.extract()?;
+                Ok(converted_630)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "LookupEvents",
+                )
+            })?;
+            Some(converted_630)
         } else {
             None
         };
@@ -13770,48 +17102,152 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
-            let converted_596: String = value.extract()?;
-            Some(converted_596)
+            let converted_631 = (|| -> PyResult<_> {
+                let converted_631: String = value.extract()?;
+                Ok(converted_631)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "PutEventConfiguration",
+                )
+            })?;
+            Some(converted_631)
         } else {
             None
         };
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_597: String = value.extract()?;
-            Some(converted_597)
+            let converted_632 = (|| -> PyResult<_> {
+                let converted_632: String = value.extract()?;
+                Ok(converted_632)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "PutEventConfiguration",
+                )
+            })?;
+            Some(converted_632)
         } else {
             None
         };
         let max_event_size_value = if let Some(value) = dict_value(params, "max_event_size")? {
-            let enum_value_599: String = value.extract()?;
-            let converted_598 =
-                aws_sdk_cloudtrail::types::MaxEventSize::from(enum_value_599.as_str());
-            Some(converted_598)
+            let converted_633 = (|| -> PyResult<_> {
+                let enum_value_634: String = value.extract()?;
+                let converted_633 =
+                    aws_sdk_cloudtrail::types::MaxEventSize::from(enum_value_634.as_str());
+                Ok(converted_633)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_event_size"),
+                        "str (MaxEventSize)",
+                    ),
+                    "cloudtrail",
+                    "PutEventConfiguration",
+                )
+            })?;
+            Some(converted_633)
         } else {
             None
         };
         let context_key_selectors_value =
             if let Some(value) = dict_value(params, "context_key_selectors")? {
-                let mut converted_600 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_601 in value.try_iter()? {
-                    let item_602 = item_result_601?;
-                    let converted_item_603 = context_key_selector_from_py(&item_602)?;
-                    converted_600.push(converted_item_603);
-                }
-                Some(converted_600)
+                let converted_635 = (|| -> PyResult<_> {
+                    let mut converted_635 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_639, item_result_636) in value.try_iter()?.enumerate() {
+                        let item_637 = item_result_636.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_639),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_638 = (|| -> PyResult<_> {
+                            let converted_item_638 = context_key_selector_from_py(&item_637)?;
+                            Ok(converted_item_638)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_639),
+                                "dict (ContextKeySelector)",
+                            )
+                        })?;
+                        converted_635.push(converted_item_638);
+                    }
+                    Ok(converted_635)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("context_key_selectors"),
+                            "sequence",
+                        ),
+                        "cloudtrail",
+                        "PutEventConfiguration",
+                    )
+                })?;
+                Some(converted_635)
             } else {
                 None
             };
         let aggregation_configurations_value =
             if let Some(value) = dict_value(params, "aggregation_configurations")? {
-                let mut converted_604 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_605 in value.try_iter()? {
-                    let item_606 = item_result_605?;
-                    let converted_item_607 = aggregation_configuration_from_py(&item_606)?;
-                    converted_604.push(converted_item_607);
-                }
-                Some(converted_604)
+                let converted_640 = (|| -> PyResult<_> {
+                    let mut converted_640 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_644, item_result_641) in value.try_iter()?.enumerate() {
+                        let item_642 = item_result_641.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_644),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_643 = (|| -> PyResult<_> {
+                            let converted_item_643 = aggregation_configuration_from_py(&item_642)?;
+                            Ok(converted_item_643)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_644),
+                                "dict (AggregationConfiguration)",
+                            )
+                        })?;
+                        converted_640.push(converted_item_643);
+                    }
+                    Ok(converted_640)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("aggregation_configurations"),
+                            "sequence",
+                        ),
+                        "cloudtrail",
+                        "PutEventConfiguration",
+                    )
+                })?;
+                Some(converted_640)
             } else {
                 None
             };
@@ -13854,33 +17290,109 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
-            let converted_608: String = value.extract()?;
-            Some(converted_608)
+            let converted_645 = (|| -> PyResult<_> {
+                let converted_645: String = value.extract()?;
+                Ok(converted_645)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "PutEventSelectors",
+                )
+            })?;
+            Some(converted_645)
         } else {
             None
         };
         let event_selectors_value = if let Some(value) = dict_value(params, "event_selectors")? {
-            let mut converted_609 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_610 in value.try_iter()? {
-                let item_611 = item_result_610?;
-                let converted_item_612 = event_selector_from_py(&item_611)?;
-                converted_609.push(converted_item_612);
-            }
-            Some(converted_609)
+            let converted_646 = (|| -> PyResult<_> {
+                let mut converted_646 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_650, item_result_647) in value.try_iter()?.enumerate() {
+                    let item_648 = item_result_647.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_650),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_649 = (|| -> PyResult<_> {
+                        let converted_item_649 = event_selector_from_py(&item_648)?;
+                        Ok(converted_item_649)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_650),
+                            "dict (EventSelector)",
+                        )
+                    })?;
+                    converted_646.push(converted_item_649);
+                }
+                Ok(converted_646)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_selectors"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "PutEventSelectors",
+                )
+            })?;
+            Some(converted_646)
         } else {
             None
         };
         let advanced_event_selectors_value =
             if let Some(value) = dict_value(params, "advanced_event_selectors")? {
-                let mut converted_613 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_614 in value.try_iter()? {
-                    let item_615 = item_result_614?;
-                    let converted_item_616 = advanced_event_selector_from_py(&item_615)?;
-                    converted_613.push(converted_item_616);
-                }
-                Some(converted_613)
+                let converted_651 = (|| -> PyResult<_> {
+                    let mut converted_651 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_655, item_result_652) in value.try_iter()?.enumerate() {
+                        let item_653 = item_result_652.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_655),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_654 = (|| -> PyResult<_> {
+                            let converted_item_654 = advanced_event_selector_from_py(&item_653)?;
+                            Ok(converted_item_654)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_655),
+                                "dict (AdvancedEventSelector)",
+                            )
+                        })?;
+                        converted_651.push(converted_item_654);
+                    }
+                    Ok(converted_651)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("advanced_event_selectors"),
+                            "sequence",
+                        ),
+                        "cloudtrail",
+                        "PutEventSelectors",
+                    )
+                })?;
+                Some(converted_651)
             } else {
                 None
             };
@@ -13921,34 +17433,107 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_value = if let Some(value) = dict_value(params, "trail_name")? {
-            let converted_617: String = value.extract()?;
-            Some(converted_617)
+            let converted_656 = (|| -> PyResult<_> {
+                let converted_656: String = value.extract()?;
+                Ok(converted_656)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trail_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "PutInsightSelectors",
+                )
+            })?;
+            Some(converted_656)
         } else {
             None
         };
         let insight_selectors_value = if let Some(value) = dict_value(params, "insight_selectors")?
         {
-            let mut converted_618 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_619 in value.try_iter()? {
-                let item_620 = item_result_619?;
-                let converted_item_621 = insight_selector_from_py(&item_620)?;
-                converted_618.push(converted_item_621);
-            }
-            Some(converted_618)
+            let converted_657 = (|| -> PyResult<_> {
+                let mut converted_657 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_661, item_result_658) in value.try_iter()?.enumerate() {
+                    let item_659 = item_result_658.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_661),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_660 = (|| -> PyResult<_> {
+                        let converted_item_660 = insight_selector_from_py(&item_659)?;
+                        Ok(converted_item_660)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_661),
+                            "dict (InsightSelector)",
+                        )
+                    })?;
+                    converted_657.push(converted_item_660);
+                }
+                Ok(converted_657)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("insight_selectors"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "PutInsightSelectors",
+                )
+            })?;
+            Some(converted_657)
         } else {
             None
         };
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_622: String = value.extract()?;
-            Some(converted_622)
+            let converted_662 = (|| -> PyResult<_> {
+                let converted_662: String = value.extract()?;
+                Ok(converted_662)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "PutInsightSelectors",
+                )
+            })?;
+            Some(converted_662)
         } else {
             None
         };
         let insights_destination_value =
             if let Some(value) = dict_value(params, "insights_destination")? {
-                let converted_623: String = value.extract()?;
-                Some(converted_623)
+                let converted_663 = (|| -> PyResult<_> {
+                    let converted_663: String = value.extract()?;
+                    Ok(converted_663)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("insights_destination"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "PutInsightSelectors",
+                    )
+                })?;
+                Some(converted_663)
             } else {
                 None
             };
@@ -13990,14 +17575,42 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_624: String = value.extract()?;
-            Some(converted_624)
+            let converted_664 = (|| -> PyResult<_> {
+                let converted_664: String = value.extract()?;
+                Ok(converted_664)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "PutResourcePolicy",
+                )
+            })?;
+            Some(converted_664)
         } else {
             None
         };
         let resource_policy_value = if let Some(value) = dict_value(params, "resource_policy")? {
-            let converted_625: String = value.extract()?;
-            Some(converted_625)
+            let converted_665 = (|| -> PyResult<_> {
+                let converted_665: String = value.extract()?;
+                Ok(converted_665)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_policy"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "PutResourcePolicy",
+                )
+            })?;
+            Some(converted_665)
         } else {
             None
         };
@@ -14036,8 +17649,22 @@ impl CloudTrailClient {
         let state = self.state.clone();
         let member_account_id_value = if let Some(value) = dict_value(params, "member_account_id")?
         {
-            let converted_626: String = value.extract()?;
-            Some(converted_626)
+            let converted_666 = (|| -> PyResult<_> {
+                let converted_666: String = value.extract()?;
+                Ok(converted_666)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("member_account_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "RegisterOrganizationDelegatedAdmin",
+                )
+            })?;
+            Some(converted_666)
         } else {
             None
         };
@@ -14076,20 +17703,65 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_id_value = if let Some(value) = dict_value(params, "resource_id")? {
-            let converted_627: String = value.extract()?;
-            Some(converted_627)
+            let converted_667 = (|| -> PyResult<_> {
+                let converted_667: String = value.extract()?;
+                Ok(converted_667)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "RemoveTags",
+                )
+            })?;
+            Some(converted_667)
         } else {
             None
         };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_628 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_629 in value.try_iter()? {
-                let item_630 = item_result_629?;
-                let converted_item_631 = tag_from_py(&item_630)?;
-                converted_628.push(converted_item_631);
-            }
-            Some(converted_628)
+            let converted_668 = (|| -> PyResult<_> {
+                let mut converted_668 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_672, item_result_669) in value.try_iter()?.enumerate() {
+                    let item_670 = item_result_669.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_672),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_671 = (|| -> PyResult<_> {
+                        let converted_item_671 = tag_from_py(&item_670)?;
+                        Ok(converted_item_671)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_672),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_668.push(converted_item_671);
+                }
+                Ok(converted_668)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags_list"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "RemoveTags",
+                )
+            })?;
+            Some(converted_668)
         } else {
             None
         };
@@ -14126,8 +17798,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_632: String = value.extract()?;
-            Some(converted_632)
+            let converted_673 = (|| -> PyResult<_> {
+                let converted_673: String = value.extract()?;
+                Ok(converted_673)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "RestoreEventDataStore",
+                )
+            })?;
+            Some(converted_673)
         } else {
             None
         };
@@ -14166,20 +17852,62 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let search_phrase_value = if let Some(value) = dict_value(params, "search_phrase")? {
-            let converted_633: String = value.extract()?;
-            Some(converted_633)
+            let converted_674 = (|| -> PyResult<_> {
+                let converted_674: String = value.extract()?;
+                Ok(converted_674)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("search_phrase"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "SearchSampleQueries",
+                )
+            })?;
+            Some(converted_674)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_634: i32 = value.extract()?;
-            Some(converted_634)
+            let converted_675 = (|| -> PyResult<_> {
+                let converted_675: i32 = value.extract()?;
+                Ok(converted_675)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "SearchSampleQueries",
+                )
+            })?;
+            Some(converted_675)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_635: String = value.extract()?;
-            Some(converted_635)
+            let converted_676 = (|| -> PyResult<_> {
+                let converted_676: String = value.extract()?;
+                Ok(converted_676)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "SearchSampleQueries",
+                )
+            })?;
+            Some(converted_676)
         } else {
             None
         };
@@ -14220,21 +17948,69 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
-            let converted_636: String = value.extract()?;
-            Some(converted_636)
+            let converted_677 = (|| -> PyResult<_> {
+                let converted_677: String = value.extract()?;
+                Ok(converted_677)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dashboard_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StartDashboardRefresh",
+                )
+            })?;
+            Some(converted_677)
         } else {
             None
         };
         let query_parameter_values_value =
             if let Some(value) = dict_value(params, "query_parameter_values")? {
-                let mapping_638 = value.cast::<PyDict>()?;
-                let mut converted_637 = HashMap::with_capacity(mapping_638.len());
-                for (key_639, value_640) in mapping_638.iter() {
-                    let converted_key_641: String = key_639.extract()?;
-                    let converted_value_642: String = value_640.extract()?;
-                    converted_637.insert(converted_key_641, converted_value_642);
-                }
-                Some(converted_637)
+                let converted_678 = (|| -> PyResult<_> {
+                    let mapping_679 = value.cast::<PyDict>()?;
+                    let mut converted_678 = HashMap::with_capacity(mapping_679.len());
+                    for (index_684, (key_680, value_681)) in mapping_679.iter().enumerate() {
+                        let converted_key_682 = (|| -> PyResult<_> {
+                            let converted_key_682: String = key_680.extract()?;
+                            Ok(converted_key_682)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_684),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_683 = (|| -> PyResult<_> {
+                            let converted_value_683: String = value_681.extract()?;
+                            Ok(converted_value_683)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_684),
+                                "str",
+                            )
+                        })?;
+                        converted_678.insert(converted_key_682, converted_value_683);
+                    }
+                    Ok(converted_678)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("query_parameter_values"),
+                            "dict",
+                        ),
+                        "cloudtrail",
+                        "StartDashboardRefresh",
+                    )
+                })?;
+                Some(converted_678)
             } else {
                 None
             };
@@ -14272,8 +18048,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_643: String = value.extract()?;
-            Some(converted_643)
+            let converted_685 = (|| -> PyResult<_> {
+                let converted_685: String = value.extract()?;
+                Ok(converted_685)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StartEventDataStoreIngestion",
+                )
+            })?;
+            Some(converted_685)
         } else {
             None
         };
@@ -14310,48 +18100,135 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let destinations_value = if let Some(value) = dict_value(params, "destinations")? {
-            let mut converted_644 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_645 in value.try_iter()? {
-                let item_646 = item_result_645?;
-                let converted_item_647: String = item_646.extract()?;
-                converted_644.push(converted_item_647);
-            }
-            Some(converted_644)
+            let converted_686 = (|| -> PyResult<_> {
+                let mut converted_686 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_690, item_result_687) in value.try_iter()?.enumerate() {
+                    let item_688 = item_result_687.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_690),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_689 = (|| -> PyResult<_> {
+                        let converted_item_689: String = item_688.extract()?;
+                        Ok(converted_item_689)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_690),
+                            "str",
+                        )
+                    })?;
+                    converted_686.push(converted_item_689);
+                }
+                Ok(converted_686)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("destinations"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "StartImport",
+                )
+            })?;
+            Some(converted_686)
         } else {
             None
         };
         let import_source_value = if let Some(value) = dict_value(params, "import_source")? {
-            let converted_648 = import_source_from_py(&value)?;
-            Some(converted_648)
+            let converted_691 = (|| -> PyResult<_> {
+                let converted_691 = import_source_from_py(&value)?;
+                Ok(converted_691)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_source"),
+                        "dict (ImportSource)",
+                    ),
+                    "cloudtrail",
+                    "StartImport",
+                )
+            })?;
+            Some(converted_691)
         } else {
             None
         };
         let start_event_time_value = if let Some(value) = dict_value(params, "start_event_time")? {
-            let timestamp_650: String = value.extract()?;
-            let converted_649 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_650,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_649)
+            let converted_692 = (|| -> PyResult<_> {
+                let timestamp_693: String = value.extract()?;
+                let converted_692 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_693,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_692)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("start_event_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "StartImport",
+                )
+            })?;
+            Some(converted_692)
         } else {
             None
         };
         let end_event_time_value = if let Some(value) = dict_value(params, "end_event_time")? {
-            let timestamp_652: String = value.extract()?;
-            let converted_651 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_652,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_651)
+            let converted_694 = (|| -> PyResult<_> {
+                let timestamp_695: String = value.extract()?;
+                let converted_694 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_695,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_694)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("end_event_time"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "cloudtrail",
+                    "StartImport",
+                )
+            })?;
+            Some(converted_694)
         } else {
             None
         };
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
-            let converted_653: String = value.extract()?;
-            Some(converted_653)
+            let converted_696 = (|| -> PyResult<_> {
+                let converted_696: String = value.extract()?;
+                Ok(converted_696)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StartImport",
+                )
+            })?;
+            Some(converted_696)
         } else {
             None
         };
@@ -14393,8 +18270,18 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_654: String = value.extract()?;
-            Some(converted_654)
+            let converted_697 = (|| -> PyResult<_> {
+                let converted_697: String = value.extract()?;
+                Ok(converted_697)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "StartLogging",
+                )
+            })?;
+            Some(converted_697)
         } else {
             None
         };
@@ -14429,39 +18316,126 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let query_statement_value = if let Some(value) = dict_value(params, "query_statement")? {
-            let converted_655: String = value.extract()?;
-            Some(converted_655)
+            let converted_698 = (|| -> PyResult<_> {
+                let converted_698: String = value.extract()?;
+                Ok(converted_698)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("query_statement"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StartQuery",
+                )
+            })?;
+            Some(converted_698)
         } else {
             None
         };
         let delivery_s3_uri_value = if let Some(value) = dict_value(params, "delivery_s3_uri")? {
-            let converted_656: String = value.extract()?;
-            Some(converted_656)
+            let converted_699 = (|| -> PyResult<_> {
+                let converted_699: String = value.extract()?;
+                Ok(converted_699)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("delivery_s3_uri"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StartQuery",
+                )
+            })?;
+            Some(converted_699)
         } else {
             None
         };
         let query_alias_value = if let Some(value) = dict_value(params, "query_alias")? {
-            let converted_657: String = value.extract()?;
-            Some(converted_657)
+            let converted_700 = (|| -> PyResult<_> {
+                let converted_700: String = value.extract()?;
+                Ok(converted_700)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("query_alias"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StartQuery",
+                )
+            })?;
+            Some(converted_700)
         } else {
             None
         };
         let query_parameters_value = if let Some(value) = dict_value(params, "query_parameters")? {
-            let mut converted_658 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_659 in value.try_iter()? {
-                let item_660 = item_result_659?;
-                let converted_item_661: String = item_660.extract()?;
-                converted_658.push(converted_item_661);
-            }
-            Some(converted_658)
+            let converted_701 = (|| -> PyResult<_> {
+                let mut converted_701 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_705, item_result_702) in value.try_iter()?.enumerate() {
+                    let item_703 = item_result_702.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_705),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_704 = (|| -> PyResult<_> {
+                        let converted_item_704: String = item_703.extract()?;
+                        Ok(converted_item_704)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_705),
+                            "str",
+                        )
+                    })?;
+                    converted_701.push(converted_item_704);
+                }
+                Ok(converted_701)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("query_parameters"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "StartQuery",
+                )
+            })?;
+            Some(converted_701)
         } else {
             None
         };
         let event_data_store_owner_account_id_value =
             if let Some(value) = dict_value(params, "event_data_store_owner_account_id")? {
-                let converted_662: String = value.extract()?;
-                Some(converted_662)
+                let converted_706 = (|| -> PyResult<_> {
+                    let converted_706: String = value.extract()?;
+                    Ok(converted_706)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("event_data_store_owner_account_id"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "StartQuery",
+                    )
+                })?;
+                Some(converted_706)
             } else {
                 None
             };
@@ -14501,8 +18475,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_663: String = value.extract()?;
-            Some(converted_663)
+            let converted_707 = (|| -> PyResult<_> {
+                let converted_707: String = value.extract()?;
+                Ok(converted_707)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StopEventDataStoreIngestion",
+                )
+            })?;
+            Some(converted_707)
         } else {
             None
         };
@@ -14539,8 +18527,22 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let import_id_value = if let Some(value) = dict_value(params, "import_id")? {
-            let converted_664: String = value.extract()?;
-            Some(converted_664)
+            let converted_708 = (|| -> PyResult<_> {
+                let converted_708: String = value.extract()?;
+                Ok(converted_708)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "StopImport",
+                )
+            })?;
+            Some(converted_708)
         } else {
             None
         };
@@ -14576,8 +18578,18 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_665: String = value.extract()?;
-            Some(converted_665)
+            let converted_709 = (|| -> PyResult<_> {
+                let converted_709: String = value.extract()?;
+                Ok(converted_709)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "StopLogging",
+                )
+            })?;
+            Some(converted_709)
         } else {
             None
         };
@@ -14611,26 +18623,77 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let channel_value = if let Some(value) = dict_value(params, "channel")? {
-            let converted_666: String = value.extract()?;
-            Some(converted_666)
+            let converted_710 = (|| -> PyResult<_> {
+                let converted_710: String = value.extract()?;
+                Ok(converted_710)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("channel"), "str"),
+                    "cloudtrail",
+                    "UpdateChannel",
+                )
+            })?;
+            Some(converted_710)
         } else {
             None
         };
         let destinations_value = if let Some(value) = dict_value(params, "destinations")? {
-            let mut converted_667 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_668 in value.try_iter()? {
-                let item_669 = item_result_668?;
-                let converted_item_670 = destination_from_py(&item_669)?;
-                converted_667.push(converted_item_670);
-            }
-            Some(converted_667)
+            let converted_711 = (|| -> PyResult<_> {
+                let mut converted_711 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_715, item_result_712) in value.try_iter()?.enumerate() {
+                    let item_713 = item_result_712.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_715),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_714 = (|| -> PyResult<_> {
+                        let converted_item_714 = destination_from_py(&item_713)?;
+                        Ok(converted_item_714)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_715),
+                            "dict (Destination)",
+                        )
+                    })?;
+                    converted_711.push(converted_item_714);
+                }
+                Ok(converted_711)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("destinations"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "UpdateChannel",
+                )
+            })?;
+            Some(converted_711)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_671: String = value.extract()?;
-            Some(converted_671)
+            let converted_716 = (|| -> PyResult<_> {
+                let converted_716: String = value.extract()?;
+                Ok(converted_716)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "UpdateChannel",
+                )
+            })?;
+            Some(converted_716)
         } else {
             None
         };
@@ -14671,33 +18734,106 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let dashboard_id_value = if let Some(value) = dict_value(params, "dashboard_id")? {
-            let converted_672: String = value.extract()?;
-            Some(converted_672)
+            let converted_717 = (|| -> PyResult<_> {
+                let converted_717: String = value.extract()?;
+                Ok(converted_717)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dashboard_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "UpdateDashboard",
+                )
+            })?;
+            Some(converted_717)
         } else {
             None
         };
         let widgets_value = if let Some(value) = dict_value(params, "widgets")? {
-            let mut converted_673 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_674 in value.try_iter()? {
-                let item_675 = item_result_674?;
-                let converted_item_676 = request_widget_from_py(&item_675)?;
-                converted_673.push(converted_item_676);
-            }
-            Some(converted_673)
+            let converted_718 = (|| -> PyResult<_> {
+                let mut converted_718 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_722, item_result_719) in value.try_iter()?.enumerate() {
+                    let item_720 = item_result_719.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_722),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_721 = (|| -> PyResult<_> {
+                        let converted_item_721 = request_widget_from_py(&item_720)?;
+                        Ok(converted_item_721)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_722),
+                            "dict (RequestWidget)",
+                        )
+                    })?;
+                    converted_718.push(converted_item_721);
+                }
+                Ok(converted_718)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("widgets"),
+                        "sequence",
+                    ),
+                    "cloudtrail",
+                    "UpdateDashboard",
+                )
+            })?;
+            Some(converted_718)
         } else {
             None
         };
         let refresh_schedule_value = if let Some(value) = dict_value(params, "refresh_schedule")? {
-            let converted_677 = refresh_schedule_from_py(&value)?;
-            Some(converted_677)
+            let converted_723 = (|| -> PyResult<_> {
+                let converted_723 = refresh_schedule_from_py(&value)?;
+                Ok(converted_723)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("refresh_schedule"),
+                        "dict (RefreshSchedule)",
+                    ),
+                    "cloudtrail",
+                    "UpdateDashboard",
+                )
+            })?;
+            Some(converted_723)
         } else {
             None
         };
         let termination_protection_enabled_value =
             if let Some(value) = dict_value(params, "termination_protection_enabled")? {
-                let converted_678: bool = value.extract()?;
-                Some(converted_678)
+                let converted_724 = (|| -> PyResult<_> {
+                    let converted_724: bool = value.extract()?;
+                    Ok(converted_724)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("termination_protection_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateDashboard",
+                    )
+                })?;
+                Some(converted_724)
             } else {
                 None
             };
@@ -14739,68 +18875,207 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let event_data_store_value = if let Some(value) = dict_value(params, "event_data_store")? {
-            let converted_679: String = value.extract()?;
-            Some(converted_679)
+            let converted_725 = (|| -> PyResult<_> {
+                let converted_725: String = value.extract()?;
+                Ok(converted_725)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("event_data_store"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "UpdateEventDataStore",
+                )
+            })?;
+            Some(converted_725)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_680: String = value.extract()?;
-            Some(converted_680)
+            let converted_726 = (|| -> PyResult<_> {
+                let converted_726: String = value.extract()?;
+                Ok(converted_726)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "UpdateEventDataStore",
+                )
+            })?;
+            Some(converted_726)
         } else {
             None
         };
         let advanced_event_selectors_value =
             if let Some(value) = dict_value(params, "advanced_event_selectors")? {
-                let mut converted_681 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_682 in value.try_iter()? {
-                    let item_683 = item_result_682?;
-                    let converted_item_684 = advanced_event_selector_from_py(&item_683)?;
-                    converted_681.push(converted_item_684);
-                }
-                Some(converted_681)
+                let converted_727 = (|| -> PyResult<_> {
+                    let mut converted_727 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_731, item_result_728) in value.try_iter()?.enumerate() {
+                        let item_729 = item_result_728.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_731),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_730 = (|| -> PyResult<_> {
+                            let converted_item_730 = advanced_event_selector_from_py(&item_729)?;
+                            Ok(converted_item_730)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_731),
+                                "dict (AdvancedEventSelector)",
+                            )
+                        })?;
+                        converted_727.push(converted_item_730);
+                    }
+                    Ok(converted_727)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("advanced_event_selectors"),
+                            "sequence",
+                        ),
+                        "cloudtrail",
+                        "UpdateEventDataStore",
+                    )
+                })?;
+                Some(converted_727)
             } else {
                 None
             };
         let multi_region_enabled_value =
             if let Some(value) = dict_value(params, "multi_region_enabled")? {
-                let converted_685: bool = value.extract()?;
-                Some(converted_685)
+                let converted_732 = (|| -> PyResult<_> {
+                    let converted_732: bool = value.extract()?;
+                    Ok(converted_732)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("multi_region_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateEventDataStore",
+                    )
+                })?;
+                Some(converted_732)
             } else {
                 None
             };
         let organization_enabled_value =
             if let Some(value) = dict_value(params, "organization_enabled")? {
-                let converted_686: bool = value.extract()?;
-                Some(converted_686)
+                let converted_733 = (|| -> PyResult<_> {
+                    let converted_733: bool = value.extract()?;
+                    Ok(converted_733)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("organization_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateEventDataStore",
+                    )
+                })?;
+                Some(converted_733)
             } else {
                 None
             };
         let retention_period_value = if let Some(value) = dict_value(params, "retention_period")? {
-            let converted_687: i32 = value.extract()?;
-            Some(converted_687)
+            let converted_734 = (|| -> PyResult<_> {
+                let converted_734: i32 = value.extract()?;
+                Ok(converted_734)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("retention_period"),
+                        "int",
+                    ),
+                    "cloudtrail",
+                    "UpdateEventDataStore",
+                )
+            })?;
+            Some(converted_734)
         } else {
             None
         };
         let termination_protection_enabled_value =
             if let Some(value) = dict_value(params, "termination_protection_enabled")? {
-                let converted_688: bool = value.extract()?;
-                Some(converted_688)
+                let converted_735 = (|| -> PyResult<_> {
+                    let converted_735: bool = value.extract()?;
+                    Ok(converted_735)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("termination_protection_enabled"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateEventDataStore",
+                    )
+                })?;
+                Some(converted_735)
             } else {
                 None
             };
         let kms_key_id_value = if let Some(value) = dict_value(params, "kms_key_id")? {
-            let converted_689: String = value.extract()?;
-            Some(converted_689)
+            let converted_736 = (|| -> PyResult<_> {
+                let converted_736: String = value.extract()?;
+                Ok(converted_736)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("kms_key_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "UpdateEventDataStore",
+                )
+            })?;
+            Some(converted_736)
         } else {
             None
         };
         let billing_mode_value = if let Some(value) = dict_value(params, "billing_mode")? {
-            let enum_value_691: String = value.extract()?;
-            let converted_690 =
-                aws_sdk_cloudtrail::types::BillingMode::from(enum_value_691.as_str());
-            Some(converted_690)
+            let converted_737 = (|| -> PyResult<_> {
+                let enum_value_738: String = value.extract()?;
+                let converted_737 =
+                    aws_sdk_cloudtrail::types::BillingMode::from(enum_value_738.as_str());
+                Ok(converted_737)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("billing_mode"),
+                        "str (BillingMode)",
+                    ),
+                    "cloudtrail",
+                    "UpdateEventDataStore",
+                )
+            })?;
+            Some(converted_737)
         } else {
             None
         };
@@ -14847,81 +19122,245 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_692: String = value.extract()?;
-            Some(converted_692)
+            let converted_739 = (|| -> PyResult<_> {
+                let converted_739: String = value.extract()?;
+                Ok(converted_739)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "cloudtrail",
+                    "UpdateTrail",
+                )
+            })?;
+            Some(converted_739)
         } else {
             None
         };
         let s3_bucket_name_value = if let Some(value) = dict_value(params, "s3_bucket_name")? {
-            let converted_693: String = value.extract()?;
-            Some(converted_693)
+            let converted_740 = (|| -> PyResult<_> {
+                let converted_740: String = value.extract()?;
+                Ok(converted_740)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("s3_bucket_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "UpdateTrail",
+                )
+            })?;
+            Some(converted_740)
         } else {
             None
         };
         let s3_key_prefix_value = if let Some(value) = dict_value(params, "s3_key_prefix")? {
-            let converted_694: String = value.extract()?;
-            Some(converted_694)
+            let converted_741 = (|| -> PyResult<_> {
+                let converted_741: String = value.extract()?;
+                Ok(converted_741)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("s3_key_prefix"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "UpdateTrail",
+                )
+            })?;
+            Some(converted_741)
         } else {
             None
         };
         let sns_topic_name_value = if let Some(value) = dict_value(params, "sns_topic_name")? {
-            let converted_695: String = value.extract()?;
-            Some(converted_695)
+            let converted_742 = (|| -> PyResult<_> {
+                let converted_742: String = value.extract()?;
+                Ok(converted_742)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("sns_topic_name"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "UpdateTrail",
+                )
+            })?;
+            Some(converted_742)
         } else {
             None
         };
         let include_global_service_events_value =
             if let Some(value) = dict_value(params, "include_global_service_events")? {
-                let converted_696: bool = value.extract()?;
-                Some(converted_696)
+                let converted_743 = (|| -> PyResult<_> {
+                    let converted_743: bool = value.extract()?;
+                    Ok(converted_743)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("include_global_service_events"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateTrail",
+                    )
+                })?;
+                Some(converted_743)
             } else {
                 None
             };
         let is_multi_region_trail_value =
             if let Some(value) = dict_value(params, "is_multi_region_trail")? {
-                let converted_697: bool = value.extract()?;
-                Some(converted_697)
+                let converted_744 = (|| -> PyResult<_> {
+                    let converted_744: bool = value.extract()?;
+                    Ok(converted_744)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("is_multi_region_trail"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateTrail",
+                    )
+                })?;
+                Some(converted_744)
             } else {
                 None
             };
         let enable_log_file_validation_value =
             if let Some(value) = dict_value(params, "enable_log_file_validation")? {
-                let converted_698: bool = value.extract()?;
-                Some(converted_698)
+                let converted_745 = (|| -> PyResult<_> {
+                    let converted_745: bool = value.extract()?;
+                    Ok(converted_745)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("enable_log_file_validation"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateTrail",
+                    )
+                })?;
+                Some(converted_745)
             } else {
                 None
             };
         let cloud_watch_logs_log_group_arn_value =
             if let Some(value) = dict_value(params, "cloud_watch_logs_log_group_arn")? {
-                let converted_699: String = value.extract()?;
-                Some(converted_699)
+                let converted_746 = (|| -> PyResult<_> {
+                    let converted_746: String = value.extract()?;
+                    Ok(converted_746)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("cloud_watch_logs_log_group_arn"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "UpdateTrail",
+                    )
+                })?;
+                Some(converted_746)
             } else {
                 None
             };
         let cloud_watch_logs_role_arn_value =
             if let Some(value) = dict_value(params, "cloud_watch_logs_role_arn")? {
-                let converted_700: String = value.extract()?;
-                Some(converted_700)
+                let converted_747 = (|| -> PyResult<_> {
+                    let converted_747: String = value.extract()?;
+                    Ok(converted_747)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("cloud_watch_logs_role_arn"),
+                            "str",
+                        ),
+                        "cloudtrail",
+                        "UpdateTrail",
+                    )
+                })?;
+                Some(converted_747)
             } else {
                 None
             };
         let kms_key_id_value = if let Some(value) = dict_value(params, "kms_key_id")? {
-            let converted_701: String = value.extract()?;
-            Some(converted_701)
+            let converted_748 = (|| -> PyResult<_> {
+                let converted_748: String = value.extract()?;
+                Ok(converted_748)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("kms_key_id"),
+                        "str",
+                    ),
+                    "cloudtrail",
+                    "UpdateTrail",
+                )
+            })?;
+            Some(converted_748)
         } else {
             None
         };
         let is_organization_trail_value =
             if let Some(value) = dict_value(params, "is_organization_trail")? {
-                let converted_702: bool = value.extract()?;
-                Some(converted_702)
+                let converted_749 = (|| -> PyResult<_> {
+                    let converted_749: bool = value.extract()?;
+                    Ok(converted_749)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("is_organization_trail"),
+                            "bool",
+                        ),
+                        "cloudtrail",
+                        "UpdateTrail",
+                    )
+                })?;
+                Some(converted_749)
             } else {
                 None
             };
         let recursive_logging_value = if let Some(value) = dict_value(params, "recursive_logging")?
         {
-            let converted_703: bool = value.extract()?;
-            Some(converted_703)
+            let converted_750 = (|| -> PyResult<_> {
+                let converted_750: bool = value.extract()?;
+                Ok(converted_750)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("recursive_logging"),
+                        "bool",
+                    ),
+                    "cloudtrail",
+                    "UpdateTrail",
+                )
+            })?;
+            Some(converted_750)
         } else {
             None
         };

@@ -33,6 +33,7 @@ class RustType:
     build_fallible: bool
     is_struct: bool
     variant_types: tuple[tuple[str, str], ...] = ()
+    builder_required_fields: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -115,6 +116,19 @@ def parse_struct_name(path: Path) -> str | None:
     return match.group(1) if match is not None else None
 
 
+def parse_builder_required_fields(content: str) -> tuple[str, ...]:
+    """Read builder failures, not non-optional fields that may have defaults."""
+    build = re.search(r"pub fn build\s*\(\s*self,?\s*\)", content)
+    if build is None:
+        return ()
+    return tuple(
+        name.removeprefix("r#")
+        for name in re.findall(
+            r'BuildError::missing_field\(\s*"((?:r#)?\w+)"', content[build.end():],
+        )
+    )
+
+
 def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
     path = find_crate(descriptor)
     operations: dict[str, RustOperation] = {}
@@ -155,6 +169,7 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
                     )
                 ),
                 True,
+                builder_required_fields=parse_builder_required_fields(content),
             )
             continue
         enum_match = re.search(r"pub enum (\w+)\s*\{(.*?)\n\}", content, re.DOTALL)

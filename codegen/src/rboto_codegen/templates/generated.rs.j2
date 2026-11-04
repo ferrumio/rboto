@@ -2,6 +2,9 @@
 // Uniform conversion bindings also handle nested collections and optional values.
 #![allow(clippy::needless_borrow, clippy::let_and_return, dead_code, deprecated, unused_mut, unused_variables)]
 use super::*;
+{% if "PyValueError::" in converters or "PyValueError::" in methods %}
+use pyo3::exceptions::PyValueError;
+{% endif %}
 
 {{ converters }}
 

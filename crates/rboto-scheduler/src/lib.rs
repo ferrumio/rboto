@@ -12,7 +12,7 @@ use aws_smithy_runtime_api::client::result::SdkError;
 use aws_smithy_types::byte_stream::ByteStream as AwsByteStream;
 use aws_smithy_types::error::metadata::ProvideErrorMetadata;
 use pyo3::conversion::IntoPyObjectExt;
-use pyo3::exceptions::{PyOSError, PyStopAsyncIteration, PyValueError};
+use pyo3::exceptions::{PyOSError, PyStopAsyncIteration};
 use pyo3::prelude::*;
 #[allow(unused_imports)]
 use pyo3::types::{PyBytes, PyDict, PyList};

@@ -10,26 +10,56 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn request_payload_part_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sagemakerruntimehttp2::types::RequestPayloadPart> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sagemakerruntimehttp2::types::RequestPayloadPart::builder();
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_2: Vec<u8> = value.extract()?;
-        let converted_1 = ::aws_smithy_types::Blob::new(bytes_2);
+        let converted_1 = (|| -> PyResult<_> {
+            let bytes_2: Vec<u8> = value.extract()?;
+            let converted_1 = ::aws_smithy_types::Blob::new(bytes_2);
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
         builder = builder.set_bytes(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "data_type")? {
-        let converted_3: String = value.extract()?;
+        let converted_3 = (|| -> PyResult<_> {
+            let converted_3: String = value.extract()?;
+            Ok(converted_3)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("data_type"), "str")
+        })?;
         builder = builder.set_data_type(Some(converted_3));
     }
     if let Some(value) = dict_value(values, "completion_state")? {
-        let converted_4: String = value.extract()?;
+        let converted_4 = (|| -> PyResult<_> {
+            let converted_4: String = value.extract()?;
+            Ok(converted_4)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("completion_state"),
+                "str",
+            )
+        })?;
         builder = builder.set_completion_state(Some(converted_4));
     }
     if let Some(value) = dict_value(values, "p")? {
-        let converted_5: String = value.extract()?;
+        let converted_5 = (|| -> PyResult<_> {
+            let converted_5: String = value.extract()?;
+            Ok(converted_5)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("p"), "str")
+        })?;
         builder = builder.set_p(Some(converted_5));
     }
     Ok(builder.build())
@@ -72,16 +102,34 @@ fn request_stream_event_from_py(
 ) -> PyResult<aws_sdk_sagemakerruntimehttp2::types::RequestStreamEvent> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "payload_part")? {
-        let converted_10 = request_payload_part_from_py(&value)?;
+        let converted_10 = (|| -> PyResult<_> {
+            let converted_10 = request_payload_part_from_py(&value)?;
+            Ok(converted_10)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("payload_part"),
+                "dict (RequestPayloadPart)",
+            )
+        })?;
         return Ok(
             aws_sdk_sagemakerruntimehttp2::types::RequestStreamEvent::PayloadPart(converted_10),
         );
     }
-    Err(PyValueError::new_err(
-        "RequestStreamEvent requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("RequestStreamEvent requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -108,20 +156,48 @@ fn response_payload_part_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sagemakerruntimehttp2::types::ResponsePayloadPart::builder();
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_13: Vec<u8> = value.extract()?;
-        let converted_12 = ::aws_smithy_types::Blob::new(bytes_13);
+        let converted_12 = (|| -> PyResult<_> {
+            let bytes_13: Vec<u8> = value.extract()?;
+            let converted_12 = ::aws_smithy_types::Blob::new(bytes_13);
+            Ok(converted_12)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
         builder = builder.set_bytes(Some(converted_12));
     }
     if let Some(value) = dict_value(values, "data_type")? {
-        let converted_14: String = value.extract()?;
+        let converted_14 = (|| -> PyResult<_> {
+            let converted_14: String = value.extract()?;
+            Ok(converted_14)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("data_type"), "str")
+        })?;
         builder = builder.set_data_type(Some(converted_14));
     }
     if let Some(value) = dict_value(values, "completion_state")? {
-        let converted_15: String = value.extract()?;
+        let converted_15 = (|| -> PyResult<_> {
+            let converted_15: String = value.extract()?;
+            Ok(converted_15)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("completion_state"),
+                "str",
+            )
+        })?;
         builder = builder.set_completion_state(Some(converted_15));
     }
     if let Some(value) = dict_value(values, "p")? {
-        let converted_16: String = value.extract()?;
+        let converted_16 = (|| -> PyResult<_> {
+            let converted_16: String = value.extract()?;
+            Ok(converted_16)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("p"), "str")
+        })?;
         builder = builder.set_p(Some(converted_16));
     }
     Ok(builder.build())
@@ -164,16 +240,34 @@ fn response_stream_event_from_py(
 ) -> PyResult<aws_sdk_sagemakerruntimehttp2::types::ResponseStreamEvent> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "payload_part")? {
-        let converted_21 = response_payload_part_from_py(&value)?;
+        let converted_21 = (|| -> PyResult<_> {
+            let converted_21 = response_payload_part_from_py(&value)?;
+            Ok(converted_21)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("payload_part"),
+                "dict (ResponsePayloadPart)",
+            )
+        })?;
         return Ok(
             aws_sdk_sagemakerruntimehttp2::types::ResponseStreamEvent::PayloadPart(converted_21),
         );
     }
-    Err(PyValueError::new_err(
-        "ResponseStreamEvent requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ResponseStreamEvent requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -306,36 +400,95 @@ impl SageMakerRuntimeHTTP2Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let endpoint_name_value = if let Some(value) = dict_value(params, "endpoint_name")? {
-            let converted_23: String = value.extract()?;
+            let converted_23 = (|| -> PyResult<_> {
+                let converted_23: String = value.extract()?;
+                Ok(converted_23)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("endpoint_name"),
+                        "str",
+                    ),
+                    "sagemaker-runtime-http2",
+                    "InvokeEndpointWithBidirectionalStream",
+                )
+            })?;
             Some(converted_23)
         } else {
             None
         };
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let converted_24: aws_sdk_sagemakerruntimehttp2::primitives::event_stream::EventStreamSender<aws_sdk_sagemakerruntimehttp2::types::RequestStreamEvent, aws_sdk_sagemakerruntimehttp2::types::error::RequestStreamEventError> = rboto_core::python_event_stream(
-                &value, request_stream_event_from_py,
-                aws_sdk_sagemakerruntimehttp2::types::error::RequestStreamEventError::unhandled,
-            )?.into();
+            let converted_24 = (|| -> PyResult<_> {
+                let converted_24: aws_sdk_sagemakerruntimehttp2::primitives::event_stream::EventStreamSender<aws_sdk_sagemakerruntimehttp2::types::RequestStreamEvent, aws_sdk_sagemakerruntimehttp2::types::error::RequestStreamEventError> = rboto_core::python_event_stream(
+                    &value, request_stream_event_from_py,
+                    aws_sdk_sagemakerruntimehttp2::types::error::RequestStreamEventError::unhandled,
+                )?.into();
+                Ok(converted_24)
+            })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("body"), "async iterator"), "sagemaker-runtime-http2", "InvokeEndpointWithBidirectionalStream"))?;
             Some(converted_24)
         } else {
             None
         };
         let target_variant_value = if let Some(value) = dict_value(params, "target_variant")? {
-            let converted_25: String = value.extract()?;
+            let converted_25 = (|| -> PyResult<_> {
+                let converted_25: String = value.extract()?;
+                Ok(converted_25)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("target_variant"),
+                        "str",
+                    ),
+                    "sagemaker-runtime-http2",
+                    "InvokeEndpointWithBidirectionalStream",
+                )
+            })?;
             Some(converted_25)
         } else {
             None
         };
         let model_invocation_path_value =
             if let Some(value) = dict_value(params, "model_invocation_path")? {
-                let converted_26: String = value.extract()?;
+                let converted_26 = (|| -> PyResult<_> {
+                    let converted_26: String = value.extract()?;
+                    Ok(converted_26)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("model_invocation_path"),
+                            "str",
+                        ),
+                        "sagemaker-runtime-http2",
+                        "InvokeEndpointWithBidirectionalStream",
+                    )
+                })?;
                 Some(converted_26)
             } else {
                 None
             };
         let model_query_string_value =
             if let Some(value) = dict_value(params, "model_query_string")? {
-                let converted_27: String = value.extract()?;
+                let converted_27 = (|| -> PyResult<_> {
+                    let converted_27: String = value.extract()?;
+                    Ok(converted_27)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("model_query_string"),
+                            "str",
+                        ),
+                        "sagemaker-runtime-http2",
+                        "InvokeEndpointWithBidirectionalStream",
+                    )
+                })?;
                 Some(converted_27)
             } else {
                 None

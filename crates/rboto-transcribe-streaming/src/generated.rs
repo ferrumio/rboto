@@ -10,34 +10,88 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn alternative_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::Alternative> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::Alternative::builder();
     if let Some(value) = dict_value(values, "transcript")? {
-        let converted_1: String = value.extract()?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("transcript"), "str")
+        })?;
         builder = builder.set_transcript(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_2 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_3 in value.try_iter()? {
-            let item_4 = item_result_3?;
-            let converted_item_5 = item_from_py(&item_4)?;
-            converted_2.push(converted_item_5);
-        }
+        let converted_2 = (|| -> PyResult<_> {
+            let mut converted_2 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_6, item_result_3) in value.try_iter()?.enumerate() {
+                let item_4 = item_result_3.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_6),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_5 = (|| -> PyResult<_> {
+                    let converted_item_5 = item_from_py(&item_4)?;
+                    Ok(converted_item_5)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_6),
+                        "dict (Item)",
+                    )
+                })?;
+                converted_2.push(converted_item_5);
+            }
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("items"), "sequence")
+        })?;
         builder = builder.set_items(Some(converted_2));
     }
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_6 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_7 in value.try_iter()? {
-            let item_8 = item_result_7?;
-            let converted_item_9 = entity_from_py(&item_8)?;
-            converted_6.push(converted_item_9);
-        }
-        builder = builder.set_entities(Some(converted_6));
+        let converted_7 = (|| -> PyResult<_> {
+            let mut converted_7 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_11, item_result_8) in value.try_iter()?.enumerate() {
+                let item_9 = item_result_8.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_11),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_10 = (|| -> PyResult<_> {
+                    let converted_item_10 = entity_from_py(&item_9)?;
+                    Ok(converted_item_10)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_11),
+                        "dict (Entity)",
+                    )
+                })?;
+                converted_7.push(converted_item_10);
+            }
+            Ok(converted_7)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("entities"), "sequence")
+        })?;
+        builder = builder.set_entities(Some(converted_7));
     }
     Ok(builder.build())
 }
@@ -48,30 +102,30 @@ fn alternative_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.transcript {
-        let converted_10 = (value).as_str().into_py_any(py)?;
-        result.set_item("transcript", converted_10)?;
+        let converted_12 = (value).as_str().into_py_any(py)?;
+        result.set_item("transcript", converted_12)?;
     } else {
         result.set_item("transcript", py.None())?;
     }
     if let Some(value) = &value.items {
-        let converted_11_list = PyList::empty(py);
-        for item_12 in value {
-            let converted_item_13 = item_to_py(py, item_12)?;
-            converted_11_list.append(converted_item_13)?;
+        let converted_13_list = PyList::empty(py);
+        for item_14 in value {
+            let converted_item_15 = item_to_py(py, item_14)?;
+            converted_13_list.append(converted_item_15)?;
         }
-        let converted_11 = converted_11_list.into_any().unbind();
-        result.set_item("items", converted_11)?;
+        let converted_13 = converted_13_list.into_any().unbind();
+        result.set_item("items", converted_13)?;
     } else {
         result.set_item("items", py.None())?;
     }
     if let Some(value) = &value.entities {
-        let converted_14_list = PyList::empty(py);
-        for item_15 in value {
-            let converted_item_16 = entity_to_py(py, item_15)?;
-            converted_14_list.append(converted_item_16)?;
+        let converted_16_list = PyList::empty(py);
+        for item_17 in value {
+            let converted_item_18 = entity_to_py(py, item_17)?;
+            converted_16_list.append(converted_item_18)?;
         }
-        let converted_14 = converted_14_list.into_any().unbind();
-        result.set_item("entities", converted_14)?;
+        let converted_16 = converted_16_list.into_any().unbind();
+        result.set_item("entities", converted_16)?;
     } else {
         result.set_item("entities", py.None())?;
     }
@@ -84,9 +138,15 @@ fn audio_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::AudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
-        let bytes_18: Vec<u8> = value.extract()?;
-        let converted_17 = ::aws_smithy_types::Blob::new(bytes_18);
-        builder = builder.set_audio_chunk(Some(converted_17));
+        let converted_19 = (|| -> PyResult<_> {
+            let bytes_20: Vec<u8> = value.extract()?;
+            let converted_19 = ::aws_smithy_types::Blob::new(bytes_20);
+            Ok(converted_19)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("audio_chunk"), "bytes")
+        })?;
+        builder = builder.set_audio_chunk(Some(converted_19));
     }
     Ok(builder.build())
 }
@@ -97,8 +157,8 @@ fn audio_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.audio_chunk {
-        let converted_19 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("audio_chunk", converted_19)?;
+        let converted_21 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("audio_chunk", converted_21)?;
     } else {
         result.set_item("audio_chunk", py.None())?;
     }
@@ -110,22 +170,50 @@ fn audio_stream_from_py(
 ) -> PyResult<aws_sdk_transcribestreaming::types::AudioStream> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "audio_event")? {
-        let converted_20 = audio_event_from_py(&value)?;
+        let converted_22 = (|| -> PyResult<_> {
+            let converted_22 = audio_event_from_py(&value)?;
+            Ok(converted_22)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("audio_event"),
+                "dict (AudioEvent)",
+            )
+        })?;
         return Ok(aws_sdk_transcribestreaming::types::AudioStream::AudioEvent(
-            converted_20,
+            converted_22,
         ));
     }
     if let Some(value) = dict_value(values, "configuration_event")? {
-        let converted_21 = configuration_event_from_py(&value)?;
+        let converted_23 = (|| -> PyResult<_> {
+            let converted_23 = configuration_event_from_py(&value)?;
+            Ok(converted_23)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("configuration_event"),
+                "dict (ConfigurationEvent)",
+            )
+        })?;
         return Ok(
-            aws_sdk_transcribestreaming::types::AudioStream::ConfigurationEvent(converted_21),
+            aws_sdk_transcribestreaming::types::AudioStream::ConfigurationEvent(converted_23),
         );
     }
-    Err(PyValueError::new_err(
-        "AudioStream requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("AudioStream requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -136,12 +224,12 @@ fn audio_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_transcribestreaming::types::AudioStream::AudioEvent(value) => {
-            let converted_22 = audio_event_to_py(py, value)?;
-            result.set_item("audio_event", converted_22)?;
+            let converted_24 = audio_event_to_py(py, value)?;
+            result.set_item("audio_event", converted_24)?;
         }
         aws_sdk_transcribestreaming::types::AudioStream::ConfigurationEvent(value) => {
-            let converted_23 = configuration_event_to_py(py, value)?;
-            result.set_item("configuration_event", converted_23)?;
+            let converted_25 = configuration_event_to_py(py, value)?;
+            result.set_item("configuration_event", converted_25)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -156,28 +244,72 @@ fn call_analytics_entity_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::CallAnalyticsEntity::builder();
     if let Some(value) = dict_value(values, "begin_offset_millis")? {
-        let converted_24: i64 = value.extract()?;
-        builder = builder.set_begin_offset_millis(Some(converted_24));
+        let converted_26 = (|| -> PyResult<_> {
+            let converted_26: i64 = value.extract()?;
+            Ok(converted_26)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("begin_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_begin_offset_millis(Some(converted_26));
     }
     if let Some(value) = dict_value(values, "end_offset_millis")? {
-        let converted_25: i64 = value.extract()?;
-        builder = builder.set_end_offset_millis(Some(converted_25));
+        let converted_27 = (|| -> PyResult<_> {
+            let converted_27: i64 = value.extract()?;
+            Ok(converted_27)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_end_offset_millis(Some(converted_27));
     }
     if let Some(value) = dict_value(values, "category")? {
-        let converted_26: String = value.extract()?;
-        builder = builder.set_category(Some(converted_26));
+        let converted_28 = (|| -> PyResult<_> {
+            let converted_28: String = value.extract()?;
+            Ok(converted_28)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("category"), "str")
+        })?;
+        builder = builder.set_category(Some(converted_28));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let converted_27: String = value.extract()?;
-        builder = builder.set_type(Some(converted_27));
+        let converted_29 = (|| -> PyResult<_> {
+            let converted_29: String = value.extract()?;
+            Ok(converted_29)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str")
+        })?;
+        builder = builder.set_type(Some(converted_29));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_28: String = value.extract()?;
-        builder = builder.set_content(Some(converted_28));
+        let converted_30 = (|| -> PyResult<_> {
+            let converted_30: String = value.extract()?;
+            Ok(converted_30)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_30));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_29: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_29));
+        let converted_31 = (|| -> PyResult<_> {
+            let converted_31: f64 = value.extract()?;
+            Ok(converted_31)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_31));
     }
     Ok(builder.build())
 }
@@ -188,38 +320,38 @@ fn call_analytics_entity_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.begin_offset_millis {
-        let converted_30 = (value).to_owned().into_py_any(py)?;
-        result.set_item("begin_offset_millis", converted_30)?;
+        let converted_32 = (value).to_owned().into_py_any(py)?;
+        result.set_item("begin_offset_millis", converted_32)?;
     } else {
         result.set_item("begin_offset_millis", py.None())?;
     }
     if let Some(value) = &value.end_offset_millis {
-        let converted_31 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end_offset_millis", converted_31)?;
+        let converted_33 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end_offset_millis", converted_33)?;
     } else {
         result.set_item("end_offset_millis", py.None())?;
     }
     if let Some(value) = &value.category {
-        let converted_32 = (value).as_str().into_py_any(py)?;
-        result.set_item("category", converted_32)?;
+        let converted_34 = (value).as_str().into_py_any(py)?;
+        result.set_item("category", converted_34)?;
     } else {
         result.set_item("category", py.None())?;
     }
     if let Some(value) = &value.r#type {
-        let converted_33 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_33)?;
+        let converted_35 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_35)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_34 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_34)?;
+        let converted_36 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_36)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_35 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_35)?;
+        let converted_37 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_37)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
@@ -232,34 +364,92 @@ fn call_analytics_item_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::CallAnalyticsItem::builder();
     if let Some(value) = dict_value(values, "begin_offset_millis")? {
-        let converted_36: i64 = value.extract()?;
-        builder = builder.set_begin_offset_millis(Some(converted_36));
+        let converted_38 = (|| -> PyResult<_> {
+            let converted_38: i64 = value.extract()?;
+            Ok(converted_38)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("begin_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_begin_offset_millis(Some(converted_38));
     }
     if let Some(value) = dict_value(values, "end_offset_millis")? {
-        let converted_37: i64 = value.extract()?;
-        builder = builder.set_end_offset_millis(Some(converted_37));
+        let converted_39 = (|| -> PyResult<_> {
+            let converted_39: i64 = value.extract()?;
+            Ok(converted_39)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_end_offset_millis(Some(converted_39));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_39: String = value.extract()?;
-        let converted_38 =
-            aws_sdk_transcribestreaming::types::ItemType::from(enum_value_39.as_str());
-        builder = builder.set_type(Some(converted_38));
+        let converted_40 = (|| -> PyResult<_> {
+            let enum_value_41: String = value.extract()?;
+            let converted_40 =
+                aws_sdk_transcribestreaming::types::ItemType::from(enum_value_41.as_str());
+            Ok(converted_40)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (ItemType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_40));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_40: String = value.extract()?;
-        builder = builder.set_content(Some(converted_40));
+        let converted_42 = (|| -> PyResult<_> {
+            let converted_42: String = value.extract()?;
+            Ok(converted_42)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_42));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_41: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_41));
+        let converted_43 = (|| -> PyResult<_> {
+            let converted_43: f64 = value.extract()?;
+            Ok(converted_43)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_43));
     }
     if let Some(value) = dict_value(values, "vocabulary_filter_match")? {
-        let converted_42: bool = value.extract()?;
-        builder = builder.set_vocabulary_filter_match(Some(converted_42));
+        let converted_44 = (|| -> PyResult<_> {
+            let converted_44: bool = value.extract()?;
+            Ok(converted_44)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_filter_match"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_vocabulary_filter_match(Some(converted_44));
     }
     if let Some(value) = dict_value(values, "stable")? {
-        let converted_43: bool = value.extract()?;
-        builder = builder.set_stable(Some(converted_43));
+        let converted_45 = (|| -> PyResult<_> {
+            let converted_45: bool = value.extract()?;
+            Ok(converted_45)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("stable"), "bool")
+        })?;
+        builder = builder.set_stable(Some(converted_45));
     }
     Ok(builder.build())
 }
@@ -270,42 +460,42 @@ fn call_analytics_item_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.begin_offset_millis {
-        let converted_44 = (value).to_owned().into_py_any(py)?;
-        result.set_item("begin_offset_millis", converted_44)?;
+        let converted_46 = (value).to_owned().into_py_any(py)?;
+        result.set_item("begin_offset_millis", converted_46)?;
     } else {
         result.set_item("begin_offset_millis", py.None())?;
     }
     if let Some(value) = &value.end_offset_millis {
-        let converted_45 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end_offset_millis", converted_45)?;
+        let converted_47 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end_offset_millis", converted_47)?;
     } else {
         result.set_item("end_offset_millis", py.None())?;
     }
     if let Some(value) = &value.r#type {
-        let converted_46 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_46)?;
+        let converted_48 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_48)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_47 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_47)?;
+        let converted_49 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_49)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_48 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_48)?;
+        let converted_50 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_50)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
-    let converted_49 = (&value.vocabulary_filter_match)
+    let converted_51 = (&value.vocabulary_filter_match)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("vocabulary_filter_match", converted_49)?;
+    result.set_item("vocabulary_filter_match", converted_51)?;
     if let Some(value) = &value.stable {
-        let converted_50 = (value).to_owned().into_py_any(py)?;
-        result.set_item("stable", converted_50)?;
+        let converted_52 = (value).to_owned().into_py_any(py)?;
+        result.set_item("stable", converted_52)?;
     } else {
         result.set_item("stable", py.None())?;
     }
@@ -318,15 +508,31 @@ fn call_analytics_language_with_score_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageWithScore::builder();
     if let Some(value) = dict_value(values, "language_code")? {
-        let enum_value_52: String = value.extract()?;
-        let converted_51 = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
-            enum_value_52.as_str(),
-        );
-        builder = builder.set_language_code(Some(converted_51));
+        let converted_53 = (|| -> PyResult<_> {
+            let enum_value_54: String = value.extract()?;
+            let converted_53 = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
+                enum_value_54.as_str(),
+            );
+            Ok(converted_53)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("language_code"),
+                "str (CallAnalyticsLanguageCode)",
+            )
+        })?;
+        builder = builder.set_language_code(Some(converted_53));
     }
     if let Some(value) = dict_value(values, "score")? {
-        let converted_53: f64 = value.extract()?;
-        builder = builder.set_score(Some(converted_53));
+        let converted_55 = (|| -> PyResult<_> {
+            let converted_55: f64 = value.extract()?;
+            Ok(converted_55)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("score"), "float")
+        })?;
+        builder = builder.set_score(Some(converted_55));
     }
     Ok(builder.build())
 }
@@ -337,13 +543,13 @@ fn call_analytics_language_with_score_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.language_code {
-        let converted_54 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_54)?;
+        let converted_56 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_56)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
-    let converted_55 = (&value.score).to_owned().into_py_any(py)?;
-    result.set_item("score", converted_55)?;
+    let converted_57 = (&value.score).to_owned().into_py_any(py)?;
+    result.set_item("score", converted_57)?;
     Ok(result.into_any().unbind())
 }
 
@@ -352,26 +558,56 @@ fn call_analytics_transcript_result_stream_from_py(
 ) -> PyResult<aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "utterance_event")? {
-        let converted_56 = utterance_event_from_py(&value)?;
+        let converted_58 = (|| -> PyResult<_> {
+            let converted_58 = utterance_event_from_py(&value)?;
+            Ok(converted_58)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("utterance_event"),
+                "dict (UtteranceEvent)",
+            )
+        })?;
         return Ok(
             aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream::UtteranceEvent(
-                converted_56,
+                converted_58,
             ),
         );
     }
     if let Some(value) = dict_value(values, "category_event")? {
-        let converted_57 = category_event_from_py(&value)?;
+        let converted_59 = (|| -> PyResult<_> {
+            let converted_59 = category_event_from_py(&value)?;
+            Ok(converted_59)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("category_event"),
+                "dict (CategoryEvent)",
+            )
+        })?;
         return Ok(
             aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream::CategoryEvent(
-                converted_57,
+                converted_59,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "CallAnalyticsTranscriptResultStream requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err(
+            "CallAnalyticsTranscriptResultStream requires exactly one known variant",
+        ),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -384,14 +620,14 @@ fn call_analytics_transcript_result_stream_to_py(
         aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream::UtteranceEvent(
             value,
         ) => {
-            let converted_58 = utterance_event_to_py(py, value)?;
-            result.set_item("utterance_event", converted_58)?;
+            let converted_60 = utterance_event_to_py(py, value)?;
+            result.set_item("utterance_event", converted_60)?;
         }
         aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream::CategoryEvent(
             value,
         ) => {
-            let converted_59 = category_event_to_py(py, value)?;
-            result.set_item("category_event", converted_59)?;
+            let converted_61 = category_event_to_py(py, value)?;
+            result.set_item("category_event", converted_61)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -406,24 +642,73 @@ fn category_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::CategoryEvent::builder();
     if let Some(value) = dict_value(values, "matched_categories")? {
-        let mut converted_60 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_61 in value.try_iter()? {
-            let item_62 = item_result_61?;
-            let converted_item_63: String = item_62.extract()?;
-            converted_60.push(converted_item_63);
-        }
-        builder = builder.set_matched_categories(Some(converted_60));
+        let converted_62 = (|| -> PyResult<_> {
+            let mut converted_62 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_66, item_result_63) in value.try_iter()?.enumerate() {
+                let item_64 = item_result_63.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_66),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_65 = (|| -> PyResult<_> {
+                    let converted_item_65: String = item_64.extract()?;
+                    Ok(converted_item_65)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_66), "str")
+                })?;
+                converted_62.push(converted_item_65);
+            }
+            Ok(converted_62)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("matched_categories"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_matched_categories(Some(converted_62));
     }
     if let Some(value) = dict_value(values, "matched_details")? {
-        let mapping_65 = value.cast::<PyDict>()?;
-        let mut converted_64 = HashMap::with_capacity(mapping_65.len());
-        for (key_66, value_67) in mapping_65.iter() {
-            let converted_key_68: String = key_66.extract()?;
-            let converted_value_69 = points_of_interest_from_py(&value_67)?;
-            converted_64.insert(converted_key_68, converted_value_69);
-        }
-        builder = builder.set_matched_details(Some(converted_64));
+        let converted_67 = (|| -> PyResult<_> {
+            let mapping_68 = value.cast::<PyDict>()?;
+            let mut converted_67 = HashMap::with_capacity(mapping_68.len());
+            for (index_73, (key_69, value_70)) in mapping_68.iter().enumerate() {
+                let converted_key_71 = (|| -> PyResult<_> {
+                    let converted_key_71: String = key_69.extract()?;
+                    Ok(converted_key_71)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_73), "str")
+                })?;
+                let converted_value_72 = (|| -> PyResult<_> {
+                    let converted_value_72 = points_of_interest_from_py(&value_70)?;
+                    Ok(converted_value_72)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_73),
+                        "dict (PointsOfInterest)",
+                    )
+                })?;
+                converted_67.insert(converted_key_71, converted_value_72);
+            }
+            Ok(converted_67)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("matched_details"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_matched_details(Some(converted_67));
     }
     Ok(builder.build())
 }
@@ -434,25 +719,25 @@ fn category_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.matched_categories {
-        let converted_70_list = PyList::empty(py);
-        for item_71 in value {
-            let converted_item_72 = (item_71).as_str().into_py_any(py)?;
-            converted_70_list.append(converted_item_72)?;
+        let converted_74_list = PyList::empty(py);
+        for item_75 in value {
+            let converted_item_76 = (item_75).as_str().into_py_any(py)?;
+            converted_74_list.append(converted_item_76)?;
         }
-        let converted_70 = converted_70_list.into_any().unbind();
-        result.set_item("matched_categories", converted_70)?;
+        let converted_74 = converted_74_list.into_any().unbind();
+        result.set_item("matched_categories", converted_74)?;
     } else {
         result.set_item("matched_categories", py.None())?;
     }
     if let Some(value) = &value.matched_details {
-        let converted_73_dict = PyDict::new(py);
-        for (key_74, value_75) in value {
-            let converted_key_76 = (key_74).as_str().into_py_any(py)?;
-            let converted_value_77 = points_of_interest_to_py(py, value_75)?;
-            converted_73_dict.set_item(converted_key_76, converted_value_77)?;
+        let converted_77_dict = PyDict::new(py);
+        for (key_78, value_79) in value {
+            let converted_key_80 = (key_78).as_str().into_py_any(py)?;
+            let converted_value_81 = points_of_interest_to_py(py, value_79)?;
+            converted_77_dict.set_item(converted_key_80, converted_value_81)?;
         }
-        let converted_73 = converted_73_dict.into_any().unbind();
-        result.set_item("matched_details", converted_73)?;
+        let converted_77 = converted_77_dict.into_any().unbind();
+        result.set_item("matched_details", converted_77)?;
     } else {
         result.set_item("matched_details", py.None())?;
     }
@@ -465,18 +750,34 @@ fn channel_definition_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::ChannelDefinition::builder();
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_78: i32 = value.extract()?;
-        builder = builder.set_channel_id(Some(converted_78));
+        let converted_82 = (|| -> PyResult<_> {
+            let converted_82: i32 = value.extract()?;
+            Ok(converted_82)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "int")
+        })?;
+        builder = builder.set_channel_id(Some(converted_82));
     }
     if let Some(value) = dict_value(values, "participant_role")? {
-        let enum_value_80: String = value.extract()?;
-        let converted_79 =
-            aws_sdk_transcribestreaming::types::ParticipantRole::from(enum_value_80.as_str());
-        builder = builder.set_participant_role(Some(converted_79));
+        let converted_83 = (|| -> PyResult<_> {
+            let enum_value_84: String = value.extract()?;
+            let converted_83 =
+                aws_sdk_transcribestreaming::types::ParticipantRole::from(enum_value_84.as_str());
+            Ok(converted_83)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("participant_role"),
+                "str (ParticipantRole)",
+            )
+        })?;
+        builder = builder.set_participant_role(Some(converted_83));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("participant_role", "participant_role")])
+    })
 }
 
 fn channel_definition_to_py(
@@ -484,10 +785,10 @@ fn channel_definition_to_py(
     value: &aws_sdk_transcribestreaming::types::ChannelDefinition,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_81 = (&value.channel_id).to_owned().into_py_any(py)?;
-    result.set_item("channel_id", converted_81)?;
-    let converted_82 = (&value.participant_role).as_str().into_py_any(py)?;
-    result.set_item("participant_role", converted_82)?;
+    let converted_85 = (&value.channel_id).to_owned().into_py_any(py)?;
+    result.set_item("channel_id", converted_85)?;
+    let converted_86 = (&value.participant_role).as_str().into_py_any(py)?;
+    result.set_item("participant_role", converted_86)?;
     Ok(result.into_any().unbind())
 }
 
@@ -497,12 +798,24 @@ fn character_offsets_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::CharacterOffsets::builder();
     if let Some(value) = dict_value(values, "begin")? {
-        let converted_83: i32 = value.extract()?;
-        builder = builder.set_begin(Some(converted_83));
+        let converted_87 = (|| -> PyResult<_> {
+            let converted_87: i32 = value.extract()?;
+            Ok(converted_87)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("begin"), "int")
+        })?;
+        builder = builder.set_begin(Some(converted_87));
     }
     if let Some(value) = dict_value(values, "end")? {
-        let converted_84: i32 = value.extract()?;
-        builder = builder.set_end(Some(converted_84));
+        let converted_88 = (|| -> PyResult<_> {
+            let converted_88: i32 = value.extract()?;
+            Ok(converted_88)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end"), "int")
+        })?;
+        builder = builder.set_end(Some(converted_88));
     }
     Ok(builder.build())
 }
@@ -513,14 +826,14 @@ fn character_offsets_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.begin {
-        let converted_85 = (value).to_owned().into_py_any(py)?;
-        result.set_item("begin", converted_85)?;
+        let converted_89 = (value).to_owned().into_py_any(py)?;
+        result.set_item("begin", converted_89)?;
     } else {
         result.set_item("begin", py.None())?;
     }
     if let Some(value) = &value.end {
-        let converted_86 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end", converted_86)?;
+        let converted_90 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end", converted_90)?;
     } else {
         result.set_item("end", py.None())?;
     }
@@ -533,23 +846,60 @@ fn clinical_note_generation_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult::builder();
     if let Some(value) = dict_value(values, "clinical_note_output_location")? {
-        let converted_87: String = value.extract()?;
-        builder = builder.set_clinical_note_output_location(Some(converted_87));
+        let converted_91 = (|| -> PyResult<_> {
+            let converted_91: String = value.extract()?;
+            Ok(converted_91)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("clinical_note_output_location"),
+                "str",
+            )
+        })?;
+        builder = builder.set_clinical_note_output_location(Some(converted_91));
     }
     if let Some(value) = dict_value(values, "transcript_output_location")? {
-        let converted_88: String = value.extract()?;
-        builder = builder.set_transcript_output_location(Some(converted_88));
+        let converted_92 = (|| -> PyResult<_> {
+            let converted_92: String = value.extract()?;
+            Ok(converted_92)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("transcript_output_location"),
+                "str",
+            )
+        })?;
+        builder = builder.set_transcript_output_location(Some(converted_92));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_90: String = value.extract()?;
-        let converted_89 = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationStatus::from(
-            enum_value_90.as_str(),
-        );
-        builder = builder.set_status(Some(converted_89));
+        let converted_93 = (|| -> PyResult<_> {
+            let enum_value_94: String = value.extract()?;
+            let converted_93 =
+                aws_sdk_transcribestreaming::types::ClinicalNoteGenerationStatus::from(
+                    enum_value_94.as_str(),
+                );
+            Ok(converted_93)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (ClinicalNoteGenerationStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_93));
     }
     if let Some(value) = dict_value(values, "failure_reason")? {
-        let converted_91: String = value.extract()?;
-        builder = builder.set_failure_reason(Some(converted_91));
+        let converted_95 = (|| -> PyResult<_> {
+            let converted_95: String = value.extract()?;
+            Ok(converted_95)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("failure_reason"), "str")
+        })?;
+        builder = builder.set_failure_reason(Some(converted_95));
     }
     Ok(builder.build())
 }
@@ -560,26 +910,26 @@ fn clinical_note_generation_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.clinical_note_output_location {
-        let converted_92 = (value).as_str().into_py_any(py)?;
-        result.set_item("clinical_note_output_location", converted_92)?;
+        let converted_96 = (value).as_str().into_py_any(py)?;
+        result.set_item("clinical_note_output_location", converted_96)?;
     } else {
         result.set_item("clinical_note_output_location", py.None())?;
     }
     if let Some(value) = &value.transcript_output_location {
-        let converted_93 = (value).as_str().into_py_any(py)?;
-        result.set_item("transcript_output_location", converted_93)?;
+        let converted_97 = (value).as_str().into_py_any(py)?;
+        result.set_item("transcript_output_location", converted_97)?;
     } else {
         result.set_item("transcript_output_location", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_94 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_94)?;
+        let converted_98 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_98)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.failure_reason {
-        let converted_95 = (value).as_str().into_py_any(py)?;
-        result.set_item("failure_reason", converted_95)?;
+        let converted_99 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_reason", converted_99)?;
     } else {
         result.set_item("failure_reason", py.None())?;
     }
@@ -592,19 +942,39 @@ fn clinical_note_generation_settings_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings::builder();
     if let Some(value) = dict_value(values, "output_bucket_name")? {
-        let converted_96: String = value.extract()?;
-        builder = builder.set_output_bucket_name(Some(converted_96));
+        let converted_100 = (|| -> PyResult<_> {
+            let converted_100: String = value.extract()?;
+            Ok(converted_100)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("output_bucket_name"),
+                "str",
+            )
+        })?;
+        builder = builder.set_output_bucket_name(Some(converted_100));
     }
     if let Some(value) = dict_value(values, "note_template")? {
-        let enum_value_98: String = value.extract()?;
-        let converted_97 = aws_sdk_transcribestreaming::types::MedicalScribeNoteTemplate::from(
-            enum_value_98.as_str(),
-        );
-        builder = builder.set_note_template(Some(converted_97));
+        let converted_101 = (|| -> PyResult<_> {
+            let enum_value_102: String = value.extract()?;
+            let converted_101 = aws_sdk_transcribestreaming::types::MedicalScribeNoteTemplate::from(
+                enum_value_102.as_str(),
+            );
+            Ok(converted_101)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("note_template"),
+                "str (MedicalScribeNoteTemplate)",
+            )
+        })?;
+        builder = builder.set_note_template(Some(converted_101));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("output_bucket_name", "output_bucket_name")])
+    })
 }
 
 fn clinical_note_generation_settings_to_py(
@@ -612,11 +982,11 @@ fn clinical_note_generation_settings_to_py(
     value: &aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_99 = (&value.output_bucket_name).as_str().into_py_any(py)?;
-    result.set_item("output_bucket_name", converted_99)?;
+    let converted_103 = (&value.output_bucket_name).as_str().into_py_any(py)?;
+    result.set_item("output_bucket_name", converted_103)?;
     if let Some(value) = &value.note_template {
-        let converted_100 = (value).as_str().into_py_any(py)?;
-        result.set_item("note_template", converted_100)?;
+        let converted_104 = (value).as_str().into_py_any(py)?;
+        result.set_item("note_template", converted_104)?;
     } else {
         result.set_item("note_template", py.None())?;
     }
@@ -629,18 +999,55 @@ fn configuration_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::ConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_101 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_102 in value.try_iter()? {
-            let item_103 = item_result_102?;
-            let converted_item_104 = channel_definition_from_py(&item_103)?;
-            converted_101.push(converted_item_104);
-        }
-        builder = builder.set_channel_definitions(Some(converted_101));
+        let converted_105 = (|| -> PyResult<_> {
+            let mut converted_105 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_109, item_result_106) in value.try_iter()?.enumerate() {
+                let item_107 = item_result_106.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_109),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_108 = (|| -> PyResult<_> {
+                    let converted_item_108 = channel_definition_from_py(&item_107)?;
+                    Ok(converted_item_108)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_109),
+                        "dict (ChannelDefinition)",
+                    )
+                })?;
+                converted_105.push(converted_item_108);
+            }
+            Ok(converted_105)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("channel_definitions"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_channel_definitions(Some(converted_105));
     }
     if let Some(value) = dict_value(values, "post_call_analytics_settings")? {
-        let converted_105 = post_call_analytics_settings_from_py(&value)?;
-        builder = builder.set_post_call_analytics_settings(Some(converted_105));
+        let converted_110 = (|| -> PyResult<_> {
+            let converted_110 = post_call_analytics_settings_from_py(&value)?;
+            Ok(converted_110)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("post_call_analytics_settings"),
+                "dict (PostCallAnalyticsSettings)",
+            )
+        })?;
+        builder = builder.set_post_call_analytics_settings(Some(converted_110));
     }
     Ok(builder.build())
 }
@@ -651,19 +1058,19 @@ fn configuration_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.channel_definitions {
-        let converted_106_list = PyList::empty(py);
-        for item_107 in value {
-            let converted_item_108 = channel_definition_to_py(py, item_107)?;
-            converted_106_list.append(converted_item_108)?;
+        let converted_111_list = PyList::empty(py);
+        for item_112 in value {
+            let converted_item_113 = channel_definition_to_py(py, item_112)?;
+            converted_111_list.append(converted_item_113)?;
         }
-        let converted_106 = converted_106_list.into_any().unbind();
-        result.set_item("channel_definitions", converted_106)?;
+        let converted_111 = converted_111_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_111)?;
     } else {
         result.set_item("channel_definitions", py.None())?;
     }
     if let Some(value) = &value.post_call_analytics_settings {
-        let converted_109 = post_call_analytics_settings_to_py(py, value)?;
-        result.set_item("post_call_analytics_settings", converted_109)?;
+        let converted_114 = post_call_analytics_settings_to_py(py, value)?;
+        result.set_item("post_call_analytics_settings", converted_114)?;
     } else {
         result.set_item("post_call_analytics_settings", py.None())?;
     }
@@ -676,28 +1083,64 @@ fn entity_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::Entity::builder();
     if let Some(value) = dict_value(values, "start_time")? {
-        let converted_110: f64 = value.extract()?;
-        builder = builder.set_start_time(Some(converted_110));
+        let converted_115 = (|| -> PyResult<_> {
+            let converted_115: f64 = value.extract()?;
+            Ok(converted_115)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start_time"), "float")
+        })?;
+        builder = builder.set_start_time(Some(converted_115));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let converted_111: f64 = value.extract()?;
-        builder = builder.set_end_time(Some(converted_111));
+        let converted_116 = (|| -> PyResult<_> {
+            let converted_116: f64 = value.extract()?;
+            Ok(converted_116)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end_time"), "float")
+        })?;
+        builder = builder.set_end_time(Some(converted_116));
     }
     if let Some(value) = dict_value(values, "category")? {
-        let converted_112: String = value.extract()?;
-        builder = builder.set_category(Some(converted_112));
+        let converted_117 = (|| -> PyResult<_> {
+            let converted_117: String = value.extract()?;
+            Ok(converted_117)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("category"), "str")
+        })?;
+        builder = builder.set_category(Some(converted_117));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let converted_113: String = value.extract()?;
-        builder = builder.set_type(Some(converted_113));
+        let converted_118 = (|| -> PyResult<_> {
+            let converted_118: String = value.extract()?;
+            Ok(converted_118)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str")
+        })?;
+        builder = builder.set_type(Some(converted_118));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_114: String = value.extract()?;
-        builder = builder.set_content(Some(converted_114));
+        let converted_119 = (|| -> PyResult<_> {
+            let converted_119: String = value.extract()?;
+            Ok(converted_119)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_119));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_115: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_115));
+        let converted_120 = (|| -> PyResult<_> {
+            let converted_120: f64 = value.extract()?;
+            Ok(converted_120)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_120));
     }
     Ok(builder.build())
 }
@@ -707,31 +1150,31 @@ fn entity_to_py(
     value: &aws_sdk_transcribestreaming::types::Entity,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_116 = (&value.start_time).to_owned().into_py_any(py)?;
-    result.set_item("start_time", converted_116)?;
-    let converted_117 = (&value.end_time).to_owned().into_py_any(py)?;
-    result.set_item("end_time", converted_117)?;
+    let converted_121 = (&value.start_time).to_owned().into_py_any(py)?;
+    result.set_item("start_time", converted_121)?;
+    let converted_122 = (&value.end_time).to_owned().into_py_any(py)?;
+    result.set_item("end_time", converted_122)?;
     if let Some(value) = &value.category {
-        let converted_118 = (value).as_str().into_py_any(py)?;
-        result.set_item("category", converted_118)?;
+        let converted_123 = (value).as_str().into_py_any(py)?;
+        result.set_item("category", converted_123)?;
     } else {
         result.set_item("category", py.None())?;
     }
     if let Some(value) = &value.r#type {
-        let converted_119 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_119)?;
+        let converted_124 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_124)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_120 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_120)?;
+        let converted_125 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_125)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_121 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_121)?;
+        let converted_126 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_126)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
@@ -744,8 +1187,18 @@ fn issue_detected_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::IssueDetected::builder();
     if let Some(value) = dict_value(values, "character_offsets")? {
-        let converted_122 = character_offsets_from_py(&value)?;
-        builder = builder.set_character_offsets(Some(converted_122));
+        let converted_127 = (|| -> PyResult<_> {
+            let converted_127 = character_offsets_from_py(&value)?;
+            Ok(converted_127)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("character_offsets"),
+                "dict (CharacterOffsets)",
+            )
+        })?;
+        builder = builder.set_character_offsets(Some(converted_127));
     }
     Ok(builder.build())
 }
@@ -756,8 +1209,8 @@ fn issue_detected_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.character_offsets {
-        let converted_123 = character_offsets_to_py(py, value)?;
-        result.set_item("character_offsets", converted_123)?;
+        let converted_128 = character_offsets_to_py(py, value)?;
+        result.set_item("character_offsets", converted_128)?;
     } else {
         result.set_item("character_offsets", py.None())?;
     }
@@ -768,38 +1221,94 @@ fn item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_transcribestreamin
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::Item::builder();
     if let Some(value) = dict_value(values, "start_time")? {
-        let converted_124: f64 = value.extract()?;
-        builder = builder.set_start_time(Some(converted_124));
+        let converted_129 = (|| -> PyResult<_> {
+            let converted_129: f64 = value.extract()?;
+            Ok(converted_129)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start_time"), "float")
+        })?;
+        builder = builder.set_start_time(Some(converted_129));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let converted_125: f64 = value.extract()?;
-        builder = builder.set_end_time(Some(converted_125));
+        let converted_130 = (|| -> PyResult<_> {
+            let converted_130: f64 = value.extract()?;
+            Ok(converted_130)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end_time"), "float")
+        })?;
+        builder = builder.set_end_time(Some(converted_130));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_127: String = value.extract()?;
-        let converted_126 =
-            aws_sdk_transcribestreaming::types::ItemType::from(enum_value_127.as_str());
-        builder = builder.set_type(Some(converted_126));
+        let converted_131 = (|| -> PyResult<_> {
+            let enum_value_132: String = value.extract()?;
+            let converted_131 =
+                aws_sdk_transcribestreaming::types::ItemType::from(enum_value_132.as_str());
+            Ok(converted_131)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (ItemType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_131));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_128: String = value.extract()?;
-        builder = builder.set_content(Some(converted_128));
+        let converted_133 = (|| -> PyResult<_> {
+            let converted_133: String = value.extract()?;
+            Ok(converted_133)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_133));
     }
     if let Some(value) = dict_value(values, "vocabulary_filter_match")? {
-        let converted_129: bool = value.extract()?;
-        builder = builder.set_vocabulary_filter_match(Some(converted_129));
+        let converted_134 = (|| -> PyResult<_> {
+            let converted_134: bool = value.extract()?;
+            Ok(converted_134)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_filter_match"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_vocabulary_filter_match(Some(converted_134));
     }
     if let Some(value) = dict_value(values, "speaker")? {
-        let converted_130: String = value.extract()?;
-        builder = builder.set_speaker(Some(converted_130));
+        let converted_135 = (|| -> PyResult<_> {
+            let converted_135: String = value.extract()?;
+            Ok(converted_135)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("speaker"), "str")
+        })?;
+        builder = builder.set_speaker(Some(converted_135));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_131: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_131));
+        let converted_136 = (|| -> PyResult<_> {
+            let converted_136: f64 = value.extract()?;
+            Ok(converted_136)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_136));
     }
     if let Some(value) = dict_value(values, "stable")? {
-        let converted_132: bool = value.extract()?;
-        builder = builder.set_stable(Some(converted_132));
+        let converted_137 = (|| -> PyResult<_> {
+            let converted_137: bool = value.extract()?;
+            Ok(converted_137)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("stable"), "bool")
+        })?;
+        builder = builder.set_stable(Some(converted_137));
     }
     Ok(builder.build())
 }
@@ -809,41 +1318,41 @@ fn item_to_py(
     value: &aws_sdk_transcribestreaming::types::Item,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_133 = (&value.start_time).to_owned().into_py_any(py)?;
-    result.set_item("start_time", converted_133)?;
-    let converted_134 = (&value.end_time).to_owned().into_py_any(py)?;
-    result.set_item("end_time", converted_134)?;
+    let converted_138 = (&value.start_time).to_owned().into_py_any(py)?;
+    result.set_item("start_time", converted_138)?;
+    let converted_139 = (&value.end_time).to_owned().into_py_any(py)?;
+    result.set_item("end_time", converted_139)?;
     if let Some(value) = &value.r#type {
-        let converted_135 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_135)?;
+        let converted_140 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_140)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_136 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_136)?;
+        let converted_141 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_141)?;
     } else {
         result.set_item("content", py.None())?;
     }
-    let converted_137 = (&value.vocabulary_filter_match)
+    let converted_142 = (&value.vocabulary_filter_match)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("vocabulary_filter_match", converted_137)?;
+    result.set_item("vocabulary_filter_match", converted_142)?;
     if let Some(value) = &value.speaker {
-        let converted_138 = (value).as_str().into_py_any(py)?;
-        result.set_item("speaker", converted_138)?;
+        let converted_143 = (value).as_str().into_py_any(py)?;
+        result.set_item("speaker", converted_143)?;
     } else {
         result.set_item("speaker", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_139 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_139)?;
+        let converted_144 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_144)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
     if let Some(value) = &value.stable {
-        let converted_140 = (value).to_owned().into_py_any(py)?;
-        result.set_item("stable", converted_140)?;
+        let converted_145 = (value).to_owned().into_py_any(py)?;
+        result.set_item("stable", converted_145)?;
     } else {
         result.set_item("stable", py.None())?;
     }
@@ -856,14 +1365,30 @@ fn language_with_score_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::LanguageWithScore::builder();
     if let Some(value) = dict_value(values, "language_code")? {
-        let enum_value_142: String = value.extract()?;
-        let converted_141 =
-            aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_142.as_str());
-        builder = builder.set_language_code(Some(converted_141));
+        let converted_146 = (|| -> PyResult<_> {
+            let enum_value_147: String = value.extract()?;
+            let converted_146 =
+                aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_147.as_str());
+            Ok(converted_146)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("language_code"),
+                "str (LanguageCode)",
+            )
+        })?;
+        builder = builder.set_language_code(Some(converted_146));
     }
     if let Some(value) = dict_value(values, "score")? {
-        let converted_143: f64 = value.extract()?;
-        builder = builder.set_score(Some(converted_143));
+        let converted_148 = (|| -> PyResult<_> {
+            let converted_148: f64 = value.extract()?;
+            Ok(converted_148)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("score"), "float")
+        })?;
+        builder = builder.set_score(Some(converted_148));
     }
     Ok(builder.build())
 }
@@ -874,13 +1399,13 @@ fn language_with_score_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.language_code {
-        let converted_144 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_144)?;
+        let converted_149 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_149)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
-    let converted_145 = (&value.score).to_owned().into_py_any(py)?;
-    result.set_item("score", converted_145)?;
+    let converted_150 = (&value.score).to_owned().into_py_any(py)?;
+    result.set_item("score", converted_150)?;
     Ok(result.into_any().unbind())
 }
 
@@ -890,28 +1415,80 @@ fn medical_alternative_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalAlternative::builder();
     if let Some(value) = dict_value(values, "transcript")? {
-        let converted_146: String = value.extract()?;
-        builder = builder.set_transcript(Some(converted_146));
+        let converted_151 = (|| -> PyResult<_> {
+            let converted_151: String = value.extract()?;
+            Ok(converted_151)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("transcript"), "str")
+        })?;
+        builder = builder.set_transcript(Some(converted_151));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_147 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_148 in value.try_iter()? {
-            let item_149 = item_result_148?;
-            let converted_item_150 = medical_item_from_py(&item_149)?;
-            converted_147.push(converted_item_150);
-        }
-        builder = builder.set_items(Some(converted_147));
+        let converted_152 = (|| -> PyResult<_> {
+            let mut converted_152 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_156, item_result_153) in value.try_iter()?.enumerate() {
+                let item_154 = item_result_153.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_156),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_155 = (|| -> PyResult<_> {
+                    let converted_item_155 = medical_item_from_py(&item_154)?;
+                    Ok(converted_item_155)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_156),
+                        "dict (MedicalItem)",
+                    )
+                })?;
+                converted_152.push(converted_item_155);
+            }
+            Ok(converted_152)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("items"), "sequence")
+        })?;
+        builder = builder.set_items(Some(converted_152));
     }
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_151 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_152 in value.try_iter()? {
-            let item_153 = item_result_152?;
-            let converted_item_154 = medical_entity_from_py(&item_153)?;
-            converted_151.push(converted_item_154);
-        }
-        builder = builder.set_entities(Some(converted_151));
+        let converted_157 = (|| -> PyResult<_> {
+            let mut converted_157 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_161, item_result_158) in value.try_iter()?.enumerate() {
+                let item_159 = item_result_158.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_161),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_160 = (|| -> PyResult<_> {
+                    let converted_item_160 = medical_entity_from_py(&item_159)?;
+                    Ok(converted_item_160)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_161),
+                        "dict (MedicalEntity)",
+                    )
+                })?;
+                converted_157.push(converted_item_160);
+            }
+            Ok(converted_157)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("entities"), "sequence")
+        })?;
+        builder = builder.set_entities(Some(converted_157));
     }
     Ok(builder.build())
 }
@@ -922,30 +1499,30 @@ fn medical_alternative_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.transcript {
-        let converted_155 = (value).as_str().into_py_any(py)?;
-        result.set_item("transcript", converted_155)?;
+        let converted_162 = (value).as_str().into_py_any(py)?;
+        result.set_item("transcript", converted_162)?;
     } else {
         result.set_item("transcript", py.None())?;
     }
     if let Some(value) = &value.items {
-        let converted_156_list = PyList::empty(py);
-        for item_157 in value {
-            let converted_item_158 = medical_item_to_py(py, item_157)?;
-            converted_156_list.append(converted_item_158)?;
+        let converted_163_list = PyList::empty(py);
+        for item_164 in value {
+            let converted_item_165 = medical_item_to_py(py, item_164)?;
+            converted_163_list.append(converted_item_165)?;
         }
-        let converted_156 = converted_156_list.into_any().unbind();
-        result.set_item("items", converted_156)?;
+        let converted_163 = converted_163_list.into_any().unbind();
+        result.set_item("items", converted_163)?;
     } else {
         result.set_item("items", py.None())?;
     }
     if let Some(value) = &value.entities {
-        let converted_159_list = PyList::empty(py);
-        for item_160 in value {
-            let converted_item_161 = medical_entity_to_py(py, item_160)?;
-            converted_159_list.append(converted_item_161)?;
+        let converted_166_list = PyList::empty(py);
+        for item_167 in value {
+            let converted_item_168 = medical_entity_to_py(py, item_167)?;
+            converted_166_list.append(converted_item_168)?;
         }
-        let converted_159 = converted_159_list.into_any().unbind();
-        result.set_item("entities", converted_159)?;
+        let converted_166 = converted_166_list.into_any().unbind();
+        result.set_item("entities", converted_166)?;
     } else {
         result.set_item("entities", py.None())?;
     }
@@ -958,24 +1535,54 @@ fn medical_entity_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalEntity::builder();
     if let Some(value) = dict_value(values, "start_time")? {
-        let converted_162: f64 = value.extract()?;
-        builder = builder.set_start_time(Some(converted_162));
+        let converted_169 = (|| -> PyResult<_> {
+            let converted_169: f64 = value.extract()?;
+            Ok(converted_169)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start_time"), "float")
+        })?;
+        builder = builder.set_start_time(Some(converted_169));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let converted_163: f64 = value.extract()?;
-        builder = builder.set_end_time(Some(converted_163));
+        let converted_170 = (|| -> PyResult<_> {
+            let converted_170: f64 = value.extract()?;
+            Ok(converted_170)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end_time"), "float")
+        })?;
+        builder = builder.set_end_time(Some(converted_170));
     }
     if let Some(value) = dict_value(values, "category")? {
-        let converted_164: String = value.extract()?;
-        builder = builder.set_category(Some(converted_164));
+        let converted_171 = (|| -> PyResult<_> {
+            let converted_171: String = value.extract()?;
+            Ok(converted_171)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("category"), "str")
+        })?;
+        builder = builder.set_category(Some(converted_171));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_165: String = value.extract()?;
-        builder = builder.set_content(Some(converted_165));
+        let converted_172 = (|| -> PyResult<_> {
+            let converted_172: String = value.extract()?;
+            Ok(converted_172)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_172));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_166: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_166));
+        let converted_173 = (|| -> PyResult<_> {
+            let converted_173: f64 = value.extract()?;
+            Ok(converted_173)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_173));
     }
     Ok(builder.build())
 }
@@ -985,25 +1592,25 @@ fn medical_entity_to_py(
     value: &aws_sdk_transcribestreaming::types::MedicalEntity,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_167 = (&value.start_time).to_owned().into_py_any(py)?;
-    result.set_item("start_time", converted_167)?;
-    let converted_168 = (&value.end_time).to_owned().into_py_any(py)?;
-    result.set_item("end_time", converted_168)?;
+    let converted_174 = (&value.start_time).to_owned().into_py_any(py)?;
+    result.set_item("start_time", converted_174)?;
+    let converted_175 = (&value.end_time).to_owned().into_py_any(py)?;
+    result.set_item("end_time", converted_175)?;
     if let Some(value) = &value.category {
-        let converted_169 = (value).as_str().into_py_any(py)?;
-        result.set_item("category", converted_169)?;
+        let converted_176 = (value).as_str().into_py_any(py)?;
+        result.set_item("category", converted_176)?;
     } else {
         result.set_item("category", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_170 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_170)?;
+        let converted_177 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_177)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_171 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_171)?;
+        let converted_178 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_178)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
@@ -1016,30 +1623,70 @@ fn medical_item_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalItem::builder();
     if let Some(value) = dict_value(values, "start_time")? {
-        let converted_172: f64 = value.extract()?;
-        builder = builder.set_start_time(Some(converted_172));
+        let converted_179 = (|| -> PyResult<_> {
+            let converted_179: f64 = value.extract()?;
+            Ok(converted_179)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start_time"), "float")
+        })?;
+        builder = builder.set_start_time(Some(converted_179));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let converted_173: f64 = value.extract()?;
-        builder = builder.set_end_time(Some(converted_173));
+        let converted_180 = (|| -> PyResult<_> {
+            let converted_180: f64 = value.extract()?;
+            Ok(converted_180)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end_time"), "float")
+        })?;
+        builder = builder.set_end_time(Some(converted_180));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_175: String = value.extract()?;
-        let converted_174 =
-            aws_sdk_transcribestreaming::types::ItemType::from(enum_value_175.as_str());
-        builder = builder.set_type(Some(converted_174));
+        let converted_181 = (|| -> PyResult<_> {
+            let enum_value_182: String = value.extract()?;
+            let converted_181 =
+                aws_sdk_transcribestreaming::types::ItemType::from(enum_value_182.as_str());
+            Ok(converted_181)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (ItemType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_181));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_176: String = value.extract()?;
-        builder = builder.set_content(Some(converted_176));
+        let converted_183 = (|| -> PyResult<_> {
+            let converted_183: String = value.extract()?;
+            Ok(converted_183)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_183));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_177: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_177));
+        let converted_184 = (|| -> PyResult<_> {
+            let converted_184: f64 = value.extract()?;
+            Ok(converted_184)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_184));
     }
     if let Some(value) = dict_value(values, "speaker")? {
-        let converted_178: String = value.extract()?;
-        builder = builder.set_speaker(Some(converted_178));
+        let converted_185 = (|| -> PyResult<_> {
+            let converted_185: String = value.extract()?;
+            Ok(converted_185)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("speaker"), "str")
+        })?;
+        builder = builder.set_speaker(Some(converted_185));
     }
     Ok(builder.build())
 }
@@ -1049,31 +1696,31 @@ fn medical_item_to_py(
     value: &aws_sdk_transcribestreaming::types::MedicalItem,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_179 = (&value.start_time).to_owned().into_py_any(py)?;
-    result.set_item("start_time", converted_179)?;
-    let converted_180 = (&value.end_time).to_owned().into_py_any(py)?;
-    result.set_item("end_time", converted_180)?;
+    let converted_186 = (&value.start_time).to_owned().into_py_any(py)?;
+    result.set_item("start_time", converted_186)?;
+    let converted_187 = (&value.end_time).to_owned().into_py_any(py)?;
+    result.set_item("end_time", converted_187)?;
     if let Some(value) = &value.r#type {
-        let converted_181 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_181)?;
+        let converted_188 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_188)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_182 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_182)?;
+        let converted_189 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_189)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_183 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_183)?;
+        let converted_190 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_190)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
     if let Some(value) = &value.speaker {
-        let converted_184 = (value).as_str().into_py_any(py)?;
-        result.set_item("speaker", converted_184)?;
+        let converted_191 = (value).as_str().into_py_any(py)?;
+        result.set_item("speaker", converted_191)?;
     } else {
         result.set_item("speaker", py.None())?;
     }
@@ -1086,34 +1733,91 @@ fn medical_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalResult::builder();
     if let Some(value) = dict_value(values, "result_id")? {
-        let converted_185: String = value.extract()?;
-        builder = builder.set_result_id(Some(converted_185));
+        let converted_192 = (|| -> PyResult<_> {
+            let converted_192: String = value.extract()?;
+            Ok(converted_192)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("result_id"), "str")
+        })?;
+        builder = builder.set_result_id(Some(converted_192));
     }
     if let Some(value) = dict_value(values, "start_time")? {
-        let converted_186: f64 = value.extract()?;
-        builder = builder.set_start_time(Some(converted_186));
+        let converted_193 = (|| -> PyResult<_> {
+            let converted_193: f64 = value.extract()?;
+            Ok(converted_193)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start_time"), "float")
+        })?;
+        builder = builder.set_start_time(Some(converted_193));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let converted_187: f64 = value.extract()?;
-        builder = builder.set_end_time(Some(converted_187));
+        let converted_194 = (|| -> PyResult<_> {
+            let converted_194: f64 = value.extract()?;
+            Ok(converted_194)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end_time"), "float")
+        })?;
+        builder = builder.set_end_time(Some(converted_194));
     }
     if let Some(value) = dict_value(values, "is_partial")? {
-        let converted_188: bool = value.extract()?;
-        builder = builder.set_is_partial(Some(converted_188));
+        let converted_195 = (|| -> PyResult<_> {
+            let converted_195: bool = value.extract()?;
+            Ok(converted_195)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("is_partial"), "bool")
+        })?;
+        builder = builder.set_is_partial(Some(converted_195));
     }
     if let Some(value) = dict_value(values, "alternatives")? {
-        let mut converted_189 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_190 in value.try_iter()? {
-            let item_191 = item_result_190?;
-            let converted_item_192 = medical_alternative_from_py(&item_191)?;
-            converted_189.push(converted_item_192);
-        }
-        builder = builder.set_alternatives(Some(converted_189));
+        let converted_196 = (|| -> PyResult<_> {
+            let mut converted_196 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_200, item_result_197) in value.try_iter()?.enumerate() {
+                let item_198 = item_result_197.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_200),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_199 = (|| -> PyResult<_> {
+                    let converted_item_199 = medical_alternative_from_py(&item_198)?;
+                    Ok(converted_item_199)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_200),
+                        "dict (MedicalAlternative)",
+                    )
+                })?;
+                converted_196.push(converted_item_199);
+            }
+            Ok(converted_196)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("alternatives"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_alternatives(Some(converted_196));
     }
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_193: String = value.extract()?;
-        builder = builder.set_channel_id(Some(converted_193));
+        let converted_201 = (|| -> PyResult<_> {
+            let converted_201: String = value.extract()?;
+            Ok(converted_201)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "str")
+        })?;
+        builder = builder.set_channel_id(Some(converted_201));
     }
     Ok(builder.build())
 }
@@ -1124,31 +1828,31 @@ fn medical_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.result_id {
-        let converted_194 = (value).as_str().into_py_any(py)?;
-        result.set_item("result_id", converted_194)?;
+        let converted_202 = (value).as_str().into_py_any(py)?;
+        result.set_item("result_id", converted_202)?;
     } else {
         result.set_item("result_id", py.None())?;
     }
-    let converted_195 = (&value.start_time).to_owned().into_py_any(py)?;
-    result.set_item("start_time", converted_195)?;
-    let converted_196 = (&value.end_time).to_owned().into_py_any(py)?;
-    result.set_item("end_time", converted_196)?;
-    let converted_197 = (&value.is_partial).to_owned().into_py_any(py)?;
-    result.set_item("is_partial", converted_197)?;
+    let converted_203 = (&value.start_time).to_owned().into_py_any(py)?;
+    result.set_item("start_time", converted_203)?;
+    let converted_204 = (&value.end_time).to_owned().into_py_any(py)?;
+    result.set_item("end_time", converted_204)?;
+    let converted_205 = (&value.is_partial).to_owned().into_py_any(py)?;
+    result.set_item("is_partial", converted_205)?;
     if let Some(value) = &value.alternatives {
-        let converted_198_list = PyList::empty(py);
-        for item_199 in value {
-            let converted_item_200 = medical_alternative_to_py(py, item_199)?;
-            converted_198_list.append(converted_item_200)?;
+        let converted_206_list = PyList::empty(py);
+        for item_207 in value {
+            let converted_item_208 = medical_alternative_to_py(py, item_207)?;
+            converted_206_list.append(converted_item_208)?;
         }
-        let converted_198 = converted_198_list.into_any().unbind();
-        result.set_item("alternatives", converted_198)?;
+        let converted_206 = converted_206_list.into_any().unbind();
+        result.set_item("alternatives", converted_206)?;
     } else {
         result.set_item("alternatives", py.None())?;
     }
     if let Some(value) = &value.channel_id {
-        let converted_201 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_id", converted_201)?;
+        let converted_209 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_id", converted_209)?;
     } else {
         result.set_item("channel_id", py.None())?;
     }
@@ -1161,13 +1865,19 @@ fn medical_scribe_audio_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeAudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
-        let bytes_203: Vec<u8> = value.extract()?;
-        let converted_202 = ::aws_smithy_types::Blob::new(bytes_203);
-        builder = builder.set_audio_chunk(Some(converted_202));
+        let converted_210 = (|| -> PyResult<_> {
+            let bytes_211: Vec<u8> = value.extract()?;
+            let converted_210 = ::aws_smithy_types::Blob::new(bytes_211);
+            Ok(converted_210)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("audio_chunk"), "bytes")
+        })?;
+        builder = builder.set_audio_chunk(Some(converted_210));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("audio_chunk", "audio_chunk")]))
 }
 
 fn medical_scribe_audio_event_to_py(
@@ -1175,10 +1885,10 @@ fn medical_scribe_audio_event_to_py(
     value: &aws_sdk_transcribestreaming::types::MedicalScribeAudioEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_204 = PyBytes::new(py, (&value.audio_chunk).as_ref())
+    let converted_212 = PyBytes::new(py, (&value.audio_chunk).as_ref())
         .into_any()
         .unbind();
-    result.set_item("audio_chunk", converted_204)?;
+    result.set_item("audio_chunk", converted_212)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1188,19 +1898,36 @@ fn medical_scribe_channel_definition_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition::builder();
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_205: i32 = value.extract()?;
-        builder = builder.set_channel_id(Some(converted_205));
+        let converted_213 = (|| -> PyResult<_> {
+            let converted_213: i32 = value.extract()?;
+            Ok(converted_213)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "int")
+        })?;
+        builder = builder.set_channel_id(Some(converted_213));
     }
     if let Some(value) = dict_value(values, "participant_role")? {
-        let enum_value_207: String = value.extract()?;
-        let converted_206 = aws_sdk_transcribestreaming::types::MedicalScribeParticipantRole::from(
-            enum_value_207.as_str(),
-        );
-        builder = builder.set_participant_role(Some(converted_206));
+        let converted_214 = (|| -> PyResult<_> {
+            let enum_value_215: String = value.extract()?;
+            let converted_214 =
+                aws_sdk_transcribestreaming::types::MedicalScribeParticipantRole::from(
+                    enum_value_215.as_str(),
+                );
+            Ok(converted_214)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("participant_role"),
+                "str (MedicalScribeParticipantRole)",
+            )
+        })?;
+        builder = builder.set_participant_role(Some(converted_214));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("participant_role", "participant_role")])
+    })
 }
 
 fn medical_scribe_channel_definition_to_py(
@@ -1208,10 +1935,10 @@ fn medical_scribe_channel_definition_to_py(
     value: &aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_208 = (&value.channel_id).to_owned().into_py_any(py)?;
-    result.set_item("channel_id", converted_208)?;
-    let converted_209 = (&value.participant_role).as_str().into_py_any(py)?;
-    result.set_item("participant_role", converted_209)?;
+    let converted_216 = (&value.channel_id).to_owned().into_py_any(py)?;
+    result.set_item("channel_id", converted_216)?;
+    let converted_217 = (&value.participant_role).as_str().into_py_any(py)?;
+    result.set_item("participant_role", converted_217)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1222,50 +1949,150 @@ fn medical_scribe_configuration_event_from_py(
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribeConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "vocabulary_name")? {
-        let converted_210: String = value.extract()?;
-        builder = builder.set_vocabulary_name(Some(converted_210));
+        let converted_218 = (|| -> PyResult<_> {
+            let converted_218: String = value.extract()?;
+            Ok(converted_218)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_name"),
+                "str",
+            )
+        })?;
+        builder = builder.set_vocabulary_name(Some(converted_218));
     }
     if let Some(value) = dict_value(values, "vocabulary_filter_name")? {
-        let converted_211: String = value.extract()?;
-        builder = builder.set_vocabulary_filter_name(Some(converted_211));
+        let converted_219 = (|| -> PyResult<_> {
+            let converted_219: String = value.extract()?;
+            Ok(converted_219)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_filter_name"),
+                "str",
+            )
+        })?;
+        builder = builder.set_vocabulary_filter_name(Some(converted_219));
     }
     if let Some(value) = dict_value(values, "vocabulary_filter_method")? {
-        let enum_value_213: String = value.extract()?;
-        let converted_212 =
-            aws_sdk_transcribestreaming::types::MedicalScribeVocabularyFilterMethod::from(
-                enum_value_213.as_str(),
-            );
-        builder = builder.set_vocabulary_filter_method(Some(converted_212));
+        let converted_220 = (|| -> PyResult<_> {
+            let enum_value_221: String = value.extract()?;
+            let converted_220 =
+                aws_sdk_transcribestreaming::types::MedicalScribeVocabularyFilterMethod::from(
+                    enum_value_221.as_str(),
+                );
+            Ok(converted_220)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_filter_method"),
+                "str (MedicalScribeVocabularyFilterMethod)",
+            )
+        })?;
+        builder = builder.set_vocabulary_filter_method(Some(converted_220));
     }
     if let Some(value) = dict_value(values, "resource_access_role_arn")? {
-        let converted_214: String = value.extract()?;
-        builder = builder.set_resource_access_role_arn(Some(converted_214));
+        let converted_222 = (|| -> PyResult<_> {
+            let converted_222: String = value.extract()?;
+            Ok(converted_222)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("resource_access_role_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_resource_access_role_arn(Some(converted_222));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_215 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_216 in value.try_iter()? {
-            let item_217 = item_result_216?;
-            let converted_item_218 = medical_scribe_channel_definition_from_py(&item_217)?;
-            converted_215.push(converted_item_218);
-        }
-        builder = builder.set_channel_definitions(Some(converted_215));
+        let converted_223 = (|| -> PyResult<_> {
+            let mut converted_223 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_227, item_result_224) in value.try_iter()?.enumerate() {
+                let item_225 = item_result_224.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_227),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_226 = (|| -> PyResult<_> {
+                    let converted_item_226 = medical_scribe_channel_definition_from_py(&item_225)?;
+                    Ok(converted_item_226)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_227),
+                        "dict (MedicalScribeChannelDefinition)",
+                    )
+                })?;
+                converted_223.push(converted_item_226);
+            }
+            Ok(converted_223)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("channel_definitions"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_channel_definitions(Some(converted_223));
     }
     if let Some(value) = dict_value(values, "encryption_settings")? {
-        let converted_219 = medical_scribe_encryption_settings_from_py(&value)?;
-        builder = builder.set_encryption_settings(Some(converted_219));
+        let converted_228 = (|| -> PyResult<_> {
+            let converted_228 = medical_scribe_encryption_settings_from_py(&value)?;
+            Ok(converted_228)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encryption_settings"),
+                "dict (MedicalScribeEncryptionSettings)",
+            )
+        })?;
+        builder = builder.set_encryption_settings(Some(converted_228));
     }
     if let Some(value) = dict_value(values, "post_stream_analytics_settings")? {
-        let converted_220 = medical_scribe_post_stream_analytics_settings_from_py(&value)?;
-        builder = builder.set_post_stream_analytics_settings(Some(converted_220));
+        let converted_229 = (|| -> PyResult<_> {
+            let converted_229 = medical_scribe_post_stream_analytics_settings_from_py(&value)?;
+            Ok(converted_229)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("post_stream_analytics_settings"),
+                "dict (MedicalScribePostStreamAnalyticsSettings)",
+            )
+        })?;
+        builder = builder.set_post_stream_analytics_settings(Some(converted_229));
     }
     if let Some(value) = dict_value(values, "medical_scribe_context")? {
-        let converted_221 = medical_scribe_context_from_py(&value)?;
-        builder = builder.set_medical_scribe_context(Some(converted_221));
+        let converted_230 = (|| -> PyResult<_> {
+            let converted_230 = medical_scribe_context_from_py(&value)?;
+            Ok(converted_230)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_scribe_context"),
+                "dict (MedicalScribeContext)",
+            )
+        })?;
+        builder = builder.set_medical_scribe_context(Some(converted_230));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("resource_access_role_arn", "resource_access_role_arn")],
+        )
+    })
 }
 
 fn medical_scribe_configuration_event_to_py(
@@ -1274,51 +2101,51 @@ fn medical_scribe_configuration_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.vocabulary_name {
-        let converted_222 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_name", converted_222)?;
+        let converted_231 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_name", converted_231)?;
     } else {
         result.set_item("vocabulary_name", py.None())?;
     }
     if let Some(value) = &value.vocabulary_filter_name {
-        let converted_223 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_filter_name", converted_223)?;
+        let converted_232 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_name", converted_232)?;
     } else {
         result.set_item("vocabulary_filter_name", py.None())?;
     }
     if let Some(value) = &value.vocabulary_filter_method {
-        let converted_224 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_filter_method", converted_224)?;
+        let converted_233 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_method", converted_233)?;
     } else {
         result.set_item("vocabulary_filter_method", py.None())?;
     }
-    let converted_225 = (&value.resource_access_role_arn).as_str().into_py_any(py)?;
-    result.set_item("resource_access_role_arn", converted_225)?;
+    let converted_234 = (&value.resource_access_role_arn).as_str().into_py_any(py)?;
+    result.set_item("resource_access_role_arn", converted_234)?;
     if let Some(value) = &value.channel_definitions {
-        let converted_226_list = PyList::empty(py);
-        for item_227 in value {
-            let converted_item_228 = medical_scribe_channel_definition_to_py(py, item_227)?;
-            converted_226_list.append(converted_item_228)?;
+        let converted_235_list = PyList::empty(py);
+        for item_236 in value {
+            let converted_item_237 = medical_scribe_channel_definition_to_py(py, item_236)?;
+            converted_235_list.append(converted_item_237)?;
         }
-        let converted_226 = converted_226_list.into_any().unbind();
-        result.set_item("channel_definitions", converted_226)?;
+        let converted_235 = converted_235_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_235)?;
     } else {
         result.set_item("channel_definitions", py.None())?;
     }
     if let Some(value) = &value.encryption_settings {
-        let converted_229 = medical_scribe_encryption_settings_to_py(py, value)?;
-        result.set_item("encryption_settings", converted_229)?;
+        let converted_238 = medical_scribe_encryption_settings_to_py(py, value)?;
+        result.set_item("encryption_settings", converted_238)?;
     } else {
         result.set_item("encryption_settings", py.None())?;
     }
     if let Some(value) = &value.post_stream_analytics_settings {
-        let converted_230 = medical_scribe_post_stream_analytics_settings_to_py(py, value)?;
-        result.set_item("post_stream_analytics_settings", converted_230)?;
+        let converted_239 = medical_scribe_post_stream_analytics_settings_to_py(py, value)?;
+        result.set_item("post_stream_analytics_settings", converted_239)?;
     } else {
         result.set_item("post_stream_analytics_settings", py.None())?;
     }
     if let Some(value) = &value.medical_scribe_context {
-        let converted_231 = medical_scribe_context_to_py(py, value)?;
-        result.set_item("medical_scribe_context", converted_231)?;
+        let converted_240 = medical_scribe_context_to_py(py, value)?;
+        result.set_item("medical_scribe_context", converted_240)?;
     } else {
         result.set_item("medical_scribe_context", py.None())?;
     }
@@ -1331,8 +2158,18 @@ fn medical_scribe_context_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeContext::builder();
     if let Some(value) = dict_value(values, "patient_context")? {
-        let converted_232 = medical_scribe_patient_context_from_py(&value)?;
-        builder = builder.set_patient_context(Some(converted_232));
+        let converted_241 = (|| -> PyResult<_> {
+            let converted_241 = medical_scribe_patient_context_from_py(&value)?;
+            Ok(converted_241)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("patient_context"),
+                "dict (MedicalScribePatientContext)",
+            )
+        })?;
+        builder = builder.set_patient_context(Some(converted_241));
     }
     Ok(builder.build())
 }
@@ -1343,8 +2180,8 @@ fn medical_scribe_context_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.patient_context {
-        let converted_233 = medical_scribe_patient_context_to_py(py, value)?;
-        result.set_item("patient_context", converted_233)?;
+        let converted_242 = medical_scribe_patient_context_to_py(py, value)?;
+        result.set_item("patient_context", converted_242)?;
     } else {
         result.set_item("patient_context", py.None())?;
     }
@@ -1358,22 +2195,54 @@ fn medical_scribe_encryption_settings_from_py(
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings::builder();
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
-        let mapping_235 = value.cast::<PyDict>()?;
-        let mut converted_234 = HashMap::with_capacity(mapping_235.len());
-        for (key_236, value_237) in mapping_235.iter() {
-            let converted_key_238: String = key_236.extract()?;
-            let converted_value_239: String = value_237.extract()?;
-            converted_234.insert(converted_key_238, converted_value_239);
-        }
-        builder = builder.set_kms_encryption_context(Some(converted_234));
+        let converted_243 = (|| -> PyResult<_> {
+            let mapping_244 = value.cast::<PyDict>()?;
+            let mut converted_243 = HashMap::with_capacity(mapping_244.len());
+            for (index_249, (key_245, value_246)) in mapping_244.iter().enumerate() {
+                let converted_key_247 = (|| -> PyResult<_> {
+                    let converted_key_247: String = key_245.extract()?;
+                    Ok(converted_key_247)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_249), "str")
+                })?;
+                let converted_value_248 = (|| -> PyResult<_> {
+                    let converted_value_248: String = value_246.extract()?;
+                    Ok(converted_value_248)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_249),
+                        "str",
+                    )
+                })?;
+                converted_243.insert(converted_key_247, converted_value_248);
+            }
+            Ok(converted_243)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("kms_encryption_context"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_kms_encryption_context(Some(converted_243));
     }
     if let Some(value) = dict_value(values, "kms_key_id")? {
-        let converted_240: String = value.extract()?;
-        builder = builder.set_kms_key_id(Some(converted_240));
+        let converted_250 = (|| -> PyResult<_> {
+            let converted_250: String = value.extract()?;
+            Ok(converted_250)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("kms_key_id"), "str")
+        })?;
+        builder = builder.set_kms_key_id(Some(converted_250));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("kms_key_id", "kms_key_id")]))
 }
 
 fn medical_scribe_encryption_settings_to_py(
@@ -1382,19 +2251,19 @@ fn medical_scribe_encryption_settings_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.kms_encryption_context {
-        let converted_241_dict = PyDict::new(py);
-        for (key_242, value_243) in value {
-            let converted_key_244 = (key_242).as_str().into_py_any(py)?;
-            let converted_value_245 = (value_243).as_str().into_py_any(py)?;
-            converted_241_dict.set_item(converted_key_244, converted_value_245)?;
+        let converted_251_dict = PyDict::new(py);
+        for (key_252, value_253) in value {
+            let converted_key_254 = (key_252).as_str().into_py_any(py)?;
+            let converted_value_255 = (value_253).as_str().into_py_any(py)?;
+            converted_251_dict.set_item(converted_key_254, converted_value_255)?;
         }
-        let converted_241 = converted_241_dict.into_any().unbind();
-        result.set_item("kms_encryption_context", converted_241)?;
+        let converted_251 = converted_251_dict.into_any().unbind();
+        result.set_item("kms_encryption_context", converted_251)?;
     } else {
         result.set_item("kms_encryption_context", py.None())?;
     }
-    let converted_246 = (&value.kms_key_id).as_str().into_py_any(py)?;
-    result.set_item("kms_key_id", converted_246)?;
+    let converted_256 = (&value.kms_key_id).as_str().into_py_any(py)?;
+    result.set_item("kms_key_id", converted_256)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1403,32 +2272,70 @@ fn medical_scribe_input_stream_from_py(
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeInputStream> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "audio_event")? {
-        let converted_247 = medical_scribe_audio_event_from_py(&value)?;
+        let converted_257 = (|| -> PyResult<_> {
+            let converted_257 = medical_scribe_audio_event_from_py(&value)?;
+            Ok(converted_257)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("audio_event"),
+                "dict (MedicalScribeAudioEvent)",
+            )
+        })?;
         return Ok(
-            aws_sdk_transcribestreaming::types::MedicalScribeInputStream::AudioEvent(converted_247),
+            aws_sdk_transcribestreaming::types::MedicalScribeInputStream::AudioEvent(converted_257),
         );
     }
     if let Some(value) = dict_value(values, "session_control_event")? {
-        let converted_248 = medical_scribe_session_control_event_from_py(&value)?;
+        let converted_258 = (|| -> PyResult<_> {
+            let converted_258 = medical_scribe_session_control_event_from_py(&value)?;
+            Ok(converted_258)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("session_control_event"),
+                "dict (MedicalScribeSessionControlEvent)",
+            )
+        })?;
         return Ok(
             aws_sdk_transcribestreaming::types::MedicalScribeInputStream::SessionControlEvent(
-                converted_248,
+                converted_258,
             ),
         );
     }
     if let Some(value) = dict_value(values, "configuration_event")? {
-        let converted_249 = medical_scribe_configuration_event_from_py(&value)?;
+        let converted_259 = (|| -> PyResult<_> {
+            let converted_259 = medical_scribe_configuration_event_from_py(&value)?;
+            Ok(converted_259)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("configuration_event"),
+                "dict (MedicalScribeConfigurationEvent)",
+            )
+        })?;
         return Ok(
             aws_sdk_transcribestreaming::types::MedicalScribeInputStream::ConfigurationEvent(
-                converted_249,
+                converted_259,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "MedicalScribeInputStream requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("MedicalScribeInputStream requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1439,18 +2346,18 @@ fn medical_scribe_input_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_transcribestreaming::types::MedicalScribeInputStream::AudioEvent(value) => {
-            let converted_250 = medical_scribe_audio_event_to_py(py, value)?;
-            result.set_item("audio_event", converted_250)?;
+            let converted_260 = medical_scribe_audio_event_to_py(py, value)?;
+            result.set_item("audio_event", converted_260)?;
         }
         aws_sdk_transcribestreaming::types::MedicalScribeInputStream::SessionControlEvent(
             value,
         ) => {
-            let converted_251 = medical_scribe_session_control_event_to_py(py, value)?;
-            result.set_item("session_control_event", converted_251)?;
+            let converted_261 = medical_scribe_session_control_event_to_py(py, value)?;
+            result.set_item("session_control_event", converted_261)?;
         }
         aws_sdk_transcribestreaming::types::MedicalScribeInputStream::ConfigurationEvent(value) => {
-            let converted_252 = medical_scribe_configuration_event_to_py(py, value)?;
-            result.set_item("configuration_event", converted_252)?;
+            let converted_262 = medical_scribe_configuration_event_to_py(py, value)?;
+            result.set_item("configuration_event", converted_262)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1465,10 +2372,20 @@ fn medical_scribe_patient_context_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribePatientContext::builder();
     if let Some(value) = dict_value(values, "pronouns")? {
-        let enum_value_254: String = value.extract()?;
-        let converted_253 =
-            aws_sdk_transcribestreaming::types::Pronouns::from(enum_value_254.as_str());
-        builder = builder.set_pronouns(Some(converted_253));
+        let converted_263 = (|| -> PyResult<_> {
+            let enum_value_264: String = value.extract()?;
+            let converted_263 =
+                aws_sdk_transcribestreaming::types::Pronouns::from(enum_value_264.as_str());
+            Ok(converted_263)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("pronouns"),
+                "str (Pronouns)",
+            )
+        })?;
+        builder = builder.set_pronouns(Some(converted_263));
     }
     Ok(builder.build())
 }
@@ -1479,8 +2396,8 @@ fn medical_scribe_patient_context_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.pronouns {
-        let converted_255 = (value).as_str().into_py_any(py)?;
-        result.set_item("pronouns", converted_255)?;
+        let converted_265 = (value).as_str().into_py_any(py)?;
+        result.set_item("pronouns", converted_265)?;
     } else {
         result.set_item("pronouns", py.None())?;
     }
@@ -1494,8 +2411,18 @@ fn medical_scribe_post_stream_analytics_result_from_py(
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult::builder();
     if let Some(value) = dict_value(values, "clinical_note_generation_result")? {
-        let converted_256 = clinical_note_generation_result_from_py(&value)?;
-        builder = builder.set_clinical_note_generation_result(Some(converted_256));
+        let converted_266 = (|| -> PyResult<_> {
+            let converted_266 = clinical_note_generation_result_from_py(&value)?;
+            Ok(converted_266)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("clinical_note_generation_result"),
+                "dict (ClinicalNoteGenerationResult)",
+            )
+        })?;
+        builder = builder.set_clinical_note_generation_result(Some(converted_266));
     }
     Ok(builder.build())
 }
@@ -1506,8 +2433,8 @@ fn medical_scribe_post_stream_analytics_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.clinical_note_generation_result {
-        let converted_257 = clinical_note_generation_result_to_py(py, value)?;
-        result.set_item("clinical_note_generation_result", converted_257)?;
+        let converted_267 = clinical_note_generation_result_to_py(py, value)?;
+        result.set_item("clinical_note_generation_result", converted_267)?;
     } else {
         result.set_item("clinical_note_generation_result", py.None())?;
     }
@@ -1521,8 +2448,18 @@ fn medical_scribe_post_stream_analytics_settings_from_py(
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings::builder();
     if let Some(value) = dict_value(values, "clinical_note_generation_settings")? {
-        let converted_258 = clinical_note_generation_settings_from_py(&value)?;
-        builder = builder.set_clinical_note_generation_settings(Some(converted_258));
+        let converted_268 = (|| -> PyResult<_> {
+            let converted_268 = clinical_note_generation_settings_from_py(&value)?;
+            Ok(converted_268)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("clinical_note_generation_settings"),
+                "dict (ClinicalNoteGenerationSettings)",
+            )
+        })?;
+        builder = builder.set_clinical_note_generation_settings(Some(converted_268));
     }
     Ok(builder.build())
 }
@@ -1533,8 +2470,8 @@ fn medical_scribe_post_stream_analytics_settings_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.clinical_note_generation_settings {
-        let converted_259 = clinical_note_generation_settings_to_py(py, value)?;
-        result.set_item("clinical_note_generation_settings", converted_259)?;
+        let converted_269 = clinical_note_generation_settings_to_py(py, value)?;
+        result.set_item("clinical_note_generation_settings", converted_269)?;
     } else {
         result.set_item("clinical_note_generation_settings", py.None())?;
     }
@@ -1546,18 +2483,36 @@ fn medical_scribe_result_stream_from_py(
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeResultStream> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "transcript_event")? {
-        let converted_260 = medical_scribe_transcript_event_from_py(&value)?;
+        let converted_270 = (|| -> PyResult<_> {
+            let converted_270 = medical_scribe_transcript_event_from_py(&value)?;
+            Ok(converted_270)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("transcript_event"),
+                "dict (MedicalScribeTranscriptEvent)",
+            )
+        })?;
         return Ok(
             aws_sdk_transcribestreaming::types::MedicalScribeResultStream::TranscriptEvent(
-                converted_260,
+                converted_270,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "MedicalScribeResultStream requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("MedicalScribeResultStream requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1568,8 +2523,8 @@ fn medical_scribe_result_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_transcribestreaming::types::MedicalScribeResultStream::TranscriptEvent(value) => {
-            let converted_261 = medical_scribe_transcript_event_to_py(py, value)?;
-            result.set_item("transcript_event", converted_261)?;
+            let converted_271 = medical_scribe_transcript_event_to_py(py, value)?;
+            result.set_item("transcript_event", converted_271)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1585,16 +2540,26 @@ fn medical_scribe_session_control_event_from_py(
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribeSessionControlEvent::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_263: String = value.extract()?;
-        let converted_262 =
-            aws_sdk_transcribestreaming::types::MedicalScribeSessionControlEventType::from(
-                enum_value_263.as_str(),
-            );
-        builder = builder.set_type(Some(converted_262));
+        let converted_272 = (|| -> PyResult<_> {
+            let enum_value_273: String = value.extract()?;
+            let converted_272 =
+                aws_sdk_transcribestreaming::types::MedicalScribeSessionControlEventType::from(
+                    enum_value_273.as_str(),
+                );
+            Ok(converted_272)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (MedicalScribeSessionControlEventType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_272));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("type", "type")]))
 }
 
 fn medical_scribe_session_control_event_to_py(
@@ -1602,8 +2567,8 @@ fn medical_scribe_session_control_event_to_py(
     value: &aws_sdk_transcribestreaming::types::MedicalScribeSessionControlEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_264 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_264)?;
+    let converted_274 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_274)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1613,97 +2578,271 @@ fn medical_scribe_stream_details_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails::builder();
     if let Some(value) = dict_value(values, "session_id")? {
-        let converted_265: String = value.extract()?;
-        builder = builder.set_session_id(Some(converted_265));
+        let converted_275 = (|| -> PyResult<_> {
+            let converted_275: String = value.extract()?;
+            Ok(converted_275)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("session_id"), "str")
+        })?;
+        builder = builder.set_session_id(Some(converted_275));
     }
     if let Some(value) = dict_value(values, "stream_created_at")? {
-        let timestamp_267: String = value.extract()?;
-        let converted_266 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_267,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_stream_created_at(Some(converted_266));
+        let converted_276 = (|| -> PyResult<_> {
+            let timestamp_277: String = value.extract()?;
+            let converted_276 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_277,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_276)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stream_created_at"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_stream_created_at(Some(converted_276));
     }
     if let Some(value) = dict_value(values, "stream_ended_at")? {
-        let timestamp_269: String = value.extract()?;
-        let converted_268 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_269,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_stream_ended_at(Some(converted_268));
+        let converted_278 = (|| -> PyResult<_> {
+            let timestamp_279: String = value.extract()?;
+            let converted_278 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_279,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_278)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stream_ended_at"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_stream_ended_at(Some(converted_278));
     }
     if let Some(value) = dict_value(values, "language_code")? {
-        let enum_value_271: String = value.extract()?;
-        let converted_270 = aws_sdk_transcribestreaming::types::MedicalScribeLanguageCode::from(
-            enum_value_271.as_str(),
-        );
-        builder = builder.set_language_code(Some(converted_270));
+        let converted_280 = (|| -> PyResult<_> {
+            let enum_value_281: String = value.extract()?;
+            let converted_280 = aws_sdk_transcribestreaming::types::MedicalScribeLanguageCode::from(
+                enum_value_281.as_str(),
+            );
+            Ok(converted_280)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("language_code"),
+                "str (MedicalScribeLanguageCode)",
+            )
+        })?;
+        builder = builder.set_language_code(Some(converted_280));
     }
     if let Some(value) = dict_value(values, "media_sample_rate_hertz")? {
-        let converted_272: i32 = value.extract()?;
-        builder = builder.set_media_sample_rate_hertz(Some(converted_272));
+        let converted_282 = (|| -> PyResult<_> {
+            let converted_282: i32 = value.extract()?;
+            Ok(converted_282)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("media_sample_rate_hertz"),
+                "int",
+            )
+        })?;
+        builder = builder.set_media_sample_rate_hertz(Some(converted_282));
     }
     if let Some(value) = dict_value(values, "media_encoding")? {
-        let enum_value_274: String = value.extract()?;
-        let converted_273 = aws_sdk_transcribestreaming::types::MedicalScribeMediaEncoding::from(
-            enum_value_274.as_str(),
-        );
-        builder = builder.set_media_encoding(Some(converted_273));
+        let converted_283 = (|| -> PyResult<_> {
+            let enum_value_284: String = value.extract()?;
+            let converted_283 =
+                aws_sdk_transcribestreaming::types::MedicalScribeMediaEncoding::from(
+                    enum_value_284.as_str(),
+                );
+            Ok(converted_283)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("media_encoding"),
+                "str (MedicalScribeMediaEncoding)",
+            )
+        })?;
+        builder = builder.set_media_encoding(Some(converted_283));
     }
     if let Some(value) = dict_value(values, "vocabulary_name")? {
-        let converted_275: String = value.extract()?;
-        builder = builder.set_vocabulary_name(Some(converted_275));
+        let converted_285 = (|| -> PyResult<_> {
+            let converted_285: String = value.extract()?;
+            Ok(converted_285)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_name"),
+                "str",
+            )
+        })?;
+        builder = builder.set_vocabulary_name(Some(converted_285));
     }
     if let Some(value) = dict_value(values, "vocabulary_filter_name")? {
-        let converted_276: String = value.extract()?;
-        builder = builder.set_vocabulary_filter_name(Some(converted_276));
+        let converted_286 = (|| -> PyResult<_> {
+            let converted_286: String = value.extract()?;
+            Ok(converted_286)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_filter_name"),
+                "str",
+            )
+        })?;
+        builder = builder.set_vocabulary_filter_name(Some(converted_286));
     }
     if let Some(value) = dict_value(values, "vocabulary_filter_method")? {
-        let enum_value_278: String = value.extract()?;
-        let converted_277 =
-            aws_sdk_transcribestreaming::types::MedicalScribeVocabularyFilterMethod::from(
-                enum_value_278.as_str(),
-            );
-        builder = builder.set_vocabulary_filter_method(Some(converted_277));
+        let converted_287 = (|| -> PyResult<_> {
+            let enum_value_288: String = value.extract()?;
+            let converted_287 =
+                aws_sdk_transcribestreaming::types::MedicalScribeVocabularyFilterMethod::from(
+                    enum_value_288.as_str(),
+                );
+            Ok(converted_287)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_filter_method"),
+                "str (MedicalScribeVocabularyFilterMethod)",
+            )
+        })?;
+        builder = builder.set_vocabulary_filter_method(Some(converted_287));
     }
     if let Some(value) = dict_value(values, "resource_access_role_arn")? {
-        let converted_279: String = value.extract()?;
-        builder = builder.set_resource_access_role_arn(Some(converted_279));
+        let converted_289 = (|| -> PyResult<_> {
+            let converted_289: String = value.extract()?;
+            Ok(converted_289)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("resource_access_role_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_resource_access_role_arn(Some(converted_289));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_280 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_281 in value.try_iter()? {
-            let item_282 = item_result_281?;
-            let converted_item_283 = medical_scribe_channel_definition_from_py(&item_282)?;
-            converted_280.push(converted_item_283);
-        }
-        builder = builder.set_channel_definitions(Some(converted_280));
+        let converted_290 = (|| -> PyResult<_> {
+            let mut converted_290 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_294, item_result_291) in value.try_iter()?.enumerate() {
+                let item_292 = item_result_291.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_294),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_293 = (|| -> PyResult<_> {
+                    let converted_item_293 = medical_scribe_channel_definition_from_py(&item_292)?;
+                    Ok(converted_item_293)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_294),
+                        "dict (MedicalScribeChannelDefinition)",
+                    )
+                })?;
+                converted_290.push(converted_item_293);
+            }
+            Ok(converted_290)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("channel_definitions"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_channel_definitions(Some(converted_290));
     }
     if let Some(value) = dict_value(values, "encryption_settings")? {
-        let converted_284 = medical_scribe_encryption_settings_from_py(&value)?;
-        builder = builder.set_encryption_settings(Some(converted_284));
+        let converted_295 = (|| -> PyResult<_> {
+            let converted_295 = medical_scribe_encryption_settings_from_py(&value)?;
+            Ok(converted_295)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encryption_settings"),
+                "dict (MedicalScribeEncryptionSettings)",
+            )
+        })?;
+        builder = builder.set_encryption_settings(Some(converted_295));
     }
     if let Some(value) = dict_value(values, "stream_status")? {
-        let enum_value_286: String = value.extract()?;
-        let converted_285 = aws_sdk_transcribestreaming::types::MedicalScribeStreamStatus::from(
-            enum_value_286.as_str(),
-        );
-        builder = builder.set_stream_status(Some(converted_285));
+        let converted_296 = (|| -> PyResult<_> {
+            let enum_value_297: String = value.extract()?;
+            let converted_296 = aws_sdk_transcribestreaming::types::MedicalScribeStreamStatus::from(
+                enum_value_297.as_str(),
+            );
+            Ok(converted_296)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stream_status"),
+                "str (MedicalScribeStreamStatus)",
+            )
+        })?;
+        builder = builder.set_stream_status(Some(converted_296));
     }
     if let Some(value) = dict_value(values, "post_stream_analytics_settings")? {
-        let converted_287 = medical_scribe_post_stream_analytics_settings_from_py(&value)?;
-        builder = builder.set_post_stream_analytics_settings(Some(converted_287));
+        let converted_298 = (|| -> PyResult<_> {
+            let converted_298 = medical_scribe_post_stream_analytics_settings_from_py(&value)?;
+            Ok(converted_298)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("post_stream_analytics_settings"),
+                "dict (MedicalScribePostStreamAnalyticsSettings)",
+            )
+        })?;
+        builder = builder.set_post_stream_analytics_settings(Some(converted_298));
     }
     if let Some(value) = dict_value(values, "post_stream_analytics_result")? {
-        let converted_288 = medical_scribe_post_stream_analytics_result_from_py(&value)?;
-        builder = builder.set_post_stream_analytics_result(Some(converted_288));
+        let converted_299 = (|| -> PyResult<_> {
+            let converted_299 = medical_scribe_post_stream_analytics_result_from_py(&value)?;
+            Ok(converted_299)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("post_stream_analytics_result"),
+                "dict (MedicalScribePostStreamAnalyticsResult)",
+            )
+        })?;
+        builder = builder.set_post_stream_analytics_result(Some(converted_299));
     }
     if let Some(value) = dict_value(values, "medical_scribe_context_provided")? {
-        let converted_289: bool = value.extract()?;
-        builder = builder.set_medical_scribe_context_provided(Some(converted_289));
+        let converted_300 = (|| -> PyResult<_> {
+            let converted_300: bool = value.extract()?;
+            Ok(converted_300)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_scribe_context_provided"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_medical_scribe_context_provided(Some(converted_300));
     }
     Ok(builder.build())
 }
@@ -1714,103 +2853,103 @@ fn medical_scribe_stream_details_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.session_id {
-        let converted_290 = (value).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_290)?;
+        let converted_301 = (value).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_301)?;
     } else {
         result.set_item("session_id", py.None())?;
     }
     if let Some(value) = &value.stream_created_at {
-        let converted_291 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_created_at", converted_291)?;
+        let converted_302 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_created_at", converted_302)?;
     } else {
         result.set_item("stream_created_at", py.None())?;
     }
     if let Some(value) = &value.stream_ended_at {
-        let converted_292 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_ended_at", converted_292)?;
+        let converted_303 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_ended_at", converted_303)?;
     } else {
         result.set_item("stream_ended_at", py.None())?;
     }
     if let Some(value) = &value.language_code {
-        let converted_293 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_293)?;
+        let converted_304 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_304)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
     if let Some(value) = &value.media_sample_rate_hertz {
-        let converted_294 = (value).to_owned().into_py_any(py)?;
-        result.set_item("media_sample_rate_hertz", converted_294)?;
+        let converted_305 = (value).to_owned().into_py_any(py)?;
+        result.set_item("media_sample_rate_hertz", converted_305)?;
     } else {
         result.set_item("media_sample_rate_hertz", py.None())?;
     }
     if let Some(value) = &value.media_encoding {
-        let converted_295 = (value).as_str().into_py_any(py)?;
-        result.set_item("media_encoding", converted_295)?;
+        let converted_306 = (value).as_str().into_py_any(py)?;
+        result.set_item("media_encoding", converted_306)?;
     } else {
         result.set_item("media_encoding", py.None())?;
     }
     if let Some(value) = &value.vocabulary_name {
-        let converted_296 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_name", converted_296)?;
+        let converted_307 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_name", converted_307)?;
     } else {
         result.set_item("vocabulary_name", py.None())?;
     }
     if let Some(value) = &value.vocabulary_filter_name {
-        let converted_297 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_filter_name", converted_297)?;
+        let converted_308 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_name", converted_308)?;
     } else {
         result.set_item("vocabulary_filter_name", py.None())?;
     }
     if let Some(value) = &value.vocabulary_filter_method {
-        let converted_298 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_filter_method", converted_298)?;
+        let converted_309 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_method", converted_309)?;
     } else {
         result.set_item("vocabulary_filter_method", py.None())?;
     }
     if let Some(value) = &value.resource_access_role_arn {
-        let converted_299 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_access_role_arn", converted_299)?;
+        let converted_310 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_access_role_arn", converted_310)?;
     } else {
         result.set_item("resource_access_role_arn", py.None())?;
     }
     if let Some(value) = &value.channel_definitions {
-        let converted_300_list = PyList::empty(py);
-        for item_301 in value {
-            let converted_item_302 = medical_scribe_channel_definition_to_py(py, item_301)?;
-            converted_300_list.append(converted_item_302)?;
+        let converted_311_list = PyList::empty(py);
+        for item_312 in value {
+            let converted_item_313 = medical_scribe_channel_definition_to_py(py, item_312)?;
+            converted_311_list.append(converted_item_313)?;
         }
-        let converted_300 = converted_300_list.into_any().unbind();
-        result.set_item("channel_definitions", converted_300)?;
+        let converted_311 = converted_311_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_311)?;
     } else {
         result.set_item("channel_definitions", py.None())?;
     }
     if let Some(value) = &value.encryption_settings {
-        let converted_303 = medical_scribe_encryption_settings_to_py(py, value)?;
-        result.set_item("encryption_settings", converted_303)?;
+        let converted_314 = medical_scribe_encryption_settings_to_py(py, value)?;
+        result.set_item("encryption_settings", converted_314)?;
     } else {
         result.set_item("encryption_settings", py.None())?;
     }
     if let Some(value) = &value.stream_status {
-        let converted_304 = (value).as_str().into_py_any(py)?;
-        result.set_item("stream_status", converted_304)?;
+        let converted_315 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_status", converted_315)?;
     } else {
         result.set_item("stream_status", py.None())?;
     }
     if let Some(value) = &value.post_stream_analytics_settings {
-        let converted_305 = medical_scribe_post_stream_analytics_settings_to_py(py, value)?;
-        result.set_item("post_stream_analytics_settings", converted_305)?;
+        let converted_316 = medical_scribe_post_stream_analytics_settings_to_py(py, value)?;
+        result.set_item("post_stream_analytics_settings", converted_316)?;
     } else {
         result.set_item("post_stream_analytics_settings", py.None())?;
     }
     if let Some(value) = &value.post_stream_analytics_result {
-        let converted_306 = medical_scribe_post_stream_analytics_result_to_py(py, value)?;
-        result.set_item("post_stream_analytics_result", converted_306)?;
+        let converted_317 = medical_scribe_post_stream_analytics_result_to_py(py, value)?;
+        result.set_item("post_stream_analytics_result", converted_317)?;
     } else {
         result.set_item("post_stream_analytics_result", py.None())?;
     }
     if let Some(value) = &value.medical_scribe_context_provided {
-        let converted_307 = (value).to_owned().into_py_any(py)?;
-        result.set_item("medical_scribe_context_provided", converted_307)?;
+        let converted_318 = (value).to_owned().into_py_any(py)?;
+        result.set_item("medical_scribe_context_provided", converted_318)?;
     } else {
         result.set_item("medical_scribe_context_provided", py.None())?;
     }
@@ -1823,8 +2962,18 @@ fn medical_scribe_transcript_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeTranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript_segment")? {
-        let converted_308 = medical_scribe_transcript_segment_from_py(&value)?;
-        builder = builder.set_transcript_segment(Some(converted_308));
+        let converted_319 = (|| -> PyResult<_> {
+            let converted_319 = medical_scribe_transcript_segment_from_py(&value)?;
+            Ok(converted_319)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("transcript_segment"),
+                "dict (MedicalScribeTranscriptSegment)",
+            )
+        })?;
+        builder = builder.set_transcript_segment(Some(converted_319));
     }
     Ok(builder.build())
 }
@@ -1835,8 +2984,8 @@ fn medical_scribe_transcript_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.transcript_segment {
-        let converted_309 = medical_scribe_transcript_segment_to_py(py, value)?;
-        result.set_item("transcript_segment", converted_309)?;
+        let converted_320 = medical_scribe_transcript_segment_to_py(py, value)?;
+        result.set_item("transcript_segment", converted_320)?;
     } else {
         result.set_item("transcript_segment", py.None())?;
     }
@@ -1849,32 +2998,84 @@ fn medical_scribe_transcript_item_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeTranscriptItem::builder();
     if let Some(value) = dict_value(values, "begin_audio_time")? {
-        let converted_310: f64 = value.extract()?;
-        builder = builder.set_begin_audio_time(Some(converted_310));
+        let converted_321 = (|| -> PyResult<_> {
+            let converted_321: f64 = value.extract()?;
+            Ok(converted_321)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("begin_audio_time"),
+                "float",
+            )
+        })?;
+        builder = builder.set_begin_audio_time(Some(converted_321));
     }
     if let Some(value) = dict_value(values, "end_audio_time")? {
-        let converted_311: f64 = value.extract()?;
-        builder = builder.set_end_audio_time(Some(converted_311));
+        let converted_322 = (|| -> PyResult<_> {
+            let converted_322: f64 = value.extract()?;
+            Ok(converted_322)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_audio_time"),
+                "float",
+            )
+        })?;
+        builder = builder.set_end_audio_time(Some(converted_322));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_313: String = value.extract()?;
-        let converted_312 =
-            aws_sdk_transcribestreaming::types::MedicalScribeTranscriptItemType::from(
-                enum_value_313.as_str(),
-            );
-        builder = builder.set_type(Some(converted_312));
+        let converted_323 = (|| -> PyResult<_> {
+            let enum_value_324: String = value.extract()?;
+            let converted_323 =
+                aws_sdk_transcribestreaming::types::MedicalScribeTranscriptItemType::from(
+                    enum_value_324.as_str(),
+                );
+            Ok(converted_323)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (MedicalScribeTranscriptItemType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_323));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_314: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_314));
+        let converted_325 = (|| -> PyResult<_> {
+            let converted_325: f64 = value.extract()?;
+            Ok(converted_325)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_325));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_315: String = value.extract()?;
-        builder = builder.set_content(Some(converted_315));
+        let converted_326 = (|| -> PyResult<_> {
+            let converted_326: String = value.extract()?;
+            Ok(converted_326)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_326));
     }
     if let Some(value) = dict_value(values, "vocabulary_filter_match")? {
-        let converted_316: bool = value.extract()?;
-        builder = builder.set_vocabulary_filter_match(Some(converted_316));
+        let converted_327 = (|| -> PyResult<_> {
+            let converted_327: bool = value.extract()?;
+            Ok(converted_327)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vocabulary_filter_match"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_vocabulary_filter_match(Some(converted_327));
     }
     Ok(builder.build())
 }
@@ -1884,31 +3085,31 @@ fn medical_scribe_transcript_item_to_py(
     value: &aws_sdk_transcribestreaming::types::MedicalScribeTranscriptItem,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_317 = (&value.begin_audio_time).to_owned().into_py_any(py)?;
-    result.set_item("begin_audio_time", converted_317)?;
-    let converted_318 = (&value.end_audio_time).to_owned().into_py_any(py)?;
-    result.set_item("end_audio_time", converted_318)?;
+    let converted_328 = (&value.begin_audio_time).to_owned().into_py_any(py)?;
+    result.set_item("begin_audio_time", converted_328)?;
+    let converted_329 = (&value.end_audio_time).to_owned().into_py_any(py)?;
+    result.set_item("end_audio_time", converted_329)?;
     if let Some(value) = &value.r#type {
-        let converted_319 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_319)?;
+        let converted_330 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_330)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_320 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_320)?;
+        let converted_331 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_331)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_321 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_321)?;
+        let converted_332 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_332)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.vocabulary_filter_match {
-        let converted_322 = (value).to_owned().into_py_any(py)?;
-        result.set_item("vocabulary_filter_match", converted_322)?;
+        let converted_333 = (value).to_owned().into_py_any(py)?;
+        result.set_item("vocabulary_filter_match", converted_333)?;
     } else {
         result.set_item("vocabulary_filter_match", py.None())?;
     }
@@ -1921,38 +3122,105 @@ fn medical_scribe_transcript_segment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeTranscriptSegment::builder();
     if let Some(value) = dict_value(values, "segment_id")? {
-        let converted_323: String = value.extract()?;
-        builder = builder.set_segment_id(Some(converted_323));
+        let converted_334 = (|| -> PyResult<_> {
+            let converted_334: String = value.extract()?;
+            Ok(converted_334)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("segment_id"), "str")
+        })?;
+        builder = builder.set_segment_id(Some(converted_334));
     }
     if let Some(value) = dict_value(values, "begin_audio_time")? {
-        let converted_324: f64 = value.extract()?;
-        builder = builder.set_begin_audio_time(Some(converted_324));
+        let converted_335 = (|| -> PyResult<_> {
+            let converted_335: f64 = value.extract()?;
+            Ok(converted_335)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("begin_audio_time"),
+                "float",
+            )
+        })?;
+        builder = builder.set_begin_audio_time(Some(converted_335));
     }
     if let Some(value) = dict_value(values, "end_audio_time")? {
-        let converted_325: f64 = value.extract()?;
-        builder = builder.set_end_audio_time(Some(converted_325));
+        let converted_336 = (|| -> PyResult<_> {
+            let converted_336: f64 = value.extract()?;
+            Ok(converted_336)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_audio_time"),
+                "float",
+            )
+        })?;
+        builder = builder.set_end_audio_time(Some(converted_336));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_326: String = value.extract()?;
-        builder = builder.set_content(Some(converted_326));
+        let converted_337 = (|| -> PyResult<_> {
+            let converted_337: String = value.extract()?;
+            Ok(converted_337)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
+        })?;
+        builder = builder.set_content(Some(converted_337));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_327 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_328 in value.try_iter()? {
-            let item_329 = item_result_328?;
-            let converted_item_330 = medical_scribe_transcript_item_from_py(&item_329)?;
-            converted_327.push(converted_item_330);
-        }
-        builder = builder.set_items(Some(converted_327));
+        let converted_338 = (|| -> PyResult<_> {
+            let mut converted_338 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_342, item_result_339) in value.try_iter()?.enumerate() {
+                let item_340 = item_result_339.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_342),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_341 = (|| -> PyResult<_> {
+                    let converted_item_341 = medical_scribe_transcript_item_from_py(&item_340)?;
+                    Ok(converted_item_341)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_342),
+                        "dict (MedicalScribeTranscriptItem)",
+                    )
+                })?;
+                converted_338.push(converted_item_341);
+            }
+            Ok(converted_338)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("items"), "sequence")
+        })?;
+        builder = builder.set_items(Some(converted_338));
     }
     if let Some(value) = dict_value(values, "is_partial")? {
-        let converted_331: bool = value.extract()?;
-        builder = builder.set_is_partial(Some(converted_331));
+        let converted_343 = (|| -> PyResult<_> {
+            let converted_343: bool = value.extract()?;
+            Ok(converted_343)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("is_partial"), "bool")
+        })?;
+        builder = builder.set_is_partial(Some(converted_343));
     }
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_332: String = value.extract()?;
-        builder = builder.set_channel_id(Some(converted_332));
+        let converted_344 = (|| -> PyResult<_> {
+            let converted_344: String = value.extract()?;
+            Ok(converted_344)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "str")
+        })?;
+        builder = builder.set_channel_id(Some(converted_344));
     }
     Ok(builder.build())
 }
@@ -1963,37 +3231,37 @@ fn medical_scribe_transcript_segment_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.segment_id {
-        let converted_333 = (value).as_str().into_py_any(py)?;
-        result.set_item("segment_id", converted_333)?;
+        let converted_345 = (value).as_str().into_py_any(py)?;
+        result.set_item("segment_id", converted_345)?;
     } else {
         result.set_item("segment_id", py.None())?;
     }
-    let converted_334 = (&value.begin_audio_time).to_owned().into_py_any(py)?;
-    result.set_item("begin_audio_time", converted_334)?;
-    let converted_335 = (&value.end_audio_time).to_owned().into_py_any(py)?;
-    result.set_item("end_audio_time", converted_335)?;
+    let converted_346 = (&value.begin_audio_time).to_owned().into_py_any(py)?;
+    result.set_item("begin_audio_time", converted_346)?;
+    let converted_347 = (&value.end_audio_time).to_owned().into_py_any(py)?;
+    result.set_item("end_audio_time", converted_347)?;
     if let Some(value) = &value.content {
-        let converted_336 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_336)?;
+        let converted_348 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_348)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.items {
-        let converted_337_list = PyList::empty(py);
-        for item_338 in value {
-            let converted_item_339 = medical_scribe_transcript_item_to_py(py, item_338)?;
-            converted_337_list.append(converted_item_339)?;
+        let converted_349_list = PyList::empty(py);
+        for item_350 in value {
+            let converted_item_351 = medical_scribe_transcript_item_to_py(py, item_350)?;
+            converted_349_list.append(converted_item_351)?;
         }
-        let converted_337 = converted_337_list.into_any().unbind();
-        result.set_item("items", converted_337)?;
+        let converted_349 = converted_349_list.into_any().unbind();
+        result.set_item("items", converted_349)?;
     } else {
         result.set_item("items", py.None())?;
     }
-    let converted_340 = (&value.is_partial).to_owned().into_py_any(py)?;
-    result.set_item("is_partial", converted_340)?;
+    let converted_352 = (&value.is_partial).to_owned().into_py_any(py)?;
+    result.set_item("is_partial", converted_352)?;
     if let Some(value) = &value.channel_id {
-        let converted_341 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_id", converted_341)?;
+        let converted_353 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_id", converted_353)?;
     } else {
         result.set_item("channel_id", py.None())?;
     }
@@ -2006,14 +3274,37 @@ fn medical_transcript_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalTranscript::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_342 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_343 in value.try_iter()? {
-            let item_344 = item_result_343?;
-            let converted_item_345 = medical_result_from_py(&item_344)?;
-            converted_342.push(converted_item_345);
-        }
-        builder = builder.set_results(Some(converted_342));
+        let converted_354 = (|| -> PyResult<_> {
+            let mut converted_354 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_358, item_result_355) in value.try_iter()?.enumerate() {
+                let item_356 = item_result_355.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_358),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_357 = (|| -> PyResult<_> {
+                    let converted_item_357 = medical_result_from_py(&item_356)?;
+                    Ok(converted_item_357)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_358),
+                        "dict (MedicalResult)",
+                    )
+                })?;
+                converted_354.push(converted_item_357);
+            }
+            Ok(converted_354)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("results"), "sequence")
+        })?;
+        builder = builder.set_results(Some(converted_354));
     }
     Ok(builder.build())
 }
@@ -2024,13 +3315,13 @@ fn medical_transcript_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.results {
-        let converted_346_list = PyList::empty(py);
-        for item_347 in value {
-            let converted_item_348 = medical_result_to_py(py, item_347)?;
-            converted_346_list.append(converted_item_348)?;
+        let converted_359_list = PyList::empty(py);
+        for item_360 in value {
+            let converted_item_361 = medical_result_to_py(py, item_360)?;
+            converted_359_list.append(converted_item_361)?;
         }
-        let converted_346 = converted_346_list.into_any().unbind();
-        result.set_item("results", converted_346)?;
+        let converted_359 = converted_359_list.into_any().unbind();
+        result.set_item("results", converted_359)?;
     } else {
         result.set_item("results", py.None())?;
     }
@@ -2043,8 +3334,18 @@ fn medical_transcript_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalTranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript")? {
-        let converted_349 = medical_transcript_from_py(&value)?;
-        builder = builder.set_transcript(Some(converted_349));
+        let converted_362 = (|| -> PyResult<_> {
+            let converted_362 = medical_transcript_from_py(&value)?;
+            Ok(converted_362)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("transcript"),
+                "dict (MedicalTranscript)",
+            )
+        })?;
+        builder = builder.set_transcript(Some(converted_362));
     }
     Ok(builder.build())
 }
@@ -2055,8 +3356,8 @@ fn medical_transcript_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.transcript {
-        let converted_350 = medical_transcript_to_py(py, value)?;
-        result.set_item("transcript", converted_350)?;
+        let converted_363 = medical_transcript_to_py(py, value)?;
+        result.set_item("transcript", converted_363)?;
     } else {
         result.set_item("transcript", py.None())?;
     }
@@ -2068,18 +3369,36 @@ fn medical_transcript_result_stream_from_py(
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalTranscriptResultStream> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "transcript_event")? {
-        let converted_351 = medical_transcript_event_from_py(&value)?;
+        let converted_364 = (|| -> PyResult<_> {
+            let converted_364 = medical_transcript_event_from_py(&value)?;
+            Ok(converted_364)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("transcript_event"),
+                "dict (MedicalTranscriptEvent)",
+            )
+        })?;
         return Ok(
             aws_sdk_transcribestreaming::types::MedicalTranscriptResultStream::TranscriptEvent(
-                converted_351,
+                converted_364,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "MedicalTranscriptResultStream requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("MedicalTranscriptResultStream requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -2092,8 +3411,8 @@ fn medical_transcript_result_stream_to_py(
         aws_sdk_transcribestreaming::types::MedicalTranscriptResultStream::TranscriptEvent(
             value,
         ) => {
-            let converted_352 = medical_transcript_event_to_py(py, value)?;
-            result.set_item("transcript_event", converted_352)?;
+            let converted_365 = medical_transcript_event_to_py(py, value)?;
+            result.set_item("transcript_event", converted_365)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -2108,14 +3427,41 @@ fn points_of_interest_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::PointsOfInterest::builder();
     if let Some(value) = dict_value(values, "timestamp_ranges")? {
-        let mut converted_353 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_354 in value.try_iter()? {
-            let item_355 = item_result_354?;
-            let converted_item_356 = timestamp_range_from_py(&item_355)?;
-            converted_353.push(converted_item_356);
-        }
-        builder = builder.set_timestamp_ranges(Some(converted_353));
+        let converted_366 = (|| -> PyResult<_> {
+            let mut converted_366 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_370, item_result_367) in value.try_iter()?.enumerate() {
+                let item_368 = item_result_367.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_370),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_369 = (|| -> PyResult<_> {
+                    let converted_item_369 = timestamp_range_from_py(&item_368)?;
+                    Ok(converted_item_369)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_370),
+                        "dict (TimestampRange)",
+                    )
+                })?;
+                converted_366.push(converted_item_369);
+            }
+            Ok(converted_366)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("timestamp_ranges"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_timestamp_ranges(Some(converted_366));
     }
     Ok(builder.build())
 }
@@ -2126,13 +3472,13 @@ fn points_of_interest_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.timestamp_ranges {
-        let converted_357_list = PyList::empty(py);
-        for item_358 in value {
-            let converted_item_359 = timestamp_range_to_py(py, item_358)?;
-            converted_357_list.append(converted_item_359)?;
+        let converted_371_list = PyList::empty(py);
+        for item_372 in value {
+            let converted_item_373 = timestamp_range_to_py(py, item_372)?;
+            converted_371_list.append(converted_item_373)?;
         }
-        let converted_357 = converted_357_list.into_any().unbind();
-        result.set_item("timestamp_ranges", converted_357)?;
+        let converted_371 = converted_371_list.into_any().unbind();
+        result.set_item("timestamp_ranges", converted_371)?;
     } else {
         result.set_item("timestamp_ranges", py.None())?;
     }
@@ -2145,27 +3491,73 @@ fn post_call_analytics_settings_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::PostCallAnalyticsSettings::builder();
     if let Some(value) = dict_value(values, "output_location")? {
-        let converted_360: String = value.extract()?;
-        builder = builder.set_output_location(Some(converted_360));
+        let converted_374 = (|| -> PyResult<_> {
+            let converted_374: String = value.extract()?;
+            Ok(converted_374)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("output_location"),
+                "str",
+            )
+        })?;
+        builder = builder.set_output_location(Some(converted_374));
     }
     if let Some(value) = dict_value(values, "data_access_role_arn")? {
-        let converted_361: String = value.extract()?;
-        builder = builder.set_data_access_role_arn(Some(converted_361));
+        let converted_375 = (|| -> PyResult<_> {
+            let converted_375: String = value.extract()?;
+            Ok(converted_375)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("data_access_role_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_data_access_role_arn(Some(converted_375));
     }
     if let Some(value) = dict_value(values, "content_redaction_output")? {
-        let enum_value_363: String = value.extract()?;
-        let converted_362 = aws_sdk_transcribestreaming::types::ContentRedactionOutput::from(
-            enum_value_363.as_str(),
-        );
-        builder = builder.set_content_redaction_output(Some(converted_362));
+        let converted_376 = (|| -> PyResult<_> {
+            let enum_value_377: String = value.extract()?;
+            let converted_376 = aws_sdk_transcribestreaming::types::ContentRedactionOutput::from(
+                enum_value_377.as_str(),
+            );
+            Ok(converted_376)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_redaction_output"),
+                "str (ContentRedactionOutput)",
+            )
+        })?;
+        builder = builder.set_content_redaction_output(Some(converted_376));
     }
     if let Some(value) = dict_value(values, "output_encryption_kms_key_id")? {
-        let converted_364: String = value.extract()?;
-        builder = builder.set_output_encryption_kms_key_id(Some(converted_364));
+        let converted_378 = (|| -> PyResult<_> {
+            let converted_378: String = value.extract()?;
+            Ok(converted_378)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("output_encryption_kms_key_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_output_encryption_kms_key_id(Some(converted_378));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("output_location", "output_location"),
+                ("data_access_role_arn", "data_access_role_arn"),
+            ],
+        )
+    })
 }
 
 fn post_call_analytics_settings_to_py(
@@ -2173,19 +3565,19 @@ fn post_call_analytics_settings_to_py(
     value: &aws_sdk_transcribestreaming::types::PostCallAnalyticsSettings,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_365 = (&value.output_location).as_str().into_py_any(py)?;
-    result.set_item("output_location", converted_365)?;
-    let converted_366 = (&value.data_access_role_arn).as_str().into_py_any(py)?;
-    result.set_item("data_access_role_arn", converted_366)?;
+    let converted_379 = (&value.output_location).as_str().into_py_any(py)?;
+    result.set_item("output_location", converted_379)?;
+    let converted_380 = (&value.data_access_role_arn).as_str().into_py_any(py)?;
+    result.set_item("data_access_role_arn", converted_380)?;
     if let Some(value) = &value.content_redaction_output {
-        let converted_367 = (value).as_str().into_py_any(py)?;
-        result.set_item("content_redaction_output", converted_367)?;
+        let converted_381 = (value).as_str().into_py_any(py)?;
+        result.set_item("content_redaction_output", converted_381)?;
     } else {
         result.set_item("content_redaction_output", py.None())?;
     }
     if let Some(value) = &value.output_encryption_kms_key_id {
-        let converted_368 = (value).as_str().into_py_any(py)?;
-        result.set_item("output_encryption_kms_key_id", converted_368)?;
+        let converted_382 = (value).as_str().into_py_any(py)?;
+        result.set_item("output_encryption_kms_key_id", converted_382)?;
     } else {
         result.set_item("output_encryption_kms_key_id", py.None())?;
     }
@@ -2198,50 +3590,144 @@ fn result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::Result::builder();
     if let Some(value) = dict_value(values, "result_id")? {
-        let converted_369: String = value.extract()?;
-        builder = builder.set_result_id(Some(converted_369));
+        let converted_383 = (|| -> PyResult<_> {
+            let converted_383: String = value.extract()?;
+            Ok(converted_383)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("result_id"), "str")
+        })?;
+        builder = builder.set_result_id(Some(converted_383));
     }
     if let Some(value) = dict_value(values, "start_time")? {
-        let converted_370: f64 = value.extract()?;
-        builder = builder.set_start_time(Some(converted_370));
+        let converted_384 = (|| -> PyResult<_> {
+            let converted_384: f64 = value.extract()?;
+            Ok(converted_384)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start_time"), "float")
+        })?;
+        builder = builder.set_start_time(Some(converted_384));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let converted_371: f64 = value.extract()?;
-        builder = builder.set_end_time(Some(converted_371));
+        let converted_385 = (|| -> PyResult<_> {
+            let converted_385: f64 = value.extract()?;
+            Ok(converted_385)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end_time"), "float")
+        })?;
+        builder = builder.set_end_time(Some(converted_385));
     }
     if let Some(value) = dict_value(values, "is_partial")? {
-        let converted_372: bool = value.extract()?;
-        builder = builder.set_is_partial(Some(converted_372));
+        let converted_386 = (|| -> PyResult<_> {
+            let converted_386: bool = value.extract()?;
+            Ok(converted_386)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("is_partial"), "bool")
+        })?;
+        builder = builder.set_is_partial(Some(converted_386));
     }
     if let Some(value) = dict_value(values, "alternatives")? {
-        let mut converted_373 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_374 in value.try_iter()? {
-            let item_375 = item_result_374?;
-            let converted_item_376 = alternative_from_py(&item_375)?;
-            converted_373.push(converted_item_376);
-        }
-        builder = builder.set_alternatives(Some(converted_373));
+        let converted_387 = (|| -> PyResult<_> {
+            let mut converted_387 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_391, item_result_388) in value.try_iter()?.enumerate() {
+                let item_389 = item_result_388.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_391),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_390 = (|| -> PyResult<_> {
+                    let converted_item_390 = alternative_from_py(&item_389)?;
+                    Ok(converted_item_390)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_391),
+                        "dict (Alternative)",
+                    )
+                })?;
+                converted_387.push(converted_item_390);
+            }
+            Ok(converted_387)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("alternatives"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_alternatives(Some(converted_387));
     }
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_377: String = value.extract()?;
-        builder = builder.set_channel_id(Some(converted_377));
+        let converted_392 = (|| -> PyResult<_> {
+            let converted_392: String = value.extract()?;
+            Ok(converted_392)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "str")
+        })?;
+        builder = builder.set_channel_id(Some(converted_392));
     }
     if let Some(value) = dict_value(values, "language_code")? {
-        let enum_value_379: String = value.extract()?;
-        let converted_378 =
-            aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_379.as_str());
-        builder = builder.set_language_code(Some(converted_378));
+        let converted_393 = (|| -> PyResult<_> {
+            let enum_value_394: String = value.extract()?;
+            let converted_393 =
+                aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_394.as_str());
+            Ok(converted_393)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("language_code"),
+                "str (LanguageCode)",
+            )
+        })?;
+        builder = builder.set_language_code(Some(converted_393));
     }
     if let Some(value) = dict_value(values, "language_identification")? {
-        let mut converted_380 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_381 in value.try_iter()? {
-            let item_382 = item_result_381?;
-            let converted_item_383 = language_with_score_from_py(&item_382)?;
-            converted_380.push(converted_item_383);
-        }
-        builder = builder.set_language_identification(Some(converted_380));
+        let converted_395 = (|| -> PyResult<_> {
+            let mut converted_395 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_399, item_result_396) in value.try_iter()?.enumerate() {
+                let item_397 = item_result_396.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_399),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_398 = (|| -> PyResult<_> {
+                    let converted_item_398 = language_with_score_from_py(&item_397)?;
+                    Ok(converted_item_398)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_399),
+                        "dict (LanguageWithScore)",
+                    )
+                })?;
+                converted_395.push(converted_item_398);
+            }
+            Ok(converted_395)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("language_identification"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_language_identification(Some(converted_395));
     }
     Ok(builder.build())
 }
@@ -2252,48 +3738,48 @@ fn result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.result_id {
-        let converted_384 = (value).as_str().into_py_any(py)?;
-        result.set_item("result_id", converted_384)?;
+        let converted_400 = (value).as_str().into_py_any(py)?;
+        result.set_item("result_id", converted_400)?;
     } else {
         result.set_item("result_id", py.None())?;
     }
-    let converted_385 = (&value.start_time).to_owned().into_py_any(py)?;
-    result.set_item("start_time", converted_385)?;
-    let converted_386 = (&value.end_time).to_owned().into_py_any(py)?;
-    result.set_item("end_time", converted_386)?;
-    let converted_387 = (&value.is_partial).to_owned().into_py_any(py)?;
-    result.set_item("is_partial", converted_387)?;
+    let converted_401 = (&value.start_time).to_owned().into_py_any(py)?;
+    result.set_item("start_time", converted_401)?;
+    let converted_402 = (&value.end_time).to_owned().into_py_any(py)?;
+    result.set_item("end_time", converted_402)?;
+    let converted_403 = (&value.is_partial).to_owned().into_py_any(py)?;
+    result.set_item("is_partial", converted_403)?;
     if let Some(value) = &value.alternatives {
-        let converted_388_list = PyList::empty(py);
-        for item_389 in value {
-            let converted_item_390 = alternative_to_py(py, item_389)?;
-            converted_388_list.append(converted_item_390)?;
+        let converted_404_list = PyList::empty(py);
+        for item_405 in value {
+            let converted_item_406 = alternative_to_py(py, item_405)?;
+            converted_404_list.append(converted_item_406)?;
         }
-        let converted_388 = converted_388_list.into_any().unbind();
-        result.set_item("alternatives", converted_388)?;
+        let converted_404 = converted_404_list.into_any().unbind();
+        result.set_item("alternatives", converted_404)?;
     } else {
         result.set_item("alternatives", py.None())?;
     }
     if let Some(value) = &value.channel_id {
-        let converted_391 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_id", converted_391)?;
+        let converted_407 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_id", converted_407)?;
     } else {
         result.set_item("channel_id", py.None())?;
     }
     if let Some(value) = &value.language_code {
-        let converted_392 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_392)?;
+        let converted_408 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_408)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
     if let Some(value) = &value.language_identification {
-        let converted_393_list = PyList::empty(py);
-        for item_394 in value {
-            let converted_item_395 = language_with_score_to_py(py, item_394)?;
-            converted_393_list.append(converted_item_395)?;
+        let converted_409_list = PyList::empty(py);
+        for item_410 in value {
+            let converted_item_411 = language_with_score_to_py(py, item_410)?;
+            converted_409_list.append(converted_item_411)?;
         }
-        let converted_393 = converted_393_list.into_any().unbind();
-        result.set_item("language_identification", converted_393)?;
+        let converted_409 = converted_409_list.into_any().unbind();
+        result.set_item("language_identification", converted_409)?;
     } else {
         result.set_item("language_identification", py.None())?;
     }
@@ -2306,12 +3792,32 @@ fn timestamp_range_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::TimestampRange::builder();
     if let Some(value) = dict_value(values, "begin_offset_millis")? {
-        let converted_396: i64 = value.extract()?;
-        builder = builder.set_begin_offset_millis(Some(converted_396));
+        let converted_412 = (|| -> PyResult<_> {
+            let converted_412: i64 = value.extract()?;
+            Ok(converted_412)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("begin_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_begin_offset_millis(Some(converted_412));
     }
     if let Some(value) = dict_value(values, "end_offset_millis")? {
-        let converted_397: i64 = value.extract()?;
-        builder = builder.set_end_offset_millis(Some(converted_397));
+        let converted_413 = (|| -> PyResult<_> {
+            let converted_413: i64 = value.extract()?;
+            Ok(converted_413)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_end_offset_millis(Some(converted_413));
     }
     Ok(builder.build())
 }
@@ -2322,14 +3828,14 @@ fn timestamp_range_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.begin_offset_millis {
-        let converted_398 = (value).to_owned().into_py_any(py)?;
-        result.set_item("begin_offset_millis", converted_398)?;
+        let converted_414 = (value).to_owned().into_py_any(py)?;
+        result.set_item("begin_offset_millis", converted_414)?;
     } else {
         result.set_item("begin_offset_millis", py.None())?;
     }
     if let Some(value) = &value.end_offset_millis {
-        let converted_399 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end_offset_millis", converted_399)?;
+        let converted_415 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end_offset_millis", converted_415)?;
     } else {
         result.set_item("end_offset_millis", py.None())?;
     }
@@ -2342,14 +3848,37 @@ fn transcript_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::Transcript::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_400 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_401 in value.try_iter()? {
-            let item_402 = item_result_401?;
-            let converted_item_403 = result_from_py(&item_402)?;
-            converted_400.push(converted_item_403);
-        }
-        builder = builder.set_results(Some(converted_400));
+        let converted_416 = (|| -> PyResult<_> {
+            let mut converted_416 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_420, item_result_417) in value.try_iter()?.enumerate() {
+                let item_418 = item_result_417.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_420),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_419 = (|| -> PyResult<_> {
+                    let converted_item_419 = result_from_py(&item_418)?;
+                    Ok(converted_item_419)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_420),
+                        "dict (Result)",
+                    )
+                })?;
+                converted_416.push(converted_item_419);
+            }
+            Ok(converted_416)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("results"), "sequence")
+        })?;
+        builder = builder.set_results(Some(converted_416));
     }
     Ok(builder.build())
 }
@@ -2360,13 +3889,13 @@ fn transcript_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.results {
-        let converted_404_list = PyList::empty(py);
-        for item_405 in value {
-            let converted_item_406 = result_to_py(py, item_405)?;
-            converted_404_list.append(converted_item_406)?;
+        let converted_421_list = PyList::empty(py);
+        for item_422 in value {
+            let converted_item_423 = result_to_py(py, item_422)?;
+            converted_421_list.append(converted_item_423)?;
         }
-        let converted_404 = converted_404_list.into_any().unbind();
-        result.set_item("results", converted_404)?;
+        let converted_421 = converted_421_list.into_any().unbind();
+        result.set_item("results", converted_421)?;
     } else {
         result.set_item("results", py.None())?;
     }
@@ -2379,8 +3908,18 @@ fn transcript_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::TranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript")? {
-        let converted_407 = transcript_from_py(&value)?;
-        builder = builder.set_transcript(Some(converted_407));
+        let converted_424 = (|| -> PyResult<_> {
+            let converted_424 = transcript_from_py(&value)?;
+            Ok(converted_424)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("transcript"),
+                "dict (Transcript)",
+            )
+        })?;
+        builder = builder.set_transcript(Some(converted_424));
     }
     Ok(builder.build())
 }
@@ -2391,8 +3930,8 @@ fn transcript_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.transcript {
-        let converted_408 = transcript_to_py(py, value)?;
-        result.set_item("transcript", converted_408)?;
+        let converted_425 = transcript_to_py(py, value)?;
+        result.set_item("transcript", converted_425)?;
     } else {
         result.set_item("transcript", py.None())?;
     }
@@ -2404,18 +3943,36 @@ fn transcript_result_stream_from_py(
 ) -> PyResult<aws_sdk_transcribestreaming::types::TranscriptResultStream> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "transcript_event")? {
-        let converted_409 = transcript_event_from_py(&value)?;
+        let converted_426 = (|| -> PyResult<_> {
+            let converted_426 = transcript_event_from_py(&value)?;
+            Ok(converted_426)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("transcript_event"),
+                "dict (TranscriptEvent)",
+            )
+        })?;
         return Ok(
             aws_sdk_transcribestreaming::types::TranscriptResultStream::TranscriptEvent(
-                converted_409,
+                converted_426,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "TranscriptResultStream requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("TranscriptResultStream requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -2426,8 +3983,8 @@ fn transcript_result_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_transcribestreaming::types::TranscriptResultStream::TranscriptEvent(value) => {
-            let converted_410 = transcript_event_to_py(py, value)?;
-            result.set_item("transcript_event", converted_410)?;
+            let converted_427 = transcript_event_to_py(py, value)?;
+            result.set_item("transcript_event", converted_427)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -2442,83 +3999,251 @@ fn utterance_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::UtteranceEvent::builder();
     if let Some(value) = dict_value(values, "utterance_id")? {
-        let converted_411: String = value.extract()?;
-        builder = builder.set_utterance_id(Some(converted_411));
+        let converted_428 = (|| -> PyResult<_> {
+            let converted_428: String = value.extract()?;
+            Ok(converted_428)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("utterance_id"), "str")
+        })?;
+        builder = builder.set_utterance_id(Some(converted_428));
     }
     if let Some(value) = dict_value(values, "is_partial")? {
-        let converted_412: bool = value.extract()?;
-        builder = builder.set_is_partial(Some(converted_412));
+        let converted_429 = (|| -> PyResult<_> {
+            let converted_429: bool = value.extract()?;
+            Ok(converted_429)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("is_partial"), "bool")
+        })?;
+        builder = builder.set_is_partial(Some(converted_429));
     }
     if let Some(value) = dict_value(values, "participant_role")? {
-        let enum_value_414: String = value.extract()?;
-        let converted_413 =
-            aws_sdk_transcribestreaming::types::ParticipantRole::from(enum_value_414.as_str());
-        builder = builder.set_participant_role(Some(converted_413));
+        let converted_430 = (|| -> PyResult<_> {
+            let enum_value_431: String = value.extract()?;
+            let converted_430 =
+                aws_sdk_transcribestreaming::types::ParticipantRole::from(enum_value_431.as_str());
+            Ok(converted_430)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("participant_role"),
+                "str (ParticipantRole)",
+            )
+        })?;
+        builder = builder.set_participant_role(Some(converted_430));
     }
     if let Some(value) = dict_value(values, "begin_offset_millis")? {
-        let converted_415: i64 = value.extract()?;
-        builder = builder.set_begin_offset_millis(Some(converted_415));
+        let converted_432 = (|| -> PyResult<_> {
+            let converted_432: i64 = value.extract()?;
+            Ok(converted_432)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("begin_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_begin_offset_millis(Some(converted_432));
     }
     if let Some(value) = dict_value(values, "end_offset_millis")? {
-        let converted_416: i64 = value.extract()?;
-        builder = builder.set_end_offset_millis(Some(converted_416));
+        let converted_433 = (|| -> PyResult<_> {
+            let converted_433: i64 = value.extract()?;
+            Ok(converted_433)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_offset_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_end_offset_millis(Some(converted_433));
     }
     if let Some(value) = dict_value(values, "transcript")? {
-        let converted_417: String = value.extract()?;
-        builder = builder.set_transcript(Some(converted_417));
+        let converted_434 = (|| -> PyResult<_> {
+            let converted_434: String = value.extract()?;
+            Ok(converted_434)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("transcript"), "str")
+        })?;
+        builder = builder.set_transcript(Some(converted_434));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_418 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_419 in value.try_iter()? {
-            let item_420 = item_result_419?;
-            let converted_item_421 = call_analytics_item_from_py(&item_420)?;
-            converted_418.push(converted_item_421);
-        }
-        builder = builder.set_items(Some(converted_418));
+        let converted_435 = (|| -> PyResult<_> {
+            let mut converted_435 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_439, item_result_436) in value.try_iter()?.enumerate() {
+                let item_437 = item_result_436.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_439),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_438 = (|| -> PyResult<_> {
+                    let converted_item_438 = call_analytics_item_from_py(&item_437)?;
+                    Ok(converted_item_438)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_439),
+                        "dict (CallAnalyticsItem)",
+                    )
+                })?;
+                converted_435.push(converted_item_438);
+            }
+            Ok(converted_435)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("items"), "sequence")
+        })?;
+        builder = builder.set_items(Some(converted_435));
     }
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_422 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_423 in value.try_iter()? {
-            let item_424 = item_result_423?;
-            let converted_item_425 = call_analytics_entity_from_py(&item_424)?;
-            converted_422.push(converted_item_425);
-        }
-        builder = builder.set_entities(Some(converted_422));
+        let converted_440 = (|| -> PyResult<_> {
+            let mut converted_440 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_444, item_result_441) in value.try_iter()?.enumerate() {
+                let item_442 = item_result_441.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_444),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_443 = (|| -> PyResult<_> {
+                    let converted_item_443 = call_analytics_entity_from_py(&item_442)?;
+                    Ok(converted_item_443)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_444),
+                        "dict (CallAnalyticsEntity)",
+                    )
+                })?;
+                converted_440.push(converted_item_443);
+            }
+            Ok(converted_440)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("entities"), "sequence")
+        })?;
+        builder = builder.set_entities(Some(converted_440));
     }
     if let Some(value) = dict_value(values, "sentiment")? {
-        let enum_value_427: String = value.extract()?;
-        let converted_426 =
-            aws_sdk_transcribestreaming::types::Sentiment::from(enum_value_427.as_str());
-        builder = builder.set_sentiment(Some(converted_426));
+        let converted_445 = (|| -> PyResult<_> {
+            let enum_value_446: String = value.extract()?;
+            let converted_445 =
+                aws_sdk_transcribestreaming::types::Sentiment::from(enum_value_446.as_str());
+            Ok(converted_445)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sentiment"),
+                "str (Sentiment)",
+            )
+        })?;
+        builder = builder.set_sentiment(Some(converted_445));
     }
     if let Some(value) = dict_value(values, "issues_detected")? {
-        let mut converted_428 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_429 in value.try_iter()? {
-            let item_430 = item_result_429?;
-            let converted_item_431 = issue_detected_from_py(&item_430)?;
-            converted_428.push(converted_item_431);
-        }
-        builder = builder.set_issues_detected(Some(converted_428));
+        let converted_447 = (|| -> PyResult<_> {
+            let mut converted_447 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_451, item_result_448) in value.try_iter()?.enumerate() {
+                let item_449 = item_result_448.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_451),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_450 = (|| -> PyResult<_> {
+                    let converted_item_450 = issue_detected_from_py(&item_449)?;
+                    Ok(converted_item_450)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_451),
+                        "dict (IssueDetected)",
+                    )
+                })?;
+                converted_447.push(converted_item_450);
+            }
+            Ok(converted_447)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("issues_detected"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_issues_detected(Some(converted_447));
     }
     if let Some(value) = dict_value(values, "language_code")? {
-        let enum_value_433: String = value.extract()?;
-        let converted_432 = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
-            enum_value_433.as_str(),
-        );
-        builder = builder.set_language_code(Some(converted_432));
+        let converted_452 = (|| -> PyResult<_> {
+            let enum_value_453: String = value.extract()?;
+            let converted_452 = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
+                enum_value_453.as_str(),
+            );
+            Ok(converted_452)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("language_code"),
+                "str (CallAnalyticsLanguageCode)",
+            )
+        })?;
+        builder = builder.set_language_code(Some(converted_452));
     }
     if let Some(value) = dict_value(values, "language_identification")? {
-        let mut converted_434 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_435 in value.try_iter()? {
-            let item_436 = item_result_435?;
-            let converted_item_437 = call_analytics_language_with_score_from_py(&item_436)?;
-            converted_434.push(converted_item_437);
-        }
-        builder = builder.set_language_identification(Some(converted_434));
+        let converted_454 = (|| -> PyResult<_> {
+            let mut converted_454 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_458, item_result_455) in value.try_iter()?.enumerate() {
+                let item_456 = item_result_455.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_458),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_457 = (|| -> PyResult<_> {
+                    let converted_item_457 = call_analytics_language_with_score_from_py(&item_456)?;
+                    Ok(converted_item_457)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_458),
+                        "dict (CallAnalyticsLanguageWithScore)",
+                    )
+                })?;
+                converted_454.push(converted_item_457);
+            }
+            Ok(converted_454)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("language_identification"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_language_identification(Some(converted_454));
     }
     Ok(builder.build())
 }
@@ -2529,90 +4254,90 @@ fn utterance_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.utterance_id {
-        let converted_438 = (value).as_str().into_py_any(py)?;
-        result.set_item("utterance_id", converted_438)?;
+        let converted_459 = (value).as_str().into_py_any(py)?;
+        result.set_item("utterance_id", converted_459)?;
     } else {
         result.set_item("utterance_id", py.None())?;
     }
-    let converted_439 = (&value.is_partial).to_owned().into_py_any(py)?;
-    result.set_item("is_partial", converted_439)?;
+    let converted_460 = (&value.is_partial).to_owned().into_py_any(py)?;
+    result.set_item("is_partial", converted_460)?;
     if let Some(value) = &value.participant_role {
-        let converted_440 = (value).as_str().into_py_any(py)?;
-        result.set_item("participant_role", converted_440)?;
+        let converted_461 = (value).as_str().into_py_any(py)?;
+        result.set_item("participant_role", converted_461)?;
     } else {
         result.set_item("participant_role", py.None())?;
     }
     if let Some(value) = &value.begin_offset_millis {
-        let converted_441 = (value).to_owned().into_py_any(py)?;
-        result.set_item("begin_offset_millis", converted_441)?;
+        let converted_462 = (value).to_owned().into_py_any(py)?;
+        result.set_item("begin_offset_millis", converted_462)?;
     } else {
         result.set_item("begin_offset_millis", py.None())?;
     }
     if let Some(value) = &value.end_offset_millis {
-        let converted_442 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end_offset_millis", converted_442)?;
+        let converted_463 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end_offset_millis", converted_463)?;
     } else {
         result.set_item("end_offset_millis", py.None())?;
     }
     if let Some(value) = &value.transcript {
-        let converted_443 = (value).as_str().into_py_any(py)?;
-        result.set_item("transcript", converted_443)?;
+        let converted_464 = (value).as_str().into_py_any(py)?;
+        result.set_item("transcript", converted_464)?;
     } else {
         result.set_item("transcript", py.None())?;
     }
     if let Some(value) = &value.items {
-        let converted_444_list = PyList::empty(py);
-        for item_445 in value {
-            let converted_item_446 = call_analytics_item_to_py(py, item_445)?;
-            converted_444_list.append(converted_item_446)?;
+        let converted_465_list = PyList::empty(py);
+        for item_466 in value {
+            let converted_item_467 = call_analytics_item_to_py(py, item_466)?;
+            converted_465_list.append(converted_item_467)?;
         }
-        let converted_444 = converted_444_list.into_any().unbind();
-        result.set_item("items", converted_444)?;
+        let converted_465 = converted_465_list.into_any().unbind();
+        result.set_item("items", converted_465)?;
     } else {
         result.set_item("items", py.None())?;
     }
     if let Some(value) = &value.entities {
-        let converted_447_list = PyList::empty(py);
-        for item_448 in value {
-            let converted_item_449 = call_analytics_entity_to_py(py, item_448)?;
-            converted_447_list.append(converted_item_449)?;
+        let converted_468_list = PyList::empty(py);
+        for item_469 in value {
+            let converted_item_470 = call_analytics_entity_to_py(py, item_469)?;
+            converted_468_list.append(converted_item_470)?;
         }
-        let converted_447 = converted_447_list.into_any().unbind();
-        result.set_item("entities", converted_447)?;
+        let converted_468 = converted_468_list.into_any().unbind();
+        result.set_item("entities", converted_468)?;
     } else {
         result.set_item("entities", py.None())?;
     }
     if let Some(value) = &value.sentiment {
-        let converted_450 = (value).as_str().into_py_any(py)?;
-        result.set_item("sentiment", converted_450)?;
+        let converted_471 = (value).as_str().into_py_any(py)?;
+        result.set_item("sentiment", converted_471)?;
     } else {
         result.set_item("sentiment", py.None())?;
     }
     if let Some(value) = &value.issues_detected {
-        let converted_451_list = PyList::empty(py);
-        for item_452 in value {
-            let converted_item_453 = issue_detected_to_py(py, item_452)?;
-            converted_451_list.append(converted_item_453)?;
+        let converted_472_list = PyList::empty(py);
+        for item_473 in value {
+            let converted_item_474 = issue_detected_to_py(py, item_473)?;
+            converted_472_list.append(converted_item_474)?;
         }
-        let converted_451 = converted_451_list.into_any().unbind();
-        result.set_item("issues_detected", converted_451)?;
+        let converted_472 = converted_472_list.into_any().unbind();
+        result.set_item("issues_detected", converted_472)?;
     } else {
         result.set_item("issues_detected", py.None())?;
     }
     if let Some(value) = &value.language_code {
-        let converted_454 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_454)?;
+        let converted_475 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_475)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
     if let Some(value) = &value.language_identification {
-        let converted_455_list = PyList::empty(py);
-        for item_456 in value {
-            let converted_item_457 = call_analytics_language_with_score_to_py(py, item_456)?;
-            converted_455_list.append(converted_item_457)?;
+        let converted_476_list = PyList::empty(py);
+        for item_477 in value {
+            let converted_item_478 = call_analytics_language_with_score_to_py(py, item_477)?;
+            converted_476_list.append(converted_item_478)?;
         }
-        let converted_455 = converted_455_list.into_any().unbind();
-        result.set_item("language_identification", converted_455)?;
+        let converted_476 = converted_476_list.into_any().unbind();
+        result.set_item("language_identification", converted_476)?;
     } else {
         result.set_item("language_identification", py.None())?;
     }
@@ -2633,8 +4358,8 @@ impl PyClinicalNoteGenerationResult {
     #[getter]
     fn clinical_note_output_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.clinical_note_output_location {
-            let converted_603 = (value).as_str().into_py_any(py)?;
-            Ok(converted_603)
+            let converted_624 = (value).as_str().into_py_any(py)?;
+            Ok(converted_624)
         } else {
             Ok(py.None())
         }
@@ -2643,8 +4368,8 @@ impl PyClinicalNoteGenerationResult {
     #[getter]
     fn transcript_output_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.transcript_output_location {
-            let converted_604 = (value).as_str().into_py_any(py)?;
-            Ok(converted_604)
+            let converted_625 = (value).as_str().into_py_any(py)?;
+            Ok(converted_625)
         } else {
             Ok(py.None())
         }
@@ -2653,8 +4378,8 @@ impl PyClinicalNoteGenerationResult {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_605 = (value).as_str().into_py_any(py)?;
-            Ok(converted_605)
+            let converted_626 = (value).as_str().into_py_any(py)?;
+            Ok(converted_626)
         } else {
             Ok(py.None())
         }
@@ -2663,8 +4388,8 @@ impl PyClinicalNoteGenerationResult {
     #[getter]
     fn failure_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_reason {
-            let converted_606 = (value).as_str().into_py_any(py)?;
-            Ok(converted_606)
+            let converted_627 = (value).as_str().into_py_any(py)?;
+            Ok(converted_627)
         } else {
             Ok(py.None())
         }
@@ -2688,15 +4413,15 @@ struct PyClinicalNoteGenerationSettings {
 impl PyClinicalNoteGenerationSettings {
     #[getter]
     fn output_bucket_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_607 = (&self.inner.output_bucket_name).as_str().into_py_any(py)?;
-        Ok(converted_607)
+        let converted_628 = (&self.inner.output_bucket_name).as_str().into_py_any(py)?;
+        Ok(converted_628)
     }
 
     #[getter]
     fn note_template(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.note_template {
-            let converted_608 = (value).as_str().into_py_any(py)?;
-            Ok(converted_608)
+            let converted_629 = (value).as_str().into_py_any(py)?;
+            Ok(converted_629)
         } else {
             Ok(py.None())
         }
@@ -2720,14 +4445,14 @@ struct PyMedicalScribeChannelDefinition {
 impl PyMedicalScribeChannelDefinition {
     #[getter]
     fn channel_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_609 = (&self.inner.channel_id).to_owned().into_py_any(py)?;
-        Ok(converted_609)
+        let converted_630 = (&self.inner.channel_id).to_owned().into_py_any(py)?;
+        Ok(converted_630)
     }
 
     #[getter]
     fn participant_role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_610 = (&self.inner.participant_role).as_str().into_py_any(py)?;
-        Ok(converted_610)
+        let converted_631 = (&self.inner.participant_role).as_str().into_py_any(py)?;
+        Ok(converted_631)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2749,14 +4474,14 @@ impl PyMedicalScribeEncryptionSettings {
     #[getter]
     fn kms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_encryption_context {
-            let converted_611_dict = PyDict::new(py);
-            for (key_612, value_613) in value {
-                let converted_key_614 = (key_612).as_str().into_py_any(py)?;
-                let converted_value_615 = (value_613).as_str().into_py_any(py)?;
-                converted_611_dict.set_item(converted_key_614, converted_value_615)?;
+            let converted_632_dict = PyDict::new(py);
+            for (key_633, value_634) in value {
+                let converted_key_635 = (key_633).as_str().into_py_any(py)?;
+                let converted_value_636 = (value_634).as_str().into_py_any(py)?;
+                converted_632_dict.set_item(converted_key_635, converted_value_636)?;
             }
-            let converted_611 = converted_611_dict.into_any().unbind();
-            Ok(converted_611)
+            let converted_632 = converted_632_dict.into_any().unbind();
+            Ok(converted_632)
         } else {
             Ok(py.None())
         }
@@ -2764,8 +4489,8 @@ impl PyMedicalScribeEncryptionSettings {
 
     #[getter]
     fn kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_616 = (&self.inner.kms_key_id).as_str().into_py_any(py)?;
-        Ok(converted_616)
+        let converted_637 = (&self.inner.kms_key_id).as_str().into_py_any(py)?;
+        Ok(converted_637)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2800,8 +4525,8 @@ fn medical_scribe_post_stream_analytics_result_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.clinical_note_generation_result {
-        let converted_618 = clinical_note_generation_result_to_py(py, value)?;
-        result.set_item("clinical_note_generation_result", converted_618)?;
+        let converted_639 = clinical_note_generation_result_to_py(py, value)?;
+        result.set_item("clinical_note_generation_result", converted_639)?;
     } else {
         result.set_item("clinical_note_generation_result", py.None())?;
     }
@@ -2822,14 +4547,14 @@ impl PyMedicalScribePostStreamAnalyticsResult {
     #[getter]
     fn clinical_note_generation_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.clinical_note_generation_result {
-            let converted_617 = Py::new(
+            let converted_638 = Py::new(
                 py,
                 PyClinicalNoteGenerationResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_617)
+            Ok(converted_638)
         } else {
             Ok(py.None())
         }
@@ -2867,8 +4592,8 @@ fn medical_scribe_post_stream_analytics_settings_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.clinical_note_generation_settings {
-        let converted_620 = clinical_note_generation_settings_to_py(py, value)?;
-        result.set_item("clinical_note_generation_settings", converted_620)?;
+        let converted_641 = clinical_note_generation_settings_to_py(py, value)?;
+        result.set_item("clinical_note_generation_settings", converted_641)?;
     } else {
         result.set_item("clinical_note_generation_settings", py.None())?;
     }
@@ -2889,14 +4614,14 @@ impl PyMedicalScribePostStreamAnalyticsSettings {
     #[getter]
     fn clinical_note_generation_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.clinical_note_generation_settings {
-            let converted_619 = Py::new(
+            let converted_640 = Py::new(
                 py,
                 PyClinicalNoteGenerationSettings {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_619)
+            Ok(converted_640)
         } else {
             Ok(py.None())
         }
@@ -2950,7 +4675,7 @@ impl From<aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails>
             channel_definitions: value.channel_definitions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_639| Arc::new(owned_639))
+                    .map(|owned_660| Arc::new(owned_660))
                     .collect()
             }),
             encryption_settings: value.encryption_settings.map(|item| Arc::new(item)),
@@ -2972,103 +4697,103 @@ fn medical_scribe_stream_details_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.session_id {
-        let converted_640 = (value).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_640)?;
+        let converted_661 = (value).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_661)?;
     } else {
         result.set_item("session_id", py.None())?;
     }
     if let Some(value) = &value.stream_created_at {
-        let converted_641 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_created_at", converted_641)?;
+        let converted_662 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_created_at", converted_662)?;
     } else {
         result.set_item("stream_created_at", py.None())?;
     }
     if let Some(value) = &value.stream_ended_at {
-        let converted_642 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_ended_at", converted_642)?;
+        let converted_663 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_ended_at", converted_663)?;
     } else {
         result.set_item("stream_ended_at", py.None())?;
     }
     if let Some(value) = &value.language_code {
-        let converted_643 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_643)?;
+        let converted_664 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_664)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
     if let Some(value) = &value.media_sample_rate_hertz {
-        let converted_644 = (value).to_owned().into_py_any(py)?;
-        result.set_item("media_sample_rate_hertz", converted_644)?;
+        let converted_665 = (value).to_owned().into_py_any(py)?;
+        result.set_item("media_sample_rate_hertz", converted_665)?;
     } else {
         result.set_item("media_sample_rate_hertz", py.None())?;
     }
     if let Some(value) = &value.media_encoding {
-        let converted_645 = (value).as_str().into_py_any(py)?;
-        result.set_item("media_encoding", converted_645)?;
+        let converted_666 = (value).as_str().into_py_any(py)?;
+        result.set_item("media_encoding", converted_666)?;
     } else {
         result.set_item("media_encoding", py.None())?;
     }
     if let Some(value) = &value.vocabulary_name {
-        let converted_646 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_name", converted_646)?;
+        let converted_667 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_name", converted_667)?;
     } else {
         result.set_item("vocabulary_name", py.None())?;
     }
     if let Some(value) = &value.vocabulary_filter_name {
-        let converted_647 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_filter_name", converted_647)?;
+        let converted_668 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_name", converted_668)?;
     } else {
         result.set_item("vocabulary_filter_name", py.None())?;
     }
     if let Some(value) = &value.vocabulary_filter_method {
-        let converted_648 = (value).as_str().into_py_any(py)?;
-        result.set_item("vocabulary_filter_method", converted_648)?;
+        let converted_669 = (value).as_str().into_py_any(py)?;
+        result.set_item("vocabulary_filter_method", converted_669)?;
     } else {
         result.set_item("vocabulary_filter_method", py.None())?;
     }
     if let Some(value) = &value.resource_access_role_arn {
-        let converted_649 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_access_role_arn", converted_649)?;
+        let converted_670 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_access_role_arn", converted_670)?;
     } else {
         result.set_item("resource_access_role_arn", py.None())?;
     }
     if let Some(value) = &value.channel_definitions {
-        let converted_650_list = PyList::empty(py);
-        for item_651 in value {
-            let converted_item_652 = medical_scribe_channel_definition_to_py(py, item_651)?;
-            converted_650_list.append(converted_item_652)?;
+        let converted_671_list = PyList::empty(py);
+        for item_672 in value {
+            let converted_item_673 = medical_scribe_channel_definition_to_py(py, item_672)?;
+            converted_671_list.append(converted_item_673)?;
         }
-        let converted_650 = converted_650_list.into_any().unbind();
-        result.set_item("channel_definitions", converted_650)?;
+        let converted_671 = converted_671_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_671)?;
     } else {
         result.set_item("channel_definitions", py.None())?;
     }
     if let Some(value) = &value.encryption_settings {
-        let converted_653 = medical_scribe_encryption_settings_to_py(py, value)?;
-        result.set_item("encryption_settings", converted_653)?;
+        let converted_674 = medical_scribe_encryption_settings_to_py(py, value)?;
+        result.set_item("encryption_settings", converted_674)?;
     } else {
         result.set_item("encryption_settings", py.None())?;
     }
     if let Some(value) = &value.stream_status {
-        let converted_654 = (value).as_str().into_py_any(py)?;
-        result.set_item("stream_status", converted_654)?;
+        let converted_675 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_status", converted_675)?;
     } else {
         result.set_item("stream_status", py.None())?;
     }
     if let Some(value) = &value.post_stream_analytics_settings {
-        let converted_655 = medical_scribe_post_stream_analytics_settings_shared_to_py(py, value)?;
-        result.set_item("post_stream_analytics_settings", converted_655)?;
+        let converted_676 = medical_scribe_post_stream_analytics_settings_shared_to_py(py, value)?;
+        result.set_item("post_stream_analytics_settings", converted_676)?;
     } else {
         result.set_item("post_stream_analytics_settings", py.None())?;
     }
     if let Some(value) = &value.post_stream_analytics_result {
-        let converted_656 = medical_scribe_post_stream_analytics_result_shared_to_py(py, value)?;
-        result.set_item("post_stream_analytics_result", converted_656)?;
+        let converted_677 = medical_scribe_post_stream_analytics_result_shared_to_py(py, value)?;
+        result.set_item("post_stream_analytics_result", converted_677)?;
     } else {
         result.set_item("post_stream_analytics_result", py.None())?;
     }
     if let Some(value) = &value.medical_scribe_context_provided {
-        let converted_657 = (value).to_owned().into_py_any(py)?;
-        result.set_item("medical_scribe_context_provided", converted_657)?;
+        let converted_678 = (value).to_owned().into_py_any(py)?;
+        result.set_item("medical_scribe_context_provided", converted_678)?;
     } else {
         result.set_item("medical_scribe_context_provided", py.None())?;
     }
@@ -3089,8 +4814,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_621 = (value).as_str().into_py_any(py)?;
-            Ok(converted_621)
+            let converted_642 = (value).as_str().into_py_any(py)?;
+            Ok(converted_642)
         } else {
             Ok(py.None())
         }
@@ -3099,8 +4824,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn stream_created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_created_at {
-            let converted_622 = (value).to_string().into_py_any(py)?;
-            Ok(converted_622)
+            let converted_643 = (value).to_string().into_py_any(py)?;
+            Ok(converted_643)
         } else {
             Ok(py.None())
         }
@@ -3109,8 +4834,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn stream_ended_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_ended_at {
-            let converted_623 = (value).to_string().into_py_any(py)?;
-            Ok(converted_623)
+            let converted_644 = (value).to_string().into_py_any(py)?;
+            Ok(converted_644)
         } else {
             Ok(py.None())
         }
@@ -3119,8 +4844,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_624 = (value).as_str().into_py_any(py)?;
-            Ok(converted_624)
+            let converted_645 = (value).as_str().into_py_any(py)?;
+            Ok(converted_645)
         } else {
             Ok(py.None())
         }
@@ -3129,8 +4854,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn media_sample_rate_hertz(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.media_sample_rate_hertz {
-            let converted_625 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_625)
+            let converted_646 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_646)
         } else {
             Ok(py.None())
         }
@@ -3139,8 +4864,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn media_encoding(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.media_encoding {
-            let converted_626 = (value).as_str().into_py_any(py)?;
-            Ok(converted_626)
+            let converted_647 = (value).as_str().into_py_any(py)?;
+            Ok(converted_647)
         } else {
             Ok(py.None())
         }
@@ -3149,8 +4874,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn vocabulary_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vocabulary_name {
-            let converted_627 = (value).as_str().into_py_any(py)?;
-            Ok(converted_627)
+            let converted_648 = (value).as_str().into_py_any(py)?;
+            Ok(converted_648)
         } else {
             Ok(py.None())
         }
@@ -3159,8 +4884,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn vocabulary_filter_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vocabulary_filter_name {
-            let converted_628 = (value).as_str().into_py_any(py)?;
-            Ok(converted_628)
+            let converted_649 = (value).as_str().into_py_any(py)?;
+            Ok(converted_649)
         } else {
             Ok(py.None())
         }
@@ -3169,8 +4894,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn vocabulary_filter_method(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vocabulary_filter_method {
-            let converted_629 = (value).as_str().into_py_any(py)?;
-            Ok(converted_629)
+            let converted_650 = (value).as_str().into_py_any(py)?;
+            Ok(converted_650)
         } else {
             Ok(py.None())
         }
@@ -3179,8 +4904,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn resource_access_role_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_access_role_arn {
-            let converted_630 = (value).as_str().into_py_any(py)?;
-            Ok(converted_630)
+            let converted_651 = (value).as_str().into_py_any(py)?;
+            Ok(converted_651)
         } else {
             Ok(py.None())
         }
@@ -3189,19 +4914,19 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn channel_definitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_definitions {
-            let converted_631_list = PyList::empty(py);
-            for item_632 in value {
-                let converted_item_633 = Py::new(
+            let converted_652_list = PyList::empty(py);
+            for item_653 in value {
+                let converted_item_654 = Py::new(
                     py,
                     PyMedicalScribeChannelDefinition {
-                        inner: Arc::clone(item_632),
+                        inner: Arc::clone(item_653),
                     },
                 )?
                 .into_any();
-                converted_631_list.append(converted_item_633)?;
+                converted_652_list.append(converted_item_654)?;
             }
-            let converted_631 = converted_631_list.into_any().unbind();
-            Ok(converted_631)
+            let converted_652 = converted_652_list.into_any().unbind();
+            Ok(converted_652)
         } else {
             Ok(py.None())
         }
@@ -3210,14 +4935,14 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn encryption_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_settings {
-            let converted_634 = Py::new(
+            let converted_655 = Py::new(
                 py,
                 PyMedicalScribeEncryptionSettings {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_634)
+            Ok(converted_655)
         } else {
             Ok(py.None())
         }
@@ -3226,8 +4951,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_status {
-            let converted_635 = (value).as_str().into_py_any(py)?;
-            Ok(converted_635)
+            let converted_656 = (value).as_str().into_py_any(py)?;
+            Ok(converted_656)
         } else {
             Ok(py.None())
         }
@@ -3236,14 +4961,14 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn post_stream_analytics_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.post_stream_analytics_settings {
-            let converted_636 = Py::new(
+            let converted_657 = Py::new(
                 py,
                 PyMedicalScribePostStreamAnalyticsSettings {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_636)
+            Ok(converted_657)
         } else {
             Ok(py.None())
         }
@@ -3252,14 +4977,14 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn post_stream_analytics_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.post_stream_analytics_result {
-            let converted_637 = Py::new(
+            let converted_658 = Py::new(
                 py,
                 PyMedicalScribePostStreamAnalyticsResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_637)
+            Ok(converted_658)
         } else {
             Ok(py.None())
         }
@@ -3268,8 +4993,8 @@ impl PyMedicalScribeStreamDetails {
     #[getter]
     fn medical_scribe_context_provided(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.medical_scribe_context_provided {
-            let converted_638 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_638)
+            let converted_659 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_659)
         } else {
             Ok(py.None())
         }
@@ -3308,14 +5033,14 @@ impl PyOperationGetMedicalScribeStreamOutput {
     #[getter]
     fn medical_scribe_stream_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.medical_scribe_stream_details {
-            let converted_658 = Py::new(
+            let converted_679 = Py::new(
                 py,
                 PyMedicalScribeStreamDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_658)
+            Ok(converted_679)
         } else {
             Ok(py.None())
         }
@@ -3324,8 +5049,8 @@ impl PyOperationGetMedicalScribeStreamOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.medical_scribe_stream_details {
-            let converted_659 = medical_scribe_stream_details_shared_to_py(py, value)?;
-            result.set_item("medical_scribe_stream_details", converted_659)?;
+            let converted_680 = medical_scribe_stream_details_shared_to_py(py, value)?;
+            result.set_item("medical_scribe_stream_details", converted_680)?;
         } else {
             result.set_item("medical_scribe_stream_details", py.None())?;
         }
@@ -3676,8 +5401,22 @@ impl TranscribeStreamingClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_458: String = value.extract()?;
-            Some(converted_458)
+            let converted_479 = (|| -> PyResult<_> {
+                let converted_479: String = value.extract()?;
+                Ok(converted_479)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("session_id"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "GetMedicalScribeStream",
+                )
+            })?;
+            Some(converted_479)
         } else {
             None
         };
@@ -3716,154 +5455,412 @@ impl TranscribeStreamingClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let enum_value_460: String = value.extract()?;
-            let converted_459 = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
-                enum_value_460.as_str(),
-            );
-            Some(converted_459)
+            let converted_480 = (|| -> PyResult<_> {
+                let enum_value_481: String = value.extract()?;
+                let converted_480 =
+                    aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
+                        enum_value_481.as_str(),
+                    );
+                Ok(converted_480)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("language_code"),
+                        "str (CallAnalyticsLanguageCode)",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_480)
         } else {
             None
         };
         let media_sample_rate_hertz_value =
             if let Some(value) = dict_value(params, "media_sample_rate_hertz")? {
-                let converted_461: i32 = value.extract()?;
-                Some(converted_461)
+                let converted_482 = (|| -> PyResult<_> {
+                    let converted_482: i32 = value.extract()?;
+                    Ok(converted_482)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("media_sample_rate_hertz"),
+                            "int",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_482)
             } else {
                 None
             };
         let media_encoding_value = if let Some(value) = dict_value(params, "media_encoding")? {
-            let enum_value_463: String = value.extract()?;
-            let converted_462 =
-                aws_sdk_transcribestreaming::types::MediaEncoding::from(enum_value_463.as_str());
-            Some(converted_462)
+            let converted_483 = (|| -> PyResult<_> {
+                let enum_value_484: String = value.extract()?;
+                let converted_483 = aws_sdk_transcribestreaming::types::MediaEncoding::from(
+                    enum_value_484.as_str(),
+                );
+                Ok(converted_483)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("media_encoding"),
+                        "str (MediaEncoding)",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_483)
         } else {
             None
         };
         let vocabulary_name_value = if let Some(value) = dict_value(params, "vocabulary_name")? {
-            let converted_464: String = value.extract()?;
-            Some(converted_464)
+            let converted_485 = (|| -> PyResult<_> {
+                let converted_485: String = value.extract()?;
+                Ok(converted_485)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("vocabulary_name"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_485)
         } else {
             None
         };
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_465: String = value.extract()?;
-            Some(converted_465)
+            let converted_486 = (|| -> PyResult<_> {
+                let converted_486: String = value.extract()?;
+                Ok(converted_486)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("session_id"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_486)
         } else {
             None
         };
         let audio_stream_value = if let Some(value) = dict_value(params, "audio_stream")? {
-            let converted_466: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender<aws_sdk_transcribestreaming::types::AudioStream, aws_sdk_transcribestreaming::types::error::AudioStreamError> = rboto_core::python_event_stream(
-                &value, audio_stream_from_py,
-                aws_sdk_transcribestreaming::types::error::AudioStreamError::unhandled,
-            )?.into();
-            Some(converted_466)
+            let converted_487 = (|| -> PyResult<_> {
+                let converted_487: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender<aws_sdk_transcribestreaming::types::AudioStream, aws_sdk_transcribestreaming::types::error::AudioStreamError> = rboto_core::python_event_stream(
+                    &value, audio_stream_from_py,
+                    aws_sdk_transcribestreaming::types::error::AudioStreamError::unhandled,
+                )?.into();
+                Ok(converted_487)
+            })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("audio_stream"), "async iterator"), "transcribe-streaming", "StartCallAnalyticsStreamTranscription"))?;
+            Some(converted_487)
         } else {
             None
         };
         let vocabulary_filter_name_value =
             if let Some(value) = dict_value(params, "vocabulary_filter_name")? {
-                let converted_467: String = value.extract()?;
-                Some(converted_467)
+                let converted_488 = (|| -> PyResult<_> {
+                    let converted_488: String = value.extract()?;
+                    Ok(converted_488)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("vocabulary_filter_name"),
+                            "str",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_488)
             } else {
                 None
             };
-        let vocabulary_filter_method_value = if let Some(value) =
-            dict_value(params, "vocabulary_filter_method")?
-        {
-            let enum_value_469: String = value.extract()?;
-            let converted_468 = aws_sdk_transcribestreaming::types::VocabularyFilterMethod::from(
-                enum_value_469.as_str(),
-            );
-            Some(converted_468)
-        } else {
-            None
-        };
+        let vocabulary_filter_method_value =
+            if let Some(value) = dict_value(params, "vocabulary_filter_method")? {
+                let converted_489 = (|| -> PyResult<_> {
+                    let enum_value_490: String = value.extract()?;
+                    let converted_489 =
+                        aws_sdk_transcribestreaming::types::VocabularyFilterMethod::from(
+                            enum_value_490.as_str(),
+                        );
+                    Ok(converted_489)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("vocabulary_filter_method"),
+                            "str (VocabularyFilterMethod)",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_489)
+            } else {
+                None
+            };
         let language_model_name_value =
             if let Some(value) = dict_value(params, "language_model_name")? {
-                let converted_470: String = value.extract()?;
-                Some(converted_470)
+                let converted_491 = (|| -> PyResult<_> {
+                    let converted_491: String = value.extract()?;
+                    Ok(converted_491)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("language_model_name"),
+                            "str",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_491)
             } else {
                 None
             };
         let identify_language_value = if let Some(value) = dict_value(params, "identify_language")?
         {
-            let converted_471: bool = value.extract()?;
-            Some(converted_471)
+            let converted_492 = (|| -> PyResult<_> {
+                let converted_492: bool = value.extract()?;
+                Ok(converted_492)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("identify_language"),
+                        "bool",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_492)
         } else {
             None
         };
         let language_options_value = if let Some(value) = dict_value(params, "language_options")? {
-            let converted_472: String = value.extract()?;
-            Some(converted_472)
+            let converted_493 = (|| -> PyResult<_> {
+                let converted_493: String = value.extract()?;
+                Ok(converted_493)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("language_options"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_493)
         } else {
             None
         };
-        let preferred_language_value = if let Some(value) =
-            dict_value(params, "preferred_language")?
-        {
-            let enum_value_474: String = value.extract()?;
-            let converted_473 = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
-                enum_value_474.as_str(),
-            );
-            Some(converted_473)
-        } else {
-            None
-        };
+        let preferred_language_value =
+            if let Some(value) = dict_value(params, "preferred_language")? {
+                let converted_494 = (|| -> PyResult<_> {
+                    let enum_value_495: String = value.extract()?;
+                    let converted_494 =
+                        aws_sdk_transcribestreaming::types::CallAnalyticsLanguageCode::from(
+                            enum_value_495.as_str(),
+                        );
+                    Ok(converted_494)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("preferred_language"),
+                            "str (CallAnalyticsLanguageCode)",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_494)
+            } else {
+                None
+            };
         let vocabulary_names_value = if let Some(value) = dict_value(params, "vocabulary_names")? {
-            let converted_475: String = value.extract()?;
-            Some(converted_475)
+            let converted_496 = (|| -> PyResult<_> {
+                let converted_496: String = value.extract()?;
+                Ok(converted_496)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("vocabulary_names"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_496)
         } else {
             None
         };
         let vocabulary_filter_names_value =
             if let Some(value) = dict_value(params, "vocabulary_filter_names")? {
-                let converted_476: String = value.extract()?;
-                Some(converted_476)
+                let converted_497 = (|| -> PyResult<_> {
+                    let converted_497: String = value.extract()?;
+                    Ok(converted_497)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("vocabulary_filter_names"),
+                            "str",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_497)
             } else {
                 None
             };
         let enable_partial_results_stabilization_value =
             if let Some(value) = dict_value(params, "enable_partial_results_stabilization")? {
-                let converted_477: bool = value.extract()?;
-                Some(converted_477)
+                let converted_498 = (|| -> PyResult<_> {
+                    let converted_498: bool = value.extract()?;
+                    Ok(converted_498)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("enable_partial_results_stabilization"),
+                            "bool",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_498)
             } else {
                 None
             };
-        let partial_results_stability_value = if let Some(value) =
-            dict_value(params, "partial_results_stability")?
+        let partial_results_stability_value =
+            if let Some(value) = dict_value(params, "partial_results_stability")? {
+                let converted_499 = (|| -> PyResult<_> {
+                    let enum_value_500: String = value.extract()?;
+                    let converted_499 =
+                        aws_sdk_transcribestreaming::types::PartialResultsStability::from(
+                            enum_value_500.as_str(),
+                        );
+                    Ok(converted_499)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("partial_results_stability"),
+                            "str (PartialResultsStability)",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_499)
+            } else {
+                None
+            };
+        let content_identification_type_value =
+            if let Some(value) = dict_value(params, "content_identification_type")? {
+                let converted_501 = (|| -> PyResult<_> {
+                    let enum_value_502: String = value.extract()?;
+                    let converted_501 =
+                        aws_sdk_transcribestreaming::types::ContentIdentificationType::from(
+                            enum_value_502.as_str(),
+                        );
+                    Ok(converted_501)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("content_identification_type"),
+                            "str (ContentIdentificationType)",
+                        ),
+                        "transcribe-streaming",
+                        "StartCallAnalyticsStreamTranscription",
+                    )
+                })?;
+                Some(converted_501)
+            } else {
+                None
+            };
+        let content_redaction_type_value = if let Some(value) =
+            dict_value(params, "content_redaction_type")?
         {
-            let enum_value_479: String = value.extract()?;
-            let converted_478 = aws_sdk_transcribestreaming::types::PartialResultsStability::from(
-                enum_value_479.as_str(),
-            );
-            Some(converted_478)
-        } else {
-            None
-        };
-        let content_identification_type_value = if let Some(value) =
-            dict_value(params, "content_identification_type")?
-        {
-            let enum_value_481: String = value.extract()?;
-            let converted_480 = aws_sdk_transcribestreaming::types::ContentIdentificationType::from(
-                enum_value_481.as_str(),
-            );
-            Some(converted_480)
-        } else {
-            None
-        };
-        let content_redaction_type_value =
-            if let Some(value) = dict_value(params, "content_redaction_type")? {
-                let enum_value_483: String = value.extract()?;
-                let converted_482 = aws_sdk_transcribestreaming::types::ContentRedactionType::from(
-                    enum_value_483.as_str(),
+            let converted_503 = (|| -> PyResult<_> {
+                let enum_value_504: String = value.extract()?;
+                let converted_503 = aws_sdk_transcribestreaming::types::ContentRedactionType::from(
+                    enum_value_504.as_str(),
                 );
-                Some(converted_482)
-            } else {
-                None
-            };
+                Ok(converted_503)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("content_redaction_type"),
+                        "str (ContentRedactionType)",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_503)
+        } else {
+            None
+        };
         let pii_entity_types_value = if let Some(value) = dict_value(params, "pii_entity_types")? {
-            let converted_484: String = value.extract()?;
-            Some(converted_484)
+            let converted_505 = (|| -> PyResult<_> {
+                let converted_505: String = value.extract()?;
+                Ok(converted_505)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("pii_entity_types"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartCallAnalyticsStreamTranscription",
+                )
+            })?;
+            Some(converted_505)
         } else {
             None
         };
@@ -3912,38 +5909,38 @@ impl TranscribeStreamingClient {
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.request_id {
-                    let converted_485 = (value).as_str().into_py_any(py)?;
-                    result.set_item("request_id", converted_485)?;
+                    let converted_506 = (value).as_str().into_py_any(py)?;
+                    result.set_item("request_id", converted_506)?;
                 } else {
                     result.set_item("request_id", py.None())?;
                 }
                 if let Some(value) = &output.language_code {
-                    let converted_486 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_code", converted_486)?;
+                    let converted_507 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_code", converted_507)?;
                 } else {
                     result.set_item("language_code", py.None())?;
                 }
                 if let Some(value) = &output.media_sample_rate_hertz {
-                    let converted_487 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("media_sample_rate_hertz", converted_487)?;
+                    let converted_508 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("media_sample_rate_hertz", converted_508)?;
                 } else {
                     result.set_item("media_sample_rate_hertz", py.None())?;
                 }
                 if let Some(value) = &output.media_encoding {
-                    let converted_488 = (value).as_str().into_py_any(py)?;
-                    result.set_item("media_encoding", converted_488)?;
+                    let converted_509 = (value).as_str().into_py_any(py)?;
+                    result.set_item("media_encoding", converted_509)?;
                 } else {
                     result.set_item("media_encoding", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_name {
-                    let converted_489 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_name", converted_489)?;
+                    let converted_510 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_name", converted_510)?;
                 } else {
                     result.set_item("vocabulary_name", py.None())?;
                 }
                 if let Some(value) = &output.session_id {
-                    let converted_490 = (value).as_str().into_py_any(py)?;
-                    result.set_item("session_id", converted_490)?;
+                    let converted_511 = (value).as_str().into_py_any(py)?;
+                    result.set_item("session_id", converted_511)?;
                 } else {
                     result.set_item("session_id", py.None())?;
                 }
@@ -3956,74 +5953,74 @@ impl TranscribeStreamingClient {
                 )?;
                 result.set_item("call_analytics_transcript_result_stream", stream)?;
                 if let Some(value) = &output.vocabulary_filter_name {
-                    let converted_491 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_filter_name", converted_491)?;
+                    let converted_512 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_filter_name", converted_512)?;
                 } else {
                     result.set_item("vocabulary_filter_name", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_filter_method {
-                    let converted_492 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_filter_method", converted_492)?;
+                    let converted_513 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_filter_method", converted_513)?;
                 } else {
                     result.set_item("vocabulary_filter_method", py.None())?;
                 }
                 if let Some(value) = &output.language_model_name {
-                    let converted_493 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_model_name", converted_493)?;
+                    let converted_514 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_model_name", converted_514)?;
                 } else {
                     result.set_item("language_model_name", py.None())?;
                 }
-                let converted_494 = (&output.identify_language).to_owned().into_py_any(py)?;
-                result.set_item("identify_language", converted_494)?;
+                let converted_515 = (&output.identify_language).to_owned().into_py_any(py)?;
+                result.set_item("identify_language", converted_515)?;
                 if let Some(value) = &output.language_options {
-                    let converted_495 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_options", converted_495)?;
+                    let converted_516 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_options", converted_516)?;
                 } else {
                     result.set_item("language_options", py.None())?;
                 }
                 if let Some(value) = &output.preferred_language {
-                    let converted_496 = (value).as_str().into_py_any(py)?;
-                    result.set_item("preferred_language", converted_496)?;
+                    let converted_517 = (value).as_str().into_py_any(py)?;
+                    result.set_item("preferred_language", converted_517)?;
                 } else {
                     result.set_item("preferred_language", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_names {
-                    let converted_497 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_names", converted_497)?;
+                    let converted_518 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_names", converted_518)?;
                 } else {
                     result.set_item("vocabulary_names", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_filter_names {
-                    let converted_498 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_filter_names", converted_498)?;
+                    let converted_519 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_filter_names", converted_519)?;
                 } else {
                     result.set_item("vocabulary_filter_names", py.None())?;
                 }
-                let converted_499 = (&output.enable_partial_results_stabilization)
+                let converted_520 = (&output.enable_partial_results_stabilization)
                     .to_owned()
                     .into_py_any(py)?;
-                result.set_item("enable_partial_results_stabilization", converted_499)?;
+                result.set_item("enable_partial_results_stabilization", converted_520)?;
                 if let Some(value) = &output.partial_results_stability {
-                    let converted_500 = (value).as_str().into_py_any(py)?;
-                    result.set_item("partial_results_stability", converted_500)?;
+                    let converted_521 = (value).as_str().into_py_any(py)?;
+                    result.set_item("partial_results_stability", converted_521)?;
                 } else {
                     result.set_item("partial_results_stability", py.None())?;
                 }
                 if let Some(value) = &output.content_identification_type {
-                    let converted_501 = (value).as_str().into_py_any(py)?;
-                    result.set_item("content_identification_type", converted_501)?;
+                    let converted_522 = (value).as_str().into_py_any(py)?;
+                    result.set_item("content_identification_type", converted_522)?;
                 } else {
                     result.set_item("content_identification_type", py.None())?;
                 }
                 if let Some(value) = &output.content_redaction_type {
-                    let converted_502 = (value).as_str().into_py_any(py)?;
-                    result.set_item("content_redaction_type", converted_502)?;
+                    let converted_523 = (value).as_str().into_py_any(py)?;
+                    result.set_item("content_redaction_type", converted_523)?;
                 } else {
                     result.set_item("content_redaction_type", py.None())?;
                 }
                 if let Some(value) = &output.pii_entity_types {
-                    let converted_503 = (value).as_str().into_py_any(py)?;
-                    result.set_item("pii_entity_types", converted_503)?;
+                    let converted_524 = (value).as_str().into_py_any(py)?;
+                    result.set_item("pii_entity_types", converted_524)?;
                 } else {
                     result.set_item("pii_entity_types", py.None())?;
                 }
@@ -4041,43 +6038,103 @@ impl TranscribeStreamingClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_504: String = value.extract()?;
-            Some(converted_504)
+            let converted_525 = (|| -> PyResult<_> {
+                let converted_525: String = value.extract()?;
+                Ok(converted_525)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("session_id"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalScribeStream",
+                )
+            })?;
+            Some(converted_525)
         } else {
             None
         };
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let enum_value_506: String = value.extract()?;
-            let converted_505 = aws_sdk_transcribestreaming::types::MedicalScribeLanguageCode::from(
-                enum_value_506.as_str(),
-            );
-            Some(converted_505)
+            let converted_526 = (|| -> PyResult<_> {
+                let enum_value_527: String = value.extract()?;
+                let converted_526 =
+                    aws_sdk_transcribestreaming::types::MedicalScribeLanguageCode::from(
+                        enum_value_527.as_str(),
+                    );
+                Ok(converted_526)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("language_code"),
+                        "str (MedicalScribeLanguageCode)",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalScribeStream",
+                )
+            })?;
+            Some(converted_526)
         } else {
             None
         };
         let media_sample_rate_hertz_value =
             if let Some(value) = dict_value(params, "media_sample_rate_hertz")? {
-                let converted_507: i32 = value.extract()?;
-                Some(converted_507)
+                let converted_528 = (|| -> PyResult<_> {
+                    let converted_528: i32 = value.extract()?;
+                    Ok(converted_528)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("media_sample_rate_hertz"),
+                            "int",
+                        ),
+                        "transcribe-streaming",
+                        "StartMedicalScribeStream",
+                    )
+                })?;
+                Some(converted_528)
             } else {
                 None
             };
         let media_encoding_value = if let Some(value) = dict_value(params, "media_encoding")? {
-            let enum_value_509: String = value.extract()?;
-            let converted_508 =
-                aws_sdk_transcribestreaming::types::MedicalScribeMediaEncoding::from(
-                    enum_value_509.as_str(),
-                );
-            Some(converted_508)
+            let converted_529 = (|| -> PyResult<_> {
+                let enum_value_530: String = value.extract()?;
+                let converted_529 =
+                    aws_sdk_transcribestreaming::types::MedicalScribeMediaEncoding::from(
+                        enum_value_530.as_str(),
+                    );
+                Ok(converted_529)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("media_encoding"),
+                        "str (MedicalScribeMediaEncoding)",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalScribeStream",
+                )
+            })?;
+            Some(converted_529)
         } else {
             None
         };
         let input_stream_value = if let Some(value) = dict_value(params, "input_stream")? {
-            let converted_510: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender< aws_sdk_transcribestreaming::types::MedicalScribeInputStream, aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError, > = rboto_core::python_event_stream(
-                &value, medical_scribe_input_stream_from_py,
-                aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError::unhandled,
-            )?.into();
-            Some(converted_510)
+            let converted_531 = (|| -> PyResult<_> {
+                let converted_531: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender< aws_sdk_transcribestreaming::types::MedicalScribeInputStream, aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError, > = rboto_core::python_event_stream(
+                    &value, medical_scribe_input_stream_from_py,
+                    aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError::unhandled,
+                )?.into();
+                Ok(converted_531)
+            })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("input_stream"), "async iterator"), "transcribe-streaming", "StartMedicalScribeStream"))?;
+            Some(converted_531)
         } else {
             None
         };
@@ -4108,32 +6165,32 @@ impl TranscribeStreamingClient {
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.session_id {
-                    let converted_511 = (value).as_str().into_py_any(py)?;
-                    result.set_item("session_id", converted_511)?;
+                    let converted_532 = (value).as_str().into_py_any(py)?;
+                    result.set_item("session_id", converted_532)?;
                 } else {
                     result.set_item("session_id", py.None())?;
                 }
                 if let Some(value) = &output.request_id {
-                    let converted_512 = (value).as_str().into_py_any(py)?;
-                    result.set_item("request_id", converted_512)?;
+                    let converted_533 = (value).as_str().into_py_any(py)?;
+                    result.set_item("request_id", converted_533)?;
                 } else {
                     result.set_item("request_id", py.None())?;
                 }
                 if let Some(value) = &output.language_code {
-                    let converted_513 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_code", converted_513)?;
+                    let converted_534 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_code", converted_534)?;
                 } else {
                     result.set_item("language_code", py.None())?;
                 }
                 if let Some(value) = &output.media_sample_rate_hertz {
-                    let converted_514 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("media_sample_rate_hertz", converted_514)?;
+                    let converted_535 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("media_sample_rate_hertz", converted_535)?;
                 } else {
                     result.set_item("media_sample_rate_hertz", py.None())?;
                 }
                 if let Some(value) = &output.media_encoding {
-                    let converted_515 = (value).as_str().into_py_any(py)?;
-                    result.set_item("media_encoding", converted_515)?;
+                    let converted_536 = (value).as_str().into_py_any(py)?;
+                    result.set_item("media_encoding", converted_536)?;
                 } else {
                     result.set_item("media_encoding", py.None())?;
                 }
@@ -4159,94 +6216,252 @@ impl TranscribeStreamingClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let enum_value_517: String = value.extract()?;
-            let converted_516 =
-                aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_517.as_str());
-            Some(converted_516)
+            let converted_537 = (|| -> PyResult<_> {
+                let enum_value_538: String = value.extract()?;
+                let converted_537 =
+                    aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_538.as_str());
+                Ok(converted_537)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("language_code"),
+                        "str (LanguageCode)",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalStreamTranscription",
+                )
+            })?;
+            Some(converted_537)
         } else {
             None
         };
         let media_sample_rate_hertz_value =
             if let Some(value) = dict_value(params, "media_sample_rate_hertz")? {
-                let converted_518: i32 = value.extract()?;
-                Some(converted_518)
+                let converted_539 = (|| -> PyResult<_> {
+                    let converted_539: i32 = value.extract()?;
+                    Ok(converted_539)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("media_sample_rate_hertz"),
+                            "int",
+                        ),
+                        "transcribe-streaming",
+                        "StartMedicalStreamTranscription",
+                    )
+                })?;
+                Some(converted_539)
             } else {
                 None
             };
         let media_encoding_value = if let Some(value) = dict_value(params, "media_encoding")? {
-            let enum_value_520: String = value.extract()?;
-            let converted_519 =
-                aws_sdk_transcribestreaming::types::MediaEncoding::from(enum_value_520.as_str());
-            Some(converted_519)
+            let converted_540 = (|| -> PyResult<_> {
+                let enum_value_541: String = value.extract()?;
+                let converted_540 = aws_sdk_transcribestreaming::types::MediaEncoding::from(
+                    enum_value_541.as_str(),
+                );
+                Ok(converted_540)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("media_encoding"),
+                        "str (MediaEncoding)",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalStreamTranscription",
+                )
+            })?;
+            Some(converted_540)
         } else {
             None
         };
         let vocabulary_name_value = if let Some(value) = dict_value(params, "vocabulary_name")? {
-            let converted_521: String = value.extract()?;
-            Some(converted_521)
+            let converted_542 = (|| -> PyResult<_> {
+                let converted_542: String = value.extract()?;
+                Ok(converted_542)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("vocabulary_name"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalStreamTranscription",
+                )
+            })?;
+            Some(converted_542)
         } else {
             None
         };
         let specialty_value = if let Some(value) = dict_value(params, "specialty")? {
-            let enum_value_523: String = value.extract()?;
-            let converted_522 =
-                aws_sdk_transcribestreaming::types::Specialty::from(enum_value_523.as_str());
-            Some(converted_522)
+            let converted_543 = (|| -> PyResult<_> {
+                let enum_value_544: String = value.extract()?;
+                let converted_543 =
+                    aws_sdk_transcribestreaming::types::Specialty::from(enum_value_544.as_str());
+                Ok(converted_543)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("specialty"),
+                        "str (Specialty)",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalStreamTranscription",
+                )
+            })?;
+            Some(converted_543)
         } else {
             None
         };
         let type_value = if let Some(value) = dict_value(params, "type")? {
-            let enum_value_525: String = value.extract()?;
-            let converted_524 =
-                aws_sdk_transcribestreaming::types::Type::from(enum_value_525.as_str());
-            Some(converted_524)
+            let converted_545 = (|| -> PyResult<_> {
+                let enum_value_546: String = value.extract()?;
+                let converted_545 =
+                    aws_sdk_transcribestreaming::types::Type::from(enum_value_546.as_str());
+                Ok(converted_545)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("type"),
+                        "str (Type)",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalStreamTranscription",
+                )
+            })?;
+            Some(converted_545)
         } else {
             None
         };
         let show_speaker_label_value =
             if let Some(value) = dict_value(params, "show_speaker_label")? {
-                let converted_526: bool = value.extract()?;
-                Some(converted_526)
+                let converted_547 = (|| -> PyResult<_> {
+                    let converted_547: bool = value.extract()?;
+                    Ok(converted_547)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("show_speaker_label"),
+                            "bool",
+                        ),
+                        "transcribe-streaming",
+                        "StartMedicalStreamTranscription",
+                    )
+                })?;
+                Some(converted_547)
             } else {
                 None
             };
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_527: String = value.extract()?;
-            Some(converted_527)
+            let converted_548 = (|| -> PyResult<_> {
+                let converted_548: String = value.extract()?;
+                Ok(converted_548)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("session_id"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartMedicalStreamTranscription",
+                )
+            })?;
+            Some(converted_548)
         } else {
             None
         };
         let audio_stream_value = if let Some(value) = dict_value(params, "audio_stream")? {
-            let converted_528: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender<aws_sdk_transcribestreaming::types::AudioStream, aws_sdk_transcribestreaming::types::error::AudioStreamError> = rboto_core::python_event_stream(
-                &value, audio_stream_from_py,
-                aws_sdk_transcribestreaming::types::error::AudioStreamError::unhandled,
-            )?.into();
-            Some(converted_528)
+            let converted_549 = (|| -> PyResult<_> {
+                let converted_549: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender<aws_sdk_transcribestreaming::types::AudioStream, aws_sdk_transcribestreaming::types::error::AudioStreamError> = rboto_core::python_event_stream(
+                    &value, audio_stream_from_py,
+                    aws_sdk_transcribestreaming::types::error::AudioStreamError::unhandled,
+                )?.into();
+                Ok(converted_549)
+            })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("audio_stream"), "async iterator"), "transcribe-streaming", "StartMedicalStreamTranscription"))?;
+            Some(converted_549)
         } else {
             None
         };
         let enable_channel_identification_value =
             if let Some(value) = dict_value(params, "enable_channel_identification")? {
-                let converted_529: bool = value.extract()?;
-                Some(converted_529)
+                let converted_550 = (|| -> PyResult<_> {
+                    let converted_550: bool = value.extract()?;
+                    Ok(converted_550)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("enable_channel_identification"),
+                            "bool",
+                        ),
+                        "transcribe-streaming",
+                        "StartMedicalStreamTranscription",
+                    )
+                })?;
+                Some(converted_550)
             } else {
                 None
             };
         let number_of_channels_value =
             if let Some(value) = dict_value(params, "number_of_channels")? {
-                let converted_530: i32 = value.extract()?;
-                Some(converted_530)
+                let converted_551 = (|| -> PyResult<_> {
+                    let converted_551: i32 = value.extract()?;
+                    Ok(converted_551)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("number_of_channels"),
+                            "int",
+                        ),
+                        "transcribe-streaming",
+                        "StartMedicalStreamTranscription",
+                    )
+                })?;
+                Some(converted_551)
             } else {
                 None
             };
         let content_identification_type_value =
             if let Some(value) = dict_value(params, "content_identification_type")? {
-                let enum_value_532: String = value.extract()?;
-                let converted_531 =
-                    aws_sdk_transcribestreaming::types::MedicalContentIdentificationType::from(
-                        enum_value_532.as_str(),
-                    );
-                Some(converted_531)
+                let converted_552 = (|| -> PyResult<_> {
+                    let enum_value_553: String = value.extract()?;
+                    let converted_552 =
+                        aws_sdk_transcribestreaming::types::MedicalContentIdentificationType::from(
+                            enum_value_553.as_str(),
+                        );
+                    Ok(converted_552)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("content_identification_type"),
+                            "str (MedicalContentIdentificationType)",
+                        ),
+                        "transcribe-streaming",
+                        "StartMedicalStreamTranscription",
+                    )
+                })?;
+                Some(converted_552)
             } else {
                 None
             };
@@ -4284,52 +6499,52 @@ impl TranscribeStreamingClient {
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.request_id {
-                    let converted_533 = (value).as_str().into_py_any(py)?;
-                    result.set_item("request_id", converted_533)?;
+                    let converted_554 = (value).as_str().into_py_any(py)?;
+                    result.set_item("request_id", converted_554)?;
                 } else {
                     result.set_item("request_id", py.None())?;
                 }
                 if let Some(value) = &output.language_code {
-                    let converted_534 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_code", converted_534)?;
+                    let converted_555 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_code", converted_555)?;
                 } else {
                     result.set_item("language_code", py.None())?;
                 }
                 if let Some(value) = &output.media_sample_rate_hertz {
-                    let converted_535 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("media_sample_rate_hertz", converted_535)?;
+                    let converted_556 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("media_sample_rate_hertz", converted_556)?;
                 } else {
                     result.set_item("media_sample_rate_hertz", py.None())?;
                 }
                 if let Some(value) = &output.media_encoding {
-                    let converted_536 = (value).as_str().into_py_any(py)?;
-                    result.set_item("media_encoding", converted_536)?;
+                    let converted_557 = (value).as_str().into_py_any(py)?;
+                    result.set_item("media_encoding", converted_557)?;
                 } else {
                     result.set_item("media_encoding", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_name {
-                    let converted_537 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_name", converted_537)?;
+                    let converted_558 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_name", converted_558)?;
                 } else {
                     result.set_item("vocabulary_name", py.None())?;
                 }
                 if let Some(value) = &output.specialty {
-                    let converted_538 = (value).as_str().into_py_any(py)?;
-                    result.set_item("specialty", converted_538)?;
+                    let converted_559 = (value).as_str().into_py_any(py)?;
+                    result.set_item("specialty", converted_559)?;
                 } else {
                     result.set_item("specialty", py.None())?;
                 }
                 if let Some(value) = &output.r#type {
-                    let converted_539 = (value).as_str().into_py_any(py)?;
-                    result.set_item("type", converted_539)?;
+                    let converted_560 = (value).as_str().into_py_any(py)?;
+                    result.set_item("type", converted_560)?;
                 } else {
                     result.set_item("type", py.None())?;
                 }
-                let converted_540 = (&output.show_speaker_label).to_owned().into_py_any(py)?;
-                result.set_item("show_speaker_label", converted_540)?;
+                let converted_561 = (&output.show_speaker_label).to_owned().into_py_any(py)?;
+                result.set_item("show_speaker_label", converted_561)?;
                 if let Some(value) = &output.session_id {
-                    let converted_541 = (value).as_str().into_py_any(py)?;
-                    result.set_item("session_id", converted_541)?;
+                    let converted_562 = (value).as_str().into_py_any(py)?;
+                    result.set_item("session_id", converted_562)?;
                 } else {
                     result.set_item("session_id", py.None())?;
                 }
@@ -4341,19 +6556,19 @@ impl TranscribeStreamingClient {
                     ),
                 )?;
                 result.set_item("transcript_result_stream", stream)?;
-                let converted_542 = (&output.enable_channel_identification)
+                let converted_563 = (&output.enable_channel_identification)
                     .to_owned()
                     .into_py_any(py)?;
-                result.set_item("enable_channel_identification", converted_542)?;
+                result.set_item("enable_channel_identification", converted_563)?;
                 if let Some(value) = &output.number_of_channels {
-                    let converted_543 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("number_of_channels", converted_543)?;
+                    let converted_564 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("number_of_channels", converted_564)?;
                 } else {
                     result.set_item("number_of_channels", py.None())?;
                 }
                 if let Some(value) = &output.content_identification_type {
-                    let converted_544 = (value).as_str().into_py_any(py)?;
-                    result.set_item("content_identification_type", converted_544)?;
+                    let converted_565 = (value).as_str().into_py_any(py)?;
+                    result.set_item("content_identification_type", converted_565)?;
                 } else {
                     result.set_item("content_identification_type", py.None())?;
                 }
@@ -4371,195 +6586,538 @@ impl TranscribeStreamingClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let enum_value_546: String = value.extract()?;
-            let converted_545 =
-                aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_546.as_str());
-            Some(converted_545)
+            let converted_566 = (|| -> PyResult<_> {
+                let enum_value_567: String = value.extract()?;
+                let converted_566 =
+                    aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_567.as_str());
+                Ok(converted_566)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("language_code"),
+                        "str (LanguageCode)",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_566)
         } else {
             None
         };
         let media_sample_rate_hertz_value =
             if let Some(value) = dict_value(params, "media_sample_rate_hertz")? {
-                let converted_547: i32 = value.extract()?;
-                Some(converted_547)
+                let converted_568 = (|| -> PyResult<_> {
+                    let converted_568: i32 = value.extract()?;
+                    Ok(converted_568)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("media_sample_rate_hertz"),
+                            "int",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_568)
             } else {
                 None
             };
         let media_encoding_value = if let Some(value) = dict_value(params, "media_encoding")? {
-            let enum_value_549: String = value.extract()?;
-            let converted_548 =
-                aws_sdk_transcribestreaming::types::MediaEncoding::from(enum_value_549.as_str());
-            Some(converted_548)
+            let converted_569 = (|| -> PyResult<_> {
+                let enum_value_570: String = value.extract()?;
+                let converted_569 = aws_sdk_transcribestreaming::types::MediaEncoding::from(
+                    enum_value_570.as_str(),
+                );
+                Ok(converted_569)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("media_encoding"),
+                        "str (MediaEncoding)",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_569)
         } else {
             None
         };
         let vocabulary_name_value = if let Some(value) = dict_value(params, "vocabulary_name")? {
-            let converted_550: String = value.extract()?;
-            Some(converted_550)
+            let converted_571 = (|| -> PyResult<_> {
+                let converted_571: String = value.extract()?;
+                Ok(converted_571)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("vocabulary_name"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_571)
         } else {
             None
         };
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_551: String = value.extract()?;
-            Some(converted_551)
+            let converted_572 = (|| -> PyResult<_> {
+                let converted_572: String = value.extract()?;
+                Ok(converted_572)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("session_id"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_572)
         } else {
             None
         };
         let audio_stream_value = if let Some(value) = dict_value(params, "audio_stream")? {
-            let converted_552: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender<aws_sdk_transcribestreaming::types::AudioStream, aws_sdk_transcribestreaming::types::error::AudioStreamError> = rboto_core::python_event_stream(
-                &value, audio_stream_from_py,
-                aws_sdk_transcribestreaming::types::error::AudioStreamError::unhandled,
-            )?.into();
-            Some(converted_552)
+            let converted_573 = (|| -> PyResult<_> {
+                let converted_573: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender<aws_sdk_transcribestreaming::types::AudioStream, aws_sdk_transcribestreaming::types::error::AudioStreamError> = rboto_core::python_event_stream(
+                    &value, audio_stream_from_py,
+                    aws_sdk_transcribestreaming::types::error::AudioStreamError::unhandled,
+                )?.into();
+                Ok(converted_573)
+            })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("audio_stream"), "async iterator"), "transcribe-streaming", "StartStreamTranscription"))?;
+            Some(converted_573)
         } else {
             None
         };
         let vocabulary_filter_name_value =
             if let Some(value) = dict_value(params, "vocabulary_filter_name")? {
-                let converted_553: String = value.extract()?;
-                Some(converted_553)
+                let converted_574 = (|| -> PyResult<_> {
+                    let converted_574: String = value.extract()?;
+                    Ok(converted_574)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("vocabulary_filter_name"),
+                            "str",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_574)
             } else {
                 None
             };
-        let vocabulary_filter_method_value = if let Some(value) =
-            dict_value(params, "vocabulary_filter_method")?
-        {
-            let enum_value_555: String = value.extract()?;
-            let converted_554 = aws_sdk_transcribestreaming::types::VocabularyFilterMethod::from(
-                enum_value_555.as_str(),
-            );
-            Some(converted_554)
-        } else {
-            None
-        };
+        let vocabulary_filter_method_value =
+            if let Some(value) = dict_value(params, "vocabulary_filter_method")? {
+                let converted_575 = (|| -> PyResult<_> {
+                    let enum_value_576: String = value.extract()?;
+                    let converted_575 =
+                        aws_sdk_transcribestreaming::types::VocabularyFilterMethod::from(
+                            enum_value_576.as_str(),
+                        );
+                    Ok(converted_575)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("vocabulary_filter_method"),
+                            "str (VocabularyFilterMethod)",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_575)
+            } else {
+                None
+            };
         let show_speaker_label_value =
             if let Some(value) = dict_value(params, "show_speaker_label")? {
-                let converted_556: bool = value.extract()?;
-                Some(converted_556)
+                let converted_577 = (|| -> PyResult<_> {
+                    let converted_577: bool = value.extract()?;
+                    Ok(converted_577)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("show_speaker_label"),
+                            "bool",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_577)
             } else {
                 None
             };
         let enable_channel_identification_value =
             if let Some(value) = dict_value(params, "enable_channel_identification")? {
-                let converted_557: bool = value.extract()?;
-                Some(converted_557)
+                let converted_578 = (|| -> PyResult<_> {
+                    let converted_578: bool = value.extract()?;
+                    Ok(converted_578)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("enable_channel_identification"),
+                            "bool",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_578)
             } else {
                 None
             };
         let number_of_channels_value =
             if let Some(value) = dict_value(params, "number_of_channels")? {
-                let converted_558: i32 = value.extract()?;
-                Some(converted_558)
+                let converted_579 = (|| -> PyResult<_> {
+                    let converted_579: i32 = value.extract()?;
+                    Ok(converted_579)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("number_of_channels"),
+                            "int",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_579)
             } else {
                 None
             };
         let enable_partial_results_stabilization_value =
             if let Some(value) = dict_value(params, "enable_partial_results_stabilization")? {
-                let converted_559: bool = value.extract()?;
-                Some(converted_559)
+                let converted_580 = (|| -> PyResult<_> {
+                    let converted_580: bool = value.extract()?;
+                    Ok(converted_580)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("enable_partial_results_stabilization"),
+                            "bool",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_580)
             } else {
                 None
             };
-        let partial_results_stability_value = if let Some(value) =
-            dict_value(params, "partial_results_stability")?
+        let partial_results_stability_value =
+            if let Some(value) = dict_value(params, "partial_results_stability")? {
+                let converted_581 = (|| -> PyResult<_> {
+                    let enum_value_582: String = value.extract()?;
+                    let converted_581 =
+                        aws_sdk_transcribestreaming::types::PartialResultsStability::from(
+                            enum_value_582.as_str(),
+                        );
+                    Ok(converted_581)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("partial_results_stability"),
+                            "str (PartialResultsStability)",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_581)
+            } else {
+                None
+            };
+        let content_identification_type_value =
+            if let Some(value) = dict_value(params, "content_identification_type")? {
+                let converted_583 = (|| -> PyResult<_> {
+                    let enum_value_584: String = value.extract()?;
+                    let converted_583 =
+                        aws_sdk_transcribestreaming::types::ContentIdentificationType::from(
+                            enum_value_584.as_str(),
+                        );
+                    Ok(converted_583)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("content_identification_type"),
+                            "str (ContentIdentificationType)",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_583)
+            } else {
+                None
+            };
+        let content_redaction_type_value = if let Some(value) =
+            dict_value(params, "content_redaction_type")?
         {
-            let enum_value_561: String = value.extract()?;
-            let converted_560 = aws_sdk_transcribestreaming::types::PartialResultsStability::from(
-                enum_value_561.as_str(),
-            );
-            Some(converted_560)
-        } else {
-            None
-        };
-        let content_identification_type_value = if let Some(value) =
-            dict_value(params, "content_identification_type")?
-        {
-            let enum_value_563: String = value.extract()?;
-            let converted_562 = aws_sdk_transcribestreaming::types::ContentIdentificationType::from(
-                enum_value_563.as_str(),
-            );
-            Some(converted_562)
-        } else {
-            None
-        };
-        let content_redaction_type_value =
-            if let Some(value) = dict_value(params, "content_redaction_type")? {
-                let enum_value_565: String = value.extract()?;
-                let converted_564 = aws_sdk_transcribestreaming::types::ContentRedactionType::from(
-                    enum_value_565.as_str(),
+            let converted_585 = (|| -> PyResult<_> {
+                let enum_value_586: String = value.extract()?;
+                let converted_585 = aws_sdk_transcribestreaming::types::ContentRedactionType::from(
+                    enum_value_586.as_str(),
                 );
-                Some(converted_564)
-            } else {
-                None
-            };
+                Ok(converted_585)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("content_redaction_type"),
+                        "str (ContentRedactionType)",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_585)
+        } else {
+            None
+        };
         let pii_entity_types_value = if let Some(value) = dict_value(params, "pii_entity_types")? {
-            let converted_566: String = value.extract()?;
-            Some(converted_566)
+            let converted_587 = (|| -> PyResult<_> {
+                let converted_587: String = value.extract()?;
+                Ok(converted_587)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("pii_entity_types"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_587)
         } else {
             None
         };
         let language_model_name_value =
             if let Some(value) = dict_value(params, "language_model_name")? {
-                let converted_567: String = value.extract()?;
-                Some(converted_567)
+                let converted_588 = (|| -> PyResult<_> {
+                    let converted_588: String = value.extract()?;
+                    Ok(converted_588)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("language_model_name"),
+                            "str",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_588)
             } else {
                 None
             };
         let identify_language_value = if let Some(value) = dict_value(params, "identify_language")?
         {
-            let converted_568: bool = value.extract()?;
-            Some(converted_568)
+            let converted_589 = (|| -> PyResult<_> {
+                let converted_589: bool = value.extract()?;
+                Ok(converted_589)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("identify_language"),
+                        "bool",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_589)
         } else {
             None
         };
         let language_options_value = if let Some(value) = dict_value(params, "language_options")? {
-            let converted_569: String = value.extract()?;
-            Some(converted_569)
+            let converted_590 = (|| -> PyResult<_> {
+                let converted_590: String = value.extract()?;
+                Ok(converted_590)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("language_options"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_590)
         } else {
             None
         };
-        let preferred_language_value =
-            if let Some(value) = dict_value(params, "preferred_language")? {
-                let enum_value_571: String = value.extract()?;
-                let converted_570 =
-                    aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_571.as_str());
-                Some(converted_570)
-            } else {
-                None
-            };
+        let preferred_language_value = if let Some(value) =
+            dict_value(params, "preferred_language")?
+        {
+            let converted_591 = (|| -> PyResult<_> {
+                let enum_value_592: String = value.extract()?;
+                let converted_591 =
+                    aws_sdk_transcribestreaming::types::LanguageCode::from(enum_value_592.as_str());
+                Ok(converted_591)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("preferred_language"),
+                        "str (LanguageCode)",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_591)
+        } else {
+            None
+        };
         let identify_multiple_languages_value =
             if let Some(value) = dict_value(params, "identify_multiple_languages")? {
-                let converted_572: bool = value.extract()?;
-                Some(converted_572)
+                let converted_593 = (|| -> PyResult<_> {
+                    let converted_593: bool = value.extract()?;
+                    Ok(converted_593)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("identify_multiple_languages"),
+                            "bool",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_593)
             } else {
                 None
             };
         let vocabulary_names_value = if let Some(value) = dict_value(params, "vocabulary_names")? {
-            let converted_573: String = value.extract()?;
-            Some(converted_573)
+            let converted_594 = (|| -> PyResult<_> {
+                let converted_594: String = value.extract()?;
+                Ok(converted_594)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("vocabulary_names"),
+                        "str",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_594)
         } else {
             None
         };
         let vocabulary_filter_names_value =
             if let Some(value) = dict_value(params, "vocabulary_filter_names")? {
-                let converted_574: String = value.extract()?;
-                Some(converted_574)
+                let converted_595 = (|| -> PyResult<_> {
+                    let converted_595: String = value.extract()?;
+                    Ok(converted_595)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("vocabulary_filter_names"),
+                            "str",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_595)
             } else {
                 None
             };
         let session_resume_window_value =
             if let Some(value) = dict_value(params, "session_resume_window")? {
-                let converted_575: i32 = value.extract()?;
-                Some(converted_575)
+                let converted_596 = (|| -> PyResult<_> {
+                    let converted_596: i32 = value.extract()?;
+                    Ok(converted_596)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("session_resume_window"),
+                            "int",
+                        ),
+                        "transcribe-streaming",
+                        "StartStreamTranscription",
+                    )
+                })?;
+                Some(converted_596)
             } else {
                 None
             };
         let transcript_format_value = if let Some(value) = dict_value(params, "transcript_format")?
         {
-            let enum_value_577: String = value.extract()?;
-            let converted_576 =
-                aws_sdk_transcribestreaming::types::TranscriptFormat::from(enum_value_577.as_str());
-            Some(converted_576)
+            let converted_597 = (|| -> PyResult<_> {
+                let enum_value_598: String = value.extract()?;
+                let converted_597 = aws_sdk_transcribestreaming::types::TranscriptFormat::from(
+                    enum_value_598.as_str(),
+                );
+                Ok(converted_597)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("transcript_format"),
+                        "str (TranscriptFormat)",
+                    ),
+                    "transcribe-streaming",
+                    "StartStreamTranscription",
+                )
+            })?;
+            Some(converted_597)
         } else {
             None
         };
@@ -4612,38 +7170,38 @@ impl TranscribeStreamingClient {
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.request_id {
-                    let converted_578 = (value).as_str().into_py_any(py)?;
-                    result.set_item("request_id", converted_578)?;
+                    let converted_599 = (value).as_str().into_py_any(py)?;
+                    result.set_item("request_id", converted_599)?;
                 } else {
                     result.set_item("request_id", py.None())?;
                 }
                 if let Some(value) = &output.language_code {
-                    let converted_579 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_code", converted_579)?;
+                    let converted_600 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_code", converted_600)?;
                 } else {
                     result.set_item("language_code", py.None())?;
                 }
                 if let Some(value) = &output.media_sample_rate_hertz {
-                    let converted_580 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("media_sample_rate_hertz", converted_580)?;
+                    let converted_601 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("media_sample_rate_hertz", converted_601)?;
                 } else {
                     result.set_item("media_sample_rate_hertz", py.None())?;
                 }
                 if let Some(value) = &output.media_encoding {
-                    let converted_581 = (value).as_str().into_py_any(py)?;
-                    result.set_item("media_encoding", converted_581)?;
+                    let converted_602 = (value).as_str().into_py_any(py)?;
+                    result.set_item("media_encoding", converted_602)?;
                 } else {
                     result.set_item("media_encoding", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_name {
-                    let converted_582 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_name", converted_582)?;
+                    let converted_603 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_name", converted_603)?;
                 } else {
                     result.set_item("vocabulary_name", py.None())?;
                 }
                 if let Some(value) = &output.session_id {
-                    let converted_583 = (value).as_str().into_py_any(py)?;
-                    result.set_item("session_id", converted_583)?;
+                    let converted_604 = (value).as_str().into_py_any(py)?;
+                    result.set_item("session_id", converted_604)?;
                 } else {
                     result.set_item("session_id", py.None())?;
                 }
@@ -4656,102 +7214,102 @@ impl TranscribeStreamingClient {
                 )?;
                 result.set_item("transcript_result_stream", stream)?;
                 if let Some(value) = &output.vocabulary_filter_name {
-                    let converted_584 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_filter_name", converted_584)?;
+                    let converted_605 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_filter_name", converted_605)?;
                 } else {
                     result.set_item("vocabulary_filter_name", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_filter_method {
-                    let converted_585 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_filter_method", converted_585)?;
+                    let converted_606 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_filter_method", converted_606)?;
                 } else {
                     result.set_item("vocabulary_filter_method", py.None())?;
                 }
-                let converted_586 = (&output.show_speaker_label).to_owned().into_py_any(py)?;
-                result.set_item("show_speaker_label", converted_586)?;
-                let converted_587 = (&output.enable_channel_identification)
+                let converted_607 = (&output.show_speaker_label).to_owned().into_py_any(py)?;
+                result.set_item("show_speaker_label", converted_607)?;
+                let converted_608 = (&output.enable_channel_identification)
                     .to_owned()
                     .into_py_any(py)?;
-                result.set_item("enable_channel_identification", converted_587)?;
+                result.set_item("enable_channel_identification", converted_608)?;
                 if let Some(value) = &output.number_of_channels {
-                    let converted_588 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("number_of_channels", converted_588)?;
+                    let converted_609 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("number_of_channels", converted_609)?;
                 } else {
                     result.set_item("number_of_channels", py.None())?;
                 }
-                let converted_589 = (&output.enable_partial_results_stabilization)
+                let converted_610 = (&output.enable_partial_results_stabilization)
                     .to_owned()
                     .into_py_any(py)?;
-                result.set_item("enable_partial_results_stabilization", converted_589)?;
+                result.set_item("enable_partial_results_stabilization", converted_610)?;
                 if let Some(value) = &output.partial_results_stability {
-                    let converted_590 = (value).as_str().into_py_any(py)?;
-                    result.set_item("partial_results_stability", converted_590)?;
+                    let converted_611 = (value).as_str().into_py_any(py)?;
+                    result.set_item("partial_results_stability", converted_611)?;
                 } else {
                     result.set_item("partial_results_stability", py.None())?;
                 }
                 if let Some(value) = &output.content_identification_type {
-                    let converted_591 = (value).as_str().into_py_any(py)?;
-                    result.set_item("content_identification_type", converted_591)?;
+                    let converted_612 = (value).as_str().into_py_any(py)?;
+                    result.set_item("content_identification_type", converted_612)?;
                 } else {
                     result.set_item("content_identification_type", py.None())?;
                 }
                 if let Some(value) = &output.content_redaction_type {
-                    let converted_592 = (value).as_str().into_py_any(py)?;
-                    result.set_item("content_redaction_type", converted_592)?;
+                    let converted_613 = (value).as_str().into_py_any(py)?;
+                    result.set_item("content_redaction_type", converted_613)?;
                 } else {
                     result.set_item("content_redaction_type", py.None())?;
                 }
                 if let Some(value) = &output.pii_entity_types {
-                    let converted_593 = (value).as_str().into_py_any(py)?;
-                    result.set_item("pii_entity_types", converted_593)?;
+                    let converted_614 = (value).as_str().into_py_any(py)?;
+                    result.set_item("pii_entity_types", converted_614)?;
                 } else {
                     result.set_item("pii_entity_types", py.None())?;
                 }
                 if let Some(value) = &output.language_model_name {
-                    let converted_594 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_model_name", converted_594)?;
+                    let converted_615 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_model_name", converted_615)?;
                 } else {
                     result.set_item("language_model_name", py.None())?;
                 }
-                let converted_595 = (&output.identify_language).to_owned().into_py_any(py)?;
-                result.set_item("identify_language", converted_595)?;
+                let converted_616 = (&output.identify_language).to_owned().into_py_any(py)?;
+                result.set_item("identify_language", converted_616)?;
                 if let Some(value) = &output.language_options {
-                    let converted_596 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_options", converted_596)?;
+                    let converted_617 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_options", converted_617)?;
                 } else {
                     result.set_item("language_options", py.None())?;
                 }
                 if let Some(value) = &output.preferred_language {
-                    let converted_597 = (value).as_str().into_py_any(py)?;
-                    result.set_item("preferred_language", converted_597)?;
+                    let converted_618 = (value).as_str().into_py_any(py)?;
+                    result.set_item("preferred_language", converted_618)?;
                 } else {
                     result.set_item("preferred_language", py.None())?;
                 }
-                let converted_598 = (&output.identify_multiple_languages)
+                let converted_619 = (&output.identify_multiple_languages)
                     .to_owned()
                     .into_py_any(py)?;
-                result.set_item("identify_multiple_languages", converted_598)?;
+                result.set_item("identify_multiple_languages", converted_619)?;
                 if let Some(value) = &output.vocabulary_names {
-                    let converted_599 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_names", converted_599)?;
+                    let converted_620 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_names", converted_620)?;
                 } else {
                     result.set_item("vocabulary_names", py.None())?;
                 }
                 if let Some(value) = &output.vocabulary_filter_names {
-                    let converted_600 = (value).as_str().into_py_any(py)?;
-                    result.set_item("vocabulary_filter_names", converted_600)?;
+                    let converted_621 = (value).as_str().into_py_any(py)?;
+                    result.set_item("vocabulary_filter_names", converted_621)?;
                 } else {
                     result.set_item("vocabulary_filter_names", py.None())?;
                 }
                 if let Some(value) = &output.session_resume_window {
-                    let converted_601 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("session_resume_window", converted_601)?;
+                    let converted_622 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("session_resume_window", converted_622)?;
                 } else {
                     result.set_item("session_resume_window", py.None())?;
                 }
                 if let Some(value) = &output.transcript_format {
-                    let converted_602 = (value).as_str().into_py_any(py)?;
-                    result.set_item("transcript_format", converted_602)?;
+                    let converted_623 = (value).as_str().into_py_any(py)?;
+                    result.set_item("transcript_format", converted_623)?;
                 } else {
                     result.set_item("transcript_format", py.None())?;
                 }

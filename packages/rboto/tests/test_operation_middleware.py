@@ -12,7 +12,7 @@ from rboto import (
     Session,
     operation_context,
 )
-from rboto.exceptions import ClientError
+from rboto.exceptions import ClientError, get_conversion_context
 from rboto.interceptors import invoke, resolve_interceptors
 
 
@@ -176,7 +176,7 @@ def test_invalid_parameter_mutation_fails_before_native_dispatch(invalid: str) -
     async def run() -> None:
         async def change(request: OperationRequest, call_next: Next) -> OperationResponse:
             if invalid == "unknown":
-                request.parameters["typo"] = True
+                request.parameters["private-unknown-CANARY"] = True
             elif invalid == "missing":
                 del request.parameters["key"]
             else:
@@ -186,8 +186,14 @@ def test_invalid_parameter_mutation_fails_before_native_dispatch(invalid: str) -
         async def forbidden(params: dict[str, object], metadata: dict[str, object]) -> object:
             pytest.fail("invalid mutation reached native dispatch")
 
-        with pytest.raises(TypeError, match="operation parameters"):
+        with pytest.raises(TypeError) as caught:
             await execute((change,), forbidden)
+        context = get_conversion_context(caught.value)
+        assert context is not None
+        assert context.service == "s3" and context.operation == "GetObject"
+        assert context.path == ("<request>" if invalid == "unknown" else "key")
+        assert context.category == ("unknown_parameter" if invalid == "unknown" else "missing")
+        assert "CANARY" not in str(caught.value) + repr(context)
 
     asyncio.run(run())
 

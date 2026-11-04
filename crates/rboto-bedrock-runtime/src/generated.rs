@@ -10,6 +10,8 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn any_tool_choice_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockruntime::types::AnyToolChoice> {
@@ -32,34 +34,93 @@ fn applied_guardrail_details_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::AppliedGuardrailDetails::builder();
     if let Some(value) = dict_value(values, "guardrail_id")? {
-        let converted_1: String = value.extract()?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("guardrail_id"), "str")
+        })?;
         builder = builder.set_guardrail_id(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "guardrail_version")? {
-        let converted_2: String = value.extract()?;
+        let converted_2 = (|| -> PyResult<_> {
+            let converted_2: String = value.extract()?;
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_version"),
+                "str",
+            )
+        })?;
         builder = builder.set_guardrail_version(Some(converted_2));
     }
     if let Some(value) = dict_value(values, "guardrail_arn")? {
-        let converted_3: String = value.extract()?;
+        let converted_3 = (|| -> PyResult<_> {
+            let converted_3: String = value.extract()?;
+            Ok(converted_3)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("guardrail_arn"), "str")
+        })?;
         builder = builder.set_guardrail_arn(Some(converted_3));
     }
     if let Some(value) = dict_value(values, "guardrail_origin")? {
-        let mut converted_4 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_5 in value.try_iter()? {
-            let item_6 = item_result_5?;
-            let enum_value_8: String = item_6.extract()?;
-            let converted_item_7 =
-                aws_sdk_bedrockruntime::types::GuardrailOrigin::from(enum_value_8.as_str());
-            converted_4.push(converted_item_7);
-        }
+        let converted_4 = (|| -> PyResult<_> {
+            let mut converted_4 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_8, item_result_5) in value.try_iter()?.enumerate() {
+                let item_6 = item_result_5.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_8),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_7 = (|| -> PyResult<_> {
+                    let enum_value_9: String = item_6.extract()?;
+                    let converted_item_7 =
+                        aws_sdk_bedrockruntime::types::GuardrailOrigin::from(enum_value_9.as_str());
+                    Ok(converted_item_7)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_8),
+                        "str (GuardrailOrigin)",
+                    )
+                })?;
+                converted_4.push(converted_item_7);
+            }
+            Ok(converted_4)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_origin"),
+                "sequence",
+            )
+        })?;
         builder = builder.set_guardrail_origin(Some(converted_4));
     }
     if let Some(value) = dict_value(values, "guardrail_ownership")? {
-        let enum_value_10: String = value.extract()?;
-        let converted_9 =
-            aws_sdk_bedrockruntime::types::GuardrailOwnership::from(enum_value_10.as_str());
-        builder = builder.set_guardrail_ownership(Some(converted_9));
+        let converted_10 = (|| -> PyResult<_> {
+            let enum_value_11: String = value.extract()?;
+            let converted_10 =
+                aws_sdk_bedrockruntime::types::GuardrailOwnership::from(enum_value_11.as_str());
+            Ok(converted_10)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_ownership"),
+                "str (GuardrailOwnership)",
+            )
+        })?;
+        builder = builder.set_guardrail_ownership(Some(converted_10));
     }
     Ok(builder.build())
 }
@@ -70,37 +131,37 @@ fn applied_guardrail_details_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail_id {
-        let converted_11 = (value).as_str().into_py_any(py)?;
-        result.set_item("guardrail_id", converted_11)?;
+        let converted_12 = (value).as_str().into_py_any(py)?;
+        result.set_item("guardrail_id", converted_12)?;
     } else {
         result.set_item("guardrail_id", py.None())?;
     }
     if let Some(value) = &value.guardrail_version {
-        let converted_12 = (value).as_str().into_py_any(py)?;
-        result.set_item("guardrail_version", converted_12)?;
+        let converted_13 = (value).as_str().into_py_any(py)?;
+        result.set_item("guardrail_version", converted_13)?;
     } else {
         result.set_item("guardrail_version", py.None())?;
     }
     if let Some(value) = &value.guardrail_arn {
-        let converted_13 = (value).as_str().into_py_any(py)?;
-        result.set_item("guardrail_arn", converted_13)?;
+        let converted_14 = (value).as_str().into_py_any(py)?;
+        result.set_item("guardrail_arn", converted_14)?;
     } else {
         result.set_item("guardrail_arn", py.None())?;
     }
     if let Some(value) = &value.guardrail_origin {
-        let converted_14_list = PyList::empty(py);
-        for item_15 in value {
-            let converted_item_16 = (item_15).as_str().into_py_any(py)?;
-            converted_14_list.append(converted_item_16)?;
+        let converted_15_list = PyList::empty(py);
+        for item_16 in value {
+            let converted_item_17 = (item_16).as_str().into_py_any(py)?;
+            converted_15_list.append(converted_item_17)?;
         }
-        let converted_14 = converted_14_list.into_any().unbind();
-        result.set_item("guardrail_origin", converted_14)?;
+        let converted_15 = converted_15_list.into_any().unbind();
+        result.set_item("guardrail_origin", converted_15)?;
     } else {
         result.set_item("guardrail_origin", py.None())?;
     }
     if let Some(value) = &value.guardrail_ownership {
-        let converted_17 = (value).as_str().into_py_any(py)?;
-        result.set_item("guardrail_ownership", converted_17)?;
+        let converted_18 = (value).as_str().into_py_any(py)?;
+        result.set_item("guardrail_ownership", converted_18)?;
     } else {
         result.set_item("guardrail_ownership", py.None())?;
     }
@@ -112,18 +173,36 @@ fn async_invoke_output_data_config_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::AsyncInvokeOutputDataConfig> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "s3_output_data_config")? {
-        let converted_18 = async_invoke_s3_output_data_config_from_py(&value)?;
+        let converted_19 = (|| -> PyResult<_> {
+            let converted_19 = async_invoke_s3_output_data_config_from_py(&value)?;
+            Ok(converted_19)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_output_data_config"),
+                "dict (AsyncInvokeS3OutputDataConfig)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::AsyncInvokeOutputDataConfig::S3OutputDataConfig(
-                converted_18,
+                converted_19,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "AsyncInvokeOutputDataConfig requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("AsyncInvokeOutputDataConfig requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -134,8 +213,8 @@ fn async_invoke_output_data_config_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::AsyncInvokeOutputDataConfig::S3OutputDataConfig(value) => {
-            let converted_19 = async_invoke_s3_output_data_config_to_py(py, value)?;
-            result.set_item("s3_output_data_config", converted_19)?;
+            let converted_20 = async_invoke_s3_output_data_config_to_py(py, value)?;
+            result.set_item("s3_output_data_config", converted_20)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -150,20 +229,38 @@ fn async_invoke_s3_output_data_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::AsyncInvokeS3OutputDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
-        let converted_20: String = value.extract()?;
-        builder = builder.set_s3_uri(Some(converted_20));
+        let converted_21 = (|| -> PyResult<_> {
+            let converted_21: String = value.extract()?;
+            Ok(converted_21)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_uri"), "str")
+        })?;
+        builder = builder.set_s3_uri(Some(converted_21));
     }
     if let Some(value) = dict_value(values, "kms_key_id")? {
-        let converted_21: String = value.extract()?;
-        builder = builder.set_kms_key_id(Some(converted_21));
+        let converted_22 = (|| -> PyResult<_> {
+            let converted_22: String = value.extract()?;
+            Ok(converted_22)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("kms_key_id"), "str")
+        })?;
+        builder = builder.set_kms_key_id(Some(converted_22));
     }
     if let Some(value) = dict_value(values, "bucket_owner")? {
-        let converted_22: String = value.extract()?;
-        builder = builder.set_bucket_owner(Some(converted_22));
+        let converted_23 = (|| -> PyResult<_> {
+            let converted_23: String = value.extract()?;
+            Ok(converted_23)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bucket_owner"), "str")
+        })?;
+        builder = builder.set_bucket_owner(Some(converted_23));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("s3_uri", "s3_uri")]))
 }
 
 fn async_invoke_s3_output_data_config_to_py(
@@ -171,17 +268,17 @@ fn async_invoke_s3_output_data_config_to_py(
     value: &aws_sdk_bedrockruntime::types::AsyncInvokeS3OutputDataConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_23 = (&value.s3_uri).as_str().into_py_any(py)?;
-    result.set_item("s3_uri", converted_23)?;
+    let converted_24 = (&value.s3_uri).as_str().into_py_any(py)?;
+    result.set_item("s3_uri", converted_24)?;
     if let Some(value) = &value.kms_key_id {
-        let converted_24 = (value).as_str().into_py_any(py)?;
-        result.set_item("kms_key_id", converted_24)?;
+        let converted_25 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_key_id", converted_25)?;
     } else {
         result.set_item("kms_key_id", py.None())?;
     }
     if let Some(value) = &value.bucket_owner {
-        let converted_25 = (value).as_str().into_py_any(py)?;
-        result.set_item("bucket_owner", converted_25)?;
+        let converted_26 = (value).as_str().into_py_any(py)?;
+        result.set_item("bucket_owner", converted_26)?;
     } else {
         result.set_item("bucket_owner", py.None())?;
     }
@@ -194,61 +291,150 @@ fn async_invoke_summary_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::AsyncInvokeSummary::builder();
     if let Some(value) = dict_value(values, "invocation_arn")? {
-        let converted_26: String = value.extract()?;
-        builder = builder.set_invocation_arn(Some(converted_26));
+        let converted_27 = (|| -> PyResult<_> {
+            let converted_27: String = value.extract()?;
+            Ok(converted_27)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("invocation_arn"), "str")
+        })?;
+        builder = builder.set_invocation_arn(Some(converted_27));
     }
     if let Some(value) = dict_value(values, "model_arn")? {
-        let converted_27: String = value.extract()?;
-        builder = builder.set_model_arn(Some(converted_27));
+        let converted_28 = (|| -> PyResult<_> {
+            let converted_28: String = value.extract()?;
+            Ok(converted_28)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("model_arn"), "str")
+        })?;
+        builder = builder.set_model_arn(Some(converted_28));
     }
     if let Some(value) = dict_value(values, "client_request_token")? {
-        let converted_28: String = value.extract()?;
-        builder = builder.set_client_request_token(Some(converted_28));
+        let converted_29 = (|| -> PyResult<_> {
+            let converted_29: String = value.extract()?;
+            Ok(converted_29)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("client_request_token"),
+                "str",
+            )
+        })?;
+        builder = builder.set_client_request_token(Some(converted_29));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_30: String = value.extract()?;
-        let converted_29 =
-            aws_sdk_bedrockruntime::types::AsyncInvokeStatus::from(enum_value_30.as_str());
-        builder = builder.set_status(Some(converted_29));
+        let converted_30 = (|| -> PyResult<_> {
+            let enum_value_31: String = value.extract()?;
+            let converted_30 =
+                aws_sdk_bedrockruntime::types::AsyncInvokeStatus::from(enum_value_31.as_str());
+            Ok(converted_30)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (AsyncInvokeStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_30));
     }
     if let Some(value) = dict_value(values, "failure_message")? {
-        let converted_31: String = value.extract()?;
-        builder = builder.set_failure_message(Some(converted_31));
+        let converted_32 = (|| -> PyResult<_> {
+            let converted_32: String = value.extract()?;
+            Ok(converted_32)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("failure_message"),
+                "str",
+            )
+        })?;
+        builder = builder.set_failure_message(Some(converted_32));
     }
     if let Some(value) = dict_value(values, "submit_time")? {
-        let timestamp_33: String = value.extract()?;
-        let converted_32 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_33,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_submit_time(Some(converted_32));
+        let converted_33 = (|| -> PyResult<_> {
+            let timestamp_34: String = value.extract()?;
+            let converted_33 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_34,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_33)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("submit_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_submit_time(Some(converted_33));
     }
     if let Some(value) = dict_value(values, "last_modified_time")? {
-        let timestamp_35: String = value.extract()?;
-        let converted_34 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_35,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_last_modified_time(Some(converted_34));
+        let converted_35 = (|| -> PyResult<_> {
+            let timestamp_36: String = value.extract()?;
+            let converted_35 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_36,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_35)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("last_modified_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_last_modified_time(Some(converted_35));
     }
     if let Some(value) = dict_value(values, "end_time")? {
-        let timestamp_37: String = value.extract()?;
-        let converted_36 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_37,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_end_time(Some(converted_36));
+        let converted_37 = (|| -> PyResult<_> {
+            let timestamp_38: String = value.extract()?;
+            let converted_37 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_38,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_37)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_time"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_end_time(Some(converted_37));
     }
     if let Some(value) = dict_value(values, "output_data_config")? {
-        let converted_38 = async_invoke_output_data_config_from_py(&value)?;
-        builder = builder.set_output_data_config(Some(converted_38));
+        let converted_39 = (|| -> PyResult<_> {
+            let converted_39 = async_invoke_output_data_config_from_py(&value)?;
+            Ok(converted_39)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("output_data_config"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_output_data_config(Some(converted_39));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("invocation_arn", "invocation_arn"),
+                ("model_arn", "model_arn"),
+                ("submit_time", "submit_time"),
+            ],
+        )
+    })
 }
 
 fn async_invoke_summary_to_py(
@@ -256,45 +442,45 @@ fn async_invoke_summary_to_py(
     value: &aws_sdk_bedrockruntime::types::AsyncInvokeSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_39 = (&value.invocation_arn).as_str().into_py_any(py)?;
-    result.set_item("invocation_arn", converted_39)?;
-    let converted_40 = (&value.model_arn).as_str().into_py_any(py)?;
-    result.set_item("model_arn", converted_40)?;
+    let converted_40 = (&value.invocation_arn).as_str().into_py_any(py)?;
+    result.set_item("invocation_arn", converted_40)?;
+    let converted_41 = (&value.model_arn).as_str().into_py_any(py)?;
+    result.set_item("model_arn", converted_41)?;
     if let Some(value) = &value.client_request_token {
-        let converted_41 = (value).as_str().into_py_any(py)?;
-        result.set_item("client_request_token", converted_41)?;
+        let converted_42 = (value).as_str().into_py_any(py)?;
+        result.set_item("client_request_token", converted_42)?;
     } else {
         result.set_item("client_request_token", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_42 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_42)?;
+        let converted_43 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_43)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.failure_message {
-        let converted_43 = (value).as_str().into_py_any(py)?;
-        result.set_item("failure_message", converted_43)?;
+        let converted_44 = (value).as_str().into_py_any(py)?;
+        result.set_item("failure_message", converted_44)?;
     } else {
         result.set_item("failure_message", py.None())?;
     }
-    let converted_44 = (&value.submit_time).to_string().into_py_any(py)?;
-    result.set_item("submit_time", converted_44)?;
+    let converted_45 = (&value.submit_time).to_string().into_py_any(py)?;
+    result.set_item("submit_time", converted_45)?;
     if let Some(value) = &value.last_modified_time {
-        let converted_45 = (value).to_string().into_py_any(py)?;
-        result.set_item("last_modified_time", converted_45)?;
+        let converted_46 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_modified_time", converted_46)?;
     } else {
         result.set_item("last_modified_time", py.None())?;
     }
     if let Some(value) = &value.end_time {
-        let converted_46 = (value).to_string().into_py_any(py)?;
-        result.set_item("end_time", converted_46)?;
+        let converted_47 = (value).to_string().into_py_any(py)?;
+        result.set_item("end_time", converted_47)?;
     } else {
         result.set_item("end_time", py.None())?;
     }
     if let Some(value) = &value.output_data_config {
-        let converted_47 = async_invoke_output_data_config_to_py(py, value)?;
-        result.set_item("output_data_config", converted_47)?;
+        let converted_48 = async_invoke_output_data_config_to_py(py, value)?;
+        result.set_item("output_data_config", converted_48)?;
     } else {
         result.set_item("output_data_config", py.None())?;
     }
@@ -307,21 +493,52 @@ fn audio_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::AudioBlock::builder();
     if let Some(value) = dict_value(values, "format")? {
-        let enum_value_49: String = value.extract()?;
-        let converted_48 = aws_sdk_bedrockruntime::types::AudioFormat::from(enum_value_49.as_str());
-        builder = builder.set_format(Some(converted_48));
+        let converted_49 = (|| -> PyResult<_> {
+            let enum_value_50: String = value.extract()?;
+            let converted_49 =
+                aws_sdk_bedrockruntime::types::AudioFormat::from(enum_value_50.as_str());
+            Ok(converted_49)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("format"),
+                "str (AudioFormat)",
+            )
+        })?;
+        builder = builder.set_format(Some(converted_49));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_50 = audio_source_from_py(&value)?;
-        builder = builder.set_source(Some(converted_50));
+        let converted_51 = (|| -> PyResult<_> {
+            let converted_51 = audio_source_from_py(&value)?;
+            Ok(converted_51)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_source(Some(converted_51));
     }
     if let Some(value) = dict_value(values, "error")? {
-        let converted_51 = error_block_from_py(&value)?;
-        builder = builder.set_error(Some(converted_51));
+        let converted_52 = (|| -> PyResult<_> {
+            let converted_52 = error_block_from_py(&value)?;
+            Ok(converted_52)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("error"),
+                "dict (ErrorBlock)",
+            )
+        })?;
+        builder = builder.set_error(Some(converted_52));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("format", "format")]))
 }
 
 fn audio_block_to_py(
@@ -329,17 +546,17 @@ fn audio_block_to_py(
     value: &aws_sdk_bedrockruntime::types::AudioBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_52 = (&value.format).as_str().into_py_any(py)?;
-    result.set_item("format", converted_52)?;
+    let converted_53 = (&value.format).as_str().into_py_any(py)?;
+    result.set_item("format", converted_53)?;
     if let Some(value) = &value.source {
-        let converted_53 = audio_source_to_py(py, value)?;
-        result.set_item("source", converted_53)?;
+        let converted_54 = audio_source_to_py(py, value)?;
+        result.set_item("source", converted_54)?;
     } else {
         result.set_item("source", py.None())?;
     }
     if let Some(value) = &value.error {
-        let converted_54 = error_block_to_py(py, value)?;
-        result.set_item("error", converted_54)?;
+        let converted_55 = error_block_to_py(py, value)?;
+        result.set_item("error", converted_55)?;
     } else {
         result.set_item("error", py.None())?;
     }
@@ -351,23 +568,47 @@ fn audio_source_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::AudioSource> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_56: Vec<u8> = value.extract()?;
-        let converted_55 = ::aws_smithy_types::Blob::new(bytes_56);
+        let converted_56 = (|| -> PyResult<_> {
+            let bytes_57: Vec<u8> = value.extract()?;
+            let converted_56 = ::aws_smithy_types::Blob::new(bytes_57);
+            Ok(converted_56)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::AudioSource::Bytes(
-            converted_55,
+            converted_56,
         ));
     }
     if let Some(value) = dict_value(values, "s3_location")? {
-        let converted_57 = s3_location_from_py(&value)?;
+        let converted_58 = (|| -> PyResult<_> {
+            let converted_58 = s3_location_from_py(&value)?;
+            Ok(converted_58)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_location"),
+                "dict (S3Location)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::AudioSource::S3Location(
-            converted_57,
+            converted_58,
         ));
     }
-    Err(PyValueError::new_err(
-        "AudioSource requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("AudioSource requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -378,12 +619,12 @@ fn audio_source_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::AudioSource::Bytes(value) => {
-            let converted_58 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("bytes", converted_58)?;
+            let converted_59 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("bytes", converted_59)?;
         }
         aws_sdk_bedrockruntime::types::AudioSource::S3Location(value) => {
-            let converted_59 = s3_location_to_py(py, value)?;
-            result.set_item("s3_location", converted_59)?;
+            let converted_60 = s3_location_to_py(py, value)?;
+            result.set_item("s3_location", converted_60)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -414,9 +655,15 @@ fn bidirectional_input_payload_part_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::BidirectionalInputPayloadPart::builder();
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_61: Vec<u8> = value.extract()?;
-        let converted_60 = ::aws_smithy_types::Blob::new(bytes_61);
-        builder = builder.set_bytes(Some(converted_60));
+        let converted_61 = (|| -> PyResult<_> {
+            let bytes_62: Vec<u8> = value.extract()?;
+            let converted_61 = ::aws_smithy_types::Blob::new(bytes_62);
+            Ok(converted_61)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
+        builder = builder.set_bytes(Some(converted_61));
     }
     Ok(builder.build())
 }
@@ -427,8 +674,8 @@ fn bidirectional_input_payload_part_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.bytes {
-        let converted_62 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("bytes", converted_62)?;
+        let converted_63 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("bytes", converted_63)?;
     } else {
         result.set_item("bytes", py.None())?;
     }
@@ -441,9 +688,15 @@ fn bidirectional_output_payload_part_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::BidirectionalOutputPayloadPart::builder();
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_64: Vec<u8> = value.extract()?;
-        let converted_63 = ::aws_smithy_types::Blob::new(bytes_64);
-        builder = builder.set_bytes(Some(converted_63));
+        let converted_64 = (|| -> PyResult<_> {
+            let bytes_65: Vec<u8> = value.extract()?;
+            let converted_64 = ::aws_smithy_types::Blob::new(bytes_65);
+            Ok(converted_64)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
+        builder = builder.set_bytes(Some(converted_64));
     }
     Ok(builder.build())
 }
@@ -454,8 +707,8 @@ fn bidirectional_output_payload_part_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.bytes {
-        let converted_65 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("bytes", converted_65)?;
+        let converted_66 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("bytes", converted_66)?;
     } else {
         result.set_item("bytes", py.None())?;
     }
@@ -468,17 +721,30 @@ fn cache_detail_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::CacheDetail::builder();
     if let Some(value) = dict_value(values, "ttl")? {
-        let enum_value_67: String = value.extract()?;
-        let converted_66 = aws_sdk_bedrockruntime::types::CacheTtl::from(enum_value_67.as_str());
-        builder = builder.set_ttl(Some(converted_66));
+        let converted_67 = (|| -> PyResult<_> {
+            let enum_value_68: String = value.extract()?;
+            let converted_67 =
+                aws_sdk_bedrockruntime::types::CacheTtl::from(enum_value_68.as_str());
+            Ok(converted_67)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("ttl"), "str (CacheTtl)")
+        })?;
+        builder = builder.set_ttl(Some(converted_67));
     }
     if let Some(value) = dict_value(values, "input_tokens")? {
-        let converted_68: i32 = value.extract()?;
-        builder = builder.set_input_tokens(Some(converted_68));
+        let converted_69 = (|| -> PyResult<_> {
+            let converted_69: i32 = value.extract()?;
+            Ok(converted_69)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("input_tokens"), "int")
+        })?;
+        builder = builder.set_input_tokens(Some(converted_69));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("ttl", "ttl"), ("input_tokens", "input_tokens")])
+    })
 }
 
 fn cache_detail_to_py(
@@ -486,10 +752,10 @@ fn cache_detail_to_py(
     value: &aws_sdk_bedrockruntime::types::CacheDetail,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_69 = (&value.ttl).as_str().into_py_any(py)?;
-    result.set_item("ttl", converted_69)?;
-    let converted_70 = (&value.input_tokens).to_owned().into_py_any(py)?;
-    result.set_item("input_tokens", converted_70)?;
+    let converted_70 = (&value.ttl).as_str().into_py_any(py)?;
+    result.set_item("ttl", converted_70)?;
+    let converted_71 = (&value.input_tokens).to_owned().into_py_any(py)?;
+    result.set_item("input_tokens", converted_71)?;
     Ok(result.into_any().unbind())
 }
 
@@ -499,19 +765,36 @@ fn cache_point_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::CachePointBlock::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_72: String = value.extract()?;
-        let converted_71 =
-            aws_sdk_bedrockruntime::types::CachePointType::from(enum_value_72.as_str());
-        builder = builder.set_type(Some(converted_71));
+        let converted_72 = (|| -> PyResult<_> {
+            let enum_value_73: String = value.extract()?;
+            let converted_72 =
+                aws_sdk_bedrockruntime::types::CachePointType::from(enum_value_73.as_str());
+            Ok(converted_72)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (CachePointType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_72));
     }
     if let Some(value) = dict_value(values, "ttl")? {
-        let enum_value_74: String = value.extract()?;
-        let converted_73 = aws_sdk_bedrockruntime::types::CacheTtl::from(enum_value_74.as_str());
-        builder = builder.set_ttl(Some(converted_73));
+        let converted_74 = (|| -> PyResult<_> {
+            let enum_value_75: String = value.extract()?;
+            let converted_74 =
+                aws_sdk_bedrockruntime::types::CacheTtl::from(enum_value_75.as_str());
+            Ok(converted_74)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("ttl"), "str (CacheTtl)")
+        })?;
+        builder = builder.set_ttl(Some(converted_74));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("type", "type")]))
 }
 
 fn cache_point_block_to_py(
@@ -519,11 +802,11 @@ fn cache_point_block_to_py(
     value: &aws_sdk_bedrockruntime::types::CachePointBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_75 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_75)?;
+    let converted_76 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_76)?;
     if let Some(value) = &value.ttl {
-        let converted_76 = (value).as_str().into_py_any(py)?;
-        result.set_item("ttl", converted_76)?;
+        let converted_77 = (value).as_str().into_py_any(py)?;
+        result.set_item("ttl", converted_77)?;
     } else {
         result.set_item("ttl", py.None())?;
     }
@@ -534,26 +817,75 @@ fn citation_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockruntime
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::Citation::builder();
     if let Some(value) = dict_value(values, "title")? {
-        let converted_77: String = value.extract()?;
-        builder = builder.set_title(Some(converted_77));
+        let converted_78 = (|| -> PyResult<_> {
+            let converted_78: String = value.extract()?;
+            Ok(converted_78)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("title"), "str")
+        })?;
+        builder = builder.set_title(Some(converted_78));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_78: String = value.extract()?;
-        builder = builder.set_source(Some(converted_78));
+        let converted_79 = (|| -> PyResult<_> {
+            let converted_79: String = value.extract()?;
+            Ok(converted_79)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("source"), "str")
+        })?;
+        builder = builder.set_source(Some(converted_79));
     }
     if let Some(value) = dict_value(values, "source_content")? {
-        let mut converted_79 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_80 in value.try_iter()? {
-            let item_81 = item_result_80?;
-            let converted_item_82 = citation_source_content_from_py(&item_81)?;
-            converted_79.push(converted_item_82);
-        }
-        builder = builder.set_source_content(Some(converted_79));
+        let converted_80 = (|| -> PyResult<_> {
+            let mut converted_80 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_84, item_result_81) in value.try_iter()?.enumerate() {
+                let item_82 = item_result_81.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_84),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_83 = (|| -> PyResult<_> {
+                    let converted_item_83 = citation_source_content_from_py(&item_82)?;
+                    Ok(converted_item_83)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_84),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_80.push(converted_item_83);
+            }
+            Ok(converted_80)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source_content"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_source_content(Some(converted_80));
     }
     if let Some(value) = dict_value(values, "location")? {
-        let converted_83 = citation_location_from_py(&value)?;
-        builder = builder.set_location(Some(converted_83));
+        let converted_85 = (|| -> PyResult<_> {
+            let converted_85 = citation_location_from_py(&value)?;
+            Ok(converted_85)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("location"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_location(Some(converted_85));
     }
     Ok(builder.build())
 }
@@ -564,31 +896,31 @@ fn citation_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.title {
-        let converted_84 = (value).as_str().into_py_any(py)?;
-        result.set_item("title", converted_84)?;
+        let converted_86 = (value).as_str().into_py_any(py)?;
+        result.set_item("title", converted_86)?;
     } else {
         result.set_item("title", py.None())?;
     }
     if let Some(value) = &value.source {
-        let converted_85 = (value).as_str().into_py_any(py)?;
-        result.set_item("source", converted_85)?;
+        let converted_87 = (value).as_str().into_py_any(py)?;
+        result.set_item("source", converted_87)?;
     } else {
         result.set_item("source", py.None())?;
     }
     if let Some(value) = &value.source_content {
-        let converted_86_list = PyList::empty(py);
-        for item_87 in value {
-            let converted_item_88 = citation_source_content_to_py(py, item_87)?;
-            converted_86_list.append(converted_item_88)?;
+        let converted_88_list = PyList::empty(py);
+        for item_89 in value {
+            let converted_item_90 = citation_source_content_to_py(py, item_89)?;
+            converted_88_list.append(converted_item_90)?;
         }
-        let converted_86 = converted_86_list.into_any().unbind();
-        result.set_item("source_content", converted_86)?;
+        let converted_88 = converted_88_list.into_any().unbind();
+        result.set_item("source_content", converted_88)?;
     } else {
         result.set_item("source_content", py.None())?;
     }
     if let Some(value) = &value.location {
-        let converted_89 = citation_location_to_py(py, value)?;
-        result.set_item("location", converted_89)?;
+        let converted_91 = citation_location_to_py(py, value)?;
+        result.set_item("location", converted_91)?;
     } else {
         result.set_item("location", py.None())?;
     }
@@ -600,14 +932,28 @@ fn citation_generated_content_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::CitationGeneratedContent> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_90: String = value.extract()?;
-        return Ok(aws_sdk_bedrockruntime::types::CitationGeneratedContent::Text(converted_90));
+        let converted_92 = (|| -> PyResult<_> {
+            let converted_92: String = value.extract()?;
+            Ok(converted_92)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::CitationGeneratedContent::Text(converted_92));
     }
-    Err(PyValueError::new_err(
-        "CitationGeneratedContent requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("CitationGeneratedContent requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -618,8 +964,8 @@ fn citation_generated_content_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::CitationGeneratedContent::Text(value) => {
-            let converted_91 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_91)?;
+            let converted_93 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_93)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -633,34 +979,92 @@ fn citation_location_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::CitationLocation> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "web")? {
-        let converted_92 = web_location_from_py(&value)?;
+        let converted_94 = (|| -> PyResult<_> {
+            let converted_94 = web_location_from_py(&value)?;
+            Ok(converted_94)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("web"),
+                "dict (WebLocation)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::CitationLocation::Web(
-            converted_92,
+            converted_94,
         ));
     }
     if let Some(value) = dict_value(values, "document_char")? {
-        let converted_93 = document_char_location_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::CitationLocation::DocumentChar(converted_93));
+        let converted_95 = (|| -> PyResult<_> {
+            let converted_95 = document_char_location_from_py(&value)?;
+            Ok(converted_95)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("document_char"),
+                "dict (DocumentCharLocation)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::CitationLocation::DocumentChar(converted_95));
     }
     if let Some(value) = dict_value(values, "document_page")? {
-        let converted_94 = document_page_location_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::CitationLocation::DocumentPage(converted_94));
+        let converted_96 = (|| -> PyResult<_> {
+            let converted_96 = document_page_location_from_py(&value)?;
+            Ok(converted_96)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("document_page"),
+                "dict (DocumentPageLocation)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::CitationLocation::DocumentPage(converted_96));
     }
     if let Some(value) = dict_value(values, "document_chunk")? {
-        let converted_95 = document_chunk_location_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::CitationLocation::DocumentChunk(converted_95));
+        let converted_97 = (|| -> PyResult<_> {
+            let converted_97 = document_chunk_location_from_py(&value)?;
+            Ok(converted_97)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("document_chunk"),
+                "dict (DocumentChunkLocation)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::CitationLocation::DocumentChunk(converted_97));
     }
     if let Some(value) = dict_value(values, "search_result_location")? {
-        let converted_96 = search_result_location_from_py(&value)?;
+        let converted_98 = (|| -> PyResult<_> {
+            let converted_98 = search_result_location_from_py(&value)?;
+            Ok(converted_98)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("search_result_location"),
+                "dict (SearchResultLocation)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::CitationLocation::SearchResultLocation(converted_96),
+            aws_sdk_bedrockruntime::types::CitationLocation::SearchResultLocation(converted_98),
         );
     }
-    Err(PyValueError::new_err(
-        "CitationLocation requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("CitationLocation requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -671,24 +1075,24 @@ fn citation_location_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::CitationLocation::Web(value) => {
-            let converted_97 = web_location_to_py(py, value)?;
-            result.set_item("web", converted_97)?;
+            let converted_99 = web_location_to_py(py, value)?;
+            result.set_item("web", converted_99)?;
         }
         aws_sdk_bedrockruntime::types::CitationLocation::DocumentChar(value) => {
-            let converted_98 = document_char_location_to_py(py, value)?;
-            result.set_item("document_char", converted_98)?;
+            let converted_100 = document_char_location_to_py(py, value)?;
+            result.set_item("document_char", converted_100)?;
         }
         aws_sdk_bedrockruntime::types::CitationLocation::DocumentPage(value) => {
-            let converted_99 = document_page_location_to_py(py, value)?;
-            result.set_item("document_page", converted_99)?;
+            let converted_101 = document_page_location_to_py(py, value)?;
+            result.set_item("document_page", converted_101)?;
         }
         aws_sdk_bedrockruntime::types::CitationLocation::DocumentChunk(value) => {
-            let converted_100 = document_chunk_location_to_py(py, value)?;
-            result.set_item("document_chunk", converted_100)?;
+            let converted_102 = document_chunk_location_to_py(py, value)?;
+            result.set_item("document_chunk", converted_102)?;
         }
         aws_sdk_bedrockruntime::types::CitationLocation::SearchResultLocation(value) => {
-            let converted_101 = search_result_location_to_py(py, value)?;
-            result.set_item("search_result_location", converted_101)?;
+            let converted_103 = search_result_location_to_py(py, value)?;
+            result.set_item("search_result_location", converted_103)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -702,16 +1106,30 @@ fn citation_source_content_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::CitationSourceContent> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "text")? {
-        let converted_102: String = value.extract()?;
-        return Ok(aws_sdk_bedrockruntime::types::CitationSourceContent::Text(
-            converted_102,
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
         ));
     }
-    Err(PyValueError::new_err(
-        "CitationSourceContent requires exactly one known variant",
+    if let Some(value) = dict_value(values, "text")? {
+        let converted_104 = (|| -> PyResult<_> {
+            let converted_104: String = value.extract()?;
+            Ok(converted_104)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::CitationSourceContent::Text(
+            converted_104,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("CitationSourceContent requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -722,8 +1140,8 @@ fn citation_source_content_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::CitationSourceContent::Text(value) => {
-            let converted_103 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_103)?;
+            let converted_105 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_105)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -738,8 +1156,14 @@ fn citation_source_content_delta_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::CitationSourceContentDelta::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let converted_104: String = value.extract()?;
-        builder = builder.set_text(Some(converted_104));
+        let converted_106 = (|| -> PyResult<_> {
+            let converted_106: String = value.extract()?;
+            Ok(converted_106)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        builder = builder.set_text(Some(converted_106));
     }
     Ok(builder.build())
 }
@@ -750,8 +1174,8 @@ fn citation_source_content_delta_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.text {
-        let converted_105 = (value).as_str().into_py_any(py)?;
-        result.set_item("text", converted_105)?;
+        let converted_107 = (value).as_str().into_py_any(py)?;
+        result.set_item("text", converted_107)?;
     } else {
         result.set_item("text", py.None())?;
     }
@@ -764,12 +1188,18 @@ fn citations_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::CitationsConfig::builder();
     if let Some(value) = dict_value(values, "enabled")? {
-        let converted_106: bool = value.extract()?;
-        builder = builder.set_enabled(Some(converted_106));
+        let converted_108 = (|| -> PyResult<_> {
+            let converted_108: bool = value.extract()?;
+            Ok(converted_108)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("enabled"), "bool")
+        })?;
+        builder = builder.set_enabled(Some(converted_108));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("enabled", "enabled")]))
 }
 
 fn citations_config_to_py(
@@ -777,8 +1207,8 @@ fn citations_config_to_py(
     value: &aws_sdk_bedrockruntime::types::CitationsConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_107 = (&value.enabled).to_owned().into_py_any(py)?;
-    result.set_item("enabled", converted_107)?;
+    let converted_109 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_109)?;
     Ok(result.into_any().unbind())
 }
 
@@ -788,24 +1218,70 @@ fn citations_content_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::CitationsContentBlock::builder();
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_108 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_109 in value.try_iter()? {
-            let item_110 = item_result_109?;
-            let converted_item_111 = citation_generated_content_from_py(&item_110)?;
-            converted_108.push(converted_item_111);
-        }
-        builder = builder.set_content(Some(converted_108));
+        let converted_110 = (|| -> PyResult<_> {
+            let mut converted_110 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_114, item_result_111) in value.try_iter()?.enumerate() {
+                let item_112 = item_result_111.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_114),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_113 = (|| -> PyResult<_> {
+                    let converted_item_113 = citation_generated_content_from_py(&item_112)?;
+                    Ok(converted_item_113)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_114),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_110.push(converted_item_113);
+            }
+            Ok(converted_110)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "sequence")
+        })?;
+        builder = builder.set_content(Some(converted_110));
     }
     if let Some(value) = dict_value(values, "citations")? {
-        let mut converted_112 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_113 in value.try_iter()? {
-            let item_114 = item_result_113?;
-            let converted_item_115 = citation_from_py(&item_114)?;
-            converted_112.push(converted_item_115);
-        }
-        builder = builder.set_citations(Some(converted_112));
+        let converted_115 = (|| -> PyResult<_> {
+            let mut converted_115 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_119, item_result_116) in value.try_iter()?.enumerate() {
+                let item_117 = item_result_116.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_119),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_118 = (|| -> PyResult<_> {
+                    let converted_item_118 = citation_from_py(&item_117)?;
+                    Ok(converted_item_118)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_119),
+                        "dict (Citation)",
+                    )
+                })?;
+                converted_115.push(converted_item_118);
+            }
+            Ok(converted_115)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("citations"), "sequence")
+        })?;
+        builder = builder.set_citations(Some(converted_115));
     }
     Ok(builder.build())
 }
@@ -816,24 +1292,24 @@ fn citations_content_block_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content {
-        let converted_116_list = PyList::empty(py);
-        for item_117 in value {
-            let converted_item_118 = citation_generated_content_to_py(py, item_117)?;
-            converted_116_list.append(converted_item_118)?;
+        let converted_120_list = PyList::empty(py);
+        for item_121 in value {
+            let converted_item_122 = citation_generated_content_to_py(py, item_121)?;
+            converted_120_list.append(converted_item_122)?;
         }
-        let converted_116 = converted_116_list.into_any().unbind();
-        result.set_item("content", converted_116)?;
+        let converted_120 = converted_120_list.into_any().unbind();
+        result.set_item("content", converted_120)?;
     } else {
         result.set_item("content", py.None())?;
     }
     if let Some(value) = &value.citations {
-        let converted_119_list = PyList::empty(py);
-        for item_120 in value {
-            let converted_item_121 = citation_to_py(py, item_120)?;
-            converted_119_list.append(converted_item_121)?;
+        let converted_123_list = PyList::empty(py);
+        for item_124 in value {
+            let converted_item_125 = citation_to_py(py, item_124)?;
+            converted_123_list.append(converted_item_125)?;
         }
-        let converted_119 = converted_119_list.into_any().unbind();
-        result.set_item("citations", converted_119)?;
+        let converted_123 = converted_123_list.into_any().unbind();
+        result.set_item("citations", converted_123)?;
     } else {
         result.set_item("citations", py.None())?;
     }
@@ -846,26 +1322,75 @@ fn citations_delta_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::CitationsDelta::builder();
     if let Some(value) = dict_value(values, "title")? {
-        let converted_122: String = value.extract()?;
-        builder = builder.set_title(Some(converted_122));
+        let converted_126 = (|| -> PyResult<_> {
+            let converted_126: String = value.extract()?;
+            Ok(converted_126)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("title"), "str")
+        })?;
+        builder = builder.set_title(Some(converted_126));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_123: String = value.extract()?;
-        builder = builder.set_source(Some(converted_123));
+        let converted_127 = (|| -> PyResult<_> {
+            let converted_127: String = value.extract()?;
+            Ok(converted_127)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("source"), "str")
+        })?;
+        builder = builder.set_source(Some(converted_127));
     }
     if let Some(value) = dict_value(values, "source_content")? {
-        let mut converted_124 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_125 in value.try_iter()? {
-            let item_126 = item_result_125?;
-            let converted_item_127 = citation_source_content_delta_from_py(&item_126)?;
-            converted_124.push(converted_item_127);
-        }
-        builder = builder.set_source_content(Some(converted_124));
+        let converted_128 = (|| -> PyResult<_> {
+            let mut converted_128 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_132, item_result_129) in value.try_iter()?.enumerate() {
+                let item_130 = item_result_129.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_132),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_131 = (|| -> PyResult<_> {
+                    let converted_item_131 = citation_source_content_delta_from_py(&item_130)?;
+                    Ok(converted_item_131)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_132),
+                        "dict (CitationSourceContentDelta)",
+                    )
+                })?;
+                converted_128.push(converted_item_131);
+            }
+            Ok(converted_128)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source_content"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_source_content(Some(converted_128));
     }
     if let Some(value) = dict_value(values, "location")? {
-        let converted_128 = citation_location_from_py(&value)?;
-        builder = builder.set_location(Some(converted_128));
+        let converted_133 = (|| -> PyResult<_> {
+            let converted_133 = citation_location_from_py(&value)?;
+            Ok(converted_133)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("location"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_location(Some(converted_133));
     }
     Ok(builder.build())
 }
@@ -876,31 +1401,31 @@ fn citations_delta_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.title {
-        let converted_129 = (value).as_str().into_py_any(py)?;
-        result.set_item("title", converted_129)?;
+        let converted_134 = (value).as_str().into_py_any(py)?;
+        result.set_item("title", converted_134)?;
     } else {
         result.set_item("title", py.None())?;
     }
     if let Some(value) = &value.source {
-        let converted_130 = (value).as_str().into_py_any(py)?;
-        result.set_item("source", converted_130)?;
+        let converted_135 = (value).as_str().into_py_any(py)?;
+        result.set_item("source", converted_135)?;
     } else {
         result.set_item("source", py.None())?;
     }
     if let Some(value) = &value.source_content {
-        let converted_131_list = PyList::empty(py);
-        for item_132 in value {
-            let converted_item_133 = citation_source_content_delta_to_py(py, item_132)?;
-            converted_131_list.append(converted_item_133)?;
+        let converted_136_list = PyList::empty(py);
+        for item_137 in value {
+            let converted_item_138 = citation_source_content_delta_to_py(py, item_137)?;
+            converted_136_list.append(converted_item_138)?;
         }
-        let converted_131 = converted_131_list.into_any().unbind();
-        result.set_item("source_content", converted_131)?;
+        let converted_136 = converted_136_list.into_any().unbind();
+        result.set_item("source_content", converted_136)?;
     } else {
         result.set_item("source_content", py.None())?;
     }
     if let Some(value) = &value.location {
-        let converted_134 = citation_location_to_py(py, value)?;
-        result.set_item("location", converted_134)?;
+        let converted_139 = citation_location_to_py(py, value)?;
+        result.set_item("location", converted_139)?;
     } else {
         result.set_item("location", py.None())?;
     }
@@ -912,90 +1437,234 @@ fn content_block_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ContentBlock> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_135: String = value.extract()?;
+        let converted_140 = (|| -> PyResult<_> {
+            let converted_140: String = value.extract()?;
+            Ok(converted_140)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Text(
-            converted_135,
-        ));
-    }
-    if let Some(value) = dict_value(values, "image")? {
-        let converted_136 = image_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Image(
-            converted_136,
-        ));
-    }
-    if let Some(value) = dict_value(values, "document")? {
-        let converted_137 = document_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Document(
-            converted_137,
-        ));
-    }
-    if let Some(value) = dict_value(values, "video")? {
-        let converted_138 = video_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Video(
-            converted_138,
-        ));
-    }
-    if let Some(value) = dict_value(values, "audio")? {
-        let converted_139 = audio_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Audio(
-            converted_139,
-        ));
-    }
-    if let Some(value) = dict_value(values, "tool_use")? {
-        let converted_140 = tool_use_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolUse(
             converted_140,
         ));
     }
-    if let Some(value) = dict_value(values, "tool_result")? {
-        let converted_141 = tool_result_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolResult(
+    if let Some(value) = dict_value(values, "image")? {
+        let converted_141 = (|| -> PyResult<_> {
+            let converted_141 = image_block_from_py(&value)?;
+            Ok(converted_141)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("image"),
+                "dict (ImageBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Image(
             converted_141,
         ));
     }
-    if let Some(value) = dict_value(values, "guard_content")? {
-        let converted_142 = guardrail_converse_content_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::GuardContent(
+    if let Some(value) = dict_value(values, "document")? {
+        let converted_142 = (|| -> PyResult<_> {
+            let converted_142 = document_block_from_py(&value)?;
+            Ok(converted_142)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("document"),
+                "dict (DocumentBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Document(
             converted_142,
         ));
     }
-    if let Some(value) = dict_value(values, "cache_point")? {
-        let converted_143 = cache_point_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::CachePoint(
+    if let Some(value) = dict_value(values, "video")? {
+        let converted_143 = (|| -> PyResult<_> {
+            let converted_143 = video_block_from_py(&value)?;
+            Ok(converted_143)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("video"),
+                "dict (VideoBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Video(
             converted_143,
         ));
     }
-    if let Some(value) = dict_value(values, "reasoning_content")? {
-        let converted_144 = reasoning_content_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ReasoningContent(converted_144));
+    if let Some(value) = dict_value(values, "audio")? {
+        let converted_144 = (|| -> PyResult<_> {
+            let converted_144 = audio_block_from_py(&value)?;
+            Ok(converted_144)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("audio"),
+                "dict (AudioBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::Audio(
+            converted_144,
+        ));
     }
-    if let Some(value) = dict_value(values, "citations_content")? {
-        let converted_145 = citations_content_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::CitationsContent(converted_145));
+    if let Some(value) = dict_value(values, "tool_use")? {
+        let converted_145 = (|| -> PyResult<_> {
+            let converted_145 = tool_use_block_from_py(&value)?;
+            Ok(converted_145)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_use"),
+                "dict (ToolUseBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolUse(
+            converted_145,
+        ));
     }
-    if let Some(value) = dict_value(values, "search_result")? {
-        let converted_146 = search_result_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::SearchResult(
+    if let Some(value) = dict_value(values, "tool_result")? {
+        let converted_146 = (|| -> PyResult<_> {
+            let converted_146 = tool_result_block_from_py(&value)?;
+            Ok(converted_146)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_result"),
+                "dict (ToolResultBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolResult(
             converted_146,
         ));
     }
-    if let Some(value) = dict_value(values, "tool_addition")? {
-        let converted_147 = tool_addition_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolAddition(
+    if let Some(value) = dict_value(values, "guard_content")? {
+        let converted_147 = (|| -> PyResult<_> {
+            let converted_147 = guardrail_converse_content_block_from_py(&value)?;
+            Ok(converted_147)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guard_content"),
+                "exactly one known union variant",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::GuardContent(
             converted_147,
         ));
     }
-    if let Some(value) = dict_value(values, "tool_removal")? {
-        let converted_148 = tool_removal_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolRemoval(
+    if let Some(value) = dict_value(values, "cache_point")? {
+        let converted_148 = (|| -> PyResult<_> {
+            let converted_148 = cache_point_block_from_py(&value)?;
+            Ok(converted_148)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cache_point"),
+                "dict (CachePointBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::CachePoint(
             converted_148,
         ));
     }
-    Err(PyValueError::new_err(
-        "ContentBlock requires exactly one known variant",
+    if let Some(value) = dict_value(values, "reasoning_content")? {
+        let converted_149 = (|| -> PyResult<_> {
+            let converted_149 = reasoning_content_block_from_py(&value)?;
+            Ok(converted_149)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("reasoning_content"),
+                "exactly one known union variant",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ReasoningContent(converted_149));
+    }
+    if let Some(value) = dict_value(values, "citations_content")? {
+        let converted_150 = (|| -> PyResult<_> {
+            let converted_150 = citations_content_block_from_py(&value)?;
+            Ok(converted_150)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("citations_content"),
+                "dict (CitationsContentBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::CitationsContent(converted_150));
+    }
+    if let Some(value) = dict_value(values, "search_result")? {
+        let converted_151 = (|| -> PyResult<_> {
+            let converted_151 = search_result_block_from_py(&value)?;
+            Ok(converted_151)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("search_result"),
+                "dict (SearchResultBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::SearchResult(
+            converted_151,
+        ));
+    }
+    if let Some(value) = dict_value(values, "tool_addition")? {
+        let converted_152 = (|| -> PyResult<_> {
+            let converted_152 = tool_addition_block_from_py(&value)?;
+            Ok(converted_152)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_addition"),
+                "dict (ToolAdditionBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolAddition(
+            converted_152,
+        ));
+    }
+    if let Some(value) = dict_value(values, "tool_removal")? {
+        let converted_153 = (|| -> PyResult<_> {
+            let converted_153 = tool_removal_block_from_py(&value)?;
+            Ok(converted_153)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_removal"),
+                "dict (ToolRemovalBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlock::ToolRemoval(
+            converted_153,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1006,60 +1675,60 @@ fn content_block_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ContentBlock::Text(value) => {
-            let converted_149 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_149)?;
+            let converted_154 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_154)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::Image(value) => {
-            let converted_150 = image_block_to_py(py, value)?;
-            result.set_item("image", converted_150)?;
+            let converted_155 = image_block_to_py(py, value)?;
+            result.set_item("image", converted_155)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::Document(value) => {
-            let converted_151 = document_block_to_py(py, value)?;
-            result.set_item("document", converted_151)?;
+            let converted_156 = document_block_to_py(py, value)?;
+            result.set_item("document", converted_156)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::Video(value) => {
-            let converted_152 = video_block_to_py(py, value)?;
-            result.set_item("video", converted_152)?;
+            let converted_157 = video_block_to_py(py, value)?;
+            result.set_item("video", converted_157)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::Audio(value) => {
-            let converted_153 = audio_block_to_py(py, value)?;
-            result.set_item("audio", converted_153)?;
+            let converted_158 = audio_block_to_py(py, value)?;
+            result.set_item("audio", converted_158)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::ToolUse(value) => {
-            let converted_154 = tool_use_block_to_py(py, value)?;
-            result.set_item("tool_use", converted_154)?;
+            let converted_159 = tool_use_block_to_py(py, value)?;
+            result.set_item("tool_use", converted_159)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::ToolResult(value) => {
-            let converted_155 = tool_result_block_to_py(py, value)?;
-            result.set_item("tool_result", converted_155)?;
+            let converted_160 = tool_result_block_to_py(py, value)?;
+            result.set_item("tool_result", converted_160)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::GuardContent(value) => {
-            let converted_156 = guardrail_converse_content_block_to_py(py, value)?;
-            result.set_item("guard_content", converted_156)?;
+            let converted_161 = guardrail_converse_content_block_to_py(py, value)?;
+            result.set_item("guard_content", converted_161)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::CachePoint(value) => {
-            let converted_157 = cache_point_block_to_py(py, value)?;
-            result.set_item("cache_point", converted_157)?;
+            let converted_162 = cache_point_block_to_py(py, value)?;
+            result.set_item("cache_point", converted_162)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::ReasoningContent(value) => {
-            let converted_158 = reasoning_content_block_to_py(py, value)?;
-            result.set_item("reasoning_content", converted_158)?;
+            let converted_163 = reasoning_content_block_to_py(py, value)?;
+            result.set_item("reasoning_content", converted_163)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::CitationsContent(value) => {
-            let converted_159 = citations_content_block_to_py(py, value)?;
-            result.set_item("citations_content", converted_159)?;
+            let converted_164 = citations_content_block_to_py(py, value)?;
+            result.set_item("citations_content", converted_164)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::SearchResult(value) => {
-            let converted_160 = search_result_block_to_py(py, value)?;
-            result.set_item("search_result", converted_160)?;
+            let converted_165 = search_result_block_to_py(py, value)?;
+            result.set_item("search_result", converted_165)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::ToolAddition(value) => {
-            let converted_161 = tool_addition_block_to_py(py, value)?;
-            result.set_item("tool_addition", converted_161)?;
+            let converted_166 = tool_addition_block_to_py(py, value)?;
+            result.set_item("tool_addition", converted_166)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlock::ToolRemoval(value) => {
-            let converted_162 = tool_removal_block_to_py(py, value)?;
-            result.set_item("tool_removal", converted_162)?;
+            let converted_167 = tool_removal_block_to_py(py, value)?;
+            result.set_item("tool_removal", converted_167)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1073,50 +1742,131 @@ fn content_block_delta_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ContentBlockDelta> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_163: String = value.extract()?;
+        let converted_168 = (|| -> PyResult<_> {
+            let converted_168: String = value.extract()?;
+            Ok(converted_168)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ContentBlockDelta::Text(
-            converted_163,
+            converted_168,
         ));
     }
     if let Some(value) = dict_value(values, "tool_use")? {
-        let converted_164 = tool_use_block_delta_from_py(&value)?;
+        let converted_169 = (|| -> PyResult<_> {
+            let converted_169 = tool_use_block_delta_from_py(&value)?;
+            Ok(converted_169)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_use"),
+                "dict (ToolUseBlockDelta)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ContentBlockDelta::ToolUse(
-            converted_164,
+            converted_169,
         ));
     }
     if let Some(value) = dict_value(values, "tool_result")? {
-        let mut converted_165 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_166 in value.try_iter()? {
-            let item_167 = item_result_166?;
-            let converted_item_168 = tool_result_block_delta_from_py(&item_167)?;
-            converted_165.push(converted_item_168);
-        }
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlockDelta::ToolResult(converted_165));
+        let converted_170 = (|| -> PyResult<_> {
+            let mut converted_170 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_174, item_result_171) in value.try_iter()?.enumerate() {
+                let item_172 = item_result_171.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_174),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_173 = (|| -> PyResult<_> {
+                    let converted_item_173 = tool_result_block_delta_from_py(&item_172)?;
+                    Ok(converted_item_173)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_174),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_170.push(converted_item_173);
+            }
+            Ok(converted_170)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_result"),
+                "sequence",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlockDelta::ToolResult(converted_170));
     }
     if let Some(value) = dict_value(values, "reasoning_content")? {
-        let converted_169 = reasoning_content_block_delta_from_py(&value)?;
+        let converted_175 = (|| -> PyResult<_> {
+            let converted_175 = reasoning_content_block_delta_from_py(&value)?;
+            Ok(converted_175)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("reasoning_content"),
+                "exactly one known union variant",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ContentBlockDelta::ReasoningContent(converted_169),
+            aws_sdk_bedrockruntime::types::ContentBlockDelta::ReasoningContent(converted_175),
         );
     }
     if let Some(value) = dict_value(values, "citation")? {
-        let converted_170 = citations_delta_from_py(&value)?;
+        let converted_176 = (|| -> PyResult<_> {
+            let converted_176 = citations_delta_from_py(&value)?;
+            Ok(converted_176)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("citation"),
+                "dict (CitationsDelta)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ContentBlockDelta::Citation(
-            converted_170,
+            converted_176,
         ));
     }
     if let Some(value) = dict_value(values, "image")? {
-        let converted_171 = image_block_delta_from_py(&value)?;
+        let converted_177 = (|| -> PyResult<_> {
+            let converted_177 = image_block_delta_from_py(&value)?;
+            Ok(converted_177)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("image"),
+                "dict (ImageBlockDelta)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ContentBlockDelta::Image(
-            converted_171,
+            converted_177,
         ));
     }
-    Err(PyValueError::new_err(
-        "ContentBlockDelta requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ContentBlockDelta requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1127,33 +1877,33 @@ fn content_block_delta_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ContentBlockDelta::Text(value) => {
-            let converted_172 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_172)?;
+            let converted_178 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_178)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlockDelta::ToolUse(value) => {
-            let converted_173 = tool_use_block_delta_to_py(py, value)?;
-            result.set_item("tool_use", converted_173)?;
+            let converted_179 = tool_use_block_delta_to_py(py, value)?;
+            result.set_item("tool_use", converted_179)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlockDelta::ToolResult(value) => {
-            let converted_174_list = PyList::empty(py);
-            for item_175 in value {
-                let converted_item_176 = tool_result_block_delta_to_py(py, item_175)?;
-                converted_174_list.append(converted_item_176)?;
+            let converted_180_list = PyList::empty(py);
+            for item_181 in value {
+                let converted_item_182 = tool_result_block_delta_to_py(py, item_181)?;
+                converted_180_list.append(converted_item_182)?;
             }
-            let converted_174 = converted_174_list.into_any().unbind();
-            result.set_item("tool_result", converted_174)?;
+            let converted_180 = converted_180_list.into_any().unbind();
+            result.set_item("tool_result", converted_180)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlockDelta::ReasoningContent(value) => {
-            let converted_177 = reasoning_content_block_delta_to_py(py, value)?;
-            result.set_item("reasoning_content", converted_177)?;
+            let converted_183 = reasoning_content_block_delta_to_py(py, value)?;
+            result.set_item("reasoning_content", converted_183)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlockDelta::Citation(value) => {
-            let converted_178 = citations_delta_to_py(py, value)?;
-            result.set_item("citation", converted_178)?;
+            let converted_184 = citations_delta_to_py(py, value)?;
+            result.set_item("citation", converted_184)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlockDelta::Image(value) => {
-            let converted_179 = image_block_delta_to_py(py, value)?;
-            result.set_item("image", converted_179)?;
+            let converted_185 = image_block_delta_to_py(py, value)?;
+            result.set_item("image", converted_185)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1168,16 +1918,36 @@ fn content_block_delta_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ContentBlockDeltaEvent::builder();
     if let Some(value) = dict_value(values, "delta")? {
-        let converted_180 = content_block_delta_from_py(&value)?;
-        builder = builder.set_delta(Some(converted_180));
+        let converted_186 = (|| -> PyResult<_> {
+            let converted_186 = content_block_delta_from_py(&value)?;
+            Ok(converted_186)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("delta"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_delta(Some(converted_186));
     }
     if let Some(value) = dict_value(values, "content_block_index")? {
-        let converted_181: i32 = value.extract()?;
-        builder = builder.set_content_block_index(Some(converted_181));
+        let converted_187 = (|| -> PyResult<_> {
+            let converted_187: i32 = value.extract()?;
+            Ok(converted_187)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_block_index"),
+                "int",
+            )
+        })?;
+        builder = builder.set_content_block_index(Some(converted_187));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("content_block_index", "content_block_index")])
+    })
 }
 
 fn content_block_delta_event_to_py(
@@ -1186,13 +1956,13 @@ fn content_block_delta_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.delta {
-        let converted_182 = content_block_delta_to_py(py, value)?;
-        result.set_item("delta", converted_182)?;
+        let converted_188 = content_block_delta_to_py(py, value)?;
+        result.set_item("delta", converted_188)?;
     } else {
         result.set_item("delta", py.None())?;
     }
-    let converted_183 = (&value.content_block_index).to_owned().into_py_any(py)?;
-    result.set_item("content_block_index", converted_183)?;
+    let converted_189 = (&value.content_block_index).to_owned().into_py_any(py)?;
+    result.set_item("content_block_index", converted_189)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1201,26 +1971,64 @@ fn content_block_start_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ContentBlockStart> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "tool_use")? {
-        let converted_184 = tool_use_block_start_from_py(&value)?;
+        let converted_190 = (|| -> PyResult<_> {
+            let converted_190 = tool_use_block_start_from_py(&value)?;
+            Ok(converted_190)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_use"),
+                "dict (ToolUseBlockStart)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ContentBlockStart::ToolUse(
-            converted_184,
+            converted_190,
         ));
     }
     if let Some(value) = dict_value(values, "tool_result")? {
-        let converted_185 = tool_result_block_start_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ContentBlockStart::ToolResult(converted_185));
+        let converted_191 = (|| -> PyResult<_> {
+            let converted_191 = tool_result_block_start_from_py(&value)?;
+            Ok(converted_191)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_result"),
+                "dict (ToolResultBlockStart)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ContentBlockStart::ToolResult(converted_191));
     }
     if let Some(value) = dict_value(values, "image")? {
-        let converted_186 = image_block_start_from_py(&value)?;
+        let converted_192 = (|| -> PyResult<_> {
+            let converted_192 = image_block_start_from_py(&value)?;
+            Ok(converted_192)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("image"),
+                "dict (ImageBlockStart)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ContentBlockStart::Image(
-            converted_186,
+            converted_192,
         ));
     }
-    Err(PyValueError::new_err(
-        "ContentBlockStart requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ContentBlockStart requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1231,16 +2039,16 @@ fn content_block_start_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ContentBlockStart::ToolUse(value) => {
-            let converted_187 = tool_use_block_start_to_py(py, value)?;
-            result.set_item("tool_use", converted_187)?;
+            let converted_193 = tool_use_block_start_to_py(py, value)?;
+            result.set_item("tool_use", converted_193)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlockStart::ToolResult(value) => {
-            let converted_188 = tool_result_block_start_to_py(py, value)?;
-            result.set_item("tool_result", converted_188)?;
+            let converted_194 = tool_result_block_start_to_py(py, value)?;
+            result.set_item("tool_result", converted_194)?;
         }
         aws_sdk_bedrockruntime::types::ContentBlockStart::Image(value) => {
-            let converted_189 = image_block_start_to_py(py, value)?;
-            result.set_item("image", converted_189)?;
+            let converted_195 = image_block_start_to_py(py, value)?;
+            result.set_item("image", converted_195)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1255,16 +2063,36 @@ fn content_block_start_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ContentBlockStartEvent::builder();
     if let Some(value) = dict_value(values, "start")? {
-        let converted_190 = content_block_start_from_py(&value)?;
-        builder = builder.set_start(Some(converted_190));
+        let converted_196 = (|| -> PyResult<_> {
+            let converted_196 = content_block_start_from_py(&value)?;
+            Ok(converted_196)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("start"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_start(Some(converted_196));
     }
     if let Some(value) = dict_value(values, "content_block_index")? {
-        let converted_191: i32 = value.extract()?;
-        builder = builder.set_content_block_index(Some(converted_191));
+        let converted_197 = (|| -> PyResult<_> {
+            let converted_197: i32 = value.extract()?;
+            Ok(converted_197)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_block_index"),
+                "int",
+            )
+        })?;
+        builder = builder.set_content_block_index(Some(converted_197));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("content_block_index", "content_block_index")])
+    })
 }
 
 fn content_block_start_event_to_py(
@@ -1273,13 +2101,13 @@ fn content_block_start_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.start {
-        let converted_192 = content_block_start_to_py(py, value)?;
-        result.set_item("start", converted_192)?;
+        let converted_198 = content_block_start_to_py(py, value)?;
+        result.set_item("start", converted_198)?;
     } else {
         result.set_item("start", py.None())?;
     }
-    let converted_193 = (&value.content_block_index).to_owned().into_py_any(py)?;
-    result.set_item("content_block_index", converted_193)?;
+    let converted_199 = (&value.content_block_index).to_owned().into_py_any(py)?;
+    result.set_item("content_block_index", converted_199)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1289,12 +2117,22 @@ fn content_block_stop_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ContentBlockStopEvent::builder();
     if let Some(value) = dict_value(values, "content_block_index")? {
-        let converted_194: i32 = value.extract()?;
-        builder = builder.set_content_block_index(Some(converted_194));
+        let converted_200 = (|| -> PyResult<_> {
+            let converted_200: i32 = value.extract()?;
+            Ok(converted_200)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_block_index"),
+                "int",
+            )
+        })?;
+        builder = builder.set_content_block_index(Some(converted_200));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("content_block_index", "content_block_index")])
+    })
 }
 
 fn content_block_stop_event_to_py(
@@ -1302,8 +2140,8 @@ fn content_block_stop_event_to_py(
     value: &aws_sdk_bedrockruntime::types::ContentBlockStopEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_195 = (&value.content_block_index).to_owned().into_py_any(py)?;
-    result.set_item("content_block_index", converted_195)?;
+    let converted_201 = (&value.content_block_index).to_owned().into_py_any(py)?;
+    result.set_item("content_block_index", converted_201)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1313,12 +2151,18 @@ fn converse_metrics_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ConverseMetrics::builder();
     if let Some(value) = dict_value(values, "latency_ms")? {
-        let converted_196: i64 = value.extract()?;
-        builder = builder.set_latency_ms(Some(converted_196));
+        let converted_202 = (|| -> PyResult<_> {
+            let converted_202: i64 = value.extract()?;
+            Ok(converted_202)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("latency_ms"), "int")
+        })?;
+        builder = builder.set_latency_ms(Some(converted_202));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("latency_ms", "latency_ms")]))
 }
 
 fn converse_metrics_to_py(
@@ -1326,8 +2170,8 @@ fn converse_metrics_to_py(
     value: &aws_sdk_bedrockruntime::types::ConverseMetrics,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_197 = (&value.latency_ms).to_owned().into_py_any(py)?;
-    result.set_item("latency_ms", converted_197)?;
+    let converted_203 = (&value.latency_ms).to_owned().into_py_any(py)?;
+    result.set_item("latency_ms", converted_203)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1336,16 +2180,34 @@ fn converse_output_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ConverseOutput> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "message")? {
-        let converted_198 = message_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ConverseOutput::Message(
-            converted_198,
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
         ));
     }
-    Err(PyValueError::new_err(
-        "ConverseOutput requires exactly one known variant",
+    if let Some(value) = dict_value(values, "message")? {
+        let converted_204 = (|| -> PyResult<_> {
+            let converted_204 = message_from_py(&value)?;
+            Ok(converted_204)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message"),
+                "dict (Message)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ConverseOutput::Message(
+            converted_204,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ConverseOutput requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1356,8 +2218,8 @@ fn converse_output_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ConverseOutput::Message(value) => {
-            let converted_199 = message_to_py(py, value)?;
-            result.set_item("message", converted_199)?;
+            let converted_205 = message_to_py(py, value)?;
+            result.set_item("message", converted_205)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1372,24 +2234,74 @@ fn converse_stream_metadata_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ConverseStreamMetadataEvent::builder();
     if let Some(value) = dict_value(values, "usage")? {
-        let converted_200 = token_usage_from_py(&value)?;
-        builder = builder.set_usage(Some(converted_200));
+        let converted_206 = (|| -> PyResult<_> {
+            let converted_206 = token_usage_from_py(&value)?;
+            Ok(converted_206)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("usage"),
+                "dict (TokenUsage)",
+            )
+        })?;
+        builder = builder.set_usage(Some(converted_206));
     }
     if let Some(value) = dict_value(values, "metrics")? {
-        let converted_201 = converse_stream_metrics_from_py(&value)?;
-        builder = builder.set_metrics(Some(converted_201));
+        let converted_207 = (|| -> PyResult<_> {
+            let converted_207 = converse_stream_metrics_from_py(&value)?;
+            Ok(converted_207)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("metrics"),
+                "dict (ConverseStreamMetrics)",
+            )
+        })?;
+        builder = builder.set_metrics(Some(converted_207));
     }
     if let Some(value) = dict_value(values, "trace")? {
-        let converted_202 = converse_stream_trace_from_py(&value)?;
-        builder = builder.set_trace(Some(converted_202));
+        let converted_208 = (|| -> PyResult<_> {
+            let converted_208 = converse_stream_trace_from_py(&value)?;
+            Ok(converted_208)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("trace"),
+                "dict (ConverseStreamTrace)",
+            )
+        })?;
+        builder = builder.set_trace(Some(converted_208));
     }
     if let Some(value) = dict_value(values, "performance_config")? {
-        let converted_203 = performance_configuration_from_py(&value)?;
-        builder = builder.set_performance_config(Some(converted_203));
+        let converted_209 = (|| -> PyResult<_> {
+            let converted_209 = performance_configuration_from_py(&value)?;
+            Ok(converted_209)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("performance_config"),
+                "dict (PerformanceConfiguration)",
+            )
+        })?;
+        builder = builder.set_performance_config(Some(converted_209));
     }
     if let Some(value) = dict_value(values, "service_tier")? {
-        let converted_204 = service_tier_from_py(&value)?;
-        builder = builder.set_service_tier(Some(converted_204));
+        let converted_210 = (|| -> PyResult<_> {
+            let converted_210 = service_tier_from_py(&value)?;
+            Ok(converted_210)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("service_tier"),
+                "dict (ServiceTier)",
+            )
+        })?;
+        builder = builder.set_service_tier(Some(converted_210));
     }
     Ok(builder.build())
 }
@@ -1400,32 +2312,32 @@ fn converse_stream_metadata_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.usage {
-        let converted_205 = token_usage_to_py(py, value)?;
-        result.set_item("usage", converted_205)?;
+        let converted_211 = token_usage_to_py(py, value)?;
+        result.set_item("usage", converted_211)?;
     } else {
         result.set_item("usage", py.None())?;
     }
     if let Some(value) = &value.metrics {
-        let converted_206 = converse_stream_metrics_to_py(py, value)?;
-        result.set_item("metrics", converted_206)?;
+        let converted_212 = converse_stream_metrics_to_py(py, value)?;
+        result.set_item("metrics", converted_212)?;
     } else {
         result.set_item("metrics", py.None())?;
     }
     if let Some(value) = &value.trace {
-        let converted_207 = converse_stream_trace_to_py(py, value)?;
-        result.set_item("trace", converted_207)?;
+        let converted_213 = converse_stream_trace_to_py(py, value)?;
+        result.set_item("trace", converted_213)?;
     } else {
         result.set_item("trace", py.None())?;
     }
     if let Some(value) = &value.performance_config {
-        let converted_208 = performance_configuration_to_py(py, value)?;
-        result.set_item("performance_config", converted_208)?;
+        let converted_214 = performance_configuration_to_py(py, value)?;
+        result.set_item("performance_config", converted_214)?;
     } else {
         result.set_item("performance_config", py.None())?;
     }
     if let Some(value) = &value.service_tier {
-        let converted_209 = service_tier_to_py(py, value)?;
-        result.set_item("service_tier", converted_209)?;
+        let converted_215 = service_tier_to_py(py, value)?;
+        result.set_item("service_tier", converted_215)?;
     } else {
         result.set_item("service_tier", py.None())?;
     }
@@ -1438,12 +2350,18 @@ fn converse_stream_metrics_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ConverseStreamMetrics::builder();
     if let Some(value) = dict_value(values, "latency_ms")? {
-        let converted_210: i64 = value.extract()?;
-        builder = builder.set_latency_ms(Some(converted_210));
+        let converted_216 = (|| -> PyResult<_> {
+            let converted_216: i64 = value.extract()?;
+            Ok(converted_216)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("latency_ms"), "int")
+        })?;
+        builder = builder.set_latency_ms(Some(converted_216));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("latency_ms", "latency_ms")]))
 }
 
 fn converse_stream_metrics_to_py(
@@ -1451,8 +2369,8 @@ fn converse_stream_metrics_to_py(
     value: &aws_sdk_bedrockruntime::types::ConverseStreamMetrics,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_211 = (&value.latency_ms).to_owned().into_py_any(py)?;
-    result.set_item("latency_ms", converted_211)?;
+    let converted_217 = (&value.latency_ms).to_owned().into_py_any(py)?;
+    result.set_item("latency_ms", converted_217)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1461,42 +2379,110 @@ fn converse_stream_output_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ConverseStreamOutput> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "message_start")? {
-        let converted_212 = message_start_event_from_py(&value)?;
+        let converted_218 = (|| -> PyResult<_> {
+            let converted_218 = message_start_event_from_py(&value)?;
+            Ok(converted_218)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_start"),
+                "dict (MessageStartEvent)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ConverseStreamOutput::MessageStart(converted_212),
+            aws_sdk_bedrockruntime::types::ConverseStreamOutput::MessageStart(converted_218),
         );
     }
     if let Some(value) = dict_value(values, "content_block_start")? {
-        let converted_213 = content_block_start_event_from_py(&value)?;
+        let converted_219 = (|| -> PyResult<_> {
+            let converted_219 = content_block_start_event_from_py(&value)?;
+            Ok(converted_219)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_block_start"),
+                "dict (ContentBlockStartEvent)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockStart(converted_213),
+            aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockStart(converted_219),
         );
     }
     if let Some(value) = dict_value(values, "content_block_delta")? {
-        let converted_214 = content_block_delta_event_from_py(&value)?;
+        let converted_220 = (|| -> PyResult<_> {
+            let converted_220 = content_block_delta_event_from_py(&value)?;
+            Ok(converted_220)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_block_delta"),
+                "dict (ContentBlockDeltaEvent)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockDelta(converted_214),
+            aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockDelta(converted_220),
         );
     }
     if let Some(value) = dict_value(values, "content_block_stop")? {
-        let converted_215 = content_block_stop_event_from_py(&value)?;
+        let converted_221 = (|| -> PyResult<_> {
+            let converted_221 = content_block_stop_event_from_py(&value)?;
+            Ok(converted_221)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_block_stop"),
+                "dict (ContentBlockStopEvent)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockStop(converted_215),
+            aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockStop(converted_221),
         );
     }
     if let Some(value) = dict_value(values, "message_stop")? {
-        let converted_216 = message_stop_event_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ConverseStreamOutput::MessageStop(converted_216));
+        let converted_222 = (|| -> PyResult<_> {
+            let converted_222 = message_stop_event_from_py(&value)?;
+            Ok(converted_222)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_stop"),
+                "dict (MessageStopEvent)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ConverseStreamOutput::MessageStop(converted_222));
     }
     if let Some(value) = dict_value(values, "metadata")? {
-        let converted_217 = converse_stream_metadata_event_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ConverseStreamOutput::Metadata(converted_217));
+        let converted_223 = (|| -> PyResult<_> {
+            let converted_223 = converse_stream_metadata_event_from_py(&value)?;
+            Ok(converted_223)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("metadata"),
+                "dict (ConverseStreamMetadataEvent)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ConverseStreamOutput::Metadata(converted_223));
     }
-    Err(PyValueError::new_err(
-        "ConverseStreamOutput requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ConverseStreamOutput requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1507,28 +2493,28 @@ fn converse_stream_output_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ConverseStreamOutput::MessageStart(value) => {
-            let converted_218 = message_start_event_to_py(py, value)?;
-            result.set_item("message_start", converted_218)?;
+            let converted_224 = message_start_event_to_py(py, value)?;
+            result.set_item("message_start", converted_224)?;
         }
         aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockStart(value) => {
-            let converted_219 = content_block_start_event_to_py(py, value)?;
-            result.set_item("content_block_start", converted_219)?;
+            let converted_225 = content_block_start_event_to_py(py, value)?;
+            result.set_item("content_block_start", converted_225)?;
         }
         aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockDelta(value) => {
-            let converted_220 = content_block_delta_event_to_py(py, value)?;
-            result.set_item("content_block_delta", converted_220)?;
+            let converted_226 = content_block_delta_event_to_py(py, value)?;
+            result.set_item("content_block_delta", converted_226)?;
         }
         aws_sdk_bedrockruntime::types::ConverseStreamOutput::ContentBlockStop(value) => {
-            let converted_221 = content_block_stop_event_to_py(py, value)?;
-            result.set_item("content_block_stop", converted_221)?;
+            let converted_227 = content_block_stop_event_to_py(py, value)?;
+            result.set_item("content_block_stop", converted_227)?;
         }
         aws_sdk_bedrockruntime::types::ConverseStreamOutput::MessageStop(value) => {
-            let converted_222 = message_stop_event_to_py(py, value)?;
-            result.set_item("message_stop", converted_222)?;
+            let converted_228 = message_stop_event_to_py(py, value)?;
+            result.set_item("message_stop", converted_228)?;
         }
         aws_sdk_bedrockruntime::types::ConverseStreamOutput::Metadata(value) => {
-            let converted_223 = converse_stream_metadata_event_to_py(py, value)?;
-            result.set_item("metadata", converted_223)?;
+            let converted_229 = converse_stream_metadata_event_to_py(py, value)?;
+            result.set_item("metadata", converted_229)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1543,12 +2529,32 @@ fn converse_stream_trace_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ConverseStreamTrace::builder();
     if let Some(value) = dict_value(values, "guardrail")? {
-        let converted_224 = guardrail_trace_assessment_from_py(&value)?;
-        builder = builder.set_guardrail(Some(converted_224));
+        let converted_230 = (|| -> PyResult<_> {
+            let converted_230 = guardrail_trace_assessment_from_py(&value)?;
+            Ok(converted_230)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail"),
+                "dict (GuardrailTraceAssessment)",
+            )
+        })?;
+        builder = builder.set_guardrail(Some(converted_230));
     }
     if let Some(value) = dict_value(values, "prompt_router")? {
-        let converted_225 = prompt_router_trace_from_py(&value)?;
-        builder = builder.set_prompt_router(Some(converted_225));
+        let converted_231 = (|| -> PyResult<_> {
+            let converted_231 = prompt_router_trace_from_py(&value)?;
+            Ok(converted_231)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("prompt_router"),
+                "dict (PromptRouterTrace)",
+            )
+        })?;
+        builder = builder.set_prompt_router(Some(converted_231));
     }
     Ok(builder.build())
 }
@@ -1559,14 +2565,14 @@ fn converse_stream_trace_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail {
-        let converted_226 = guardrail_trace_assessment_to_py(py, value)?;
-        result.set_item("guardrail", converted_226)?;
+        let converted_232 = guardrail_trace_assessment_to_py(py, value)?;
+        result.set_item("guardrail", converted_232)?;
     } else {
         result.set_item("guardrail", py.None())?;
     }
     if let Some(value) = &value.prompt_router {
-        let converted_227 = prompt_router_trace_to_py(py, value)?;
-        result.set_item("prompt_router", converted_227)?;
+        let converted_233 = prompt_router_trace_to_py(py, value)?;
+        result.set_item("prompt_router", converted_233)?;
     } else {
         result.set_item("prompt_router", py.None())?;
     }
@@ -1579,32 +2585,98 @@ fn converse_tokens_request_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ConverseTokensRequest::builder();
     if let Some(value) = dict_value(values, "messages")? {
-        let mut converted_228 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_229 in value.try_iter()? {
-            let item_230 = item_result_229?;
-            let converted_item_231 = message_from_py(&item_230)?;
-            converted_228.push(converted_item_231);
-        }
-        builder = builder.set_messages(Some(converted_228));
+        let converted_234 = (|| -> PyResult<_> {
+            let mut converted_234 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_238, item_result_235) in value.try_iter()?.enumerate() {
+                let item_236 = item_result_235.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_238),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_237 = (|| -> PyResult<_> {
+                    let converted_item_237 = message_from_py(&item_236)?;
+                    Ok(converted_item_237)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_238),
+                        "dict (Message)",
+                    )
+                })?;
+                converted_234.push(converted_item_237);
+            }
+            Ok(converted_234)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("messages"), "sequence")
+        })?;
+        builder = builder.set_messages(Some(converted_234));
     }
     if let Some(value) = dict_value(values, "system")? {
-        let mut converted_232 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_233 in value.try_iter()? {
-            let item_234 = item_result_233?;
-            let converted_item_235 = system_content_block_from_py(&item_234)?;
-            converted_232.push(converted_item_235);
-        }
-        builder = builder.set_system(Some(converted_232));
+        let converted_239 = (|| -> PyResult<_> {
+            let mut converted_239 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_243, item_result_240) in value.try_iter()?.enumerate() {
+                let item_241 = item_result_240.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_243),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_242 = (|| -> PyResult<_> {
+                    let converted_item_242 = system_content_block_from_py(&item_241)?;
+                    Ok(converted_item_242)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_243),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_239.push(converted_item_242);
+            }
+            Ok(converted_239)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("system"), "sequence")
+        })?;
+        builder = builder.set_system(Some(converted_239));
     }
     if let Some(value) = dict_value(values, "tool_config")? {
-        let converted_236 = tool_configuration_from_py(&value)?;
-        builder = builder.set_tool_config(Some(converted_236));
+        let converted_244 = (|| -> PyResult<_> {
+            let converted_244 = tool_configuration_from_py(&value)?;
+            Ok(converted_244)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_config"),
+                "dict (ToolConfiguration)",
+            )
+        })?;
+        builder = builder.set_tool_config(Some(converted_244));
     }
     if let Some(value) = dict_value(values, "additional_model_request_fields")? {
-        let converted_237 = rboto_core::document_from_py(&value)?;
-        builder = builder.set_additional_model_request_fields(Some(converted_237));
+        let converted_245 = (|| -> PyResult<_> {
+            let converted_245 = rboto_core::document_from_py(&value)?;
+            Ok(converted_245)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("additional_model_request_fields"),
+                "JSONValue",
+            )
+        })?;
+        builder = builder.set_additional_model_request_fields(Some(converted_245));
     }
     Ok(builder.build())
 }
@@ -1615,36 +2687,36 @@ fn converse_tokens_request_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.messages {
-        let converted_238_list = PyList::empty(py);
-        for item_239 in value {
-            let converted_item_240 = message_to_py(py, item_239)?;
-            converted_238_list.append(converted_item_240)?;
+        let converted_246_list = PyList::empty(py);
+        for item_247 in value {
+            let converted_item_248 = message_to_py(py, item_247)?;
+            converted_246_list.append(converted_item_248)?;
         }
-        let converted_238 = converted_238_list.into_any().unbind();
-        result.set_item("messages", converted_238)?;
+        let converted_246 = converted_246_list.into_any().unbind();
+        result.set_item("messages", converted_246)?;
     } else {
         result.set_item("messages", py.None())?;
     }
     if let Some(value) = &value.system {
-        let converted_241_list = PyList::empty(py);
-        for item_242 in value {
-            let converted_item_243 = system_content_block_to_py(py, item_242)?;
-            converted_241_list.append(converted_item_243)?;
+        let converted_249_list = PyList::empty(py);
+        for item_250 in value {
+            let converted_item_251 = system_content_block_to_py(py, item_250)?;
+            converted_249_list.append(converted_item_251)?;
         }
-        let converted_241 = converted_241_list.into_any().unbind();
-        result.set_item("system", converted_241)?;
+        let converted_249 = converted_249_list.into_any().unbind();
+        result.set_item("system", converted_249)?;
     } else {
         result.set_item("system", py.None())?;
     }
     if let Some(value) = &value.tool_config {
-        let converted_244 = tool_configuration_to_py(py, value)?;
-        result.set_item("tool_config", converted_244)?;
+        let converted_252 = tool_configuration_to_py(py, value)?;
+        result.set_item("tool_config", converted_252)?;
     } else {
         result.set_item("tool_config", py.None())?;
     }
     if let Some(value) = &value.additional_model_request_fields {
-        let converted_245 = rboto_core::document_to_py(py, value)?;
-        result.set_item("additional_model_request_fields", converted_245)?;
+        let converted_253 = rboto_core::document_to_py(py, value)?;
+        result.set_item("additional_model_request_fields", converted_253)?;
     } else {
         result.set_item("additional_model_request_fields", py.None())?;
     }
@@ -1657,12 +2729,32 @@ fn converse_trace_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ConverseTrace::builder();
     if let Some(value) = dict_value(values, "guardrail")? {
-        let converted_246 = guardrail_trace_assessment_from_py(&value)?;
-        builder = builder.set_guardrail(Some(converted_246));
+        let converted_254 = (|| -> PyResult<_> {
+            let converted_254 = guardrail_trace_assessment_from_py(&value)?;
+            Ok(converted_254)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail"),
+                "dict (GuardrailTraceAssessment)",
+            )
+        })?;
+        builder = builder.set_guardrail(Some(converted_254));
     }
     if let Some(value) = dict_value(values, "prompt_router")? {
-        let converted_247 = prompt_router_trace_from_py(&value)?;
-        builder = builder.set_prompt_router(Some(converted_247));
+        let converted_255 = (|| -> PyResult<_> {
+            let converted_255 = prompt_router_trace_from_py(&value)?;
+            Ok(converted_255)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("prompt_router"),
+                "dict (PromptRouterTrace)",
+            )
+        })?;
+        builder = builder.set_prompt_router(Some(converted_255));
     }
     Ok(builder.build())
 }
@@ -1673,14 +2765,14 @@ fn converse_trace_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail {
-        let converted_248 = guardrail_trace_assessment_to_py(py, value)?;
-        result.set_item("guardrail", converted_248)?;
+        let converted_256 = guardrail_trace_assessment_to_py(py, value)?;
+        result.set_item("guardrail", converted_256)?;
     } else {
         result.set_item("guardrail", py.None())?;
     }
     if let Some(value) = &value.prompt_router {
-        let converted_249 = prompt_router_trace_to_py(py, value)?;
-        result.set_item("prompt_router", converted_249)?;
+        let converted_257 = prompt_router_trace_to_py(py, value)?;
+        result.set_item("prompt_router", converted_257)?;
     } else {
         result.set_item("prompt_router", py.None())?;
     }
@@ -1692,20 +2784,48 @@ fn count_tokens_input_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::CountTokensInput> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "invoke_model")? {
-        let converted_250 = invoke_model_tokens_request_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::CountTokensInput::InvokeModel(converted_250));
-    }
-    if let Some(value) = dict_value(values, "converse")? {
-        let converted_251 = converse_tokens_request_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::CountTokensInput::Converse(
-            converted_251,
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
         ));
     }
-    Err(PyValueError::new_err(
-        "CountTokensInput requires exactly one known variant",
+    if let Some(value) = dict_value(values, "invoke_model")? {
+        let converted_258 = (|| -> PyResult<_> {
+            let converted_258 = invoke_model_tokens_request_from_py(&value)?;
+            Ok(converted_258)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("invoke_model"),
+                "dict (InvokeModelTokensRequest)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::CountTokensInput::InvokeModel(converted_258));
+    }
+    if let Some(value) = dict_value(values, "converse")? {
+        let converted_259 = (|| -> PyResult<_> {
+            let converted_259 = converse_tokens_request_from_py(&value)?;
+            Ok(converted_259)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("converse"),
+                "dict (ConverseTokensRequest)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::CountTokensInput::Converse(
+            converted_259,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("CountTokensInput requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -1716,12 +2836,12 @@ fn count_tokens_input_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::CountTokensInput::InvokeModel(value) => {
-            let converted_252 = invoke_model_tokens_request_to_py(py, value)?;
-            result.set_item("invoke_model", converted_252)?;
+            let converted_260 = invoke_model_tokens_request_to_py(py, value)?;
+            result.set_item("invoke_model", converted_260)?;
         }
         aws_sdk_bedrockruntime::types::CountTokensInput::Converse(value) => {
-            let converted_253 = converse_tokens_request_to_py(py, value)?;
-            result.set_item("converse", converted_253)?;
+            let converted_261 = converse_tokens_request_to_py(py, value)?;
+            result.set_item("converse", converted_261)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1736,30 +2856,72 @@ fn document_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::DocumentBlock::builder();
     if let Some(value) = dict_value(values, "format")? {
-        let enum_value_255: String = value.extract()?;
-        let converted_254 =
-            aws_sdk_bedrockruntime::types::DocumentFormat::from(enum_value_255.as_str());
-        builder = builder.set_format(Some(converted_254));
+        let converted_262 = (|| -> PyResult<_> {
+            let enum_value_263: String = value.extract()?;
+            let converted_262 =
+                aws_sdk_bedrockruntime::types::DocumentFormat::from(enum_value_263.as_str());
+            Ok(converted_262)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("format"),
+                "str (DocumentFormat)",
+            )
+        })?;
+        builder = builder.set_format(Some(converted_262));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_256: String = value.extract()?;
-        builder = builder.set_name(Some(converted_256));
+        let converted_264 = (|| -> PyResult<_> {
+            let converted_264: String = value.extract()?;
+            Ok(converted_264)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_264));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_257 = document_source_from_py(&value)?;
-        builder = builder.set_source(Some(converted_257));
+        let converted_265 = (|| -> PyResult<_> {
+            let converted_265 = document_source_from_py(&value)?;
+            Ok(converted_265)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_source(Some(converted_265));
     }
     if let Some(value) = dict_value(values, "context")? {
-        let converted_258: String = value.extract()?;
-        builder = builder.set_context(Some(converted_258));
+        let converted_266 = (|| -> PyResult<_> {
+            let converted_266: String = value.extract()?;
+            Ok(converted_266)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("context"), "str")
+        })?;
+        builder = builder.set_context(Some(converted_266));
     }
     if let Some(value) = dict_value(values, "citations")? {
-        let converted_259 = citations_config_from_py(&value)?;
-        builder = builder.set_citations(Some(converted_259));
+        let converted_267 = (|| -> PyResult<_> {
+            let converted_267 = citations_config_from_py(&value)?;
+            Ok(converted_267)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("citations"),
+                "dict (CitationsConfig)",
+            )
+        })?;
+        builder = builder.set_citations(Some(converted_267));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("name", "name")]))
 }
 
 fn document_block_to_py(
@@ -1767,25 +2929,25 @@ fn document_block_to_py(
     value: &aws_sdk_bedrockruntime::types::DocumentBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_260 = (&value.format).as_str().into_py_any(py)?;
-    result.set_item("format", converted_260)?;
-    let converted_261 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_261)?;
+    let converted_268 = (&value.format).as_str().into_py_any(py)?;
+    result.set_item("format", converted_268)?;
+    let converted_269 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_269)?;
     if let Some(value) = &value.source {
-        let converted_262 = document_source_to_py(py, value)?;
-        result.set_item("source", converted_262)?;
+        let converted_270 = document_source_to_py(py, value)?;
+        result.set_item("source", converted_270)?;
     } else {
         result.set_item("source", py.None())?;
     }
     if let Some(value) = &value.context {
-        let converted_263 = (value).as_str().into_py_any(py)?;
-        result.set_item("context", converted_263)?;
+        let converted_271 = (value).as_str().into_py_any(py)?;
+        result.set_item("context", converted_271)?;
     } else {
         result.set_item("context", py.None())?;
     }
     if let Some(value) = &value.citations {
-        let converted_264 = citations_config_to_py(py, value)?;
-        result.set_item("citations", converted_264)?;
+        let converted_272 = citations_config_to_py(py, value)?;
+        result.set_item("citations", converted_272)?;
     } else {
         result.set_item("citations", py.None())?;
     }
@@ -1798,16 +2960,34 @@ fn document_char_location_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::DocumentCharLocation::builder();
     if let Some(value) = dict_value(values, "document_index")? {
-        let converted_265: i32 = value.extract()?;
-        builder = builder.set_document_index(Some(converted_265));
+        let converted_273 = (|| -> PyResult<_> {
+            let converted_273: i32 = value.extract()?;
+            Ok(converted_273)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("document_index"), "int")
+        })?;
+        builder = builder.set_document_index(Some(converted_273));
     }
     if let Some(value) = dict_value(values, "start")? {
-        let converted_266: i32 = value.extract()?;
-        builder = builder.set_start(Some(converted_266));
+        let converted_274 = (|| -> PyResult<_> {
+            let converted_274: i32 = value.extract()?;
+            Ok(converted_274)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start"), "int")
+        })?;
+        builder = builder.set_start(Some(converted_274));
     }
     if let Some(value) = dict_value(values, "end")? {
-        let converted_267: i32 = value.extract()?;
-        builder = builder.set_end(Some(converted_267));
+        let converted_275 = (|| -> PyResult<_> {
+            let converted_275: i32 = value.extract()?;
+            Ok(converted_275)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end"), "int")
+        })?;
+        builder = builder.set_end(Some(converted_275));
     }
     Ok(builder.build())
 }
@@ -1818,20 +2998,20 @@ fn document_char_location_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.document_index {
-        let converted_268 = (value).to_owned().into_py_any(py)?;
-        result.set_item("document_index", converted_268)?;
+        let converted_276 = (value).to_owned().into_py_any(py)?;
+        result.set_item("document_index", converted_276)?;
     } else {
         result.set_item("document_index", py.None())?;
     }
     if let Some(value) = &value.start {
-        let converted_269 = (value).to_owned().into_py_any(py)?;
-        result.set_item("start", converted_269)?;
+        let converted_277 = (value).to_owned().into_py_any(py)?;
+        result.set_item("start", converted_277)?;
     } else {
         result.set_item("start", py.None())?;
     }
     if let Some(value) = &value.end {
-        let converted_270 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end", converted_270)?;
+        let converted_278 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end", converted_278)?;
     } else {
         result.set_item("end", py.None())?;
     }
@@ -1844,16 +3024,34 @@ fn document_chunk_location_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::DocumentChunkLocation::builder();
     if let Some(value) = dict_value(values, "document_index")? {
-        let converted_271: i32 = value.extract()?;
-        builder = builder.set_document_index(Some(converted_271));
+        let converted_279 = (|| -> PyResult<_> {
+            let converted_279: i32 = value.extract()?;
+            Ok(converted_279)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("document_index"), "int")
+        })?;
+        builder = builder.set_document_index(Some(converted_279));
     }
     if let Some(value) = dict_value(values, "start")? {
-        let converted_272: i32 = value.extract()?;
-        builder = builder.set_start(Some(converted_272));
+        let converted_280 = (|| -> PyResult<_> {
+            let converted_280: i32 = value.extract()?;
+            Ok(converted_280)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start"), "int")
+        })?;
+        builder = builder.set_start(Some(converted_280));
     }
     if let Some(value) = dict_value(values, "end")? {
-        let converted_273: i32 = value.extract()?;
-        builder = builder.set_end(Some(converted_273));
+        let converted_281 = (|| -> PyResult<_> {
+            let converted_281: i32 = value.extract()?;
+            Ok(converted_281)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end"), "int")
+        })?;
+        builder = builder.set_end(Some(converted_281));
     }
     Ok(builder.build())
 }
@@ -1861,87 +3059,6 @@ fn document_chunk_location_from_py(
 fn document_chunk_location_to_py(
     py: Python<'_>,
     value: &aws_sdk_bedrockruntime::types::DocumentChunkLocation,
-) -> PyResult<Py<PyAny>> {
-    let result = PyDict::new(py);
-    if let Some(value) = &value.document_index {
-        let converted_274 = (value).to_owned().into_py_any(py)?;
-        result.set_item("document_index", converted_274)?;
-    } else {
-        result.set_item("document_index", py.None())?;
-    }
-    if let Some(value) = &value.start {
-        let converted_275 = (value).to_owned().into_py_any(py)?;
-        result.set_item("start", converted_275)?;
-    } else {
-        result.set_item("start", py.None())?;
-    }
-    if let Some(value) = &value.end {
-        let converted_276 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end", converted_276)?;
-    } else {
-        result.set_item("end", py.None())?;
-    }
-    Ok(result.into_any().unbind())
-}
-
-fn document_content_block_from_py(
-    value: &Bound<'_, PyAny>,
-) -> PyResult<aws_sdk_bedrockruntime::types::DocumentContentBlock> {
-    let values = value.cast::<PyDict>()?;
-    if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "text")? {
-        let converted_277: String = value.extract()?;
-        return Ok(aws_sdk_bedrockruntime::types::DocumentContentBlock::Text(
-            converted_277,
-        ));
-    }
-    Err(PyValueError::new_err(
-        "DocumentContentBlock requires exactly one known variant",
-    ))
-}
-
-fn document_content_block_to_py(
-    py: Python<'_>,
-    value: &aws_sdk_bedrockruntime::types::DocumentContentBlock,
-) -> PyResult<Py<PyAny>> {
-    let result = PyDict::new(py);
-    match value {
-        aws_sdk_bedrockruntime::types::DocumentContentBlock::Text(value) => {
-            let converted_278 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_278)?;
-        }
-        _ => {
-            result.set_item("unknown", true)?;
-        }
-    }
-    Ok(result.into_any().unbind())
-}
-
-fn document_page_location_from_py(
-    value: &Bound<'_, PyAny>,
-) -> PyResult<aws_sdk_bedrockruntime::types::DocumentPageLocation> {
-    let values = value.cast::<PyDict>()?;
-    let mut builder = aws_sdk_bedrockruntime::types::DocumentPageLocation::builder();
-    if let Some(value) = dict_value(values, "document_index")? {
-        let converted_279: i32 = value.extract()?;
-        builder = builder.set_document_index(Some(converted_279));
-    }
-    if let Some(value) = dict_value(values, "start")? {
-        let converted_280: i32 = value.extract()?;
-        builder = builder.set_start(Some(converted_280));
-    }
-    if let Some(value) = dict_value(values, "end")? {
-        let converted_281: i32 = value.extract()?;
-        builder = builder.set_end(Some(converted_281));
-    }
-    Ok(builder.build())
-}
-
-fn document_page_location_to_py(
-    py: Python<'_>,
-    value: &aws_sdk_bedrockruntime::types::DocumentPageLocation,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.document_index {
@@ -1965,46 +3082,212 @@ fn document_page_location_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn document_content_block_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockruntime::types::DocumentContentBlock> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
+    }
+    if let Some(value) = dict_value(values, "text")? {
+        let converted_285 = (|| -> PyResult<_> {
+            let converted_285: String = value.extract()?;
+            Ok(converted_285)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::DocumentContentBlock::Text(
+            converted_285,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("DocumentContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
+    ))
+}
+
+fn document_content_block_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_bedrockruntime::types::DocumentContentBlock,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    match value {
+        aws_sdk_bedrockruntime::types::DocumentContentBlock::Text(value) => {
+            let converted_286 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_286)?;
+        }
+        _ => {
+            result.set_item("unknown", true)?;
+        }
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn document_page_location_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_bedrockruntime::types::DocumentPageLocation> {
+    let values = value.cast::<PyDict>()?;
+    let mut builder = aws_sdk_bedrockruntime::types::DocumentPageLocation::builder();
+    if let Some(value) = dict_value(values, "document_index")? {
+        let converted_287 = (|| -> PyResult<_> {
+            let converted_287: i32 = value.extract()?;
+            Ok(converted_287)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("document_index"), "int")
+        })?;
+        builder = builder.set_document_index(Some(converted_287));
+    }
+    if let Some(value) = dict_value(values, "start")? {
+        let converted_288 = (|| -> PyResult<_> {
+            let converted_288: i32 = value.extract()?;
+            Ok(converted_288)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start"), "int")
+        })?;
+        builder = builder.set_start(Some(converted_288));
+    }
+    if let Some(value) = dict_value(values, "end")? {
+        let converted_289 = (|| -> PyResult<_> {
+            let converted_289: i32 = value.extract()?;
+            Ok(converted_289)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end"), "int")
+        })?;
+        builder = builder.set_end(Some(converted_289));
+    }
+    Ok(builder.build())
+}
+
+fn document_page_location_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_bedrockruntime::types::DocumentPageLocation,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.document_index {
+        let converted_290 = (value).to_owned().into_py_any(py)?;
+        result.set_item("document_index", converted_290)?;
+    } else {
+        result.set_item("document_index", py.None())?;
+    }
+    if let Some(value) = &value.start {
+        let converted_291 = (value).to_owned().into_py_any(py)?;
+        result.set_item("start", converted_291)?;
+    } else {
+        result.set_item("start", py.None())?;
+    }
+    if let Some(value) = &value.end {
+        let converted_292 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end", converted_292)?;
+    } else {
+        result.set_item("end", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
 fn document_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockruntime::types::DocumentSource> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_286: Vec<u8> = value.extract()?;
-        let converted_285 = ::aws_smithy_types::Blob::new(bytes_286);
+        let converted_293 = (|| -> PyResult<_> {
+            let bytes_294: Vec<u8> = value.extract()?;
+            let converted_293 = ::aws_smithy_types::Blob::new(bytes_294);
+            Ok(converted_293)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::DocumentSource::Bytes(
-            converted_285,
+            converted_293,
         ));
     }
     if let Some(value) = dict_value(values, "s3_location")? {
-        let converted_287 = s3_location_from_py(&value)?;
+        let converted_295 = (|| -> PyResult<_> {
+            let converted_295 = s3_location_from_py(&value)?;
+            Ok(converted_295)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_location"),
+                "dict (S3Location)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::DocumentSource::S3Location(
-            converted_287,
+            converted_295,
         ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_288: String = value.extract()?;
+        let converted_296 = (|| -> PyResult<_> {
+            let converted_296: String = value.extract()?;
+            Ok(converted_296)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::DocumentSource::Text(
-            converted_288,
+            converted_296,
         ));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_289 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_290 in value.try_iter()? {
-            let item_291 = item_result_290?;
-            let converted_item_292 = document_content_block_from_py(&item_291)?;
-            converted_289.push(converted_item_292);
-        }
+        let converted_297 = (|| -> PyResult<_> {
+            let mut converted_297 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_301, item_result_298) in value.try_iter()?.enumerate() {
+                let item_299 = item_result_298.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_301),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_300 = (|| -> PyResult<_> {
+                    let converted_item_300 = document_content_block_from_py(&item_299)?;
+                    Ok(converted_item_300)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_301),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_297.push(converted_item_300);
+            }
+            Ok(converted_297)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "sequence")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::DocumentSource::Content(
-            converted_289,
+            converted_297,
         ));
     }
-    Err(PyValueError::new_err(
-        "DocumentSource requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("DocumentSource requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -2015,25 +3298,25 @@ fn document_source_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::DocumentSource::Bytes(value) => {
-            let converted_293 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("bytes", converted_293)?;
+            let converted_302 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("bytes", converted_302)?;
         }
         aws_sdk_bedrockruntime::types::DocumentSource::S3Location(value) => {
-            let converted_294 = s3_location_to_py(py, value)?;
-            result.set_item("s3_location", converted_294)?;
+            let converted_303 = s3_location_to_py(py, value)?;
+            result.set_item("s3_location", converted_303)?;
         }
         aws_sdk_bedrockruntime::types::DocumentSource::Text(value) => {
-            let converted_295 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_295)?;
+            let converted_304 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_304)?;
         }
         aws_sdk_bedrockruntime::types::DocumentSource::Content(value) => {
-            let converted_296_list = PyList::empty(py);
-            for item_297 in value {
-                let converted_item_298 = document_content_block_to_py(py, item_297)?;
-                converted_296_list.append(converted_item_298)?;
+            let converted_305_list = PyList::empty(py);
+            for item_306 in value {
+                let converted_item_307 = document_content_block_to_py(py, item_306)?;
+                converted_305_list.append(converted_item_307)?;
             }
-            let converted_296 = converted_296_list.into_any().unbind();
-            result.set_item("content", converted_296)?;
+            let converted_305 = converted_305_list.into_any().unbind();
+            result.set_item("content", converted_305)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -2048,8 +3331,14 @@ fn error_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ErrorBlock::builder();
     if let Some(value) = dict_value(values, "message")? {
-        let converted_299: String = value.extract()?;
-        builder = builder.set_message(Some(converted_299));
+        let converted_308 = (|| -> PyResult<_> {
+            let converted_308: String = value.extract()?;
+            Ok(converted_308)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message"), "str")
+        })?;
+        builder = builder.set_message(Some(converted_308));
     }
     Ok(builder.build())
 }
@@ -2060,8 +3349,8 @@ fn error_block_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.message {
-        let converted_300 = (value).as_str().into_py_any(py)?;
-        result.set_item("message", converted_300)?;
+        let converted_309 = (value).as_str().into_py_any(py)?;
+        result.set_item("message", converted_309)?;
     } else {
         result.set_item("message", py.None())?;
     }
@@ -2074,36 +3363,116 @@ fn guardrail_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailAssessment::builder();
     if let Some(value) = dict_value(values, "topic_policy")? {
-        let converted_301 = guardrail_topic_policy_assessment_from_py(&value)?;
-        builder = builder.set_topic_policy(Some(converted_301));
+        let converted_310 = (|| -> PyResult<_> {
+            let converted_310 = guardrail_topic_policy_assessment_from_py(&value)?;
+            Ok(converted_310)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("topic_policy"),
+                "dict (GuardrailTopicPolicyAssessment)",
+            )
+        })?;
+        builder = builder.set_topic_policy(Some(converted_310));
     }
     if let Some(value) = dict_value(values, "content_policy")? {
-        let converted_302 = guardrail_content_policy_assessment_from_py(&value)?;
-        builder = builder.set_content_policy(Some(converted_302));
+        let converted_311 = (|| -> PyResult<_> {
+            let converted_311 = guardrail_content_policy_assessment_from_py(&value)?;
+            Ok(converted_311)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_policy"),
+                "dict (GuardrailContentPolicyAssessment)",
+            )
+        })?;
+        builder = builder.set_content_policy(Some(converted_311));
     }
     if let Some(value) = dict_value(values, "word_policy")? {
-        let converted_303 = guardrail_word_policy_assessment_from_py(&value)?;
-        builder = builder.set_word_policy(Some(converted_303));
+        let converted_312 = (|| -> PyResult<_> {
+            let converted_312 = guardrail_word_policy_assessment_from_py(&value)?;
+            Ok(converted_312)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("word_policy"),
+                "dict (GuardrailWordPolicyAssessment)",
+            )
+        })?;
+        builder = builder.set_word_policy(Some(converted_312));
     }
     if let Some(value) = dict_value(values, "sensitive_information_policy")? {
-        let converted_304 = guardrail_sensitive_information_policy_assessment_from_py(&value)?;
-        builder = builder.set_sensitive_information_policy(Some(converted_304));
+        let converted_313 = (|| -> PyResult<_> {
+            let converted_313 = guardrail_sensitive_information_policy_assessment_from_py(&value)?;
+            Ok(converted_313)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sensitive_information_policy"),
+                "dict (GuardrailSensitiveInformationPolicyAssessment)",
+            )
+        })?;
+        builder = builder.set_sensitive_information_policy(Some(converted_313));
     }
     if let Some(value) = dict_value(values, "contextual_grounding_policy")? {
-        let converted_305 = guardrail_contextual_grounding_policy_assessment_from_py(&value)?;
-        builder = builder.set_contextual_grounding_policy(Some(converted_305));
+        let converted_314 = (|| -> PyResult<_> {
+            let converted_314 = guardrail_contextual_grounding_policy_assessment_from_py(&value)?;
+            Ok(converted_314)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("contextual_grounding_policy"),
+                "dict (GuardrailContextualGroundingPolicyAssessment)",
+            )
+        })?;
+        builder = builder.set_contextual_grounding_policy(Some(converted_314));
     }
     if let Some(value) = dict_value(values, "automated_reasoning_policy")? {
-        let converted_306 = guardrail_automated_reasoning_policy_assessment_from_py(&value)?;
-        builder = builder.set_automated_reasoning_policy(Some(converted_306));
+        let converted_315 = (|| -> PyResult<_> {
+            let converted_315 = guardrail_automated_reasoning_policy_assessment_from_py(&value)?;
+            Ok(converted_315)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("automated_reasoning_policy"),
+                "dict (GuardrailAutomatedReasoningPolicyAssessment)",
+            )
+        })?;
+        builder = builder.set_automated_reasoning_policy(Some(converted_315));
     }
     if let Some(value) = dict_value(values, "invocation_metrics")? {
-        let converted_307 = guardrail_invocation_metrics_from_py(&value)?;
-        builder = builder.set_invocation_metrics(Some(converted_307));
+        let converted_316 = (|| -> PyResult<_> {
+            let converted_316 = guardrail_invocation_metrics_from_py(&value)?;
+            Ok(converted_316)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("invocation_metrics"),
+                "dict (GuardrailInvocationMetrics)",
+            )
+        })?;
+        builder = builder.set_invocation_metrics(Some(converted_316));
     }
     if let Some(value) = dict_value(values, "applied_guardrail_details")? {
-        let converted_308 = applied_guardrail_details_from_py(&value)?;
-        builder = builder.set_applied_guardrail_details(Some(converted_308));
+        let converted_317 = (|| -> PyResult<_> {
+            let converted_317 = applied_guardrail_details_from_py(&value)?;
+            Ok(converted_317)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("applied_guardrail_details"),
+                "dict (AppliedGuardrailDetails)",
+            )
+        })?;
+        builder = builder.set_applied_guardrail_details(Some(converted_317));
     }
     Ok(builder.build())
 }
@@ -2114,50 +3483,50 @@ fn guardrail_assessment_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.topic_policy {
-        let converted_309 = guardrail_topic_policy_assessment_to_py(py, value)?;
-        result.set_item("topic_policy", converted_309)?;
+        let converted_318 = guardrail_topic_policy_assessment_to_py(py, value)?;
+        result.set_item("topic_policy", converted_318)?;
     } else {
         result.set_item("topic_policy", py.None())?;
     }
     if let Some(value) = &value.content_policy {
-        let converted_310 = guardrail_content_policy_assessment_to_py(py, value)?;
-        result.set_item("content_policy", converted_310)?;
+        let converted_319 = guardrail_content_policy_assessment_to_py(py, value)?;
+        result.set_item("content_policy", converted_319)?;
     } else {
         result.set_item("content_policy", py.None())?;
     }
     if let Some(value) = &value.word_policy {
-        let converted_311 = guardrail_word_policy_assessment_to_py(py, value)?;
-        result.set_item("word_policy", converted_311)?;
+        let converted_320 = guardrail_word_policy_assessment_to_py(py, value)?;
+        result.set_item("word_policy", converted_320)?;
     } else {
         result.set_item("word_policy", py.None())?;
     }
     if let Some(value) = &value.sensitive_information_policy {
-        let converted_312 = guardrail_sensitive_information_policy_assessment_to_py(py, value)?;
-        result.set_item("sensitive_information_policy", converted_312)?;
+        let converted_321 = guardrail_sensitive_information_policy_assessment_to_py(py, value)?;
+        result.set_item("sensitive_information_policy", converted_321)?;
     } else {
         result.set_item("sensitive_information_policy", py.None())?;
     }
     if let Some(value) = &value.contextual_grounding_policy {
-        let converted_313 = guardrail_contextual_grounding_policy_assessment_to_py(py, value)?;
-        result.set_item("contextual_grounding_policy", converted_313)?;
+        let converted_322 = guardrail_contextual_grounding_policy_assessment_to_py(py, value)?;
+        result.set_item("contextual_grounding_policy", converted_322)?;
     } else {
         result.set_item("contextual_grounding_policy", py.None())?;
     }
     if let Some(value) = &value.automated_reasoning_policy {
-        let converted_314 = guardrail_automated_reasoning_policy_assessment_to_py(py, value)?;
-        result.set_item("automated_reasoning_policy", converted_314)?;
+        let converted_323 = guardrail_automated_reasoning_policy_assessment_to_py(py, value)?;
+        result.set_item("automated_reasoning_policy", converted_323)?;
     } else {
         result.set_item("automated_reasoning_policy", py.None())?;
     }
     if let Some(value) = &value.invocation_metrics {
-        let converted_315 = guardrail_invocation_metrics_to_py(py, value)?;
-        result.set_item("invocation_metrics", converted_315)?;
+        let converted_324 = guardrail_invocation_metrics_to_py(py, value)?;
+        result.set_item("invocation_metrics", converted_324)?;
     } else {
         result.set_item("invocation_metrics", py.None())?;
     }
     if let Some(value) = &value.applied_guardrail_details {
-        let converted_316 = applied_guardrail_details_to_py(py, value)?;
-        result.set_item("applied_guardrail_details", converted_316)?;
+        let converted_325 = applied_guardrail_details_to_py(py, value)?;
+        result.set_item("applied_guardrail_details", converted_325)?;
     } else {
         result.set_item("applied_guardrail_details", py.None())?;
     }
@@ -2169,65 +3538,146 @@ fn guardrail_automated_reasoning_finding_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "valid")? {
-        let converted_317 = guardrail_automated_reasoning_valid_finding_from_py(&value)?;
+        let converted_326 = (|| -> PyResult<_> {
+            let converted_326 = guardrail_automated_reasoning_valid_finding_from_py(&value)?;
+            Ok(converted_326)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("valid"),
+                "dict (GuardrailAutomatedReasoningValidFinding)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Valid(converted_317),
+            aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Valid(converted_326),
         );
     }
     if let Some(value) = dict_value(values, "invalid")? {
-        let converted_318 = guardrail_automated_reasoning_invalid_finding_from_py(&value)?;
+        let converted_327 = (|| -> PyResult<_> {
+            let converted_327 = guardrail_automated_reasoning_invalid_finding_from_py(&value)?;
+            Ok(converted_327)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("invalid"),
+                "dict (GuardrailAutomatedReasoningInvalidFinding)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Invalid(
-                converted_318,
+                converted_327,
             ),
         );
     }
     if let Some(value) = dict_value(values, "satisfiable")? {
-        let converted_319 = guardrail_automated_reasoning_satisfiable_finding_from_py(&value)?;
+        let converted_328 = (|| -> PyResult<_> {
+            let converted_328 = guardrail_automated_reasoning_satisfiable_finding_from_py(&value)?;
+            Ok(converted_328)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("satisfiable"),
+                "dict (GuardrailAutomatedReasoningSatisfiableFinding)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Satisfiable(
-                converted_319,
+                converted_328,
             ),
         );
     }
     if let Some(value) = dict_value(values, "impossible")? {
-        let converted_320 = guardrail_automated_reasoning_impossible_finding_from_py(&value)?;
+        let converted_329 = (|| -> PyResult<_> {
+            let converted_329 = guardrail_automated_reasoning_impossible_finding_from_py(&value)?;
+            Ok(converted_329)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("impossible"),
+                "dict (GuardrailAutomatedReasoningImpossibleFinding)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Impossible(
-                converted_320,
+                converted_329,
             ),
         );
     }
     if let Some(value) = dict_value(values, "translation_ambiguous")? {
-        let converted_321 =
-            guardrail_automated_reasoning_translation_ambiguous_finding_from_py(&value)?;
+        let converted_330 = (|| -> PyResult<_> {
+            let converted_330 =
+                guardrail_automated_reasoning_translation_ambiguous_finding_from_py(&value)?;
+            Ok(converted_330)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("translation_ambiguous"),
+                "dict (GuardrailAutomatedReasoningTranslationAmbiguousFinding)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::TranslationAmbiguous(
-                converted_321,
+                converted_330,
             ),
         );
     }
     if let Some(value) = dict_value(values, "too_complex")? {
-        let converted_322 = guardrail_automated_reasoning_too_complex_finding_from_py(&value)?;
+        let converted_331 = (|| -> PyResult<_> {
+            let converted_331 = guardrail_automated_reasoning_too_complex_finding_from_py(&value)?;
+            Ok(converted_331)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("too_complex"),
+                "dict (GuardrailAutomatedReasoningTooComplexFinding)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::TooComplex(
-                converted_322,
+                converted_331,
             ),
         );
     }
     if let Some(value) = dict_value(values, "no_translations")? {
-        let converted_323 = guardrail_automated_reasoning_no_translations_finding_from_py(&value)?;
+        let converted_332 = (|| -> PyResult<_> {
+            let converted_332 =
+                guardrail_automated_reasoning_no_translations_finding_from_py(&value)?;
+            Ok(converted_332)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("no_translations"),
+                "dict (GuardrailAutomatedReasoningNoTranslationsFinding)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::NoTranslations(
-                converted_323,
+                converted_332,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "GuardrailAutomatedReasoningFinding requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err(
+            "GuardrailAutomatedReasoningFinding requires exactly one known variant",
+        ),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -2238,38 +3688,38 @@ fn guardrail_automated_reasoning_finding_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Valid(value) => {
-            let converted_324 = guardrail_automated_reasoning_valid_finding_to_py(py, value)?;
-            result.set_item("valid", converted_324)?;
+            let converted_333 = guardrail_automated_reasoning_valid_finding_to_py(py, value)?;
+            result.set_item("valid", converted_333)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Invalid(value) => {
-            let converted_325 = guardrail_automated_reasoning_invalid_finding_to_py(py, value)?;
-            result.set_item("invalid", converted_325)?;
+            let converted_334 = guardrail_automated_reasoning_invalid_finding_to_py(py, value)?;
+            result.set_item("invalid", converted_334)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Satisfiable(value) => {
-            let converted_326 = guardrail_automated_reasoning_satisfiable_finding_to_py(py, value)?;
-            result.set_item("satisfiable", converted_326)?;
+            let converted_335 = guardrail_automated_reasoning_satisfiable_finding_to_py(py, value)?;
+            result.set_item("satisfiable", converted_335)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::Impossible(value) => {
-            let converted_327 = guardrail_automated_reasoning_impossible_finding_to_py(py, value)?;
-            result.set_item("impossible", converted_327)?;
+            let converted_336 = guardrail_automated_reasoning_impossible_finding_to_py(py, value)?;
+            result.set_item("impossible", converted_336)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::TranslationAmbiguous(
             value,
         ) => {
-            let converted_328 =
+            let converted_337 =
                 guardrail_automated_reasoning_translation_ambiguous_finding_to_py(py, value)?;
-            result.set_item("translation_ambiguous", converted_328)?;
+            result.set_item("translation_ambiguous", converted_337)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::TooComplex(value) => {
-            let converted_329 = guardrail_automated_reasoning_too_complex_finding_to_py(py, value)?;
-            result.set_item("too_complex", converted_329)?;
+            let converted_338 = guardrail_automated_reasoning_too_complex_finding_to_py(py, value)?;
+            result.set_item("too_complex", converted_338)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningFinding::NoTranslations(
             value,
         ) => {
-            let converted_330 =
+            let converted_339 =
                 guardrail_automated_reasoning_no_translations_finding_to_py(py, value)?;
-            result.set_item("no_translations", converted_330)?;
+            result.set_item("no_translations", converted_339)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -2285,22 +3735,69 @@ fn guardrail_automated_reasoning_impossible_finding_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningImpossibleFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
-        let converted_331 = guardrail_automated_reasoning_translation_from_py(&value)?;
-        builder = builder.set_translation(Some(converted_331));
+        let converted_340 = (|| -> PyResult<_> {
+            let converted_340 = guardrail_automated_reasoning_translation_from_py(&value)?;
+            Ok(converted_340)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("translation"),
+                "dict (GuardrailAutomatedReasoningTranslation)",
+            )
+        })?;
+        builder = builder.set_translation(Some(converted_340));
     }
     if let Some(value) = dict_value(values, "contradicting_rules")? {
-        let mut converted_332 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_333 in value.try_iter()? {
-            let item_334 = item_result_333?;
-            let converted_item_335 = guardrail_automated_reasoning_rule_from_py(&item_334)?;
-            converted_332.push(converted_item_335);
-        }
-        builder = builder.set_contradicting_rules(Some(converted_332));
+        let converted_341 = (|| -> PyResult<_> {
+            let mut converted_341 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_345, item_result_342) in value.try_iter()?.enumerate() {
+                let item_343 = item_result_342.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_345),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_344 = (|| -> PyResult<_> {
+                    let converted_item_344 = guardrail_automated_reasoning_rule_from_py(&item_343)?;
+                    Ok(converted_item_344)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_345),
+                        "dict (GuardrailAutomatedReasoningRule)",
+                    )
+                })?;
+                converted_341.push(converted_item_344);
+            }
+            Ok(converted_341)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("contradicting_rules"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_contradicting_rules(Some(converted_341));
     }
     if let Some(value) = dict_value(values, "logic_warning")? {
-        let converted_336 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
-        builder = builder.set_logic_warning(Some(converted_336));
+        let converted_346 = (|| -> PyResult<_> {
+            let converted_346 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
+            Ok(converted_346)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("logic_warning"),
+                "dict (GuardrailAutomatedReasoningLogicWarning)",
+            )
+        })?;
+        builder = builder.set_logic_warning(Some(converted_346));
     }
     Ok(builder.build())
 }
@@ -2311,25 +3808,25 @@ fn guardrail_automated_reasoning_impossible_finding_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.translation {
-        let converted_337 = guardrail_automated_reasoning_translation_to_py(py, value)?;
-        result.set_item("translation", converted_337)?;
+        let converted_347 = guardrail_automated_reasoning_translation_to_py(py, value)?;
+        result.set_item("translation", converted_347)?;
     } else {
         result.set_item("translation", py.None())?;
     }
     if let Some(value) = &value.contradicting_rules {
-        let converted_338_list = PyList::empty(py);
-        for item_339 in value {
-            let converted_item_340 = guardrail_automated_reasoning_rule_to_py(py, item_339)?;
-            converted_338_list.append(converted_item_340)?;
+        let converted_348_list = PyList::empty(py);
+        for item_349 in value {
+            let converted_item_350 = guardrail_automated_reasoning_rule_to_py(py, item_349)?;
+            converted_348_list.append(converted_item_350)?;
         }
-        let converted_338 = converted_338_list.into_any().unbind();
-        result.set_item("contradicting_rules", converted_338)?;
+        let converted_348 = converted_348_list.into_any().unbind();
+        result.set_item("contradicting_rules", converted_348)?;
     } else {
         result.set_item("contradicting_rules", py.None())?;
     }
     if let Some(value) = &value.logic_warning {
-        let converted_341 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
-        result.set_item("logic_warning", converted_341)?;
+        let converted_351 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
+        result.set_item("logic_warning", converted_351)?;
     } else {
         result.set_item("logic_warning", py.None())?;
     }
@@ -2343,8 +3840,14 @@ fn guardrail_automated_reasoning_input_text_reference_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningInputTextReference::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let converted_342: String = value.extract()?;
-        builder = builder.set_text(Some(converted_342));
+        let converted_352 = (|| -> PyResult<_> {
+            let converted_352: String = value.extract()?;
+            Ok(converted_352)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        builder = builder.set_text(Some(converted_352));
     }
     Ok(builder.build())
 }
@@ -2355,8 +3858,8 @@ fn guardrail_automated_reasoning_input_text_reference_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.text {
-        let converted_343 = (value).as_str().into_py_any(py)?;
-        result.set_item("text", converted_343)?;
+        let converted_353 = (value).as_str().into_py_any(py)?;
+        result.set_item("text", converted_353)?;
     } else {
         result.set_item("text", py.None())?;
     }
@@ -2370,22 +3873,69 @@ fn guardrail_automated_reasoning_invalid_finding_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningInvalidFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
-        let converted_344 = guardrail_automated_reasoning_translation_from_py(&value)?;
-        builder = builder.set_translation(Some(converted_344));
+        let converted_354 = (|| -> PyResult<_> {
+            let converted_354 = guardrail_automated_reasoning_translation_from_py(&value)?;
+            Ok(converted_354)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("translation"),
+                "dict (GuardrailAutomatedReasoningTranslation)",
+            )
+        })?;
+        builder = builder.set_translation(Some(converted_354));
     }
     if let Some(value) = dict_value(values, "contradicting_rules")? {
-        let mut converted_345 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_346 in value.try_iter()? {
-            let item_347 = item_result_346?;
-            let converted_item_348 = guardrail_automated_reasoning_rule_from_py(&item_347)?;
-            converted_345.push(converted_item_348);
-        }
-        builder = builder.set_contradicting_rules(Some(converted_345));
+        let converted_355 = (|| -> PyResult<_> {
+            let mut converted_355 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_359, item_result_356) in value.try_iter()?.enumerate() {
+                let item_357 = item_result_356.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_359),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_358 = (|| -> PyResult<_> {
+                    let converted_item_358 = guardrail_automated_reasoning_rule_from_py(&item_357)?;
+                    Ok(converted_item_358)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_359),
+                        "dict (GuardrailAutomatedReasoningRule)",
+                    )
+                })?;
+                converted_355.push(converted_item_358);
+            }
+            Ok(converted_355)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("contradicting_rules"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_contradicting_rules(Some(converted_355));
     }
     if let Some(value) = dict_value(values, "logic_warning")? {
-        let converted_349 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
-        builder = builder.set_logic_warning(Some(converted_349));
+        let converted_360 = (|| -> PyResult<_> {
+            let converted_360 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
+            Ok(converted_360)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("logic_warning"),
+                "dict (GuardrailAutomatedReasoningLogicWarning)",
+            )
+        })?;
+        builder = builder.set_logic_warning(Some(converted_360));
     }
     Ok(builder.build())
 }
@@ -2396,25 +3946,25 @@ fn guardrail_automated_reasoning_invalid_finding_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.translation {
-        let converted_350 = guardrail_automated_reasoning_translation_to_py(py, value)?;
-        result.set_item("translation", converted_350)?;
+        let converted_361 = guardrail_automated_reasoning_translation_to_py(py, value)?;
+        result.set_item("translation", converted_361)?;
     } else {
         result.set_item("translation", py.None())?;
     }
     if let Some(value) = &value.contradicting_rules {
-        let converted_351_list = PyList::empty(py);
-        for item_352 in value {
-            let converted_item_353 = guardrail_automated_reasoning_rule_to_py(py, item_352)?;
-            converted_351_list.append(converted_item_353)?;
+        let converted_362_list = PyList::empty(py);
+        for item_363 in value {
+            let converted_item_364 = guardrail_automated_reasoning_rule_to_py(py, item_363)?;
+            converted_362_list.append(converted_item_364)?;
         }
-        let converted_351 = converted_351_list.into_any().unbind();
-        result.set_item("contradicting_rules", converted_351)?;
+        let converted_362 = converted_362_list.into_any().unbind();
+        result.set_item("contradicting_rules", converted_362)?;
     } else {
         result.set_item("contradicting_rules", py.None())?;
     }
     if let Some(value) = &value.logic_warning {
-        let converted_354 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
-        result.set_item("logic_warning", converted_354)?;
+        let converted_365 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
+        result.set_item("logic_warning", converted_365)?;
     } else {
         result.set_item("logic_warning", py.None())?;
     }
@@ -2428,32 +3978,90 @@ fn guardrail_automated_reasoning_logic_warning_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningLogicWarning::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_356: String = value.extract()?;
-        let converted_355 =
-            aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningLogicWarningType::from(
-                enum_value_356.as_str(),
-            );
-        builder = builder.set_type(Some(converted_355));
+        let converted_366 = (|| -> PyResult<_> {
+            let enum_value_367: String = value.extract()?;
+            let converted_366 =
+                aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningLogicWarningType::from(
+                    enum_value_367.as_str(),
+                );
+            Ok(converted_366)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailAutomatedReasoningLogicWarningType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_366));
     }
     if let Some(value) = dict_value(values, "premises")? {
-        let mut converted_357 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_358 in value.try_iter()? {
-            let item_359 = item_result_358?;
-            let converted_item_360 = guardrail_automated_reasoning_statement_from_py(&item_359)?;
-            converted_357.push(converted_item_360);
-        }
-        builder = builder.set_premises(Some(converted_357));
+        let converted_368 = (|| -> PyResult<_> {
+            let mut converted_368 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_372, item_result_369) in value.try_iter()?.enumerate() {
+                let item_370 = item_result_369.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_372),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_371 = (|| -> PyResult<_> {
+                    let converted_item_371 =
+                        guardrail_automated_reasoning_statement_from_py(&item_370)?;
+                    Ok(converted_item_371)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_372),
+                        "dict (GuardrailAutomatedReasoningStatement)",
+                    )
+                })?;
+                converted_368.push(converted_item_371);
+            }
+            Ok(converted_368)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("premises"), "sequence")
+        })?;
+        builder = builder.set_premises(Some(converted_368));
     }
     if let Some(value) = dict_value(values, "claims")? {
-        let mut converted_361 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_362 in value.try_iter()? {
-            let item_363 = item_result_362?;
-            let converted_item_364 = guardrail_automated_reasoning_statement_from_py(&item_363)?;
-            converted_361.push(converted_item_364);
-        }
-        builder = builder.set_claims(Some(converted_361));
+        let converted_373 = (|| -> PyResult<_> {
+            let mut converted_373 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_377, item_result_374) in value.try_iter()?.enumerate() {
+                let item_375 = item_result_374.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_377),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_376 = (|| -> PyResult<_> {
+                    let converted_item_376 =
+                        guardrail_automated_reasoning_statement_from_py(&item_375)?;
+                    Ok(converted_item_376)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_377),
+                        "dict (GuardrailAutomatedReasoningStatement)",
+                    )
+                })?;
+                converted_373.push(converted_item_376);
+            }
+            Ok(converted_373)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("claims"), "sequence")
+        })?;
+        builder = builder.set_claims(Some(converted_373));
     }
     Ok(builder.build())
 }
@@ -2464,30 +4072,30 @@ fn guardrail_automated_reasoning_logic_warning_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.r#type {
-        let converted_365 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_365)?;
+        let converted_378 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_378)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.premises {
-        let converted_366_list = PyList::empty(py);
-        for item_367 in value {
-            let converted_item_368 = guardrail_automated_reasoning_statement_to_py(py, item_367)?;
-            converted_366_list.append(converted_item_368)?;
+        let converted_379_list = PyList::empty(py);
+        for item_380 in value {
+            let converted_item_381 = guardrail_automated_reasoning_statement_to_py(py, item_380)?;
+            converted_379_list.append(converted_item_381)?;
         }
-        let converted_366 = converted_366_list.into_any().unbind();
-        result.set_item("premises", converted_366)?;
+        let converted_379 = converted_379_list.into_any().unbind();
+        result.set_item("premises", converted_379)?;
     } else {
         result.set_item("premises", py.None())?;
     }
     if let Some(value) = &value.claims {
-        let converted_369_list = PyList::empty(py);
-        for item_370 in value {
-            let converted_item_371 = guardrail_automated_reasoning_statement_to_py(py, item_370)?;
-            converted_369_list.append(converted_item_371)?;
+        let converted_382_list = PyList::empty(py);
+        for item_383 in value {
+            let converted_item_384 = guardrail_automated_reasoning_statement_to_py(py, item_383)?;
+            converted_382_list.append(converted_item_384)?;
         }
-        let converted_369 = converted_369_list.into_any().unbind();
-        result.set_item("claims", converted_369)?;
+        let converted_382 = converted_382_list.into_any().unbind();
+        result.set_item("claims", converted_382)?;
     } else {
         result.set_item("claims", py.None())?;
     }
@@ -2518,14 +4126,38 @@ fn guardrail_automated_reasoning_policy_assessment_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "findings")? {
-        let mut converted_372 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_373 in value.try_iter()? {
-            let item_374 = item_result_373?;
-            let converted_item_375 = guardrail_automated_reasoning_finding_from_py(&item_374)?;
-            converted_372.push(converted_item_375);
-        }
-        builder = builder.set_findings(Some(converted_372));
+        let converted_385 = (|| -> PyResult<_> {
+            let mut converted_385 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_389, item_result_386) in value.try_iter()?.enumerate() {
+                let item_387 = item_result_386.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_389),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_388 = (|| -> PyResult<_> {
+                    let converted_item_388 =
+                        guardrail_automated_reasoning_finding_from_py(&item_387)?;
+                    Ok(converted_item_388)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_389),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_385.push(converted_item_388);
+            }
+            Ok(converted_385)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("findings"), "sequence")
+        })?;
+        builder = builder.set_findings(Some(converted_385));
     }
     Ok(builder.build())
 }
@@ -2536,13 +4168,13 @@ fn guardrail_automated_reasoning_policy_assessment_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.findings {
-        let converted_376_list = PyList::empty(py);
-        for item_377 in value {
-            let converted_item_378 = guardrail_automated_reasoning_finding_to_py(py, item_377)?;
-            converted_376_list.append(converted_item_378)?;
+        let converted_390_list = PyList::empty(py);
+        for item_391 in value {
+            let converted_item_392 = guardrail_automated_reasoning_finding_to_py(py, item_391)?;
+            converted_390_list.append(converted_item_392)?;
         }
-        let converted_376 = converted_376_list.into_any().unbind();
-        result.set_item("findings", converted_376)?;
+        let converted_390 = converted_390_list.into_any().unbind();
+        result.set_item("findings", converted_390)?;
     } else {
         result.set_item("findings", py.None())?;
     }
@@ -2555,12 +4187,28 @@ fn guardrail_automated_reasoning_rule_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningRule::builder();
     if let Some(value) = dict_value(values, "identifier")? {
-        let converted_379: String = value.extract()?;
-        builder = builder.set_identifier(Some(converted_379));
+        let converted_393 = (|| -> PyResult<_> {
+            let converted_393: String = value.extract()?;
+            Ok(converted_393)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("identifier"), "str")
+        })?;
+        builder = builder.set_identifier(Some(converted_393));
     }
     if let Some(value) = dict_value(values, "policy_version_arn")? {
-        let converted_380: String = value.extract()?;
-        builder = builder.set_policy_version_arn(Some(converted_380));
+        let converted_394 = (|| -> PyResult<_> {
+            let converted_394: String = value.extract()?;
+            Ok(converted_394)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("policy_version_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_policy_version_arn(Some(converted_394));
     }
     Ok(builder.build())
 }
@@ -2571,14 +4219,14 @@ fn guardrail_automated_reasoning_rule_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.identifier {
-        let converted_381 = (value).as_str().into_py_any(py)?;
-        result.set_item("identifier", converted_381)?;
+        let converted_395 = (value).as_str().into_py_any(py)?;
+        result.set_item("identifier", converted_395)?;
     } else {
         result.set_item("identifier", py.None())?;
     }
     if let Some(value) = &value.policy_version_arn {
-        let converted_382 = (value).as_str().into_py_any(py)?;
-        result.set_item("policy_version_arn", converted_382)?;
+        let converted_396 = (value).as_str().into_py_any(py)?;
+        result.set_item("policy_version_arn", converted_396)?;
     } else {
         result.set_item("policy_version_arn", py.None())?;
     }
@@ -2592,20 +4240,60 @@ fn guardrail_automated_reasoning_satisfiable_finding_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningSatisfiableFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
-        let converted_383 = guardrail_automated_reasoning_translation_from_py(&value)?;
-        builder = builder.set_translation(Some(converted_383));
+        let converted_397 = (|| -> PyResult<_> {
+            let converted_397 = guardrail_automated_reasoning_translation_from_py(&value)?;
+            Ok(converted_397)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("translation"),
+                "dict (GuardrailAutomatedReasoningTranslation)",
+            )
+        })?;
+        builder = builder.set_translation(Some(converted_397));
     }
     if let Some(value) = dict_value(values, "claims_true_scenario")? {
-        let converted_384 = guardrail_automated_reasoning_scenario_from_py(&value)?;
-        builder = builder.set_claims_true_scenario(Some(converted_384));
+        let converted_398 = (|| -> PyResult<_> {
+            let converted_398 = guardrail_automated_reasoning_scenario_from_py(&value)?;
+            Ok(converted_398)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("claims_true_scenario"),
+                "dict (GuardrailAutomatedReasoningScenario)",
+            )
+        })?;
+        builder = builder.set_claims_true_scenario(Some(converted_398));
     }
     if let Some(value) = dict_value(values, "claims_false_scenario")? {
-        let converted_385 = guardrail_automated_reasoning_scenario_from_py(&value)?;
-        builder = builder.set_claims_false_scenario(Some(converted_385));
+        let converted_399 = (|| -> PyResult<_> {
+            let converted_399 = guardrail_automated_reasoning_scenario_from_py(&value)?;
+            Ok(converted_399)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("claims_false_scenario"),
+                "dict (GuardrailAutomatedReasoningScenario)",
+            )
+        })?;
+        builder = builder.set_claims_false_scenario(Some(converted_399));
     }
     if let Some(value) = dict_value(values, "logic_warning")? {
-        let converted_386 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
-        builder = builder.set_logic_warning(Some(converted_386));
+        let converted_400 = (|| -> PyResult<_> {
+            let converted_400 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
+            Ok(converted_400)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("logic_warning"),
+                "dict (GuardrailAutomatedReasoningLogicWarning)",
+            )
+        })?;
+        builder = builder.set_logic_warning(Some(converted_400));
     }
     Ok(builder.build())
 }
@@ -2616,26 +4304,26 @@ fn guardrail_automated_reasoning_satisfiable_finding_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.translation {
-        let converted_387 = guardrail_automated_reasoning_translation_to_py(py, value)?;
-        result.set_item("translation", converted_387)?;
+        let converted_401 = guardrail_automated_reasoning_translation_to_py(py, value)?;
+        result.set_item("translation", converted_401)?;
     } else {
         result.set_item("translation", py.None())?;
     }
     if let Some(value) = &value.claims_true_scenario {
-        let converted_388 = guardrail_automated_reasoning_scenario_to_py(py, value)?;
-        result.set_item("claims_true_scenario", converted_388)?;
+        let converted_402 = guardrail_automated_reasoning_scenario_to_py(py, value)?;
+        result.set_item("claims_true_scenario", converted_402)?;
     } else {
         result.set_item("claims_true_scenario", py.None())?;
     }
     if let Some(value) = &value.claims_false_scenario {
-        let converted_389 = guardrail_automated_reasoning_scenario_to_py(py, value)?;
-        result.set_item("claims_false_scenario", converted_389)?;
+        let converted_403 = guardrail_automated_reasoning_scenario_to_py(py, value)?;
+        result.set_item("claims_false_scenario", converted_403)?;
     } else {
         result.set_item("claims_false_scenario", py.None())?;
     }
     if let Some(value) = &value.logic_warning {
-        let converted_390 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
-        result.set_item("logic_warning", converted_390)?;
+        let converted_404 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
+        result.set_item("logic_warning", converted_404)?;
     } else {
         result.set_item("logic_warning", py.None())?;
     }
@@ -2648,14 +4336,42 @@ fn guardrail_automated_reasoning_scenario_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningScenario::builder();
     if let Some(value) = dict_value(values, "statements")? {
-        let mut converted_391 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_392 in value.try_iter()? {
-            let item_393 = item_result_392?;
-            let converted_item_394 = guardrail_automated_reasoning_statement_from_py(&item_393)?;
-            converted_391.push(converted_item_394);
-        }
-        builder = builder.set_statements(Some(converted_391));
+        let converted_405 = (|| -> PyResult<_> {
+            let mut converted_405 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_409, item_result_406) in value.try_iter()?.enumerate() {
+                let item_407 = item_result_406.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_409),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_408 = (|| -> PyResult<_> {
+                    let converted_item_408 =
+                        guardrail_automated_reasoning_statement_from_py(&item_407)?;
+                    Ok(converted_item_408)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_409),
+                        "dict (GuardrailAutomatedReasoningStatement)",
+                    )
+                })?;
+                converted_405.push(converted_item_408);
+            }
+            Ok(converted_405)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("statements"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_statements(Some(converted_405));
     }
     Ok(builder.build())
 }
@@ -2666,13 +4382,13 @@ fn guardrail_automated_reasoning_scenario_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.statements {
-        let converted_395_list = PyList::empty(py);
-        for item_396 in value {
-            let converted_item_397 = guardrail_automated_reasoning_statement_to_py(py, item_396)?;
-            converted_395_list.append(converted_item_397)?;
+        let converted_410_list = PyList::empty(py);
+        for item_411 in value {
+            let converted_item_412 = guardrail_automated_reasoning_statement_to_py(py, item_411)?;
+            converted_410_list.append(converted_item_412)?;
         }
-        let converted_395 = converted_395_list.into_any().unbind();
-        result.set_item("statements", converted_395)?;
+        let converted_410 = converted_410_list.into_any().unbind();
+        result.set_item("statements", converted_410)?;
     } else {
         result.set_item("statements", py.None())?;
     }
@@ -2686,12 +4402,28 @@ fn guardrail_automated_reasoning_statement_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningStatement::builder();
     if let Some(value) = dict_value(values, "logic")? {
-        let converted_398: String = value.extract()?;
-        builder = builder.set_logic(Some(converted_398));
+        let converted_413 = (|| -> PyResult<_> {
+            let converted_413: String = value.extract()?;
+            Ok(converted_413)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("logic"), "str")
+        })?;
+        builder = builder.set_logic(Some(converted_413));
     }
     if let Some(value) = dict_value(values, "natural_language")? {
-        let converted_399: String = value.extract()?;
-        builder = builder.set_natural_language(Some(converted_399));
+        let converted_414 = (|| -> PyResult<_> {
+            let converted_414: String = value.extract()?;
+            Ok(converted_414)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("natural_language"),
+                "str",
+            )
+        })?;
+        builder = builder.set_natural_language(Some(converted_414));
     }
     Ok(builder.build())
 }
@@ -2702,14 +4434,14 @@ fn guardrail_automated_reasoning_statement_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.logic {
-        let converted_400 = (value).as_str().into_py_any(py)?;
-        result.set_item("logic", converted_400)?;
+        let converted_415 = (value).as_str().into_py_any(py)?;
+        result.set_item("logic", converted_415)?;
     } else {
         result.set_item("logic", py.None())?;
     }
     if let Some(value) = &value.natural_language {
-        let converted_401 = (value).as_str().into_py_any(py)?;
-        result.set_item("natural_language", converted_401)?;
+        let converted_416 = (value).as_str().into_py_any(py)?;
+        result.set_item("natural_language", converted_416)?;
     } else {
         result.set_item("natural_language", py.None())?;
     }
@@ -2740,50 +4472,158 @@ fn guardrail_automated_reasoning_translation_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningTranslation::builder();
     if let Some(value) = dict_value(values, "premises")? {
-        let mut converted_402 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_403 in value.try_iter()? {
-            let item_404 = item_result_403?;
-            let converted_item_405 = guardrail_automated_reasoning_statement_from_py(&item_404)?;
-            converted_402.push(converted_item_405);
-        }
-        builder = builder.set_premises(Some(converted_402));
+        let converted_417 = (|| -> PyResult<_> {
+            let mut converted_417 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_421, item_result_418) in value.try_iter()?.enumerate() {
+                let item_419 = item_result_418.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_421),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_420 = (|| -> PyResult<_> {
+                    let converted_item_420 =
+                        guardrail_automated_reasoning_statement_from_py(&item_419)?;
+                    Ok(converted_item_420)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_421),
+                        "dict (GuardrailAutomatedReasoningStatement)",
+                    )
+                })?;
+                converted_417.push(converted_item_420);
+            }
+            Ok(converted_417)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("premises"), "sequence")
+        })?;
+        builder = builder.set_premises(Some(converted_417));
     }
     if let Some(value) = dict_value(values, "claims")? {
-        let mut converted_406 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_407 in value.try_iter()? {
-            let item_408 = item_result_407?;
-            let converted_item_409 = guardrail_automated_reasoning_statement_from_py(&item_408)?;
-            converted_406.push(converted_item_409);
-        }
-        builder = builder.set_claims(Some(converted_406));
+        let converted_422 = (|| -> PyResult<_> {
+            let mut converted_422 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_426, item_result_423) in value.try_iter()?.enumerate() {
+                let item_424 = item_result_423.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_426),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_425 = (|| -> PyResult<_> {
+                    let converted_item_425 =
+                        guardrail_automated_reasoning_statement_from_py(&item_424)?;
+                    Ok(converted_item_425)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_426),
+                        "dict (GuardrailAutomatedReasoningStatement)",
+                    )
+                })?;
+                converted_422.push(converted_item_425);
+            }
+            Ok(converted_422)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("claims"), "sequence")
+        })?;
+        builder = builder.set_claims(Some(converted_422));
     }
     if let Some(value) = dict_value(values, "untranslated_premises")? {
-        let mut converted_410 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_411 in value.try_iter()? {
-            let item_412 = item_result_411?;
-            let converted_item_413 =
-                guardrail_automated_reasoning_input_text_reference_from_py(&item_412)?;
-            converted_410.push(converted_item_413);
-        }
-        builder = builder.set_untranslated_premises(Some(converted_410));
+        let converted_427 = (|| -> PyResult<_> {
+            let mut converted_427 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_431, item_result_428) in value.try_iter()?.enumerate() {
+                let item_429 = item_result_428.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_431),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_430 = (|| -> PyResult<_> {
+                    let converted_item_430 =
+                        guardrail_automated_reasoning_input_text_reference_from_py(&item_429)?;
+                    Ok(converted_item_430)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_431),
+                        "dict (GuardrailAutomatedReasoningInputTextReference)",
+                    )
+                })?;
+                converted_427.push(converted_item_430);
+            }
+            Ok(converted_427)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("untranslated_premises"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_untranslated_premises(Some(converted_427));
     }
     if let Some(value) = dict_value(values, "untranslated_claims")? {
-        let mut converted_414 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_415 in value.try_iter()? {
-            let item_416 = item_result_415?;
-            let converted_item_417 =
-                guardrail_automated_reasoning_input_text_reference_from_py(&item_416)?;
-            converted_414.push(converted_item_417);
-        }
-        builder = builder.set_untranslated_claims(Some(converted_414));
+        let converted_432 = (|| -> PyResult<_> {
+            let mut converted_432 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_436, item_result_433) in value.try_iter()?.enumerate() {
+                let item_434 = item_result_433.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_436),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_435 = (|| -> PyResult<_> {
+                    let converted_item_435 =
+                        guardrail_automated_reasoning_input_text_reference_from_py(&item_434)?;
+                    Ok(converted_item_435)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_436),
+                        "dict (GuardrailAutomatedReasoningInputTextReference)",
+                    )
+                })?;
+                converted_432.push(converted_item_435);
+            }
+            Ok(converted_432)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("untranslated_claims"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_untranslated_claims(Some(converted_432));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let converted_418: f64 = value.extract()?;
-        builder = builder.set_confidence(Some(converted_418));
+        let converted_437 = (|| -> PyResult<_> {
+            let converted_437: f64 = value.extract()?;
+            Ok(converted_437)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("confidence"), "float")
+        })?;
+        builder = builder.set_confidence(Some(converted_437));
     }
     Ok(builder.build())
 }
@@ -2794,54 +4634,54 @@ fn guardrail_automated_reasoning_translation_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.premises {
-        let converted_419_list = PyList::empty(py);
-        for item_420 in value {
-            let converted_item_421 = guardrail_automated_reasoning_statement_to_py(py, item_420)?;
-            converted_419_list.append(converted_item_421)?;
+        let converted_438_list = PyList::empty(py);
+        for item_439 in value {
+            let converted_item_440 = guardrail_automated_reasoning_statement_to_py(py, item_439)?;
+            converted_438_list.append(converted_item_440)?;
         }
-        let converted_419 = converted_419_list.into_any().unbind();
-        result.set_item("premises", converted_419)?;
+        let converted_438 = converted_438_list.into_any().unbind();
+        result.set_item("premises", converted_438)?;
     } else {
         result.set_item("premises", py.None())?;
     }
     if let Some(value) = &value.claims {
-        let converted_422_list = PyList::empty(py);
-        for item_423 in value {
-            let converted_item_424 = guardrail_automated_reasoning_statement_to_py(py, item_423)?;
-            converted_422_list.append(converted_item_424)?;
+        let converted_441_list = PyList::empty(py);
+        for item_442 in value {
+            let converted_item_443 = guardrail_automated_reasoning_statement_to_py(py, item_442)?;
+            converted_441_list.append(converted_item_443)?;
         }
-        let converted_422 = converted_422_list.into_any().unbind();
-        result.set_item("claims", converted_422)?;
+        let converted_441 = converted_441_list.into_any().unbind();
+        result.set_item("claims", converted_441)?;
     } else {
         result.set_item("claims", py.None())?;
     }
     if let Some(value) = &value.untranslated_premises {
-        let converted_425_list = PyList::empty(py);
-        for item_426 in value {
-            let converted_item_427 =
-                guardrail_automated_reasoning_input_text_reference_to_py(py, item_426)?;
-            converted_425_list.append(converted_item_427)?;
+        let converted_444_list = PyList::empty(py);
+        for item_445 in value {
+            let converted_item_446 =
+                guardrail_automated_reasoning_input_text_reference_to_py(py, item_445)?;
+            converted_444_list.append(converted_item_446)?;
         }
-        let converted_425 = converted_425_list.into_any().unbind();
-        result.set_item("untranslated_premises", converted_425)?;
+        let converted_444 = converted_444_list.into_any().unbind();
+        result.set_item("untranslated_premises", converted_444)?;
     } else {
         result.set_item("untranslated_premises", py.None())?;
     }
     if let Some(value) = &value.untranslated_claims {
-        let converted_428_list = PyList::empty(py);
-        for item_429 in value {
-            let converted_item_430 =
-                guardrail_automated_reasoning_input_text_reference_to_py(py, item_429)?;
-            converted_428_list.append(converted_item_430)?;
+        let converted_447_list = PyList::empty(py);
+        for item_448 in value {
+            let converted_item_449 =
+                guardrail_automated_reasoning_input_text_reference_to_py(py, item_448)?;
+            converted_447_list.append(converted_item_449)?;
         }
-        let converted_428 = converted_428_list.into_any().unbind();
-        result.set_item("untranslated_claims", converted_428)?;
+        let converted_447 = converted_447_list.into_any().unbind();
+        result.set_item("untranslated_claims", converted_447)?;
     } else {
         result.set_item("untranslated_claims", py.None())?;
     }
     if let Some(value) = &value.confidence {
-        let converted_431 = (value).to_owned().into_py_any(py)?;
-        result.set_item("confidence", converted_431)?;
+        let converted_450 = (value).to_owned().into_py_any(py)?;
+        result.set_item("confidence", converted_450)?;
     } else {
         result.set_item("confidence", py.None())?;
     }
@@ -2855,25 +4695,76 @@ fn guardrail_automated_reasoning_translation_ambiguous_finding_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningTranslationAmbiguousFinding::builder();
     if let Some(value) = dict_value(values, "options")? {
-        let mut converted_432 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_433 in value.try_iter()? {
-            let item_434 = item_result_433?;
-            let converted_item_435 =
-                guardrail_automated_reasoning_translation_option_from_py(&item_434)?;
-            converted_432.push(converted_item_435);
-        }
-        builder = builder.set_options(Some(converted_432));
+        let converted_451 = (|| -> PyResult<_> {
+            let mut converted_451 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_455, item_result_452) in value.try_iter()?.enumerate() {
+                let item_453 = item_result_452.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_455),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_454 = (|| -> PyResult<_> {
+                    let converted_item_454 =
+                        guardrail_automated_reasoning_translation_option_from_py(&item_453)?;
+                    Ok(converted_item_454)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_455),
+                        "dict (GuardrailAutomatedReasoningTranslationOption)",
+                    )
+                })?;
+                converted_451.push(converted_item_454);
+            }
+            Ok(converted_451)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("options"), "sequence")
+        })?;
+        builder = builder.set_options(Some(converted_451));
     }
     if let Some(value) = dict_value(values, "difference_scenarios")? {
-        let mut converted_436 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_437 in value.try_iter()? {
-            let item_438 = item_result_437?;
-            let converted_item_439 = guardrail_automated_reasoning_scenario_from_py(&item_438)?;
-            converted_436.push(converted_item_439);
-        }
-        builder = builder.set_difference_scenarios(Some(converted_436));
+        let converted_456 = (|| -> PyResult<_> {
+            let mut converted_456 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_460, item_result_457) in value.try_iter()?.enumerate() {
+                let item_458 = item_result_457.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_460),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_459 = (|| -> PyResult<_> {
+                    let converted_item_459 =
+                        guardrail_automated_reasoning_scenario_from_py(&item_458)?;
+                    Ok(converted_item_459)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_460),
+                        "dict (GuardrailAutomatedReasoningScenario)",
+                    )
+                })?;
+                converted_456.push(converted_item_459);
+            }
+            Ok(converted_456)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("difference_scenarios"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_difference_scenarios(Some(converted_456));
     }
     Ok(builder.build())
 }
@@ -2884,25 +4775,25 @@ fn guardrail_automated_reasoning_translation_ambiguous_finding_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.options {
-        let converted_440_list = PyList::empty(py);
-        for item_441 in value {
-            let converted_item_442 =
-                guardrail_automated_reasoning_translation_option_to_py(py, item_441)?;
-            converted_440_list.append(converted_item_442)?;
+        let converted_461_list = PyList::empty(py);
+        for item_462 in value {
+            let converted_item_463 =
+                guardrail_automated_reasoning_translation_option_to_py(py, item_462)?;
+            converted_461_list.append(converted_item_463)?;
         }
-        let converted_440 = converted_440_list.into_any().unbind();
-        result.set_item("options", converted_440)?;
+        let converted_461 = converted_461_list.into_any().unbind();
+        result.set_item("options", converted_461)?;
     } else {
         result.set_item("options", py.None())?;
     }
     if let Some(value) = &value.difference_scenarios {
-        let converted_443_list = PyList::empty(py);
-        for item_444 in value {
-            let converted_item_445 = guardrail_automated_reasoning_scenario_to_py(py, item_444)?;
-            converted_443_list.append(converted_item_445)?;
+        let converted_464_list = PyList::empty(py);
+        for item_465 in value {
+            let converted_item_466 = guardrail_automated_reasoning_scenario_to_py(py, item_465)?;
+            converted_464_list.append(converted_item_466)?;
         }
-        let converted_443 = converted_443_list.into_any().unbind();
-        result.set_item("difference_scenarios", converted_443)?;
+        let converted_464 = converted_464_list.into_any().unbind();
+        result.set_item("difference_scenarios", converted_464)?;
     } else {
         result.set_item("difference_scenarios", py.None())?;
     }
@@ -2916,14 +4807,42 @@ fn guardrail_automated_reasoning_translation_option_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningTranslationOption::builder();
     if let Some(value) = dict_value(values, "translations")? {
-        let mut converted_446 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_447 in value.try_iter()? {
-            let item_448 = item_result_447?;
-            let converted_item_449 = guardrail_automated_reasoning_translation_from_py(&item_448)?;
-            converted_446.push(converted_item_449);
-        }
-        builder = builder.set_translations(Some(converted_446));
+        let converted_467 = (|| -> PyResult<_> {
+            let mut converted_467 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_471, item_result_468) in value.try_iter()?.enumerate() {
+                let item_469 = item_result_468.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_471),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_470 = (|| -> PyResult<_> {
+                    let converted_item_470 =
+                        guardrail_automated_reasoning_translation_from_py(&item_469)?;
+                    Ok(converted_item_470)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_471),
+                        "dict (GuardrailAutomatedReasoningTranslation)",
+                    )
+                })?;
+                converted_467.push(converted_item_470);
+            }
+            Ok(converted_467)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("translations"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_translations(Some(converted_467));
     }
     Ok(builder.build())
 }
@@ -2934,13 +4853,13 @@ fn guardrail_automated_reasoning_translation_option_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.translations {
-        let converted_450_list = PyList::empty(py);
-        for item_451 in value {
-            let converted_item_452 = guardrail_automated_reasoning_translation_to_py(py, item_451)?;
-            converted_450_list.append(converted_item_452)?;
+        let converted_472_list = PyList::empty(py);
+        for item_473 in value {
+            let converted_item_474 = guardrail_automated_reasoning_translation_to_py(py, item_473)?;
+            converted_472_list.append(converted_item_474)?;
         }
-        let converted_450 = converted_450_list.into_any().unbind();
-        result.set_item("translations", converted_450)?;
+        let converted_472 = converted_472_list.into_any().unbind();
+        result.set_item("translations", converted_472)?;
     } else {
         result.set_item("translations", py.None())?;
     }
@@ -2954,26 +4873,83 @@ fn guardrail_automated_reasoning_valid_finding_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningValidFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
-        let converted_453 = guardrail_automated_reasoning_translation_from_py(&value)?;
-        builder = builder.set_translation(Some(converted_453));
+        let converted_475 = (|| -> PyResult<_> {
+            let converted_475 = guardrail_automated_reasoning_translation_from_py(&value)?;
+            Ok(converted_475)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("translation"),
+                "dict (GuardrailAutomatedReasoningTranslation)",
+            )
+        })?;
+        builder = builder.set_translation(Some(converted_475));
     }
     if let Some(value) = dict_value(values, "claims_true_scenario")? {
-        let converted_454 = guardrail_automated_reasoning_scenario_from_py(&value)?;
-        builder = builder.set_claims_true_scenario(Some(converted_454));
+        let converted_476 = (|| -> PyResult<_> {
+            let converted_476 = guardrail_automated_reasoning_scenario_from_py(&value)?;
+            Ok(converted_476)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("claims_true_scenario"),
+                "dict (GuardrailAutomatedReasoningScenario)",
+            )
+        })?;
+        builder = builder.set_claims_true_scenario(Some(converted_476));
     }
     if let Some(value) = dict_value(values, "supporting_rules")? {
-        let mut converted_455 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_456 in value.try_iter()? {
-            let item_457 = item_result_456?;
-            let converted_item_458 = guardrail_automated_reasoning_rule_from_py(&item_457)?;
-            converted_455.push(converted_item_458);
-        }
-        builder = builder.set_supporting_rules(Some(converted_455));
+        let converted_477 = (|| -> PyResult<_> {
+            let mut converted_477 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_481, item_result_478) in value.try_iter()?.enumerate() {
+                let item_479 = item_result_478.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_481),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_480 = (|| -> PyResult<_> {
+                    let converted_item_480 = guardrail_automated_reasoning_rule_from_py(&item_479)?;
+                    Ok(converted_item_480)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_481),
+                        "dict (GuardrailAutomatedReasoningRule)",
+                    )
+                })?;
+                converted_477.push(converted_item_480);
+            }
+            Ok(converted_477)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("supporting_rules"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_supporting_rules(Some(converted_477));
     }
     if let Some(value) = dict_value(values, "logic_warning")? {
-        let converted_459 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
-        builder = builder.set_logic_warning(Some(converted_459));
+        let converted_482 = (|| -> PyResult<_> {
+            let converted_482 = guardrail_automated_reasoning_logic_warning_from_py(&value)?;
+            Ok(converted_482)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("logic_warning"),
+                "dict (GuardrailAutomatedReasoningLogicWarning)",
+            )
+        })?;
+        builder = builder.set_logic_warning(Some(converted_482));
     }
     Ok(builder.build())
 }
@@ -2984,31 +4960,31 @@ fn guardrail_automated_reasoning_valid_finding_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.translation {
-        let converted_460 = guardrail_automated_reasoning_translation_to_py(py, value)?;
-        result.set_item("translation", converted_460)?;
+        let converted_483 = guardrail_automated_reasoning_translation_to_py(py, value)?;
+        result.set_item("translation", converted_483)?;
     } else {
         result.set_item("translation", py.None())?;
     }
     if let Some(value) = &value.claims_true_scenario {
-        let converted_461 = guardrail_automated_reasoning_scenario_to_py(py, value)?;
-        result.set_item("claims_true_scenario", converted_461)?;
+        let converted_484 = guardrail_automated_reasoning_scenario_to_py(py, value)?;
+        result.set_item("claims_true_scenario", converted_484)?;
     } else {
         result.set_item("claims_true_scenario", py.None())?;
     }
     if let Some(value) = &value.supporting_rules {
-        let converted_462_list = PyList::empty(py);
-        for item_463 in value {
-            let converted_item_464 = guardrail_automated_reasoning_rule_to_py(py, item_463)?;
-            converted_462_list.append(converted_item_464)?;
+        let converted_485_list = PyList::empty(py);
+        for item_486 in value {
+            let converted_item_487 = guardrail_automated_reasoning_rule_to_py(py, item_486)?;
+            converted_485_list.append(converted_item_487)?;
         }
-        let converted_462 = converted_462_list.into_any().unbind();
-        result.set_item("supporting_rules", converted_462)?;
+        let converted_485 = converted_485_list.into_any().unbind();
+        result.set_item("supporting_rules", converted_485)?;
     } else {
         result.set_item("supporting_rules", py.None())?;
     }
     if let Some(value) = &value.logic_warning {
-        let converted_465 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
-        result.set_item("logic_warning", converted_465)?;
+        let converted_488 = guardrail_automated_reasoning_logic_warning_to_py(py, value)?;
+        result.set_item("logic_warning", converted_488)?;
     } else {
         result.set_item("logic_warning", py.None())?;
     }
@@ -3021,16 +4997,46 @@ fn guardrail_checks_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksConfig::builder();
     if let Some(value) = dict_value(values, "content_filter")? {
-        let converted_466 = guardrail_checks_content_filter_config_from_py(&value)?;
-        builder = builder.set_content_filter(Some(converted_466));
+        let converted_489 = (|| -> PyResult<_> {
+            let converted_489 = guardrail_checks_content_filter_config_from_py(&value)?;
+            Ok(converted_489)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_filter"),
+                "dict (GuardrailChecksContentFilterConfig)",
+            )
+        })?;
+        builder = builder.set_content_filter(Some(converted_489));
     }
     if let Some(value) = dict_value(values, "prompt_attack")? {
-        let converted_467 = guardrail_checks_prompt_attack_config_from_py(&value)?;
-        builder = builder.set_prompt_attack(Some(converted_467));
+        let converted_490 = (|| -> PyResult<_> {
+            let converted_490 = guardrail_checks_prompt_attack_config_from_py(&value)?;
+            Ok(converted_490)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("prompt_attack"),
+                "dict (GuardrailChecksPromptAttackConfig)",
+            )
+        })?;
+        builder = builder.set_prompt_attack(Some(converted_490));
     }
     if let Some(value) = dict_value(values, "sensitive_information")? {
-        let converted_468 = guardrail_checks_sensitive_information_config_from_py(&value)?;
-        builder = builder.set_sensitive_information(Some(converted_468));
+        let converted_491 = (|| -> PyResult<_> {
+            let converted_491 = guardrail_checks_sensitive_information_config_from_py(&value)?;
+            Ok(converted_491)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sensitive_information"),
+                "dict (GuardrailChecksSensitiveInformationConfig)",
+            )
+        })?;
+        builder = builder.set_sensitive_information(Some(converted_491));
     }
     Ok(builder.build())
 }
@@ -3041,20 +5047,20 @@ fn guardrail_checks_config_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content_filter {
-        let converted_469 = guardrail_checks_content_filter_config_to_py(py, value)?;
-        result.set_item("content_filter", converted_469)?;
+        let converted_492 = guardrail_checks_content_filter_config_to_py(py, value)?;
+        result.set_item("content_filter", converted_492)?;
     } else {
         result.set_item("content_filter", py.None())?;
     }
     if let Some(value) = &value.prompt_attack {
-        let converted_470 = guardrail_checks_prompt_attack_config_to_py(py, value)?;
-        result.set_item("prompt_attack", converted_470)?;
+        let converted_493 = guardrail_checks_prompt_attack_config_to_py(py, value)?;
+        result.set_item("prompt_attack", converted_493)?;
     } else {
         result.set_item("prompt_attack", py.None())?;
     }
     if let Some(value) = &value.sensitive_information {
-        let converted_471 = guardrail_checks_sensitive_information_config_to_py(py, value)?;
-        result.set_item("sensitive_information", converted_471)?;
+        let converted_494 = guardrail_checks_sensitive_information_config_to_py(py, value)?;
+        result.set_item("sensitive_information", converted_494)?;
     } else {
         result.set_item("sensitive_information", py.None())?;
     }
@@ -3066,14 +5072,28 @@ fn guardrail_checks_content_block_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::GuardrailChecksContentBlock> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_472: String = value.extract()?;
-        return Ok(aws_sdk_bedrockruntime::types::GuardrailChecksContentBlock::Text(converted_472));
+        let converted_495 = (|| -> PyResult<_> {
+            let converted_495: String = value.extract()?;
+            Ok(converted_495)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::GuardrailChecksContentBlock::Text(converted_495));
     }
-    Err(PyValueError::new_err(
-        "GuardrailChecksContentBlock requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("GuardrailChecksContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -3084,8 +5104,8 @@ fn guardrail_checks_content_block_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::GuardrailChecksContentBlock::Text(value) => {
-            let converted_473 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_473)?;
+            let converted_496 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_496)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -3101,16 +5121,26 @@ fn guardrail_checks_content_filter_category_config_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterCategoryConfig::builder();
     if let Some(value) = dict_value(values, "category")? {
-        let enum_value_475: String = value.extract()?;
-        let converted_474 =
-            aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterCategory::from(
-                enum_value_475.as_str(),
-            );
-        builder = builder.set_category(Some(converted_474));
+        let converted_497 = (|| -> PyResult<_> {
+            let enum_value_498: String = value.extract()?;
+            let converted_497 =
+                aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterCategory::from(
+                    enum_value_498.as_str(),
+                );
+            Ok(converted_497)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("category"),
+                "str (GuardrailChecksContentFilterCategory)",
+            )
+        })?;
+        builder = builder.set_category(Some(converted_497));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("category", "category")]))
 }
 
 fn guardrail_checks_content_filter_category_config_to_py(
@@ -3118,8 +5148,8 @@ fn guardrail_checks_content_filter_category_config_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterCategoryConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_476 = (&value.category).as_str().into_py_any(py)?;
-    result.set_item("category", converted_476)?;
+    let converted_499 = (&value.category).as_str().into_py_any(py)?;
+    result.set_item("category", converted_499)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3129,19 +5159,46 @@ fn guardrail_checks_content_filter_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterConfig::builder();
     if let Some(value) = dict_value(values, "categories")? {
-        let mut converted_477 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_478 in value.try_iter()? {
-            let item_479 = item_result_478?;
-            let converted_item_480 =
-                guardrail_checks_content_filter_category_config_from_py(&item_479)?;
-            converted_477.push(converted_item_480);
-        }
-        builder = builder.set_categories(Some(converted_477));
+        let converted_500 = (|| -> PyResult<_> {
+            let mut converted_500 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_504, item_result_501) in value.try_iter()?.enumerate() {
+                let item_502 = item_result_501.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_504),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_503 = (|| -> PyResult<_> {
+                    let converted_item_503 =
+                        guardrail_checks_content_filter_category_config_from_py(&item_502)?;
+                    Ok(converted_item_503)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_504),
+                        "dict (GuardrailChecksContentFilterCategoryConfig)",
+                    )
+                })?;
+                converted_500.push(converted_item_503);
+            }
+            Ok(converted_500)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("categories"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_categories(Some(converted_500));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("categories", "categories")]))
 }
 
 fn guardrail_checks_content_filter_config_to_py(
@@ -3149,14 +5206,14 @@ fn guardrail_checks_content_filter_config_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_481_list = PyList::empty(py);
-    for item_482 in &value.categories {
-        let converted_item_483 =
-            guardrail_checks_content_filter_category_config_to_py(py, item_482)?;
-        converted_481_list.append(converted_item_483)?;
+    let converted_505_list = PyList::empty(py);
+    for item_506 in &value.categories {
+        let converted_item_507 =
+            guardrail_checks_content_filter_category_config_to_py(py, item_506)?;
+        converted_505_list.append(converted_item_507)?;
     }
-    let converted_481 = converted_481_list.into_any().unbind();
-    result.set_item("categories", converted_481)?;
+    let converted_505 = converted_505_list.into_any().unbind();
+    result.set_item("categories", converted_505)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3166,19 +5223,42 @@ fn guardrail_checks_content_filter_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResult::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_484 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_485 in value.try_iter()? {
-            let item_486 = item_result_485?;
-            let converted_item_487 =
-                guardrail_checks_content_filter_result_entry_from_py(&item_486)?;
-            converted_484.push(converted_item_487);
-        }
-        builder = builder.set_results(Some(converted_484));
+        let converted_508 = (|| -> PyResult<_> {
+            let mut converted_508 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_512, item_result_509) in value.try_iter()?.enumerate() {
+                let item_510 = item_result_509.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_512),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_511 = (|| -> PyResult<_> {
+                    let converted_item_511 =
+                        guardrail_checks_content_filter_result_entry_from_py(&item_510)?;
+                    Ok(converted_item_511)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_512),
+                        "dict (GuardrailChecksContentFilterResultEntry)",
+                    )
+                })?;
+                converted_508.push(converted_item_511);
+            }
+            Ok(converted_508)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("results"), "sequence")
+        })?;
+        builder = builder.set_results(Some(converted_508));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("results", "results")]))
 }
 
 fn guardrail_checks_content_filter_result_to_py(
@@ -3186,13 +5266,13 @@ fn guardrail_checks_content_filter_result_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_488_list = PyList::empty(py);
-    for item_489 in &value.results {
-        let converted_item_490 = guardrail_checks_content_filter_result_entry_to_py(py, item_489)?;
-        converted_488_list.append(converted_item_490)?;
+    let converted_513_list = PyList::empty(py);
+    for item_514 in &value.results {
+        let converted_item_515 = guardrail_checks_content_filter_result_entry_to_py(py, item_514)?;
+        converted_513_list.append(converted_item_515)?;
     }
-    let converted_488 = converted_488_list.into_any().unbind();
-    result.set_item("results", converted_488)?;
+    let converted_513 = converted_513_list.into_any().unbind();
+    result.set_item("results", converted_513)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3203,20 +5283,46 @@ fn guardrail_checks_content_filter_result_entry_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResultEntry::builder();
     if let Some(value) = dict_value(values, "category")? {
-        let enum_value_492: String = value.extract()?;
-        let converted_491 =
-            aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterCategory::from(
-                enum_value_492.as_str(),
-            );
-        builder = builder.set_category(Some(converted_491));
+        let converted_516 = (|| -> PyResult<_> {
+            let enum_value_517: String = value.extract()?;
+            let converted_516 =
+                aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterCategory::from(
+                    enum_value_517.as_str(),
+                );
+            Ok(converted_516)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("category"),
+                "str (GuardrailChecksContentFilterCategory)",
+            )
+        })?;
+        builder = builder.set_category(Some(converted_516));
     }
     if let Some(value) = dict_value(values, "severity_score")? {
-        let converted_493: f64 = value.extract()?;
-        builder = builder.set_severity_score(Some(converted_493));
+        let converted_518 = (|| -> PyResult<_> {
+            let converted_518: f64 = value.extract()?;
+            Ok(converted_518)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("severity_score"),
+                "float",
+            )
+        })?;
+        builder = builder.set_severity_score(Some(converted_518));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("category", "category"),
+                ("severity_score", "severity_score"),
+            ],
+        )
+    })
 }
 
 fn guardrail_checks_content_filter_result_entry_to_py(
@@ -3224,10 +5330,10 @@ fn guardrail_checks_content_filter_result_entry_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResultEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_494 = (&value.category).as_str().into_py_any(py)?;
-    result.set_item("category", converted_494)?;
-    let converted_495 = (&value.severity_score).to_owned().into_py_any(py)?;
-    result.set_item("severity_score", converted_495)?;
+    let converted_519 = (&value.category).as_str().into_py_any(py)?;
+    result.set_item("category", converted_519)?;
+    let converted_520 = (&value.severity_score).to_owned().into_py_any(py)?;
+    result.set_item("severity_score", converted_520)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3237,12 +5343,18 @@ fn guardrail_checks_content_filter_usage_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterUsage::builder();
     if let Some(value) = dict_value(values, "text_units")? {
-        let converted_496: i32 = value.extract()?;
-        builder = builder.set_text_units(Some(converted_496));
+        let converted_521 = (|| -> PyResult<_> {
+            let converted_521: i32 = value.extract()?;
+            Ok(converted_521)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text_units"), "int")
+        })?;
+        builder = builder.set_text_units(Some(converted_521));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("text_units", "text_units")]))
 }
 
 fn guardrail_checks_content_filter_usage_to_py(
@@ -3250,8 +5362,8 @@ fn guardrail_checks_content_filter_usage_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterUsage,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_497 = (&value.text_units).to_owned().into_py_any(py)?;
-    result.set_item("text_units", converted_497)?;
+    let converted_522 = (&value.text_units).to_owned().into_py_any(py)?;
+    result.set_item("text_units", converted_522)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3261,24 +5373,57 @@ fn guardrail_checks_message_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksMessage::builder();
     if let Some(value) = dict_value(values, "role")? {
-        let enum_value_499: String = value.extract()?;
-        let converted_498 =
-            aws_sdk_bedrockruntime::types::GuardrailChecksRole::from(enum_value_499.as_str());
-        builder = builder.set_role(Some(converted_498));
+        let converted_523 = (|| -> PyResult<_> {
+            let enum_value_524: String = value.extract()?;
+            let converted_523 =
+                aws_sdk_bedrockruntime::types::GuardrailChecksRole::from(enum_value_524.as_str());
+            Ok(converted_523)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("role"),
+                "str (GuardrailChecksRole)",
+            )
+        })?;
+        builder = builder.set_role(Some(converted_523));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_500 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_501 in value.try_iter()? {
-            let item_502 = item_result_501?;
-            let converted_item_503 = guardrail_checks_content_block_from_py(&item_502)?;
-            converted_500.push(converted_item_503);
-        }
-        builder = builder.set_content(Some(converted_500));
+        let converted_525 = (|| -> PyResult<_> {
+            let mut converted_525 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_529, item_result_526) in value.try_iter()?.enumerate() {
+                let item_527 = item_result_526.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_529),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_528 = (|| -> PyResult<_> {
+                    let converted_item_528 = guardrail_checks_content_block_from_py(&item_527)?;
+                    Ok(converted_item_528)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_529),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_525.push(converted_item_528);
+            }
+            Ok(converted_525)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "sequence")
+        })?;
+        builder = builder.set_content(Some(converted_525));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("role", "role"), ("content", "content")])
+    })
 }
 
 fn guardrail_checks_message_to_py(
@@ -3286,15 +5431,15 @@ fn guardrail_checks_message_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksMessage,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_504 = (&value.role).as_str().into_py_any(py)?;
-    result.set_item("role", converted_504)?;
-    let converted_505_list = PyList::empty(py);
-    for item_506 in &value.content {
-        let converted_item_507 = guardrail_checks_content_block_to_py(py, item_506)?;
-        converted_505_list.append(converted_item_507)?;
+    let converted_530 = (&value.role).as_str().into_py_any(py)?;
+    result.set_item("role", converted_530)?;
+    let converted_531_list = PyList::empty(py);
+    for item_532 in &value.content {
+        let converted_item_533 = guardrail_checks_content_block_to_py(py, item_532)?;
+        converted_531_list.append(converted_item_533)?;
     }
-    let converted_505 = converted_505_list.into_any().unbind();
-    result.set_item("content", converted_505)?;
+    let converted_531 = converted_531_list.into_any().unbind();
+    result.set_item("content", converted_531)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3305,16 +5450,26 @@ fn guardrail_checks_prompt_attack_category_config_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackCategoryConfig::builder();
     if let Some(value) = dict_value(values, "category")? {
-        let enum_value_509: String = value.extract()?;
-        let converted_508 =
-            aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackCategory::from(
-                enum_value_509.as_str(),
-            );
-        builder = builder.set_category(Some(converted_508));
+        let converted_534 = (|| -> PyResult<_> {
+            let enum_value_535: String = value.extract()?;
+            let converted_534 =
+                aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackCategory::from(
+                    enum_value_535.as_str(),
+                );
+            Ok(converted_534)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("category"),
+                "str (GuardrailChecksPromptAttackCategory)",
+            )
+        })?;
+        builder = builder.set_category(Some(converted_534));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("category", "category")]))
 }
 
 fn guardrail_checks_prompt_attack_category_config_to_py(
@@ -3322,8 +5477,8 @@ fn guardrail_checks_prompt_attack_category_config_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackCategoryConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_510 = (&value.category).as_str().into_py_any(py)?;
-    result.set_item("category", converted_510)?;
+    let converted_536 = (&value.category).as_str().into_py_any(py)?;
+    result.set_item("category", converted_536)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3333,19 +5488,46 @@ fn guardrail_checks_prompt_attack_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackConfig::builder();
     if let Some(value) = dict_value(values, "categories")? {
-        let mut converted_511 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_512 in value.try_iter()? {
-            let item_513 = item_result_512?;
-            let converted_item_514 =
-                guardrail_checks_prompt_attack_category_config_from_py(&item_513)?;
-            converted_511.push(converted_item_514);
-        }
-        builder = builder.set_categories(Some(converted_511));
+        let converted_537 = (|| -> PyResult<_> {
+            let mut converted_537 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_541, item_result_538) in value.try_iter()?.enumerate() {
+                let item_539 = item_result_538.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_541),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_540 = (|| -> PyResult<_> {
+                    let converted_item_540 =
+                        guardrail_checks_prompt_attack_category_config_from_py(&item_539)?;
+                    Ok(converted_item_540)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_541),
+                        "dict (GuardrailChecksPromptAttackCategoryConfig)",
+                    )
+                })?;
+                converted_537.push(converted_item_540);
+            }
+            Ok(converted_537)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("categories"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_categories(Some(converted_537));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("categories", "categories")]))
 }
 
 fn guardrail_checks_prompt_attack_config_to_py(
@@ -3353,14 +5535,14 @@ fn guardrail_checks_prompt_attack_config_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_515_list = PyList::empty(py);
-    for item_516 in &value.categories {
-        let converted_item_517 =
-            guardrail_checks_prompt_attack_category_config_to_py(py, item_516)?;
-        converted_515_list.append(converted_item_517)?;
+    let converted_542_list = PyList::empty(py);
+    for item_543 in &value.categories {
+        let converted_item_544 =
+            guardrail_checks_prompt_attack_category_config_to_py(py, item_543)?;
+        converted_542_list.append(converted_item_544)?;
     }
-    let converted_515 = converted_515_list.into_any().unbind();
-    result.set_item("categories", converted_515)?;
+    let converted_542 = converted_542_list.into_any().unbind();
+    result.set_item("categories", converted_542)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3370,19 +5552,42 @@ fn guardrail_checks_prompt_attack_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResult::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_518 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_519 in value.try_iter()? {
-            let item_520 = item_result_519?;
-            let converted_item_521 =
-                guardrail_checks_prompt_attack_result_entry_from_py(&item_520)?;
-            converted_518.push(converted_item_521);
-        }
-        builder = builder.set_results(Some(converted_518));
+        let converted_545 = (|| -> PyResult<_> {
+            let mut converted_545 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_549, item_result_546) in value.try_iter()?.enumerate() {
+                let item_547 = item_result_546.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_549),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_548 = (|| -> PyResult<_> {
+                    let converted_item_548 =
+                        guardrail_checks_prompt_attack_result_entry_from_py(&item_547)?;
+                    Ok(converted_item_548)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_549),
+                        "dict (GuardrailChecksPromptAttackResultEntry)",
+                    )
+                })?;
+                converted_545.push(converted_item_548);
+            }
+            Ok(converted_545)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("results"), "sequence")
+        })?;
+        builder = builder.set_results(Some(converted_545));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("results", "results")]))
 }
 
 fn guardrail_checks_prompt_attack_result_to_py(
@@ -3390,13 +5595,13 @@ fn guardrail_checks_prompt_attack_result_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_522_list = PyList::empty(py);
-    for item_523 in &value.results {
-        let converted_item_524 = guardrail_checks_prompt_attack_result_entry_to_py(py, item_523)?;
-        converted_522_list.append(converted_item_524)?;
+    let converted_550_list = PyList::empty(py);
+    for item_551 in &value.results {
+        let converted_item_552 = guardrail_checks_prompt_attack_result_entry_to_py(py, item_551)?;
+        converted_550_list.append(converted_item_552)?;
     }
-    let converted_522 = converted_522_list.into_any().unbind();
-    result.set_item("results", converted_522)?;
+    let converted_550 = converted_550_list.into_any().unbind();
+    result.set_item("results", converted_550)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3407,20 +5612,46 @@ fn guardrail_checks_prompt_attack_result_entry_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResultEntry::builder();
     if let Some(value) = dict_value(values, "category")? {
-        let enum_value_526: String = value.extract()?;
-        let converted_525 =
-            aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackCategory::from(
-                enum_value_526.as_str(),
-            );
-        builder = builder.set_category(Some(converted_525));
+        let converted_553 = (|| -> PyResult<_> {
+            let enum_value_554: String = value.extract()?;
+            let converted_553 =
+                aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackCategory::from(
+                    enum_value_554.as_str(),
+                );
+            Ok(converted_553)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("category"),
+                "str (GuardrailChecksPromptAttackCategory)",
+            )
+        })?;
+        builder = builder.set_category(Some(converted_553));
     }
     if let Some(value) = dict_value(values, "severity_score")? {
-        let converted_527: f64 = value.extract()?;
-        builder = builder.set_severity_score(Some(converted_527));
+        let converted_555 = (|| -> PyResult<_> {
+            let converted_555: f64 = value.extract()?;
+            Ok(converted_555)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("severity_score"),
+                "float",
+            )
+        })?;
+        builder = builder.set_severity_score(Some(converted_555));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("category", "category"),
+                ("severity_score", "severity_score"),
+            ],
+        )
+    })
 }
 
 fn guardrail_checks_prompt_attack_result_entry_to_py(
@@ -3428,10 +5659,10 @@ fn guardrail_checks_prompt_attack_result_entry_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResultEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_528 = (&value.category).as_str().into_py_any(py)?;
-    result.set_item("category", converted_528)?;
-    let converted_529 = (&value.severity_score).to_owned().into_py_any(py)?;
-    result.set_item("severity_score", converted_529)?;
+    let converted_556 = (&value.category).as_str().into_py_any(py)?;
+    result.set_item("category", converted_556)?;
+    let converted_557 = (&value.severity_score).to_owned().into_py_any(py)?;
+    result.set_item("severity_score", converted_557)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3441,12 +5672,18 @@ fn guardrail_checks_prompt_attack_usage_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackUsage::builder();
     if let Some(value) = dict_value(values, "text_units")? {
-        let converted_530: i32 = value.extract()?;
-        builder = builder.set_text_units(Some(converted_530));
+        let converted_558 = (|| -> PyResult<_> {
+            let converted_558: i32 = value.extract()?;
+            Ok(converted_558)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text_units"), "int")
+        })?;
+        builder = builder.set_text_units(Some(converted_558));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("text_units", "text_units")]))
 }
 
 fn guardrail_checks_prompt_attack_usage_to_py(
@@ -3454,8 +5691,8 @@ fn guardrail_checks_prompt_attack_usage_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackUsage,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_531 = (&value.text_units).to_owned().into_py_any(py)?;
-    result.set_item("text_units", converted_531)?;
+    let converted_559 = (&value.text_units).to_owned().into_py_any(py)?;
+    result.set_item("text_units", converted_559)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3465,16 +5702,46 @@ fn guardrail_checks_results_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksResults::builder();
     if let Some(value) = dict_value(values, "content_filter")? {
-        let converted_532 = guardrail_checks_content_filter_result_from_py(&value)?;
-        builder = builder.set_content_filter(Some(converted_532));
+        let converted_560 = (|| -> PyResult<_> {
+            let converted_560 = guardrail_checks_content_filter_result_from_py(&value)?;
+            Ok(converted_560)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_filter"),
+                "dict (GuardrailChecksContentFilterResult)",
+            )
+        })?;
+        builder = builder.set_content_filter(Some(converted_560));
     }
     if let Some(value) = dict_value(values, "prompt_attack")? {
-        let converted_533 = guardrail_checks_prompt_attack_result_from_py(&value)?;
-        builder = builder.set_prompt_attack(Some(converted_533));
+        let converted_561 = (|| -> PyResult<_> {
+            let converted_561 = guardrail_checks_prompt_attack_result_from_py(&value)?;
+            Ok(converted_561)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("prompt_attack"),
+                "dict (GuardrailChecksPromptAttackResult)",
+            )
+        })?;
+        builder = builder.set_prompt_attack(Some(converted_561));
     }
     if let Some(value) = dict_value(values, "sensitive_information")? {
-        let converted_534 = guardrail_checks_sensitive_information_result_from_py(&value)?;
-        builder = builder.set_sensitive_information(Some(converted_534));
+        let converted_562 = (|| -> PyResult<_> {
+            let converted_562 = guardrail_checks_sensitive_information_result_from_py(&value)?;
+            Ok(converted_562)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sensitive_information"),
+                "dict (GuardrailChecksSensitiveInformationResult)",
+            )
+        })?;
+        builder = builder.set_sensitive_information(Some(converted_562));
     }
     Ok(builder.build())
 }
@@ -3485,20 +5752,20 @@ fn guardrail_checks_results_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content_filter {
-        let converted_535 = guardrail_checks_content_filter_result_to_py(py, value)?;
-        result.set_item("content_filter", converted_535)?;
+        let converted_563 = guardrail_checks_content_filter_result_to_py(py, value)?;
+        result.set_item("content_filter", converted_563)?;
     } else {
         result.set_item("content_filter", py.None())?;
     }
     if let Some(value) = &value.prompt_attack {
-        let converted_536 = guardrail_checks_prompt_attack_result_to_py(py, value)?;
-        result.set_item("prompt_attack", converted_536)?;
+        let converted_564 = guardrail_checks_prompt_attack_result_to_py(py, value)?;
+        result.set_item("prompt_attack", converted_564)?;
     } else {
         result.set_item("prompt_attack", py.None())?;
     }
     if let Some(value) = &value.sensitive_information {
-        let converted_537 = guardrail_checks_sensitive_information_result_to_py(py, value)?;
-        result.set_item("sensitive_information", converted_537)?;
+        let converted_565 = guardrail_checks_sensitive_information_result_to_py(py, value)?;
+        result.set_item("sensitive_information", converted_565)?;
     } else {
         result.set_item("sensitive_information", py.None())?;
     }
@@ -3512,19 +5779,42 @@ fn guardrail_checks_sensitive_information_config_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationConfig::builder();
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_538 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_539 in value.try_iter()? {
-            let item_540 = item_result_539?;
-            let converted_item_541 =
-                guardrail_checks_sensitive_information_entity_config_from_py(&item_540)?;
-            converted_538.push(converted_item_541);
-        }
-        builder = builder.set_entities(Some(converted_538));
+        let converted_566 = (|| -> PyResult<_> {
+            let mut converted_566 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_570, item_result_567) in value.try_iter()?.enumerate() {
+                let item_568 = item_result_567.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_570),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_569 = (|| -> PyResult<_> {
+                    let converted_item_569 =
+                        guardrail_checks_sensitive_information_entity_config_from_py(&item_568)?;
+                    Ok(converted_item_569)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_570),
+                        "dict (GuardrailChecksSensitiveInformationEntityConfig)",
+                    )
+                })?;
+                converted_566.push(converted_item_569);
+            }
+            Ok(converted_566)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("entities"), "sequence")
+        })?;
+        builder = builder.set_entities(Some(converted_566));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("entities", "entities")]))
 }
 
 fn guardrail_checks_sensitive_information_config_to_py(
@@ -3532,14 +5822,14 @@ fn guardrail_checks_sensitive_information_config_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_542_list = PyList::empty(py);
-    for item_543 in &value.entities {
-        let converted_item_544 =
-            guardrail_checks_sensitive_information_entity_config_to_py(py, item_543)?;
-        converted_542_list.append(converted_item_544)?;
+    let converted_571_list = PyList::empty(py);
+    for item_572 in &value.entities {
+        let converted_item_573 =
+            guardrail_checks_sensitive_information_entity_config_to_py(py, item_572)?;
+        converted_571_list.append(converted_item_573)?;
     }
-    let converted_542 = converted_542_list.into_any().unbind();
-    result.set_item("entities", converted_542)?;
+    let converted_571 = converted_571_list.into_any().unbind();
+    result.set_item("entities", converted_571)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3550,16 +5840,26 @@ fn guardrail_checks_sensitive_information_entity_config_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationEntityConfig::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_546: String = value.extract()?;
-        let converted_545 =
-            aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationEntityType::from(
-                enum_value_546.as_str(),
-            );
-        builder = builder.set_type(Some(converted_545));
+        let converted_574 = (|| -> PyResult<_> {
+            let enum_value_575: String = value.extract()?;
+            let converted_574 =
+                aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationEntityType::from(
+                    enum_value_575.as_str(),
+                );
+            Ok(converted_574)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailChecksSensitiveInformationEntityType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_574));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("type", "type")]))
 }
 
 fn guardrail_checks_sensitive_information_entity_config_to_py(
@@ -3567,8 +5867,8 @@ fn guardrail_checks_sensitive_information_entity_config_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationEntityConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_547 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_547)?;
+    let converted_576 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_576)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3579,23 +5879,52 @@ fn guardrail_checks_sensitive_information_result_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResult::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_548 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_549 in value.try_iter()? {
-            let item_550 = item_result_549?;
-            let converted_item_551 =
-                guardrail_checks_sensitive_information_result_entry_from_py(&item_550)?;
-            converted_548.push(converted_item_551);
-        }
-        builder = builder.set_results(Some(converted_548));
+        let converted_577 = (|| -> PyResult<_> {
+            let mut converted_577 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_581, item_result_578) in value.try_iter()?.enumerate() {
+                let item_579 = item_result_578.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_581),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_580 = (|| -> PyResult<_> {
+                    let converted_item_580 =
+                        guardrail_checks_sensitive_information_result_entry_from_py(&item_579)?;
+                    Ok(converted_item_580)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_581),
+                        "dict (GuardrailChecksSensitiveInformationResultEntry)",
+                    )
+                })?;
+                converted_577.push(converted_item_580);
+            }
+            Ok(converted_577)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("results"), "sequence")
+        })?;
+        builder = builder.set_results(Some(converted_577));
     }
     if let Some(value) = dict_value(values, "truncated")? {
-        let converted_552: bool = value.extract()?;
-        builder = builder.set_truncated(Some(converted_552));
+        let converted_582 = (|| -> PyResult<_> {
+            let converted_582: bool = value.extract()?;
+            Ok(converted_582)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("truncated"), "bool")
+        })?;
+        builder = builder.set_truncated(Some(converted_582));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("results", "results")]))
 }
 
 fn guardrail_checks_sensitive_information_result_to_py(
@@ -3603,17 +5932,17 @@ fn guardrail_checks_sensitive_information_result_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_553_list = PyList::empty(py);
-    for item_554 in &value.results {
-        let converted_item_555 =
-            guardrail_checks_sensitive_information_result_entry_to_py(py, item_554)?;
-        converted_553_list.append(converted_item_555)?;
+    let converted_583_list = PyList::empty(py);
+    for item_584 in &value.results {
+        let converted_item_585 =
+            guardrail_checks_sensitive_information_result_entry_to_py(py, item_584)?;
+        converted_583_list.append(converted_item_585)?;
     }
-    let converted_553 = converted_553_list.into_any().unbind();
-    result.set_item("results", converted_553)?;
+    let converted_583 = converted_583_list.into_any().unbind();
+    result.set_item("results", converted_583)?;
     if let Some(value) = &value.truncated {
-        let converted_556 = (value).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_556)?;
+        let converted_586 = (value).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_586)?;
     } else {
         result.set_item("truncated", py.None())?;
     }
@@ -3627,36 +5956,90 @@ fn guardrail_checks_sensitive_information_result_entry_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResultEntry::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_558: String = value.extract()?;
-        let converted_557 =
-            aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationEntityType::from(
-                enum_value_558.as_str(),
-            );
-        builder = builder.set_type(Some(converted_557));
+        let converted_587 = (|| -> PyResult<_> {
+            let enum_value_588: String = value.extract()?;
+            let converted_587 =
+                aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationEntityType::from(
+                    enum_value_588.as_str(),
+                );
+            Ok(converted_587)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailChecksSensitiveInformationEntityType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_587));
     }
     if let Some(value) = dict_value(values, "confidence_score")? {
-        let converted_559: f64 = value.extract()?;
-        builder = builder.set_confidence_score(Some(converted_559));
+        let converted_589 = (|| -> PyResult<_> {
+            let converted_589: f64 = value.extract()?;
+            Ok(converted_589)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("confidence_score"),
+                "float",
+            )
+        })?;
+        builder = builder.set_confidence_score(Some(converted_589));
     }
     if let Some(value) = dict_value(values, "begin_offset")? {
-        let converted_560: i32 = value.extract()?;
-        builder = builder.set_begin_offset(Some(converted_560));
+        let converted_590 = (|| -> PyResult<_> {
+            let converted_590: i32 = value.extract()?;
+            Ok(converted_590)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("begin_offset"), "int")
+        })?;
+        builder = builder.set_begin_offset(Some(converted_590));
     }
     if let Some(value) = dict_value(values, "end_offset")? {
-        let converted_561: i32 = value.extract()?;
-        builder = builder.set_end_offset(Some(converted_561));
+        let converted_591 = (|| -> PyResult<_> {
+            let converted_591: i32 = value.extract()?;
+            Ok(converted_591)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end_offset"), "int")
+        })?;
+        builder = builder.set_end_offset(Some(converted_591));
     }
     if let Some(value) = dict_value(values, "message_index")? {
-        let converted_562: i32 = value.extract()?;
-        builder = builder.set_message_index(Some(converted_562));
+        let converted_592 = (|| -> PyResult<_> {
+            let converted_592: i32 = value.extract()?;
+            Ok(converted_592)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message_index"), "int")
+        })?;
+        builder = builder.set_message_index(Some(converted_592));
     }
     if let Some(value) = dict_value(values, "content_index")? {
-        let converted_563: i32 = value.extract()?;
-        builder = builder.set_content_index(Some(converted_563));
+        let converted_593 = (|| -> PyResult<_> {
+            let converted_593: i32 = value.extract()?;
+            Ok(converted_593)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content_index"), "int")
+        })?;
+        builder = builder.set_content_index(Some(converted_593));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("type", "type"),
+                ("confidence_score", "confidence_score"),
+                ("begin_offset", "begin_offset"),
+                ("end_offset", "end_offset"),
+                ("message_index", "message_index"),
+                ("content_index", "content_index"),
+            ],
+        )
+    })
 }
 
 fn guardrail_checks_sensitive_information_result_entry_to_py(
@@ -3664,18 +6047,18 @@ fn guardrail_checks_sensitive_information_result_entry_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResultEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_564 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_564)?;
-    let converted_565 = (&value.confidence_score).to_owned().into_py_any(py)?;
-    result.set_item("confidence_score", converted_565)?;
-    let converted_566 = (&value.begin_offset).to_owned().into_py_any(py)?;
-    result.set_item("begin_offset", converted_566)?;
-    let converted_567 = (&value.end_offset).to_owned().into_py_any(py)?;
-    result.set_item("end_offset", converted_567)?;
-    let converted_568 = (&value.message_index).to_owned().into_py_any(py)?;
-    result.set_item("message_index", converted_568)?;
-    let converted_569 = (&value.content_index).to_owned().into_py_any(py)?;
-    result.set_item("content_index", converted_569)?;
+    let converted_594 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_594)?;
+    let converted_595 = (&value.confidence_score).to_owned().into_py_any(py)?;
+    result.set_item("confidence_score", converted_595)?;
+    let converted_596 = (&value.begin_offset).to_owned().into_py_any(py)?;
+    result.set_item("begin_offset", converted_596)?;
+    let converted_597 = (&value.end_offset).to_owned().into_py_any(py)?;
+    result.set_item("end_offset", converted_597)?;
+    let converted_598 = (&value.message_index).to_owned().into_py_any(py)?;
+    result.set_item("message_index", converted_598)?;
+    let converted_599 = (&value.content_index).to_owned().into_py_any(py)?;
+    result.set_item("content_index", converted_599)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3686,12 +6069,18 @@ fn guardrail_checks_sensitive_information_usage_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationUsage::builder();
     if let Some(value) = dict_value(values, "text_units")? {
-        let converted_570: i32 = value.extract()?;
-        builder = builder.set_text_units(Some(converted_570));
+        let converted_600 = (|| -> PyResult<_> {
+            let converted_600: i32 = value.extract()?;
+            Ok(converted_600)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text_units"), "int")
+        })?;
+        builder = builder.set_text_units(Some(converted_600));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("text_units", "text_units")]))
 }
 
 fn guardrail_checks_sensitive_information_usage_to_py(
@@ -3699,8 +6088,8 @@ fn guardrail_checks_sensitive_information_usage_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationUsage,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_571 = (&value.text_units).to_owned().into_py_any(py)?;
-    result.set_item("text_units", converted_571)?;
+    let converted_601 = (&value.text_units).to_owned().into_py_any(py)?;
+    result.set_item("text_units", converted_601)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3710,16 +6099,46 @@ fn guardrail_checks_usage_results_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksUsageResults::builder();
     if let Some(value) = dict_value(values, "content_filter")? {
-        let converted_572 = guardrail_checks_content_filter_usage_from_py(&value)?;
-        builder = builder.set_content_filter(Some(converted_572));
+        let converted_602 = (|| -> PyResult<_> {
+            let converted_602 = guardrail_checks_content_filter_usage_from_py(&value)?;
+            Ok(converted_602)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_filter"),
+                "dict (GuardrailChecksContentFilterUsage)",
+            )
+        })?;
+        builder = builder.set_content_filter(Some(converted_602));
     }
     if let Some(value) = dict_value(values, "prompt_attack")? {
-        let converted_573 = guardrail_checks_prompt_attack_usage_from_py(&value)?;
-        builder = builder.set_prompt_attack(Some(converted_573));
+        let converted_603 = (|| -> PyResult<_> {
+            let converted_603 = guardrail_checks_prompt_attack_usage_from_py(&value)?;
+            Ok(converted_603)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("prompt_attack"),
+                "dict (GuardrailChecksPromptAttackUsage)",
+            )
+        })?;
+        builder = builder.set_prompt_attack(Some(converted_603));
     }
     if let Some(value) = dict_value(values, "sensitive_information")? {
-        let converted_574 = guardrail_checks_sensitive_information_usage_from_py(&value)?;
-        builder = builder.set_sensitive_information(Some(converted_574));
+        let converted_604 = (|| -> PyResult<_> {
+            let converted_604 = guardrail_checks_sensitive_information_usage_from_py(&value)?;
+            Ok(converted_604)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sensitive_information"),
+                "dict (GuardrailChecksSensitiveInformationUsage)",
+            )
+        })?;
+        builder = builder.set_sensitive_information(Some(converted_604));
     }
     Ok(builder.build())
 }
@@ -3730,20 +6149,20 @@ fn guardrail_checks_usage_results_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content_filter {
-        let converted_575 = guardrail_checks_content_filter_usage_to_py(py, value)?;
-        result.set_item("content_filter", converted_575)?;
+        let converted_605 = guardrail_checks_content_filter_usage_to_py(py, value)?;
+        result.set_item("content_filter", converted_605)?;
     } else {
         result.set_item("content_filter", py.None())?;
     }
     if let Some(value) = &value.prompt_attack {
-        let converted_576 = guardrail_checks_prompt_attack_usage_to_py(py, value)?;
-        result.set_item("prompt_attack", converted_576)?;
+        let converted_606 = guardrail_checks_prompt_attack_usage_to_py(py, value)?;
+        result.set_item("prompt_attack", converted_606)?;
     } else {
         result.set_item("prompt_attack", py.None())?;
     }
     if let Some(value) = &value.sensitive_information {
-        let converted_577 = guardrail_checks_sensitive_information_usage_to_py(py, value)?;
-        result.set_item("sensitive_information", converted_577)?;
+        let converted_607 = guardrail_checks_sensitive_information_usage_to_py(py, value)?;
+        result.set_item("sensitive_information", converted_607)?;
     } else {
         result.set_item("sensitive_information", py.None())?;
     }
@@ -3756,18 +6175,48 @@ fn guardrail_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailConfiguration::builder();
     if let Some(value) = dict_value(values, "guardrail_identifier")? {
-        let converted_578: String = value.extract()?;
-        builder = builder.set_guardrail_identifier(Some(converted_578));
+        let converted_608 = (|| -> PyResult<_> {
+            let converted_608: String = value.extract()?;
+            Ok(converted_608)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_identifier"),
+                "str",
+            )
+        })?;
+        builder = builder.set_guardrail_identifier(Some(converted_608));
     }
     if let Some(value) = dict_value(values, "guardrail_version")? {
-        let converted_579: String = value.extract()?;
-        builder = builder.set_guardrail_version(Some(converted_579));
+        let converted_609 = (|| -> PyResult<_> {
+            let converted_609: String = value.extract()?;
+            Ok(converted_609)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_version"),
+                "str",
+            )
+        })?;
+        builder = builder.set_guardrail_version(Some(converted_609));
     }
     if let Some(value) = dict_value(values, "trace")? {
-        let enum_value_581: String = value.extract()?;
-        let converted_580 =
-            aws_sdk_bedrockruntime::types::GuardrailTrace::from(enum_value_581.as_str());
-        builder = builder.set_trace(Some(converted_580));
+        let converted_610 = (|| -> PyResult<_> {
+            let enum_value_611: String = value.extract()?;
+            let converted_610 =
+                aws_sdk_bedrockruntime::types::GuardrailTrace::from(enum_value_611.as_str());
+            Ok(converted_610)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("trace"),
+                "str (GuardrailTrace)",
+            )
+        })?;
+        builder = builder.set_trace(Some(converted_610));
     }
     Ok(builder.build())
 }
@@ -3777,12 +6226,12 @@ fn guardrail_configuration_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_582 = (&value.guardrail_identifier).as_str().into_py_any(py)?;
-    result.set_item("guardrail_identifier", converted_582)?;
-    let converted_583 = (&value.guardrail_version).as_str().into_py_any(py)?;
-    result.set_item("guardrail_version", converted_583)?;
-    let converted_584 = (&value.trace).as_str().into_py_any(py)?;
-    result.set_item("trace", converted_584)?;
+    let converted_612 = (&value.guardrail_identifier).as_str().into_py_any(py)?;
+    result.set_item("guardrail_identifier", converted_612)?;
+    let converted_613 = (&value.guardrail_version).as_str().into_py_any(py)?;
+    result.set_item("guardrail_version", converted_613)?;
+    let converted_614 = (&value.trace).as_str().into_py_any(py)?;
+    result.set_item("trace", converted_614)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3791,22 +6240,50 @@ fn guardrail_content_block_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::GuardrailContentBlock> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_585 = guardrail_text_block_from_py(&value)?;
+        let converted_615 = (|| -> PyResult<_> {
+            let converted_615 = guardrail_text_block_from_py(&value)?;
+            Ok(converted_615)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("text"),
+                "dict (GuardrailTextBlock)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::GuardrailContentBlock::Text(
-            converted_585,
+            converted_615,
         ));
     }
     if let Some(value) = dict_value(values, "image")? {
-        let converted_586 = guardrail_image_block_from_py(&value)?;
+        let converted_616 = (|| -> PyResult<_> {
+            let converted_616 = guardrail_image_block_from_py(&value)?;
+            Ok(converted_616)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("image"),
+                "dict (GuardrailImageBlock)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::GuardrailContentBlock::Image(
-            converted_586,
+            converted_616,
         ));
     }
-    Err(PyValueError::new_err(
-        "GuardrailContentBlock requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("GuardrailContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -3817,12 +6294,12 @@ fn guardrail_content_block_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::GuardrailContentBlock::Text(value) => {
-            let converted_587 = guardrail_text_block_to_py(py, value)?;
-            result.set_item("text", converted_587)?;
+            let converted_617 = guardrail_text_block_to_py(py, value)?;
+            result.set_item("text", converted_617)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailContentBlock::Image(value) => {
-            let converted_588 = guardrail_image_block_to_py(py, value)?;
-            result.set_item("image", converted_588)?;
+            let converted_618 = guardrail_image_block_to_py(py, value)?;
+            result.set_item("image", converted_618)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -3837,40 +6314,94 @@ fn guardrail_content_filter_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailContentFilter::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_590: String = value.extract()?;
-        let converted_589 = aws_sdk_bedrockruntime::types::GuardrailContentFilterType::from(
-            enum_value_590.as_str(),
-        );
-        builder = builder.set_type(Some(converted_589));
+        let converted_619 = (|| -> PyResult<_> {
+            let enum_value_620: String = value.extract()?;
+            let converted_619 = aws_sdk_bedrockruntime::types::GuardrailContentFilterType::from(
+                enum_value_620.as_str(),
+            );
+            Ok(converted_619)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailContentFilterType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_619));
     }
     if let Some(value) = dict_value(values, "confidence")? {
-        let enum_value_592: String = value.extract()?;
-        let converted_591 = aws_sdk_bedrockruntime::types::GuardrailContentFilterConfidence::from(
-            enum_value_592.as_str(),
-        );
-        builder = builder.set_confidence(Some(converted_591));
+        let converted_621 = (|| -> PyResult<_> {
+            let enum_value_622: String = value.extract()?;
+            let converted_621 =
+                aws_sdk_bedrockruntime::types::GuardrailContentFilterConfidence::from(
+                    enum_value_622.as_str(),
+                );
+            Ok(converted_621)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("confidence"),
+                "str (GuardrailContentFilterConfidence)",
+            )
+        })?;
+        builder = builder.set_confidence(Some(converted_621));
     }
     if let Some(value) = dict_value(values, "filter_strength")? {
-        let enum_value_594: String = value.extract()?;
-        let converted_593 = aws_sdk_bedrockruntime::types::GuardrailContentFilterStrength::from(
-            enum_value_594.as_str(),
-        );
-        builder = builder.set_filter_strength(Some(converted_593));
+        let converted_623 = (|| -> PyResult<_> {
+            let enum_value_624: String = value.extract()?;
+            let converted_623 = aws_sdk_bedrockruntime::types::GuardrailContentFilterStrength::from(
+                enum_value_624.as_str(),
+            );
+            Ok(converted_623)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("filter_strength"),
+                "str (GuardrailContentFilterStrength)",
+            )
+        })?;
+        builder = builder.set_filter_strength(Some(converted_623));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let enum_value_596: String = value.extract()?;
-        let converted_595 = aws_sdk_bedrockruntime::types::GuardrailContentPolicyAction::from(
-            enum_value_596.as_str(),
-        );
-        builder = builder.set_action(Some(converted_595));
+        let converted_625 = (|| -> PyResult<_> {
+            let enum_value_626: String = value.extract()?;
+            let converted_625 = aws_sdk_bedrockruntime::types::GuardrailContentPolicyAction::from(
+                enum_value_626.as_str(),
+            );
+            Ok(converted_625)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("action"),
+                "str (GuardrailContentPolicyAction)",
+            )
+        })?;
+        builder = builder.set_action(Some(converted_625));
     }
     if let Some(value) = dict_value(values, "detected")? {
-        let converted_597: bool = value.extract()?;
-        builder = builder.set_detected(Some(converted_597));
+        let converted_627 = (|| -> PyResult<_> {
+            let converted_627: bool = value.extract()?;
+            Ok(converted_627)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("detected"), "bool")
+        })?;
+        builder = builder.set_detected(Some(converted_627));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("type", "type"),
+                ("confidence", "confidence"),
+                ("action", "action"),
+            ],
+        )
+    })
 }
 
 fn guardrail_content_filter_to_py(
@@ -3878,21 +6409,21 @@ fn guardrail_content_filter_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailContentFilter,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_598 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_598)?;
-    let converted_599 = (&value.confidence).as_str().into_py_any(py)?;
-    result.set_item("confidence", converted_599)?;
+    let converted_628 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_628)?;
+    let converted_629 = (&value.confidence).as_str().into_py_any(py)?;
+    result.set_item("confidence", converted_629)?;
     if let Some(value) = &value.filter_strength {
-        let converted_600 = (value).as_str().into_py_any(py)?;
-        result.set_item("filter_strength", converted_600)?;
+        let converted_630 = (value).as_str().into_py_any(py)?;
+        result.set_item("filter_strength", converted_630)?;
     } else {
         result.set_item("filter_strength", py.None())?;
     }
-    let converted_601 = (&value.action).as_str().into_py_any(py)?;
-    result.set_item("action", converted_601)?;
+    let converted_631 = (&value.action).as_str().into_py_any(py)?;
+    result.set_item("action", converted_631)?;
     if let Some(value) = &value.detected {
-        let converted_602 = (value).to_owned().into_py_any(py)?;
-        result.set_item("detected", converted_602)?;
+        let converted_632 = (value).to_owned().into_py_any(py)?;
+        result.set_item("detected", converted_632)?;
     } else {
         result.set_item("detected", py.None())?;
     }
@@ -3905,18 +6436,41 @@ fn guardrail_content_policy_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailContentPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_603 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_604 in value.try_iter()? {
-            let item_605 = item_result_604?;
-            let converted_item_606 = guardrail_content_filter_from_py(&item_605)?;
-            converted_603.push(converted_item_606);
-        }
-        builder = builder.set_filters(Some(converted_603));
+        let converted_633 = (|| -> PyResult<_> {
+            let mut converted_633 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_637, item_result_634) in value.try_iter()?.enumerate() {
+                let item_635 = item_result_634.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_637),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_636 = (|| -> PyResult<_> {
+                    let converted_item_636 = guardrail_content_filter_from_py(&item_635)?;
+                    Ok(converted_item_636)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_637),
+                        "dict (GuardrailContentFilter)",
+                    )
+                })?;
+                converted_633.push(converted_item_636);
+            }
+            Ok(converted_633)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("filters"), "sequence")
+        })?;
+        builder = builder.set_filters(Some(converted_633));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("filters", "filters")]))
 }
 
 fn guardrail_content_policy_assessment_to_py(
@@ -3924,13 +6478,13 @@ fn guardrail_content_policy_assessment_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailContentPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_607_list = PyList::empty(py);
-    for item_608 in &value.filters {
-        let converted_item_609 = guardrail_content_filter_to_py(py, item_608)?;
-        converted_607_list.append(converted_item_609)?;
+    let converted_638_list = PyList::empty(py);
+    for item_639 in &value.filters {
+        let converted_item_640 = guardrail_content_filter_to_py(py, item_639)?;
+        converted_638_list.append(converted_item_640)?;
     }
-    let converted_607 = converted_607_list.into_any().unbind();
-    result.set_item("filters", converted_607)?;
+    let converted_638 = converted_638_list.into_any().unbind();
+    result.set_item("filters", converted_638)?;
     Ok(result.into_any().unbind())
 }
 
@@ -3940,36 +6494,82 @@ fn guardrail_contextual_grounding_filter_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailContextualGroundingFilter::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_611: String = value.extract()?;
-        let converted_610 =
-            aws_sdk_bedrockruntime::types::GuardrailContextualGroundingFilterType::from(
-                enum_value_611.as_str(),
-            );
-        builder = builder.set_type(Some(converted_610));
+        let converted_641 = (|| -> PyResult<_> {
+            let enum_value_642: String = value.extract()?;
+            let converted_641 =
+                aws_sdk_bedrockruntime::types::GuardrailContextualGroundingFilterType::from(
+                    enum_value_642.as_str(),
+                );
+            Ok(converted_641)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailContextualGroundingFilterType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_641));
     }
     if let Some(value) = dict_value(values, "threshold")? {
-        let converted_612: f64 = value.extract()?;
-        builder = builder.set_threshold(Some(converted_612));
+        let converted_643 = (|| -> PyResult<_> {
+            let converted_643: f64 = value.extract()?;
+            Ok(converted_643)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("threshold"), "float")
+        })?;
+        builder = builder.set_threshold(Some(converted_643));
     }
     if let Some(value) = dict_value(values, "score")? {
-        let converted_613: f64 = value.extract()?;
-        builder = builder.set_score(Some(converted_613));
+        let converted_644 = (|| -> PyResult<_> {
+            let converted_644: f64 = value.extract()?;
+            Ok(converted_644)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("score"), "float")
+        })?;
+        builder = builder.set_score(Some(converted_644));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let enum_value_615: String = value.extract()?;
-        let converted_614 =
-            aws_sdk_bedrockruntime::types::GuardrailContextualGroundingPolicyAction::from(
-                enum_value_615.as_str(),
-            );
-        builder = builder.set_action(Some(converted_614));
+        let converted_645 = (|| -> PyResult<_> {
+            let enum_value_646: String = value.extract()?;
+            let converted_645 =
+                aws_sdk_bedrockruntime::types::GuardrailContextualGroundingPolicyAction::from(
+                    enum_value_646.as_str(),
+                );
+            Ok(converted_645)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("action"),
+                "str (GuardrailContextualGroundingPolicyAction)",
+            )
+        })?;
+        builder = builder.set_action(Some(converted_645));
     }
     if let Some(value) = dict_value(values, "detected")? {
-        let converted_616: bool = value.extract()?;
-        builder = builder.set_detected(Some(converted_616));
+        let converted_647 = (|| -> PyResult<_> {
+            let converted_647: bool = value.extract()?;
+            Ok(converted_647)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("detected"), "bool")
+        })?;
+        builder = builder.set_detected(Some(converted_647));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("type", "type"),
+                ("threshold", "threshold"),
+                ("score", "score"),
+                ("action", "action"),
+            ],
+        )
+    })
 }
 
 fn guardrail_contextual_grounding_filter_to_py(
@@ -3977,17 +6577,17 @@ fn guardrail_contextual_grounding_filter_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailContextualGroundingFilter,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_617 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_617)?;
-    let converted_618 = (&value.threshold).to_owned().into_py_any(py)?;
-    result.set_item("threshold", converted_618)?;
-    let converted_619 = (&value.score).to_owned().into_py_any(py)?;
-    result.set_item("score", converted_619)?;
-    let converted_620 = (&value.action).as_str().into_py_any(py)?;
-    result.set_item("action", converted_620)?;
+    let converted_648 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_648)?;
+    let converted_649 = (&value.threshold).to_owned().into_py_any(py)?;
+    result.set_item("threshold", converted_649)?;
+    let converted_650 = (&value.score).to_owned().into_py_any(py)?;
+    result.set_item("score", converted_650)?;
+    let converted_651 = (&value.action).as_str().into_py_any(py)?;
+    result.set_item("action", converted_651)?;
     if let Some(value) = &value.detected {
-        let converted_621 = (value).to_owned().into_py_any(py)?;
-        result.set_item("detected", converted_621)?;
+        let converted_652 = (value).to_owned().into_py_any(py)?;
+        result.set_item("detected", converted_652)?;
     } else {
         result.set_item("detected", py.None())?;
     }
@@ -4001,14 +6601,38 @@ fn guardrail_contextual_grounding_policy_assessment_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailContextualGroundingPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_622 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_623 in value.try_iter()? {
-            let item_624 = item_result_623?;
-            let converted_item_625 = guardrail_contextual_grounding_filter_from_py(&item_624)?;
-            converted_622.push(converted_item_625);
-        }
-        builder = builder.set_filters(Some(converted_622));
+        let converted_653 = (|| -> PyResult<_> {
+            let mut converted_653 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_657, item_result_654) in value.try_iter()?.enumerate() {
+                let item_655 = item_result_654.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_657),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_656 = (|| -> PyResult<_> {
+                    let converted_item_656 =
+                        guardrail_contextual_grounding_filter_from_py(&item_655)?;
+                    Ok(converted_item_656)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_657),
+                        "dict (GuardrailContextualGroundingFilter)",
+                    )
+                })?;
+                converted_653.push(converted_item_656);
+            }
+            Ok(converted_653)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("filters"), "sequence")
+        })?;
+        builder = builder.set_filters(Some(converted_653));
     }
     Ok(builder.build())
 }
@@ -4019,13 +6643,13 @@ fn guardrail_contextual_grounding_policy_assessment_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.filters {
-        let converted_626_list = PyList::empty(py);
-        for item_627 in value {
-            let converted_item_628 = guardrail_contextual_grounding_filter_to_py(py, item_627)?;
-            converted_626_list.append(converted_item_628)?;
+        let converted_658_list = PyList::empty(py);
+        for item_659 in value {
+            let converted_item_660 = guardrail_contextual_grounding_filter_to_py(py, item_659)?;
+            converted_658_list.append(converted_item_660)?;
         }
-        let converted_626 = converted_626_list.into_any().unbind();
-        result.set_item("filters", converted_626)?;
+        let converted_658 = converted_658_list.into_any().unbind();
+        result.set_item("filters", converted_658)?;
     } else {
         result.set_item("filters", py.None())?;
     }
@@ -4037,22 +6661,50 @@ fn guardrail_converse_content_block_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::GuardrailConverseContentBlock> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_629 = guardrail_converse_text_block_from_py(&value)?;
+        let converted_661 = (|| -> PyResult<_> {
+            let converted_661 = guardrail_converse_text_block_from_py(&value)?;
+            Ok(converted_661)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("text"),
+                "dict (GuardrailConverseTextBlock)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::GuardrailConverseContentBlock::Text(converted_629),
+            aws_sdk_bedrockruntime::types::GuardrailConverseContentBlock::Text(converted_661),
         );
     }
     if let Some(value) = dict_value(values, "image")? {
-        let converted_630 = guardrail_converse_image_block_from_py(&value)?;
+        let converted_662 = (|| -> PyResult<_> {
+            let converted_662 = guardrail_converse_image_block_from_py(&value)?;
+            Ok(converted_662)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("image"),
+                "dict (GuardrailConverseImageBlock)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::GuardrailConverseContentBlock::Image(converted_630),
+            aws_sdk_bedrockruntime::types::GuardrailConverseContentBlock::Image(converted_662),
         );
     }
-    Err(PyValueError::new_err(
-        "GuardrailConverseContentBlock requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("GuardrailConverseContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -4063,12 +6715,12 @@ fn guardrail_converse_content_block_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::GuardrailConverseContentBlock::Text(value) => {
-            let converted_631 = guardrail_converse_text_block_to_py(py, value)?;
-            result.set_item("text", converted_631)?;
+            let converted_663 = guardrail_converse_text_block_to_py(py, value)?;
+            result.set_item("text", converted_663)?;
         }
         aws_sdk_bedrockruntime::types::GuardrailConverseContentBlock::Image(value) => {
-            let converted_632 = guardrail_converse_image_block_to_py(py, value)?;
-            result.set_item("image", converted_632)?;
+            let converted_664 = guardrail_converse_image_block_to_py(py, value)?;
+            result.set_item("image", converted_664)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -4083,19 +6735,39 @@ fn guardrail_converse_image_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailConverseImageBlock::builder();
     if let Some(value) = dict_value(values, "format")? {
-        let enum_value_634: String = value.extract()?;
-        let converted_633 = aws_sdk_bedrockruntime::types::GuardrailConverseImageFormat::from(
-            enum_value_634.as_str(),
-        );
-        builder = builder.set_format(Some(converted_633));
+        let converted_665 = (|| -> PyResult<_> {
+            let enum_value_666: String = value.extract()?;
+            let converted_665 = aws_sdk_bedrockruntime::types::GuardrailConverseImageFormat::from(
+                enum_value_666.as_str(),
+            );
+            Ok(converted_665)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("format"),
+                "str (GuardrailConverseImageFormat)",
+            )
+        })?;
+        builder = builder.set_format(Some(converted_665));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_635 = guardrail_converse_image_source_from_py(&value)?;
-        builder = builder.set_source(Some(converted_635));
+        let converted_667 = (|| -> PyResult<_> {
+            let converted_667 = guardrail_converse_image_source_from_py(&value)?;
+            Ok(converted_667)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_source(Some(converted_667));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("format", "format")]))
 }
 
 fn guardrail_converse_image_block_to_py(
@@ -4103,11 +6775,11 @@ fn guardrail_converse_image_block_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailConverseImageBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_636 = (&value.format).as_str().into_py_any(py)?;
-    result.set_item("format", converted_636)?;
+    let converted_668 = (&value.format).as_str().into_py_any(py)?;
+    result.set_item("format", converted_668)?;
     if let Some(value) = &value.source {
-        let converted_637 = guardrail_converse_image_source_to_py(py, value)?;
-        result.set_item("source", converted_637)?;
+        let converted_669 = guardrail_converse_image_source_to_py(py, value)?;
+        result.set_item("source", converted_669)?;
     } else {
         result.set_item("source", py.None())?;
     }
@@ -4119,17 +6791,31 @@ fn guardrail_converse_image_source_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::GuardrailConverseImageSource> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_639: Vec<u8> = value.extract()?;
-        let converted_638 = ::aws_smithy_types::Blob::new(bytes_639);
+        let converted_670 = (|| -> PyResult<_> {
+            let bytes_671: Vec<u8> = value.extract()?;
+            let converted_670 = ::aws_smithy_types::Blob::new(bytes_671);
+            Ok(converted_670)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::GuardrailConverseImageSource::Bytes(converted_638),
+            aws_sdk_bedrockruntime::types::GuardrailConverseImageSource::Bytes(converted_670),
         );
     }
-    Err(PyValueError::new_err(
-        "GuardrailConverseImageSource requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("GuardrailConverseImageSource requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -4140,8 +6826,8 @@ fn guardrail_converse_image_source_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::GuardrailConverseImageSource::Bytes(value) => {
-            let converted_640 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("bytes", converted_640)?;
+            let converted_672 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("bytes", converted_672)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -4156,26 +6842,59 @@ fn guardrail_converse_text_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailConverseTextBlock::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let converted_641: String = value.extract()?;
-        builder = builder.set_text(Some(converted_641));
+        let converted_673 = (|| -> PyResult<_> {
+            let converted_673: String = value.extract()?;
+            Ok(converted_673)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        builder = builder.set_text(Some(converted_673));
     }
     if let Some(value) = dict_value(values, "qualifiers")? {
-        let mut converted_642 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_643 in value.try_iter()? {
-            let item_644 = item_result_643?;
-            let enum_value_646: String = item_644.extract()?;
-            let converted_item_645 =
-                aws_sdk_bedrockruntime::types::GuardrailConverseContentQualifier::from(
-                    enum_value_646.as_str(),
-                );
-            converted_642.push(converted_item_645);
-        }
-        builder = builder.set_qualifiers(Some(converted_642));
+        let converted_674 = (|| -> PyResult<_> {
+            let mut converted_674 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_678, item_result_675) in value.try_iter()?.enumerate() {
+                let item_676 = item_result_675.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_678),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_677 = (|| -> PyResult<_> {
+                    let enum_value_679: String = item_676.extract()?;
+                    let converted_item_677 =
+                        aws_sdk_bedrockruntime::types::GuardrailConverseContentQualifier::from(
+                            enum_value_679.as_str(),
+                        );
+                    Ok(converted_item_677)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_678),
+                        "str (GuardrailConverseContentQualifier)",
+                    )
+                })?;
+                converted_674.push(converted_item_677);
+            }
+            Ok(converted_674)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("qualifiers"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_qualifiers(Some(converted_674));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("text", "text")]))
 }
 
 fn guardrail_converse_text_block_to_py(
@@ -4183,16 +6902,16 @@ fn guardrail_converse_text_block_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailConverseTextBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_647 = (&value.text).as_str().into_py_any(py)?;
-    result.set_item("text", converted_647)?;
+    let converted_680 = (&value.text).as_str().into_py_any(py)?;
+    result.set_item("text", converted_680)?;
     if let Some(value) = &value.qualifiers {
-        let converted_648_list = PyList::empty(py);
-        for item_649 in value {
-            let converted_item_650 = (item_649).as_str().into_py_any(py)?;
-            converted_648_list.append(converted_item_650)?;
+        let converted_681_list = PyList::empty(py);
+        for item_682 in value {
+            let converted_item_683 = (item_682).as_str().into_py_any(py)?;
+            converted_681_list.append(converted_item_683)?;
         }
-        let converted_648 = converted_648_list.into_any().unbind();
-        result.set_item("qualifiers", converted_648)?;
+        let converted_681 = converted_681_list.into_any().unbind();
+        result.set_item("qualifiers", converted_681)?;
     } else {
         result.set_item("qualifiers", py.None())?;
     }
@@ -4205,12 +6924,32 @@ fn guardrail_coverage_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailCoverage::builder();
     if let Some(value) = dict_value(values, "text_characters")? {
-        let converted_651 = guardrail_text_characters_coverage_from_py(&value)?;
-        builder = builder.set_text_characters(Some(converted_651));
+        let converted_684 = (|| -> PyResult<_> {
+            let converted_684 = guardrail_text_characters_coverage_from_py(&value)?;
+            Ok(converted_684)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("text_characters"),
+                "dict (GuardrailTextCharactersCoverage)",
+            )
+        })?;
+        builder = builder.set_text_characters(Some(converted_684));
     }
     if let Some(value) = dict_value(values, "images")? {
-        let converted_652 = guardrail_image_coverage_from_py(&value)?;
-        builder = builder.set_images(Some(converted_652));
+        let converted_685 = (|| -> PyResult<_> {
+            let converted_685 = guardrail_image_coverage_from_py(&value)?;
+            Ok(converted_685)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("images"),
+                "dict (GuardrailImageCoverage)",
+            )
+        })?;
+        builder = builder.set_images(Some(converted_685));
     }
     Ok(builder.build())
 }
@@ -4221,14 +6960,14 @@ fn guardrail_coverage_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.text_characters {
-        let converted_653 = guardrail_text_characters_coverage_to_py(py, value)?;
-        result.set_item("text_characters", converted_653)?;
+        let converted_686 = guardrail_text_characters_coverage_to_py(py, value)?;
+        result.set_item("text_characters", converted_686)?;
     } else {
         result.set_item("text_characters", py.None())?;
     }
     if let Some(value) = &value.images {
-        let converted_654 = guardrail_image_coverage_to_py(py, value)?;
-        result.set_item("images", converted_654)?;
+        let converted_687 = guardrail_image_coverage_to_py(py, value)?;
+        result.set_item("images", converted_687)?;
     } else {
         result.set_item("images", py.None())?;
     }
@@ -4241,22 +6980,45 @@ fn guardrail_custom_word_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailCustomWord::builder();
     if let Some(value) = dict_value(values, "match")? {
-        let converted_655: String = value.extract()?;
-        builder = builder.set_match(Some(converted_655));
+        let converted_688 = (|| -> PyResult<_> {
+            let converted_688: String = value.extract()?;
+            Ok(converted_688)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("match"), "str")
+        })?;
+        builder = builder.set_match(Some(converted_688));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let enum_value_657: String = value.extract()?;
-        let converted_656 =
-            aws_sdk_bedrockruntime::types::GuardrailWordPolicyAction::from(enum_value_657.as_str());
-        builder = builder.set_action(Some(converted_656));
+        let converted_689 = (|| -> PyResult<_> {
+            let enum_value_690: String = value.extract()?;
+            let converted_689 = aws_sdk_bedrockruntime::types::GuardrailWordPolicyAction::from(
+                enum_value_690.as_str(),
+            );
+            Ok(converted_689)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("action"),
+                "str (GuardrailWordPolicyAction)",
+            )
+        })?;
+        builder = builder.set_action(Some(converted_689));
     }
     if let Some(value) = dict_value(values, "detected")? {
-        let converted_658: bool = value.extract()?;
-        builder = builder.set_detected(Some(converted_658));
+        let converted_691 = (|| -> PyResult<_> {
+            let converted_691: bool = value.extract()?;
+            Ok(converted_691)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("detected"), "bool")
+        })?;
+        builder = builder.set_detected(Some(converted_691));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("match", "match"), ("action", "action")])
+    })
 }
 
 fn guardrail_custom_word_to_py(
@@ -4264,13 +7026,13 @@ fn guardrail_custom_word_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailCustomWord,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_659 = (&value.r#match).as_str().into_py_any(py)?;
-    result.set_item("match", converted_659)?;
-    let converted_660 = (&value.action).as_str().into_py_any(py)?;
-    result.set_item("action", converted_660)?;
+    let converted_692 = (&value.r#match).as_str().into_py_any(py)?;
+    result.set_item("match", converted_692)?;
+    let converted_693 = (&value.action).as_str().into_py_any(py)?;
+    result.set_item("action", converted_693)?;
     if let Some(value) = &value.detected {
-        let converted_661 = (value).to_owned().into_py_any(py)?;
-        result.set_item("detected", converted_661)?;
+        let converted_694 = (value).to_owned().into_py_any(py)?;
+        result.set_item("detected", converted_694)?;
     } else {
         result.set_item("detected", py.None())?;
     }
@@ -4283,18 +7045,38 @@ fn guardrail_image_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailImageBlock::builder();
     if let Some(value) = dict_value(values, "format")? {
-        let enum_value_663: String = value.extract()?;
-        let converted_662 =
-            aws_sdk_bedrockruntime::types::GuardrailImageFormat::from(enum_value_663.as_str());
-        builder = builder.set_format(Some(converted_662));
+        let converted_695 = (|| -> PyResult<_> {
+            let enum_value_696: String = value.extract()?;
+            let converted_695 =
+                aws_sdk_bedrockruntime::types::GuardrailImageFormat::from(enum_value_696.as_str());
+            Ok(converted_695)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("format"),
+                "str (GuardrailImageFormat)",
+            )
+        })?;
+        builder = builder.set_format(Some(converted_695));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_664 = guardrail_image_source_from_py(&value)?;
-        builder = builder.set_source(Some(converted_664));
+        let converted_697 = (|| -> PyResult<_> {
+            let converted_697 = guardrail_image_source_from_py(&value)?;
+            Ok(converted_697)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_source(Some(converted_697));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("format", "format")]))
 }
 
 fn guardrail_image_block_to_py(
@@ -4302,11 +7084,11 @@ fn guardrail_image_block_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailImageBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_665 = (&value.format).as_str().into_py_any(py)?;
-    result.set_item("format", converted_665)?;
+    let converted_698 = (&value.format).as_str().into_py_any(py)?;
+    result.set_item("format", converted_698)?;
     if let Some(value) = &value.source {
-        let converted_666 = guardrail_image_source_to_py(py, value)?;
-        result.set_item("source", converted_666)?;
+        let converted_699 = guardrail_image_source_to_py(py, value)?;
+        result.set_item("source", converted_699)?;
     } else {
         result.set_item("source", py.None())?;
     }
@@ -4319,12 +7101,24 @@ fn guardrail_image_coverage_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailImageCoverage::builder();
     if let Some(value) = dict_value(values, "guarded")? {
-        let converted_667: i32 = value.extract()?;
-        builder = builder.set_guarded(Some(converted_667));
+        let converted_700 = (|| -> PyResult<_> {
+            let converted_700: i32 = value.extract()?;
+            Ok(converted_700)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("guarded"), "int")
+        })?;
+        builder = builder.set_guarded(Some(converted_700));
     }
     if let Some(value) = dict_value(values, "total")? {
-        let converted_668: i32 = value.extract()?;
-        builder = builder.set_total(Some(converted_668));
+        let converted_701 = (|| -> PyResult<_> {
+            let converted_701: i32 = value.extract()?;
+            Ok(converted_701)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("total"), "int")
+        })?;
+        builder = builder.set_total(Some(converted_701));
     }
     Ok(builder.build())
 }
@@ -4335,14 +7129,14 @@ fn guardrail_image_coverage_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guarded {
-        let converted_669 = (value).to_owned().into_py_any(py)?;
-        result.set_item("guarded", converted_669)?;
+        let converted_702 = (value).to_owned().into_py_any(py)?;
+        result.set_item("guarded", converted_702)?;
     } else {
         result.set_item("guarded", py.None())?;
     }
     if let Some(value) = &value.total {
-        let converted_670 = (value).to_owned().into_py_any(py)?;
-        result.set_item("total", converted_670)?;
+        let converted_703 = (value).to_owned().into_py_any(py)?;
+        result.set_item("total", converted_703)?;
     } else {
         result.set_item("total", py.None())?;
     }
@@ -4354,17 +7148,31 @@ fn guardrail_image_source_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::GuardrailImageSource> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_672: Vec<u8> = value.extract()?;
-        let converted_671 = ::aws_smithy_types::Blob::new(bytes_672);
-        return Ok(aws_sdk_bedrockruntime::types::GuardrailImageSource::Bytes(
-            converted_671,
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
         ));
     }
-    Err(PyValueError::new_err(
-        "GuardrailImageSource requires exactly one known variant",
+    if let Some(value) = dict_value(values, "bytes")? {
+        let converted_704 = (|| -> PyResult<_> {
+            let bytes_705: Vec<u8> = value.extract()?;
+            let converted_704 = ::aws_smithy_types::Blob::new(bytes_705);
+            Ok(converted_704)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::GuardrailImageSource::Bytes(
+            converted_704,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("GuardrailImageSource requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -4375,8 +7183,8 @@ fn guardrail_image_source_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::GuardrailImageSource::Bytes(value) => {
-            let converted_673 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("bytes", converted_673)?;
+            let converted_706 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("bytes", converted_706)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -4391,16 +7199,46 @@ fn guardrail_invocation_metrics_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailInvocationMetrics::builder();
     if let Some(value) = dict_value(values, "guardrail_processing_latency")? {
-        let converted_674: i64 = value.extract()?;
-        builder = builder.set_guardrail_processing_latency(Some(converted_674));
+        let converted_707 = (|| -> PyResult<_> {
+            let converted_707: i64 = value.extract()?;
+            Ok(converted_707)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_processing_latency"),
+                "int",
+            )
+        })?;
+        builder = builder.set_guardrail_processing_latency(Some(converted_707));
     }
     if let Some(value) = dict_value(values, "usage")? {
-        let converted_675 = guardrail_usage_from_py(&value)?;
-        builder = builder.set_usage(Some(converted_675));
+        let converted_708 = (|| -> PyResult<_> {
+            let converted_708 = guardrail_usage_from_py(&value)?;
+            Ok(converted_708)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("usage"),
+                "dict (GuardrailUsage)",
+            )
+        })?;
+        builder = builder.set_usage(Some(converted_708));
     }
     if let Some(value) = dict_value(values, "guardrail_coverage")? {
-        let converted_676 = guardrail_coverage_from_py(&value)?;
-        builder = builder.set_guardrail_coverage(Some(converted_676));
+        let converted_709 = (|| -> PyResult<_> {
+            let converted_709 = guardrail_coverage_from_py(&value)?;
+            Ok(converted_709)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_coverage"),
+                "dict (GuardrailCoverage)",
+            )
+        })?;
+        builder = builder.set_guardrail_coverage(Some(converted_709));
     }
     Ok(builder.build())
 }
@@ -4411,20 +7249,20 @@ fn guardrail_invocation_metrics_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail_processing_latency {
-        let converted_677 = (value).to_owned().into_py_any(py)?;
-        result.set_item("guardrail_processing_latency", converted_677)?;
+        let converted_710 = (value).to_owned().into_py_any(py)?;
+        result.set_item("guardrail_processing_latency", converted_710)?;
     } else {
         result.set_item("guardrail_processing_latency", py.None())?;
     }
     if let Some(value) = &value.usage {
-        let converted_678 = guardrail_usage_to_py(py, value)?;
-        result.set_item("usage", converted_678)?;
+        let converted_711 = guardrail_usage_to_py(py, value)?;
+        result.set_item("usage", converted_711)?;
     } else {
         result.set_item("usage", py.None())?;
     }
     if let Some(value) = &value.guardrail_coverage {
-        let converted_679 = guardrail_coverage_to_py(py, value)?;
-        result.set_item("guardrail_coverage", converted_679)?;
+        let converted_712 = guardrail_coverage_to_py(py, value)?;
+        result.set_item("guardrail_coverage", converted_712)?;
     } else {
         result.set_item("guardrail_coverage", py.None())?;
     }
@@ -4437,28 +7275,65 @@ fn guardrail_managed_word_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailManagedWord::builder();
     if let Some(value) = dict_value(values, "match")? {
-        let converted_680: String = value.extract()?;
-        builder = builder.set_match(Some(converted_680));
+        let converted_713 = (|| -> PyResult<_> {
+            let converted_713: String = value.extract()?;
+            Ok(converted_713)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("match"), "str")
+        })?;
+        builder = builder.set_match(Some(converted_713));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_682: String = value.extract()?;
-        let converted_681 =
-            aws_sdk_bedrockruntime::types::GuardrailManagedWordType::from(enum_value_682.as_str());
-        builder = builder.set_type(Some(converted_681));
+        let converted_714 = (|| -> PyResult<_> {
+            let enum_value_715: String = value.extract()?;
+            let converted_714 = aws_sdk_bedrockruntime::types::GuardrailManagedWordType::from(
+                enum_value_715.as_str(),
+            );
+            Ok(converted_714)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailManagedWordType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_714));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let enum_value_684: String = value.extract()?;
-        let converted_683 =
-            aws_sdk_bedrockruntime::types::GuardrailWordPolicyAction::from(enum_value_684.as_str());
-        builder = builder.set_action(Some(converted_683));
+        let converted_716 = (|| -> PyResult<_> {
+            let enum_value_717: String = value.extract()?;
+            let converted_716 = aws_sdk_bedrockruntime::types::GuardrailWordPolicyAction::from(
+                enum_value_717.as_str(),
+            );
+            Ok(converted_716)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("action"),
+                "str (GuardrailWordPolicyAction)",
+            )
+        })?;
+        builder = builder.set_action(Some(converted_716));
     }
     if let Some(value) = dict_value(values, "detected")? {
-        let converted_685: bool = value.extract()?;
-        builder = builder.set_detected(Some(converted_685));
+        let converted_718 = (|| -> PyResult<_> {
+            let converted_718: bool = value.extract()?;
+            Ok(converted_718)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("detected"), "bool")
+        })?;
+        builder = builder.set_detected(Some(converted_718));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("match", "match"), ("type", "type"), ("action", "action")],
+        )
+    })
 }
 
 fn guardrail_managed_word_to_py(
@@ -4466,15 +7341,15 @@ fn guardrail_managed_word_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailManagedWord,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_686 = (&value.r#match).as_str().into_py_any(py)?;
-    result.set_item("match", converted_686)?;
-    let converted_687 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_687)?;
-    let converted_688 = (&value.action).as_str().into_py_any(py)?;
-    result.set_item("action", converted_688)?;
+    let converted_719 = (&value.r#match).as_str().into_py_any(py)?;
+    result.set_item("match", converted_719)?;
+    let converted_720 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_720)?;
+    let converted_721 = (&value.action).as_str().into_py_any(py)?;
+    result.set_item("action", converted_721)?;
     if let Some(value) = &value.detected {
-        let converted_689 = (value).to_owned().into_py_any(py)?;
-        result.set_item("detected", converted_689)?;
+        let converted_722 = (value).to_owned().into_py_any(py)?;
+        result.set_item("detected", converted_722)?;
     } else {
         result.set_item("detected", py.None())?;
     }
@@ -4487,8 +7362,14 @@ fn guardrail_output_content_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailOutputContent::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let converted_690: String = value.extract()?;
-        builder = builder.set_text(Some(converted_690));
+        let converted_723 = (|| -> PyResult<_> {
+            let converted_723: String = value.extract()?;
+            Ok(converted_723)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        builder = builder.set_text(Some(converted_723));
     }
     Ok(builder.build())
 }
@@ -4499,8 +7380,8 @@ fn guardrail_output_content_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.text {
-        let converted_691 = (value).as_str().into_py_any(py)?;
-        result.set_item("text", converted_691)?;
+        let converted_724 = (value).as_str().into_py_any(py)?;
+        result.set_item("text", converted_724)?;
     } else {
         result.set_item("text", py.None())?;
     }
@@ -4513,30 +7394,66 @@ fn guardrail_pii_entity_filter_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailPiiEntityFilter::builder();
     if let Some(value) = dict_value(values, "match")? {
-        let converted_692: String = value.extract()?;
-        builder = builder.set_match(Some(converted_692));
+        let converted_725 = (|| -> PyResult<_> {
+            let converted_725: String = value.extract()?;
+            Ok(converted_725)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("match"), "str")
+        })?;
+        builder = builder.set_match(Some(converted_725));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_694: String = value.extract()?;
-        let converted_693 =
-            aws_sdk_bedrockruntime::types::GuardrailPiiEntityType::from(enum_value_694.as_str());
-        builder = builder.set_type(Some(converted_693));
+        let converted_726 = (|| -> PyResult<_> {
+            let enum_value_727: String = value.extract()?;
+            let converted_726 = aws_sdk_bedrockruntime::types::GuardrailPiiEntityType::from(
+                enum_value_727.as_str(),
+            );
+            Ok(converted_726)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailPiiEntityType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_726));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let enum_value_696: String = value.extract()?;
-        let converted_695 =
-            aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAction::from(
-                enum_value_696.as_str(),
-            );
-        builder = builder.set_action(Some(converted_695));
+        let converted_728 = (|| -> PyResult<_> {
+            let enum_value_729: String = value.extract()?;
+            let converted_728 =
+                aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAction::from(
+                    enum_value_729.as_str(),
+                );
+            Ok(converted_728)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("action"),
+                "str (GuardrailSensitiveInformationPolicyAction)",
+            )
+        })?;
+        builder = builder.set_action(Some(converted_728));
     }
     if let Some(value) = dict_value(values, "detected")? {
-        let converted_697: bool = value.extract()?;
-        builder = builder.set_detected(Some(converted_697));
+        let converted_730 = (|| -> PyResult<_> {
+            let converted_730: bool = value.extract()?;
+            Ok(converted_730)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("detected"), "bool")
+        })?;
+        builder = builder.set_detected(Some(converted_730));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("match", "match"), ("type", "type"), ("action", "action")],
+        )
+    })
 }
 
 fn guardrail_pii_entity_filter_to_py(
@@ -4544,15 +7461,15 @@ fn guardrail_pii_entity_filter_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailPiiEntityFilter,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_698 = (&value.r#match).as_str().into_py_any(py)?;
-    result.set_item("match", converted_698)?;
-    let converted_699 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_699)?;
-    let converted_700 = (&value.action).as_str().into_py_any(py)?;
-    result.set_item("action", converted_700)?;
+    let converted_731 = (&value.r#match).as_str().into_py_any(py)?;
+    result.set_item("match", converted_731)?;
+    let converted_732 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_732)?;
+    let converted_733 = (&value.action).as_str().into_py_any(py)?;
+    result.set_item("action", converted_733)?;
     if let Some(value) = &value.detected {
-        let converted_701 = (value).to_owned().into_py_any(py)?;
-        result.set_item("detected", converted_701)?;
+        let converted_734 = (value).to_owned().into_py_any(py)?;
+        result.set_item("detected", converted_734)?;
     } else {
         result.set_item("detected", py.None())?;
     }
@@ -4565,32 +7482,66 @@ fn guardrail_regex_filter_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailRegexFilter::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_702: String = value.extract()?;
-        builder = builder.set_name(Some(converted_702));
+        let converted_735 = (|| -> PyResult<_> {
+            let converted_735: String = value.extract()?;
+            Ok(converted_735)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_735));
     }
     if let Some(value) = dict_value(values, "match")? {
-        let converted_703: String = value.extract()?;
-        builder = builder.set_match(Some(converted_703));
+        let converted_736 = (|| -> PyResult<_> {
+            let converted_736: String = value.extract()?;
+            Ok(converted_736)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("match"), "str")
+        })?;
+        builder = builder.set_match(Some(converted_736));
     }
     if let Some(value) = dict_value(values, "regex")? {
-        let converted_704: String = value.extract()?;
-        builder = builder.set_regex(Some(converted_704));
+        let converted_737 = (|| -> PyResult<_> {
+            let converted_737: String = value.extract()?;
+            Ok(converted_737)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("regex"), "str")
+        })?;
+        builder = builder.set_regex(Some(converted_737));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let enum_value_706: String = value.extract()?;
-        let converted_705 =
-            aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAction::from(
-                enum_value_706.as_str(),
-            );
-        builder = builder.set_action(Some(converted_705));
+        let converted_738 = (|| -> PyResult<_> {
+            let enum_value_739: String = value.extract()?;
+            let converted_738 =
+                aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAction::from(
+                    enum_value_739.as_str(),
+                );
+            Ok(converted_738)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("action"),
+                "str (GuardrailSensitiveInformationPolicyAction)",
+            )
+        })?;
+        builder = builder.set_action(Some(converted_738));
     }
     if let Some(value) = dict_value(values, "detected")? {
-        let converted_707: bool = value.extract()?;
-        builder = builder.set_detected(Some(converted_707));
+        let converted_740 = (|| -> PyResult<_> {
+            let converted_740: bool = value.extract()?;
+            Ok(converted_740)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("detected"), "bool")
+        })?;
+        builder = builder.set_detected(Some(converted_740));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("action", "action")]))
 }
 
 fn guardrail_regex_filter_to_py(
@@ -4599,28 +7550,28 @@ fn guardrail_regex_filter_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_708 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_708)?;
+        let converted_741 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_741)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.r#match {
-        let converted_709 = (value).as_str().into_py_any(py)?;
-        result.set_item("match", converted_709)?;
+        let converted_742 = (value).as_str().into_py_any(py)?;
+        result.set_item("match", converted_742)?;
     } else {
         result.set_item("match", py.None())?;
     }
     if let Some(value) = &value.regex {
-        let converted_710 = (value).as_str().into_py_any(py)?;
-        result.set_item("regex", converted_710)?;
+        let converted_743 = (value).as_str().into_py_any(py)?;
+        result.set_item("regex", converted_743)?;
     } else {
         result.set_item("regex", py.None())?;
     }
-    let converted_711 = (&value.action).as_str().into_py_any(py)?;
-    result.set_item("action", converted_711)?;
+    let converted_744 = (&value.action).as_str().into_py_any(py)?;
+    result.set_item("action", converted_744)?;
     if let Some(value) = &value.detected {
-        let converted_712 = (value).to_owned().into_py_any(py)?;
-        result.set_item("detected", converted_712)?;
+        let converted_745 = (value).to_owned().into_py_any(py)?;
+        result.set_item("detected", converted_745)?;
     } else {
         result.set_item("detected", py.None())?;
     }
@@ -4634,28 +7585,81 @@ fn guardrail_sensitive_information_policy_assessment_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "pii_entities")? {
-        let mut converted_713 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_714 in value.try_iter()? {
-            let item_715 = item_result_714?;
-            let converted_item_716 = guardrail_pii_entity_filter_from_py(&item_715)?;
-            converted_713.push(converted_item_716);
-        }
-        builder = builder.set_pii_entities(Some(converted_713));
+        let converted_746 = (|| -> PyResult<_> {
+            let mut converted_746 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_750, item_result_747) in value.try_iter()?.enumerate() {
+                let item_748 = item_result_747.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_750),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_749 = (|| -> PyResult<_> {
+                    let converted_item_749 = guardrail_pii_entity_filter_from_py(&item_748)?;
+                    Ok(converted_item_749)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_750),
+                        "dict (GuardrailPiiEntityFilter)",
+                    )
+                })?;
+                converted_746.push(converted_item_749);
+            }
+            Ok(converted_746)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("pii_entities"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_pii_entities(Some(converted_746));
     }
     if let Some(value) = dict_value(values, "regexes")? {
-        let mut converted_717 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_718 in value.try_iter()? {
-            let item_719 = item_result_718?;
-            let converted_item_720 = guardrail_regex_filter_from_py(&item_719)?;
-            converted_717.push(converted_item_720);
-        }
-        builder = builder.set_regexes(Some(converted_717));
+        let converted_751 = (|| -> PyResult<_> {
+            let mut converted_751 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_755, item_result_752) in value.try_iter()?.enumerate() {
+                let item_753 = item_result_752.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_755),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_754 = (|| -> PyResult<_> {
+                    let converted_item_754 = guardrail_regex_filter_from_py(&item_753)?;
+                    Ok(converted_item_754)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_755),
+                        "dict (GuardrailRegexFilter)",
+                    )
+                })?;
+                converted_751.push(converted_item_754);
+            }
+            Ok(converted_751)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("regexes"), "sequence")
+        })?;
+        builder = builder.set_regexes(Some(converted_751));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("pii_entities", "pii_entities"), ("regexes", "regexes")],
+        )
+    })
 }
 
 fn guardrail_sensitive_information_policy_assessment_to_py(
@@ -4663,20 +7667,20 @@ fn guardrail_sensitive_information_policy_assessment_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_721_list = PyList::empty(py);
-    for item_722 in &value.pii_entities {
-        let converted_item_723 = guardrail_pii_entity_filter_to_py(py, item_722)?;
-        converted_721_list.append(converted_item_723)?;
+    let converted_756_list = PyList::empty(py);
+    for item_757 in &value.pii_entities {
+        let converted_item_758 = guardrail_pii_entity_filter_to_py(py, item_757)?;
+        converted_756_list.append(converted_item_758)?;
     }
-    let converted_721 = converted_721_list.into_any().unbind();
-    result.set_item("pii_entities", converted_721)?;
-    let converted_724_list = PyList::empty(py);
-    for item_725 in &value.regexes {
-        let converted_item_726 = guardrail_regex_filter_to_py(py, item_725)?;
-        converted_724_list.append(converted_item_726)?;
+    let converted_756 = converted_756_list.into_any().unbind();
+    result.set_item("pii_entities", converted_756)?;
+    let converted_759_list = PyList::empty(py);
+    for item_760 in &value.regexes {
+        let converted_item_761 = guardrail_regex_filter_to_py(py, item_760)?;
+        converted_759_list.append(converted_item_761)?;
     }
-    let converted_724 = converted_724_list.into_any().unbind();
-    result.set_item("regexes", converted_724)?;
+    let converted_759 = converted_759_list.into_any().unbind();
+    result.set_item("regexes", converted_759)?;
     Ok(result.into_any().unbind())
 }
 
@@ -4686,25 +7690,65 @@ fn guardrail_stream_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailStreamConfiguration::builder();
     if let Some(value) = dict_value(values, "guardrail_identifier")? {
-        let converted_727: String = value.extract()?;
-        builder = builder.set_guardrail_identifier(Some(converted_727));
+        let converted_762 = (|| -> PyResult<_> {
+            let converted_762: String = value.extract()?;
+            Ok(converted_762)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_identifier"),
+                "str",
+            )
+        })?;
+        builder = builder.set_guardrail_identifier(Some(converted_762));
     }
     if let Some(value) = dict_value(values, "guardrail_version")? {
-        let converted_728: String = value.extract()?;
-        builder = builder.set_guardrail_version(Some(converted_728));
+        let converted_763 = (|| -> PyResult<_> {
+            let converted_763: String = value.extract()?;
+            Ok(converted_763)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guardrail_version"),
+                "str",
+            )
+        })?;
+        builder = builder.set_guardrail_version(Some(converted_763));
     }
     if let Some(value) = dict_value(values, "trace")? {
-        let enum_value_730: String = value.extract()?;
-        let converted_729 =
-            aws_sdk_bedrockruntime::types::GuardrailTrace::from(enum_value_730.as_str());
-        builder = builder.set_trace(Some(converted_729));
+        let converted_764 = (|| -> PyResult<_> {
+            let enum_value_765: String = value.extract()?;
+            let converted_764 =
+                aws_sdk_bedrockruntime::types::GuardrailTrace::from(enum_value_765.as_str());
+            Ok(converted_764)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("trace"),
+                "str (GuardrailTrace)",
+            )
+        })?;
+        builder = builder.set_trace(Some(converted_764));
     }
     if let Some(value) = dict_value(values, "stream_processing_mode")? {
-        let enum_value_732: String = value.extract()?;
-        let converted_731 = aws_sdk_bedrockruntime::types::GuardrailStreamProcessingMode::from(
-            enum_value_732.as_str(),
-        );
-        builder = builder.set_stream_processing_mode(Some(converted_731));
+        let converted_766 = (|| -> PyResult<_> {
+            let enum_value_767: String = value.extract()?;
+            let converted_766 = aws_sdk_bedrockruntime::types::GuardrailStreamProcessingMode::from(
+                enum_value_767.as_str(),
+            );
+            Ok(converted_766)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stream_processing_mode"),
+                "str (GuardrailStreamProcessingMode)",
+            )
+        })?;
+        builder = builder.set_stream_processing_mode(Some(converted_766));
     }
     Ok(builder.build())
 }
@@ -4714,14 +7758,14 @@ fn guardrail_stream_configuration_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailStreamConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_733 = (&value.guardrail_identifier).as_str().into_py_any(py)?;
-    result.set_item("guardrail_identifier", converted_733)?;
-    let converted_734 = (&value.guardrail_version).as_str().into_py_any(py)?;
-    result.set_item("guardrail_version", converted_734)?;
-    let converted_735 = (&value.trace).as_str().into_py_any(py)?;
-    result.set_item("trace", converted_735)?;
-    let converted_736 = (&value.stream_processing_mode).as_str().into_py_any(py)?;
-    result.set_item("stream_processing_mode", converted_736)?;
+    let converted_768 = (&value.guardrail_identifier).as_str().into_py_any(py)?;
+    result.set_item("guardrail_identifier", converted_768)?;
+    let converted_769 = (&value.guardrail_version).as_str().into_py_any(py)?;
+    result.set_item("guardrail_version", converted_769)?;
+    let converted_770 = (&value.trace).as_str().into_py_any(py)?;
+    result.set_item("trace", converted_770)?;
+    let converted_771 = (&value.stream_processing_mode).as_str().into_py_any(py)?;
+    result.set_item("stream_processing_mode", converted_771)?;
     Ok(result.into_any().unbind())
 }
 
@@ -4731,25 +7775,59 @@ fn guardrail_text_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailTextBlock::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let converted_737: String = value.extract()?;
-        builder = builder.set_text(Some(converted_737));
+        let converted_772 = (|| -> PyResult<_> {
+            let converted_772: String = value.extract()?;
+            Ok(converted_772)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        builder = builder.set_text(Some(converted_772));
     }
     if let Some(value) = dict_value(values, "qualifiers")? {
-        let mut converted_738 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_739 in value.try_iter()? {
-            let item_740 = item_result_739?;
-            let enum_value_742: String = item_740.extract()?;
-            let converted_item_741 = aws_sdk_bedrockruntime::types::GuardrailContentQualifier::from(
-                enum_value_742.as_str(),
-            );
-            converted_738.push(converted_item_741);
-        }
-        builder = builder.set_qualifiers(Some(converted_738));
+        let converted_773 = (|| -> PyResult<_> {
+            let mut converted_773 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_777, item_result_774) in value.try_iter()?.enumerate() {
+                let item_775 = item_result_774.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_777),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_776 = (|| -> PyResult<_> {
+                    let enum_value_778: String = item_775.extract()?;
+                    let converted_item_776 =
+                        aws_sdk_bedrockruntime::types::GuardrailContentQualifier::from(
+                            enum_value_778.as_str(),
+                        );
+                    Ok(converted_item_776)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_777),
+                        "str (GuardrailContentQualifier)",
+                    )
+                })?;
+                converted_773.push(converted_item_776);
+            }
+            Ok(converted_773)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("qualifiers"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_qualifiers(Some(converted_773));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("text", "text")]))
 }
 
 fn guardrail_text_block_to_py(
@@ -4757,16 +7835,16 @@ fn guardrail_text_block_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailTextBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_743 = (&value.text).as_str().into_py_any(py)?;
-    result.set_item("text", converted_743)?;
+    let converted_779 = (&value.text).as_str().into_py_any(py)?;
+    result.set_item("text", converted_779)?;
     if let Some(value) = &value.qualifiers {
-        let converted_744_list = PyList::empty(py);
-        for item_745 in value {
-            let converted_item_746 = (item_745).as_str().into_py_any(py)?;
-            converted_744_list.append(converted_item_746)?;
+        let converted_780_list = PyList::empty(py);
+        for item_781 in value {
+            let converted_item_782 = (item_781).as_str().into_py_any(py)?;
+            converted_780_list.append(converted_item_782)?;
         }
-        let converted_744 = converted_744_list.into_any().unbind();
-        result.set_item("qualifiers", converted_744)?;
+        let converted_780 = converted_780_list.into_any().unbind();
+        result.set_item("qualifiers", converted_780)?;
     } else {
         result.set_item("qualifiers", py.None())?;
     }
@@ -4779,12 +7857,24 @@ fn guardrail_text_characters_coverage_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailTextCharactersCoverage::builder();
     if let Some(value) = dict_value(values, "guarded")? {
-        let converted_747: i32 = value.extract()?;
-        builder = builder.set_guarded(Some(converted_747));
+        let converted_783 = (|| -> PyResult<_> {
+            let converted_783: i32 = value.extract()?;
+            Ok(converted_783)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("guarded"), "int")
+        })?;
+        builder = builder.set_guarded(Some(converted_783));
     }
     if let Some(value) = dict_value(values, "total")? {
-        let converted_748: i32 = value.extract()?;
-        builder = builder.set_total(Some(converted_748));
+        let converted_784 = (|| -> PyResult<_> {
+            let converted_784: i32 = value.extract()?;
+            Ok(converted_784)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("total"), "int")
+        })?;
+        builder = builder.set_total(Some(converted_784));
     }
     Ok(builder.build())
 }
@@ -4795,14 +7885,14 @@ fn guardrail_text_characters_coverage_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guarded {
-        let converted_749 = (value).to_owned().into_py_any(py)?;
-        result.set_item("guarded", converted_749)?;
+        let converted_785 = (value).to_owned().into_py_any(py)?;
+        result.set_item("guarded", converted_785)?;
     } else {
         result.set_item("guarded", py.None())?;
     }
     if let Some(value) = &value.total {
-        let converted_750 = (value).to_owned().into_py_any(py)?;
-        result.set_item("total", converted_750)?;
+        let converted_786 = (value).to_owned().into_py_any(py)?;
+        result.set_item("total", converted_786)?;
     } else {
         result.set_item("total", py.None())?;
     }
@@ -4815,29 +7905,64 @@ fn guardrail_topic_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailTopic::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_751: String = value.extract()?;
-        builder = builder.set_name(Some(converted_751));
+        let converted_787 = (|| -> PyResult<_> {
+            let converted_787: String = value.extract()?;
+            Ok(converted_787)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_787));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_753: String = value.extract()?;
-        let converted_752 =
-            aws_sdk_bedrockruntime::types::GuardrailTopicType::from(enum_value_753.as_str());
-        builder = builder.set_type(Some(converted_752));
+        let converted_788 = (|| -> PyResult<_> {
+            let enum_value_789: String = value.extract()?;
+            let converted_788 =
+                aws_sdk_bedrockruntime::types::GuardrailTopicType::from(enum_value_789.as_str());
+            Ok(converted_788)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (GuardrailTopicType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_788));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let enum_value_755: String = value.extract()?;
-        let converted_754 = aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAction::from(
-            enum_value_755.as_str(),
-        );
-        builder = builder.set_action(Some(converted_754));
+        let converted_790 = (|| -> PyResult<_> {
+            let enum_value_791: String = value.extract()?;
+            let converted_790 = aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAction::from(
+                enum_value_791.as_str(),
+            );
+            Ok(converted_790)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("action"),
+                "str (GuardrailTopicPolicyAction)",
+            )
+        })?;
+        builder = builder.set_action(Some(converted_790));
     }
     if let Some(value) = dict_value(values, "detected")? {
-        let converted_756: bool = value.extract()?;
-        builder = builder.set_detected(Some(converted_756));
+        let converted_792 = (|| -> PyResult<_> {
+            let converted_792: bool = value.extract()?;
+            Ok(converted_792)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("detected"), "bool")
+        })?;
+        builder = builder.set_detected(Some(converted_792));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("name", "name"), ("type", "type"), ("action", "action")],
+        )
+    })
 }
 
 fn guardrail_topic_to_py(
@@ -4845,15 +7970,15 @@ fn guardrail_topic_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailTopic,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_757 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_757)?;
-    let converted_758 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_758)?;
-    let converted_759 = (&value.action).as_str().into_py_any(py)?;
-    result.set_item("action", converted_759)?;
+    let converted_793 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_793)?;
+    let converted_794 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_794)?;
+    let converted_795 = (&value.action).as_str().into_py_any(py)?;
+    result.set_item("action", converted_795)?;
     if let Some(value) = &value.detected {
-        let converted_760 = (value).to_owned().into_py_any(py)?;
-        result.set_item("detected", converted_760)?;
+        let converted_796 = (value).to_owned().into_py_any(py)?;
+        result.set_item("detected", converted_796)?;
     } else {
         result.set_item("detected", py.None())?;
     }
@@ -4866,18 +7991,41 @@ fn guardrail_topic_policy_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "topics")? {
-        let mut converted_761 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_762 in value.try_iter()? {
-            let item_763 = item_result_762?;
-            let converted_item_764 = guardrail_topic_from_py(&item_763)?;
-            converted_761.push(converted_item_764);
-        }
-        builder = builder.set_topics(Some(converted_761));
+        let converted_797 = (|| -> PyResult<_> {
+            let mut converted_797 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_801, item_result_798) in value.try_iter()?.enumerate() {
+                let item_799 = item_result_798.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_801),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_800 = (|| -> PyResult<_> {
+                    let converted_item_800 = guardrail_topic_from_py(&item_799)?;
+                    Ok(converted_item_800)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_801),
+                        "dict (GuardrailTopic)",
+                    )
+                })?;
+                converted_797.push(converted_item_800);
+            }
+            Ok(converted_797)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("topics"), "sequence")
+        })?;
+        builder = builder.set_topics(Some(converted_797));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("topics", "topics")]))
 }
 
 fn guardrail_topic_policy_assessment_to_py(
@@ -4885,13 +8033,13 @@ fn guardrail_topic_policy_assessment_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_765_list = PyList::empty(py);
-    for item_766 in &value.topics {
-        let converted_item_767 = guardrail_topic_to_py(py, item_766)?;
-        converted_765_list.append(converted_item_767)?;
+    let converted_802_list = PyList::empty(py);
+    for item_803 in &value.topics {
+        let converted_item_804 = guardrail_topic_to_py(py, item_803)?;
+        converted_802_list.append(converted_item_804)?;
     }
-    let converted_765 = converted_765_list.into_any().unbind();
-    result.set_item("topics", converted_765)?;
+    let converted_802 = converted_802_list.into_any().unbind();
+    result.set_item("topics", converted_802)?;
     Ok(result.into_any().unbind())
 }
 
@@ -4901,44 +8049,143 @@ fn guardrail_trace_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailTraceAssessment::builder();
     if let Some(value) = dict_value(values, "model_output")? {
-        let mut converted_768 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_769 in value.try_iter()? {
-            let item_770 = item_result_769?;
-            let converted_item_771: String = item_770.extract()?;
-            converted_768.push(converted_item_771);
-        }
-        builder = builder.set_model_output(Some(converted_768));
+        let converted_805 = (|| -> PyResult<_> {
+            let mut converted_805 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_809, item_result_806) in value.try_iter()?.enumerate() {
+                let item_807 = item_result_806.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_809),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_808 = (|| -> PyResult<_> {
+                    let converted_item_808: String = item_807.extract()?;
+                    Ok(converted_item_808)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_809), "str")
+                })?;
+                converted_805.push(converted_item_808);
+            }
+            Ok(converted_805)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("model_output"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_model_output(Some(converted_805));
     }
     if let Some(value) = dict_value(values, "input_assessment")? {
-        let mapping_773 = value.cast::<PyDict>()?;
-        let mut converted_772 = HashMap::with_capacity(mapping_773.len());
-        for (key_774, value_775) in mapping_773.iter() {
-            let converted_key_776: String = key_774.extract()?;
-            let converted_value_777 = guardrail_assessment_from_py(&value_775)?;
-            converted_772.insert(converted_key_776, converted_value_777);
-        }
-        builder = builder.set_input_assessment(Some(converted_772));
+        let converted_810 = (|| -> PyResult<_> {
+            let mapping_811 = value.cast::<PyDict>()?;
+            let mut converted_810 = HashMap::with_capacity(mapping_811.len());
+            for (index_816, (key_812, value_813)) in mapping_811.iter().enumerate() {
+                let converted_key_814 = (|| -> PyResult<_> {
+                    let converted_key_814: String = key_812.extract()?;
+                    Ok(converted_key_814)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_816), "str")
+                })?;
+                let converted_value_815 = (|| -> PyResult<_> {
+                    let converted_value_815 = guardrail_assessment_from_py(&value_813)?;
+                    Ok(converted_value_815)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_816),
+                        "dict (GuardrailAssessment)",
+                    )
+                })?;
+                converted_810.insert(converted_key_814, converted_value_815);
+            }
+            Ok(converted_810)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("input_assessment"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_input_assessment(Some(converted_810));
     }
     if let Some(value) = dict_value(values, "output_assessments")? {
-        let mapping_779 = value.cast::<PyDict>()?;
-        let mut converted_778 = HashMap::with_capacity(mapping_779.len());
-        for (key_780, value_781) in mapping_779.iter() {
-            let converted_key_782: String = key_780.extract()?;
-            let mut converted_value_783 =
-                Vec::with_capacity(value_781.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_784 in value_781.try_iter()? {
-                let item_785 = item_result_784?;
-                let converted_item_786 = guardrail_assessment_from_py(&item_785)?;
-                converted_value_783.push(converted_item_786);
+        let converted_817 = (|| -> PyResult<_> {
+            let mapping_818 = value.cast::<PyDict>()?;
+            let mut converted_817 = HashMap::with_capacity(mapping_818.len());
+            for (index_823, (key_819, value_820)) in mapping_818.iter().enumerate() {
+                let converted_key_821 = (|| -> PyResult<_> {
+                    let converted_key_821: String = key_819.extract()?;
+                    Ok(converted_key_821)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_823), "str")
+                })?;
+                let converted_value_822 = (|| -> PyResult<_> {
+                    let mut converted_value_822 = Vec::with_capacity(
+                        value_820.cast::<PyList>().map_or(0, |items| items.len()),
+                    );
+                    for (index_827, item_result_824) in value_820.try_iter()?.enumerate() {
+                        let item_825 = item_result_824.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_827),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_826 = (|| -> PyResult<_> {
+                            let converted_item_826 = guardrail_assessment_from_py(&item_825)?;
+                            Ok(converted_item_826)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_827),
+                                "dict (GuardrailAssessment)",
+                            )
+                        })?;
+                        converted_value_822.push(converted_item_826);
+                    }
+                    Ok(converted_value_822)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_823),
+                        "sequence",
+                    )
+                })?;
+                converted_817.insert(converted_key_821, converted_value_822);
             }
-            converted_778.insert(converted_key_782, converted_value_783);
-        }
-        builder = builder.set_output_assessments(Some(converted_778));
+            Ok(converted_817)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("output_assessments"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_output_assessments(Some(converted_817));
     }
     if let Some(value) = dict_value(values, "action_reason")? {
-        let converted_787: String = value.extract()?;
-        builder = builder.set_action_reason(Some(converted_787));
+        let converted_828 = (|| -> PyResult<_> {
+            let converted_828: String = value.extract()?;
+            Ok(converted_828)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("action_reason"), "str")
+        })?;
+        builder = builder.set_action_reason(Some(converted_828));
     }
     Ok(builder.build())
 }
@@ -4949,48 +8196,48 @@ fn guardrail_trace_assessment_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.model_output {
-        let converted_788_list = PyList::empty(py);
-        for item_789 in value {
-            let converted_item_790 = (item_789).as_str().into_py_any(py)?;
-            converted_788_list.append(converted_item_790)?;
+        let converted_829_list = PyList::empty(py);
+        for item_830 in value {
+            let converted_item_831 = (item_830).as_str().into_py_any(py)?;
+            converted_829_list.append(converted_item_831)?;
         }
-        let converted_788 = converted_788_list.into_any().unbind();
-        result.set_item("model_output", converted_788)?;
+        let converted_829 = converted_829_list.into_any().unbind();
+        result.set_item("model_output", converted_829)?;
     } else {
         result.set_item("model_output", py.None())?;
     }
     if let Some(value) = &value.input_assessment {
-        let converted_791_dict = PyDict::new(py);
-        for (key_792, value_793) in value {
-            let converted_key_794 = (key_792).as_str().into_py_any(py)?;
-            let converted_value_795 = guardrail_assessment_to_py(py, value_793)?;
-            converted_791_dict.set_item(converted_key_794, converted_value_795)?;
+        let converted_832_dict = PyDict::new(py);
+        for (key_833, value_834) in value {
+            let converted_key_835 = (key_833).as_str().into_py_any(py)?;
+            let converted_value_836 = guardrail_assessment_to_py(py, value_834)?;
+            converted_832_dict.set_item(converted_key_835, converted_value_836)?;
         }
-        let converted_791 = converted_791_dict.into_any().unbind();
-        result.set_item("input_assessment", converted_791)?;
+        let converted_832 = converted_832_dict.into_any().unbind();
+        result.set_item("input_assessment", converted_832)?;
     } else {
         result.set_item("input_assessment", py.None())?;
     }
     if let Some(value) = &value.output_assessments {
-        let converted_796_dict = PyDict::new(py);
-        for (key_797, value_798) in value {
-            let converted_key_799 = (key_797).as_str().into_py_any(py)?;
-            let converted_value_800_list = PyList::empty(py);
-            for item_801 in value_798 {
-                let converted_item_802 = guardrail_assessment_to_py(py, item_801)?;
-                converted_value_800_list.append(converted_item_802)?;
+        let converted_837_dict = PyDict::new(py);
+        for (key_838, value_839) in value {
+            let converted_key_840 = (key_838).as_str().into_py_any(py)?;
+            let converted_value_841_list = PyList::empty(py);
+            for item_842 in value_839 {
+                let converted_item_843 = guardrail_assessment_to_py(py, item_842)?;
+                converted_value_841_list.append(converted_item_843)?;
             }
-            let converted_value_800 = converted_value_800_list.into_any().unbind();
-            converted_796_dict.set_item(converted_key_799, converted_value_800)?;
+            let converted_value_841 = converted_value_841_list.into_any().unbind();
+            converted_837_dict.set_item(converted_key_840, converted_value_841)?;
         }
-        let converted_796 = converted_796_dict.into_any().unbind();
-        result.set_item("output_assessments", converted_796)?;
+        let converted_837 = converted_837_dict.into_any().unbind();
+        result.set_item("output_assessments", converted_837)?;
     } else {
         result.set_item("output_assessments", py.None())?;
     }
     if let Some(value) = &value.action_reason {
-        let converted_803 = (value).as_str().into_py_any(py)?;
-        result.set_item("action_reason", converted_803)?;
+        let converted_844 = (value).as_str().into_py_any(py)?;
+        result.set_item("action_reason", converted_844)?;
     } else {
         result.set_item("action_reason", py.None())?;
     }
@@ -5003,44 +8250,153 @@ fn guardrail_usage_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailUsage::builder();
     if let Some(value) = dict_value(values, "topic_policy_units")? {
-        let converted_804: i32 = value.extract()?;
-        builder = builder.set_topic_policy_units(Some(converted_804));
+        let converted_845 = (|| -> PyResult<_> {
+            let converted_845: i32 = value.extract()?;
+            Ok(converted_845)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("topic_policy_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_topic_policy_units(Some(converted_845));
     }
     if let Some(value) = dict_value(values, "content_policy_units")? {
-        let converted_805: i32 = value.extract()?;
-        builder = builder.set_content_policy_units(Some(converted_805));
+        let converted_846 = (|| -> PyResult<_> {
+            let converted_846: i32 = value.extract()?;
+            Ok(converted_846)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_policy_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_content_policy_units(Some(converted_846));
     }
     if let Some(value) = dict_value(values, "word_policy_units")? {
-        let converted_806: i32 = value.extract()?;
-        builder = builder.set_word_policy_units(Some(converted_806));
+        let converted_847 = (|| -> PyResult<_> {
+            let converted_847: i32 = value.extract()?;
+            Ok(converted_847)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("word_policy_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_word_policy_units(Some(converted_847));
     }
     if let Some(value) = dict_value(values, "sensitive_information_policy_units")? {
-        let converted_807: i32 = value.extract()?;
-        builder = builder.set_sensitive_information_policy_units(Some(converted_807));
+        let converted_848 = (|| -> PyResult<_> {
+            let converted_848: i32 = value.extract()?;
+            Ok(converted_848)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sensitive_information_policy_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_sensitive_information_policy_units(Some(converted_848));
     }
     if let Some(value) = dict_value(values, "sensitive_information_policy_free_units")? {
-        let converted_808: i32 = value.extract()?;
-        builder = builder.set_sensitive_information_policy_free_units(Some(converted_808));
+        let converted_849 = (|| -> PyResult<_> {
+            let converted_849: i32 = value.extract()?;
+            Ok(converted_849)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sensitive_information_policy_free_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_sensitive_information_policy_free_units(Some(converted_849));
     }
     if let Some(value) = dict_value(values, "contextual_grounding_policy_units")? {
-        let converted_809: i32 = value.extract()?;
-        builder = builder.set_contextual_grounding_policy_units(Some(converted_809));
+        let converted_850 = (|| -> PyResult<_> {
+            let converted_850: i32 = value.extract()?;
+            Ok(converted_850)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("contextual_grounding_policy_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_contextual_grounding_policy_units(Some(converted_850));
     }
     if let Some(value) = dict_value(values, "content_policy_image_units")? {
-        let converted_810: i32 = value.extract()?;
-        builder = builder.set_content_policy_image_units(Some(converted_810));
+        let converted_851 = (|| -> PyResult<_> {
+            let converted_851: i32 = value.extract()?;
+            Ok(converted_851)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("content_policy_image_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_content_policy_image_units(Some(converted_851));
     }
     if let Some(value) = dict_value(values, "automated_reasoning_policy_units")? {
-        let converted_811: i32 = value.extract()?;
-        builder = builder.set_automated_reasoning_policy_units(Some(converted_811));
+        let converted_852 = (|| -> PyResult<_> {
+            let converted_852: i32 = value.extract()?;
+            Ok(converted_852)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("automated_reasoning_policy_units"),
+                "int",
+            )
+        })?;
+        builder = builder.set_automated_reasoning_policy_units(Some(converted_852));
     }
     if let Some(value) = dict_value(values, "automated_reasoning_policies")? {
-        let converted_812: i32 = value.extract()?;
-        builder = builder.set_automated_reasoning_policies(Some(converted_812));
+        let converted_853 = (|| -> PyResult<_> {
+            let converted_853: i32 = value.extract()?;
+            Ok(converted_853)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("automated_reasoning_policies"),
+                "int",
+            )
+        })?;
+        builder = builder.set_automated_reasoning_policies(Some(converted_853));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("topic_policy_units", "topic_policy_units"),
+                ("content_policy_units", "content_policy_units"),
+                ("word_policy_units", "word_policy_units"),
+                (
+                    "sensitive_information_policy_units",
+                    "sensitive_information_policy_units",
+                ),
+                (
+                    "sensitive_information_policy_free_units",
+                    "sensitive_information_policy_free_units",
+                ),
+                (
+                    "contextual_grounding_policy_units",
+                    "contextual_grounding_policy_units",
+                ),
+            ],
+        )
+    })
 }
 
 fn guardrail_usage_to_py(
@@ -5048,39 +8404,39 @@ fn guardrail_usage_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailUsage,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_813 = (&value.topic_policy_units).to_owned().into_py_any(py)?;
-    result.set_item("topic_policy_units", converted_813)?;
-    let converted_814 = (&value.content_policy_units).to_owned().into_py_any(py)?;
-    result.set_item("content_policy_units", converted_814)?;
-    let converted_815 = (&value.word_policy_units).to_owned().into_py_any(py)?;
-    result.set_item("word_policy_units", converted_815)?;
-    let converted_816 = (&value.sensitive_information_policy_units)
+    let converted_854 = (&value.topic_policy_units).to_owned().into_py_any(py)?;
+    result.set_item("topic_policy_units", converted_854)?;
+    let converted_855 = (&value.content_policy_units).to_owned().into_py_any(py)?;
+    result.set_item("content_policy_units", converted_855)?;
+    let converted_856 = (&value.word_policy_units).to_owned().into_py_any(py)?;
+    result.set_item("word_policy_units", converted_856)?;
+    let converted_857 = (&value.sensitive_information_policy_units)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("sensitive_information_policy_units", converted_816)?;
-    let converted_817 = (&value.sensitive_information_policy_free_units)
+    result.set_item("sensitive_information_policy_units", converted_857)?;
+    let converted_858 = (&value.sensitive_information_policy_free_units)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("sensitive_information_policy_free_units", converted_817)?;
-    let converted_818 = (&value.contextual_grounding_policy_units)
+    result.set_item("sensitive_information_policy_free_units", converted_858)?;
+    let converted_859 = (&value.contextual_grounding_policy_units)
         .to_owned()
         .into_py_any(py)?;
-    result.set_item("contextual_grounding_policy_units", converted_818)?;
+    result.set_item("contextual_grounding_policy_units", converted_859)?;
     if let Some(value) = &value.content_policy_image_units {
-        let converted_819 = (value).to_owned().into_py_any(py)?;
-        result.set_item("content_policy_image_units", converted_819)?;
+        let converted_860 = (value).to_owned().into_py_any(py)?;
+        result.set_item("content_policy_image_units", converted_860)?;
     } else {
         result.set_item("content_policy_image_units", py.None())?;
     }
     if let Some(value) = &value.automated_reasoning_policy_units {
-        let converted_820 = (value).to_owned().into_py_any(py)?;
-        result.set_item("automated_reasoning_policy_units", converted_820)?;
+        let converted_861 = (value).to_owned().into_py_any(py)?;
+        result.set_item("automated_reasoning_policy_units", converted_861)?;
     } else {
         result.set_item("automated_reasoning_policy_units", py.None())?;
     }
     if let Some(value) = &value.automated_reasoning_policies {
-        let converted_821 = (value).to_owned().into_py_any(py)?;
-        result.set_item("automated_reasoning_policies", converted_821)?;
+        let converted_862 = (value).to_owned().into_py_any(py)?;
+        result.set_item("automated_reasoning_policies", converted_862)?;
     } else {
         result.set_item("automated_reasoning_policies", py.None())?;
     }
@@ -5093,28 +8449,88 @@ fn guardrail_word_policy_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailWordPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "custom_words")? {
-        let mut converted_822 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_823 in value.try_iter()? {
-            let item_824 = item_result_823?;
-            let converted_item_825 = guardrail_custom_word_from_py(&item_824)?;
-            converted_822.push(converted_item_825);
-        }
-        builder = builder.set_custom_words(Some(converted_822));
+        let converted_863 = (|| -> PyResult<_> {
+            let mut converted_863 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_867, item_result_864) in value.try_iter()?.enumerate() {
+                let item_865 = item_result_864.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_867),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_866 = (|| -> PyResult<_> {
+                    let converted_item_866 = guardrail_custom_word_from_py(&item_865)?;
+                    Ok(converted_item_866)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_867),
+                        "dict (GuardrailCustomWord)",
+                    )
+                })?;
+                converted_863.push(converted_item_866);
+            }
+            Ok(converted_863)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("custom_words"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_custom_words(Some(converted_863));
     }
     if let Some(value) = dict_value(values, "managed_word_lists")? {
-        let mut converted_826 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_827 in value.try_iter()? {
-            let item_828 = item_result_827?;
-            let converted_item_829 = guardrail_managed_word_from_py(&item_828)?;
-            converted_826.push(converted_item_829);
-        }
-        builder = builder.set_managed_word_lists(Some(converted_826));
+        let converted_868 = (|| -> PyResult<_> {
+            let mut converted_868 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_872, item_result_869) in value.try_iter()?.enumerate() {
+                let item_870 = item_result_869.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_872),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_871 = (|| -> PyResult<_> {
+                    let converted_item_871 = guardrail_managed_word_from_py(&item_870)?;
+                    Ok(converted_item_871)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_872),
+                        "dict (GuardrailManagedWord)",
+                    )
+                })?;
+                converted_868.push(converted_item_871);
+            }
+            Ok(converted_868)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("managed_word_lists"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_managed_word_lists(Some(converted_868));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("custom_words", "custom_words"),
+                ("managed_word_lists", "managed_word_lists"),
+            ],
+        )
+    })
 }
 
 fn guardrail_word_policy_assessment_to_py(
@@ -5122,20 +8538,20 @@ fn guardrail_word_policy_assessment_to_py(
     value: &aws_sdk_bedrockruntime::types::GuardrailWordPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_830_list = PyList::empty(py);
-    for item_831 in &value.custom_words {
-        let converted_item_832 = guardrail_custom_word_to_py(py, item_831)?;
-        converted_830_list.append(converted_item_832)?;
+    let converted_873_list = PyList::empty(py);
+    for item_874 in &value.custom_words {
+        let converted_item_875 = guardrail_custom_word_to_py(py, item_874)?;
+        converted_873_list.append(converted_item_875)?;
     }
-    let converted_830 = converted_830_list.into_any().unbind();
-    result.set_item("custom_words", converted_830)?;
-    let converted_833_list = PyList::empty(py);
-    for item_834 in &value.managed_word_lists {
-        let converted_item_835 = guardrail_managed_word_to_py(py, item_834)?;
-        converted_833_list.append(converted_item_835)?;
+    let converted_873 = converted_873_list.into_any().unbind();
+    result.set_item("custom_words", converted_873)?;
+    let converted_876_list = PyList::empty(py);
+    for item_877 in &value.managed_word_lists {
+        let converted_item_878 = guardrail_managed_word_to_py(py, item_877)?;
+        converted_876_list.append(converted_item_878)?;
     }
-    let converted_833 = converted_833_list.into_any().unbind();
-    result.set_item("managed_word_lists", converted_833)?;
+    let converted_876 = converted_876_list.into_any().unbind();
+    result.set_item("managed_word_lists", converted_876)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5145,22 +8561,52 @@ fn image_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ImageBlock::builder();
     if let Some(value) = dict_value(values, "format")? {
-        let enum_value_837: String = value.extract()?;
-        let converted_836 =
-            aws_sdk_bedrockruntime::types::ImageFormat::from(enum_value_837.as_str());
-        builder = builder.set_format(Some(converted_836));
+        let converted_879 = (|| -> PyResult<_> {
+            let enum_value_880: String = value.extract()?;
+            let converted_879 =
+                aws_sdk_bedrockruntime::types::ImageFormat::from(enum_value_880.as_str());
+            Ok(converted_879)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("format"),
+                "str (ImageFormat)",
+            )
+        })?;
+        builder = builder.set_format(Some(converted_879));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_838 = image_source_from_py(&value)?;
-        builder = builder.set_source(Some(converted_838));
+        let converted_881 = (|| -> PyResult<_> {
+            let converted_881 = image_source_from_py(&value)?;
+            Ok(converted_881)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_source(Some(converted_881));
     }
     if let Some(value) = dict_value(values, "error")? {
-        let converted_839 = error_block_from_py(&value)?;
-        builder = builder.set_error(Some(converted_839));
+        let converted_882 = (|| -> PyResult<_> {
+            let converted_882 = error_block_from_py(&value)?;
+            Ok(converted_882)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("error"),
+                "dict (ErrorBlock)",
+            )
+        })?;
+        builder = builder.set_error(Some(converted_882));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("format", "format")]))
 }
 
 fn image_block_to_py(
@@ -5168,17 +8614,17 @@ fn image_block_to_py(
     value: &aws_sdk_bedrockruntime::types::ImageBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_840 = (&value.format).as_str().into_py_any(py)?;
-    result.set_item("format", converted_840)?;
+    let converted_883 = (&value.format).as_str().into_py_any(py)?;
+    result.set_item("format", converted_883)?;
     if let Some(value) = &value.source {
-        let converted_841 = image_source_to_py(py, value)?;
-        result.set_item("source", converted_841)?;
+        let converted_884 = image_source_to_py(py, value)?;
+        result.set_item("source", converted_884)?;
     } else {
         result.set_item("source", py.None())?;
     }
     if let Some(value) = &value.error {
-        let converted_842 = error_block_to_py(py, value)?;
-        result.set_item("error", converted_842)?;
+        let converted_885 = error_block_to_py(py, value)?;
+        result.set_item("error", converted_885)?;
     } else {
         result.set_item("error", py.None())?;
     }
@@ -5191,12 +8637,32 @@ fn image_block_delta_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ImageBlockDelta::builder();
     if let Some(value) = dict_value(values, "source")? {
-        let converted_843 = image_source_from_py(&value)?;
-        builder = builder.set_source(Some(converted_843));
+        let converted_886 = (|| -> PyResult<_> {
+            let converted_886 = image_source_from_py(&value)?;
+            Ok(converted_886)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_source(Some(converted_886));
     }
     if let Some(value) = dict_value(values, "error")? {
-        let converted_844 = error_block_from_py(&value)?;
-        builder = builder.set_error(Some(converted_844));
+        let converted_887 = (|| -> PyResult<_> {
+            let converted_887 = error_block_from_py(&value)?;
+            Ok(converted_887)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("error"),
+                "dict (ErrorBlock)",
+            )
+        })?;
+        builder = builder.set_error(Some(converted_887));
     }
     Ok(builder.build())
 }
@@ -5207,14 +8673,14 @@ fn image_block_delta_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.source {
-        let converted_845 = image_source_to_py(py, value)?;
-        result.set_item("source", converted_845)?;
+        let converted_888 = image_source_to_py(py, value)?;
+        result.set_item("source", converted_888)?;
     } else {
         result.set_item("source", py.None())?;
     }
     if let Some(value) = &value.error {
-        let converted_846 = error_block_to_py(py, value)?;
-        result.set_item("error", converted_846)?;
+        let converted_889 = error_block_to_py(py, value)?;
+        result.set_item("error", converted_889)?;
     } else {
         result.set_item("error", py.None())?;
     }
@@ -5227,14 +8693,24 @@ fn image_block_start_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ImageBlockStart::builder();
     if let Some(value) = dict_value(values, "format")? {
-        let enum_value_848: String = value.extract()?;
-        let converted_847 =
-            aws_sdk_bedrockruntime::types::ImageFormat::from(enum_value_848.as_str());
-        builder = builder.set_format(Some(converted_847));
+        let converted_890 = (|| -> PyResult<_> {
+            let enum_value_891: String = value.extract()?;
+            let converted_890 =
+                aws_sdk_bedrockruntime::types::ImageFormat::from(enum_value_891.as_str());
+            Ok(converted_890)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("format"),
+                "str (ImageFormat)",
+            )
+        })?;
+        builder = builder.set_format(Some(converted_890));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("format", "format")]))
 }
 
 fn image_block_start_to_py(
@@ -5242,8 +8718,8 @@ fn image_block_start_to_py(
     value: &aws_sdk_bedrockruntime::types::ImageBlockStart,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_849 = (&value.format).as_str().into_py_any(py)?;
-    result.set_item("format", converted_849)?;
+    let converted_892 = (&value.format).as_str().into_py_any(py)?;
+    result.set_item("format", converted_892)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5252,23 +8728,47 @@ fn image_source_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ImageSource> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_851: Vec<u8> = value.extract()?;
-        let converted_850 = ::aws_smithy_types::Blob::new(bytes_851);
+        let converted_893 = (|| -> PyResult<_> {
+            let bytes_894: Vec<u8> = value.extract()?;
+            let converted_893 = ::aws_smithy_types::Blob::new(bytes_894);
+            Ok(converted_893)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ImageSource::Bytes(
-            converted_850,
+            converted_893,
         ));
     }
     if let Some(value) = dict_value(values, "s3_location")? {
-        let converted_852 = s3_location_from_py(&value)?;
+        let converted_895 = (|| -> PyResult<_> {
+            let converted_895 = s3_location_from_py(&value)?;
+            Ok(converted_895)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_location"),
+                "dict (S3Location)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ImageSource::S3Location(
-            converted_852,
+            converted_895,
         ));
     }
-    Err(PyValueError::new_err(
-        "ImageSource requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ImageSource requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5279,12 +8779,12 @@ fn image_source_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ImageSource::Bytes(value) => {
-            let converted_853 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("bytes", converted_853)?;
+            let converted_896 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("bytes", converted_896)?;
         }
         aws_sdk_bedrockruntime::types::ImageSource::S3Location(value) => {
-            let converted_854 = s3_location_to_py(py, value)?;
-            result.set_item("s3_location", converted_854)?;
+            let converted_897 = s3_location_to_py(py, value)?;
+            result.set_item("s3_location", converted_897)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -5299,26 +8799,67 @@ fn inference_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::InferenceConfiguration::builder();
     if let Some(value) = dict_value(values, "max_tokens")? {
-        let converted_855: i32 = value.extract()?;
-        builder = builder.set_max_tokens(Some(converted_855));
+        let converted_898 = (|| -> PyResult<_> {
+            let converted_898: i32 = value.extract()?;
+            Ok(converted_898)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("max_tokens"), "int")
+        })?;
+        builder = builder.set_max_tokens(Some(converted_898));
     }
     if let Some(value) = dict_value(values, "temperature")? {
-        let converted_856: f32 = value.extract()?;
-        builder = builder.set_temperature(Some(converted_856));
+        let converted_899 = (|| -> PyResult<_> {
+            let converted_899: f32 = value.extract()?;
+            Ok(converted_899)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("temperature"), "float")
+        })?;
+        builder = builder.set_temperature(Some(converted_899));
     }
     if let Some(value) = dict_value(values, "top_p")? {
-        let converted_857: f32 = value.extract()?;
-        builder = builder.set_top_p(Some(converted_857));
+        let converted_900 = (|| -> PyResult<_> {
+            let converted_900: f32 = value.extract()?;
+            Ok(converted_900)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("top_p"), "float")
+        })?;
+        builder = builder.set_top_p(Some(converted_900));
     }
     if let Some(value) = dict_value(values, "stop_sequences")? {
-        let mut converted_858 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_859 in value.try_iter()? {
-            let item_860 = item_result_859?;
-            let converted_item_861: String = item_860.extract()?;
-            converted_858.push(converted_item_861);
-        }
-        builder = builder.set_stop_sequences(Some(converted_858));
+        let converted_901 = (|| -> PyResult<_> {
+            let mut converted_901 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_905, item_result_902) in value.try_iter()?.enumerate() {
+                let item_903 = item_result_902.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_905),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_904 = (|| -> PyResult<_> {
+                    let converted_item_904: String = item_903.extract()?;
+                    Ok(converted_item_904)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_905), "str")
+                })?;
+                converted_901.push(converted_item_904);
+            }
+            Ok(converted_901)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stop_sequences"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_stop_sequences(Some(converted_901));
     }
     Ok(builder.build())
 }
@@ -5329,31 +8870,31 @@ fn inference_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.max_tokens {
-        let converted_862 = (value).to_owned().into_py_any(py)?;
-        result.set_item("max_tokens", converted_862)?;
+        let converted_906 = (value).to_owned().into_py_any(py)?;
+        result.set_item("max_tokens", converted_906)?;
     } else {
         result.set_item("max_tokens", py.None())?;
     }
     if let Some(value) = &value.temperature {
-        let converted_863 = (value).to_owned().into_py_any(py)?;
-        result.set_item("temperature", converted_863)?;
+        let converted_907 = (value).to_owned().into_py_any(py)?;
+        result.set_item("temperature", converted_907)?;
     } else {
         result.set_item("temperature", py.None())?;
     }
     if let Some(value) = &value.top_p {
-        let converted_864 = (value).to_owned().into_py_any(py)?;
-        result.set_item("top_p", converted_864)?;
+        let converted_908 = (value).to_owned().into_py_any(py)?;
+        result.set_item("top_p", converted_908)?;
     } else {
         result.set_item("top_p", py.None())?;
     }
     if let Some(value) = &value.stop_sequences {
-        let converted_865_list = PyList::empty(py);
-        for item_866 in value {
-            let converted_item_867 = (item_866).as_str().into_py_any(py)?;
-            converted_865_list.append(converted_item_867)?;
+        let converted_909_list = PyList::empty(py);
+        for item_910 in value {
+            let converted_item_911 = (item_910).as_str().into_py_any(py)?;
+            converted_909_list.append(converted_item_911)?;
         }
-        let converted_865 = converted_865_list.into_any().unbind();
-        result.set_item("stop_sequences", converted_865)?;
+        let converted_909 = converted_909_list.into_any().unbind();
+        result.set_item("stop_sequences", converted_909)?;
     } else {
         result.set_item("stop_sequences", py.None())?;
     }
@@ -5366,13 +8907,19 @@ fn invoke_model_tokens_request_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::InvokeModelTokensRequest::builder();
     if let Some(value) = dict_value(values, "body")? {
-        let bytes_869: Vec<u8> = value.extract()?;
-        let converted_868 = ::aws_smithy_types::Blob::new(bytes_869);
-        builder = builder.set_body(Some(converted_868));
+        let converted_912 = (|| -> PyResult<_> {
+            let bytes_913: Vec<u8> = value.extract()?;
+            let converted_912 = ::aws_smithy_types::Blob::new(bytes_913);
+            Ok(converted_912)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("body"), "bytes")
+        })?;
+        builder = builder.set_body(Some(converted_912));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("body", "body")]))
 }
 
 fn invoke_model_tokens_request_to_py(
@@ -5380,8 +8927,8 @@ fn invoke_model_tokens_request_to_py(
     value: &aws_sdk_bedrockruntime::types::InvokeModelTokensRequest,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_870 = PyBytes::new(py, (&value.body).as_ref()).into_any().unbind();
-    result.set_item("body", converted_870)?;
+    let converted_914 = PyBytes::new(py, (&value.body).as_ref()).into_any().unbind();
+    result.set_item("body", converted_914)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5390,18 +8937,38 @@ fn invoke_model_with_bidirectional_stream_input_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "chunk")? {
-        let converted_871 = bidirectional_input_payload_part_from_py(&value)?;
+        let converted_915 = (|| -> PyResult<_> {
+            let converted_915 = bidirectional_input_payload_part_from_py(&value)?;
+            Ok(converted_915)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("chunk"),
+                "dict (BidirectionalInputPayloadPart)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput::Chunk(
-                converted_871,
+                converted_915,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "InvokeModelWithBidirectionalStreamInput requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err(
+            "InvokeModelWithBidirectionalStreamInput requires exactly one known variant",
+        ),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5412,8 +8979,8 @@ fn invoke_model_with_bidirectional_stream_input_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput::Chunk(value) => {
-            let converted_872 = bidirectional_input_payload_part_to_py(py, value)?;
-            result.set_item("chunk", converted_872)?;
+            let converted_916 = bidirectional_input_payload_part_to_py(py, value)?;
+            result.set_item("chunk", converted_916)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -5427,18 +8994,38 @@ fn invoke_model_with_bidirectional_stream_output_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamOutput> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "chunk")? {
-        let converted_873 = bidirectional_output_payload_part_from_py(&value)?;
+        let converted_917 = (|| -> PyResult<_> {
+            let converted_917 = bidirectional_output_payload_part_from_py(&value)?;
+            Ok(converted_917)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("chunk"),
+                "dict (BidirectionalOutputPayloadPart)",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamOutput::Chunk(
-                converted_873,
+                converted_917,
             ),
         );
     }
-    Err(PyValueError::new_err(
-        "InvokeModelWithBidirectionalStreamOutput requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err(
+            "InvokeModelWithBidirectionalStreamOutput requires exactly one known variant",
+        ),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5449,8 +9036,8 @@ fn invoke_model_with_bidirectional_stream_output_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamOutput::Chunk(value) => {
-            let converted_874 = bidirectional_output_payload_part_to_py(py, value)?;
-            result.set_item("chunk", converted_874)?;
+            let converted_918 = bidirectional_output_payload_part_to_py(py, value)?;
+            result.set_item("chunk", converted_918)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -5465,20 +9052,38 @@ fn json_schema_definition_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::JsonSchemaDefinition::builder();
     if let Some(value) = dict_value(values, "schema")? {
-        let converted_875: String = value.extract()?;
-        builder = builder.set_schema(Some(converted_875));
+        let converted_919 = (|| -> PyResult<_> {
+            let converted_919: String = value.extract()?;
+            Ok(converted_919)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("schema"), "str")
+        })?;
+        builder = builder.set_schema(Some(converted_919));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_876: String = value.extract()?;
-        builder = builder.set_name(Some(converted_876));
+        let converted_920 = (|| -> PyResult<_> {
+            let converted_920: String = value.extract()?;
+            Ok(converted_920)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_920));
     }
     if let Some(value) = dict_value(values, "description")? {
-        let converted_877: String = value.extract()?;
-        builder = builder.set_description(Some(converted_877));
+        let converted_921 = (|| -> PyResult<_> {
+            let converted_921: String = value.extract()?;
+            Ok(converted_921)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("description"), "str")
+        })?;
+        builder = builder.set_description(Some(converted_921));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("schema", "schema")]))
 }
 
 fn json_schema_definition_to_py(
@@ -5486,17 +9091,17 @@ fn json_schema_definition_to_py(
     value: &aws_sdk_bedrockruntime::types::JsonSchemaDefinition,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_878 = (&value.schema).as_str().into_py_any(py)?;
-    result.set_item("schema", converted_878)?;
+    let converted_922 = (&value.schema).as_str().into_py_any(py)?;
+    result.set_item("schema", converted_922)?;
     if let Some(value) = &value.name {
-        let converted_879 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_879)?;
+        let converted_923 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_923)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_880 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_880)?;
+        let converted_924 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_924)?;
     } else {
         result.set_item("description", py.None())?;
     }
@@ -5507,24 +9112,57 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockruntime:
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::Message::builder();
     if let Some(value) = dict_value(values, "role")? {
-        let enum_value_882: String = value.extract()?;
-        let converted_881 =
-            aws_sdk_bedrockruntime::types::ConversationRole::from(enum_value_882.as_str());
-        builder = builder.set_role(Some(converted_881));
+        let converted_925 = (|| -> PyResult<_> {
+            let enum_value_926: String = value.extract()?;
+            let converted_925 =
+                aws_sdk_bedrockruntime::types::ConversationRole::from(enum_value_926.as_str());
+            Ok(converted_925)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("role"),
+                "str (ConversationRole)",
+            )
+        })?;
+        builder = builder.set_role(Some(converted_925));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_883 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_884 in value.try_iter()? {
-            let item_885 = item_result_884?;
-            let converted_item_886 = content_block_from_py(&item_885)?;
-            converted_883.push(converted_item_886);
-        }
-        builder = builder.set_content(Some(converted_883));
+        let converted_927 = (|| -> PyResult<_> {
+            let mut converted_927 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_931, item_result_928) in value.try_iter()?.enumerate() {
+                let item_929 = item_result_928.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_931),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_930 = (|| -> PyResult<_> {
+                    let converted_item_930 = content_block_from_py(&item_929)?;
+                    Ok(converted_item_930)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_931),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_927.push(converted_item_930);
+            }
+            Ok(converted_927)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "sequence")
+        })?;
+        builder = builder.set_content(Some(converted_927));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("role", "role"), ("content", "content")])
+    })
 }
 
 fn message_to_py(
@@ -5532,15 +9170,15 @@ fn message_to_py(
     value: &aws_sdk_bedrockruntime::types::Message,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_887 = (&value.role).as_str().into_py_any(py)?;
-    result.set_item("role", converted_887)?;
-    let converted_888_list = PyList::empty(py);
-    for item_889 in &value.content {
-        let converted_item_890 = content_block_to_py(py, item_889)?;
-        converted_888_list.append(converted_item_890)?;
+    let converted_932 = (&value.role).as_str().into_py_any(py)?;
+    result.set_item("role", converted_932)?;
+    let converted_933_list = PyList::empty(py);
+    for item_934 in &value.content {
+        let converted_item_935 = content_block_to_py(py, item_934)?;
+        converted_933_list.append(converted_item_935)?;
     }
-    let converted_888 = converted_888_list.into_any().unbind();
-    result.set_item("content", converted_888)?;
+    let converted_933 = converted_933_list.into_any().unbind();
+    result.set_item("content", converted_933)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5550,14 +9188,24 @@ fn message_start_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::MessageStartEvent::builder();
     if let Some(value) = dict_value(values, "role")? {
-        let enum_value_892: String = value.extract()?;
-        let converted_891 =
-            aws_sdk_bedrockruntime::types::ConversationRole::from(enum_value_892.as_str());
-        builder = builder.set_role(Some(converted_891));
+        let converted_936 = (|| -> PyResult<_> {
+            let enum_value_937: String = value.extract()?;
+            let converted_936 =
+                aws_sdk_bedrockruntime::types::ConversationRole::from(enum_value_937.as_str());
+            Ok(converted_936)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("role"),
+                "str (ConversationRole)",
+            )
+        })?;
+        builder = builder.set_role(Some(converted_936));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("role", "role")]))
 }
 
 fn message_start_event_to_py(
@@ -5565,8 +9213,8 @@ fn message_start_event_to_py(
     value: &aws_sdk_bedrockruntime::types::MessageStartEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_893 = (&value.role).as_str().into_py_any(py)?;
-    result.set_item("role", converted_893)?;
+    let converted_938 = (&value.role).as_str().into_py_any(py)?;
+    result.set_item("role", converted_938)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5576,18 +9224,38 @@ fn message_stop_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::MessageStopEvent::builder();
     if let Some(value) = dict_value(values, "stop_reason")? {
-        let enum_value_895: String = value.extract()?;
-        let converted_894 =
-            aws_sdk_bedrockruntime::types::StopReason::from(enum_value_895.as_str());
-        builder = builder.set_stop_reason(Some(converted_894));
+        let converted_939 = (|| -> PyResult<_> {
+            let enum_value_940: String = value.extract()?;
+            let converted_939 =
+                aws_sdk_bedrockruntime::types::StopReason::from(enum_value_940.as_str());
+            Ok(converted_939)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stop_reason"),
+                "str (StopReason)",
+            )
+        })?;
+        builder = builder.set_stop_reason(Some(converted_939));
     }
     if let Some(value) = dict_value(values, "additional_model_response_fields")? {
-        let converted_896 = rboto_core::document_from_py(&value)?;
-        builder = builder.set_additional_model_response_fields(Some(converted_896));
+        let converted_941 = (|| -> PyResult<_> {
+            let converted_941 = rboto_core::document_from_py(&value)?;
+            Ok(converted_941)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("additional_model_response_fields"),
+                "JSONValue",
+            )
+        })?;
+        builder = builder.set_additional_model_response_fields(Some(converted_941));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("stop_reason", "stop_reason")]))
 }
 
 fn message_stop_event_to_py(
@@ -5595,11 +9263,11 @@ fn message_stop_event_to_py(
     value: &aws_sdk_bedrockruntime::types::MessageStopEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_897 = (&value.stop_reason).as_str().into_py_any(py)?;
-    result.set_item("stop_reason", converted_897)?;
+    let converted_942 = (&value.stop_reason).as_str().into_py_any(py)?;
+    result.set_item("stop_reason", converted_942)?;
     if let Some(value) = &value.additional_model_response_fields {
-        let converted_898 = rboto_core::document_to_py(py, value)?;
-        result.set_item("additional_model_response_fields", converted_898)?;
+        let converted_943 = rboto_core::document_to_py(py, value)?;
+        result.set_item("additional_model_response_fields", converted_943)?;
     } else {
         result.set_item("additional_model_response_fields", py.None())?;
     }
@@ -5612,12 +9280,28 @@ fn output_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::OutputConfig::builder();
     if let Some(value) = dict_value(values, "text_format")? {
-        let converted_899 = output_format_from_py(&value)?;
-        builder = builder.set_text_format(Some(converted_899));
+        let converted_944 = (|| -> PyResult<_> {
+            let converted_944 = output_format_from_py(&value)?;
+            Ok(converted_944)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("text_format"),
+                "dict (OutputFormat)",
+            )
+        })?;
+        builder = builder.set_text_format(Some(converted_944));
     }
     if let Some(value) = dict_value(values, "effort")? {
-        let converted_900: String = value.extract()?;
-        builder = builder.set_effort(Some(converted_900));
+        let converted_945 = (|| -> PyResult<_> {
+            let converted_945: String = value.extract()?;
+            Ok(converted_945)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("effort"), "str")
+        })?;
+        builder = builder.set_effort(Some(converted_945));
     }
     Ok(builder.build())
 }
@@ -5628,14 +9312,14 @@ fn output_config_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.text_format {
-        let converted_901 = output_format_to_py(py, value)?;
-        result.set_item("text_format", converted_901)?;
+        let converted_946 = output_format_to_py(py, value)?;
+        result.set_item("text_format", converted_946)?;
     } else {
         result.set_item("text_format", py.None())?;
     }
     if let Some(value) = &value.effort {
-        let converted_902 = (value).as_str().into_py_any(py)?;
-        result.set_item("effort", converted_902)?;
+        let converted_947 = (value).as_str().into_py_any(py)?;
+        result.set_item("effort", converted_947)?;
     } else {
         result.set_item("effort", py.None())?;
     }
@@ -5648,18 +9332,38 @@ fn output_format_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::OutputFormat::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_904: String = value.extract()?;
-        let converted_903 =
-            aws_sdk_bedrockruntime::types::OutputFormatType::from(enum_value_904.as_str());
-        builder = builder.set_type(Some(converted_903));
+        let converted_948 = (|| -> PyResult<_> {
+            let enum_value_949: String = value.extract()?;
+            let converted_948 =
+                aws_sdk_bedrockruntime::types::OutputFormatType::from(enum_value_949.as_str());
+            Ok(converted_948)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (OutputFormatType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_948));
     }
     if let Some(value) = dict_value(values, "structure")? {
-        let converted_905 = output_format_structure_from_py(&value)?;
-        builder = builder.set_structure(Some(converted_905));
+        let converted_950 = (|| -> PyResult<_> {
+            let converted_950 = output_format_structure_from_py(&value)?;
+            Ok(converted_950)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("structure"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_structure(Some(converted_950));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("type", "type")]))
 }
 
 fn output_format_to_py(
@@ -5667,11 +9371,11 @@ fn output_format_to_py(
     value: &aws_sdk_bedrockruntime::types::OutputFormat,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_906 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_906)?;
+    let converted_951 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_951)?;
     if let Some(value) = &value.structure {
-        let converted_907 = output_format_structure_to_py(py, value)?;
-        result.set_item("structure", converted_907)?;
+        let converted_952 = output_format_structure_to_py(py, value)?;
+        result.set_item("structure", converted_952)?;
     } else {
         result.set_item("structure", py.None())?;
     }
@@ -5683,14 +9387,32 @@ fn output_format_structure_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::OutputFormatStructure> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "json_schema")? {
-        let converted_908 = json_schema_definition_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::OutputFormatStructure::JsonSchema(converted_908));
+        let converted_953 = (|| -> PyResult<_> {
+            let converted_953 = json_schema_definition_from_py(&value)?;
+            Ok(converted_953)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("json_schema"),
+                "dict (JsonSchemaDefinition)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::OutputFormatStructure::JsonSchema(converted_953));
     }
-    Err(PyValueError::new_err(
-        "OutputFormatStructure requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("OutputFormatStructure requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5701,8 +9423,8 @@ fn output_format_structure_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::OutputFormatStructure::JsonSchema(value) => {
-            let converted_909 = json_schema_definition_to_py(py, value)?;
-            result.set_item("json_schema", converted_909)?;
+            let converted_954 = json_schema_definition_to_py(py, value)?;
+            result.set_item("json_schema", converted_954)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -5717,9 +9439,15 @@ fn payload_part_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::PayloadPart::builder();
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_911: Vec<u8> = value.extract()?;
-        let converted_910 = ::aws_smithy_types::Blob::new(bytes_911);
-        builder = builder.set_bytes(Some(converted_910));
+        let converted_955 = (|| -> PyResult<_> {
+            let bytes_956: Vec<u8> = value.extract()?;
+            let converted_955 = ::aws_smithy_types::Blob::new(bytes_956);
+            Ok(converted_955)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
+        builder = builder.set_bytes(Some(converted_955));
     }
     Ok(builder.build())
 }
@@ -5730,8 +9458,8 @@ fn payload_part_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.bytes {
-        let converted_912 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("bytes", converted_912)?;
+        let converted_957 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("bytes", converted_957)?;
     } else {
         result.set_item("bytes", py.None())?;
     }
@@ -5744,10 +9472,21 @@ fn performance_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::PerformanceConfiguration::builder();
     if let Some(value) = dict_value(values, "latency")? {
-        let enum_value_914: String = value.extract()?;
-        let converted_913 =
-            aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(enum_value_914.as_str());
-        builder = builder.set_latency(Some(converted_913));
+        let converted_958 = (|| -> PyResult<_> {
+            let enum_value_959: String = value.extract()?;
+            let converted_958 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
+                enum_value_959.as_str(),
+            );
+            Ok(converted_958)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("latency"),
+                "str (PerformanceConfigLatency)",
+            )
+        })?;
+        builder = builder.set_latency(Some(converted_958));
     }
     Ok(builder.build())
 }
@@ -5757,8 +9496,8 @@ fn performance_configuration_to_py(
     value: &aws_sdk_bedrockruntime::types::PerformanceConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_915 = (&value.latency).as_str().into_py_any(py)?;
-    result.set_item("latency", converted_915)?;
+    let converted_960 = (&value.latency).as_str().into_py_any(py)?;
+    result.set_item("latency", converted_960)?;
     Ok(result.into_any().unbind())
 }
 
@@ -5768,8 +9507,18 @@ fn prompt_router_trace_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::PromptRouterTrace::builder();
     if let Some(value) = dict_value(values, "invoked_model_id")? {
-        let converted_916: String = value.extract()?;
-        builder = builder.set_invoked_model_id(Some(converted_916));
+        let converted_961 = (|| -> PyResult<_> {
+            let converted_961: String = value.extract()?;
+            Ok(converted_961)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("invoked_model_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_invoked_model_id(Some(converted_961));
     }
     Ok(builder.build())
 }
@@ -5780,8 +9529,8 @@ fn prompt_router_trace_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.invoked_model_id {
-        let converted_917 = (value).as_str().into_py_any(py)?;
-        result.set_item("invoked_model_id", converted_917)?;
+        let converted_962 = (value).as_str().into_py_any(py)?;
+        result.set_item("invoked_model_id", converted_962)?;
     } else {
         result.set_item("invoked_model_id", py.None())?;
     }
@@ -5793,16 +9542,30 @@ fn prompt_variable_values_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::PromptVariableValues> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "text")? {
-        let converted_918: String = value.extract()?;
-        return Ok(aws_sdk_bedrockruntime::types::PromptVariableValues::Text(
-            converted_918,
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
         ));
     }
-    Err(PyValueError::new_err(
-        "PromptVariableValues requires exactly one known variant",
+    if let Some(value) = dict_value(values, "text")? {
+        let converted_963 = (|| -> PyResult<_> {
+            let converted_963: String = value.extract()?;
+            Ok(converted_963)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::PromptVariableValues::Text(
+            converted_963,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("PromptVariableValues requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5813,8 +9576,8 @@ fn prompt_variable_values_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::PromptVariableValues::Text(value) => {
-            let converted_919 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_919)?;
+            let converted_964 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_964)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -5828,23 +9591,51 @@ fn reasoning_content_block_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ReasoningContentBlock> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "reasoning_text")? {
-        let converted_920 = reasoning_text_block_from_py(&value)?;
+        let converted_965 = (|| -> PyResult<_> {
+            let converted_965 = reasoning_text_block_from_py(&value)?;
+            Ok(converted_965)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("reasoning_text"),
+                "dict (ReasoningTextBlock)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ReasoningContentBlock::ReasoningText(converted_920),
+            aws_sdk_bedrockruntime::types::ReasoningContentBlock::ReasoningText(converted_965),
         );
     }
     if let Some(value) = dict_value(values, "redacted_content")? {
-        let bytes_922: Vec<u8> = value.extract()?;
-        let converted_921 = ::aws_smithy_types::Blob::new(bytes_922);
+        let converted_966 = (|| -> PyResult<_> {
+            let bytes_967: Vec<u8> = value.extract()?;
+            let converted_966 = ::aws_smithy_types::Blob::new(bytes_967);
+            Ok(converted_966)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("redacted_content"),
+                "bytes",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ReasoningContentBlock::RedactedContent(converted_921),
+            aws_sdk_bedrockruntime::types::ReasoningContentBlock::RedactedContent(converted_966),
         );
     }
-    Err(PyValueError::new_err(
-        "ReasoningContentBlock requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ReasoningContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5855,12 +9646,12 @@ fn reasoning_content_block_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ReasoningContentBlock::ReasoningText(value) => {
-            let converted_923 = reasoning_text_block_to_py(py, value)?;
-            result.set_item("reasoning_text", converted_923)?;
+            let converted_968 = reasoning_text_block_to_py(py, value)?;
+            result.set_item("reasoning_text", converted_968)?;
         }
         aws_sdk_bedrockruntime::types::ReasoningContentBlock::RedactedContent(value) => {
-            let converted_924 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("redacted_content", converted_924)?;
+            let converted_969 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("redacted_content", converted_969)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -5874,29 +9665,59 @@ fn reasoning_content_block_delta_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_925: String = value.extract()?;
-        return Ok(aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::Text(converted_925));
+        let converted_970 = (|| -> PyResult<_> {
+            let converted_970: String = value.extract()?;
+            Ok(converted_970)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::Text(converted_970));
     }
     if let Some(value) = dict_value(values, "redacted_content")? {
-        let bytes_927: Vec<u8> = value.extract()?;
-        let converted_926 = ::aws_smithy_types::Blob::new(bytes_927);
+        let converted_971 = (|| -> PyResult<_> {
+            let bytes_972: Vec<u8> = value.extract()?;
+            let converted_971 = ::aws_smithy_types::Blob::new(bytes_972);
+            Ok(converted_971)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("redacted_content"),
+                "bytes",
+            )
+        })?;
         return Ok(
             aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::RedactedContent(
-                converted_926,
+                converted_971,
             ),
         );
     }
     if let Some(value) = dict_value(values, "signature")? {
-        let converted_928: String = value.extract()?;
+        let converted_973 = (|| -> PyResult<_> {
+            let converted_973: String = value.extract()?;
+            Ok(converted_973)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("signature"), "str")
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::Signature(converted_928),
+            aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::Signature(converted_973),
         );
     }
-    Err(PyValueError::new_err(
-        "ReasoningContentBlockDelta requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ReasoningContentBlockDelta requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5907,16 +9728,16 @@ fn reasoning_content_block_delta_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::Text(value) => {
-            let converted_929 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_929)?;
+            let converted_974 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_974)?;
         }
         aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::RedactedContent(value) => {
-            let converted_930 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("redacted_content", converted_930)?;
+            let converted_975 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("redacted_content", converted_975)?;
         }
         aws_sdk_bedrockruntime::types::ReasoningContentBlockDelta::Signature(value) => {
-            let converted_931 = (value).as_str().into_py_any(py)?;
-            result.set_item("signature", converted_931)?;
+            let converted_976 = (value).as_str().into_py_any(py)?;
+            result.set_item("signature", converted_976)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -5931,16 +9752,28 @@ fn reasoning_text_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ReasoningTextBlock::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let converted_932: String = value.extract()?;
-        builder = builder.set_text(Some(converted_932));
+        let converted_977 = (|| -> PyResult<_> {
+            let converted_977: String = value.extract()?;
+            Ok(converted_977)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        builder = builder.set_text(Some(converted_977));
     }
     if let Some(value) = dict_value(values, "signature")? {
-        let converted_933: String = value.extract()?;
-        builder = builder.set_signature(Some(converted_933));
+        let converted_978 = (|| -> PyResult<_> {
+            let converted_978: String = value.extract()?;
+            Ok(converted_978)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("signature"), "str")
+        })?;
+        builder = builder.set_signature(Some(converted_978));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("text", "text")]))
 }
 
 fn reasoning_text_block_to_py(
@@ -5948,11 +9781,11 @@ fn reasoning_text_block_to_py(
     value: &aws_sdk_bedrockruntime::types::ReasoningTextBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_934 = (&value.text).as_str().into_py_any(py)?;
-    result.set_item("text", converted_934)?;
+    let converted_979 = (&value.text).as_str().into_py_any(py)?;
+    result.set_item("text", converted_979)?;
     if let Some(value) = &value.signature {
-        let converted_935 = (value).as_str().into_py_any(py)?;
-        result.set_item("signature", converted_935)?;
+        let converted_980 = (value).as_str().into_py_any(py)?;
+        result.set_item("signature", converted_980)?;
     } else {
         result.set_item("signature", py.None())?;
     }
@@ -5964,16 +9797,34 @@ fn response_stream_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ResponseStream> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "chunk")? {
-        let converted_936 = payload_part_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ResponseStream::Chunk(
-            converted_936,
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
         ));
     }
-    Err(PyValueError::new_err(
-        "ResponseStream requires exactly one known variant",
+    if let Some(value) = dict_value(values, "chunk")? {
+        let converted_981 = (|| -> PyResult<_> {
+            let converted_981 = payload_part_from_py(&value)?;
+            Ok(converted_981)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("chunk"),
+                "dict (PayloadPart)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ResponseStream::Chunk(
+            converted_981,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ResponseStream requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -5984,8 +9835,8 @@ fn response_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ResponseStream::Chunk(value) => {
-            let converted_937 = payload_part_to_py(py, value)?;
-            result.set_item("chunk", converted_937)?;
+            let converted_982 = payload_part_to_py(py, value)?;
+            result.set_item("chunk", converted_982)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -6000,16 +9851,28 @@ fn s3_location_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::S3Location::builder();
     if let Some(value) = dict_value(values, "uri")? {
-        let converted_938: String = value.extract()?;
-        builder = builder.set_uri(Some(converted_938));
+        let converted_983 = (|| -> PyResult<_> {
+            let converted_983: String = value.extract()?;
+            Ok(converted_983)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("uri"), "str")
+        })?;
+        builder = builder.set_uri(Some(converted_983));
     }
     if let Some(value) = dict_value(values, "bucket_owner")? {
-        let converted_939: String = value.extract()?;
-        builder = builder.set_bucket_owner(Some(converted_939));
+        let converted_984 = (|| -> PyResult<_> {
+            let converted_984: String = value.extract()?;
+            Ok(converted_984)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bucket_owner"), "str")
+        })?;
+        builder = builder.set_bucket_owner(Some(converted_984));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("uri", "uri")]))
 }
 
 fn s3_location_to_py(
@@ -6017,11 +9880,11 @@ fn s3_location_to_py(
     value: &aws_sdk_bedrockruntime::types::S3Location,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_940 = (&value.uri).as_str().into_py_any(py)?;
-    result.set_item("uri", converted_940)?;
+    let converted_985 = (&value.uri).as_str().into_py_any(py)?;
+    result.set_item("uri", converted_985)?;
     if let Some(value) = &value.bucket_owner {
-        let converted_941 = (value).as_str().into_py_any(py)?;
-        result.set_item("bucket_owner", converted_941)?;
+        let converted_986 = (value).as_str().into_py_any(py)?;
+        result.set_item("bucket_owner", converted_986)?;
     } else {
         result.set_item("bucket_owner", py.None())?;
     }
@@ -6034,30 +9897,82 @@ fn search_result_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::SearchResultBlock::builder();
     if let Some(value) = dict_value(values, "source")? {
-        let converted_942: String = value.extract()?;
-        builder = builder.set_source(Some(converted_942));
+        let converted_987 = (|| -> PyResult<_> {
+            let converted_987: String = value.extract()?;
+            Ok(converted_987)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("source"), "str")
+        })?;
+        builder = builder.set_source(Some(converted_987));
     }
     if let Some(value) = dict_value(values, "title")? {
-        let converted_943: String = value.extract()?;
-        builder = builder.set_title(Some(converted_943));
+        let converted_988 = (|| -> PyResult<_> {
+            let converted_988: String = value.extract()?;
+            Ok(converted_988)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("title"), "str")
+        })?;
+        builder = builder.set_title(Some(converted_988));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_944 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_945 in value.try_iter()? {
-            let item_946 = item_result_945?;
-            let converted_item_947 = search_result_content_block_from_py(&item_946)?;
-            converted_944.push(converted_item_947);
-        }
-        builder = builder.set_content(Some(converted_944));
+        let converted_989 = (|| -> PyResult<_> {
+            let mut converted_989 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_993, item_result_990) in value.try_iter()?.enumerate() {
+                let item_991 = item_result_990.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_993),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_992 = (|| -> PyResult<_> {
+                    let converted_item_992 = search_result_content_block_from_py(&item_991)?;
+                    Ok(converted_item_992)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_993),
+                        "dict (SearchResultContentBlock)",
+                    )
+                })?;
+                converted_989.push(converted_item_992);
+            }
+            Ok(converted_989)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "sequence")
+        })?;
+        builder = builder.set_content(Some(converted_989));
     }
     if let Some(value) = dict_value(values, "citations")? {
-        let converted_948 = citations_config_from_py(&value)?;
-        builder = builder.set_citations(Some(converted_948));
+        let converted_994 = (|| -> PyResult<_> {
+            let converted_994 = citations_config_from_py(&value)?;
+            Ok(converted_994)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("citations"),
+                "dict (CitationsConfig)",
+            )
+        })?;
+        builder = builder.set_citations(Some(converted_994));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("source", "source"),
+                ("title", "title"),
+                ("content", "content"),
+            ],
+        )
+    })
 }
 
 fn search_result_block_to_py(
@@ -6065,20 +9980,20 @@ fn search_result_block_to_py(
     value: &aws_sdk_bedrockruntime::types::SearchResultBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_949 = (&value.source).as_str().into_py_any(py)?;
-    result.set_item("source", converted_949)?;
-    let converted_950 = (&value.title).as_str().into_py_any(py)?;
-    result.set_item("title", converted_950)?;
-    let converted_951_list = PyList::empty(py);
-    for item_952 in &value.content {
-        let converted_item_953 = search_result_content_block_to_py(py, item_952)?;
-        converted_951_list.append(converted_item_953)?;
+    let converted_995 = (&value.source).as_str().into_py_any(py)?;
+    result.set_item("source", converted_995)?;
+    let converted_996 = (&value.title).as_str().into_py_any(py)?;
+    result.set_item("title", converted_996)?;
+    let converted_997_list = PyList::empty(py);
+    for item_998 in &value.content {
+        let converted_item_999 = search_result_content_block_to_py(py, item_998)?;
+        converted_997_list.append(converted_item_999)?;
     }
-    let converted_951 = converted_951_list.into_any().unbind();
-    result.set_item("content", converted_951)?;
+    let converted_997 = converted_997_list.into_any().unbind();
+    result.set_item("content", converted_997)?;
     if let Some(value) = &value.citations {
-        let converted_954 = citations_config_to_py(py, value)?;
-        result.set_item("citations", converted_954)?;
+        let converted_1000 = citations_config_to_py(py, value)?;
+        result.set_item("citations", converted_1000)?;
     } else {
         result.set_item("citations", py.None())?;
     }
@@ -6091,12 +10006,18 @@ fn search_result_content_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::SearchResultContentBlock::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let converted_955: String = value.extract()?;
-        builder = builder.set_text(Some(converted_955));
+        let converted_1001 = (|| -> PyResult<_> {
+            let converted_1001: String = value.extract()?;
+            Ok(converted_1001)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
+        builder = builder.set_text(Some(converted_1001));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("text", "text")]))
 }
 
 fn search_result_content_block_to_py(
@@ -6104,8 +10025,8 @@ fn search_result_content_block_to_py(
     value: &aws_sdk_bedrockruntime::types::SearchResultContentBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_956 = (&value.text).as_str().into_py_any(py)?;
-    result.set_item("text", converted_956)?;
+    let converted_1002 = (&value.text).as_str().into_py_any(py)?;
+    result.set_item("text", converted_1002)?;
     Ok(result.into_any().unbind())
 }
 
@@ -6115,16 +10036,38 @@ fn search_result_location_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::SearchResultLocation::builder();
     if let Some(value) = dict_value(values, "search_result_index")? {
-        let converted_957: i32 = value.extract()?;
-        builder = builder.set_search_result_index(Some(converted_957));
+        let converted_1003 = (|| -> PyResult<_> {
+            let converted_1003: i32 = value.extract()?;
+            Ok(converted_1003)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("search_result_index"),
+                "int",
+            )
+        })?;
+        builder = builder.set_search_result_index(Some(converted_1003));
     }
     if let Some(value) = dict_value(values, "start")? {
-        let converted_958: i32 = value.extract()?;
-        builder = builder.set_start(Some(converted_958));
+        let converted_1004 = (|| -> PyResult<_> {
+            let converted_1004: i32 = value.extract()?;
+            Ok(converted_1004)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("start"), "int")
+        })?;
+        builder = builder.set_start(Some(converted_1004));
     }
     if let Some(value) = dict_value(values, "end")? {
-        let converted_959: i32 = value.extract()?;
-        builder = builder.set_end(Some(converted_959));
+        let converted_1005 = (|| -> PyResult<_> {
+            let converted_1005: i32 = value.extract()?;
+            Ok(converted_1005)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("end"), "int")
+        })?;
+        builder = builder.set_end(Some(converted_1005));
     }
     Ok(builder.build())
 }
@@ -6135,20 +10078,20 @@ fn search_result_location_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.search_result_index {
-        let converted_960 = (value).to_owned().into_py_any(py)?;
-        result.set_item("search_result_index", converted_960)?;
+        let converted_1006 = (value).to_owned().into_py_any(py)?;
+        result.set_item("search_result_index", converted_1006)?;
     } else {
         result.set_item("search_result_index", py.None())?;
     }
     if let Some(value) = &value.start {
-        let converted_961 = (value).to_owned().into_py_any(py)?;
-        result.set_item("start", converted_961)?;
+        let converted_1007 = (value).to_owned().into_py_any(py)?;
+        result.set_item("start", converted_1007)?;
     } else {
         result.set_item("start", py.None())?;
     }
     if let Some(value) = &value.end {
-        let converted_962 = (value).to_owned().into_py_any(py)?;
-        result.set_item("end", converted_962)?;
+        let converted_1008 = (value).to_owned().into_py_any(py)?;
+        result.set_item("end", converted_1008)?;
     } else {
         result.set_item("end", py.None())?;
     }
@@ -6161,14 +10104,24 @@ fn service_tier_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ServiceTier::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_964: String = value.extract()?;
-        let converted_963 =
-            aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_964.as_str());
-        builder = builder.set_type(Some(converted_963));
+        let converted_1009 = (|| -> PyResult<_> {
+            let enum_value_1010: String = value.extract()?;
+            let converted_1009 =
+                aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1010.as_str());
+            Ok(converted_1009)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (ServiceTierType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_1009));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("type", "type")]))
 }
 
 fn service_tier_to_py(
@@ -6176,8 +10129,8 @@ fn service_tier_to_py(
     value: &aws_sdk_bedrockruntime::types::ServiceTier,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_965 = (&value.r#type).as_str().into_py_any(py)?;
-    result.set_item("type", converted_965)?;
+    let converted_1011 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_1011)?;
     Ok(result.into_any().unbind())
 }
 
@@ -6187,12 +10140,18 @@ fn specific_tool_choice_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::SpecificToolChoice::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_966: String = value.extract()?;
-        builder = builder.set_name(Some(converted_966));
+        let converted_1012 = (|| -> PyResult<_> {
+            let converted_1012: String = value.extract()?;
+            Ok(converted_1012)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_1012));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("name", "name")]))
 }
 
 fn specific_tool_choice_to_py(
@@ -6200,8 +10159,8 @@ fn specific_tool_choice_to_py(
     value: &aws_sdk_bedrockruntime::types::SpecificToolChoice,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_967 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_967)?;
+    let converted_1013 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1013)?;
     Ok(result.into_any().unbind())
 }
 
@@ -6210,24 +10169,58 @@ fn system_content_block_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::SystemContentBlock> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_968: String = value.extract()?;
+        let converted_1014 = (|| -> PyResult<_> {
+            let converted_1014: String = value.extract()?;
+            Ok(converted_1014)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::SystemContentBlock::Text(
-            converted_968,
+            converted_1014,
         ));
     }
     if let Some(value) = dict_value(values, "guard_content")? {
-        let converted_969 = guardrail_converse_content_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::SystemContentBlock::GuardContent(converted_969));
+        let converted_1015 = (|| -> PyResult<_> {
+            let converted_1015 = guardrail_converse_content_block_from_py(&value)?;
+            Ok(converted_1015)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("guard_content"),
+                "exactly one known union variant",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::SystemContentBlock::GuardContent(converted_1015));
     }
     if let Some(value) = dict_value(values, "cache_point")? {
-        let converted_970 = cache_point_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::SystemContentBlock::CachePoint(converted_970));
+        let converted_1016 = (|| -> PyResult<_> {
+            let converted_1016 = cache_point_block_from_py(&value)?;
+            Ok(converted_1016)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cache_point"),
+                "dict (CachePointBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::SystemContentBlock::CachePoint(converted_1016));
     }
-    Err(PyValueError::new_err(
-        "SystemContentBlock requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("SystemContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -6238,16 +10231,16 @@ fn system_content_block_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::SystemContentBlock::Text(value) => {
-            let converted_971 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_971)?;
+            let converted_1017 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_1017)?;
         }
         aws_sdk_bedrockruntime::types::SystemContentBlock::GuardContent(value) => {
-            let converted_972 = guardrail_converse_content_block_to_py(py, value)?;
-            result.set_item("guard_content", converted_972)?;
+            let converted_1018 = guardrail_converse_content_block_to_py(py, value)?;
+            result.set_item("guard_content", converted_1018)?;
         }
         aws_sdk_bedrockruntime::types::SystemContentBlock::CachePoint(value) => {
-            let converted_973 = cache_point_block_to_py(py, value)?;
-            result.set_item("cache_point", converted_973)?;
+            let converted_1019 = cache_point_block_to_py(py, value)?;
+            result.set_item("cache_point", converted_1019)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -6262,12 +10255,18 @@ fn system_tool_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::SystemTool::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_974: String = value.extract()?;
-        builder = builder.set_name(Some(converted_974));
+        let converted_1020 = (|| -> PyResult<_> {
+            let converted_1020: String = value.extract()?;
+            Ok(converted_1020)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_1020));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("name", "name")]))
 }
 
 fn system_tool_to_py(
@@ -6275,8 +10274,8 @@ fn system_tool_to_py(
     value: &aws_sdk_bedrockruntime::types::SystemTool,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_975 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_975)?;
+    let converted_1021 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1021)?;
     Ok(result.into_any().unbind())
 }
 
@@ -6284,24 +10283,36 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockruntime::typ
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_976: String = value.extract()?;
-        builder = builder.set_key(Some(converted_976));
+        let converted_1022 = (|| -> PyResult<_> {
+            let converted_1022: String = value.extract()?;
+            Ok(converted_1022)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
+        })?;
+        builder = builder.set_key(Some(converted_1022));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_977: String = value.extract()?;
-        builder = builder.set_value(Some(converted_977));
+        let converted_1023 = (|| -> PyResult<_> {
+            let converted_1023: String = value.extract()?;
+            Ok(converted_1023)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
+        })?;
+        builder = builder.set_value(Some(converted_1023));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("key", "key"), ("value", "value")]))
 }
 
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_bedrockruntime::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_978 = (&value.key).as_str().into_py_any(py)?;
-    result.set_item("key", converted_978)?;
-    let converted_979 = (&value.value).as_str().into_py_any(py)?;
-    result.set_item("value", converted_979)?;
+    let converted_1024 = (&value.key).as_str().into_py_any(py)?;
+    result.set_item("key", converted_1024)?;
+    let converted_1025 = (&value.value).as_str().into_py_any(py)?;
+    result.set_item("value", converted_1025)?;
     Ok(result.into_any().unbind())
 }
 
@@ -6311,38 +10322,110 @@ fn token_usage_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::TokenUsage::builder();
     if let Some(value) = dict_value(values, "input_tokens")? {
-        let converted_980: i32 = value.extract()?;
-        builder = builder.set_input_tokens(Some(converted_980));
+        let converted_1026 = (|| -> PyResult<_> {
+            let converted_1026: i32 = value.extract()?;
+            Ok(converted_1026)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("input_tokens"), "int")
+        })?;
+        builder = builder.set_input_tokens(Some(converted_1026));
     }
     if let Some(value) = dict_value(values, "output_tokens")? {
-        let converted_981: i32 = value.extract()?;
-        builder = builder.set_output_tokens(Some(converted_981));
+        let converted_1027 = (|| -> PyResult<_> {
+            let converted_1027: i32 = value.extract()?;
+            Ok(converted_1027)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("output_tokens"), "int")
+        })?;
+        builder = builder.set_output_tokens(Some(converted_1027));
     }
     if let Some(value) = dict_value(values, "total_tokens")? {
-        let converted_982: i32 = value.extract()?;
-        builder = builder.set_total_tokens(Some(converted_982));
+        let converted_1028 = (|| -> PyResult<_> {
+            let converted_1028: i32 = value.extract()?;
+            Ok(converted_1028)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("total_tokens"), "int")
+        })?;
+        builder = builder.set_total_tokens(Some(converted_1028));
     }
     if let Some(value) = dict_value(values, "cache_read_input_tokens")? {
-        let converted_983: i32 = value.extract()?;
-        builder = builder.set_cache_read_input_tokens(Some(converted_983));
+        let converted_1029 = (|| -> PyResult<_> {
+            let converted_1029: i32 = value.extract()?;
+            Ok(converted_1029)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cache_read_input_tokens"),
+                "int",
+            )
+        })?;
+        builder = builder.set_cache_read_input_tokens(Some(converted_1029));
     }
     if let Some(value) = dict_value(values, "cache_write_input_tokens")? {
-        let converted_984: i32 = value.extract()?;
-        builder = builder.set_cache_write_input_tokens(Some(converted_984));
+        let converted_1030 = (|| -> PyResult<_> {
+            let converted_1030: i32 = value.extract()?;
+            Ok(converted_1030)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cache_write_input_tokens"),
+                "int",
+            )
+        })?;
+        builder = builder.set_cache_write_input_tokens(Some(converted_1030));
     }
     if let Some(value) = dict_value(values, "cache_details")? {
-        let mut converted_985 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_986 in value.try_iter()? {
-            let item_987 = item_result_986?;
-            let converted_item_988 = cache_detail_from_py(&item_987)?;
-            converted_985.push(converted_item_988);
-        }
-        builder = builder.set_cache_details(Some(converted_985));
+        let converted_1031 = (|| -> PyResult<_> {
+            let mut converted_1031 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_1035, item_result_1032) in value.try_iter()?.enumerate() {
+                let item_1033 = item_result_1032.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_1035),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_1034 = (|| -> PyResult<_> {
+                    let converted_item_1034 = cache_detail_from_py(&item_1033)?;
+                    Ok(converted_item_1034)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_1035),
+                        "dict (CacheDetail)",
+                    )
+                })?;
+                converted_1031.push(converted_item_1034);
+            }
+            Ok(converted_1031)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cache_details"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_cache_details(Some(converted_1031));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("input_tokens", "input_tokens"),
+                ("output_tokens", "output_tokens"),
+                ("total_tokens", "total_tokens"),
+            ],
+        )
+    })
 }
 
 fn token_usage_to_py(
@@ -6350,32 +10433,32 @@ fn token_usage_to_py(
     value: &aws_sdk_bedrockruntime::types::TokenUsage,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_989 = (&value.input_tokens).to_owned().into_py_any(py)?;
-    result.set_item("input_tokens", converted_989)?;
-    let converted_990 = (&value.output_tokens).to_owned().into_py_any(py)?;
-    result.set_item("output_tokens", converted_990)?;
-    let converted_991 = (&value.total_tokens).to_owned().into_py_any(py)?;
-    result.set_item("total_tokens", converted_991)?;
+    let converted_1036 = (&value.input_tokens).to_owned().into_py_any(py)?;
+    result.set_item("input_tokens", converted_1036)?;
+    let converted_1037 = (&value.output_tokens).to_owned().into_py_any(py)?;
+    result.set_item("output_tokens", converted_1037)?;
+    let converted_1038 = (&value.total_tokens).to_owned().into_py_any(py)?;
+    result.set_item("total_tokens", converted_1038)?;
     if let Some(value) = &value.cache_read_input_tokens {
-        let converted_992 = (value).to_owned().into_py_any(py)?;
-        result.set_item("cache_read_input_tokens", converted_992)?;
+        let converted_1039 = (value).to_owned().into_py_any(py)?;
+        result.set_item("cache_read_input_tokens", converted_1039)?;
     } else {
         result.set_item("cache_read_input_tokens", py.None())?;
     }
     if let Some(value) = &value.cache_write_input_tokens {
-        let converted_993 = (value).to_owned().into_py_any(py)?;
-        result.set_item("cache_write_input_tokens", converted_993)?;
+        let converted_1040 = (value).to_owned().into_py_any(py)?;
+        result.set_item("cache_write_input_tokens", converted_1040)?;
     } else {
         result.set_item("cache_write_input_tokens", py.None())?;
     }
     if let Some(value) = &value.cache_details {
-        let converted_994_list = PyList::empty(py);
-        for item_995 in value {
-            let converted_item_996 = cache_detail_to_py(py, item_995)?;
-            converted_994_list.append(converted_item_996)?;
+        let converted_1041_list = PyList::empty(py);
+        for item_1042 in value {
+            let converted_item_1043 = cache_detail_to_py(py, item_1042)?;
+            converted_1041_list.append(converted_item_1043)?;
         }
-        let converted_994 = converted_994_list.into_any().unbind();
-        result.set_item("cache_details", converted_994)?;
+        let converted_1041 = converted_1041_list.into_any().unbind();
+        result.set_item("cache_details", converted_1041)?;
     } else {
         result.set_item("cache_details", py.None())?;
     }
@@ -6385,26 +10468,66 @@ fn token_usage_to_py(
 fn tool_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockruntime::types::Tool> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "tool_spec")? {
-        let converted_997 = tool_specification_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::Tool::ToolSpec(converted_997));
+        let converted_1044 = (|| -> PyResult<_> {
+            let converted_1044 = tool_specification_from_py(&value)?;
+            Ok(converted_1044)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_spec"),
+                "dict (ToolSpecification)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::Tool::ToolSpec(
+            converted_1044,
+        ));
     }
     if let Some(value) = dict_value(values, "system_tool")? {
-        let converted_998 = system_tool_from_py(&value)?;
+        let converted_1045 = (|| -> PyResult<_> {
+            let converted_1045 = system_tool_from_py(&value)?;
+            Ok(converted_1045)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("system_tool"),
+                "dict (SystemTool)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::Tool::SystemTool(
-            converted_998,
+            converted_1045,
         ));
     }
     if let Some(value) = dict_value(values, "cache_point")? {
-        let converted_999 = cache_point_block_from_py(&value)?;
+        let converted_1046 = (|| -> PyResult<_> {
+            let converted_1046 = cache_point_block_from_py(&value)?;
+            Ok(converted_1046)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cache_point"),
+                "dict (CachePointBlock)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::Tool::CachePoint(
-            converted_999,
+            converted_1046,
         ));
     }
-    Err(PyValueError::new_err(
-        "Tool requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("Tool requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -6412,16 +10535,16 @@ fn tool_to_py(py: Python<'_>, value: &aws_sdk_bedrockruntime::types::Tool) -> Py
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::Tool::ToolSpec(value) => {
-            let converted_1000 = tool_specification_to_py(py, value)?;
-            result.set_item("tool_spec", converted_1000)?;
+            let converted_1047 = tool_specification_to_py(py, value)?;
+            result.set_item("tool_spec", converted_1047)?;
         }
         aws_sdk_bedrockruntime::types::Tool::SystemTool(value) => {
-            let converted_1001 = system_tool_to_py(py, value)?;
-            result.set_item("system_tool", converted_1001)?;
+            let converted_1048 = system_tool_to_py(py, value)?;
+            result.set_item("system_tool", converted_1048)?;
         }
         aws_sdk_bedrockruntime::types::Tool::CachePoint(value) => {
-            let converted_1002 = cache_point_block_to_py(py, value)?;
-            result.set_item("cache_point", converted_1002)?;
+            let converted_1049 = cache_point_block_to_py(py, value)?;
+            result.set_item("cache_point", converted_1049)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -6436,8 +10559,18 @@ fn tool_addition_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolAdditionBlock::builder();
     if let Some(value) = dict_value(values, "tool")? {
-        let converted_1003 = tool_reference_from_py(&value)?;
-        builder = builder.set_tool(Some(converted_1003));
+        let converted_1050 = (|| -> PyResult<_> {
+            let converted_1050 = tool_reference_from_py(&value)?;
+            Ok(converted_1050)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool"),
+                "dict (ToolReference)",
+            )
+        })?;
+        builder = builder.set_tool(Some(converted_1050));
     }
     Ok(builder.build())
 }
@@ -6448,8 +10581,8 @@ fn tool_addition_block_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.tool {
-        let converted_1004 = tool_reference_to_py(py, value)?;
-        result.set_item("tool", converted_1004)?;
+        let converted_1051 = tool_reference_to_py(py, value)?;
+        result.set_item("tool", converted_1051)?;
     } else {
         result.set_item("tool", py.None())?;
     }
@@ -6461,28 +10594,66 @@ fn tool_choice_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ToolChoice> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "auto")? {
-        let converted_1005 = auto_tool_choice_from_py(&value)?;
+        let converted_1052 = (|| -> PyResult<_> {
+            let converted_1052 = auto_tool_choice_from_py(&value)?;
+            Ok(converted_1052)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("auto"),
+                "dict (AutoToolChoice)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ToolChoice::Auto(
-            converted_1005,
+            converted_1052,
         ));
     }
     if let Some(value) = dict_value(values, "any")? {
-        let converted_1006 = any_tool_choice_from_py(&value)?;
+        let converted_1053 = (|| -> PyResult<_> {
+            let converted_1053 = any_tool_choice_from_py(&value)?;
+            Ok(converted_1053)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("any"),
+                "dict (AnyToolChoice)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ToolChoice::Any(
-            converted_1006,
+            converted_1053,
         ));
     }
     if let Some(value) = dict_value(values, "tool")? {
-        let converted_1007 = specific_tool_choice_from_py(&value)?;
+        let converted_1054 = (|| -> PyResult<_> {
+            let converted_1054 = specific_tool_choice_from_py(&value)?;
+            Ok(converted_1054)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool"),
+                "dict (SpecificToolChoice)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ToolChoice::Tool(
-            converted_1007,
+            converted_1054,
         ));
     }
-    Err(PyValueError::new_err(
-        "ToolChoice requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ToolChoice requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -6493,16 +10664,16 @@ fn tool_choice_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ToolChoice::Auto(value) => {
-            let converted_1008 = auto_tool_choice_to_py(py, value)?;
-            result.set_item("auto", converted_1008)?;
+            let converted_1055 = auto_tool_choice_to_py(py, value)?;
+            result.set_item("auto", converted_1055)?;
         }
         aws_sdk_bedrockruntime::types::ToolChoice::Any(value) => {
-            let converted_1009 = any_tool_choice_to_py(py, value)?;
-            result.set_item("any", converted_1009)?;
+            let converted_1056 = any_tool_choice_to_py(py, value)?;
+            result.set_item("any", converted_1056)?;
         }
         aws_sdk_bedrockruntime::types::ToolChoice::Tool(value) => {
-            let converted_1010 = specific_tool_choice_to_py(py, value)?;
-            result.set_item("tool", converted_1010)?;
+            let converted_1057 = specific_tool_choice_to_py(py, value)?;
+            result.set_item("tool", converted_1057)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -6517,22 +10688,55 @@ fn tool_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolConfiguration::builder();
     if let Some(value) = dict_value(values, "tools")? {
-        let mut converted_1011 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_1012 in value.try_iter()? {
-            let item_1013 = item_result_1012?;
-            let converted_item_1014 = tool_from_py(&item_1013)?;
-            converted_1011.push(converted_item_1014);
-        }
-        builder = builder.set_tools(Some(converted_1011));
+        let converted_1058 = (|| -> PyResult<_> {
+            let mut converted_1058 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_1062, item_result_1059) in value.try_iter()?.enumerate() {
+                let item_1060 = item_result_1059.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_1062),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_1061 = (|| -> PyResult<_> {
+                    let converted_item_1061 = tool_from_py(&item_1060)?;
+                    Ok(converted_item_1061)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_1062),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_1058.push(converted_item_1061);
+            }
+            Ok(converted_1058)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tools"), "sequence")
+        })?;
+        builder = builder.set_tools(Some(converted_1058));
     }
     if let Some(value) = dict_value(values, "tool_choice")? {
-        let converted_1015 = tool_choice_from_py(&value)?;
-        builder = builder.set_tool_choice(Some(converted_1015));
+        let converted_1063 = (|| -> PyResult<_> {
+            let converted_1063 = tool_choice_from_py(&value)?;
+            Ok(converted_1063)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool_choice"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_tool_choice(Some(converted_1063));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("tools", "tools")]))
 }
 
 fn tool_configuration_to_py(
@@ -6540,16 +10744,16 @@ fn tool_configuration_to_py(
     value: &aws_sdk_bedrockruntime::types::ToolConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1016_list = PyList::empty(py);
-    for item_1017 in &value.tools {
-        let converted_item_1018 = tool_to_py(py, item_1017)?;
-        converted_1016_list.append(converted_item_1018)?;
+    let converted_1064_list = PyList::empty(py);
+    for item_1065 in &value.tools {
+        let converted_item_1066 = tool_to_py(py, item_1065)?;
+        converted_1064_list.append(converted_item_1066)?;
     }
-    let converted_1016 = converted_1016_list.into_any().unbind();
-    result.set_item("tools", converted_1016)?;
+    let converted_1064 = converted_1064_list.into_any().unbind();
+    result.set_item("tools", converted_1064)?;
     if let Some(value) = &value.tool_choice {
-        let converted_1019 = tool_choice_to_py(py, value)?;
-        result.set_item("tool_choice", converted_1019)?;
+        let converted_1067 = tool_choice_to_py(py, value)?;
+        result.set_item("tool_choice", converted_1067)?;
     } else {
         result.set_item("tool_choice", py.None())?;
     }
@@ -6561,16 +10765,30 @@ fn tool_input_schema_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ToolInputSchema> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
-    }
-    if let Some(value) = dict_value(values, "json")? {
-        let converted_1020 = rboto_core::document_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ToolInputSchema::Json(
-            converted_1020,
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
         ));
     }
-    Err(PyValueError::new_err(
-        "ToolInputSchema requires exactly one known variant",
+    if let Some(value) = dict_value(values, "json")? {
+        let converted_1068 = (|| -> PyResult<_> {
+            let converted_1068 = rboto_core::document_from_py(&value)?;
+            Ok(converted_1068)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("json"), "JSONValue")
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ToolInputSchema::Json(
+            converted_1068,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ToolInputSchema requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -6581,8 +10799,8 @@ fn tool_input_schema_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ToolInputSchema::Json(value) => {
-            let converted_1021 = rboto_core::document_to_py(py, value)?;
-            result.set_item("json", converted_1021)?;
+            let converted_1069 = rboto_core::document_to_py(py, value)?;
+            result.set_item("json", converted_1069)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -6597,16 +10815,34 @@ fn tool_reference_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolReference::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let converted_1022: String = value.extract()?;
-        builder = builder.set_type(Some(converted_1022));
+        let converted_1070 = (|| -> PyResult<_> {
+            let converted_1070: String = value.extract()?;
+            Ok(converted_1070)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str")
+        })?;
+        builder = builder.set_type(Some(converted_1070));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_1023: String = value.extract()?;
-        builder = builder.set_name(Some(converted_1023));
+        let converted_1071 = (|| -> PyResult<_> {
+            let converted_1071: String = value.extract()?;
+            Ok(converted_1071)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_1071));
     }
     if let Some(value) = dict_value(values, "server_name")? {
-        let converted_1024: String = value.extract()?;
-        builder = builder.set_server_name(Some(converted_1024));
+        let converted_1072 = (|| -> PyResult<_> {
+            let converted_1072: String = value.extract()?;
+            Ok(converted_1072)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("server_name"), "str")
+        })?;
+        builder = builder.set_server_name(Some(converted_1072));
     }
     Ok(builder.build())
 }
@@ -6617,20 +10853,20 @@ fn tool_reference_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.r#type {
-        let converted_1025 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_1025)?;
+        let converted_1073 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_1073)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_1026 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_1026)?;
+        let converted_1074 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_1074)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.server_name {
-        let converted_1027 = (value).as_str().into_py_any(py)?;
-        result.set_item("server_name", converted_1027)?;
+        let converted_1075 = (value).as_str().into_py_any(py)?;
+        result.set_item("server_name", converted_1075)?;
     } else {
         result.set_item("server_name", py.None())?;
     }
@@ -6643,8 +10879,18 @@ fn tool_removal_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolRemovalBlock::builder();
     if let Some(value) = dict_value(values, "tool")? {
-        let converted_1028 = tool_reference_from_py(&value)?;
-        builder = builder.set_tool(Some(converted_1028));
+        let converted_1076 = (|| -> PyResult<_> {
+            let converted_1076 = tool_reference_from_py(&value)?;
+            Ok(converted_1076)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("tool"),
+                "dict (ToolReference)",
+            )
+        })?;
+        builder = builder.set_tool(Some(converted_1076));
     }
     Ok(builder.build())
 }
@@ -6655,8 +10901,8 @@ fn tool_removal_block_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.tool {
-        let converted_1029 = tool_reference_to_py(py, value)?;
-        result.set_item("tool", converted_1029)?;
+        let converted_1077 = tool_reference_to_py(py, value)?;
+        result.set_item("tool", converted_1077)?;
     } else {
         result.set_item("tool", py.None())?;
     }
@@ -6669,32 +10915,80 @@ fn tool_result_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolResultBlock::builder();
     if let Some(value) = dict_value(values, "tool_use_id")? {
-        let converted_1030: String = value.extract()?;
-        builder = builder.set_tool_use_id(Some(converted_1030));
+        let converted_1078 = (|| -> PyResult<_> {
+            let converted_1078: String = value.extract()?;
+            Ok(converted_1078)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tool_use_id"), "str")
+        })?;
+        builder = builder.set_tool_use_id(Some(converted_1078));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_1031 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_1032 in value.try_iter()? {
-            let item_1033 = item_result_1032?;
-            let converted_item_1034 = tool_result_content_block_from_py(&item_1033)?;
-            converted_1031.push(converted_item_1034);
-        }
-        builder = builder.set_content(Some(converted_1031));
+        let converted_1079 = (|| -> PyResult<_> {
+            let mut converted_1079 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_1083, item_result_1080) in value.try_iter()?.enumerate() {
+                let item_1081 = item_result_1080.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_1083),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_1082 = (|| -> PyResult<_> {
+                    let converted_item_1082 = tool_result_content_block_from_py(&item_1081)?;
+                    Ok(converted_item_1082)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_1083),
+                        "exactly one known union variant",
+                    )
+                })?;
+                converted_1079.push(converted_item_1082);
+            }
+            Ok(converted_1079)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "sequence")
+        })?;
+        builder = builder.set_content(Some(converted_1079));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_1036: String = value.extract()?;
-        let converted_1035 =
-            aws_sdk_bedrockruntime::types::ToolResultStatus::from(enum_value_1036.as_str());
-        builder = builder.set_status(Some(converted_1035));
+        let converted_1084 = (|| -> PyResult<_> {
+            let enum_value_1085: String = value.extract()?;
+            let converted_1084 =
+                aws_sdk_bedrockruntime::types::ToolResultStatus::from(enum_value_1085.as_str());
+            Ok(converted_1084)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (ToolResultStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_1084));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let converted_1037: String = value.extract()?;
-        builder = builder.set_type(Some(converted_1037));
+        let converted_1086 = (|| -> PyResult<_> {
+            let converted_1086: String = value.extract()?;
+            Ok(converted_1086)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str")
+        })?;
+        builder = builder.set_type(Some(converted_1086));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("tool_use_id", "tool_use_id"), ("content", "content")],
+        )
+    })
 }
 
 fn tool_result_block_to_py(
@@ -6702,24 +10996,24 @@ fn tool_result_block_to_py(
     value: &aws_sdk_bedrockruntime::types::ToolResultBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1038 = (&value.tool_use_id).as_str().into_py_any(py)?;
-    result.set_item("tool_use_id", converted_1038)?;
-    let converted_1039_list = PyList::empty(py);
-    for item_1040 in &value.content {
-        let converted_item_1041 = tool_result_content_block_to_py(py, item_1040)?;
-        converted_1039_list.append(converted_item_1041)?;
+    let converted_1087 = (&value.tool_use_id).as_str().into_py_any(py)?;
+    result.set_item("tool_use_id", converted_1087)?;
+    let converted_1088_list = PyList::empty(py);
+    for item_1089 in &value.content {
+        let converted_item_1090 = tool_result_content_block_to_py(py, item_1089)?;
+        converted_1088_list.append(converted_item_1090)?;
     }
-    let converted_1039 = converted_1039_list.into_any().unbind();
-    result.set_item("content", converted_1039)?;
+    let converted_1088 = converted_1088_list.into_any().unbind();
+    result.set_item("content", converted_1088)?;
     if let Some(value) = &value.status {
-        let converted_1042 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_1042)?;
+        let converted_1091 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_1091)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.r#type {
-        let converted_1043 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_1043)?;
+        let converted_1092 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_1092)?;
     } else {
         result.set_item("type", py.None())?;
     }
@@ -6731,22 +11025,42 @@ fn tool_result_block_delta_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ToolResultBlockDelta> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_1044: String = value.extract()?;
+        let converted_1093 = (|| -> PyResult<_> {
+            let converted_1093: String = value.extract()?;
+            Ok(converted_1093)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ToolResultBlockDelta::Text(
-            converted_1044,
+            converted_1093,
         ));
     }
     if let Some(value) = dict_value(values, "json")? {
-        let converted_1045 = rboto_core::document_from_py(&value)?;
+        let converted_1094 = (|| -> PyResult<_> {
+            let converted_1094 = rboto_core::document_from_py(&value)?;
+            Ok(converted_1094)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("json"), "JSONValue")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ToolResultBlockDelta::Json(
-            converted_1045,
+            converted_1094,
         ));
     }
-    Err(PyValueError::new_err(
-        "ToolResultBlockDelta requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ToolResultBlockDelta requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -6757,12 +11071,12 @@ fn tool_result_block_delta_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ToolResultBlockDelta::Text(value) => {
-            let converted_1046 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_1046)?;
+            let converted_1095 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_1095)?;
         }
         aws_sdk_bedrockruntime::types::ToolResultBlockDelta::Json(value) => {
-            let converted_1047 = rboto_core::document_to_py(py, value)?;
-            result.set_item("json", converted_1047)?;
+            let converted_1096 = rboto_core::document_to_py(py, value)?;
+            result.set_item("json", converted_1096)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -6777,22 +11091,44 @@ fn tool_result_block_start_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolResultBlockStart::builder();
     if let Some(value) = dict_value(values, "tool_use_id")? {
-        let converted_1048: String = value.extract()?;
-        builder = builder.set_tool_use_id(Some(converted_1048));
+        let converted_1097 = (|| -> PyResult<_> {
+            let converted_1097: String = value.extract()?;
+            Ok(converted_1097)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tool_use_id"), "str")
+        })?;
+        builder = builder.set_tool_use_id(Some(converted_1097));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let converted_1049: String = value.extract()?;
-        builder = builder.set_type(Some(converted_1049));
+        let converted_1098 = (|| -> PyResult<_> {
+            let converted_1098: String = value.extract()?;
+            Ok(converted_1098)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("type"), "str")
+        })?;
+        builder = builder.set_type(Some(converted_1098));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_1051: String = value.extract()?;
-        let converted_1050 =
-            aws_sdk_bedrockruntime::types::ToolResultStatus::from(enum_value_1051.as_str());
-        builder = builder.set_status(Some(converted_1050));
+        let converted_1099 = (|| -> PyResult<_> {
+            let enum_value_1100: String = value.extract()?;
+            let converted_1099 =
+                aws_sdk_bedrockruntime::types::ToolResultStatus::from(enum_value_1100.as_str());
+            Ok(converted_1099)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (ToolResultStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_1099));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("tool_use_id", "tool_use_id")]))
 }
 
 fn tool_result_block_start_to_py(
@@ -6800,17 +11136,17 @@ fn tool_result_block_start_to_py(
     value: &aws_sdk_bedrockruntime::types::ToolResultBlockStart,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1052 = (&value.tool_use_id).as_str().into_py_any(py)?;
-    result.set_item("tool_use_id", converted_1052)?;
+    let converted_1101 = (&value.tool_use_id).as_str().into_py_any(py)?;
+    result.set_item("tool_use_id", converted_1101)?;
     if let Some(value) = &value.r#type {
-        let converted_1053 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_1053)?;
+        let converted_1102 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_1102)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_1054 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_1054)?;
+        let converted_1103 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_1103)?;
     } else {
         result.set_item("status", py.None())?;
     }
@@ -6822,40 +11158,100 @@ fn tool_result_content_block_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::ToolResultContentBlock> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "json")? {
-        let converted_1055 = rboto_core::document_from_py(&value)?;
+        let converted_1104 = (|| -> PyResult<_> {
+            let converted_1104 = rboto_core::document_from_py(&value)?;
+            Ok(converted_1104)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("json"), "JSONValue")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Json(
-            converted_1055,
+            converted_1104,
         ));
     }
     if let Some(value) = dict_value(values, "text")? {
-        let converted_1056: String = value.extract()?;
+        let converted_1105 = (|| -> PyResult<_> {
+            let converted_1105: String = value.extract()?;
+            Ok(converted_1105)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Text(
-            converted_1056,
+            converted_1105,
         ));
     }
     if let Some(value) = dict_value(values, "image")? {
-        let converted_1057 = image_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Image(converted_1057));
+        let converted_1106 = (|| -> PyResult<_> {
+            let converted_1106 = image_block_from_py(&value)?;
+            Ok(converted_1106)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("image"),
+                "dict (ImageBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Image(converted_1106));
     }
     if let Some(value) = dict_value(values, "document")? {
-        let converted_1058 = document_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Document(converted_1058));
+        let converted_1107 = (|| -> PyResult<_> {
+            let converted_1107 = document_block_from_py(&value)?;
+            Ok(converted_1107)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("document"),
+                "dict (DocumentBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Document(converted_1107));
     }
     if let Some(value) = dict_value(values, "video")? {
-        let converted_1059 = video_block_from_py(&value)?;
-        return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Video(converted_1059));
+        let converted_1108 = (|| -> PyResult<_> {
+            let converted_1108 = video_block_from_py(&value)?;
+            Ok(converted_1108)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("video"),
+                "dict (VideoBlock)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockruntime::types::ToolResultContentBlock::Video(converted_1108));
     }
     if let Some(value) = dict_value(values, "search_result")? {
-        let converted_1060 = search_result_block_from_py(&value)?;
+        let converted_1109 = (|| -> PyResult<_> {
+            let converted_1109 = search_result_block_from_py(&value)?;
+            Ok(converted_1109)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("search_result"),
+                "dict (SearchResultBlock)",
+            )
+        })?;
         return Ok(
-            aws_sdk_bedrockruntime::types::ToolResultContentBlock::SearchResult(converted_1060),
+            aws_sdk_bedrockruntime::types::ToolResultContentBlock::SearchResult(converted_1109),
         );
     }
-    Err(PyValueError::new_err(
-        "ToolResultContentBlock requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("ToolResultContentBlock requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -6866,28 +11262,28 @@ fn tool_result_content_block_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::ToolResultContentBlock::Json(value) => {
-            let converted_1061 = rboto_core::document_to_py(py, value)?;
-            result.set_item("json", converted_1061)?;
+            let converted_1110 = rboto_core::document_to_py(py, value)?;
+            result.set_item("json", converted_1110)?;
         }
         aws_sdk_bedrockruntime::types::ToolResultContentBlock::Text(value) => {
-            let converted_1062 = (value).as_str().into_py_any(py)?;
-            result.set_item("text", converted_1062)?;
+            let converted_1111 = (value).as_str().into_py_any(py)?;
+            result.set_item("text", converted_1111)?;
         }
         aws_sdk_bedrockruntime::types::ToolResultContentBlock::Image(value) => {
-            let converted_1063 = image_block_to_py(py, value)?;
-            result.set_item("image", converted_1063)?;
+            let converted_1112 = image_block_to_py(py, value)?;
+            result.set_item("image", converted_1112)?;
         }
         aws_sdk_bedrockruntime::types::ToolResultContentBlock::Document(value) => {
-            let converted_1064 = document_block_to_py(py, value)?;
-            result.set_item("document", converted_1064)?;
+            let converted_1113 = document_block_to_py(py, value)?;
+            result.set_item("document", converted_1113)?;
         }
         aws_sdk_bedrockruntime::types::ToolResultContentBlock::Video(value) => {
-            let converted_1065 = video_block_to_py(py, value)?;
-            result.set_item("video", converted_1065)?;
+            let converted_1114 = video_block_to_py(py, value)?;
+            result.set_item("video", converted_1114)?;
         }
         aws_sdk_bedrockruntime::types::ToolResultContentBlock::SearchResult(value) => {
-            let converted_1066 = search_result_block_to_py(py, value)?;
-            result.set_item("search_result", converted_1066)?;
+            let converted_1115 = search_result_block_to_py(py, value)?;
+            result.set_item("search_result", converted_1115)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -6902,24 +11298,52 @@ fn tool_specification_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolSpecification::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_1067: String = value.extract()?;
-        builder = builder.set_name(Some(converted_1067));
+        let converted_1116 = (|| -> PyResult<_> {
+            let converted_1116: String = value.extract()?;
+            Ok(converted_1116)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_1116));
     }
     if let Some(value) = dict_value(values, "description")? {
-        let converted_1068: String = value.extract()?;
-        builder = builder.set_description(Some(converted_1068));
+        let converted_1117 = (|| -> PyResult<_> {
+            let converted_1117: String = value.extract()?;
+            Ok(converted_1117)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("description"), "str")
+        })?;
+        builder = builder.set_description(Some(converted_1117));
     }
     if let Some(value) = dict_value(values, "input_schema")? {
-        let converted_1069 = tool_input_schema_from_py(&value)?;
-        builder = builder.set_input_schema(Some(converted_1069));
+        let converted_1118 = (|| -> PyResult<_> {
+            let converted_1118 = tool_input_schema_from_py(&value)?;
+            Ok(converted_1118)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("input_schema"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_input_schema(Some(converted_1118));
     }
     if let Some(value) = dict_value(values, "strict")? {
-        let converted_1070: bool = value.extract()?;
-        builder = builder.set_strict(Some(converted_1070));
+        let converted_1119 = (|| -> PyResult<_> {
+            let converted_1119: bool = value.extract()?;
+            Ok(converted_1119)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("strict"), "bool")
+        })?;
+        builder = builder.set_strict(Some(converted_1119));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("name", "name")]))
 }
 
 fn tool_specification_to_py(
@@ -6927,23 +11351,23 @@ fn tool_specification_to_py(
     value: &aws_sdk_bedrockruntime::types::ToolSpecification,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1071 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_1071)?;
+    let converted_1120 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1120)?;
     if let Some(value) = &value.description {
-        let converted_1072 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_1072)?;
+        let converted_1121 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_1121)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.input_schema {
-        let converted_1073 = tool_input_schema_to_py(py, value)?;
-        result.set_item("input_schema", converted_1073)?;
+        let converted_1122 = tool_input_schema_to_py(py, value)?;
+        result.set_item("input_schema", converted_1122)?;
     } else {
         result.set_item("input_schema", py.None())?;
     }
     if let Some(value) = &value.strict {
-        let converted_1074 = (value).to_owned().into_py_any(py)?;
-        result.set_item("strict", converted_1074)?;
+        let converted_1123 = (value).to_owned().into_py_any(py)?;
+        result.set_item("strict", converted_1123)?;
     } else {
         result.set_item("strict", py.None())?;
     }
@@ -6956,26 +11380,61 @@ fn tool_use_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolUseBlock::builder();
     if let Some(value) = dict_value(values, "tool_use_id")? {
-        let converted_1075: String = value.extract()?;
-        builder = builder.set_tool_use_id(Some(converted_1075));
+        let converted_1124 = (|| -> PyResult<_> {
+            let converted_1124: String = value.extract()?;
+            Ok(converted_1124)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tool_use_id"), "str")
+        })?;
+        builder = builder.set_tool_use_id(Some(converted_1124));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_1076: String = value.extract()?;
-        builder = builder.set_name(Some(converted_1076));
+        let converted_1125 = (|| -> PyResult<_> {
+            let converted_1125: String = value.extract()?;
+            Ok(converted_1125)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_1125));
     }
     if let Some(value) = dict_value(values, "input")? {
-        let converted_1077 = rboto_core::document_from_py(&value)?;
-        builder = builder.set_input(Some(converted_1077));
+        let converted_1126 = (|| -> PyResult<_> {
+            let converted_1126 = rboto_core::document_from_py(&value)?;
+            Ok(converted_1126)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("input"), "JSONValue")
+        })?;
+        builder = builder.set_input(Some(converted_1126));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_1079: String = value.extract()?;
-        let converted_1078 =
-            aws_sdk_bedrockruntime::types::ToolUseType::from(enum_value_1079.as_str());
-        builder = builder.set_type(Some(converted_1078));
+        let converted_1127 = (|| -> PyResult<_> {
+            let enum_value_1128: String = value.extract()?;
+            let converted_1127 =
+                aws_sdk_bedrockruntime::types::ToolUseType::from(enum_value_1128.as_str());
+            Ok(converted_1127)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (ToolUseType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_1127));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("tool_use_id", "tool_use_id"),
+                ("name", "name"),
+                ("input", "input"),
+            ],
+        )
+    })
 }
 
 fn tool_use_block_to_py(
@@ -6983,15 +11442,15 @@ fn tool_use_block_to_py(
     value: &aws_sdk_bedrockruntime::types::ToolUseBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1080 = (&value.tool_use_id).as_str().into_py_any(py)?;
-    result.set_item("tool_use_id", converted_1080)?;
-    let converted_1081 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_1081)?;
-    let converted_1082 = rboto_core::document_to_py(py, &value.input)?;
-    result.set_item("input", converted_1082)?;
+    let converted_1129 = (&value.tool_use_id).as_str().into_py_any(py)?;
+    result.set_item("tool_use_id", converted_1129)?;
+    let converted_1130 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1130)?;
+    let converted_1131 = rboto_core::document_to_py(py, &value.input)?;
+    result.set_item("input", converted_1131)?;
     if let Some(value) = &value.r#type {
-        let converted_1083 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_1083)?;
+        let converted_1132 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_1132)?;
     } else {
         result.set_item("type", py.None())?;
     }
@@ -7004,12 +11463,18 @@ fn tool_use_block_delta_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolUseBlockDelta::builder();
     if let Some(value) = dict_value(values, "input")? {
-        let converted_1084: String = value.extract()?;
-        builder = builder.set_input(Some(converted_1084));
+        let converted_1133 = (|| -> PyResult<_> {
+            let converted_1133: String = value.extract()?;
+            Ok(converted_1133)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("input"), "str")
+        })?;
+        builder = builder.set_input(Some(converted_1133));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("input", "input")]))
 }
 
 fn tool_use_block_delta_to_py(
@@ -7017,8 +11482,8 @@ fn tool_use_block_delta_to_py(
     value: &aws_sdk_bedrockruntime::types::ToolUseBlockDelta,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1085 = (&value.input).as_str().into_py_any(py)?;
-    result.set_item("input", converted_1085)?;
+    let converted_1134 = (&value.input).as_str().into_py_any(py)?;
+    result.set_item("input", converted_1134)?;
     Ok(result.into_any().unbind())
 }
 
@@ -7028,22 +11493,44 @@ fn tool_use_block_start_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolUseBlockStart::builder();
     if let Some(value) = dict_value(values, "tool_use_id")? {
-        let converted_1086: String = value.extract()?;
-        builder = builder.set_tool_use_id(Some(converted_1086));
+        let converted_1135 = (|| -> PyResult<_> {
+            let converted_1135: String = value.extract()?;
+            Ok(converted_1135)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tool_use_id"), "str")
+        })?;
+        builder = builder.set_tool_use_id(Some(converted_1135));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_1087: String = value.extract()?;
-        builder = builder.set_name(Some(converted_1087));
+        let converted_1136 = (|| -> PyResult<_> {
+            let converted_1136: String = value.extract()?;
+            Ok(converted_1136)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_1136));
     }
     if let Some(value) = dict_value(values, "type")? {
-        let enum_value_1089: String = value.extract()?;
-        let converted_1088 =
-            aws_sdk_bedrockruntime::types::ToolUseType::from(enum_value_1089.as_str());
-        builder = builder.set_type(Some(converted_1088));
+        let converted_1137 = (|| -> PyResult<_> {
+            let enum_value_1138: String = value.extract()?;
+            let converted_1137 =
+                aws_sdk_bedrockruntime::types::ToolUseType::from(enum_value_1138.as_str());
+            Ok(converted_1137)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (ToolUseType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_1137));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("tool_use_id", "tool_use_id"), ("name", "name")])
+    })
 }
 
 fn tool_use_block_start_to_py(
@@ -7051,13 +11538,13 @@ fn tool_use_block_start_to_py(
     value: &aws_sdk_bedrockruntime::types::ToolUseBlockStart,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1090 = (&value.tool_use_id).as_str().into_py_any(py)?;
-    result.set_item("tool_use_id", converted_1090)?;
-    let converted_1091 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_1091)?;
+    let converted_1139 = (&value.tool_use_id).as_str().into_py_any(py)?;
+    result.set_item("tool_use_id", converted_1139)?;
+    let converted_1140 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1140)?;
     if let Some(value) = &value.r#type {
-        let converted_1092 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_1092)?;
+        let converted_1141 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_1141)?;
     } else {
         result.set_item("type", py.None())?;
     }
@@ -7070,18 +11557,38 @@ fn video_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::VideoBlock::builder();
     if let Some(value) = dict_value(values, "format")? {
-        let enum_value_1094: String = value.extract()?;
-        let converted_1093 =
-            aws_sdk_bedrockruntime::types::VideoFormat::from(enum_value_1094.as_str());
-        builder = builder.set_format(Some(converted_1093));
+        let converted_1142 = (|| -> PyResult<_> {
+            let enum_value_1143: String = value.extract()?;
+            let converted_1142 =
+                aws_sdk_bedrockruntime::types::VideoFormat::from(enum_value_1143.as_str());
+            Ok(converted_1142)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("format"),
+                "str (VideoFormat)",
+            )
+        })?;
+        builder = builder.set_format(Some(converted_1142));
     }
     if let Some(value) = dict_value(values, "source")? {
-        let converted_1095 = video_source_from_py(&value)?;
-        builder = builder.set_source(Some(converted_1095));
+        let converted_1144 = (|| -> PyResult<_> {
+            let converted_1144 = video_source_from_py(&value)?;
+            Ok(converted_1144)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("source"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_source(Some(converted_1144));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("format", "format")]))
 }
 
 fn video_block_to_py(
@@ -7089,11 +11596,11 @@ fn video_block_to_py(
     value: &aws_sdk_bedrockruntime::types::VideoBlock,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1096 = (&value.format).as_str().into_py_any(py)?;
-    result.set_item("format", converted_1096)?;
+    let converted_1145 = (&value.format).as_str().into_py_any(py)?;
+    result.set_item("format", converted_1145)?;
     if let Some(value) = &value.source {
-        let converted_1097 = video_source_to_py(py, value)?;
-        result.set_item("source", converted_1097)?;
+        let converted_1146 = video_source_to_py(py, value)?;
+        result.set_item("source", converted_1146)?;
     } else {
         result.set_item("source", py.None())?;
     }
@@ -7105,23 +11612,47 @@ fn video_source_from_py(
 ) -> PyResult<aws_sdk_bedrockruntime::types::VideoSource> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_1099: Vec<u8> = value.extract()?;
-        let converted_1098 = ::aws_smithy_types::Blob::new(bytes_1099);
+        let converted_1147 = (|| -> PyResult<_> {
+            let bytes_1148: Vec<u8> = value.extract()?;
+            let converted_1147 = ::aws_smithy_types::Blob::new(bytes_1148);
+            Ok(converted_1147)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::VideoSource::Bytes(
-            converted_1098,
+            converted_1147,
         ));
     }
     if let Some(value) = dict_value(values, "s3_location")? {
-        let converted_1100 = s3_location_from_py(&value)?;
+        let converted_1149 = (|| -> PyResult<_> {
+            let converted_1149 = s3_location_from_py(&value)?;
+            Ok(converted_1149)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("s3_location"),
+                "dict (S3Location)",
+            )
+        })?;
         return Ok(aws_sdk_bedrockruntime::types::VideoSource::S3Location(
-            converted_1100,
+            converted_1149,
         ));
     }
-    Err(PyValueError::new_err(
-        "VideoSource requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("VideoSource requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -7132,12 +11663,12 @@ fn video_source_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockruntime::types::VideoSource::Bytes(value) => {
-            let converted_1101 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("bytes", converted_1101)?;
+            let converted_1150 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("bytes", converted_1150)?;
         }
         aws_sdk_bedrockruntime::types::VideoSource::S3Location(value) => {
-            let converted_1102 = s3_location_to_py(py, value)?;
-            result.set_item("s3_location", converted_1102)?;
+            let converted_1151 = s3_location_to_py(py, value)?;
+            result.set_item("s3_location", converted_1151)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -7152,12 +11683,24 @@ fn web_location_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::WebLocation::builder();
     if let Some(value) = dict_value(values, "url")? {
-        let converted_1103: String = value.extract()?;
-        builder = builder.set_url(Some(converted_1103));
+        let converted_1152 = (|| -> PyResult<_> {
+            let converted_1152: String = value.extract()?;
+            Ok(converted_1152)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("url"), "str")
+        })?;
+        builder = builder.set_url(Some(converted_1152));
     }
     if let Some(value) = dict_value(values, "domain")? {
-        let converted_1104: String = value.extract()?;
-        builder = builder.set_domain(Some(converted_1104));
+        let converted_1153 = (|| -> PyResult<_> {
+            let converted_1153: String = value.extract()?;
+            Ok(converted_1153)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("domain"), "str")
+        })?;
+        builder = builder.set_domain(Some(converted_1153));
     }
     Ok(builder.build())
 }
@@ -7168,14 +11711,14 @@ fn web_location_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.url {
-        let converted_1105 = (value).as_str().into_py_any(py)?;
-        result.set_item("url", converted_1105)?;
+        let converted_1154 = (value).as_str().into_py_any(py)?;
+        result.set_item("url", converted_1154)?;
     } else {
         result.set_item("url", py.None())?;
     }
     if let Some(value) = &value.domain {
-        let converted_1106 = (value).as_str().into_py_any(py)?;
-        result.set_item("domain", converted_1106)?;
+        let converted_1155 = (value).as_str().into_py_any(py)?;
+        result.set_item("domain", converted_1155)?;
     } else {
         result.set_item("domain", py.None())?;
     }
@@ -7196,8 +11739,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_id {
-            let converted_1242 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1242)
+            let converted_1304 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1304)
         } else {
             Ok(py.None())
         }
@@ -7206,8 +11749,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_version {
-            let converted_1243 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1243)
+            let converted_1305 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1305)
         } else {
             Ok(py.None())
         }
@@ -7216,8 +11759,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_arn {
-            let converted_1244 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1244)
+            let converted_1306 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1306)
         } else {
             Ok(py.None())
         }
@@ -7226,13 +11769,13 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_origin(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_origin {
-            let converted_1245_list = PyList::empty(py);
-            for item_1246 in value {
-                let converted_item_1247 = (item_1246).as_str().into_py_any(py)?;
-                converted_1245_list.append(converted_item_1247)?;
+            let converted_1307_list = PyList::empty(py);
+            for item_1308 in value {
+                let converted_item_1309 = (item_1308).as_str().into_py_any(py)?;
+                converted_1307_list.append(converted_item_1309)?;
             }
-            let converted_1245 = converted_1245_list.into_any().unbind();
-            Ok(converted_1245)
+            let converted_1307 = converted_1307_list.into_any().unbind();
+            Ok(converted_1307)
         } else {
             Ok(py.None())
         }
@@ -7241,8 +11784,8 @@ impl PyAppliedGuardrailDetails {
     #[getter]
     fn guardrail_ownership(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_ownership {
-            let converted_1248 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1248)
+            let converted_1310 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1310)
         } else {
             Ok(py.None())
         }
@@ -7266,21 +11809,21 @@ struct PyAsyncInvokeSummary {
 impl PyAsyncInvokeSummary {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1249 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_1249)
+        let converted_1311 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_1311)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1250 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_1250)
+        let converted_1312 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_1312)
     }
 
     #[getter]
     fn client_request_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_request_token {
-            let converted_1251 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1251)
+            let converted_1313 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1313)
         } else {
             Ok(py.None())
         }
@@ -7289,8 +11832,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1252 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1252)
+            let converted_1314 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1314)
         } else {
             Ok(py.None())
         }
@@ -7299,8 +11842,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_1253 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1253)
+            let converted_1315 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1315)
         } else {
             Ok(py.None())
         }
@@ -7308,15 +11851,15 @@ impl PyAsyncInvokeSummary {
 
     #[getter]
     fn submit_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1254 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        Ok(converted_1254)
+        let converted_1316 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        Ok(converted_1316)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1255 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1255)
+            let converted_1317 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1317)
         } else {
             Ok(py.None())
         }
@@ -7325,8 +11868,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_1256 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1256)
+            let converted_1318 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1318)
         } else {
             Ok(py.None())
         }
@@ -7335,8 +11878,8 @@ impl PyAsyncInvokeSummary {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_1257 = async_invoke_output_data_config_to_py(py, value)?;
-            Ok(converted_1257)
+            let converted_1319 = async_invoke_output_data_config_to_py(py, value)?;
+            Ok(converted_1319)
         } else {
             Ok(py.None())
         }
@@ -7356,14 +11899,14 @@ struct PyCacheDetail {
 impl PyCacheDetail {
     #[getter]
     fn ttl(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1258 = (&self.inner.ttl).as_str().into_py_any(py)?;
-        Ok(converted_1258)
+        let converted_1320 = (&self.inner.ttl).as_str().into_py_any(py)?;
+        Ok(converted_1320)
     }
 
     #[getter]
     fn input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1259 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1259)
+        let converted_1321 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1321)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7384,8 +11927,8 @@ struct PyConverseMetrics {
 impl PyConverseMetrics {
     #[getter]
     fn latency_ms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1260 = (&self.inner.latency_ms).to_owned().into_py_any(py)?;
-        Ok(converted_1260)
+        let converted_1322 = (&self.inner.latency_ms).to_owned().into_py_any(py)?;
+        Ok(converted_1322)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7414,14 +11957,14 @@ impl From<aws_sdk_bedrockruntime::types::ConverseTrace> for SharedConverseTrace 
 fn converse_trace_shared_to_py(py: Python<'_>, value: &SharedConverseTrace) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail {
-        let converted_1263 = guardrail_trace_assessment_shared_to_py(py, value)?;
-        result.set_item("guardrail", converted_1263)?;
+        let converted_1325 = guardrail_trace_assessment_shared_to_py(py, value)?;
+        result.set_item("guardrail", converted_1325)?;
     } else {
         result.set_item("guardrail", py.None())?;
     }
     if let Some(value) = &value.prompt_router {
-        let converted_1264 = prompt_router_trace_to_py(py, value)?;
-        result.set_item("prompt_router", converted_1264)?;
+        let converted_1326 = prompt_router_trace_to_py(py, value)?;
+        result.set_item("prompt_router", converted_1326)?;
     } else {
         result.set_item("prompt_router", py.None())?;
     }
@@ -7442,14 +11985,14 @@ impl PyConverseTrace {
     #[getter]
     fn guardrail(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail {
-            let converted_1261 = Py::new(
+            let converted_1323 = Py::new(
                 py,
                 PyGuardrailTraceAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1261)
+            Ok(converted_1323)
         } else {
             Ok(py.None())
         }
@@ -7458,14 +12001,14 @@ impl PyConverseTrace {
     #[getter]
     fn prompt_router(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_router {
-            let converted_1262 = Py::new(
+            let converted_1324 = Py::new(
                 py,
                 PyPromptRouterTrace {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1262)
+            Ok(converted_1324)
         } else {
             Ok(py.None())
         }
@@ -7527,52 +12070,52 @@ fn guardrail_assessment_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.topic_policy {
-        let converted_1273 = guardrail_topic_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("topic_policy", converted_1273)?;
+        let converted_1335 = guardrail_topic_policy_assessment_shared_to_py(py, value)?;
+        result.set_item("topic_policy", converted_1335)?;
     } else {
         result.set_item("topic_policy", py.None())?;
     }
     if let Some(value) = &value.content_policy {
-        let converted_1274 = guardrail_content_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("content_policy", converted_1274)?;
+        let converted_1336 = guardrail_content_policy_assessment_shared_to_py(py, value)?;
+        result.set_item("content_policy", converted_1336)?;
     } else {
         result.set_item("content_policy", py.None())?;
     }
     if let Some(value) = &value.word_policy {
-        let converted_1275 = guardrail_word_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("word_policy", converted_1275)?;
+        let converted_1337 = guardrail_word_policy_assessment_shared_to_py(py, value)?;
+        result.set_item("word_policy", converted_1337)?;
     } else {
         result.set_item("word_policy", py.None())?;
     }
     if let Some(value) = &value.sensitive_information_policy {
-        let converted_1276 =
+        let converted_1338 =
             guardrail_sensitive_information_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("sensitive_information_policy", converted_1276)?;
+        result.set_item("sensitive_information_policy", converted_1338)?;
     } else {
         result.set_item("sensitive_information_policy", py.None())?;
     }
     if let Some(value) = &value.contextual_grounding_policy {
-        let converted_1277 =
+        let converted_1339 =
             guardrail_contextual_grounding_policy_assessment_shared_to_py(py, value)?;
-        result.set_item("contextual_grounding_policy", converted_1277)?;
+        result.set_item("contextual_grounding_policy", converted_1339)?;
     } else {
         result.set_item("contextual_grounding_policy", py.None())?;
     }
     if let Some(value) = &value.automated_reasoning_policy {
-        let converted_1278 = guardrail_automated_reasoning_policy_assessment_to_py(py, value)?;
-        result.set_item("automated_reasoning_policy", converted_1278)?;
+        let converted_1340 = guardrail_automated_reasoning_policy_assessment_to_py(py, value)?;
+        result.set_item("automated_reasoning_policy", converted_1340)?;
     } else {
         result.set_item("automated_reasoning_policy", py.None())?;
     }
     if let Some(value) = &value.invocation_metrics {
-        let converted_1279 = guardrail_invocation_metrics_shared_to_py(py, value)?;
-        result.set_item("invocation_metrics", converted_1279)?;
+        let converted_1341 = guardrail_invocation_metrics_shared_to_py(py, value)?;
+        result.set_item("invocation_metrics", converted_1341)?;
     } else {
         result.set_item("invocation_metrics", py.None())?;
     }
     if let Some(value) = &value.applied_guardrail_details {
-        let converted_1280 = applied_guardrail_details_to_py(py, value)?;
-        result.set_item("applied_guardrail_details", converted_1280)?;
+        let converted_1342 = applied_guardrail_details_to_py(py, value)?;
+        result.set_item("applied_guardrail_details", converted_1342)?;
     } else {
         result.set_item("applied_guardrail_details", py.None())?;
     }
@@ -7593,14 +12136,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn topic_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_policy {
-            let converted_1265 = Py::new(
+            let converted_1327 = Py::new(
                 py,
                 PyGuardrailTopicPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1265)
+            Ok(converted_1327)
         } else {
             Ok(py.None())
         }
@@ -7609,14 +12152,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn content_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_policy {
-            let converted_1266 = Py::new(
+            let converted_1328 = Py::new(
                 py,
                 PyGuardrailContentPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1266)
+            Ok(converted_1328)
         } else {
             Ok(py.None())
         }
@@ -7625,14 +12168,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn word_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.word_policy {
-            let converted_1267 = Py::new(
+            let converted_1329 = Py::new(
                 py,
                 PyGuardrailWordPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1267)
+            Ok(converted_1329)
         } else {
             Ok(py.None())
         }
@@ -7641,14 +12184,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn sensitive_information_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_information_policy {
-            let converted_1268 = Py::new(
+            let converted_1330 = Py::new(
                 py,
                 PyGuardrailSensitiveInformationPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1268)
+            Ok(converted_1330)
         } else {
             Ok(py.None())
         }
@@ -7657,14 +12200,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn contextual_grounding_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contextual_grounding_policy {
-            let converted_1269 = Py::new(
+            let converted_1331 = Py::new(
                 py,
                 PyGuardrailContextualGroundingPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1269)
+            Ok(converted_1331)
         } else {
             Ok(py.None())
         }
@@ -7673,14 +12216,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn automated_reasoning_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automated_reasoning_policy {
-            let converted_1270 = Py::new(
+            let converted_1332 = Py::new(
                 py,
                 PyGuardrailAutomatedReasoningPolicyAssessment {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1270)
+            Ok(converted_1332)
         } else {
             Ok(py.None())
         }
@@ -7689,14 +12232,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn invocation_metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invocation_metrics {
-            let converted_1271 = Py::new(
+            let converted_1333 = Py::new(
                 py,
                 PyGuardrailInvocationMetrics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1271)
+            Ok(converted_1333)
         } else {
             Ok(py.None())
         }
@@ -7705,14 +12248,14 @@ impl PyGuardrailAssessment {
     #[getter]
     fn applied_guardrail_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.applied_guardrail_details {
-            let converted_1272 = Py::new(
+            let converted_1334 = Py::new(
                 py,
                 PyAppliedGuardrailDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1272)
+            Ok(converted_1334)
         } else {
             Ok(py.None())
         }
@@ -7737,14 +12280,14 @@ impl PyGuardrailAutomatedReasoningPolicyAssessment {
     #[getter]
     fn findings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.findings {
-            let converted_1281_list = PyList::empty(py);
-            for item_1282 in value {
-                let converted_item_1283 =
-                    guardrail_automated_reasoning_finding_to_py(py, item_1282)?;
-                converted_1281_list.append(converted_item_1283)?;
+            let converted_1343_list = PyList::empty(py);
+            for item_1344 in value {
+                let converted_item_1345 =
+                    guardrail_automated_reasoning_finding_to_py(py, item_1344)?;
+                converted_1343_list.append(converted_item_1345)?;
             }
-            let converted_1281 = converted_1281_list.into_any().unbind();
-            Ok(converted_1281)
+            let converted_1343 = converted_1343_list.into_any().unbind();
+            Ok(converted_1343)
         } else {
             Ok(py.None())
         }
@@ -7770,7 +12313,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResult>
         Self {
             results: (value.results)
                 .into_iter()
-                .map(|owned_1287| Arc::new(owned_1287))
+                .map(|owned_1349| Arc::new(owned_1349))
                 .collect(),
         }
     }
@@ -7781,14 +12324,14 @@ fn guardrail_checks_content_filter_result_shared_to_py(
     value: &SharedGuardrailChecksContentFilterResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1288_list = PyList::empty(py);
-    for item_1289 in &value.results {
-        let converted_item_1290 =
-            guardrail_checks_content_filter_result_entry_to_py(py, item_1289)?;
-        converted_1288_list.append(converted_item_1290)?;
+    let converted_1350_list = PyList::empty(py);
+    for item_1351 in &value.results {
+        let converted_item_1352 =
+            guardrail_checks_content_filter_result_entry_to_py(py, item_1351)?;
+        converted_1350_list.append(converted_item_1352)?;
     }
-    let converted_1288 = converted_1288_list.into_any().unbind();
-    result.set_item("results", converted_1288)?;
+    let converted_1350 = converted_1350_list.into_any().unbind();
+    result.set_item("results", converted_1350)?;
     Ok(result.into_any().unbind())
 }
 
@@ -7805,19 +12348,19 @@ struct PyGuardrailChecksContentFilterResult {
 impl PyGuardrailChecksContentFilterResult {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1284_list = PyList::empty(py);
-        for item_1285 in &self.inner.results {
-            let converted_item_1286 = Py::new(
+        let converted_1346_list = PyList::empty(py);
+        for item_1347 in &self.inner.results {
+            let converted_item_1348 = Py::new(
                 py,
                 PyGuardrailChecksContentFilterResultEntry {
-                    inner: Arc::clone(item_1285),
+                    inner: Arc::clone(item_1347),
                 },
             )?
             .into_any();
-            converted_1284_list.append(converted_item_1286)?;
+            converted_1346_list.append(converted_item_1348)?;
         }
-        let converted_1284 = converted_1284_list.into_any().unbind();
-        Ok(converted_1284)
+        let converted_1346 = converted_1346_list.into_any().unbind();
+        Ok(converted_1346)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7838,14 +12381,14 @@ struct PyGuardrailChecksContentFilterResultEntry {
 impl PyGuardrailChecksContentFilterResultEntry {
     #[getter]
     fn category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1291 = (&self.inner.category).as_str().into_py_any(py)?;
-        Ok(converted_1291)
+        let converted_1353 = (&self.inner.category).as_str().into_py_any(py)?;
+        Ok(converted_1353)
     }
 
     #[getter]
     fn severity_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1292 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
-        Ok(converted_1292)
+        let converted_1354 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
+        Ok(converted_1354)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7866,8 +12409,8 @@ struct PyGuardrailChecksContentFilterUsage {
 impl PyGuardrailChecksContentFilterUsage {
     #[getter]
     fn text_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1293 = (&self.inner.text_units).to_owned().into_py_any(py)?;
-        Ok(converted_1293)
+        let converted_1355 = (&self.inner.text_units).to_owned().into_py_any(py)?;
+        Ok(converted_1355)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7889,7 +12432,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResult>
         Self {
             results: (value.results)
                 .into_iter()
-                .map(|owned_1297| Arc::new(owned_1297))
+                .map(|owned_1359| Arc::new(owned_1359))
                 .collect(),
         }
     }
@@ -7900,13 +12443,13 @@ fn guardrail_checks_prompt_attack_result_shared_to_py(
     value: &SharedGuardrailChecksPromptAttackResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1298_list = PyList::empty(py);
-    for item_1299 in &value.results {
-        let converted_item_1300 = guardrail_checks_prompt_attack_result_entry_to_py(py, item_1299)?;
-        converted_1298_list.append(converted_item_1300)?;
+    let converted_1360_list = PyList::empty(py);
+    for item_1361 in &value.results {
+        let converted_item_1362 = guardrail_checks_prompt_attack_result_entry_to_py(py, item_1361)?;
+        converted_1360_list.append(converted_item_1362)?;
     }
-    let converted_1298 = converted_1298_list.into_any().unbind();
-    result.set_item("results", converted_1298)?;
+    let converted_1360 = converted_1360_list.into_any().unbind();
+    result.set_item("results", converted_1360)?;
     Ok(result.into_any().unbind())
 }
 
@@ -7923,19 +12466,19 @@ struct PyGuardrailChecksPromptAttackResult {
 impl PyGuardrailChecksPromptAttackResult {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1294_list = PyList::empty(py);
-        for item_1295 in &self.inner.results {
-            let converted_item_1296 = Py::new(
+        let converted_1356_list = PyList::empty(py);
+        for item_1357 in &self.inner.results {
+            let converted_item_1358 = Py::new(
                 py,
                 PyGuardrailChecksPromptAttackResultEntry {
-                    inner: Arc::clone(item_1295),
+                    inner: Arc::clone(item_1357),
                 },
             )?
             .into_any();
-            converted_1294_list.append(converted_item_1296)?;
+            converted_1356_list.append(converted_item_1358)?;
         }
-        let converted_1294 = converted_1294_list.into_any().unbind();
-        Ok(converted_1294)
+        let converted_1356 = converted_1356_list.into_any().unbind();
+        Ok(converted_1356)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7956,14 +12499,14 @@ struct PyGuardrailChecksPromptAttackResultEntry {
 impl PyGuardrailChecksPromptAttackResultEntry {
     #[getter]
     fn category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1301 = (&self.inner.category).as_str().into_py_any(py)?;
-        Ok(converted_1301)
+        let converted_1363 = (&self.inner.category).as_str().into_py_any(py)?;
+        Ok(converted_1363)
     }
 
     #[getter]
     fn severity_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1302 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
-        Ok(converted_1302)
+        let converted_1364 = (&self.inner.severity_score).to_owned().into_py_any(py)?;
+        Ok(converted_1364)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7984,8 +12527,8 @@ struct PyGuardrailChecksPromptAttackUsage {
 impl PyGuardrailChecksPromptAttackUsage {
     #[getter]
     fn text_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1303 = (&self.inner.text_units).to_owned().into_py_any(py)?;
-        Ok(converted_1303)
+        let converted_1365 = (&self.inner.text_units).to_owned().into_py_any(py)?;
+        Ok(converted_1365)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8023,20 +12566,20 @@ fn guardrail_checks_results_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content_filter {
-        let converted_1307 = guardrail_checks_content_filter_result_shared_to_py(py, value)?;
-        result.set_item("content_filter", converted_1307)?;
+        let converted_1369 = guardrail_checks_content_filter_result_shared_to_py(py, value)?;
+        result.set_item("content_filter", converted_1369)?;
     } else {
         result.set_item("content_filter", py.None())?;
     }
     if let Some(value) = &value.prompt_attack {
-        let converted_1308 = guardrail_checks_prompt_attack_result_shared_to_py(py, value)?;
-        result.set_item("prompt_attack", converted_1308)?;
+        let converted_1370 = guardrail_checks_prompt_attack_result_shared_to_py(py, value)?;
+        result.set_item("prompt_attack", converted_1370)?;
     } else {
         result.set_item("prompt_attack", py.None())?;
     }
     if let Some(value) = &value.sensitive_information {
-        let converted_1309 = guardrail_checks_sensitive_information_result_shared_to_py(py, value)?;
-        result.set_item("sensitive_information", converted_1309)?;
+        let converted_1371 = guardrail_checks_sensitive_information_result_shared_to_py(py, value)?;
+        result.set_item("sensitive_information", converted_1371)?;
     } else {
         result.set_item("sensitive_information", py.None())?;
     }
@@ -8057,14 +12600,14 @@ impl PyGuardrailChecksResults {
     #[getter]
     fn content_filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_filter {
-            let converted_1304 = Py::new(
+            let converted_1366 = Py::new(
                 py,
                 PyGuardrailChecksContentFilterResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1304)
+            Ok(converted_1366)
         } else {
             Ok(py.None())
         }
@@ -8073,14 +12616,14 @@ impl PyGuardrailChecksResults {
     #[getter]
     fn prompt_attack(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_attack {
-            let converted_1305 = Py::new(
+            let converted_1367 = Py::new(
                 py,
                 PyGuardrailChecksPromptAttackResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1305)
+            Ok(converted_1367)
         } else {
             Ok(py.None())
         }
@@ -8089,14 +12632,14 @@ impl PyGuardrailChecksResults {
     #[getter]
     fn sensitive_information(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_information {
-            let converted_1306 = Py::new(
+            let converted_1368 = Py::new(
                 py,
                 PyGuardrailChecksSensitiveInformationResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1306)
+            Ok(converted_1368)
         } else {
             Ok(py.None())
         }
@@ -8125,7 +12668,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResu
         Self {
             results: (value.results)
                 .into_iter()
-                .map(|owned_1314| Arc::new(owned_1314))
+                .map(|owned_1376| Arc::new(owned_1376))
                 .collect(),
             truncated: value.truncated,
         }
@@ -8137,17 +12680,17 @@ fn guardrail_checks_sensitive_information_result_shared_to_py(
     value: &SharedGuardrailChecksSensitiveInformationResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1315_list = PyList::empty(py);
-    for item_1316 in &value.results {
-        let converted_item_1317 =
-            guardrail_checks_sensitive_information_result_entry_to_py(py, item_1316)?;
-        converted_1315_list.append(converted_item_1317)?;
+    let converted_1377_list = PyList::empty(py);
+    for item_1378 in &value.results {
+        let converted_item_1379 =
+            guardrail_checks_sensitive_information_result_entry_to_py(py, item_1378)?;
+        converted_1377_list.append(converted_item_1379)?;
     }
-    let converted_1315 = converted_1315_list.into_any().unbind();
-    result.set_item("results", converted_1315)?;
+    let converted_1377 = converted_1377_list.into_any().unbind();
+    result.set_item("results", converted_1377)?;
     if let Some(value) = &value.truncated {
-        let converted_1318 = (value).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_1318)?;
+        let converted_1380 = (value).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1380)?;
     } else {
         result.set_item("truncated", py.None())?;
     }
@@ -8167,26 +12710,26 @@ struct PyGuardrailChecksSensitiveInformationResult {
 impl PyGuardrailChecksSensitiveInformationResult {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1310_list = PyList::empty(py);
-        for item_1311 in &self.inner.results {
-            let converted_item_1312 = Py::new(
+        let converted_1372_list = PyList::empty(py);
+        for item_1373 in &self.inner.results {
+            let converted_item_1374 = Py::new(
                 py,
                 PyGuardrailChecksSensitiveInformationResultEntry {
-                    inner: Arc::clone(item_1311),
+                    inner: Arc::clone(item_1373),
                 },
             )?
             .into_any();
-            converted_1310_list.append(converted_item_1312)?;
+            converted_1372_list.append(converted_item_1374)?;
         }
-        let converted_1310 = converted_1310_list.into_any().unbind();
-        Ok(converted_1310)
+        let converted_1372 = converted_1372_list.into_any().unbind();
+        Ok(converted_1372)
     }
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.truncated {
-            let converted_1313 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1313)
+            let converted_1375 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1375)
         } else {
             Ok(py.None())
         }
@@ -8210,38 +12753,38 @@ struct PyGuardrailChecksSensitiveInformationResultEntry {
 impl PyGuardrailChecksSensitiveInformationResultEntry {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1319 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1319)
+        let converted_1381 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1381)
     }
 
     #[getter]
     fn confidence_score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1320 = (&self.inner.confidence_score).to_owned().into_py_any(py)?;
-        Ok(converted_1320)
+        let converted_1382 = (&self.inner.confidence_score).to_owned().into_py_any(py)?;
+        Ok(converted_1382)
     }
 
     #[getter]
     fn begin_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1321 = (&self.inner.begin_offset).to_owned().into_py_any(py)?;
-        Ok(converted_1321)
+        let converted_1383 = (&self.inner.begin_offset).to_owned().into_py_any(py)?;
+        Ok(converted_1383)
     }
 
     #[getter]
     fn end_offset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1322 = (&self.inner.end_offset).to_owned().into_py_any(py)?;
-        Ok(converted_1322)
+        let converted_1384 = (&self.inner.end_offset).to_owned().into_py_any(py)?;
+        Ok(converted_1384)
     }
 
     #[getter]
     fn message_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1323 = (&self.inner.message_index).to_owned().into_py_any(py)?;
-        Ok(converted_1323)
+        let converted_1385 = (&self.inner.message_index).to_owned().into_py_any(py)?;
+        Ok(converted_1385)
     }
 
     #[getter]
     fn content_index(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1324 = (&self.inner.content_index).to_owned().into_py_any(py)?;
-        Ok(converted_1324)
+        let converted_1386 = (&self.inner.content_index).to_owned().into_py_any(py)?;
+        Ok(converted_1386)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8262,8 +12805,8 @@ struct PyGuardrailChecksSensitiveInformationUsage {
 impl PyGuardrailChecksSensitiveInformationUsage {
     #[getter]
     fn text_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1325 = (&self.inner.text_units).to_owned().into_py_any(py)?;
-        Ok(converted_1325)
+        let converted_1387 = (&self.inner.text_units).to_owned().into_py_any(py)?;
+        Ok(converted_1387)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8298,20 +12841,20 @@ fn guardrail_checks_usage_results_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.content_filter {
-        let converted_1329 = guardrail_checks_content_filter_usage_to_py(py, value)?;
-        result.set_item("content_filter", converted_1329)?;
+        let converted_1391 = guardrail_checks_content_filter_usage_to_py(py, value)?;
+        result.set_item("content_filter", converted_1391)?;
     } else {
         result.set_item("content_filter", py.None())?;
     }
     if let Some(value) = &value.prompt_attack {
-        let converted_1330 = guardrail_checks_prompt_attack_usage_to_py(py, value)?;
-        result.set_item("prompt_attack", converted_1330)?;
+        let converted_1392 = guardrail_checks_prompt_attack_usage_to_py(py, value)?;
+        result.set_item("prompt_attack", converted_1392)?;
     } else {
         result.set_item("prompt_attack", py.None())?;
     }
     if let Some(value) = &value.sensitive_information {
-        let converted_1331 = guardrail_checks_sensitive_information_usage_to_py(py, value)?;
-        result.set_item("sensitive_information", converted_1331)?;
+        let converted_1393 = guardrail_checks_sensitive_information_usage_to_py(py, value)?;
+        result.set_item("sensitive_information", converted_1393)?;
     } else {
         result.set_item("sensitive_information", py.None())?;
     }
@@ -8332,14 +12875,14 @@ impl PyGuardrailChecksUsageResults {
     #[getter]
     fn content_filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_filter {
-            let converted_1326 = Py::new(
+            let converted_1388 = Py::new(
                 py,
                 PyGuardrailChecksContentFilterUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1326)
+            Ok(converted_1388)
         } else {
             Ok(py.None())
         }
@@ -8348,14 +12891,14 @@ impl PyGuardrailChecksUsageResults {
     #[getter]
     fn prompt_attack(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prompt_attack {
-            let converted_1327 = Py::new(
+            let converted_1389 = Py::new(
                 py,
                 PyGuardrailChecksPromptAttackUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1327)
+            Ok(converted_1389)
         } else {
             Ok(py.None())
         }
@@ -8364,14 +12907,14 @@ impl PyGuardrailChecksUsageResults {
     #[getter]
     fn sensitive_information(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sensitive_information {
-            let converted_1328 = Py::new(
+            let converted_1390 = Py::new(
                 py,
                 PyGuardrailChecksSensitiveInformationUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1328)
+            Ok(converted_1390)
         } else {
             Ok(py.None())
         }
@@ -8395,21 +12938,21 @@ struct PyGuardrailContentFilter {
 impl PyGuardrailContentFilter {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1332 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1332)
+        let converted_1394 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1394)
     }
 
     #[getter]
     fn confidence(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1333 = (&self.inner.confidence).as_str().into_py_any(py)?;
-        Ok(converted_1333)
+        let converted_1395 = (&self.inner.confidence).as_str().into_py_any(py)?;
+        Ok(converted_1395)
     }
 
     #[getter]
     fn filter_strength(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filter_strength {
-            let converted_1334 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1334)
+            let converted_1396 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1396)
         } else {
             Ok(py.None())
         }
@@ -8417,15 +12960,15 @@ impl PyGuardrailContentFilter {
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1335 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1335)
+        let converted_1397 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1397)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1336 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1336)
+            let converted_1398 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1398)
         } else {
             Ok(py.None())
         }
@@ -8449,7 +12992,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailContentPolicyAssessment>
         Self {
             filters: (value.filters)
                 .into_iter()
-                .map(|owned_1340| Arc::new(owned_1340))
+                .map(|owned_1402| Arc::new(owned_1402))
                 .collect(),
         }
     }
@@ -8460,13 +13003,13 @@ fn guardrail_content_policy_assessment_shared_to_py(
     value: &SharedGuardrailContentPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1341_list = PyList::empty(py);
-    for item_1342 in &value.filters {
-        let converted_item_1343 = guardrail_content_filter_to_py(py, item_1342)?;
-        converted_1341_list.append(converted_item_1343)?;
+    let converted_1403_list = PyList::empty(py);
+    for item_1404 in &value.filters {
+        let converted_item_1405 = guardrail_content_filter_to_py(py, item_1404)?;
+        converted_1403_list.append(converted_item_1405)?;
     }
-    let converted_1341 = converted_1341_list.into_any().unbind();
-    result.set_item("filters", converted_1341)?;
+    let converted_1403 = converted_1403_list.into_any().unbind();
+    result.set_item("filters", converted_1403)?;
     Ok(result.into_any().unbind())
 }
 
@@ -8483,19 +13026,19 @@ struct PyGuardrailContentPolicyAssessment {
 impl PyGuardrailContentPolicyAssessment {
     #[getter]
     fn filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1337_list = PyList::empty(py);
-        for item_1338 in &self.inner.filters {
-            let converted_item_1339 = Py::new(
+        let converted_1399_list = PyList::empty(py);
+        for item_1400 in &self.inner.filters {
+            let converted_item_1401 = Py::new(
                 py,
                 PyGuardrailContentFilter {
-                    inner: Arc::clone(item_1338),
+                    inner: Arc::clone(item_1400),
                 },
             )?
             .into_any();
-            converted_1337_list.append(converted_item_1339)?;
+            converted_1399_list.append(converted_item_1401)?;
         }
-        let converted_1337 = converted_1337_list.into_any().unbind();
-        Ok(converted_1337)
+        let converted_1399 = converted_1399_list.into_any().unbind();
+        Ok(converted_1399)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8516,33 +13059,33 @@ struct PyGuardrailContextualGroundingFilter {
 impl PyGuardrailContextualGroundingFilter {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1344 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1344)
+        let converted_1406 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1406)
     }
 
     #[getter]
     fn threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1345 = (&self.inner.threshold).to_owned().into_py_any(py)?;
-        Ok(converted_1345)
+        let converted_1407 = (&self.inner.threshold).to_owned().into_py_any(py)?;
+        Ok(converted_1407)
     }
 
     #[getter]
     fn score(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1346 = (&self.inner.score).to_owned().into_py_any(py)?;
-        Ok(converted_1346)
+        let converted_1408 = (&self.inner.score).to_owned().into_py_any(py)?;
+        Ok(converted_1408)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1347 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1347)
+        let converted_1409 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1409)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1348 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1348)
+            let converted_1410 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1410)
         } else {
             Ok(py.None())
         }
@@ -8571,7 +13114,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailContextualGroundingPolicyAsses
             filters: value.filters.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1352| Arc::new(owned_1352))
+                    .map(|owned_1414| Arc::new(owned_1414))
                     .collect()
             }),
         }
@@ -8584,13 +13127,13 @@ fn guardrail_contextual_grounding_policy_assessment_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.filters {
-        let converted_1353_list = PyList::empty(py);
-        for item_1354 in value {
-            let converted_item_1355 = guardrail_contextual_grounding_filter_to_py(py, item_1354)?;
-            converted_1353_list.append(converted_item_1355)?;
+        let converted_1415_list = PyList::empty(py);
+        for item_1416 in value {
+            let converted_item_1417 = guardrail_contextual_grounding_filter_to_py(py, item_1416)?;
+            converted_1415_list.append(converted_item_1417)?;
         }
-        let converted_1353 = converted_1353_list.into_any().unbind();
-        result.set_item("filters", converted_1353)?;
+        let converted_1415 = converted_1415_list.into_any().unbind();
+        result.set_item("filters", converted_1415)?;
     } else {
         result.set_item("filters", py.None())?;
     }
@@ -8611,19 +13154,19 @@ impl PyGuardrailContextualGroundingPolicyAssessment {
     #[getter]
     fn filters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.filters {
-            let converted_1349_list = PyList::empty(py);
-            for item_1350 in value {
-                let converted_item_1351 = Py::new(
+            let converted_1411_list = PyList::empty(py);
+            for item_1412 in value {
+                let converted_item_1413 = Py::new(
                     py,
                     PyGuardrailContextualGroundingFilter {
-                        inner: Arc::clone(item_1350),
+                        inner: Arc::clone(item_1412),
                     },
                 )?
                 .into_any();
-                converted_1349_list.append(converted_item_1351)?;
+                converted_1411_list.append(converted_item_1413)?;
             }
-            let converted_1349 = converted_1349_list.into_any().unbind();
-            Ok(converted_1349)
+            let converted_1411 = converted_1411_list.into_any().unbind();
+            Ok(converted_1411)
         } else {
             Ok(py.None())
         }
@@ -8656,14 +13199,14 @@ fn guardrail_coverage_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.text_characters {
-        let converted_1358 = guardrail_text_characters_coverage_to_py(py, value)?;
-        result.set_item("text_characters", converted_1358)?;
+        let converted_1420 = guardrail_text_characters_coverage_to_py(py, value)?;
+        result.set_item("text_characters", converted_1420)?;
     } else {
         result.set_item("text_characters", py.None())?;
     }
     if let Some(value) = &value.images {
-        let converted_1359 = guardrail_image_coverage_to_py(py, value)?;
-        result.set_item("images", converted_1359)?;
+        let converted_1421 = guardrail_image_coverage_to_py(py, value)?;
+        result.set_item("images", converted_1421)?;
     } else {
         result.set_item("images", py.None())?;
     }
@@ -8684,14 +13227,14 @@ impl PyGuardrailCoverage {
     #[getter]
     fn text_characters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text_characters {
-            let converted_1356 = Py::new(
+            let converted_1418 = Py::new(
                 py,
                 PyGuardrailTextCharactersCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1356)
+            Ok(converted_1418)
         } else {
             Ok(py.None())
         }
@@ -8700,14 +13243,14 @@ impl PyGuardrailCoverage {
     #[getter]
     fn images(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.images {
-            let converted_1357 = Py::new(
+            let converted_1419 = Py::new(
                 py,
                 PyGuardrailImageCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1357)
+            Ok(converted_1419)
         } else {
             Ok(py.None())
         }
@@ -8731,21 +13274,21 @@ struct PyGuardrailCustomWord {
 impl PyGuardrailCustomWord {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1360 = (&self.inner.r#match).as_str().into_py_any(py)?;
-        Ok(converted_1360)
+        let converted_1422 = (&self.inner.r#match).as_str().into_py_any(py)?;
+        Ok(converted_1422)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1361 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1361)
+        let converted_1423 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1423)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1362 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1362)
+            let converted_1424 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1424)
         } else {
             Ok(py.None())
         }
@@ -8770,8 +13313,8 @@ impl PyGuardrailImageCoverage {
     #[getter]
     fn guarded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guarded {
-            let converted_1363 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1363)
+            let converted_1425 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1425)
         } else {
             Ok(py.None())
         }
@@ -8780,8 +13323,8 @@ impl PyGuardrailImageCoverage {
     #[getter]
     fn total(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total {
-            let converted_1364 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1364)
+            let converted_1426 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1426)
         } else {
             Ok(py.None())
         }
@@ -8820,20 +13363,20 @@ fn guardrail_invocation_metrics_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.guardrail_processing_latency {
-        let converted_1368 = (value).to_owned().into_py_any(py)?;
-        result.set_item("guardrail_processing_latency", converted_1368)?;
+        let converted_1430 = (value).to_owned().into_py_any(py)?;
+        result.set_item("guardrail_processing_latency", converted_1430)?;
     } else {
         result.set_item("guardrail_processing_latency", py.None())?;
     }
     if let Some(value) = &value.usage {
-        let converted_1369 = guardrail_usage_to_py(py, value)?;
-        result.set_item("usage", converted_1369)?;
+        let converted_1431 = guardrail_usage_to_py(py, value)?;
+        result.set_item("usage", converted_1431)?;
     } else {
         result.set_item("usage", py.None())?;
     }
     if let Some(value) = &value.guardrail_coverage {
-        let converted_1370 = guardrail_coverage_shared_to_py(py, value)?;
-        result.set_item("guardrail_coverage", converted_1370)?;
+        let converted_1432 = guardrail_coverage_shared_to_py(py, value)?;
+        result.set_item("guardrail_coverage", converted_1432)?;
     } else {
         result.set_item("guardrail_coverage", py.None())?;
     }
@@ -8854,8 +13397,8 @@ impl PyGuardrailInvocationMetrics {
     #[getter]
     fn guardrail_processing_latency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_processing_latency {
-            let converted_1365 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1365)
+            let converted_1427 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1427)
         } else {
             Ok(py.None())
         }
@@ -8864,14 +13407,14 @@ impl PyGuardrailInvocationMetrics {
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
-            let converted_1366 = Py::new(
+            let converted_1428 = Py::new(
                 py,
                 PyGuardrailUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1366)
+            Ok(converted_1428)
         } else {
             Ok(py.None())
         }
@@ -8880,14 +13423,14 @@ impl PyGuardrailInvocationMetrics {
     #[getter]
     fn guardrail_coverage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_coverage {
-            let converted_1367 = Py::new(
+            let converted_1429 = Py::new(
                 py,
                 PyGuardrailCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1367)
+            Ok(converted_1429)
         } else {
             Ok(py.None())
         }
@@ -8911,27 +13454,27 @@ struct PyGuardrailManagedWord {
 impl PyGuardrailManagedWord {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1371 = (&self.inner.r#match).as_str().into_py_any(py)?;
-        Ok(converted_1371)
+        let converted_1433 = (&self.inner.r#match).as_str().into_py_any(py)?;
+        Ok(converted_1433)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1372 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1372)
+        let converted_1434 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1434)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1373 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1373)
+        let converted_1435 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1435)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1374 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1374)
+            let converted_1436 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1436)
         } else {
             Ok(py.None())
         }
@@ -8956,8 +13499,8 @@ impl PyGuardrailOutputContent {
     #[getter]
     fn text(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text {
-            let converted_1375 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1375)
+            let converted_1437 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1437)
         } else {
             Ok(py.None())
         }
@@ -8981,27 +13524,27 @@ struct PyGuardrailPiiEntityFilter {
 impl PyGuardrailPiiEntityFilter {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1376 = (&self.inner.r#match).as_str().into_py_any(py)?;
-        Ok(converted_1376)
+        let converted_1438 = (&self.inner.r#match).as_str().into_py_any(py)?;
+        Ok(converted_1438)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1377 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1377)
+        let converted_1439 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1439)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1378 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1378)
+        let converted_1440 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1440)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1379 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1379)
+            let converted_1441 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1441)
         } else {
             Ok(py.None())
         }
@@ -9026,8 +13569,8 @@ impl PyGuardrailRegexFilter {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1380 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1380)
+            let converted_1442 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1442)
         } else {
             Ok(py.None())
         }
@@ -9036,8 +13579,8 @@ impl PyGuardrailRegexFilter {
     #[getter]
     fn r#match(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#match {
-            let converted_1381 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1381)
+            let converted_1443 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1443)
         } else {
             Ok(py.None())
         }
@@ -9046,8 +13589,8 @@ impl PyGuardrailRegexFilter {
     #[getter]
     fn regex(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.regex {
-            let converted_1382 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1382)
+            let converted_1444 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1444)
         } else {
             Ok(py.None())
         }
@@ -9055,15 +13598,15 @@ impl PyGuardrailRegexFilter {
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1383 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1383)
+        let converted_1445 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1445)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1384 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1384)
+            let converted_1446 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1446)
         } else {
             Ok(py.None())
         }
@@ -9090,11 +13633,11 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAsse
         Self {
             pii_entities: (value.pii_entities)
                 .into_iter()
-                .map(|owned_1391| Arc::new(owned_1391))
+                .map(|owned_1453| Arc::new(owned_1453))
                 .collect(),
             regexes: (value.regexes)
                 .into_iter()
-                .map(|owned_1392| Arc::new(owned_1392))
+                .map(|owned_1454| Arc::new(owned_1454))
                 .collect(),
         }
     }
@@ -9105,20 +13648,20 @@ fn guardrail_sensitive_information_policy_assessment_shared_to_py(
     value: &SharedGuardrailSensitiveInformationPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1393_list = PyList::empty(py);
-    for item_1394 in &value.pii_entities {
-        let converted_item_1395 = guardrail_pii_entity_filter_to_py(py, item_1394)?;
-        converted_1393_list.append(converted_item_1395)?;
+    let converted_1455_list = PyList::empty(py);
+    for item_1456 in &value.pii_entities {
+        let converted_item_1457 = guardrail_pii_entity_filter_to_py(py, item_1456)?;
+        converted_1455_list.append(converted_item_1457)?;
     }
-    let converted_1393 = converted_1393_list.into_any().unbind();
-    result.set_item("pii_entities", converted_1393)?;
-    let converted_1396_list = PyList::empty(py);
-    for item_1397 in &value.regexes {
-        let converted_item_1398 = guardrail_regex_filter_to_py(py, item_1397)?;
-        converted_1396_list.append(converted_item_1398)?;
+    let converted_1455 = converted_1455_list.into_any().unbind();
+    result.set_item("pii_entities", converted_1455)?;
+    let converted_1458_list = PyList::empty(py);
+    for item_1459 in &value.regexes {
+        let converted_item_1460 = guardrail_regex_filter_to_py(py, item_1459)?;
+        converted_1458_list.append(converted_item_1460)?;
     }
-    let converted_1396 = converted_1396_list.into_any().unbind();
-    result.set_item("regexes", converted_1396)?;
+    let converted_1458 = converted_1458_list.into_any().unbind();
+    result.set_item("regexes", converted_1458)?;
     Ok(result.into_any().unbind())
 }
 
@@ -9135,36 +13678,36 @@ struct PyGuardrailSensitiveInformationPolicyAssessment {
 impl PyGuardrailSensitiveInformationPolicyAssessment {
     #[getter]
     fn pii_entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1385_list = PyList::empty(py);
-        for item_1386 in &self.inner.pii_entities {
-            let converted_item_1387 = Py::new(
+        let converted_1447_list = PyList::empty(py);
+        for item_1448 in &self.inner.pii_entities {
+            let converted_item_1449 = Py::new(
                 py,
                 PyGuardrailPiiEntityFilter {
-                    inner: Arc::clone(item_1386),
+                    inner: Arc::clone(item_1448),
                 },
             )?
             .into_any();
-            converted_1385_list.append(converted_item_1387)?;
+            converted_1447_list.append(converted_item_1449)?;
         }
-        let converted_1385 = converted_1385_list.into_any().unbind();
-        Ok(converted_1385)
+        let converted_1447 = converted_1447_list.into_any().unbind();
+        Ok(converted_1447)
     }
 
     #[getter]
     fn regexes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1388_list = PyList::empty(py);
-        for item_1389 in &self.inner.regexes {
-            let converted_item_1390 = Py::new(
+        let converted_1450_list = PyList::empty(py);
+        for item_1451 in &self.inner.regexes {
+            let converted_item_1452 = Py::new(
                 py,
                 PyGuardrailRegexFilter {
-                    inner: Arc::clone(item_1389),
+                    inner: Arc::clone(item_1451),
                 },
             )?
             .into_any();
-            converted_1388_list.append(converted_item_1390)?;
+            converted_1450_list.append(converted_item_1452)?;
         }
-        let converted_1388 = converted_1388_list.into_any().unbind();
-        Ok(converted_1388)
+        let converted_1450 = converted_1450_list.into_any().unbind();
+        Ok(converted_1450)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -9186,8 +13729,8 @@ impl PyGuardrailTextCharactersCoverage {
     #[getter]
     fn guarded(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guarded {
-            let converted_1399 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1399)
+            let converted_1461 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1461)
         } else {
             Ok(py.None())
         }
@@ -9196,8 +13739,8 @@ impl PyGuardrailTextCharactersCoverage {
     #[getter]
     fn total(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total {
-            let converted_1400 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1400)
+            let converted_1462 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1462)
         } else {
             Ok(py.None())
         }
@@ -9221,27 +13764,27 @@ struct PyGuardrailTopic {
 impl PyGuardrailTopic {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1401 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1401)
+        let converted_1463 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1463)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1402 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1402)
+        let converted_1464 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1464)
     }
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1403 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1403)
+        let converted_1465 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1465)
     }
 
     #[getter]
     fn detected(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.detected {
-            let converted_1404 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1404)
+            let converted_1466 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1466)
         } else {
             Ok(py.None())
         }
@@ -9265,7 +13808,7 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAssessment>
         Self {
             topics: (value.topics)
                 .into_iter()
-                .map(|owned_1408| Arc::new(owned_1408))
+                .map(|owned_1470| Arc::new(owned_1470))
                 .collect(),
         }
     }
@@ -9276,13 +13819,13 @@ fn guardrail_topic_policy_assessment_shared_to_py(
     value: &SharedGuardrailTopicPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1409_list = PyList::empty(py);
-    for item_1410 in &value.topics {
-        let converted_item_1411 = guardrail_topic_to_py(py, item_1410)?;
-        converted_1409_list.append(converted_item_1411)?;
+    let converted_1471_list = PyList::empty(py);
+    for item_1472 in &value.topics {
+        let converted_item_1473 = guardrail_topic_to_py(py, item_1472)?;
+        converted_1471_list.append(converted_item_1473)?;
     }
-    let converted_1409 = converted_1409_list.into_any().unbind();
-    result.set_item("topics", converted_1409)?;
+    let converted_1471 = converted_1471_list.into_any().unbind();
+    result.set_item("topics", converted_1471)?;
     Ok(result.into_any().unbind())
 }
 
@@ -9299,19 +13842,19 @@ struct PyGuardrailTopicPolicyAssessment {
 impl PyGuardrailTopicPolicyAssessment {
     #[getter]
     fn topics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1405_list = PyList::empty(py);
-        for item_1406 in &self.inner.topics {
-            let converted_item_1407 = Py::new(
+        let converted_1467_list = PyList::empty(py);
+        for item_1468 in &self.inner.topics {
+            let converted_item_1469 = Py::new(
                 py,
                 PyGuardrailTopic {
-                    inner: Arc::clone(item_1406),
+                    inner: Arc::clone(item_1468),
                 },
             )?
             .into_any();
-            converted_1405_list.append(converted_item_1407)?;
+            converted_1467_list.append(converted_item_1469)?;
         }
-        let converted_1405 = converted_1405_list.into_any().unbind();
-        Ok(converted_1405)
+        let converted_1467 = converted_1467_list.into_any().unbind();
+        Ok(converted_1467)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -9343,21 +13886,21 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailTraceAssessment>
             input_assessment: value.input_assessment.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|(key, owned_1428)| {
-                        (key, Arc::new(SharedGuardrailAssessment::from(owned_1428)))
+                    .map(|(key, owned_1490)| {
+                        (key, Arc::new(SharedGuardrailAssessment::from(owned_1490)))
                     })
                     .collect()
             }),
             output_assessments: value.output_assessments.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|(key, owned_1429)| {
+                    .map(|(key, owned_1491)| {
                         (
                             key,
-                            (owned_1429)
+                            (owned_1491)
                                 .into_iter()
-                                .map(|owned_1430| {
-                                    Arc::new(SharedGuardrailAssessment::from(owned_1430))
+                                .map(|owned_1492| {
+                                    Arc::new(SharedGuardrailAssessment::from(owned_1492))
                                 })
                                 .collect(),
                         )
@@ -9375,48 +13918,48 @@ fn guardrail_trace_assessment_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.model_output {
-        let converted_1431_list = PyList::empty(py);
-        for item_1432 in value {
-            let converted_item_1433 = (item_1432).as_str().into_py_any(py)?;
-            converted_1431_list.append(converted_item_1433)?;
+        let converted_1493_list = PyList::empty(py);
+        for item_1494 in value {
+            let converted_item_1495 = (item_1494).as_str().into_py_any(py)?;
+            converted_1493_list.append(converted_item_1495)?;
         }
-        let converted_1431 = converted_1431_list.into_any().unbind();
-        result.set_item("model_output", converted_1431)?;
+        let converted_1493 = converted_1493_list.into_any().unbind();
+        result.set_item("model_output", converted_1493)?;
     } else {
         result.set_item("model_output", py.None())?;
     }
     if let Some(value) = &value.input_assessment {
-        let converted_1434_dict = PyDict::new(py);
-        for (key_1435, value_1436) in value {
-            let converted_key_1437 = (key_1435).as_str().into_py_any(py)?;
-            let converted_value_1438 = guardrail_assessment_shared_to_py(py, value_1436)?;
-            converted_1434_dict.set_item(converted_key_1437, converted_value_1438)?;
+        let converted_1496_dict = PyDict::new(py);
+        for (key_1497, value_1498) in value {
+            let converted_key_1499 = (key_1497).as_str().into_py_any(py)?;
+            let converted_value_1500 = guardrail_assessment_shared_to_py(py, value_1498)?;
+            converted_1496_dict.set_item(converted_key_1499, converted_value_1500)?;
         }
-        let converted_1434 = converted_1434_dict.into_any().unbind();
-        result.set_item("input_assessment", converted_1434)?;
+        let converted_1496 = converted_1496_dict.into_any().unbind();
+        result.set_item("input_assessment", converted_1496)?;
     } else {
         result.set_item("input_assessment", py.None())?;
     }
     if let Some(value) = &value.output_assessments {
-        let converted_1439_dict = PyDict::new(py);
-        for (key_1440, value_1441) in value {
-            let converted_key_1442 = (key_1440).as_str().into_py_any(py)?;
-            let converted_value_1443_list = PyList::empty(py);
-            for item_1444 in value_1441 {
-                let converted_item_1445 = guardrail_assessment_shared_to_py(py, item_1444)?;
-                converted_value_1443_list.append(converted_item_1445)?;
+        let converted_1501_dict = PyDict::new(py);
+        for (key_1502, value_1503) in value {
+            let converted_key_1504 = (key_1502).as_str().into_py_any(py)?;
+            let converted_value_1505_list = PyList::empty(py);
+            for item_1506 in value_1503 {
+                let converted_item_1507 = guardrail_assessment_shared_to_py(py, item_1506)?;
+                converted_value_1505_list.append(converted_item_1507)?;
             }
-            let converted_value_1443 = converted_value_1443_list.into_any().unbind();
-            converted_1439_dict.set_item(converted_key_1442, converted_value_1443)?;
+            let converted_value_1505 = converted_value_1505_list.into_any().unbind();
+            converted_1501_dict.set_item(converted_key_1504, converted_value_1505)?;
         }
-        let converted_1439 = converted_1439_dict.into_any().unbind();
-        result.set_item("output_assessments", converted_1439)?;
+        let converted_1501 = converted_1501_dict.into_any().unbind();
+        result.set_item("output_assessments", converted_1501)?;
     } else {
         result.set_item("output_assessments", py.None())?;
     }
     if let Some(value) = &value.action_reason {
-        let converted_1446 = (value).as_str().into_py_any(py)?;
-        result.set_item("action_reason", converted_1446)?;
+        let converted_1508 = (value).as_str().into_py_any(py)?;
+        result.set_item("action_reason", converted_1508)?;
     } else {
         result.set_item("action_reason", py.None())?;
     }
@@ -9437,13 +13980,13 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn model_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.model_output {
-            let converted_1412_list = PyList::empty(py);
-            for item_1413 in value {
-                let converted_item_1414 = (item_1413).as_str().into_py_any(py)?;
-                converted_1412_list.append(converted_item_1414)?;
+            let converted_1474_list = PyList::empty(py);
+            for item_1475 in value {
+                let converted_item_1476 = (item_1475).as_str().into_py_any(py)?;
+                converted_1474_list.append(converted_item_1476)?;
             }
-            let converted_1412 = converted_1412_list.into_any().unbind();
-            Ok(converted_1412)
+            let converted_1474 = converted_1474_list.into_any().unbind();
+            Ok(converted_1474)
         } else {
             Ok(py.None())
         }
@@ -9452,20 +13995,20 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn input_assessment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_assessment {
-            let converted_1415_dict = PyDict::new(py);
-            for (key_1416, value_1417) in value {
-                let converted_key_1418 = (key_1416).as_str().into_py_any(py)?;
-                let converted_value_1419 = Py::new(
+            let converted_1477_dict = PyDict::new(py);
+            for (key_1478, value_1479) in value {
+                let converted_key_1480 = (key_1478).as_str().into_py_any(py)?;
+                let converted_value_1481 = Py::new(
                     py,
                     PyGuardrailAssessment {
-                        inner: Arc::clone(value_1417),
+                        inner: Arc::clone(value_1479),
                     },
                 )?
                 .into_any();
-                converted_1415_dict.set_item(converted_key_1418, converted_value_1419)?;
+                converted_1477_dict.set_item(converted_key_1480, converted_value_1481)?;
             }
-            let converted_1415 = converted_1415_dict.into_any().unbind();
-            Ok(converted_1415)
+            let converted_1477 = converted_1477_dict.into_any().unbind();
+            Ok(converted_1477)
         } else {
             Ok(py.None())
         }
@@ -9474,25 +14017,25 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn output_assessments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_assessments {
-            let converted_1420_dict = PyDict::new(py);
-            for (key_1421, value_1422) in value {
-                let converted_key_1423 = (key_1421).as_str().into_py_any(py)?;
-                let converted_value_1424_list = PyList::empty(py);
-                for item_1425 in value_1422 {
-                    let converted_item_1426 = Py::new(
+            let converted_1482_dict = PyDict::new(py);
+            for (key_1483, value_1484) in value {
+                let converted_key_1485 = (key_1483).as_str().into_py_any(py)?;
+                let converted_value_1486_list = PyList::empty(py);
+                for item_1487 in value_1484 {
+                    let converted_item_1488 = Py::new(
                         py,
                         PyGuardrailAssessment {
-                            inner: Arc::clone(item_1425),
+                            inner: Arc::clone(item_1487),
                         },
                     )?
                     .into_any();
-                    converted_value_1424_list.append(converted_item_1426)?;
+                    converted_value_1486_list.append(converted_item_1488)?;
                 }
-                let converted_value_1424 = converted_value_1424_list.into_any().unbind();
-                converted_1420_dict.set_item(converted_key_1423, converted_value_1424)?;
+                let converted_value_1486 = converted_value_1486_list.into_any().unbind();
+                converted_1482_dict.set_item(converted_key_1485, converted_value_1486)?;
             }
-            let converted_1420 = converted_1420_dict.into_any().unbind();
-            Ok(converted_1420)
+            let converted_1482 = converted_1482_dict.into_any().unbind();
+            Ok(converted_1482)
         } else {
             Ok(py.None())
         }
@@ -9501,8 +14044,8 @@ impl PyGuardrailTraceAssessment {
     #[getter]
     fn action_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_reason {
-            let converted_1427 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1427)
+            let converted_1489 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1489)
         } else {
             Ok(py.None())
         }
@@ -9526,55 +14069,55 @@ struct PyGuardrailUsage {
 impl PyGuardrailUsage {
     #[getter]
     fn topic_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1447 = (&self.inner.topic_policy_units)
+        let converted_1509 = (&self.inner.topic_policy_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1447)
+        Ok(converted_1509)
     }
 
     #[getter]
     fn content_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1448 = (&self.inner.content_policy_units)
+        let converted_1510 = (&self.inner.content_policy_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1448)
+        Ok(converted_1510)
     }
 
     #[getter]
     fn word_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1449 = (&self.inner.word_policy_units).to_owned().into_py_any(py)?;
-        Ok(converted_1449)
+        let converted_1511 = (&self.inner.word_policy_units).to_owned().into_py_any(py)?;
+        Ok(converted_1511)
     }
 
     #[getter]
     fn sensitive_information_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1450 = (&self.inner.sensitive_information_policy_units)
+        let converted_1512 = (&self.inner.sensitive_information_policy_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1450)
+        Ok(converted_1512)
     }
 
     #[getter]
     fn sensitive_information_policy_free_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1451 = (&self.inner.sensitive_information_policy_free_units)
+        let converted_1513 = (&self.inner.sensitive_information_policy_free_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1451)
+        Ok(converted_1513)
     }
 
     #[getter]
     fn contextual_grounding_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1452 = (&self.inner.contextual_grounding_policy_units)
+        let converted_1514 = (&self.inner.contextual_grounding_policy_units)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1452)
+        Ok(converted_1514)
     }
 
     #[getter]
     fn content_policy_image_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_policy_image_units {
-            let converted_1453 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1453)
+            let converted_1515 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1515)
         } else {
             Ok(py.None())
         }
@@ -9583,8 +14126,8 @@ impl PyGuardrailUsage {
     #[getter]
     fn automated_reasoning_policy_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automated_reasoning_policy_units {
-            let converted_1454 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1454)
+            let converted_1516 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1516)
         } else {
             Ok(py.None())
         }
@@ -9593,8 +14136,8 @@ impl PyGuardrailUsage {
     #[getter]
     fn automated_reasoning_policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.automated_reasoning_policies {
-            let converted_1455 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1455)
+            let converted_1517 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1517)
         } else {
             Ok(py.None())
         }
@@ -9619,11 +14162,11 @@ impl From<aws_sdk_bedrockruntime::types::GuardrailWordPolicyAssessment>
         Self {
             custom_words: (value.custom_words)
                 .into_iter()
-                .map(|owned_1462| Arc::new(owned_1462))
+                .map(|owned_1524| Arc::new(owned_1524))
                 .collect(),
             managed_word_lists: (value.managed_word_lists)
                 .into_iter()
-                .map(|owned_1463| Arc::new(owned_1463))
+                .map(|owned_1525| Arc::new(owned_1525))
                 .collect(),
         }
     }
@@ -9634,20 +14177,20 @@ fn guardrail_word_policy_assessment_shared_to_py(
     value: &SharedGuardrailWordPolicyAssessment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1464_list = PyList::empty(py);
-    for item_1465 in &value.custom_words {
-        let converted_item_1466 = guardrail_custom_word_to_py(py, item_1465)?;
-        converted_1464_list.append(converted_item_1466)?;
+    let converted_1526_list = PyList::empty(py);
+    for item_1527 in &value.custom_words {
+        let converted_item_1528 = guardrail_custom_word_to_py(py, item_1527)?;
+        converted_1526_list.append(converted_item_1528)?;
     }
-    let converted_1464 = converted_1464_list.into_any().unbind();
-    result.set_item("custom_words", converted_1464)?;
-    let converted_1467_list = PyList::empty(py);
-    for item_1468 in &value.managed_word_lists {
-        let converted_item_1469 = guardrail_managed_word_to_py(py, item_1468)?;
-        converted_1467_list.append(converted_item_1469)?;
+    let converted_1526 = converted_1526_list.into_any().unbind();
+    result.set_item("custom_words", converted_1526)?;
+    let converted_1529_list = PyList::empty(py);
+    for item_1530 in &value.managed_word_lists {
+        let converted_item_1531 = guardrail_managed_word_to_py(py, item_1530)?;
+        converted_1529_list.append(converted_item_1531)?;
     }
-    let converted_1467 = converted_1467_list.into_any().unbind();
-    result.set_item("managed_word_lists", converted_1467)?;
+    let converted_1529 = converted_1529_list.into_any().unbind();
+    result.set_item("managed_word_lists", converted_1529)?;
     Ok(result.into_any().unbind())
 }
 
@@ -9664,36 +14207,36 @@ struct PyGuardrailWordPolicyAssessment {
 impl PyGuardrailWordPolicyAssessment {
     #[getter]
     fn custom_words(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1456_list = PyList::empty(py);
-        for item_1457 in &self.inner.custom_words {
-            let converted_item_1458 = Py::new(
+        let converted_1518_list = PyList::empty(py);
+        for item_1519 in &self.inner.custom_words {
+            let converted_item_1520 = Py::new(
                 py,
                 PyGuardrailCustomWord {
-                    inner: Arc::clone(item_1457),
+                    inner: Arc::clone(item_1519),
                 },
             )?
             .into_any();
-            converted_1456_list.append(converted_item_1458)?;
+            converted_1518_list.append(converted_item_1520)?;
         }
-        let converted_1456 = converted_1456_list.into_any().unbind();
-        Ok(converted_1456)
+        let converted_1518 = converted_1518_list.into_any().unbind();
+        Ok(converted_1518)
     }
 
     #[getter]
     fn managed_word_lists(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1459_list = PyList::empty(py);
-        for item_1460 in &self.inner.managed_word_lists {
-            let converted_item_1461 = Py::new(
+        let converted_1521_list = PyList::empty(py);
+        for item_1522 in &self.inner.managed_word_lists {
+            let converted_item_1523 = Py::new(
                 py,
                 PyGuardrailManagedWord {
-                    inner: Arc::clone(item_1460),
+                    inner: Arc::clone(item_1522),
                 },
             )?
             .into_any();
-            converted_1459_list.append(converted_item_1461)?;
+            converted_1521_list.append(converted_item_1523)?;
         }
-        let converted_1459 = converted_1459_list.into_any().unbind();
-        Ok(converted_1459)
+        let converted_1521 = converted_1521_list.into_any().unbind();
+        Ok(converted_1521)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -9714,8 +14257,8 @@ struct PyPerformanceConfiguration {
 impl PyPerformanceConfiguration {
     #[getter]
     fn latency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1470 = (&self.inner.latency).as_str().into_py_any(py)?;
-        Ok(converted_1470)
+        let converted_1532 = (&self.inner.latency).as_str().into_py_any(py)?;
+        Ok(converted_1532)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -9737,8 +14280,8 @@ impl PyPromptRouterTrace {
     #[getter]
     fn invoked_model_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.invoked_model_id {
-            let converted_1471 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1471)
+            let converted_1533 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1533)
         } else {
             Ok(py.None())
         }
@@ -9758,8 +14301,8 @@ struct PyServiceTier {
 impl PyServiceTier {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1472 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1472)
+        let converted_1534 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1534)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -9789,7 +14332,7 @@ impl From<aws_sdk_bedrockruntime::types::TokenUsage> for SharedTokenUsage {
             cache_details: value.cache_details.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1481| Arc::new(owned_1481))
+                    .map(|owned_1543| Arc::new(owned_1543))
                     .collect()
             }),
         }
@@ -9798,32 +14341,32 @@ impl From<aws_sdk_bedrockruntime::types::TokenUsage> for SharedTokenUsage {
 
 fn token_usage_shared_to_py(py: Python<'_>, value: &SharedTokenUsage) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1482 = (&value.input_tokens).to_owned().into_py_any(py)?;
-    result.set_item("input_tokens", converted_1482)?;
-    let converted_1483 = (&value.output_tokens).to_owned().into_py_any(py)?;
-    result.set_item("output_tokens", converted_1483)?;
-    let converted_1484 = (&value.total_tokens).to_owned().into_py_any(py)?;
-    result.set_item("total_tokens", converted_1484)?;
+    let converted_1544 = (&value.input_tokens).to_owned().into_py_any(py)?;
+    result.set_item("input_tokens", converted_1544)?;
+    let converted_1545 = (&value.output_tokens).to_owned().into_py_any(py)?;
+    result.set_item("output_tokens", converted_1545)?;
+    let converted_1546 = (&value.total_tokens).to_owned().into_py_any(py)?;
+    result.set_item("total_tokens", converted_1546)?;
     if let Some(value) = &value.cache_read_input_tokens {
-        let converted_1485 = (value).to_owned().into_py_any(py)?;
-        result.set_item("cache_read_input_tokens", converted_1485)?;
+        let converted_1547 = (value).to_owned().into_py_any(py)?;
+        result.set_item("cache_read_input_tokens", converted_1547)?;
     } else {
         result.set_item("cache_read_input_tokens", py.None())?;
     }
     if let Some(value) = &value.cache_write_input_tokens {
-        let converted_1486 = (value).to_owned().into_py_any(py)?;
-        result.set_item("cache_write_input_tokens", converted_1486)?;
+        let converted_1548 = (value).to_owned().into_py_any(py)?;
+        result.set_item("cache_write_input_tokens", converted_1548)?;
     } else {
         result.set_item("cache_write_input_tokens", py.None())?;
     }
     if let Some(value) = &value.cache_details {
-        let converted_1487_list = PyList::empty(py);
-        for item_1488 in value {
-            let converted_item_1489 = cache_detail_to_py(py, item_1488)?;
-            converted_1487_list.append(converted_item_1489)?;
+        let converted_1549_list = PyList::empty(py);
+        for item_1550 in value {
+            let converted_item_1551 = cache_detail_to_py(py, item_1550)?;
+            converted_1549_list.append(converted_item_1551)?;
         }
-        let converted_1487 = converted_1487_list.into_any().unbind();
-        result.set_item("cache_details", converted_1487)?;
+        let converted_1549 = converted_1549_list.into_any().unbind();
+        result.set_item("cache_details", converted_1549)?;
     } else {
         result.set_item("cache_details", py.None())?;
     }
@@ -9839,27 +14382,27 @@ struct PyTokenUsage {
 impl PyTokenUsage {
     #[getter]
     fn input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1473 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1473)
+        let converted_1535 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1535)
     }
 
     #[getter]
     fn output_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1474 = (&self.inner.output_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1474)
+        let converted_1536 = (&self.inner.output_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1536)
     }
 
     #[getter]
     fn total_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1475 = (&self.inner.total_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1475)
+        let converted_1537 = (&self.inner.total_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1537)
     }
 
     #[getter]
     fn cache_read_input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cache_read_input_tokens {
-            let converted_1476 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1476)
+            let converted_1538 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1538)
         } else {
             Ok(py.None())
         }
@@ -9868,8 +14411,8 @@ impl PyTokenUsage {
     #[getter]
     fn cache_write_input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cache_write_input_tokens {
-            let converted_1477 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1477)
+            let converted_1539 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1539)
         } else {
             Ok(py.None())
         }
@@ -9878,19 +14421,19 @@ impl PyTokenUsage {
     #[getter]
     fn cache_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cache_details {
-            let converted_1478_list = PyList::empty(py);
-            for item_1479 in value {
-                let converted_item_1480 = Py::new(
+            let converted_1540_list = PyList::empty(py);
+            for item_1541 in value {
+                let converted_item_1542 = Py::new(
                     py,
                     PyCacheDetail {
-                        inner: Arc::clone(item_1479),
+                        inner: Arc::clone(item_1541),
                     },
                 )?
                 .into_any();
-                converted_1478_list.append(converted_item_1480)?;
+                converted_1540_list.append(converted_item_1542)?;
             }
-            let converted_1478 = converted_1478_list.into_any().unbind();
-            Ok(converted_1478)
+            let converted_1540 = converted_1540_list.into_any().unbind();
+            Ok(converted_1540)
         } else {
             Ok(py.None())
         }
@@ -9924,11 +14467,11 @@ impl From<aws_sdk_bedrockruntime::operation::apply_guardrail::ApplyGuardrailOutp
             action_reason: value.action_reason,
             outputs: (value.outputs)
                 .into_iter()
-                .map(|owned_1500| Arc::new(owned_1500))
+                .map(|owned_1562| Arc::new(owned_1562))
                 .collect(),
             assessments: (value.assessments)
                 .into_iter()
-                .map(|owned_1501| Arc::new(SharedGuardrailAssessment::from(owned_1501)))
+                .map(|owned_1563| Arc::new(SharedGuardrailAssessment::from(owned_1563)))
                 .collect(),
             guardrail_coverage: value
                 .guardrail_coverage
@@ -9951,14 +14494,14 @@ impl PyOperationApplyGuardrailOutput {
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
-            let converted_1490 = Py::new(
+            let converted_1552 = Py::new(
                 py,
                 PyGuardrailUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1490)
+            Ok(converted_1552)
         } else {
             Ok(py.None())
         }
@@ -9966,15 +14509,15 @@ impl PyOperationApplyGuardrailOutput {
 
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1491 = (&self.inner.action).as_str().into_py_any(py)?;
-        Ok(converted_1491)
+        let converted_1553 = (&self.inner.action).as_str().into_py_any(py)?;
+        Ok(converted_1553)
     }
 
     #[getter]
     fn action_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action_reason {
-            let converted_1492 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1492)
+            let converted_1554 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1554)
         } else {
             Ok(py.None())
         }
@@ -9982,49 +14525,49 @@ impl PyOperationApplyGuardrailOutput {
 
     #[getter]
     fn outputs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1493_list = PyList::empty(py);
-        for item_1494 in &self.inner.outputs {
-            let converted_item_1495 = Py::new(
+        let converted_1555_list = PyList::empty(py);
+        for item_1556 in &self.inner.outputs {
+            let converted_item_1557 = Py::new(
                 py,
                 PyGuardrailOutputContent {
-                    inner: Arc::clone(item_1494),
+                    inner: Arc::clone(item_1556),
                 },
             )?
             .into_any();
-            converted_1493_list.append(converted_item_1495)?;
+            converted_1555_list.append(converted_item_1557)?;
         }
-        let converted_1493 = converted_1493_list.into_any().unbind();
-        Ok(converted_1493)
+        let converted_1555 = converted_1555_list.into_any().unbind();
+        Ok(converted_1555)
     }
 
     #[getter]
     fn assessments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1496_list = PyList::empty(py);
-        for item_1497 in &self.inner.assessments {
-            let converted_item_1498 = Py::new(
+        let converted_1558_list = PyList::empty(py);
+        for item_1559 in &self.inner.assessments {
+            let converted_item_1560 = Py::new(
                 py,
                 PyGuardrailAssessment {
-                    inner: Arc::clone(item_1497),
+                    inner: Arc::clone(item_1559),
                 },
             )?
             .into_any();
-            converted_1496_list.append(converted_item_1498)?;
+            converted_1558_list.append(converted_item_1560)?;
         }
-        let converted_1496 = converted_1496_list.into_any().unbind();
-        Ok(converted_1496)
+        let converted_1558 = converted_1558_list.into_any().unbind();
+        Ok(converted_1558)
     }
 
     #[getter]
     fn guardrail_coverage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.guardrail_coverage {
-            let converted_1499 = Py::new(
+            let converted_1561 = Py::new(
                 py,
                 PyGuardrailCoverage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1499)
+            Ok(converted_1561)
         } else {
             Ok(py.None())
         }
@@ -10033,36 +14576,36 @@ impl PyOperationApplyGuardrailOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.usage {
-            let converted_1502 = guardrail_usage_to_py(py, value)?;
-            result.set_item("usage", converted_1502)?;
+            let converted_1564 = guardrail_usage_to_py(py, value)?;
+            result.set_item("usage", converted_1564)?;
         } else {
             result.set_item("usage", py.None())?;
         }
-        let converted_1503 = (&self.inner.action).as_str().into_py_any(py)?;
-        result.set_item("action", converted_1503)?;
+        let converted_1565 = (&self.inner.action).as_str().into_py_any(py)?;
+        result.set_item("action", converted_1565)?;
         if let Some(value) = &self.inner.action_reason {
-            let converted_1504 = (value).as_str().into_py_any(py)?;
-            result.set_item("action_reason", converted_1504)?;
+            let converted_1566 = (value).as_str().into_py_any(py)?;
+            result.set_item("action_reason", converted_1566)?;
         } else {
             result.set_item("action_reason", py.None())?;
         }
-        let converted_1505_list = PyList::empty(py);
-        for item_1506 in &self.inner.outputs {
-            let converted_item_1507 = guardrail_output_content_to_py(py, item_1506)?;
-            converted_1505_list.append(converted_item_1507)?;
+        let converted_1567_list = PyList::empty(py);
+        for item_1568 in &self.inner.outputs {
+            let converted_item_1569 = guardrail_output_content_to_py(py, item_1568)?;
+            converted_1567_list.append(converted_item_1569)?;
         }
-        let converted_1505 = converted_1505_list.into_any().unbind();
-        result.set_item("outputs", converted_1505)?;
-        let converted_1508_list = PyList::empty(py);
-        for item_1509 in &self.inner.assessments {
-            let converted_item_1510 = guardrail_assessment_shared_to_py(py, item_1509)?;
-            converted_1508_list.append(converted_item_1510)?;
+        let converted_1567 = converted_1567_list.into_any().unbind();
+        result.set_item("outputs", converted_1567)?;
+        let converted_1570_list = PyList::empty(py);
+        for item_1571 in &self.inner.assessments {
+            let converted_item_1572 = guardrail_assessment_shared_to_py(py, item_1571)?;
+            converted_1570_list.append(converted_item_1572)?;
         }
-        let converted_1508 = converted_1508_list.into_any().unbind();
-        result.set_item("assessments", converted_1508)?;
+        let converted_1570 = converted_1570_list.into_any().unbind();
+        result.set_item("assessments", converted_1570)?;
         if let Some(value) = &self.inner.guardrail_coverage {
-            let converted_1511 = guardrail_coverage_shared_to_py(py, value)?;
-            result.set_item("guardrail_coverage", converted_1511)?;
+            let converted_1573 = guardrail_coverage_shared_to_py(py, value)?;
+            result.set_item("guardrail_coverage", converted_1573)?;
         } else {
             result.set_item("guardrail_coverage", py.None())?;
         }
@@ -10118,8 +14661,8 @@ impl PyOperationConverseOutput {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
-            let converted_1512 = converse_output_to_py(py, value)?;
-            Ok(converted_1512)
+            let converted_1574 = converse_output_to_py(py, value)?;
+            Ok(converted_1574)
         } else {
             Ok(py.None())
         }
@@ -10127,21 +14670,21 @@ impl PyOperationConverseOutput {
 
     #[getter]
     fn stop_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1513 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
-        Ok(converted_1513)
+        let converted_1575 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
+        Ok(converted_1575)
     }
 
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
-            let converted_1514 = Py::new(
+            let converted_1576 = Py::new(
                 py,
                 PyTokenUsage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1514)
+            Ok(converted_1576)
         } else {
             Ok(py.None())
         }
@@ -10150,14 +14693,14 @@ impl PyOperationConverseOutput {
     #[getter]
     fn metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metrics {
-            let converted_1515 = Py::new(
+            let converted_1577 = Py::new(
                 py,
                 PyConverseMetrics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1515)
+            Ok(converted_1577)
         } else {
             Ok(py.None())
         }
@@ -10166,8 +14709,8 @@ impl PyOperationConverseOutput {
     #[getter]
     fn additional_model_response_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_model_response_fields {
-            let converted_1516 = rboto_core::document_to_py(py, value)?;
-            Ok(converted_1516)
+            let converted_1578 = rboto_core::document_to_py(py, value)?;
+            Ok(converted_1578)
         } else {
             Ok(py.None())
         }
@@ -10176,14 +14719,14 @@ impl PyOperationConverseOutput {
     #[getter]
     fn trace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trace {
-            let converted_1517 = Py::new(
+            let converted_1579 = Py::new(
                 py,
                 PyConverseTrace {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1517)
+            Ok(converted_1579)
         } else {
             Ok(py.None())
         }
@@ -10192,14 +14735,14 @@ impl PyOperationConverseOutput {
     #[getter]
     fn performance_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.performance_config {
-            let converted_1518 = Py::new(
+            let converted_1580 = Py::new(
                 py,
                 PyPerformanceConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1518)
+            Ok(converted_1580)
         } else {
             Ok(py.None())
         }
@@ -10208,14 +14751,14 @@ impl PyOperationConverseOutput {
     #[getter]
     fn service_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_tier {
-            let converted_1519 = Py::new(
+            let converted_1581 = Py::new(
                 py,
                 PyServiceTier {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1519)
+            Ok(converted_1581)
         } else {
             Ok(py.None())
         }
@@ -10224,46 +14767,46 @@ impl PyOperationConverseOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.output {
-            let converted_1520 = converse_output_to_py(py, value)?;
-            result.set_item("output", converted_1520)?;
+            let converted_1582 = converse_output_to_py(py, value)?;
+            result.set_item("output", converted_1582)?;
         } else {
             result.set_item("output", py.None())?;
         }
-        let converted_1521 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
-        result.set_item("stop_reason", converted_1521)?;
+        let converted_1583 = (&self.inner.stop_reason).as_str().into_py_any(py)?;
+        result.set_item("stop_reason", converted_1583)?;
         if let Some(value) = &self.inner.usage {
-            let converted_1522 = token_usage_shared_to_py(py, value)?;
-            result.set_item("usage", converted_1522)?;
+            let converted_1584 = token_usage_shared_to_py(py, value)?;
+            result.set_item("usage", converted_1584)?;
         } else {
             result.set_item("usage", py.None())?;
         }
         if let Some(value) = &self.inner.metrics {
-            let converted_1523 = converse_metrics_to_py(py, value)?;
-            result.set_item("metrics", converted_1523)?;
+            let converted_1585 = converse_metrics_to_py(py, value)?;
+            result.set_item("metrics", converted_1585)?;
         } else {
             result.set_item("metrics", py.None())?;
         }
         if let Some(value) = &self.inner.additional_model_response_fields {
-            let converted_1524 = rboto_core::document_to_py(py, value)?;
-            result.set_item("additional_model_response_fields", converted_1524)?;
+            let converted_1586 = rboto_core::document_to_py(py, value)?;
+            result.set_item("additional_model_response_fields", converted_1586)?;
         } else {
             result.set_item("additional_model_response_fields", py.None())?;
         }
         if let Some(value) = &self.inner.trace {
-            let converted_1525 = converse_trace_shared_to_py(py, value)?;
-            result.set_item("trace", converted_1525)?;
+            let converted_1587 = converse_trace_shared_to_py(py, value)?;
+            result.set_item("trace", converted_1587)?;
         } else {
             result.set_item("trace", py.None())?;
         }
         if let Some(value) = &self.inner.performance_config {
-            let converted_1526 = performance_configuration_to_py(py, value)?;
-            result.set_item("performance_config", converted_1526)?;
+            let converted_1588 = performance_configuration_to_py(py, value)?;
+            result.set_item("performance_config", converted_1588)?;
         } else {
             result.set_item("performance_config", py.None())?;
         }
         if let Some(value) = &self.inner.service_tier {
-            let converted_1527 = service_tier_to_py(py, value)?;
-            result.set_item("service_tier", converted_1527)?;
+            let converted_1589 = service_tier_to_py(py, value)?;
+            result.set_item("service_tier", converted_1589)?;
         } else {
             result.set_item("service_tier", py.None())?;
         }
@@ -10284,14 +14827,14 @@ struct PyOperationCountTokensOutput {
 impl PyOperationCountTokensOutput {
     #[getter]
     fn input_tokens(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1528 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        Ok(converted_1528)
+        let converted_1590 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        Ok(converted_1590)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1529 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
-        result.set_item("input_tokens", converted_1529)?;
+        let converted_1591 = (&self.inner.input_tokens).to_owned().into_py_any(py)?;
+        result.set_item("input_tokens", converted_1591)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -10309,21 +14852,21 @@ struct PyOperationGetAsyncInvokeOutput {
 impl PyOperationGetAsyncInvokeOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1530 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_1530)
+        let converted_1592 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_1592)
     }
 
     #[getter]
     fn model_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1531 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        Ok(converted_1531)
+        let converted_1593 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        Ok(converted_1593)
     }
 
     #[getter]
     fn client_request_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_request_token {
-            let converted_1532 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1532)
+            let converted_1594 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1594)
         } else {
             Ok(py.None())
         }
@@ -10331,15 +14874,15 @@ impl PyOperationGetAsyncInvokeOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1533 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_1533)
+        let converted_1595 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_1595)
     }
 
     #[getter]
     fn failure_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_message {
-            let converted_1534 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1534)
+            let converted_1596 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1596)
         } else {
             Ok(py.None())
         }
@@ -10347,15 +14890,15 @@ impl PyOperationGetAsyncInvokeOutput {
 
     #[getter]
     fn submit_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1535 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        Ok(converted_1535)
+        let converted_1597 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        Ok(converted_1597)
     }
 
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1536 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1536)
+            let converted_1598 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1598)
         } else {
             Ok(py.None())
         }
@@ -10364,8 +14907,8 @@ impl PyOperationGetAsyncInvokeOutput {
     #[getter]
     fn end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_time {
-            let converted_1537 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1537)
+            let converted_1599 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1599)
         } else {
             Ok(py.None())
         }
@@ -10374,8 +14917,8 @@ impl PyOperationGetAsyncInvokeOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_1538 = async_invoke_output_data_config_to_py(py, value)?;
-            Ok(converted_1538)
+            let converted_1600 = async_invoke_output_data_config_to_py(py, value)?;
+            Ok(converted_1600)
         } else {
             Ok(py.None())
         }
@@ -10383,41 +14926,41 @@ impl PyOperationGetAsyncInvokeOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1539 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        result.set_item("invocation_arn", converted_1539)?;
-        let converted_1540 = (&self.inner.model_arn).as_str().into_py_any(py)?;
-        result.set_item("model_arn", converted_1540)?;
+        let converted_1601 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        result.set_item("invocation_arn", converted_1601)?;
+        let converted_1602 = (&self.inner.model_arn).as_str().into_py_any(py)?;
+        result.set_item("model_arn", converted_1602)?;
         if let Some(value) = &self.inner.client_request_token {
-            let converted_1541 = (value).as_str().into_py_any(py)?;
-            result.set_item("client_request_token", converted_1541)?;
+            let converted_1603 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_request_token", converted_1603)?;
         } else {
             result.set_item("client_request_token", py.None())?;
         }
-        let converted_1542 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_1542)?;
+        let converted_1604 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_1604)?;
         if let Some(value) = &self.inner.failure_message {
-            let converted_1543 = (value).as_str().into_py_any(py)?;
-            result.set_item("failure_message", converted_1543)?;
+            let converted_1605 = (value).as_str().into_py_any(py)?;
+            result.set_item("failure_message", converted_1605)?;
         } else {
             result.set_item("failure_message", py.None())?;
         }
-        let converted_1544 = (&self.inner.submit_time).to_string().into_py_any(py)?;
-        result.set_item("submit_time", converted_1544)?;
+        let converted_1606 = (&self.inner.submit_time).to_string().into_py_any(py)?;
+        result.set_item("submit_time", converted_1606)?;
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1545 = (value).to_string().into_py_any(py)?;
-            result.set_item("last_modified_time", converted_1545)?;
+            let converted_1607 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_time", converted_1607)?;
         } else {
             result.set_item("last_modified_time", py.None())?;
         }
         if let Some(value) = &self.inner.end_time {
-            let converted_1546 = (value).to_string().into_py_any(py)?;
-            result.set_item("end_time", converted_1546)?;
+            let converted_1608 = (value).to_string().into_py_any(py)?;
+            result.set_item("end_time", converted_1608)?;
         } else {
             result.set_item("end_time", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_1547 = async_invoke_output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_1547)?;
+            let converted_1609 = async_invoke_output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_1609)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
@@ -10463,14 +15006,14 @@ impl PyOperationInvokeGuardrailChecksOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results {
-            let converted_1548 = Py::new(
+            let converted_1610 = Py::new(
                 py,
                 PyGuardrailChecksResults {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1548)
+            Ok(converted_1610)
         } else {
             Ok(py.None())
         }
@@ -10479,14 +15022,14 @@ impl PyOperationInvokeGuardrailChecksOutput {
     #[getter]
     fn usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.usage {
-            let converted_1549 = Py::new(
+            let converted_1611 = Py::new(
                 py,
                 PyGuardrailChecksUsageResults {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1549)
+            Ok(converted_1611)
         } else {
             Ok(py.None())
         }
@@ -10495,14 +15038,14 @@ impl PyOperationInvokeGuardrailChecksOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.results {
-            let converted_1550 = guardrail_checks_results_shared_to_py(py, value)?;
-            result.set_item("results", converted_1550)?;
+            let converted_1612 = guardrail_checks_results_shared_to_py(py, value)?;
+            result.set_item("results", converted_1612)?;
         } else {
             result.set_item("results", py.None())?;
         }
         if let Some(value) = &self.inner.usage {
-            let converted_1551 = guardrail_checks_usage_results_shared_to_py(py, value)?;
-            result.set_item("usage", converted_1551)?;
+            let converted_1613 = guardrail_checks_usage_results_shared_to_py(py, value)?;
+            result.set_item("usage", converted_1613)?;
         } else {
             result.set_item("usage", py.None())?;
         }
@@ -10523,23 +15066,23 @@ struct PyOperationInvokeModelOutput {
 impl PyOperationInvokeModelOutput {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1552 = PyBytes::new(py, (&self.inner.body).as_ref())
+        let converted_1614 = PyBytes::new(py, (&self.inner.body).as_ref())
             .into_any()
             .unbind();
-        Ok(converted_1552)
+        Ok(converted_1614)
     }
 
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1553 = (&self.inner.content_type).as_str().into_py_any(py)?;
-        Ok(converted_1553)
+        let converted_1615 = (&self.inner.content_type).as_str().into_py_any(py)?;
+        Ok(converted_1615)
     }
 
     #[getter]
     fn performance_config_latency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.performance_config_latency {
-            let converted_1554 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1554)
+            let converted_1616 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1616)
         } else {
             Ok(py.None())
         }
@@ -10548,8 +15091,8 @@ impl PyOperationInvokeModelOutput {
     #[getter]
     fn service_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_tier {
-            let converted_1555 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1555)
+            let converted_1617 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1617)
         } else {
             Ok(py.None())
         }
@@ -10557,21 +15100,21 @@ impl PyOperationInvokeModelOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1556 = PyBytes::new(py, (&self.inner.body).as_ref())
+        let converted_1618 = PyBytes::new(py, (&self.inner.body).as_ref())
             .into_any()
             .unbind();
-        result.set_item("body", converted_1556)?;
-        let converted_1557 = (&self.inner.content_type).as_str().into_py_any(py)?;
-        result.set_item("content_type", converted_1557)?;
+        result.set_item("body", converted_1618)?;
+        let converted_1619 = (&self.inner.content_type).as_str().into_py_any(py)?;
+        result.set_item("content_type", converted_1619)?;
         if let Some(value) = &self.inner.performance_config_latency {
-            let converted_1558 = (value).as_str().into_py_any(py)?;
-            result.set_item("performance_config_latency", converted_1558)?;
+            let converted_1620 = (value).as_str().into_py_any(py)?;
+            result.set_item("performance_config_latency", converted_1620)?;
         } else {
             result.set_item("performance_config_latency", py.None())?;
         }
         if let Some(value) = &self.inner.service_tier {
-            let converted_1559 = (value).as_str().into_py_any(py)?;
-            result.set_item("service_tier", converted_1559)?;
+            let converted_1621 = (value).as_str().into_py_any(py)?;
+            result.set_item("service_tier", converted_1621)?;
         } else {
             result.set_item("service_tier", py.None())?;
         }
@@ -10598,7 +15141,7 @@ impl From<aws_sdk_bedrockruntime::operation::list_async_invokes::ListAsyncInvoke
             async_invoke_summaries: value.async_invoke_summaries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1564| Arc::new(owned_1564))
+                    .map(|owned_1626| Arc::new(owned_1626))
                     .collect()
             }),
         }
@@ -10619,8 +15162,8 @@ impl PyOperationListAsyncInvokesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1560 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1560)
+            let converted_1622 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1622)
         } else {
             Ok(py.None())
         }
@@ -10629,19 +15172,19 @@ impl PyOperationListAsyncInvokesOutput {
     #[getter]
     fn async_invoke_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.async_invoke_summaries {
-            let converted_1561_list = PyList::empty(py);
-            for item_1562 in value {
-                let converted_item_1563 = Py::new(
+            let converted_1623_list = PyList::empty(py);
+            for item_1624 in value {
+                let converted_item_1625 = Py::new(
                     py,
                     PyAsyncInvokeSummary {
-                        inner: Arc::clone(item_1562),
+                        inner: Arc::clone(item_1624),
                     },
                 )?
                 .into_any();
-                converted_1561_list.append(converted_item_1563)?;
+                converted_1623_list.append(converted_item_1625)?;
             }
-            let converted_1561 = converted_1561_list.into_any().unbind();
-            Ok(converted_1561)
+            let converted_1623 = converted_1623_list.into_any().unbind();
+            Ok(converted_1623)
         } else {
             Ok(py.None())
         }
@@ -10650,19 +15193,19 @@ impl PyOperationListAsyncInvokesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_1565 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1565)?;
+            let converted_1627 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1627)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.async_invoke_summaries {
-            let converted_1566_list = PyList::empty(py);
-            for item_1567 in value {
-                let converted_item_1568 = async_invoke_summary_to_py(py, item_1567)?;
-                converted_1566_list.append(converted_item_1568)?;
+            let converted_1628_list = PyList::empty(py);
+            for item_1629 in value {
+                let converted_item_1630 = async_invoke_summary_to_py(py, item_1629)?;
+                converted_1628_list.append(converted_item_1630)?;
             }
-            let converted_1566 = converted_1566_list.into_any().unbind();
-            result.set_item("async_invoke_summaries", converted_1566)?;
+            let converted_1628 = converted_1628_list.into_any().unbind();
+            result.set_item("async_invoke_summaries", converted_1628)?;
         } else {
             result.set_item("async_invoke_summaries", py.None())?;
         }
@@ -10683,14 +15226,14 @@ struct PyOperationStartAsyncInvokeOutput {
 impl PyOperationStartAsyncInvokeOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1569 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_1569)
+        let converted_1631 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_1631)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1570 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        result.set_item("invocation_arn", converted_1570)?;
+        let converted_1632 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        result.set_item("invocation_arn", converted_1632)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -11004,44 +15547,132 @@ impl BedrockRuntimeClient {
         let state = self.state.clone();
         let guardrail_identifier_value =
             if let Some(value) = dict_value(params, "guardrail_identifier")? {
-                let converted_1107: String = value.extract()?;
-                Some(converted_1107)
+                let converted_1156 = (|| -> PyResult<_> {
+                    let converted_1156: String = value.extract()?;
+                    Ok(converted_1156)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("guardrail_identifier"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "ApplyGuardrail",
+                    )
+                })?;
+                Some(converted_1156)
             } else {
                 None
             };
         let guardrail_version_value = if let Some(value) = dict_value(params, "guardrail_version")?
         {
-            let converted_1108: String = value.extract()?;
-            Some(converted_1108)
+            let converted_1157 = (|| -> PyResult<_> {
+                let converted_1157: String = value.extract()?;
+                Ok(converted_1157)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("guardrail_version"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "ApplyGuardrail",
+                )
+            })?;
+            Some(converted_1157)
         } else {
             None
         };
         let source_value = if let Some(value) = dict_value(params, "source")? {
-            let enum_value_1110: String = value.extract()?;
-            let converted_1109 = aws_sdk_bedrockruntime::types::GuardrailContentSource::from(
-                enum_value_1110.as_str(),
-            );
-            Some(converted_1109)
+            let converted_1158 = (|| -> PyResult<_> {
+                let enum_value_1159: String = value.extract()?;
+                let converted_1158 = aws_sdk_bedrockruntime::types::GuardrailContentSource::from(
+                    enum_value_1159.as_str(),
+                );
+                Ok(converted_1158)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("source"),
+                        "str (GuardrailContentSource)",
+                    ),
+                    "bedrock-runtime",
+                    "ApplyGuardrail",
+                )
+            })?;
+            Some(converted_1158)
         } else {
             None
         };
         let content_value = if let Some(value) = dict_value(params, "content")? {
-            let mut converted_1111 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_1112 in value.try_iter()? {
-                let item_1113 = item_result_1112?;
-                let converted_item_1114 = guardrail_content_block_from_py(&item_1113)?;
-                converted_1111.push(converted_item_1114);
-            }
-            Some(converted_1111)
+            let converted_1160 = (|| -> PyResult<_> {
+                let mut converted_1160 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1164, item_result_1161) in value.try_iter()?.enumerate() {
+                    let item_1162 = item_result_1161.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1164),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1163 = (|| -> PyResult<_> {
+                        let converted_item_1163 = guardrail_content_block_from_py(&item_1162)?;
+                        Ok(converted_item_1163)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1164),
+                            "exactly one known union variant",
+                        )
+                    })?;
+                    converted_1160.push(converted_item_1163);
+                }
+                Ok(converted_1160)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("content"),
+                        "sequence",
+                    ),
+                    "bedrock-runtime",
+                    "ApplyGuardrail",
+                )
+            })?;
+            Some(converted_1160)
         } else {
             None
         };
         let output_scope_value = if let Some(value) = dict_value(params, "output_scope")? {
-            let enum_value_1116: String = value.extract()?;
-            let converted_1115 =
-                aws_sdk_bedrockruntime::types::GuardrailOutputScope::from(enum_value_1116.as_str());
-            Some(converted_1115)
+            let converted_1165 = (|| -> PyResult<_> {
+                let enum_value_1166: String = value.extract()?;
+                let converted_1165 = aws_sdk_bedrockruntime::types::GuardrailOutputScope::from(
+                    enum_value_1166.as_str(),
+                );
+                Ok(converted_1165)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("output_scope"),
+                        "str (GuardrailOutputScope)",
+                    ),
+                    "bedrock-runtime",
+                    "ApplyGuardrail",
+                )
+            })?;
+            Some(converted_1165)
         } else {
             None
         };
@@ -11084,113 +15715,382 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1117: String = value.extract()?;
-            Some(converted_1117)
+            let converted_1167 = (|| -> PyResult<_> {
+                let converted_1167: String = value.extract()?;
+                Ok(converted_1167)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("model_id"), "str"),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1167)
         } else {
             None
         };
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_1118 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_1119 in value.try_iter()? {
-                let item_1120 = item_result_1119?;
-                let converted_item_1121 = message_from_py(&item_1120)?;
-                converted_1118.push(converted_item_1121);
-            }
-            Some(converted_1118)
+            let converted_1168 = (|| -> PyResult<_> {
+                let mut converted_1168 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1172, item_result_1169) in value.try_iter()?.enumerate() {
+                    let item_1170 = item_result_1169.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1172),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1171 = (|| -> PyResult<_> {
+                        let converted_item_1171 = message_from_py(&item_1170)?;
+                        Ok(converted_item_1171)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1172),
+                            "dict (Message)",
+                        )
+                    })?;
+                    converted_1168.push(converted_item_1171);
+                }
+                Ok(converted_1168)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("messages"),
+                        "sequence",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1168)
         } else {
             None
         };
         let system_value = if let Some(value) = dict_value(params, "system")? {
-            let mut converted_1122 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_1123 in value.try_iter()? {
-                let item_1124 = item_result_1123?;
-                let converted_item_1125 = system_content_block_from_py(&item_1124)?;
-                converted_1122.push(converted_item_1125);
-            }
-            Some(converted_1122)
+            let converted_1173 = (|| -> PyResult<_> {
+                let mut converted_1173 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1177, item_result_1174) in value.try_iter()?.enumerate() {
+                    let item_1175 = item_result_1174.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1177),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1176 = (|| -> PyResult<_> {
+                        let converted_item_1176 = system_content_block_from_py(&item_1175)?;
+                        Ok(converted_item_1176)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1177),
+                            "exactly one known union variant",
+                        )
+                    })?;
+                    converted_1173.push(converted_item_1176);
+                }
+                Ok(converted_1173)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("system"),
+                        "sequence",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1173)
         } else {
             None
         };
         let inference_config_value = if let Some(value) = dict_value(params, "inference_config")? {
-            let converted_1126 = inference_configuration_from_py(&value)?;
-            Some(converted_1126)
+            let converted_1178 = (|| -> PyResult<_> {
+                let converted_1178 = inference_configuration_from_py(&value)?;
+                Ok(converted_1178)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("inference_config"),
+                        "dict (InferenceConfiguration)",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1178)
         } else {
             None
         };
         let tool_config_value = if let Some(value) = dict_value(params, "tool_config")? {
-            let converted_1127 = tool_configuration_from_py(&value)?;
-            Some(converted_1127)
+            let converted_1179 = (|| -> PyResult<_> {
+                let converted_1179 = tool_configuration_from_py(&value)?;
+                Ok(converted_1179)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tool_config"),
+                        "dict (ToolConfiguration)",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1179)
         } else {
             None
         };
         let guardrail_config_value = if let Some(value) = dict_value(params, "guardrail_config")? {
-            let converted_1128 = guardrail_configuration_from_py(&value)?;
-            Some(converted_1128)
+            let converted_1180 = (|| -> PyResult<_> {
+                let converted_1180 = guardrail_configuration_from_py(&value)?;
+                Ok(converted_1180)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("guardrail_config"),
+                        "dict (GuardrailConfiguration)",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1180)
         } else {
             None
         };
         let additional_model_request_fields_value =
             if let Some(value) = dict_value(params, "additional_model_request_fields")? {
-                let converted_1129 = rboto_core::document_from_py(&value)?;
-                Some(converted_1129)
+                let converted_1181 = (|| -> PyResult<_> {
+                    let converted_1181 = rboto_core::document_from_py(&value)?;
+                    Ok(converted_1181)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("additional_model_request_fields"),
+                            "JSONValue",
+                        ),
+                        "bedrock-runtime",
+                        "Converse",
+                    )
+                })?;
+                Some(converted_1181)
             } else {
                 None
             };
         let prompt_variables_value = if let Some(value) = dict_value(params, "prompt_variables")? {
-            let mapping_1131 = value.cast::<PyDict>()?;
-            let mut converted_1130 = HashMap::with_capacity(mapping_1131.len());
-            for (key_1132, value_1133) in mapping_1131.iter() {
-                let converted_key_1134: String = key_1132.extract()?;
-                let converted_value_1135 = prompt_variable_values_from_py(&value_1133)?;
-                converted_1130.insert(converted_key_1134, converted_value_1135);
-            }
-            Some(converted_1130)
+            let converted_1182 = (|| -> PyResult<_> {
+                let mapping_1183 = value.cast::<PyDict>()?;
+                let mut converted_1182 = HashMap::with_capacity(mapping_1183.len());
+                for (index_1188, (key_1184, value_1185)) in mapping_1183.iter().enumerate() {
+                    let converted_key_1186 = (|| -> PyResult<_> {
+                        let converted_key_1186: String = key_1184.extract()?;
+                        Ok(converted_key_1186)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_1188),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_1187 = (|| -> PyResult<_> {
+                        let converted_value_1187 = prompt_variable_values_from_py(&value_1185)?;
+                        Ok(converted_value_1187)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_1188),
+                            "exactly one known union variant",
+                        )
+                    })?;
+                    converted_1182.insert(converted_key_1186, converted_value_1187);
+                }
+                Ok(converted_1182)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("prompt_variables"),
+                        "dict",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1182)
         } else {
             None
         };
         let additional_model_response_field_paths_value =
             if let Some(value) = dict_value(params, "additional_model_response_field_paths")? {
-                let mut converted_1136 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_1137 in value.try_iter()? {
-                    let item_1138 = item_result_1137?;
-                    let converted_item_1139: String = item_1138.extract()?;
-                    converted_1136.push(converted_item_1139);
-                }
-                Some(converted_1136)
+                let converted_1189 = (|| -> PyResult<_> {
+                    let mut converted_1189 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_1193, item_result_1190) in value.try_iter()?.enumerate() {
+                        let item_1191 = item_result_1190.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_1193),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_1192 = (|| -> PyResult<_> {
+                            let converted_item_1192: String = item_1191.extract()?;
+                            Ok(converted_item_1192)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_1193),
+                                "str",
+                            )
+                        })?;
+                        converted_1189.push(converted_item_1192);
+                    }
+                    Ok(converted_1189)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("additional_model_response_field_paths"),
+                            "sequence",
+                        ),
+                        "bedrock-runtime",
+                        "Converse",
+                    )
+                })?;
+                Some(converted_1189)
             } else {
                 None
             };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let mapping_1141 = value.cast::<PyDict>()?;
-            let mut converted_1140 = HashMap::with_capacity(mapping_1141.len());
-            for (key_1142, value_1143) in mapping_1141.iter() {
-                let converted_key_1144: String = key_1142.extract()?;
-                let converted_value_1145: String = value_1143.extract()?;
-                converted_1140.insert(converted_key_1144, converted_value_1145);
-            }
-            Some(converted_1140)
+            let converted_1194 = (|| -> PyResult<_> {
+                let mapping_1195 = value.cast::<PyDict>()?;
+                let mut converted_1194 = HashMap::with_capacity(mapping_1195.len());
+                for (index_1200, (key_1196, value_1197)) in mapping_1195.iter().enumerate() {
+                    let converted_key_1198 = (|| -> PyResult<_> {
+                        let converted_key_1198: String = key_1196.extract()?;
+                        Ok(converted_key_1198)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_1200),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_1199 = (|| -> PyResult<_> {
+                        let converted_value_1199: String = value_1197.extract()?;
+                        Ok(converted_value_1199)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_1200),
+                            "str",
+                        )
+                    })?;
+                    converted_1194.insert(converted_key_1198, converted_value_1199);
+                }
+                Ok(converted_1194)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("request_metadata"),
+                        "dict",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1194)
         } else {
             None
         };
         let performance_config_value =
             if let Some(value) = dict_value(params, "performance_config")? {
-                let converted_1146 = performance_configuration_from_py(&value)?;
-                Some(converted_1146)
+                let converted_1201 = (|| -> PyResult<_> {
+                    let converted_1201 = performance_configuration_from_py(&value)?;
+                    Ok(converted_1201)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("performance_config"),
+                            "dict (PerformanceConfiguration)",
+                        ),
+                        "bedrock-runtime",
+                        "Converse",
+                    )
+                })?;
+                Some(converted_1201)
             } else {
                 None
             };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let converted_1147 = service_tier_from_py(&value)?;
-            Some(converted_1147)
+            let converted_1202 = (|| -> PyResult<_> {
+                let converted_1202 = service_tier_from_py(&value)?;
+                Ok(converted_1202)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("service_tier"),
+                        "dict (ServiceTier)",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1202)
         } else {
             None
         };
         let output_config_value = if let Some(value) = dict_value(params, "output_config")? {
-            let converted_1148 = output_config_from_py(&value)?;
-            Some(converted_1148)
+            let converted_1203 = (|| -> PyResult<_> {
+                let converted_1203 = output_config_from_py(&value)?;
+                Ok(converted_1203)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("output_config"),
+                        "dict (OutputConfig)",
+                    ),
+                    "bedrock-runtime",
+                    "Converse",
+                )
+            })?;
+            Some(converted_1203)
         } else {
             None
         };
@@ -11242,113 +16142,382 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1149: String = value.extract()?;
-            Some(converted_1149)
+            let converted_1204 = (|| -> PyResult<_> {
+                let converted_1204: String = value.extract()?;
+                Ok(converted_1204)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("model_id"), "str"),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1204)
         } else {
             None
         };
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_1150 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_1151 in value.try_iter()? {
-                let item_1152 = item_result_1151?;
-                let converted_item_1153 = message_from_py(&item_1152)?;
-                converted_1150.push(converted_item_1153);
-            }
-            Some(converted_1150)
+            let converted_1205 = (|| -> PyResult<_> {
+                let mut converted_1205 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1209, item_result_1206) in value.try_iter()?.enumerate() {
+                    let item_1207 = item_result_1206.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1209),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1208 = (|| -> PyResult<_> {
+                        let converted_item_1208 = message_from_py(&item_1207)?;
+                        Ok(converted_item_1208)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1209),
+                            "dict (Message)",
+                        )
+                    })?;
+                    converted_1205.push(converted_item_1208);
+                }
+                Ok(converted_1205)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("messages"),
+                        "sequence",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1205)
         } else {
             None
         };
         let system_value = if let Some(value) = dict_value(params, "system")? {
-            let mut converted_1154 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_1155 in value.try_iter()? {
-                let item_1156 = item_result_1155?;
-                let converted_item_1157 = system_content_block_from_py(&item_1156)?;
-                converted_1154.push(converted_item_1157);
-            }
-            Some(converted_1154)
+            let converted_1210 = (|| -> PyResult<_> {
+                let mut converted_1210 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1214, item_result_1211) in value.try_iter()?.enumerate() {
+                    let item_1212 = item_result_1211.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1214),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1213 = (|| -> PyResult<_> {
+                        let converted_item_1213 = system_content_block_from_py(&item_1212)?;
+                        Ok(converted_item_1213)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1214),
+                            "exactly one known union variant",
+                        )
+                    })?;
+                    converted_1210.push(converted_item_1213);
+                }
+                Ok(converted_1210)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("system"),
+                        "sequence",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1210)
         } else {
             None
         };
         let inference_config_value = if let Some(value) = dict_value(params, "inference_config")? {
-            let converted_1158 = inference_configuration_from_py(&value)?;
-            Some(converted_1158)
+            let converted_1215 = (|| -> PyResult<_> {
+                let converted_1215 = inference_configuration_from_py(&value)?;
+                Ok(converted_1215)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("inference_config"),
+                        "dict (InferenceConfiguration)",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1215)
         } else {
             None
         };
         let tool_config_value = if let Some(value) = dict_value(params, "tool_config")? {
-            let converted_1159 = tool_configuration_from_py(&value)?;
-            Some(converted_1159)
+            let converted_1216 = (|| -> PyResult<_> {
+                let converted_1216 = tool_configuration_from_py(&value)?;
+                Ok(converted_1216)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tool_config"),
+                        "dict (ToolConfiguration)",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1216)
         } else {
             None
         };
         let guardrail_config_value = if let Some(value) = dict_value(params, "guardrail_config")? {
-            let converted_1160 = guardrail_stream_configuration_from_py(&value)?;
-            Some(converted_1160)
+            let converted_1217 = (|| -> PyResult<_> {
+                let converted_1217 = guardrail_stream_configuration_from_py(&value)?;
+                Ok(converted_1217)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("guardrail_config"),
+                        "dict (GuardrailStreamConfiguration)",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1217)
         } else {
             None
         };
         let additional_model_request_fields_value =
             if let Some(value) = dict_value(params, "additional_model_request_fields")? {
-                let converted_1161 = rboto_core::document_from_py(&value)?;
-                Some(converted_1161)
+                let converted_1218 = (|| -> PyResult<_> {
+                    let converted_1218 = rboto_core::document_from_py(&value)?;
+                    Ok(converted_1218)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("additional_model_request_fields"),
+                            "JSONValue",
+                        ),
+                        "bedrock-runtime",
+                        "ConverseStream",
+                    )
+                })?;
+                Some(converted_1218)
             } else {
                 None
             };
         let prompt_variables_value = if let Some(value) = dict_value(params, "prompt_variables")? {
-            let mapping_1163 = value.cast::<PyDict>()?;
-            let mut converted_1162 = HashMap::with_capacity(mapping_1163.len());
-            for (key_1164, value_1165) in mapping_1163.iter() {
-                let converted_key_1166: String = key_1164.extract()?;
-                let converted_value_1167 = prompt_variable_values_from_py(&value_1165)?;
-                converted_1162.insert(converted_key_1166, converted_value_1167);
-            }
-            Some(converted_1162)
+            let converted_1219 = (|| -> PyResult<_> {
+                let mapping_1220 = value.cast::<PyDict>()?;
+                let mut converted_1219 = HashMap::with_capacity(mapping_1220.len());
+                for (index_1225, (key_1221, value_1222)) in mapping_1220.iter().enumerate() {
+                    let converted_key_1223 = (|| -> PyResult<_> {
+                        let converted_key_1223: String = key_1221.extract()?;
+                        Ok(converted_key_1223)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_1225),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_1224 = (|| -> PyResult<_> {
+                        let converted_value_1224 = prompt_variable_values_from_py(&value_1222)?;
+                        Ok(converted_value_1224)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_1225),
+                            "exactly one known union variant",
+                        )
+                    })?;
+                    converted_1219.insert(converted_key_1223, converted_value_1224);
+                }
+                Ok(converted_1219)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("prompt_variables"),
+                        "dict",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1219)
         } else {
             None
         };
         let additional_model_response_field_paths_value =
             if let Some(value) = dict_value(params, "additional_model_response_field_paths")? {
-                let mut converted_1168 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_1169 in value.try_iter()? {
-                    let item_1170 = item_result_1169?;
-                    let converted_item_1171: String = item_1170.extract()?;
-                    converted_1168.push(converted_item_1171);
-                }
-                Some(converted_1168)
+                let converted_1226 = (|| -> PyResult<_> {
+                    let mut converted_1226 =
+                        Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                    for (index_1230, item_result_1227) in value.try_iter()?.enumerate() {
+                        let item_1228 = item_result_1227.map_err(|error| {
+                            rboto_core::input_rule(
+                                error,
+                                rboto_core::InputPath::Index(index_1230),
+                                "next sequence item",
+                                Some("iteration"),
+                            )
+                        })?;
+                        let converted_item_1229 = (|| -> PyResult<_> {
+                            let converted_item_1229: String = item_1228.extract()?;
+                            Ok(converted_item_1229)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Index(index_1230),
+                                "str",
+                            )
+                        })?;
+                        converted_1226.push(converted_item_1229);
+                    }
+                    Ok(converted_1226)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("additional_model_response_field_paths"),
+                            "sequence",
+                        ),
+                        "bedrock-runtime",
+                        "ConverseStream",
+                    )
+                })?;
+                Some(converted_1226)
             } else {
                 None
             };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let mapping_1173 = value.cast::<PyDict>()?;
-            let mut converted_1172 = HashMap::with_capacity(mapping_1173.len());
-            for (key_1174, value_1175) in mapping_1173.iter() {
-                let converted_key_1176: String = key_1174.extract()?;
-                let converted_value_1177: String = value_1175.extract()?;
-                converted_1172.insert(converted_key_1176, converted_value_1177);
-            }
-            Some(converted_1172)
+            let converted_1231 = (|| -> PyResult<_> {
+                let mapping_1232 = value.cast::<PyDict>()?;
+                let mut converted_1231 = HashMap::with_capacity(mapping_1232.len());
+                for (index_1237, (key_1233, value_1234)) in mapping_1232.iter().enumerate() {
+                    let converted_key_1235 = (|| -> PyResult<_> {
+                        let converted_key_1235: String = key_1233.extract()?;
+                        Ok(converted_key_1235)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_1237),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_1236 = (|| -> PyResult<_> {
+                        let converted_value_1236: String = value_1234.extract()?;
+                        Ok(converted_value_1236)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_1237),
+                            "str",
+                        )
+                    })?;
+                    converted_1231.insert(converted_key_1235, converted_value_1236);
+                }
+                Ok(converted_1231)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("request_metadata"),
+                        "dict",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1231)
         } else {
             None
         };
         let performance_config_value =
             if let Some(value) = dict_value(params, "performance_config")? {
-                let converted_1178 = performance_configuration_from_py(&value)?;
-                Some(converted_1178)
+                let converted_1238 = (|| -> PyResult<_> {
+                    let converted_1238 = performance_configuration_from_py(&value)?;
+                    Ok(converted_1238)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("performance_config"),
+                            "dict (PerformanceConfiguration)",
+                        ),
+                        "bedrock-runtime",
+                        "ConverseStream",
+                    )
+                })?;
+                Some(converted_1238)
             } else {
                 None
             };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let converted_1179 = service_tier_from_py(&value)?;
-            Some(converted_1179)
+            let converted_1239 = (|| -> PyResult<_> {
+                let converted_1239 = service_tier_from_py(&value)?;
+                Ok(converted_1239)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("service_tier"),
+                        "dict (ServiceTier)",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1239)
         } else {
             None
         };
         let output_config_value = if let Some(value) = dict_value(params, "output_config")? {
-            let converted_1180 = output_config_from_py(&value)?;
-            Some(converted_1180)
+            let converted_1240 = (|| -> PyResult<_> {
+                let converted_1240 = output_config_from_py(&value)?;
+                Ok(converted_1240)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("output_config"),
+                        "dict (OutputConfig)",
+                    ),
+                    "bedrock-runtime",
+                    "ConverseStream",
+                )
+            })?;
+            Some(converted_1240)
         } else {
             None
         };
@@ -11407,14 +16576,38 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1181: String = value.extract()?;
-            Some(converted_1181)
+            let converted_1241 = (|| -> PyResult<_> {
+                let converted_1241: String = value.extract()?;
+                Ok(converted_1241)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("model_id"), "str"),
+                    "bedrock-runtime",
+                    "CountTokens",
+                )
+            })?;
+            Some(converted_1241)
         } else {
             None
         };
         let input_value = if let Some(value) = dict_value(params, "input")? {
-            let converted_1182 = count_tokens_input_from_py(&value)?;
-            Some(converted_1182)
+            let converted_1242 = (|| -> PyResult<_> {
+                let converted_1242 = count_tokens_input_from_py(&value)?;
+                Ok(converted_1242)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("input"),
+                        "exactly one known union variant",
+                    ),
+                    "bedrock-runtime",
+                    "CountTokens",
+                )
+            })?;
+            Some(converted_1242)
         } else {
             None
         };
@@ -11451,8 +16644,22 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let invocation_arn_value = if let Some(value) = dict_value(params, "invocation_arn")? {
-            let converted_1183: String = value.extract()?;
-            Some(converted_1183)
+            let converted_1243 = (|| -> PyResult<_> {
+                let converted_1243: String = value.extract()?;
+                Ok(converted_1243)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("invocation_arn"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "GetAsyncInvoke",
+                )
+            })?;
+            Some(converted_1243)
         } else {
             None
         };
@@ -11489,20 +16696,65 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_1184 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_1185 in value.try_iter()? {
-                let item_1186 = item_result_1185?;
-                let converted_item_1187 = guardrail_checks_message_from_py(&item_1186)?;
-                converted_1184.push(converted_item_1187);
-            }
-            Some(converted_1184)
+            let converted_1244 = (|| -> PyResult<_> {
+                let mut converted_1244 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1248, item_result_1245) in value.try_iter()?.enumerate() {
+                    let item_1246 = item_result_1245.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1248),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1247 = (|| -> PyResult<_> {
+                        let converted_item_1247 = guardrail_checks_message_from_py(&item_1246)?;
+                        Ok(converted_item_1247)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1248),
+                            "dict (GuardrailChecksMessage)",
+                        )
+                    })?;
+                    converted_1244.push(converted_item_1247);
+                }
+                Ok(converted_1244)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("messages"),
+                        "sequence",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeGuardrailChecks",
+                )
+            })?;
+            Some(converted_1244)
         } else {
             None
         };
         let checks_value = if let Some(value) = dict_value(params, "checks")? {
-            let converted_1188 = guardrail_checks_config_from_py(&value)?;
-            Some(converted_1188)
+            let converted_1249 = (|| -> PyResult<_> {
+                let converted_1249 = guardrail_checks_config_from_py(&value)?;
+                Ok(converted_1249)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("checks"),
+                        "dict (GuardrailChecksConfig)",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeGuardrailChecks",
+                )
+            })?;
+            Some(converted_1249)
         } else {
             None
         };
@@ -11542,73 +16794,202 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let bytes_1190: Vec<u8> = value.extract()?;
-            let converted_1189 = ::aws_smithy_types::Blob::new(bytes_1190);
-            Some(converted_1189)
+            let converted_1250 = (|| -> PyResult<_> {
+                let bytes_1251: Vec<u8> = value.extract()?;
+                let converted_1250 = ::aws_smithy_types::Blob::new(bytes_1251);
+                Ok(converted_1250)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("body"), "bytes"),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1250)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_1191: String = value.extract()?;
-            Some(converted_1191)
+            let converted_1252 = (|| -> PyResult<_> {
+                let converted_1252: String = value.extract()?;
+                Ok(converted_1252)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("content_type"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1252)
         } else {
             None
         };
         let accept_value = if let Some(value) = dict_value(params, "accept")? {
-            let converted_1192: String = value.extract()?;
-            Some(converted_1192)
+            let converted_1253 = (|| -> PyResult<_> {
+                let converted_1253: String = value.extract()?;
+                Ok(converted_1253)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("accept"), "str"),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1253)
         } else {
             None
         };
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1193: String = value.extract()?;
-            Some(converted_1193)
+            let converted_1254 = (|| -> PyResult<_> {
+                let converted_1254: String = value.extract()?;
+                Ok(converted_1254)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("model_id"), "str"),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1254)
         } else {
             None
         };
         let trace_value = if let Some(value) = dict_value(params, "trace")? {
-            let enum_value_1195: String = value.extract()?;
-            let converted_1194 =
-                aws_sdk_bedrockruntime::types::Trace::from(enum_value_1195.as_str());
-            Some(converted_1194)
+            let converted_1255 = (|| -> PyResult<_> {
+                let enum_value_1256: String = value.extract()?;
+                let converted_1255 =
+                    aws_sdk_bedrockruntime::types::Trace::from(enum_value_1256.as_str());
+                Ok(converted_1255)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trace"),
+                        "str (Trace)",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1255)
         } else {
             None
         };
         let guardrail_identifier_value =
             if let Some(value) = dict_value(params, "guardrail_identifier")? {
-                let converted_1196: String = value.extract()?;
-                Some(converted_1196)
+                let converted_1257 = (|| -> PyResult<_> {
+                    let converted_1257: String = value.extract()?;
+                    Ok(converted_1257)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("guardrail_identifier"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "InvokeModel",
+                    )
+                })?;
+                Some(converted_1257)
             } else {
                 None
             };
         let guardrail_version_value = if let Some(value) = dict_value(params, "guardrail_version")?
         {
-            let converted_1197: String = value.extract()?;
-            Some(converted_1197)
+            let converted_1258 = (|| -> PyResult<_> {
+                let converted_1258: String = value.extract()?;
+                Ok(converted_1258)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("guardrail_version"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1258)
         } else {
             None
         };
-        let performance_config_latency_value =
-            if let Some(value) = dict_value(params, "performance_config_latency")? {
-                let enum_value_1199: String = value.extract()?;
-                let converted_1198 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
-                    enum_value_1199.as_str(),
+        let performance_config_latency_value = if let Some(value) =
+            dict_value(params, "performance_config_latency")?
+        {
+            let converted_1259 = (|| -> PyResult<_> {
+                let enum_value_1260: String = value.extract()?;
+                let converted_1259 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
+                    enum_value_1260.as_str(),
                 );
-                Some(converted_1198)
-            } else {
-                None
-            };
+                Ok(converted_1259)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("performance_config_latency"),
+                        "str (PerformanceConfigLatency)",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1259)
+        } else {
+            None
+        };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let enum_value_1201: String = value.extract()?;
-            let converted_1200 =
-                aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1201.as_str());
-            Some(converted_1200)
+            let converted_1261 = (|| -> PyResult<_> {
+                let enum_value_1262: String = value.extract()?;
+                let converted_1261 =
+                    aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1262.as_str());
+                Ok(converted_1261)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("service_tier"),
+                        "str (ServiceTierType)",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1261)
         } else {
             None
         };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let converted_1202: String = value.extract()?;
-            Some(converted_1202)
+            let converted_1263 = (|| -> PyResult<_> {
+                let converted_1263: String = value.extract()?;
+                Ok(converted_1263)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("request_metadata"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModel",
+                )
+            })?;
+            Some(converted_1263)
         } else {
             None
         };
@@ -11653,17 +17034,30 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1203: String = value.extract()?;
-            Some(converted_1203)
+            let converted_1264 = (|| -> PyResult<_> {
+                let converted_1264: String = value.extract()?;
+                Ok(converted_1264)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("model_id"), "str"),
+                    "bedrock-runtime",
+                    "InvokeModelWithBidirectionalStream",
+                )
+            })?;
+            Some(converted_1264)
         } else {
             None
         };
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let converted_1204: aws_sdk_bedrockruntime::primitives::event_stream::EventStreamSender< aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError, > = rboto_core::python_event_stream(
-                &value, invoke_model_with_bidirectional_stream_input_from_py,
-                aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError::unhandled,
-            )?.into();
-            Some(converted_1204)
+            let converted_1265 = (|| -> PyResult<_> {
+                let converted_1265: aws_sdk_bedrockruntime::primitives::event_stream::EventStreamSender< aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError, > = rboto_core::python_event_stream(
+                    &value, invoke_model_with_bidirectional_stream_input_from_py,
+                    aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError::unhandled,
+                )?.into();
+                Ok(converted_1265)
+            })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("body"), "async iterator"), "bedrock-runtime", "InvokeModelWithBidirectionalStream"))?;
+            Some(converted_1265)
         } else {
             None
         };
@@ -11714,73 +17108,202 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let bytes_1206: Vec<u8> = value.extract()?;
-            let converted_1205 = ::aws_smithy_types::Blob::new(bytes_1206);
-            Some(converted_1205)
+            let converted_1266 = (|| -> PyResult<_> {
+                let bytes_1267: Vec<u8> = value.extract()?;
+                let converted_1266 = ::aws_smithy_types::Blob::new(bytes_1267);
+                Ok(converted_1266)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("body"), "bytes"),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1266)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_1207: String = value.extract()?;
-            Some(converted_1207)
+            let converted_1268 = (|| -> PyResult<_> {
+                let converted_1268: String = value.extract()?;
+                Ok(converted_1268)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("content_type"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1268)
         } else {
             None
         };
         let accept_value = if let Some(value) = dict_value(params, "accept")? {
-            let converted_1208: String = value.extract()?;
-            Some(converted_1208)
+            let converted_1269 = (|| -> PyResult<_> {
+                let converted_1269: String = value.extract()?;
+                Ok(converted_1269)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("accept"), "str"),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1269)
         } else {
             None
         };
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1209: String = value.extract()?;
-            Some(converted_1209)
+            let converted_1270 = (|| -> PyResult<_> {
+                let converted_1270: String = value.extract()?;
+                Ok(converted_1270)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("model_id"), "str"),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1270)
         } else {
             None
         };
         let trace_value = if let Some(value) = dict_value(params, "trace")? {
-            let enum_value_1211: String = value.extract()?;
-            let converted_1210 =
-                aws_sdk_bedrockruntime::types::Trace::from(enum_value_1211.as_str());
-            Some(converted_1210)
+            let converted_1271 = (|| -> PyResult<_> {
+                let enum_value_1272: String = value.extract()?;
+                let converted_1271 =
+                    aws_sdk_bedrockruntime::types::Trace::from(enum_value_1272.as_str());
+                Ok(converted_1271)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("trace"),
+                        "str (Trace)",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1271)
         } else {
             None
         };
         let guardrail_identifier_value =
             if let Some(value) = dict_value(params, "guardrail_identifier")? {
-                let converted_1212: String = value.extract()?;
-                Some(converted_1212)
+                let converted_1273 = (|| -> PyResult<_> {
+                    let converted_1273: String = value.extract()?;
+                    Ok(converted_1273)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("guardrail_identifier"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "InvokeModelWithResponseStream",
+                    )
+                })?;
+                Some(converted_1273)
             } else {
                 None
             };
         let guardrail_version_value = if let Some(value) = dict_value(params, "guardrail_version")?
         {
-            let converted_1213: String = value.extract()?;
-            Some(converted_1213)
+            let converted_1274 = (|| -> PyResult<_> {
+                let converted_1274: String = value.extract()?;
+                Ok(converted_1274)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("guardrail_version"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1274)
         } else {
             None
         };
-        let performance_config_latency_value =
-            if let Some(value) = dict_value(params, "performance_config_latency")? {
-                let enum_value_1215: String = value.extract()?;
-                let converted_1214 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
-                    enum_value_1215.as_str(),
+        let performance_config_latency_value = if let Some(value) =
+            dict_value(params, "performance_config_latency")?
+        {
+            let converted_1275 = (|| -> PyResult<_> {
+                let enum_value_1276: String = value.extract()?;
+                let converted_1275 = aws_sdk_bedrockruntime::types::PerformanceConfigLatency::from(
+                    enum_value_1276.as_str(),
                 );
-                Some(converted_1214)
-            } else {
-                None
-            };
+                Ok(converted_1275)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("performance_config_latency"),
+                        "str (PerformanceConfigLatency)",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1275)
+        } else {
+            None
+        };
         let service_tier_value = if let Some(value) = dict_value(params, "service_tier")? {
-            let enum_value_1217: String = value.extract()?;
-            let converted_1216 =
-                aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1217.as_str());
-            Some(converted_1216)
+            let converted_1277 = (|| -> PyResult<_> {
+                let enum_value_1278: String = value.extract()?;
+                let converted_1277 =
+                    aws_sdk_bedrockruntime::types::ServiceTierType::from(enum_value_1278.as_str());
+                Ok(converted_1277)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("service_tier"),
+                        "str (ServiceTierType)",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1277)
         } else {
             None
         };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
-            let converted_1218: String = value.extract()?;
-            Some(converted_1218)
+            let converted_1279 = (|| -> PyResult<_> {
+                let converted_1279: String = value.extract()?;
+                Ok(converted_1279)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("request_metadata"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "InvokeModelWithResponseStream",
+                )
+            })?;
+            Some(converted_1279)
         } else {
             None
         };
@@ -11820,17 +17343,17 @@ impl BedrockRuntimeClient {
                     PyResponseStreamReceiver::new(output.body, "InvokeModelWithResponseStream"),
                 )?;
                 result.set_item("body", stream)?;
-                let converted_1219 = (&output.content_type).as_str().into_py_any(py)?;
-                result.set_item("content_type", converted_1219)?;
+                let converted_1280 = (&output.content_type).as_str().into_py_any(py)?;
+                result.set_item("content_type", converted_1280)?;
                 if let Some(value) = &output.performance_config_latency {
-                    let converted_1220 = (value).as_str().into_py_any(py)?;
-                    result.set_item("performance_config_latency", converted_1220)?;
+                    let converted_1281 = (value).as_str().into_py_any(py)?;
+                    result.set_item("performance_config_latency", converted_1281)?;
                 } else {
                     result.set_item("performance_config_latency", py.None())?;
                 }
                 if let Some(value) = &output.service_tier {
-                    let converted_1221 = (value).as_str().into_py_any(py)?;
-                    result.set_item("service_tier", converted_1221)?;
+                    let converted_1282 = (value).as_str().into_py_any(py)?;
+                    result.set_item("service_tier", converted_1282)?;
                 } else {
                     result.set_item("service_tier", py.None())?;
                 }
@@ -11849,62 +17372,161 @@ impl BedrockRuntimeClient {
         let state = self.state.clone();
         let submit_time_after_value = if let Some(value) = dict_value(params, "submit_time_after")?
         {
-            let timestamp_1223: String = value.extract()?;
-            let converted_1222 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_1223,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_1222)
+            let converted_1283 = (|| -> PyResult<_> {
+                let timestamp_1284: String = value.extract()?;
+                let converted_1283 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1284,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_1283)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("submit_time_after"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "bedrock-runtime",
+                    "ListAsyncInvokes",
+                )
+            })?;
+            Some(converted_1283)
         } else {
             None
         };
         let submit_time_before_value =
             if let Some(value) = dict_value(params, "submit_time_before")? {
-                let timestamp_1225: String = value.extract()?;
-                let converted_1224 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1225,
-                    ::aws_smithy_types::date_time::Format::DateTime,
-                )
-                .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1224)
+                let converted_1285 = (|| -> PyResult<_> {
+                    let timestamp_1286: String = value.extract()?;
+                    let converted_1285 = ::aws_smithy_types::DateTime::from_str(
+                        &timestamp_1286,
+                        ::aws_smithy_types::date_time::Format::DateTime,
+                    )
+                    .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                    Ok(converted_1285)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("submit_time_before"),
+                            "ISO 8601 timestamp string",
+                        ),
+                        "bedrock-runtime",
+                        "ListAsyncInvokes",
+                    )
+                })?;
+                Some(converted_1285)
             } else {
                 None
             };
         let status_equals_value = if let Some(value) = dict_value(params, "status_equals")? {
-            let enum_value_1227: String = value.extract()?;
-            let converted_1226 =
-                aws_sdk_bedrockruntime::types::AsyncInvokeStatus::from(enum_value_1227.as_str());
-            Some(converted_1226)
+            let converted_1287 = (|| -> PyResult<_> {
+                let enum_value_1288: String = value.extract()?;
+                let converted_1287 = aws_sdk_bedrockruntime::types::AsyncInvokeStatus::from(
+                    enum_value_1288.as_str(),
+                );
+                Ok(converted_1287)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("status_equals"),
+                        "str (AsyncInvokeStatus)",
+                    ),
+                    "bedrock-runtime",
+                    "ListAsyncInvokes",
+                )
+            })?;
+            Some(converted_1287)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_1228: i32 = value.extract()?;
-            Some(converted_1228)
+            let converted_1289 = (|| -> PyResult<_> {
+                let converted_1289: i32 = value.extract()?;
+                Ok(converted_1289)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "bedrock-runtime",
+                    "ListAsyncInvokes",
+                )
+            })?;
+            Some(converted_1289)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_1229: String = value.extract()?;
-            Some(converted_1229)
+            let converted_1290 = (|| -> PyResult<_> {
+                let converted_1290: String = value.extract()?;
+                Ok(converted_1290)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "bedrock-runtime",
+                    "ListAsyncInvokes",
+                )
+            })?;
+            Some(converted_1290)
         } else {
             None
         };
         let sort_by_value = if let Some(value) = dict_value(params, "sort_by")? {
-            let enum_value_1231: String = value.extract()?;
-            let converted_1230 = aws_sdk_bedrockruntime::types::SortAsyncInvocationBy::from(
-                enum_value_1231.as_str(),
-            );
-            Some(converted_1230)
+            let converted_1291 = (|| -> PyResult<_> {
+                let enum_value_1292: String = value.extract()?;
+                let converted_1291 = aws_sdk_bedrockruntime::types::SortAsyncInvocationBy::from(
+                    enum_value_1292.as_str(),
+                );
+                Ok(converted_1291)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("sort_by"),
+                        "str (SortAsyncInvocationBy)",
+                    ),
+                    "bedrock-runtime",
+                    "ListAsyncInvokes",
+                )
+            })?;
+            Some(converted_1291)
         } else {
             None
         };
         let sort_order_value = if let Some(value) = dict_value(params, "sort_order")? {
-            let enum_value_1233: String = value.extract()?;
-            let converted_1232 =
-                aws_sdk_bedrockruntime::types::SortOrder::from(enum_value_1233.as_str());
-            Some(converted_1232)
+            let converted_1293 = (|| -> PyResult<_> {
+                let enum_value_1294: String = value.extract()?;
+                let converted_1293 =
+                    aws_sdk_bedrockruntime::types::SortOrder::from(enum_value_1294.as_str());
+                Ok(converted_1293)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("sort_order"),
+                        "str (SortOrder)",
+                    ),
+                    "bedrock-runtime",
+                    "ListAsyncInvokes",
+                )
+            })?;
+            Some(converted_1293)
         } else {
             None
         };
@@ -11950,39 +17572,122 @@ impl BedrockRuntimeClient {
         let state = self.state.clone();
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_1234: String = value.extract()?;
-                Some(converted_1234)
+                let converted_1295 = (|| -> PyResult<_> {
+                    let converted_1295: String = value.extract()?;
+                    Ok(converted_1295)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("client_request_token"),
+                            "str",
+                        ),
+                        "bedrock-runtime",
+                        "StartAsyncInvoke",
+                    )
+                })?;
+                Some(converted_1295)
             } else {
                 None
             };
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
-            let converted_1235: String = value.extract()?;
-            Some(converted_1235)
+            let converted_1296 = (|| -> PyResult<_> {
+                let converted_1296: String = value.extract()?;
+                Ok(converted_1296)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("model_id"), "str"),
+                    "bedrock-runtime",
+                    "StartAsyncInvoke",
+                )
+            })?;
+            Some(converted_1296)
         } else {
             None
         };
         let model_input_value = if let Some(value) = dict_value(params, "model_input")? {
-            let converted_1236 = rboto_core::document_from_py(&value)?;
-            Some(converted_1236)
+            let converted_1297 = (|| -> PyResult<_> {
+                let converted_1297 = rboto_core::document_from_py(&value)?;
+                Ok(converted_1297)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("model_input"),
+                        "JSONValue",
+                    ),
+                    "bedrock-runtime",
+                    "StartAsyncInvoke",
+                )
+            })?;
+            Some(converted_1297)
         } else {
             None
         };
         let output_data_config_value =
             if let Some(value) = dict_value(params, "output_data_config")? {
-                let converted_1237 = async_invoke_output_data_config_from_py(&value)?;
-                Some(converted_1237)
+                let converted_1298 = (|| -> PyResult<_> {
+                    let converted_1298 = async_invoke_output_data_config_from_py(&value)?;
+                    Ok(converted_1298)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("output_data_config"),
+                            "exactly one known union variant",
+                        ),
+                        "bedrock-runtime",
+                        "StartAsyncInvoke",
+                    )
+                })?;
+                Some(converted_1298)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1238 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_1239 in value.try_iter()? {
-                let item_1240 = item_result_1239?;
-                let converted_item_1241 = tag_from_py(&item_1240)?;
-                converted_1238.push(converted_item_1241);
-            }
-            Some(converted_1238)
+            let converted_1299 = (|| -> PyResult<_> {
+                let mut converted_1299 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_1303, item_result_1300) in value.try_iter()?.enumerate() {
+                    let item_1301 = item_result_1300.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_1303),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_1302 = (|| -> PyResult<_> {
+                        let converted_item_1302 = tag_from_py(&item_1301)?;
+                        Ok(converted_item_1302)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_1303),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_1299.push(converted_item_1302);
+                }
+                Ok(converted_1299)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "bedrock-runtime",
+                    "StartAsyncInvoke",
+                )
+            })?;
+            Some(converted_1299)
         } else {
             None
         };

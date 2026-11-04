@@ -10,39 +10,79 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn alias_list_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::AliasListEntry> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::AliasListEntry::builder();
     if let Some(value) = dict_value(values, "alias_name")? {
-        let converted_1: String = value.extract()?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("alias_name"), "str")
+        })?;
         builder = builder.set_alias_name(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "alias_arn")? {
-        let converted_2: String = value.extract()?;
+        let converted_2 = (|| -> PyResult<_> {
+            let converted_2: String = value.extract()?;
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("alias_arn"), "str")
+        })?;
         builder = builder.set_alias_arn(Some(converted_2));
     }
     if let Some(value) = dict_value(values, "target_key_id")? {
-        let converted_3: String = value.extract()?;
+        let converted_3 = (|| -> PyResult<_> {
+            let converted_3: String = value.extract()?;
+            Ok(converted_3)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("target_key_id"), "str")
+        })?;
         builder = builder.set_target_key_id(Some(converted_3));
     }
     if let Some(value) = dict_value(values, "creation_date")? {
-        let timestamp_5: String = value.extract()?;
-        let converted_4 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_5,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        let converted_4 = (|| -> PyResult<_> {
+            let timestamp_5: String = value.extract()?;
+            let converted_4 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_5,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_4)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("creation_date"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
         builder = builder.set_creation_date(Some(converted_4));
     }
     if let Some(value) = dict_value(values, "last_updated_date")? {
-        let timestamp_7: String = value.extract()?;
-        let converted_6 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_7,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        let converted_6 = (|| -> PyResult<_> {
+            let timestamp_7: String = value.extract()?;
+            let converted_6 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_7,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_6)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("last_updated_date"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
         builder = builder.set_last_updated_date(Some(converted_6));
     }
     Ok(builder.build())
@@ -92,48 +132,139 @@ fn custom_key_stores_list_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::CustomKeyStoresListEntry::builder();
     if let Some(value) = dict_value(values, "custom_key_store_id")? {
-        let converted_13: String = value.extract()?;
+        let converted_13 = (|| -> PyResult<_> {
+            let converted_13: String = value.extract()?;
+            Ok(converted_13)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("custom_key_store_id"),
+                "str",
+            )
+        })?;
         builder = builder.set_custom_key_store_id(Some(converted_13));
     }
     if let Some(value) = dict_value(values, "custom_key_store_name")? {
-        let converted_14: String = value.extract()?;
+        let converted_14 = (|| -> PyResult<_> {
+            let converted_14: String = value.extract()?;
+            Ok(converted_14)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("custom_key_store_name"),
+                "str",
+            )
+        })?;
         builder = builder.set_custom_key_store_name(Some(converted_14));
     }
     if let Some(value) = dict_value(values, "cloud_hsm_cluster_id")? {
-        let converted_15: String = value.extract()?;
+        let converted_15 = (|| -> PyResult<_> {
+            let converted_15: String = value.extract()?;
+            Ok(converted_15)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cloud_hsm_cluster_id"),
+                "str",
+            )
+        })?;
         builder = builder.set_cloud_hsm_cluster_id(Some(converted_15));
     }
     if let Some(value) = dict_value(values, "trust_anchor_certificate")? {
-        let converted_16: String = value.extract()?;
+        let converted_16 = (|| -> PyResult<_> {
+            let converted_16: String = value.extract()?;
+            Ok(converted_16)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("trust_anchor_certificate"),
+                "str",
+            )
+        })?;
         builder = builder.set_trust_anchor_certificate(Some(converted_16));
     }
     if let Some(value) = dict_value(values, "connection_state")? {
-        let enum_value_18: String = value.extract()?;
-        let converted_17 = aws_sdk_kms::types::ConnectionStateType::from(enum_value_18.as_str());
+        let converted_17 = (|| -> PyResult<_> {
+            let enum_value_18: String = value.extract()?;
+            let converted_17 =
+                aws_sdk_kms::types::ConnectionStateType::from(enum_value_18.as_str());
+            Ok(converted_17)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("connection_state"),
+                "str (ConnectionStateType)",
+            )
+        })?;
         builder = builder.set_connection_state(Some(converted_17));
     }
     if let Some(value) = dict_value(values, "connection_error_code")? {
-        let enum_value_20: String = value.extract()?;
-        let converted_19 =
-            aws_sdk_kms::types::ConnectionErrorCodeType::from(enum_value_20.as_str());
+        let converted_19 = (|| -> PyResult<_> {
+            let enum_value_20: String = value.extract()?;
+            let converted_19 =
+                aws_sdk_kms::types::ConnectionErrorCodeType::from(enum_value_20.as_str());
+            Ok(converted_19)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("connection_error_code"),
+                "str (ConnectionErrorCodeType)",
+            )
+        })?;
         builder = builder.set_connection_error_code(Some(converted_19));
     }
     if let Some(value) = dict_value(values, "creation_date")? {
-        let timestamp_22: String = value.extract()?;
-        let converted_21 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_22,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
+        let converted_21 = (|| -> PyResult<_> {
+            let timestamp_22: String = value.extract()?;
+            let converted_21 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_22,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_21)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("creation_date"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
         builder = builder.set_creation_date(Some(converted_21));
     }
     if let Some(value) = dict_value(values, "custom_key_store_type")? {
-        let enum_value_24: String = value.extract()?;
-        let converted_23 = aws_sdk_kms::types::CustomKeyStoreType::from(enum_value_24.as_str());
+        let converted_23 = (|| -> PyResult<_> {
+            let enum_value_24: String = value.extract()?;
+            let converted_23 = aws_sdk_kms::types::CustomKeyStoreType::from(enum_value_24.as_str());
+            Ok(converted_23)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("custom_key_store_type"),
+                "str (CustomKeyStoreType)",
+            )
+        })?;
         builder = builder.set_custom_key_store_type(Some(converted_23));
     }
     if let Some(value) = dict_value(values, "xks_proxy_configuration")? {
-        let converted_25 = xks_proxy_configuration_type_from_py(&value)?;
+        let converted_25 = (|| -> PyResult<_> {
+            let converted_25 = xks_proxy_configuration_type_from_py(&value)?;
+            Ok(converted_25)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("xks_proxy_configuration"),
+                "dict (XksProxyConfigurationType)",
+            )
+        })?;
         builder = builder.set_xks_proxy_configuration(Some(converted_25));
     }
     Ok(builder.build())
@@ -207,28 +338,78 @@ fn grant_constraints_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::GrantConstraints::builder();
     if let Some(value) = dict_value(values, "encryption_context_subset")? {
-        let mapping_36 = value.cast::<PyDict>()?;
-        let mut converted_35 = HashMap::with_capacity(mapping_36.len());
-        for (key_37, value_38) in mapping_36.iter() {
-            let converted_key_39: String = key_37.extract()?;
-            let converted_value_40: String = value_38.extract()?;
-            converted_35.insert(converted_key_39, converted_value_40);
-        }
+        let converted_35 = (|| -> PyResult<_> {
+            let mapping_36 = value.cast::<PyDict>()?;
+            let mut converted_35 = HashMap::with_capacity(mapping_36.len());
+            for (index_41, (key_37, value_38)) in mapping_36.iter().enumerate() {
+                let converted_key_39 = (|| -> PyResult<_> {
+                    let converted_key_39: String = key_37.extract()?;
+                    Ok(converted_key_39)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_41), "str")
+                })?;
+                let converted_value_40 = (|| -> PyResult<_> {
+                    let converted_value_40: String = value_38.extract()?;
+                    Ok(converted_value_40)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_41), "str")
+                })?;
+                converted_35.insert(converted_key_39, converted_value_40);
+            }
+            Ok(converted_35)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encryption_context_subset"),
+                "dict",
+            )
+        })?;
         builder = builder.set_encryption_context_subset(Some(converted_35));
     }
     if let Some(value) = dict_value(values, "encryption_context_equals")? {
-        let mapping_42 = value.cast::<PyDict>()?;
-        let mut converted_41 = HashMap::with_capacity(mapping_42.len());
-        for (key_43, value_44) in mapping_42.iter() {
-            let converted_key_45: String = key_43.extract()?;
-            let converted_value_46: String = value_44.extract()?;
-            converted_41.insert(converted_key_45, converted_value_46);
-        }
-        builder = builder.set_encryption_context_equals(Some(converted_41));
+        let converted_42 = (|| -> PyResult<_> {
+            let mapping_43 = value.cast::<PyDict>()?;
+            let mut converted_42 = HashMap::with_capacity(mapping_43.len());
+            for (index_48, (key_44, value_45)) in mapping_43.iter().enumerate() {
+                let converted_key_46 = (|| -> PyResult<_> {
+                    let converted_key_46: String = key_44.extract()?;
+                    Ok(converted_key_46)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_48), "str")
+                })?;
+                let converted_value_47 = (|| -> PyResult<_> {
+                    let converted_value_47: String = value_45.extract()?;
+                    Ok(converted_value_47)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_48), "str")
+                })?;
+                converted_42.insert(converted_key_46, converted_value_47);
+            }
+            Ok(converted_42)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encryption_context_equals"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_encryption_context_equals(Some(converted_42));
     }
     if let Some(value) = dict_value(values, "source_arn")? {
-        let converted_47: String = value.extract()?;
-        builder = builder.set_source_arn(Some(converted_47));
+        let converted_49 = (|| -> PyResult<_> {
+            let converted_49: String = value.extract()?;
+            Ok(converted_49)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("source_arn"), "str")
+        })?;
+        builder = builder.set_source_arn(Some(converted_49));
     }
     Ok(builder.build())
 }
@@ -239,32 +420,32 @@ fn grant_constraints_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.encryption_context_subset {
-        let converted_48_dict = PyDict::new(py);
-        for (key_49, value_50) in value {
-            let converted_key_51 = (key_49).as_str().into_py_any(py)?;
-            let converted_value_52 = (value_50).as_str().into_py_any(py)?;
-            converted_48_dict.set_item(converted_key_51, converted_value_52)?;
+        let converted_50_dict = PyDict::new(py);
+        for (key_51, value_52) in value {
+            let converted_key_53 = (key_51).as_str().into_py_any(py)?;
+            let converted_value_54 = (value_52).as_str().into_py_any(py)?;
+            converted_50_dict.set_item(converted_key_53, converted_value_54)?;
         }
-        let converted_48 = converted_48_dict.into_any().unbind();
-        result.set_item("encryption_context_subset", converted_48)?;
+        let converted_50 = converted_50_dict.into_any().unbind();
+        result.set_item("encryption_context_subset", converted_50)?;
     } else {
         result.set_item("encryption_context_subset", py.None())?;
     }
     if let Some(value) = &value.encryption_context_equals {
-        let converted_53_dict = PyDict::new(py);
-        for (key_54, value_55) in value {
-            let converted_key_56 = (key_54).as_str().into_py_any(py)?;
-            let converted_value_57 = (value_55).as_str().into_py_any(py)?;
-            converted_53_dict.set_item(converted_key_56, converted_value_57)?;
+        let converted_55_dict = PyDict::new(py);
+        for (key_56, value_57) in value {
+            let converted_key_58 = (key_56).as_str().into_py_any(py)?;
+            let converted_value_59 = (value_57).as_str().into_py_any(py)?;
+            converted_55_dict.set_item(converted_key_58, converted_value_59)?;
         }
-        let converted_53 = converted_53_dict.into_any().unbind();
-        result.set_item("encryption_context_equals", converted_53)?;
+        let converted_55 = converted_55_dict.into_any().unbind();
+        result.set_item("encryption_context_equals", converted_55)?;
     } else {
         result.set_item("encryption_context_equals", py.None())?;
     }
     if let Some(value) = &value.source_arn {
-        let converted_58 = (value).as_str().into_py_any(py)?;
-        result.set_item("source_arn", converted_58)?;
+        let converted_60 = (value).as_str().into_py_any(py)?;
+        result.set_item("source_arn", converted_60)?;
     } else {
         result.set_item("source_arn", py.None())?;
     }
@@ -277,61 +458,176 @@ fn grant_list_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::GrantListEntry::builder();
     if let Some(value) = dict_value(values, "key_id")? {
-        let converted_59: String = value.extract()?;
-        builder = builder.set_key_id(Some(converted_59));
+        let converted_61 = (|| -> PyResult<_> {
+            let converted_61: String = value.extract()?;
+            Ok(converted_61)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str")
+        })?;
+        builder = builder.set_key_id(Some(converted_61));
     }
     if let Some(value) = dict_value(values, "grant_id")? {
-        let converted_60: String = value.extract()?;
-        builder = builder.set_grant_id(Some(converted_60));
+        let converted_62 = (|| -> PyResult<_> {
+            let converted_62: String = value.extract()?;
+            Ok(converted_62)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("grant_id"), "str")
+        })?;
+        builder = builder.set_grant_id(Some(converted_62));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_61: String = value.extract()?;
-        builder = builder.set_name(Some(converted_61));
+        let converted_63 = (|| -> PyResult<_> {
+            let converted_63: String = value.extract()?;
+            Ok(converted_63)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_63));
     }
     if let Some(value) = dict_value(values, "creation_date")? {
-        let timestamp_63: String = value.extract()?;
-        let converted_62 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_63,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_creation_date(Some(converted_62));
+        let converted_64 = (|| -> PyResult<_> {
+            let timestamp_65: String = value.extract()?;
+            let converted_64 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_65,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_64)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("creation_date"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_creation_date(Some(converted_64));
     }
     if let Some(value) = dict_value(values, "grantee_principal")? {
-        let converted_64: String = value.extract()?;
-        builder = builder.set_grantee_principal(Some(converted_64));
+        let converted_66 = (|| -> PyResult<_> {
+            let converted_66: String = value.extract()?;
+            Ok(converted_66)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("grantee_principal"),
+                "str",
+            )
+        })?;
+        builder = builder.set_grantee_principal(Some(converted_66));
     }
     if let Some(value) = dict_value(values, "retiring_principal")? {
-        let converted_65: String = value.extract()?;
-        builder = builder.set_retiring_principal(Some(converted_65));
+        let converted_67 = (|| -> PyResult<_> {
+            let converted_67: String = value.extract()?;
+            Ok(converted_67)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("retiring_principal"),
+                "str",
+            )
+        })?;
+        builder = builder.set_retiring_principal(Some(converted_67));
     }
     if let Some(value) = dict_value(values, "issuing_account")? {
-        let converted_66: String = value.extract()?;
-        builder = builder.set_issuing_account(Some(converted_66));
+        let converted_68 = (|| -> PyResult<_> {
+            let converted_68: String = value.extract()?;
+            Ok(converted_68)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("issuing_account"),
+                "str",
+            )
+        })?;
+        builder = builder.set_issuing_account(Some(converted_68));
     }
     if let Some(value) = dict_value(values, "operations")? {
-        let mut converted_67 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_68 in value.try_iter()? {
-            let item_69 = item_result_68?;
-            let enum_value_71: String = item_69.extract()?;
-            let converted_item_70 =
-                aws_sdk_kms::types::GrantOperation::from(enum_value_71.as_str());
-            converted_67.push(converted_item_70);
-        }
-        builder = builder.set_operations(Some(converted_67));
+        let converted_69 = (|| -> PyResult<_> {
+            let mut converted_69 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_73, item_result_70) in value.try_iter()?.enumerate() {
+                let item_71 = item_result_70.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_73),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_72 = (|| -> PyResult<_> {
+                    let enum_value_74: String = item_71.extract()?;
+                    let converted_item_72 =
+                        aws_sdk_kms::types::GrantOperation::from(enum_value_74.as_str());
+                    Ok(converted_item_72)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_73),
+                        "str (GrantOperation)",
+                    )
+                })?;
+                converted_69.push(converted_item_72);
+            }
+            Ok(converted_69)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("operations"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_operations(Some(converted_69));
     }
     if let Some(value) = dict_value(values, "constraints")? {
-        let converted_72 = grant_constraints_from_py(&value)?;
-        builder = builder.set_constraints(Some(converted_72));
+        let converted_75 = (|| -> PyResult<_> {
+            let converted_75 = grant_constraints_from_py(&value)?;
+            Ok(converted_75)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("constraints"),
+                "dict (GrantConstraints)",
+            )
+        })?;
+        builder = builder.set_constraints(Some(converted_75));
     }
     if let Some(value) = dict_value(values, "grantee_service_principal")? {
-        let converted_73: String = value.extract()?;
-        builder = builder.set_grantee_service_principal(Some(converted_73));
+        let converted_76 = (|| -> PyResult<_> {
+            let converted_76: String = value.extract()?;
+            Ok(converted_76)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("grantee_service_principal"),
+                "str",
+            )
+        })?;
+        builder = builder.set_grantee_service_principal(Some(converted_76));
     }
     if let Some(value) = dict_value(values, "retiring_service_principal")? {
-        let converted_74: String = value.extract()?;
-        builder = builder.set_retiring_service_principal(Some(converted_74));
+        let converted_77 = (|| -> PyResult<_> {
+            let converted_77: String = value.extract()?;
+            Ok(converted_77)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("retiring_service_principal"),
+                "str",
+            )
+        })?;
+        builder = builder.set_retiring_service_principal(Some(converted_77));
     }
     Ok(builder.build())
 }
@@ -342,73 +638,73 @@ fn grant_list_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key_id {
-        let converted_75 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_75)?;
+        let converted_78 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_78)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
     if let Some(value) = &value.grant_id {
-        let converted_76 = (value).as_str().into_py_any(py)?;
-        result.set_item("grant_id", converted_76)?;
+        let converted_79 = (value).as_str().into_py_any(py)?;
+        result.set_item("grant_id", converted_79)?;
     } else {
         result.set_item("grant_id", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_77 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_77)?;
+        let converted_80 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_80)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.creation_date {
-        let converted_78 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_78)?;
+        let converted_81 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_81)?;
     } else {
         result.set_item("creation_date", py.None())?;
     }
     if let Some(value) = &value.grantee_principal {
-        let converted_79 = (value).as_str().into_py_any(py)?;
-        result.set_item("grantee_principal", converted_79)?;
+        let converted_82 = (value).as_str().into_py_any(py)?;
+        result.set_item("grantee_principal", converted_82)?;
     } else {
         result.set_item("grantee_principal", py.None())?;
     }
     if let Some(value) = &value.retiring_principal {
-        let converted_80 = (value).as_str().into_py_any(py)?;
-        result.set_item("retiring_principal", converted_80)?;
+        let converted_83 = (value).as_str().into_py_any(py)?;
+        result.set_item("retiring_principal", converted_83)?;
     } else {
         result.set_item("retiring_principal", py.None())?;
     }
     if let Some(value) = &value.issuing_account {
-        let converted_81 = (value).as_str().into_py_any(py)?;
-        result.set_item("issuing_account", converted_81)?;
+        let converted_84 = (value).as_str().into_py_any(py)?;
+        result.set_item("issuing_account", converted_84)?;
     } else {
         result.set_item("issuing_account", py.None())?;
     }
     if let Some(value) = &value.operations {
-        let converted_82_list = PyList::empty(py);
-        for item_83 in value {
-            let converted_item_84 = (item_83).as_str().into_py_any(py)?;
-            converted_82_list.append(converted_item_84)?;
+        let converted_85_list = PyList::empty(py);
+        for item_86 in value {
+            let converted_item_87 = (item_86).as_str().into_py_any(py)?;
+            converted_85_list.append(converted_item_87)?;
         }
-        let converted_82 = converted_82_list.into_any().unbind();
-        result.set_item("operations", converted_82)?;
+        let converted_85 = converted_85_list.into_any().unbind();
+        result.set_item("operations", converted_85)?;
     } else {
         result.set_item("operations", py.None())?;
     }
     if let Some(value) = &value.constraints {
-        let converted_85 = grant_constraints_to_py(py, value)?;
-        result.set_item("constraints", converted_85)?;
+        let converted_88 = grant_constraints_to_py(py, value)?;
+        result.set_item("constraints", converted_88)?;
     } else {
         result.set_item("constraints", py.None())?;
     }
     if let Some(value) = &value.grantee_service_principal {
-        let converted_86 = (value).as_str().into_py_any(py)?;
-        result.set_item("grantee_service_principal", converted_86)?;
+        let converted_89 = (value).as_str().into_py_any(py)?;
+        result.set_item("grantee_service_principal", converted_89)?;
     } else {
         result.set_item("grantee_service_principal", py.None())?;
     }
     if let Some(value) = &value.retiring_service_principal {
-        let converted_87 = (value).as_str().into_py_any(py)?;
-        result.set_item("retiring_service_principal", converted_87)?;
+        let converted_90 = (value).as_str().into_py_any(py)?;
+        result.set_item("retiring_service_principal", converted_90)?;
     } else {
         result.set_item("retiring_service_principal", py.None())?;
     }
@@ -421,27 +717,63 @@ fn key_last_usage_data_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::KeyLastUsageData::builder();
     if let Some(value) = dict_value(values, "operation")? {
-        let enum_value_89: String = value.extract()?;
-        let converted_88 =
-            aws_sdk_kms::types::KeyLastUsageTrackingOperation::from(enum_value_89.as_str());
-        builder = builder.set_operation(Some(converted_88));
+        let converted_91 = (|| -> PyResult<_> {
+            let enum_value_92: String = value.extract()?;
+            let converted_91 =
+                aws_sdk_kms::types::KeyLastUsageTrackingOperation::from(enum_value_92.as_str());
+            Ok(converted_91)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("operation"),
+                "str (KeyLastUsageTrackingOperation)",
+            )
+        })?;
+        builder = builder.set_operation(Some(converted_91));
     }
     if let Some(value) = dict_value(values, "timestamp")? {
-        let timestamp_91: String = value.extract()?;
-        let converted_90 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_91,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_timestamp(Some(converted_90));
+        let converted_93 = (|| -> PyResult<_> {
+            let timestamp_94: String = value.extract()?;
+            let converted_93 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_94,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_93)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("timestamp"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_timestamp(Some(converted_93));
     }
     if let Some(value) = dict_value(values, "cloud_trail_event_id")? {
-        let converted_92: String = value.extract()?;
-        builder = builder.set_cloud_trail_event_id(Some(converted_92));
+        let converted_95 = (|| -> PyResult<_> {
+            let converted_95: String = value.extract()?;
+            Ok(converted_95)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cloud_trail_event_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_cloud_trail_event_id(Some(converted_95));
     }
     if let Some(value) = dict_value(values, "kms_request_id")? {
-        let converted_93: String = value.extract()?;
-        builder = builder.set_kms_request_id(Some(converted_93));
+        let converted_96 = (|| -> PyResult<_> {
+            let converted_96: String = value.extract()?;
+            Ok(converted_96)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("kms_request_id"), "str")
+        })?;
+        builder = builder.set_kms_request_id(Some(converted_96));
     }
     Ok(builder.build())
 }
@@ -452,26 +784,26 @@ fn key_last_usage_data_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.operation {
-        let converted_94 = (value).as_str().into_py_any(py)?;
-        result.set_item("operation", converted_94)?;
+        let converted_97 = (value).as_str().into_py_any(py)?;
+        result.set_item("operation", converted_97)?;
     } else {
         result.set_item("operation", py.None())?;
     }
     if let Some(value) = &value.timestamp {
-        let converted_95 = (value).to_string().into_py_any(py)?;
-        result.set_item("timestamp", converted_95)?;
+        let converted_98 = (value).to_string().into_py_any(py)?;
+        result.set_item("timestamp", converted_98)?;
     } else {
         result.set_item("timestamp", py.None())?;
     }
     if let Some(value) = &value.cloud_trail_event_id {
-        let converted_96 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_trail_event_id", converted_96)?;
+        let converted_99 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_trail_event_id", converted_99)?;
     } else {
         result.set_item("cloud_trail_event_id", py.None())?;
     }
     if let Some(value) = &value.kms_request_id {
-        let converted_97 = (value).as_str().into_py_any(py)?;
-        result.set_item("kms_request_id", converted_97)?;
+        let converted_100 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_request_id", converted_100)?;
     } else {
         result.set_item("kms_request_id", py.None())?;
     }
@@ -482,12 +814,24 @@ fn key_list_entry_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::typ
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::KeyListEntry::builder();
     if let Some(value) = dict_value(values, "key_id")? {
-        let converted_98: String = value.extract()?;
-        builder = builder.set_key_id(Some(converted_98));
+        let converted_101 = (|| -> PyResult<_> {
+            let converted_101: String = value.extract()?;
+            Ok(converted_101)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str")
+        })?;
+        builder = builder.set_key_id(Some(converted_101));
     }
     if let Some(value) = dict_value(values, "key_arn")? {
-        let converted_99: String = value.extract()?;
-        builder = builder.set_key_arn(Some(converted_99));
+        let converted_102 = (|| -> PyResult<_> {
+            let converted_102: String = value.extract()?;
+            Ok(converted_102)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key_arn"), "str")
+        })?;
+        builder = builder.set_key_arn(Some(converted_102));
     }
     Ok(builder.build())
 }
@@ -498,14 +842,14 @@ fn key_list_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key_id {
-        let converted_100 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_100)?;
+        let converted_103 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_103)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
     if let Some(value) = &value.key_arn {
-        let converted_101 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_arn", converted_101)?;
+        let converted_104 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_arn", converted_104)?;
     } else {
         result.set_item("key_arn", py.None())?;
     }
@@ -516,167 +860,473 @@ fn key_metadata_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::KeyMetadata::builder();
     if let Some(value) = dict_value(values, "aws_account_id")? {
-        let converted_102: String = value.extract()?;
-        builder = builder.set_aws_account_id(Some(converted_102));
+        let converted_105 = (|| -> PyResult<_> {
+            let converted_105: String = value.extract()?;
+            Ok(converted_105)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("aws_account_id"), "str")
+        })?;
+        builder = builder.set_aws_account_id(Some(converted_105));
     }
     if let Some(value) = dict_value(values, "key_id")? {
-        let converted_103: String = value.extract()?;
-        builder = builder.set_key_id(Some(converted_103));
+        let converted_106 = (|| -> PyResult<_> {
+            let converted_106: String = value.extract()?;
+            Ok(converted_106)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str")
+        })?;
+        builder = builder.set_key_id(Some(converted_106));
     }
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_104: String = value.extract()?;
-        builder = builder.set_arn(Some(converted_104));
+        let converted_107 = (|| -> PyResult<_> {
+            let converted_107: String = value.extract()?;
+            Ok(converted_107)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
+        })?;
+        builder = builder.set_arn(Some(converted_107));
     }
     if let Some(value) = dict_value(values, "creation_date")? {
-        let timestamp_106: String = value.extract()?;
-        let converted_105 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_106,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_creation_date(Some(converted_105));
+        let converted_108 = (|| -> PyResult<_> {
+            let timestamp_109: String = value.extract()?;
+            let converted_108 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_109,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_108)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("creation_date"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_creation_date(Some(converted_108));
     }
     if let Some(value) = dict_value(values, "enabled")? {
-        let converted_107: bool = value.extract()?;
-        builder = builder.set_enabled(Some(converted_107));
+        let converted_110 = (|| -> PyResult<_> {
+            let converted_110: bool = value.extract()?;
+            Ok(converted_110)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("enabled"), "bool")
+        })?;
+        builder = builder.set_enabled(Some(converted_110));
     }
     if let Some(value) = dict_value(values, "description")? {
-        let converted_108: String = value.extract()?;
-        builder = builder.set_description(Some(converted_108));
+        let converted_111 = (|| -> PyResult<_> {
+            let converted_111: String = value.extract()?;
+            Ok(converted_111)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("description"), "str")
+        })?;
+        builder = builder.set_description(Some(converted_111));
     }
     if let Some(value) = dict_value(values, "key_usage")? {
-        let enum_value_110: String = value.extract()?;
-        let converted_109 = aws_sdk_kms::types::KeyUsageType::from(enum_value_110.as_str());
-        builder = builder.set_key_usage(Some(converted_109));
+        let converted_112 = (|| -> PyResult<_> {
+            let enum_value_113: String = value.extract()?;
+            let converted_112 = aws_sdk_kms::types::KeyUsageType::from(enum_value_113.as_str());
+            Ok(converted_112)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_usage"),
+                "str (KeyUsageType)",
+            )
+        })?;
+        builder = builder.set_key_usage(Some(converted_112));
     }
     if let Some(value) = dict_value(values, "key_state")? {
-        let enum_value_112: String = value.extract()?;
-        let converted_111 = aws_sdk_kms::types::KeyState::from(enum_value_112.as_str());
-        builder = builder.set_key_state(Some(converted_111));
+        let converted_114 = (|| -> PyResult<_> {
+            let enum_value_115: String = value.extract()?;
+            let converted_114 = aws_sdk_kms::types::KeyState::from(enum_value_115.as_str());
+            Ok(converted_114)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_state"),
+                "str (KeyState)",
+            )
+        })?;
+        builder = builder.set_key_state(Some(converted_114));
     }
     if let Some(value) = dict_value(values, "deletion_date")? {
-        let timestamp_114: String = value.extract()?;
-        let converted_113 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_114,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_deletion_date(Some(converted_113));
+        let converted_116 = (|| -> PyResult<_> {
+            let timestamp_117: String = value.extract()?;
+            let converted_116 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_117,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_116)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("deletion_date"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_deletion_date(Some(converted_116));
     }
     if let Some(value) = dict_value(values, "valid_to")? {
-        let timestamp_116: String = value.extract()?;
-        let converted_115 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_116,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_valid_to(Some(converted_115));
+        let converted_118 = (|| -> PyResult<_> {
+            let timestamp_119: String = value.extract()?;
+            let converted_118 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_119,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_118)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("valid_to"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_valid_to(Some(converted_118));
     }
     if let Some(value) = dict_value(values, "origin")? {
-        let enum_value_118: String = value.extract()?;
-        let converted_117 = aws_sdk_kms::types::OriginType::from(enum_value_118.as_str());
-        builder = builder.set_origin(Some(converted_117));
+        let converted_120 = (|| -> PyResult<_> {
+            let enum_value_121: String = value.extract()?;
+            let converted_120 = aws_sdk_kms::types::OriginType::from(enum_value_121.as_str());
+            Ok(converted_120)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("origin"),
+                "str (OriginType)",
+            )
+        })?;
+        builder = builder.set_origin(Some(converted_120));
     }
     if let Some(value) = dict_value(values, "custom_key_store_id")? {
-        let converted_119: String = value.extract()?;
-        builder = builder.set_custom_key_store_id(Some(converted_119));
+        let converted_122 = (|| -> PyResult<_> {
+            let converted_122: String = value.extract()?;
+            Ok(converted_122)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("custom_key_store_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_custom_key_store_id(Some(converted_122));
     }
     if let Some(value) = dict_value(values, "cloud_hsm_cluster_id")? {
-        let converted_120: String = value.extract()?;
-        builder = builder.set_cloud_hsm_cluster_id(Some(converted_120));
+        let converted_123 = (|| -> PyResult<_> {
+            let converted_123: String = value.extract()?;
+            Ok(converted_123)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("cloud_hsm_cluster_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_cloud_hsm_cluster_id(Some(converted_123));
     }
     if let Some(value) = dict_value(values, "expiration_model")? {
-        let enum_value_122: String = value.extract()?;
-        let converted_121 = aws_sdk_kms::types::ExpirationModelType::from(enum_value_122.as_str());
-        builder = builder.set_expiration_model(Some(converted_121));
+        let converted_124 = (|| -> PyResult<_> {
+            let enum_value_125: String = value.extract()?;
+            let converted_124 =
+                aws_sdk_kms::types::ExpirationModelType::from(enum_value_125.as_str());
+            Ok(converted_124)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("expiration_model"),
+                "str (ExpirationModelType)",
+            )
+        })?;
+        builder = builder.set_expiration_model(Some(converted_124));
     }
     if let Some(value) = dict_value(values, "key_manager")? {
-        let enum_value_124: String = value.extract()?;
-        let converted_123 = aws_sdk_kms::types::KeyManagerType::from(enum_value_124.as_str());
-        builder = builder.set_key_manager(Some(converted_123));
+        let converted_126 = (|| -> PyResult<_> {
+            let enum_value_127: String = value.extract()?;
+            let converted_126 = aws_sdk_kms::types::KeyManagerType::from(enum_value_127.as_str());
+            Ok(converted_126)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_manager"),
+                "str (KeyManagerType)",
+            )
+        })?;
+        builder = builder.set_key_manager(Some(converted_126));
     }
     if let Some(value) = dict_value(values, "customer_master_key_spec")? {
-        let enum_value_126: String = value.extract()?;
-        let converted_125 =
-            aws_sdk_kms::types::CustomerMasterKeySpec::from(enum_value_126.as_str());
-        builder = builder.set_customer_master_key_spec(Some(converted_125));
+        let converted_128 = (|| -> PyResult<_> {
+            let enum_value_129: String = value.extract()?;
+            let converted_128 =
+                aws_sdk_kms::types::CustomerMasterKeySpec::from(enum_value_129.as_str());
+            Ok(converted_128)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("customer_master_key_spec"),
+                "str (CustomerMasterKeySpec)",
+            )
+        })?;
+        builder = builder.set_customer_master_key_spec(Some(converted_128));
     }
     if let Some(value) = dict_value(values, "key_spec")? {
-        let enum_value_128: String = value.extract()?;
-        let converted_127 = aws_sdk_kms::types::KeySpec::from(enum_value_128.as_str());
-        builder = builder.set_key_spec(Some(converted_127));
+        let converted_130 = (|| -> PyResult<_> {
+            let enum_value_131: String = value.extract()?;
+            let converted_130 = aws_sdk_kms::types::KeySpec::from(enum_value_131.as_str());
+            Ok(converted_130)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_spec"),
+                "str (KeySpec)",
+            )
+        })?;
+        builder = builder.set_key_spec(Some(converted_130));
     }
     if let Some(value) = dict_value(values, "encryption_algorithms")? {
-        let mut converted_129 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_130 in value.try_iter()? {
-            let item_131 = item_result_130?;
-            let enum_value_133: String = item_131.extract()?;
-            let converted_item_132 =
-                aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_133.as_str());
-            converted_129.push(converted_item_132);
-        }
-        builder = builder.set_encryption_algorithms(Some(converted_129));
+        let converted_132 = (|| -> PyResult<_> {
+            let mut converted_132 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_136, item_result_133) in value.try_iter()?.enumerate() {
+                let item_134 = item_result_133.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_136),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_135 = (|| -> PyResult<_> {
+                    let enum_value_137: String = item_134.extract()?;
+                    let converted_item_135 =
+                        aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_137.as_str());
+                    Ok(converted_item_135)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_136),
+                        "str (EncryptionAlgorithmSpec)",
+                    )
+                })?;
+                converted_132.push(converted_item_135);
+            }
+            Ok(converted_132)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encryption_algorithms"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_encryption_algorithms(Some(converted_132));
     }
     if let Some(value) = dict_value(values, "signing_algorithms")? {
-        let mut converted_134 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_135 in value.try_iter()? {
-            let item_136 = item_result_135?;
-            let enum_value_138: String = item_136.extract()?;
-            let converted_item_137 =
-                aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_138.as_str());
-            converted_134.push(converted_item_137);
-        }
-        builder = builder.set_signing_algorithms(Some(converted_134));
+        let converted_138 = (|| -> PyResult<_> {
+            let mut converted_138 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_142, item_result_139) in value.try_iter()?.enumerate() {
+                let item_140 = item_result_139.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_142),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_141 = (|| -> PyResult<_> {
+                    let enum_value_143: String = item_140.extract()?;
+                    let converted_item_141 =
+                        aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_143.as_str());
+                    Ok(converted_item_141)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_142),
+                        "str (SigningAlgorithmSpec)",
+                    )
+                })?;
+                converted_138.push(converted_item_141);
+            }
+            Ok(converted_138)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("signing_algorithms"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_signing_algorithms(Some(converted_138));
     }
     if let Some(value) = dict_value(values, "key_agreement_algorithms")? {
-        let mut converted_139 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_140 in value.try_iter()? {
-            let item_141 = item_result_140?;
-            let enum_value_143: String = item_141.extract()?;
-            let converted_item_142 =
-                aws_sdk_kms::types::KeyAgreementAlgorithmSpec::from(enum_value_143.as_str());
-            converted_139.push(converted_item_142);
-        }
-        builder = builder.set_key_agreement_algorithms(Some(converted_139));
+        let converted_144 = (|| -> PyResult<_> {
+            let mut converted_144 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_148, item_result_145) in value.try_iter()?.enumerate() {
+                let item_146 = item_result_145.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_148),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_147 = (|| -> PyResult<_> {
+                    let enum_value_149: String = item_146.extract()?;
+                    let converted_item_147 = aws_sdk_kms::types::KeyAgreementAlgorithmSpec::from(
+                        enum_value_149.as_str(),
+                    );
+                    Ok(converted_item_147)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_148),
+                        "str (KeyAgreementAlgorithmSpec)",
+                    )
+                })?;
+                converted_144.push(converted_item_147);
+            }
+            Ok(converted_144)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_agreement_algorithms"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_key_agreement_algorithms(Some(converted_144));
     }
     if let Some(value) = dict_value(values, "multi_region")? {
-        let converted_144: bool = value.extract()?;
-        builder = builder.set_multi_region(Some(converted_144));
+        let converted_150 = (|| -> PyResult<_> {
+            let converted_150: bool = value.extract()?;
+            Ok(converted_150)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("multi_region"), "bool")
+        })?;
+        builder = builder.set_multi_region(Some(converted_150));
     }
     if let Some(value) = dict_value(values, "multi_region_configuration")? {
-        let converted_145 = multi_region_configuration_from_py(&value)?;
-        builder = builder.set_multi_region_configuration(Some(converted_145));
+        let converted_151 = (|| -> PyResult<_> {
+            let converted_151 = multi_region_configuration_from_py(&value)?;
+            Ok(converted_151)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("multi_region_configuration"),
+                "dict (MultiRegionConfiguration)",
+            )
+        })?;
+        builder = builder.set_multi_region_configuration(Some(converted_151));
     }
     if let Some(value) = dict_value(values, "pending_deletion_window_in_days")? {
-        let converted_146: i32 = value.extract()?;
-        builder = builder.set_pending_deletion_window_in_days(Some(converted_146));
+        let converted_152 = (|| -> PyResult<_> {
+            let converted_152: i32 = value.extract()?;
+            Ok(converted_152)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("pending_deletion_window_in_days"),
+                "int",
+            )
+        })?;
+        builder = builder.set_pending_deletion_window_in_days(Some(converted_152));
     }
     if let Some(value) = dict_value(values, "mac_algorithms")? {
-        let mut converted_147 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_148 in value.try_iter()? {
-            let item_149 = item_result_148?;
-            let enum_value_151: String = item_149.extract()?;
-            let converted_item_150 =
-                aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_151.as_str());
-            converted_147.push(converted_item_150);
-        }
-        builder = builder.set_mac_algorithms(Some(converted_147));
+        let converted_153 = (|| -> PyResult<_> {
+            let mut converted_153 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_157, item_result_154) in value.try_iter()?.enumerate() {
+                let item_155 = item_result_154.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_157),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_156 = (|| -> PyResult<_> {
+                    let enum_value_158: String = item_155.extract()?;
+                    let converted_item_156 =
+                        aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_158.as_str());
+                    Ok(converted_item_156)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_157),
+                        "str (MacAlgorithmSpec)",
+                    )
+                })?;
+                converted_153.push(converted_item_156);
+            }
+            Ok(converted_153)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("mac_algorithms"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_mac_algorithms(Some(converted_153));
     }
     if let Some(value) = dict_value(values, "xks_key_configuration")? {
-        let converted_152 = xks_key_configuration_type_from_py(&value)?;
-        builder = builder.set_xks_key_configuration(Some(converted_152));
+        let converted_159 = (|| -> PyResult<_> {
+            let converted_159 = xks_key_configuration_type_from_py(&value)?;
+            Ok(converted_159)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("xks_key_configuration"),
+                "dict (XksKeyConfigurationType)",
+            )
+        })?;
+        builder = builder.set_xks_key_configuration(Some(converted_159));
     }
     if let Some(value) = dict_value(values, "current_key_material_id")? {
-        let converted_153: String = value.extract()?;
-        builder = builder.set_current_key_material_id(Some(converted_153));
+        let converted_160 = (|| -> PyResult<_> {
+            let converted_160: String = value.extract()?;
+            Ok(converted_160)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("current_key_material_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_current_key_material_id(Some(converted_160));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("key_id", "key_id")]))
 }
 
 fn key_metadata_to_py(
@@ -685,170 +1335,170 @@ fn key_metadata_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.aws_account_id {
-        let converted_154 = (value).as_str().into_py_any(py)?;
-        result.set_item("aws_account_id", converted_154)?;
+        let converted_161 = (value).as_str().into_py_any(py)?;
+        result.set_item("aws_account_id", converted_161)?;
     } else {
         result.set_item("aws_account_id", py.None())?;
     }
-    let converted_155 = (&value.key_id).as_str().into_py_any(py)?;
-    result.set_item("key_id", converted_155)?;
+    let converted_162 = (&value.key_id).as_str().into_py_any(py)?;
+    result.set_item("key_id", converted_162)?;
     if let Some(value) = &value.arn {
-        let converted_156 = (value).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_156)?;
+        let converted_163 = (value).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_163)?;
     } else {
         result.set_item("arn", py.None())?;
     }
     if let Some(value) = &value.creation_date {
-        let converted_157 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_157)?;
+        let converted_164 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_164)?;
     } else {
         result.set_item("creation_date", py.None())?;
     }
-    let converted_158 = (&value.enabled).to_owned().into_py_any(py)?;
-    result.set_item("enabled", converted_158)?;
+    let converted_165 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_165)?;
     if let Some(value) = &value.description {
-        let converted_159 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_159)?;
+        let converted_166 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_166)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.key_usage {
-        let converted_160 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_usage", converted_160)?;
+        let converted_167 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_usage", converted_167)?;
     } else {
         result.set_item("key_usage", py.None())?;
     }
     if let Some(value) = &value.key_state {
-        let converted_161 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_state", converted_161)?;
+        let converted_168 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_state", converted_168)?;
     } else {
         result.set_item("key_state", py.None())?;
     }
     if let Some(value) = &value.deletion_date {
-        let converted_162 = (value).to_string().into_py_any(py)?;
-        result.set_item("deletion_date", converted_162)?;
+        let converted_169 = (value).to_string().into_py_any(py)?;
+        result.set_item("deletion_date", converted_169)?;
     } else {
         result.set_item("deletion_date", py.None())?;
     }
     if let Some(value) = &value.valid_to {
-        let converted_163 = (value).to_string().into_py_any(py)?;
-        result.set_item("valid_to", converted_163)?;
+        let converted_170 = (value).to_string().into_py_any(py)?;
+        result.set_item("valid_to", converted_170)?;
     } else {
         result.set_item("valid_to", py.None())?;
     }
     if let Some(value) = &value.origin {
-        let converted_164 = (value).as_str().into_py_any(py)?;
-        result.set_item("origin", converted_164)?;
+        let converted_171 = (value).as_str().into_py_any(py)?;
+        result.set_item("origin", converted_171)?;
     } else {
         result.set_item("origin", py.None())?;
     }
     if let Some(value) = &value.custom_key_store_id {
-        let converted_165 = (value).as_str().into_py_any(py)?;
-        result.set_item("custom_key_store_id", converted_165)?;
+        let converted_172 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_key_store_id", converted_172)?;
     } else {
         result.set_item("custom_key_store_id", py.None())?;
     }
     if let Some(value) = &value.cloud_hsm_cluster_id {
-        let converted_166 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_hsm_cluster_id", converted_166)?;
+        let converted_173 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_hsm_cluster_id", converted_173)?;
     } else {
         result.set_item("cloud_hsm_cluster_id", py.None())?;
     }
     if let Some(value) = &value.expiration_model {
-        let converted_167 = (value).as_str().into_py_any(py)?;
-        result.set_item("expiration_model", converted_167)?;
+        let converted_174 = (value).as_str().into_py_any(py)?;
+        result.set_item("expiration_model", converted_174)?;
     } else {
         result.set_item("expiration_model", py.None())?;
     }
     if let Some(value) = &value.key_manager {
-        let converted_168 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_manager", converted_168)?;
+        let converted_175 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_manager", converted_175)?;
     } else {
         result.set_item("key_manager", py.None())?;
     }
     if let Some(value) = &value.customer_master_key_spec {
-        let converted_169 = (value).as_str().into_py_any(py)?;
-        result.set_item("customer_master_key_spec", converted_169)?;
+        let converted_176 = (value).as_str().into_py_any(py)?;
+        result.set_item("customer_master_key_spec", converted_176)?;
     } else {
         result.set_item("customer_master_key_spec", py.None())?;
     }
     if let Some(value) = &value.key_spec {
-        let converted_170 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_spec", converted_170)?;
+        let converted_177 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_spec", converted_177)?;
     } else {
         result.set_item("key_spec", py.None())?;
     }
     if let Some(value) = &value.encryption_algorithms {
-        let converted_171_list = PyList::empty(py);
-        for item_172 in value {
-            let converted_item_173 = (item_172).as_str().into_py_any(py)?;
-            converted_171_list.append(converted_item_173)?;
+        let converted_178_list = PyList::empty(py);
+        for item_179 in value {
+            let converted_item_180 = (item_179).as_str().into_py_any(py)?;
+            converted_178_list.append(converted_item_180)?;
         }
-        let converted_171 = converted_171_list.into_any().unbind();
-        result.set_item("encryption_algorithms", converted_171)?;
+        let converted_178 = converted_178_list.into_any().unbind();
+        result.set_item("encryption_algorithms", converted_178)?;
     } else {
         result.set_item("encryption_algorithms", py.None())?;
     }
     if let Some(value) = &value.signing_algorithms {
-        let converted_174_list = PyList::empty(py);
-        for item_175 in value {
-            let converted_item_176 = (item_175).as_str().into_py_any(py)?;
-            converted_174_list.append(converted_item_176)?;
+        let converted_181_list = PyList::empty(py);
+        for item_182 in value {
+            let converted_item_183 = (item_182).as_str().into_py_any(py)?;
+            converted_181_list.append(converted_item_183)?;
         }
-        let converted_174 = converted_174_list.into_any().unbind();
-        result.set_item("signing_algorithms", converted_174)?;
+        let converted_181 = converted_181_list.into_any().unbind();
+        result.set_item("signing_algorithms", converted_181)?;
     } else {
         result.set_item("signing_algorithms", py.None())?;
     }
     if let Some(value) = &value.key_agreement_algorithms {
-        let converted_177_list = PyList::empty(py);
-        for item_178 in value {
-            let converted_item_179 = (item_178).as_str().into_py_any(py)?;
-            converted_177_list.append(converted_item_179)?;
+        let converted_184_list = PyList::empty(py);
+        for item_185 in value {
+            let converted_item_186 = (item_185).as_str().into_py_any(py)?;
+            converted_184_list.append(converted_item_186)?;
         }
-        let converted_177 = converted_177_list.into_any().unbind();
-        result.set_item("key_agreement_algorithms", converted_177)?;
+        let converted_184 = converted_184_list.into_any().unbind();
+        result.set_item("key_agreement_algorithms", converted_184)?;
     } else {
         result.set_item("key_agreement_algorithms", py.None())?;
     }
     if let Some(value) = &value.multi_region {
-        let converted_180 = (value).to_owned().into_py_any(py)?;
-        result.set_item("multi_region", converted_180)?;
+        let converted_187 = (value).to_owned().into_py_any(py)?;
+        result.set_item("multi_region", converted_187)?;
     } else {
         result.set_item("multi_region", py.None())?;
     }
     if let Some(value) = &value.multi_region_configuration {
-        let converted_181 = multi_region_configuration_to_py(py, value)?;
-        result.set_item("multi_region_configuration", converted_181)?;
+        let converted_188 = multi_region_configuration_to_py(py, value)?;
+        result.set_item("multi_region_configuration", converted_188)?;
     } else {
         result.set_item("multi_region_configuration", py.None())?;
     }
     if let Some(value) = &value.pending_deletion_window_in_days {
-        let converted_182 = (value).to_owned().into_py_any(py)?;
-        result.set_item("pending_deletion_window_in_days", converted_182)?;
+        let converted_189 = (value).to_owned().into_py_any(py)?;
+        result.set_item("pending_deletion_window_in_days", converted_189)?;
     } else {
         result.set_item("pending_deletion_window_in_days", py.None())?;
     }
     if let Some(value) = &value.mac_algorithms {
-        let converted_183_list = PyList::empty(py);
-        for item_184 in value {
-            let converted_item_185 = (item_184).as_str().into_py_any(py)?;
-            converted_183_list.append(converted_item_185)?;
+        let converted_190_list = PyList::empty(py);
+        for item_191 in value {
+            let converted_item_192 = (item_191).as_str().into_py_any(py)?;
+            converted_190_list.append(converted_item_192)?;
         }
-        let converted_183 = converted_183_list.into_any().unbind();
-        result.set_item("mac_algorithms", converted_183)?;
+        let converted_190 = converted_190_list.into_any().unbind();
+        result.set_item("mac_algorithms", converted_190)?;
     } else {
         result.set_item("mac_algorithms", py.None())?;
     }
     if let Some(value) = &value.xks_key_configuration {
-        let converted_186 = xks_key_configuration_type_to_py(py, value)?;
-        result.set_item("xks_key_configuration", converted_186)?;
+        let converted_193 = xks_key_configuration_type_to_py(py, value)?;
+        result.set_item("xks_key_configuration", converted_193)?;
     } else {
         result.set_item("xks_key_configuration", py.None())?;
     }
     if let Some(value) = &value.current_key_material_id {
-        let converted_187 = (value).as_str().into_py_any(py)?;
-        result.set_item("current_key_material_id", converted_187)?;
+        let converted_194 = (value).as_str().into_py_any(py)?;
+        result.set_item("current_key_material_id", converted_194)?;
     } else {
         result.set_item("current_key_material_id", py.None())?;
     }
@@ -861,23 +1511,71 @@ fn multi_region_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::MultiRegionConfiguration::builder();
     if let Some(value) = dict_value(values, "multi_region_key_type")? {
-        let enum_value_189: String = value.extract()?;
-        let converted_188 = aws_sdk_kms::types::MultiRegionKeyType::from(enum_value_189.as_str());
-        builder = builder.set_multi_region_key_type(Some(converted_188));
+        let converted_195 = (|| -> PyResult<_> {
+            let enum_value_196: String = value.extract()?;
+            let converted_195 =
+                aws_sdk_kms::types::MultiRegionKeyType::from(enum_value_196.as_str());
+            Ok(converted_195)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("multi_region_key_type"),
+                "str (MultiRegionKeyType)",
+            )
+        })?;
+        builder = builder.set_multi_region_key_type(Some(converted_195));
     }
     if let Some(value) = dict_value(values, "primary_key")? {
-        let converted_190 = multi_region_key_from_py(&value)?;
-        builder = builder.set_primary_key(Some(converted_190));
+        let converted_197 = (|| -> PyResult<_> {
+            let converted_197 = multi_region_key_from_py(&value)?;
+            Ok(converted_197)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("primary_key"),
+                "dict (MultiRegionKey)",
+            )
+        })?;
+        builder = builder.set_primary_key(Some(converted_197));
     }
     if let Some(value) = dict_value(values, "replica_keys")? {
-        let mut converted_191 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_192 in value.try_iter()? {
-            let item_193 = item_result_192?;
-            let converted_item_194 = multi_region_key_from_py(&item_193)?;
-            converted_191.push(converted_item_194);
-        }
-        builder = builder.set_replica_keys(Some(converted_191));
+        let converted_198 = (|| -> PyResult<_> {
+            let mut converted_198 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_202, item_result_199) in value.try_iter()?.enumerate() {
+                let item_200 = item_result_199.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_202),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_201 = (|| -> PyResult<_> {
+                    let converted_item_201 = multi_region_key_from_py(&item_200)?;
+                    Ok(converted_item_201)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_202),
+                        "dict (MultiRegionKey)",
+                    )
+                })?;
+                converted_198.push(converted_item_201);
+            }
+            Ok(converted_198)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("replica_keys"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_replica_keys(Some(converted_198));
     }
     Ok(builder.build())
 }
@@ -888,25 +1586,25 @@ fn multi_region_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.multi_region_key_type {
-        let converted_195 = (value).as_str().into_py_any(py)?;
-        result.set_item("multi_region_key_type", converted_195)?;
+        let converted_203 = (value).as_str().into_py_any(py)?;
+        result.set_item("multi_region_key_type", converted_203)?;
     } else {
         result.set_item("multi_region_key_type", py.None())?;
     }
     if let Some(value) = &value.primary_key {
-        let converted_196 = multi_region_key_to_py(py, value)?;
-        result.set_item("primary_key", converted_196)?;
+        let converted_204 = multi_region_key_to_py(py, value)?;
+        result.set_item("primary_key", converted_204)?;
     } else {
         result.set_item("primary_key", py.None())?;
     }
     if let Some(value) = &value.replica_keys {
-        let converted_197_list = PyList::empty(py);
-        for item_198 in value {
-            let converted_item_199 = multi_region_key_to_py(py, item_198)?;
-            converted_197_list.append(converted_item_199)?;
+        let converted_205_list = PyList::empty(py);
+        for item_206 in value {
+            let converted_item_207 = multi_region_key_to_py(py, item_206)?;
+            converted_205_list.append(converted_item_207)?;
         }
-        let converted_197 = converted_197_list.into_any().unbind();
-        result.set_item("replica_keys", converted_197)?;
+        let converted_205 = converted_205_list.into_any().unbind();
+        result.set_item("replica_keys", converted_205)?;
     } else {
         result.set_item("replica_keys", py.None())?;
     }
@@ -919,12 +1617,24 @@ fn multi_region_key_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::MultiRegionKey::builder();
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_200: String = value.extract()?;
-        builder = builder.set_arn(Some(converted_200));
+        let converted_208 = (|| -> PyResult<_> {
+            let converted_208: String = value.extract()?;
+            Ok(converted_208)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
+        })?;
+        builder = builder.set_arn(Some(converted_208));
     }
     if let Some(value) = dict_value(values, "region")? {
-        let converted_201: String = value.extract()?;
-        builder = builder.set_region(Some(converted_201));
+        let converted_209 = (|| -> PyResult<_> {
+            let converted_209: String = value.extract()?;
+            Ok(converted_209)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("region"), "str")
+        })?;
+        builder = builder.set_region(Some(converted_209));
     }
     Ok(builder.build())
 }
@@ -935,14 +1645,14 @@ fn multi_region_key_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.arn {
-        let converted_202 = (value).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_202)?;
+        let converted_210 = (value).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_210)?;
     } else {
         result.set_item("arn", py.None())?;
     }
     if let Some(value) = &value.region {
-        let converted_203 = (value).as_str().into_py_any(py)?;
-        result.set_item("region", converted_203)?;
+        let converted_211 = (value).as_str().into_py_any(py)?;
+        result.set_item("region", converted_211)?;
     } else {
         result.set_item("region", py.None())?;
     }
@@ -953,15 +1663,35 @@ fn recipient_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::typ
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::RecipientInfo::builder();
     if let Some(value) = dict_value(values, "key_encryption_algorithm")? {
-        let enum_value_205: String = value.extract()?;
-        let converted_204 =
-            aws_sdk_kms::types::KeyEncryptionMechanism::from(enum_value_205.as_str());
-        builder = builder.set_key_encryption_algorithm(Some(converted_204));
+        let converted_212 = (|| -> PyResult<_> {
+            let enum_value_213: String = value.extract()?;
+            let converted_212 =
+                aws_sdk_kms::types::KeyEncryptionMechanism::from(enum_value_213.as_str());
+            Ok(converted_212)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_encryption_algorithm"),
+                "str (KeyEncryptionMechanism)",
+            )
+        })?;
+        builder = builder.set_key_encryption_algorithm(Some(converted_212));
     }
     if let Some(value) = dict_value(values, "attestation_document")? {
-        let bytes_207: Vec<u8> = value.extract()?;
-        let converted_206 = ::aws_smithy_types::Blob::new(bytes_207);
-        builder = builder.set_attestation_document(Some(converted_206));
+        let converted_214 = (|| -> PyResult<_> {
+            let bytes_215: Vec<u8> = value.extract()?;
+            let converted_214 = ::aws_smithy_types::Blob::new(bytes_215);
+            Ok(converted_214)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("attestation_document"),
+                "bytes",
+            )
+        })?;
+        builder = builder.set_attestation_document(Some(converted_214));
     }
     Ok(builder.build())
 }
@@ -972,14 +1702,14 @@ fn recipient_info_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key_encryption_algorithm {
-        let converted_208 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_encryption_algorithm", converted_208)?;
+        let converted_216 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_encryption_algorithm", converted_216)?;
     } else {
         result.set_item("key_encryption_algorithm", py.None())?;
     }
     if let Some(value) = &value.attestation_document {
-        let converted_209 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("attestation_document", converted_209)?;
+        let converted_217 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("attestation_document", converted_217)?;
     } else {
         result.set_item("attestation_document", py.None())?;
     }
@@ -992,54 +1722,141 @@ fn rotations_list_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::RotationsListEntry::builder();
     if let Some(value) = dict_value(values, "key_id")? {
-        let converted_210: String = value.extract()?;
-        builder = builder.set_key_id(Some(converted_210));
+        let converted_218 = (|| -> PyResult<_> {
+            let converted_218: String = value.extract()?;
+            Ok(converted_218)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str")
+        })?;
+        builder = builder.set_key_id(Some(converted_218));
     }
     if let Some(value) = dict_value(values, "key_material_id")? {
-        let converted_211: String = value.extract()?;
-        builder = builder.set_key_material_id(Some(converted_211));
+        let converted_219 = (|| -> PyResult<_> {
+            let converted_219: String = value.extract()?;
+            Ok(converted_219)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_material_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_key_material_id(Some(converted_219));
     }
     if let Some(value) = dict_value(values, "key_material_description")? {
-        let converted_212: String = value.extract()?;
-        builder = builder.set_key_material_description(Some(converted_212));
+        let converted_220 = (|| -> PyResult<_> {
+            let converted_220: String = value.extract()?;
+            Ok(converted_220)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_material_description"),
+                "str",
+            )
+        })?;
+        builder = builder.set_key_material_description(Some(converted_220));
     }
     if let Some(value) = dict_value(values, "import_state")? {
-        let enum_value_214: String = value.extract()?;
-        let converted_213 = aws_sdk_kms::types::ImportState::from(enum_value_214.as_str());
-        builder = builder.set_import_state(Some(converted_213));
+        let converted_221 = (|| -> PyResult<_> {
+            let enum_value_222: String = value.extract()?;
+            let converted_221 = aws_sdk_kms::types::ImportState::from(enum_value_222.as_str());
+            Ok(converted_221)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("import_state"),
+                "str (ImportState)",
+            )
+        })?;
+        builder = builder.set_import_state(Some(converted_221));
     }
     if let Some(value) = dict_value(values, "key_material_state")? {
-        let enum_value_216: String = value.extract()?;
-        let converted_215 = aws_sdk_kms::types::KeyMaterialState::from(enum_value_216.as_str());
-        builder = builder.set_key_material_state(Some(converted_215));
+        let converted_223 = (|| -> PyResult<_> {
+            let enum_value_224: String = value.extract()?;
+            let converted_223 = aws_sdk_kms::types::KeyMaterialState::from(enum_value_224.as_str());
+            Ok(converted_223)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("key_material_state"),
+                "str (KeyMaterialState)",
+            )
+        })?;
+        builder = builder.set_key_material_state(Some(converted_223));
     }
     if let Some(value) = dict_value(values, "expiration_model")? {
-        let enum_value_218: String = value.extract()?;
-        let converted_217 = aws_sdk_kms::types::ExpirationModelType::from(enum_value_218.as_str());
-        builder = builder.set_expiration_model(Some(converted_217));
+        let converted_225 = (|| -> PyResult<_> {
+            let enum_value_226: String = value.extract()?;
+            let converted_225 =
+                aws_sdk_kms::types::ExpirationModelType::from(enum_value_226.as_str());
+            Ok(converted_225)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("expiration_model"),
+                "str (ExpirationModelType)",
+            )
+        })?;
+        builder = builder.set_expiration_model(Some(converted_225));
     }
     if let Some(value) = dict_value(values, "valid_to")? {
-        let timestamp_220: String = value.extract()?;
-        let converted_219 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_220,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_valid_to(Some(converted_219));
+        let converted_227 = (|| -> PyResult<_> {
+            let timestamp_228: String = value.extract()?;
+            let converted_227 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_228,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_227)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("valid_to"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_valid_to(Some(converted_227));
     }
     if let Some(value) = dict_value(values, "rotation_date")? {
-        let timestamp_222: String = value.extract()?;
-        let converted_221 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_222,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_rotation_date(Some(converted_221));
+        let converted_229 = (|| -> PyResult<_> {
+            let timestamp_230: String = value.extract()?;
+            let converted_229 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_230,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_229)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("rotation_date"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_rotation_date(Some(converted_229));
     }
     if let Some(value) = dict_value(values, "rotation_type")? {
-        let enum_value_224: String = value.extract()?;
-        let converted_223 = aws_sdk_kms::types::RotationType::from(enum_value_224.as_str());
-        builder = builder.set_rotation_type(Some(converted_223));
+        let converted_231 = (|| -> PyResult<_> {
+            let enum_value_232: String = value.extract()?;
+            let converted_231 = aws_sdk_kms::types::RotationType::from(enum_value_232.as_str());
+            Ok(converted_231)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("rotation_type"),
+                "str (RotationType)",
+            )
+        })?;
+        builder = builder.set_rotation_type(Some(converted_231));
     }
     Ok(builder.build())
 }
@@ -1050,56 +1867,56 @@ fn rotations_list_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key_id {
-        let converted_225 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_225)?;
+        let converted_233 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_233)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
     if let Some(value) = &value.key_material_id {
-        let converted_226 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_material_id", converted_226)?;
+        let converted_234 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_material_id", converted_234)?;
     } else {
         result.set_item("key_material_id", py.None())?;
     }
     if let Some(value) = &value.key_material_description {
-        let converted_227 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_material_description", converted_227)?;
+        let converted_235 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_material_description", converted_235)?;
     } else {
         result.set_item("key_material_description", py.None())?;
     }
     if let Some(value) = &value.import_state {
-        let converted_228 = (value).as_str().into_py_any(py)?;
-        result.set_item("import_state", converted_228)?;
+        let converted_236 = (value).as_str().into_py_any(py)?;
+        result.set_item("import_state", converted_236)?;
     } else {
         result.set_item("import_state", py.None())?;
     }
     if let Some(value) = &value.key_material_state {
-        let converted_229 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_material_state", converted_229)?;
+        let converted_237 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_material_state", converted_237)?;
     } else {
         result.set_item("key_material_state", py.None())?;
     }
     if let Some(value) = &value.expiration_model {
-        let converted_230 = (value).as_str().into_py_any(py)?;
-        result.set_item("expiration_model", converted_230)?;
+        let converted_238 = (value).as_str().into_py_any(py)?;
+        result.set_item("expiration_model", converted_238)?;
     } else {
         result.set_item("expiration_model", py.None())?;
     }
     if let Some(value) = &value.valid_to {
-        let converted_231 = (value).to_string().into_py_any(py)?;
-        result.set_item("valid_to", converted_231)?;
+        let converted_239 = (value).to_string().into_py_any(py)?;
+        result.set_item("valid_to", converted_239)?;
     } else {
         result.set_item("valid_to", py.None())?;
     }
     if let Some(value) = &value.rotation_date {
-        let converted_232 = (value).to_string().into_py_any(py)?;
-        result.set_item("rotation_date", converted_232)?;
+        let converted_240 = (value).to_string().into_py_any(py)?;
+        result.set_item("rotation_date", converted_240)?;
     } else {
         result.set_item("rotation_date", py.None())?;
     }
     if let Some(value) = &value.rotation_type {
-        let converted_233 = (value).as_str().into_py_any(py)?;
-        result.set_item("rotation_type", converted_233)?;
+        let converted_241 = (value).as_str().into_py_any(py)?;
+        result.set_item("rotation_type", converted_241)?;
     } else {
         result.set_item("rotation_type", py.None())?;
     }
@@ -1110,24 +1927,39 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types::Tag> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::Tag::builder();
     if let Some(value) = dict_value(values, "tag_key")? {
-        let converted_234: String = value.extract()?;
-        builder = builder.set_tag_key(Some(converted_234));
+        let converted_242 = (|| -> PyResult<_> {
+            let converted_242: String = value.extract()?;
+            Ok(converted_242)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tag_key"), "str")
+        })?;
+        builder = builder.set_tag_key(Some(converted_242));
     }
     if let Some(value) = dict_value(values, "tag_value")? {
-        let converted_235: String = value.extract()?;
-        builder = builder.set_tag_value(Some(converted_235));
+        let converted_243 = (|| -> PyResult<_> {
+            let converted_243: String = value.extract()?;
+            Ok(converted_243)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tag_value"), "str")
+        })?;
+        builder = builder.set_tag_value(Some(converted_243));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("tag_key", "tag_key"), ("tag_value", "tag_value")],
+        )
+    })
 }
 
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_kms::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_236 = (&value.tag_key).as_str().into_py_any(py)?;
-    result.set_item("tag_key", converted_236)?;
-    let converted_237 = (&value.tag_value).as_str().into_py_any(py)?;
-    result.set_item("tag_value", converted_237)?;
+    let converted_244 = (&value.tag_key).as_str().into_py_any(py)?;
+    result.set_item("tag_key", converted_244)?;
+    let converted_245 = (&value.tag_value).as_str().into_py_any(py)?;
+    result.set_item("tag_value", converted_245)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1137,8 +1969,14 @@ fn xks_key_configuration_type_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::XksKeyConfigurationType::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_238: String = value.extract()?;
-        builder = builder.set_id(Some(converted_238));
+        let converted_246 = (|| -> PyResult<_> {
+            let converted_246: String = value.extract()?;
+            Ok(converted_246)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
+        builder = builder.set_id(Some(converted_246));
     }
     Ok(builder.build())
 }
@@ -1149,8 +1987,8 @@ fn xks_key_configuration_type_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_239 = (value).as_str().into_py_any(py)?;
-        result.set_item("id", converted_239)?;
+        let converted_247 = (value).as_str().into_py_any(py)?;
+        result.set_item("id", converted_247)?;
     } else {
         result.set_item("id", py.None())?;
     }
@@ -1163,16 +2001,38 @@ fn xks_proxy_authentication_credential_type_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::XksProxyAuthenticationCredentialType::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
-        let converted_240: String = value.extract()?;
-        builder = builder.set_access_key_id(Some(converted_240));
+        let converted_248 = (|| -> PyResult<_> {
+            let converted_248: String = value.extract()?;
+            Ok(converted_248)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("access_key_id"), "str")
+        })?;
+        builder = builder.set_access_key_id(Some(converted_248));
     }
     if let Some(value) = dict_value(values, "raw_secret_access_key")? {
-        let converted_241: String = value.extract()?;
-        builder = builder.set_raw_secret_access_key(Some(converted_241));
+        let converted_249 = (|| -> PyResult<_> {
+            let converted_249: String = value.extract()?;
+            Ok(converted_249)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("raw_secret_access_key"),
+                "str",
+            )
+        })?;
+        builder = builder.set_raw_secret_access_key(Some(converted_249));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("access_key_id", "access_key_id"),
+                ("raw_secret_access_key", "raw_secret_access_key"),
+            ],
+        )
+    })
 }
 
 fn xks_proxy_authentication_credential_type_to_py(
@@ -1180,10 +2040,10 @@ fn xks_proxy_authentication_credential_type_to_py(
     value: &aws_sdk_kms::types::XksProxyAuthenticationCredentialType,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_242 = (&value.access_key_id).as_str().into_py_any(py)?;
-    result.set_item("access_key_id", converted_242)?;
-    let converted_243 = (&value.raw_secret_access_key).as_str().into_py_any(py)?;
-    result.set_item("raw_secret_access_key", converted_243)?;
+    let converted_250 = (&value.access_key_id).as_str().into_py_any(py)?;
+    result.set_item("access_key_id", converted_250)?;
+    let converted_251 = (&value.raw_secret_access_key).as_str().into_py_any(py)?;
+    result.set_item("raw_secret_access_key", converted_251)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1193,30 +2053,78 @@ fn xks_proxy_configuration_type_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_kms::types::XksProxyConfigurationType::builder();
     if let Some(value) = dict_value(values, "connectivity")? {
-        let enum_value_245: String = value.extract()?;
-        let converted_244 =
-            aws_sdk_kms::types::XksProxyConnectivityType::from(enum_value_245.as_str());
-        builder = builder.set_connectivity(Some(converted_244));
+        let converted_252 = (|| -> PyResult<_> {
+            let enum_value_253: String = value.extract()?;
+            let converted_252 =
+                aws_sdk_kms::types::XksProxyConnectivityType::from(enum_value_253.as_str());
+            Ok(converted_252)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("connectivity"),
+                "str (XksProxyConnectivityType)",
+            )
+        })?;
+        builder = builder.set_connectivity(Some(converted_252));
     }
     if let Some(value) = dict_value(values, "access_key_id")? {
-        let converted_246: String = value.extract()?;
-        builder = builder.set_access_key_id(Some(converted_246));
+        let converted_254 = (|| -> PyResult<_> {
+            let converted_254: String = value.extract()?;
+            Ok(converted_254)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("access_key_id"), "str")
+        })?;
+        builder = builder.set_access_key_id(Some(converted_254));
     }
     if let Some(value) = dict_value(values, "uri_endpoint")? {
-        let converted_247: String = value.extract()?;
-        builder = builder.set_uri_endpoint(Some(converted_247));
+        let converted_255 = (|| -> PyResult<_> {
+            let converted_255: String = value.extract()?;
+            Ok(converted_255)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("uri_endpoint"), "str")
+        })?;
+        builder = builder.set_uri_endpoint(Some(converted_255));
     }
     if let Some(value) = dict_value(values, "uri_path")? {
-        let converted_248: String = value.extract()?;
-        builder = builder.set_uri_path(Some(converted_248));
+        let converted_256 = (|| -> PyResult<_> {
+            let converted_256: String = value.extract()?;
+            Ok(converted_256)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("uri_path"), "str")
+        })?;
+        builder = builder.set_uri_path(Some(converted_256));
     }
     if let Some(value) = dict_value(values, "vpc_endpoint_service_name")? {
-        let converted_249: String = value.extract()?;
-        builder = builder.set_vpc_endpoint_service_name(Some(converted_249));
+        let converted_257 = (|| -> PyResult<_> {
+            let converted_257: String = value.extract()?;
+            Ok(converted_257)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vpc_endpoint_service_name"),
+                "str",
+            )
+        })?;
+        builder = builder.set_vpc_endpoint_service_name(Some(converted_257));
     }
     if let Some(value) = dict_value(values, "vpc_endpoint_service_owner")? {
-        let converted_250: String = value.extract()?;
-        builder = builder.set_vpc_endpoint_service_owner(Some(converted_250));
+        let converted_258 = (|| -> PyResult<_> {
+            let converted_258: String = value.extract()?;
+            Ok(converted_258)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("vpc_endpoint_service_owner"),
+                "str",
+            )
+        })?;
+        builder = builder.set_vpc_endpoint_service_owner(Some(converted_258));
     }
     Ok(builder.build())
 }
@@ -1227,38 +2135,38 @@ fn xks_proxy_configuration_type_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.connectivity {
-        let converted_251 = (value).as_str().into_py_any(py)?;
-        result.set_item("connectivity", converted_251)?;
+        let converted_259 = (value).as_str().into_py_any(py)?;
+        result.set_item("connectivity", converted_259)?;
     } else {
         result.set_item("connectivity", py.None())?;
     }
     if let Some(value) = &value.access_key_id {
-        let converted_252 = (value).as_str().into_py_any(py)?;
-        result.set_item("access_key_id", converted_252)?;
+        let converted_260 = (value).as_str().into_py_any(py)?;
+        result.set_item("access_key_id", converted_260)?;
     } else {
         result.set_item("access_key_id", py.None())?;
     }
     if let Some(value) = &value.uri_endpoint {
-        let converted_253 = (value).as_str().into_py_any(py)?;
-        result.set_item("uri_endpoint", converted_253)?;
+        let converted_261 = (value).as_str().into_py_any(py)?;
+        result.set_item("uri_endpoint", converted_261)?;
     } else {
         result.set_item("uri_endpoint", py.None())?;
     }
     if let Some(value) = &value.uri_path {
-        let converted_254 = (value).as_str().into_py_any(py)?;
-        result.set_item("uri_path", converted_254)?;
+        let converted_262 = (value).as_str().into_py_any(py)?;
+        result.set_item("uri_path", converted_262)?;
     } else {
         result.set_item("uri_path", py.None())?;
     }
     if let Some(value) = &value.vpc_endpoint_service_name {
-        let converted_255 = (value).as_str().into_py_any(py)?;
-        result.set_item("vpc_endpoint_service_name", converted_255)?;
+        let converted_263 = (value).as_str().into_py_any(py)?;
+        result.set_item("vpc_endpoint_service_name", converted_263)?;
     } else {
         result.set_item("vpc_endpoint_service_name", py.None())?;
     }
     if let Some(value) = &value.vpc_endpoint_service_owner {
-        let converted_256 = (value).as_str().into_py_any(py)?;
-        result.set_item("vpc_endpoint_service_owner", converted_256)?;
+        let converted_264 = (value).as_str().into_py_any(py)?;
+        result.set_item("vpc_endpoint_service_owner", converted_264)?;
     } else {
         result.set_item("vpc_endpoint_service_owner", py.None())?;
     }
@@ -1275,8 +2183,8 @@ impl PyAliasListEntry {
     #[getter]
     fn alias_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alias_name {
-            let converted_621 = (value).as_str().into_py_any(py)?;
-            Ok(converted_621)
+            let converted_659 = (value).as_str().into_py_any(py)?;
+            Ok(converted_659)
         } else {
             Ok(py.None())
         }
@@ -1285,8 +2193,8 @@ impl PyAliasListEntry {
     #[getter]
     fn alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alias_arn {
-            let converted_622 = (value).as_str().into_py_any(py)?;
-            Ok(converted_622)
+            let converted_660 = (value).as_str().into_py_any(py)?;
+            Ok(converted_660)
         } else {
             Ok(py.None())
         }
@@ -1295,8 +2203,8 @@ impl PyAliasListEntry {
     #[getter]
     fn target_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.target_key_id {
-            let converted_623 = (value).as_str().into_py_any(py)?;
-            Ok(converted_623)
+            let converted_661 = (value).as_str().into_py_any(py)?;
+            Ok(converted_661)
         } else {
             Ok(py.None())
         }
@@ -1305,8 +2213,8 @@ impl PyAliasListEntry {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_624 = (value).to_string().into_py_any(py)?;
-            Ok(converted_624)
+            let converted_662 = (value).to_string().into_py_any(py)?;
+            Ok(converted_662)
         } else {
             Ok(py.None())
         }
@@ -1315,8 +2223,8 @@ impl PyAliasListEntry {
     #[getter]
     fn last_updated_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_updated_date {
-            let converted_625 = (value).to_string().into_py_any(py)?;
-            Ok(converted_625)
+            let converted_663 = (value).to_string().into_py_any(py)?;
+            Ok(converted_663)
         } else {
             Ok(py.None())
         }
@@ -1363,56 +2271,56 @@ fn custom_key_stores_list_entry_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.custom_key_store_id {
-        let converted_635 = (value).as_str().into_py_any(py)?;
-        result.set_item("custom_key_store_id", converted_635)?;
+        let converted_673 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_key_store_id", converted_673)?;
     } else {
         result.set_item("custom_key_store_id", py.None())?;
     }
     if let Some(value) = &value.custom_key_store_name {
-        let converted_636 = (value).as_str().into_py_any(py)?;
-        result.set_item("custom_key_store_name", converted_636)?;
+        let converted_674 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_key_store_name", converted_674)?;
     } else {
         result.set_item("custom_key_store_name", py.None())?;
     }
     if let Some(value) = &value.cloud_hsm_cluster_id {
-        let converted_637 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_hsm_cluster_id", converted_637)?;
+        let converted_675 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_hsm_cluster_id", converted_675)?;
     } else {
         result.set_item("cloud_hsm_cluster_id", py.None())?;
     }
     if let Some(value) = &value.trust_anchor_certificate {
-        let converted_638 = (value).as_str().into_py_any(py)?;
-        result.set_item("trust_anchor_certificate", converted_638)?;
+        let converted_676 = (value).as_str().into_py_any(py)?;
+        result.set_item("trust_anchor_certificate", converted_676)?;
     } else {
         result.set_item("trust_anchor_certificate", py.None())?;
     }
     if let Some(value) = &value.connection_state {
-        let converted_639 = (value).as_str().into_py_any(py)?;
-        result.set_item("connection_state", converted_639)?;
+        let converted_677 = (value).as_str().into_py_any(py)?;
+        result.set_item("connection_state", converted_677)?;
     } else {
         result.set_item("connection_state", py.None())?;
     }
     if let Some(value) = &value.connection_error_code {
-        let converted_640 = (value).as_str().into_py_any(py)?;
-        result.set_item("connection_error_code", converted_640)?;
+        let converted_678 = (value).as_str().into_py_any(py)?;
+        result.set_item("connection_error_code", converted_678)?;
     } else {
         result.set_item("connection_error_code", py.None())?;
     }
     if let Some(value) = &value.creation_date {
-        let converted_641 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_641)?;
+        let converted_679 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_679)?;
     } else {
         result.set_item("creation_date", py.None())?;
     }
     if let Some(value) = &value.custom_key_store_type {
-        let converted_642 = (value).as_str().into_py_any(py)?;
-        result.set_item("custom_key_store_type", converted_642)?;
+        let converted_680 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_key_store_type", converted_680)?;
     } else {
         result.set_item("custom_key_store_type", py.None())?;
     }
     if let Some(value) = &value.xks_proxy_configuration {
-        let converted_643 = xks_proxy_configuration_type_to_py(py, value)?;
-        result.set_item("xks_proxy_configuration", converted_643)?;
+        let converted_681 = xks_proxy_configuration_type_to_py(py, value)?;
+        result.set_item("xks_proxy_configuration", converted_681)?;
     } else {
         result.set_item("xks_proxy_configuration", py.None())?;
     }
@@ -1433,8 +2341,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn custom_key_store_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_store_id {
-            let converted_626 = (value).as_str().into_py_any(py)?;
-            Ok(converted_626)
+            let converted_664 = (value).as_str().into_py_any(py)?;
+            Ok(converted_664)
         } else {
             Ok(py.None())
         }
@@ -1443,8 +2351,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn custom_key_store_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_store_name {
-            let converted_627 = (value).as_str().into_py_any(py)?;
-            Ok(converted_627)
+            let converted_665 = (value).as_str().into_py_any(py)?;
+            Ok(converted_665)
         } else {
             Ok(py.None())
         }
@@ -1453,8 +2361,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn cloud_hsm_cluster_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_hsm_cluster_id {
-            let converted_628 = (value).as_str().into_py_any(py)?;
-            Ok(converted_628)
+            let converted_666 = (value).as_str().into_py_any(py)?;
+            Ok(converted_666)
         } else {
             Ok(py.None())
         }
@@ -1463,8 +2371,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn trust_anchor_certificate(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.trust_anchor_certificate {
-            let converted_629 = (value).as_str().into_py_any(py)?;
-            Ok(converted_629)
+            let converted_667 = (value).as_str().into_py_any(py)?;
+            Ok(converted_667)
         } else {
             Ok(py.None())
         }
@@ -1473,8 +2381,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn connection_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_state {
-            let converted_630 = (value).as_str().into_py_any(py)?;
-            Ok(converted_630)
+            let converted_668 = (value).as_str().into_py_any(py)?;
+            Ok(converted_668)
         } else {
             Ok(py.None())
         }
@@ -1483,8 +2391,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn connection_error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_error_code {
-            let converted_631 = (value).as_str().into_py_any(py)?;
-            Ok(converted_631)
+            let converted_669 = (value).as_str().into_py_any(py)?;
+            Ok(converted_669)
         } else {
             Ok(py.None())
         }
@@ -1493,8 +2401,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_632 = (value).to_string().into_py_any(py)?;
-            Ok(converted_632)
+            let converted_670 = (value).to_string().into_py_any(py)?;
+            Ok(converted_670)
         } else {
             Ok(py.None())
         }
@@ -1503,8 +2411,8 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn custom_key_store_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_store_type {
-            let converted_633 = (value).as_str().into_py_any(py)?;
-            Ok(converted_633)
+            let converted_671 = (value).as_str().into_py_any(py)?;
+            Ok(converted_671)
         } else {
             Ok(py.None())
         }
@@ -1513,14 +2421,14 @@ impl PyCustomKeyStoresListEntry {
     #[getter]
     fn xks_proxy_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.xks_proxy_configuration {
-            let converted_634 = Py::new(
+            let converted_672 = Py::new(
                 py,
                 PyXksProxyConfigurationType {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_634)
+            Ok(converted_672)
         } else {
             Ok(py.None())
         }
@@ -1541,14 +2449,14 @@ impl PyGrantConstraints {
     #[getter]
     fn encryption_context_subset(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_context_subset {
-            let converted_644_dict = PyDict::new(py);
-            for (key_645, value_646) in value {
-                let converted_key_647 = (key_645).as_str().into_py_any(py)?;
-                let converted_value_648 = (value_646).as_str().into_py_any(py)?;
-                converted_644_dict.set_item(converted_key_647, converted_value_648)?;
+            let converted_682_dict = PyDict::new(py);
+            for (key_683, value_684) in value {
+                let converted_key_685 = (key_683).as_str().into_py_any(py)?;
+                let converted_value_686 = (value_684).as_str().into_py_any(py)?;
+                converted_682_dict.set_item(converted_key_685, converted_value_686)?;
             }
-            let converted_644 = converted_644_dict.into_any().unbind();
-            Ok(converted_644)
+            let converted_682 = converted_682_dict.into_any().unbind();
+            Ok(converted_682)
         } else {
             Ok(py.None())
         }
@@ -1557,14 +2465,14 @@ impl PyGrantConstraints {
     #[getter]
     fn encryption_context_equals(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_context_equals {
-            let converted_649_dict = PyDict::new(py);
-            for (key_650, value_651) in value {
-                let converted_key_652 = (key_650).as_str().into_py_any(py)?;
-                let converted_value_653 = (value_651).as_str().into_py_any(py)?;
-                converted_649_dict.set_item(converted_key_652, converted_value_653)?;
+            let converted_687_dict = PyDict::new(py);
+            for (key_688, value_689) in value {
+                let converted_key_690 = (key_688).as_str().into_py_any(py)?;
+                let converted_value_691 = (value_689).as_str().into_py_any(py)?;
+                converted_687_dict.set_item(converted_key_690, converted_value_691)?;
             }
-            let converted_649 = converted_649_dict.into_any().unbind();
-            Ok(converted_649)
+            let converted_687 = converted_687_dict.into_any().unbind();
+            Ok(converted_687)
         } else {
             Ok(py.None())
         }
@@ -1573,8 +2481,8 @@ impl PyGrantConstraints {
     #[getter]
     fn source_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_arn {
-            let converted_654 = (value).as_str().into_py_any(py)?;
-            Ok(converted_654)
+            let converted_692 = (value).as_str().into_py_any(py)?;
+            Ok(converted_692)
         } else {
             Ok(py.None())
         }
@@ -1625,73 +2533,73 @@ fn grant_list_entry_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key_id {
-        let converted_668 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_id", converted_668)?;
+        let converted_706 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_id", converted_706)?;
     } else {
         result.set_item("key_id", py.None())?;
     }
     if let Some(value) = &value.grant_id {
-        let converted_669 = (value).as_str().into_py_any(py)?;
-        result.set_item("grant_id", converted_669)?;
+        let converted_707 = (value).as_str().into_py_any(py)?;
+        result.set_item("grant_id", converted_707)?;
     } else {
         result.set_item("grant_id", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_670 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_670)?;
+        let converted_708 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_708)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.creation_date {
-        let converted_671 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_671)?;
+        let converted_709 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_709)?;
     } else {
         result.set_item("creation_date", py.None())?;
     }
     if let Some(value) = &value.grantee_principal {
-        let converted_672 = (value).as_str().into_py_any(py)?;
-        result.set_item("grantee_principal", converted_672)?;
+        let converted_710 = (value).as_str().into_py_any(py)?;
+        result.set_item("grantee_principal", converted_710)?;
     } else {
         result.set_item("grantee_principal", py.None())?;
     }
     if let Some(value) = &value.retiring_principal {
-        let converted_673 = (value).as_str().into_py_any(py)?;
-        result.set_item("retiring_principal", converted_673)?;
+        let converted_711 = (value).as_str().into_py_any(py)?;
+        result.set_item("retiring_principal", converted_711)?;
     } else {
         result.set_item("retiring_principal", py.None())?;
     }
     if let Some(value) = &value.issuing_account {
-        let converted_674 = (value).as_str().into_py_any(py)?;
-        result.set_item("issuing_account", converted_674)?;
+        let converted_712 = (value).as_str().into_py_any(py)?;
+        result.set_item("issuing_account", converted_712)?;
     } else {
         result.set_item("issuing_account", py.None())?;
     }
     if let Some(value) = &value.operations {
-        let converted_675_list = PyList::empty(py);
-        for item_676 in value {
-            let converted_item_677 = (item_676).as_str().into_py_any(py)?;
-            converted_675_list.append(converted_item_677)?;
+        let converted_713_list = PyList::empty(py);
+        for item_714 in value {
+            let converted_item_715 = (item_714).as_str().into_py_any(py)?;
+            converted_713_list.append(converted_item_715)?;
         }
-        let converted_675 = converted_675_list.into_any().unbind();
-        result.set_item("operations", converted_675)?;
+        let converted_713 = converted_713_list.into_any().unbind();
+        result.set_item("operations", converted_713)?;
     } else {
         result.set_item("operations", py.None())?;
     }
     if let Some(value) = &value.constraints {
-        let converted_678 = grant_constraints_to_py(py, value)?;
-        result.set_item("constraints", converted_678)?;
+        let converted_716 = grant_constraints_to_py(py, value)?;
+        result.set_item("constraints", converted_716)?;
     } else {
         result.set_item("constraints", py.None())?;
     }
     if let Some(value) = &value.grantee_service_principal {
-        let converted_679 = (value).as_str().into_py_any(py)?;
-        result.set_item("grantee_service_principal", converted_679)?;
+        let converted_717 = (value).as_str().into_py_any(py)?;
+        result.set_item("grantee_service_principal", converted_717)?;
     } else {
         result.set_item("grantee_service_principal", py.None())?;
     }
     if let Some(value) = &value.retiring_service_principal {
-        let converted_680 = (value).as_str().into_py_any(py)?;
-        result.set_item("retiring_service_principal", converted_680)?;
+        let converted_718 = (value).as_str().into_py_any(py)?;
+        result.set_item("retiring_service_principal", converted_718)?;
     } else {
         result.set_item("retiring_service_principal", py.None())?;
     }
@@ -1708,8 +2616,8 @@ impl PyGrantListEntry {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_655 = (value).as_str().into_py_any(py)?;
-            Ok(converted_655)
+            let converted_693 = (value).as_str().into_py_any(py)?;
+            Ok(converted_693)
         } else {
             Ok(py.None())
         }
@@ -1718,8 +2626,8 @@ impl PyGrantListEntry {
     #[getter]
     fn grant_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grant_id {
-            let converted_656 = (value).as_str().into_py_any(py)?;
-            Ok(converted_656)
+            let converted_694 = (value).as_str().into_py_any(py)?;
+            Ok(converted_694)
         } else {
             Ok(py.None())
         }
@@ -1728,8 +2636,8 @@ impl PyGrantListEntry {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_657 = (value).as_str().into_py_any(py)?;
-            Ok(converted_657)
+            let converted_695 = (value).as_str().into_py_any(py)?;
+            Ok(converted_695)
         } else {
             Ok(py.None())
         }
@@ -1738,8 +2646,8 @@ impl PyGrantListEntry {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_658 = (value).to_string().into_py_any(py)?;
-            Ok(converted_658)
+            let converted_696 = (value).to_string().into_py_any(py)?;
+            Ok(converted_696)
         } else {
             Ok(py.None())
         }
@@ -1748,8 +2656,8 @@ impl PyGrantListEntry {
     #[getter]
     fn grantee_principal(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grantee_principal {
-            let converted_659 = (value).as_str().into_py_any(py)?;
-            Ok(converted_659)
+            let converted_697 = (value).as_str().into_py_any(py)?;
+            Ok(converted_697)
         } else {
             Ok(py.None())
         }
@@ -1758,8 +2666,8 @@ impl PyGrantListEntry {
     #[getter]
     fn retiring_principal(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retiring_principal {
-            let converted_660 = (value).as_str().into_py_any(py)?;
-            Ok(converted_660)
+            let converted_698 = (value).as_str().into_py_any(py)?;
+            Ok(converted_698)
         } else {
             Ok(py.None())
         }
@@ -1768,8 +2676,8 @@ impl PyGrantListEntry {
     #[getter]
     fn issuing_account(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.issuing_account {
-            let converted_661 = (value).as_str().into_py_any(py)?;
-            Ok(converted_661)
+            let converted_699 = (value).as_str().into_py_any(py)?;
+            Ok(converted_699)
         } else {
             Ok(py.None())
         }
@@ -1778,13 +2686,13 @@ impl PyGrantListEntry {
     #[getter]
     fn operations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.operations {
-            let converted_662_list = PyList::empty(py);
-            for item_663 in value {
-                let converted_item_664 = (item_663).as_str().into_py_any(py)?;
-                converted_662_list.append(converted_item_664)?;
+            let converted_700_list = PyList::empty(py);
+            for item_701 in value {
+                let converted_item_702 = (item_701).as_str().into_py_any(py)?;
+                converted_700_list.append(converted_item_702)?;
             }
-            let converted_662 = converted_662_list.into_any().unbind();
-            Ok(converted_662)
+            let converted_700 = converted_700_list.into_any().unbind();
+            Ok(converted_700)
         } else {
             Ok(py.None())
         }
@@ -1793,14 +2701,14 @@ impl PyGrantListEntry {
     #[getter]
     fn constraints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.constraints {
-            let converted_665 = Py::new(
+            let converted_703 = Py::new(
                 py,
                 PyGrantConstraints {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_665)
+            Ok(converted_703)
         } else {
             Ok(py.None())
         }
@@ -1809,8 +2717,8 @@ impl PyGrantListEntry {
     #[getter]
     fn grantee_service_principal(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grantee_service_principal {
-            let converted_666 = (value).as_str().into_py_any(py)?;
-            Ok(converted_666)
+            let converted_704 = (value).as_str().into_py_any(py)?;
+            Ok(converted_704)
         } else {
             Ok(py.None())
         }
@@ -1819,8 +2727,8 @@ impl PyGrantListEntry {
     #[getter]
     fn retiring_service_principal(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retiring_service_principal {
-            let converted_667 = (value).as_str().into_py_any(py)?;
-            Ok(converted_667)
+            let converted_705 = (value).as_str().into_py_any(py)?;
+            Ok(converted_705)
         } else {
             Ok(py.None())
         }
@@ -1841,8 +2749,8 @@ impl PyKeyLastUsageData {
     #[getter]
     fn operation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.operation {
-            let converted_681 = (value).as_str().into_py_any(py)?;
-            Ok(converted_681)
+            let converted_719 = (value).as_str().into_py_any(py)?;
+            Ok(converted_719)
         } else {
             Ok(py.None())
         }
@@ -1851,8 +2759,8 @@ impl PyKeyLastUsageData {
     #[getter]
     fn timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timestamp {
-            let converted_682 = (value).to_string().into_py_any(py)?;
-            Ok(converted_682)
+            let converted_720 = (value).to_string().into_py_any(py)?;
+            Ok(converted_720)
         } else {
             Ok(py.None())
         }
@@ -1861,8 +2769,8 @@ impl PyKeyLastUsageData {
     #[getter]
     fn cloud_trail_event_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_trail_event_id {
-            let converted_683 = (value).as_str().into_py_any(py)?;
-            Ok(converted_683)
+            let converted_721 = (value).as_str().into_py_any(py)?;
+            Ok(converted_721)
         } else {
             Ok(py.None())
         }
@@ -1871,8 +2779,8 @@ impl PyKeyLastUsageData {
     #[getter]
     fn kms_request_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_request_id {
-            let converted_684 = (value).as_str().into_py_any(py)?;
-            Ok(converted_684)
+            let converted_722 = (value).as_str().into_py_any(py)?;
+            Ok(converted_722)
         } else {
             Ok(py.None())
         }
@@ -1893,8 +2801,8 @@ impl PyKeyListEntry {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_685 = (value).as_str().into_py_any(py)?;
-            Ok(converted_685)
+            let converted_723 = (value).as_str().into_py_any(py)?;
+            Ok(converted_723)
         } else {
             Ok(py.None())
         }
@@ -1903,8 +2811,8 @@ impl PyKeyListEntry {
     #[getter]
     fn key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_arn {
-            let converted_686 = (value).as_str().into_py_any(py)?;
-            Ok(converted_686)
+            let converted_724 = (value).as_str().into_py_any(py)?;
+            Ok(converted_724)
         } else {
             Ok(py.None())
         }
@@ -1985,170 +2893,170 @@ impl From<aws_sdk_kms::types::KeyMetadata> for SharedKeyMetadata {
 fn key_metadata_shared_to_py(py: Python<'_>, value: &SharedKeyMetadata) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.aws_account_id {
-        let converted_721 = (value).as_str().into_py_any(py)?;
-        result.set_item("aws_account_id", converted_721)?;
+        let converted_759 = (value).as_str().into_py_any(py)?;
+        result.set_item("aws_account_id", converted_759)?;
     } else {
         result.set_item("aws_account_id", py.None())?;
     }
-    let converted_722 = (&value.key_id).as_str().into_py_any(py)?;
-    result.set_item("key_id", converted_722)?;
+    let converted_760 = (&value.key_id).as_str().into_py_any(py)?;
+    result.set_item("key_id", converted_760)?;
     if let Some(value) = &value.arn {
-        let converted_723 = (value).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_723)?;
+        let converted_761 = (value).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_761)?;
     } else {
         result.set_item("arn", py.None())?;
     }
     if let Some(value) = &value.creation_date {
-        let converted_724 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_date", converted_724)?;
+        let converted_762 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_date", converted_762)?;
     } else {
         result.set_item("creation_date", py.None())?;
     }
-    let converted_725 = (&value.enabled).to_owned().into_py_any(py)?;
-    result.set_item("enabled", converted_725)?;
+    let converted_763 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_763)?;
     if let Some(value) = &value.description {
-        let converted_726 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_726)?;
+        let converted_764 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_764)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.key_usage {
-        let converted_727 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_usage", converted_727)?;
+        let converted_765 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_usage", converted_765)?;
     } else {
         result.set_item("key_usage", py.None())?;
     }
     if let Some(value) = &value.key_state {
-        let converted_728 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_state", converted_728)?;
+        let converted_766 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_state", converted_766)?;
     } else {
         result.set_item("key_state", py.None())?;
     }
     if let Some(value) = &value.deletion_date {
-        let converted_729 = (value).to_string().into_py_any(py)?;
-        result.set_item("deletion_date", converted_729)?;
+        let converted_767 = (value).to_string().into_py_any(py)?;
+        result.set_item("deletion_date", converted_767)?;
     } else {
         result.set_item("deletion_date", py.None())?;
     }
     if let Some(value) = &value.valid_to {
-        let converted_730 = (value).to_string().into_py_any(py)?;
-        result.set_item("valid_to", converted_730)?;
+        let converted_768 = (value).to_string().into_py_any(py)?;
+        result.set_item("valid_to", converted_768)?;
     } else {
         result.set_item("valid_to", py.None())?;
     }
     if let Some(value) = &value.origin {
-        let converted_731 = (value).as_str().into_py_any(py)?;
-        result.set_item("origin", converted_731)?;
+        let converted_769 = (value).as_str().into_py_any(py)?;
+        result.set_item("origin", converted_769)?;
     } else {
         result.set_item("origin", py.None())?;
     }
     if let Some(value) = &value.custom_key_store_id {
-        let converted_732 = (value).as_str().into_py_any(py)?;
-        result.set_item("custom_key_store_id", converted_732)?;
+        let converted_770 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_key_store_id", converted_770)?;
     } else {
         result.set_item("custom_key_store_id", py.None())?;
     }
     if let Some(value) = &value.cloud_hsm_cluster_id {
-        let converted_733 = (value).as_str().into_py_any(py)?;
-        result.set_item("cloud_hsm_cluster_id", converted_733)?;
+        let converted_771 = (value).as_str().into_py_any(py)?;
+        result.set_item("cloud_hsm_cluster_id", converted_771)?;
     } else {
         result.set_item("cloud_hsm_cluster_id", py.None())?;
     }
     if let Some(value) = &value.expiration_model {
-        let converted_734 = (value).as_str().into_py_any(py)?;
-        result.set_item("expiration_model", converted_734)?;
+        let converted_772 = (value).as_str().into_py_any(py)?;
+        result.set_item("expiration_model", converted_772)?;
     } else {
         result.set_item("expiration_model", py.None())?;
     }
     if let Some(value) = &value.key_manager {
-        let converted_735 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_manager", converted_735)?;
+        let converted_773 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_manager", converted_773)?;
     } else {
         result.set_item("key_manager", py.None())?;
     }
     if let Some(value) = &value.customer_master_key_spec {
-        let converted_736 = (value).as_str().into_py_any(py)?;
-        result.set_item("customer_master_key_spec", converted_736)?;
+        let converted_774 = (value).as_str().into_py_any(py)?;
+        result.set_item("customer_master_key_spec", converted_774)?;
     } else {
         result.set_item("customer_master_key_spec", py.None())?;
     }
     if let Some(value) = &value.key_spec {
-        let converted_737 = (value).as_str().into_py_any(py)?;
-        result.set_item("key_spec", converted_737)?;
+        let converted_775 = (value).as_str().into_py_any(py)?;
+        result.set_item("key_spec", converted_775)?;
     } else {
         result.set_item("key_spec", py.None())?;
     }
     if let Some(value) = &value.encryption_algorithms {
-        let converted_738_list = PyList::empty(py);
-        for item_739 in value {
-            let converted_item_740 = (item_739).as_str().into_py_any(py)?;
-            converted_738_list.append(converted_item_740)?;
+        let converted_776_list = PyList::empty(py);
+        for item_777 in value {
+            let converted_item_778 = (item_777).as_str().into_py_any(py)?;
+            converted_776_list.append(converted_item_778)?;
         }
-        let converted_738 = converted_738_list.into_any().unbind();
-        result.set_item("encryption_algorithms", converted_738)?;
+        let converted_776 = converted_776_list.into_any().unbind();
+        result.set_item("encryption_algorithms", converted_776)?;
     } else {
         result.set_item("encryption_algorithms", py.None())?;
     }
     if let Some(value) = &value.signing_algorithms {
-        let converted_741_list = PyList::empty(py);
-        for item_742 in value {
-            let converted_item_743 = (item_742).as_str().into_py_any(py)?;
-            converted_741_list.append(converted_item_743)?;
+        let converted_779_list = PyList::empty(py);
+        for item_780 in value {
+            let converted_item_781 = (item_780).as_str().into_py_any(py)?;
+            converted_779_list.append(converted_item_781)?;
         }
-        let converted_741 = converted_741_list.into_any().unbind();
-        result.set_item("signing_algorithms", converted_741)?;
+        let converted_779 = converted_779_list.into_any().unbind();
+        result.set_item("signing_algorithms", converted_779)?;
     } else {
         result.set_item("signing_algorithms", py.None())?;
     }
     if let Some(value) = &value.key_agreement_algorithms {
-        let converted_744_list = PyList::empty(py);
-        for item_745 in value {
-            let converted_item_746 = (item_745).as_str().into_py_any(py)?;
-            converted_744_list.append(converted_item_746)?;
+        let converted_782_list = PyList::empty(py);
+        for item_783 in value {
+            let converted_item_784 = (item_783).as_str().into_py_any(py)?;
+            converted_782_list.append(converted_item_784)?;
         }
-        let converted_744 = converted_744_list.into_any().unbind();
-        result.set_item("key_agreement_algorithms", converted_744)?;
+        let converted_782 = converted_782_list.into_any().unbind();
+        result.set_item("key_agreement_algorithms", converted_782)?;
     } else {
         result.set_item("key_agreement_algorithms", py.None())?;
     }
     if let Some(value) = &value.multi_region {
-        let converted_747 = (value).to_owned().into_py_any(py)?;
-        result.set_item("multi_region", converted_747)?;
+        let converted_785 = (value).to_owned().into_py_any(py)?;
+        result.set_item("multi_region", converted_785)?;
     } else {
         result.set_item("multi_region", py.None())?;
     }
     if let Some(value) = &value.multi_region_configuration {
-        let converted_748 = multi_region_configuration_shared_to_py(py, value)?;
-        result.set_item("multi_region_configuration", converted_748)?;
+        let converted_786 = multi_region_configuration_shared_to_py(py, value)?;
+        result.set_item("multi_region_configuration", converted_786)?;
     } else {
         result.set_item("multi_region_configuration", py.None())?;
     }
     if let Some(value) = &value.pending_deletion_window_in_days {
-        let converted_749 = (value).to_owned().into_py_any(py)?;
-        result.set_item("pending_deletion_window_in_days", converted_749)?;
+        let converted_787 = (value).to_owned().into_py_any(py)?;
+        result.set_item("pending_deletion_window_in_days", converted_787)?;
     } else {
         result.set_item("pending_deletion_window_in_days", py.None())?;
     }
     if let Some(value) = &value.mac_algorithms {
-        let converted_750_list = PyList::empty(py);
-        for item_751 in value {
-            let converted_item_752 = (item_751).as_str().into_py_any(py)?;
-            converted_750_list.append(converted_item_752)?;
+        let converted_788_list = PyList::empty(py);
+        for item_789 in value {
+            let converted_item_790 = (item_789).as_str().into_py_any(py)?;
+            converted_788_list.append(converted_item_790)?;
         }
-        let converted_750 = converted_750_list.into_any().unbind();
-        result.set_item("mac_algorithms", converted_750)?;
+        let converted_788 = converted_788_list.into_any().unbind();
+        result.set_item("mac_algorithms", converted_788)?;
     } else {
         result.set_item("mac_algorithms", py.None())?;
     }
     if let Some(value) = &value.xks_key_configuration {
-        let converted_753 = xks_key_configuration_type_to_py(py, value)?;
-        result.set_item("xks_key_configuration", converted_753)?;
+        let converted_791 = xks_key_configuration_type_to_py(py, value)?;
+        result.set_item("xks_key_configuration", converted_791)?;
     } else {
         result.set_item("xks_key_configuration", py.None())?;
     }
     if let Some(value) = &value.current_key_material_id {
-        let converted_754 = (value).as_str().into_py_any(py)?;
-        result.set_item("current_key_material_id", converted_754)?;
+        let converted_792 = (value).as_str().into_py_any(py)?;
+        result.set_item("current_key_material_id", converted_792)?;
     } else {
         result.set_item("current_key_material_id", py.None())?;
     }
@@ -2165,8 +3073,8 @@ impl PyKeyMetadata {
     #[getter]
     fn aws_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aws_account_id {
-            let converted_687 = (value).as_str().into_py_any(py)?;
-            Ok(converted_687)
+            let converted_725 = (value).as_str().into_py_any(py)?;
+            Ok(converted_725)
         } else {
             Ok(py.None())
         }
@@ -2174,15 +3082,15 @@ impl PyKeyMetadata {
 
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_688 = (&self.inner.key_id).as_str().into_py_any(py)?;
-        Ok(converted_688)
+        let converted_726 = (&self.inner.key_id).as_str().into_py_any(py)?;
+        Ok(converted_726)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_689 = (value).as_str().into_py_any(py)?;
-            Ok(converted_689)
+            let converted_727 = (value).as_str().into_py_any(py)?;
+            Ok(converted_727)
         } else {
             Ok(py.None())
         }
@@ -2191,8 +3099,8 @@ impl PyKeyMetadata {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_date {
-            let converted_690 = (value).to_string().into_py_any(py)?;
-            Ok(converted_690)
+            let converted_728 = (value).to_string().into_py_any(py)?;
+            Ok(converted_728)
         } else {
             Ok(py.None())
         }
@@ -2200,15 +3108,15 @@ impl PyKeyMetadata {
 
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_691 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_691)
+        let converted_729 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_729)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_692 = (value).as_str().into_py_any(py)?;
-            Ok(converted_692)
+            let converted_730 = (value).as_str().into_py_any(py)?;
+            Ok(converted_730)
         } else {
             Ok(py.None())
         }
@@ -2217,8 +3125,8 @@ impl PyKeyMetadata {
     #[getter]
     fn key_usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_usage {
-            let converted_693 = (value).as_str().into_py_any(py)?;
-            Ok(converted_693)
+            let converted_731 = (value).as_str().into_py_any(py)?;
+            Ok(converted_731)
         } else {
             Ok(py.None())
         }
@@ -2227,8 +3135,8 @@ impl PyKeyMetadata {
     #[getter]
     fn key_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_state {
-            let converted_694 = (value).as_str().into_py_any(py)?;
-            Ok(converted_694)
+            let converted_732 = (value).as_str().into_py_any(py)?;
+            Ok(converted_732)
         } else {
             Ok(py.None())
         }
@@ -2237,8 +3145,8 @@ impl PyKeyMetadata {
     #[getter]
     fn deletion_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deletion_date {
-            let converted_695 = (value).to_string().into_py_any(py)?;
-            Ok(converted_695)
+            let converted_733 = (value).to_string().into_py_any(py)?;
+            Ok(converted_733)
         } else {
             Ok(py.None())
         }
@@ -2247,8 +3155,8 @@ impl PyKeyMetadata {
     #[getter]
     fn valid_to(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.valid_to {
-            let converted_696 = (value).to_string().into_py_any(py)?;
-            Ok(converted_696)
+            let converted_734 = (value).to_string().into_py_any(py)?;
+            Ok(converted_734)
         } else {
             Ok(py.None())
         }
@@ -2257,8 +3165,8 @@ impl PyKeyMetadata {
     #[getter]
     fn origin(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.origin {
-            let converted_697 = (value).as_str().into_py_any(py)?;
-            Ok(converted_697)
+            let converted_735 = (value).as_str().into_py_any(py)?;
+            Ok(converted_735)
         } else {
             Ok(py.None())
         }
@@ -2267,8 +3175,8 @@ impl PyKeyMetadata {
     #[getter]
     fn custom_key_store_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_store_id {
-            let converted_698 = (value).as_str().into_py_any(py)?;
-            Ok(converted_698)
+            let converted_736 = (value).as_str().into_py_any(py)?;
+            Ok(converted_736)
         } else {
             Ok(py.None())
         }
@@ -2277,8 +3185,8 @@ impl PyKeyMetadata {
     #[getter]
     fn cloud_hsm_cluster_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_hsm_cluster_id {
-            let converted_699 = (value).as_str().into_py_any(py)?;
-            Ok(converted_699)
+            let converted_737 = (value).as_str().into_py_any(py)?;
+            Ok(converted_737)
         } else {
             Ok(py.None())
         }
@@ -2287,8 +3195,8 @@ impl PyKeyMetadata {
     #[getter]
     fn expiration_model(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expiration_model {
-            let converted_700 = (value).as_str().into_py_any(py)?;
-            Ok(converted_700)
+            let converted_738 = (value).as_str().into_py_any(py)?;
+            Ok(converted_738)
         } else {
             Ok(py.None())
         }
@@ -2297,8 +3205,8 @@ impl PyKeyMetadata {
     #[getter]
     fn key_manager(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_manager {
-            let converted_701 = (value).as_str().into_py_any(py)?;
-            Ok(converted_701)
+            let converted_739 = (value).as_str().into_py_any(py)?;
+            Ok(converted_739)
         } else {
             Ok(py.None())
         }
@@ -2307,8 +3215,8 @@ impl PyKeyMetadata {
     #[getter]
     fn customer_master_key_spec(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customer_master_key_spec {
-            let converted_702 = (value).as_str().into_py_any(py)?;
-            Ok(converted_702)
+            let converted_740 = (value).as_str().into_py_any(py)?;
+            Ok(converted_740)
         } else {
             Ok(py.None())
         }
@@ -2317,8 +3225,8 @@ impl PyKeyMetadata {
     #[getter]
     fn key_spec(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_spec {
-            let converted_703 = (value).as_str().into_py_any(py)?;
-            Ok(converted_703)
+            let converted_741 = (value).as_str().into_py_any(py)?;
+            Ok(converted_741)
         } else {
             Ok(py.None())
         }
@@ -2327,13 +3235,13 @@ impl PyKeyMetadata {
     #[getter]
     fn encryption_algorithms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_algorithms {
-            let converted_704_list = PyList::empty(py);
-            for item_705 in value {
-                let converted_item_706 = (item_705).as_str().into_py_any(py)?;
-                converted_704_list.append(converted_item_706)?;
+            let converted_742_list = PyList::empty(py);
+            for item_743 in value {
+                let converted_item_744 = (item_743).as_str().into_py_any(py)?;
+                converted_742_list.append(converted_item_744)?;
             }
-            let converted_704 = converted_704_list.into_any().unbind();
-            Ok(converted_704)
+            let converted_742 = converted_742_list.into_any().unbind();
+            Ok(converted_742)
         } else {
             Ok(py.None())
         }
@@ -2342,13 +3250,13 @@ impl PyKeyMetadata {
     #[getter]
     fn signing_algorithms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signing_algorithms {
-            let converted_707_list = PyList::empty(py);
-            for item_708 in value {
-                let converted_item_709 = (item_708).as_str().into_py_any(py)?;
-                converted_707_list.append(converted_item_709)?;
+            let converted_745_list = PyList::empty(py);
+            for item_746 in value {
+                let converted_item_747 = (item_746).as_str().into_py_any(py)?;
+                converted_745_list.append(converted_item_747)?;
             }
-            let converted_707 = converted_707_list.into_any().unbind();
-            Ok(converted_707)
+            let converted_745 = converted_745_list.into_any().unbind();
+            Ok(converted_745)
         } else {
             Ok(py.None())
         }
@@ -2357,13 +3265,13 @@ impl PyKeyMetadata {
     #[getter]
     fn key_agreement_algorithms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_agreement_algorithms {
-            let converted_710_list = PyList::empty(py);
-            for item_711 in value {
-                let converted_item_712 = (item_711).as_str().into_py_any(py)?;
-                converted_710_list.append(converted_item_712)?;
+            let converted_748_list = PyList::empty(py);
+            for item_749 in value {
+                let converted_item_750 = (item_749).as_str().into_py_any(py)?;
+                converted_748_list.append(converted_item_750)?;
             }
-            let converted_710 = converted_710_list.into_any().unbind();
-            Ok(converted_710)
+            let converted_748 = converted_748_list.into_any().unbind();
+            Ok(converted_748)
         } else {
             Ok(py.None())
         }
@@ -2372,8 +3280,8 @@ impl PyKeyMetadata {
     #[getter]
     fn multi_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region {
-            let converted_713 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_713)
+            let converted_751 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_751)
         } else {
             Ok(py.None())
         }
@@ -2382,14 +3290,14 @@ impl PyKeyMetadata {
     #[getter]
     fn multi_region_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_configuration {
-            let converted_714 = Py::new(
+            let converted_752 = Py::new(
                 py,
                 PyMultiRegionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_714)
+            Ok(converted_752)
         } else {
             Ok(py.None())
         }
@@ -2398,8 +3306,8 @@ impl PyKeyMetadata {
     #[getter]
     fn pending_deletion_window_in_days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pending_deletion_window_in_days {
-            let converted_715 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_715)
+            let converted_753 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_753)
         } else {
             Ok(py.None())
         }
@@ -2408,13 +3316,13 @@ impl PyKeyMetadata {
     #[getter]
     fn mac_algorithms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mac_algorithms {
-            let converted_716_list = PyList::empty(py);
-            for item_717 in value {
-                let converted_item_718 = (item_717).as_str().into_py_any(py)?;
-                converted_716_list.append(converted_item_718)?;
+            let converted_754_list = PyList::empty(py);
+            for item_755 in value {
+                let converted_item_756 = (item_755).as_str().into_py_any(py)?;
+                converted_754_list.append(converted_item_756)?;
             }
-            let converted_716 = converted_716_list.into_any().unbind();
-            Ok(converted_716)
+            let converted_754 = converted_754_list.into_any().unbind();
+            Ok(converted_754)
         } else {
             Ok(py.None())
         }
@@ -2423,14 +3331,14 @@ impl PyKeyMetadata {
     #[getter]
     fn xks_key_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.xks_key_configuration {
-            let converted_719 = Py::new(
+            let converted_757 = Py::new(
                 py,
                 PyXksKeyConfigurationType {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_719)
+            Ok(converted_757)
         } else {
             Ok(py.None())
         }
@@ -2439,8 +3347,8 @@ impl PyKeyMetadata {
     #[getter]
     fn current_key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.current_key_material_id {
-            let converted_720 = (value).as_str().into_py_any(py)?;
-            Ok(converted_720)
+            let converted_758 = (value).as_str().into_py_any(py)?;
+            Ok(converted_758)
         } else {
             Ok(py.None())
         }
@@ -2467,7 +3375,7 @@ impl From<aws_sdk_kms::types::MultiRegionConfiguration> for SharedMultiRegionCon
             replica_keys: value.replica_keys.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_760| Arc::new(owned_760))
+                    .map(|owned_798| Arc::new(owned_798))
                     .collect()
             }),
         }
@@ -2480,25 +3388,25 @@ fn multi_region_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.multi_region_key_type {
-        let converted_761 = (value).as_str().into_py_any(py)?;
-        result.set_item("multi_region_key_type", converted_761)?;
+        let converted_799 = (value).as_str().into_py_any(py)?;
+        result.set_item("multi_region_key_type", converted_799)?;
     } else {
         result.set_item("multi_region_key_type", py.None())?;
     }
     if let Some(value) = &value.primary_key {
-        let converted_762 = multi_region_key_to_py(py, value)?;
-        result.set_item("primary_key", converted_762)?;
+        let converted_800 = multi_region_key_to_py(py, value)?;
+        result.set_item("primary_key", converted_800)?;
     } else {
         result.set_item("primary_key", py.None())?;
     }
     if let Some(value) = &value.replica_keys {
-        let converted_763_list = PyList::empty(py);
-        for item_764 in value {
-            let converted_item_765 = multi_region_key_to_py(py, item_764)?;
-            converted_763_list.append(converted_item_765)?;
+        let converted_801_list = PyList::empty(py);
+        for item_802 in value {
+            let converted_item_803 = multi_region_key_to_py(py, item_802)?;
+            converted_801_list.append(converted_item_803)?;
         }
-        let converted_763 = converted_763_list.into_any().unbind();
-        result.set_item("replica_keys", converted_763)?;
+        let converted_801 = converted_801_list.into_any().unbind();
+        result.set_item("replica_keys", converted_801)?;
     } else {
         result.set_item("replica_keys", py.None())?;
     }
@@ -2519,8 +3427,8 @@ impl PyMultiRegionConfiguration {
     #[getter]
     fn multi_region_key_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_key_type {
-            let converted_755 = (value).as_str().into_py_any(py)?;
-            Ok(converted_755)
+            let converted_793 = (value).as_str().into_py_any(py)?;
+            Ok(converted_793)
         } else {
             Ok(py.None())
         }
@@ -2529,14 +3437,14 @@ impl PyMultiRegionConfiguration {
     #[getter]
     fn primary_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.primary_key {
-            let converted_756 = Py::new(
+            let converted_794 = Py::new(
                 py,
                 PyMultiRegionKey {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_756)
+            Ok(converted_794)
         } else {
             Ok(py.None())
         }
@@ -2545,19 +3453,19 @@ impl PyMultiRegionConfiguration {
     #[getter]
     fn replica_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_keys {
-            let converted_757_list = PyList::empty(py);
-            for item_758 in value {
-                let converted_item_759 = Py::new(
+            let converted_795_list = PyList::empty(py);
+            for item_796 in value {
+                let converted_item_797 = Py::new(
                     py,
                     PyMultiRegionKey {
-                        inner: Arc::clone(item_758),
+                        inner: Arc::clone(item_796),
                     },
                 )?
                 .into_any();
-                converted_757_list.append(converted_item_759)?;
+                converted_795_list.append(converted_item_797)?;
             }
-            let converted_757 = converted_757_list.into_any().unbind();
-            Ok(converted_757)
+            let converted_795 = converted_795_list.into_any().unbind();
+            Ok(converted_795)
         } else {
             Ok(py.None())
         }
@@ -2578,8 +3486,8 @@ impl PyMultiRegionKey {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
-            let converted_766 = (value).as_str().into_py_any(py)?;
-            Ok(converted_766)
+            let converted_804 = (value).as_str().into_py_any(py)?;
+            Ok(converted_804)
         } else {
             Ok(py.None())
         }
@@ -2588,8 +3496,8 @@ impl PyMultiRegionKey {
     #[getter]
     fn region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.region {
-            let converted_767 = (value).as_str().into_py_any(py)?;
-            Ok(converted_767)
+            let converted_805 = (value).as_str().into_py_any(py)?;
+            Ok(converted_805)
         } else {
             Ok(py.None())
         }
@@ -2610,8 +3518,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_768 = (value).as_str().into_py_any(py)?;
-            Ok(converted_768)
+            let converted_806 = (value).as_str().into_py_any(py)?;
+            Ok(converted_806)
         } else {
             Ok(py.None())
         }
@@ -2620,8 +3528,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_769 = (value).as_str().into_py_any(py)?;
-            Ok(converted_769)
+            let converted_807 = (value).as_str().into_py_any(py)?;
+            Ok(converted_807)
         } else {
             Ok(py.None())
         }
@@ -2630,8 +3538,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn key_material_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_description {
-            let converted_770 = (value).as_str().into_py_any(py)?;
-            Ok(converted_770)
+            let converted_808 = (value).as_str().into_py_any(py)?;
+            Ok(converted_808)
         } else {
             Ok(py.None())
         }
@@ -2640,8 +3548,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn import_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_state {
-            let converted_771 = (value).as_str().into_py_any(py)?;
-            Ok(converted_771)
+            let converted_809 = (value).as_str().into_py_any(py)?;
+            Ok(converted_809)
         } else {
             Ok(py.None())
         }
@@ -2650,8 +3558,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn key_material_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_state {
-            let converted_772 = (value).as_str().into_py_any(py)?;
-            Ok(converted_772)
+            let converted_810 = (value).as_str().into_py_any(py)?;
+            Ok(converted_810)
         } else {
             Ok(py.None())
         }
@@ -2660,8 +3568,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn expiration_model(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expiration_model {
-            let converted_773 = (value).as_str().into_py_any(py)?;
-            Ok(converted_773)
+            let converted_811 = (value).as_str().into_py_any(py)?;
+            Ok(converted_811)
         } else {
             Ok(py.None())
         }
@@ -2670,8 +3578,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn valid_to(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.valid_to {
-            let converted_774 = (value).to_string().into_py_any(py)?;
-            Ok(converted_774)
+            let converted_812 = (value).to_string().into_py_any(py)?;
+            Ok(converted_812)
         } else {
             Ok(py.None())
         }
@@ -2680,8 +3588,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn rotation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rotation_date {
-            let converted_775 = (value).to_string().into_py_any(py)?;
-            Ok(converted_775)
+            let converted_813 = (value).to_string().into_py_any(py)?;
+            Ok(converted_813)
         } else {
             Ok(py.None())
         }
@@ -2690,8 +3598,8 @@ impl PyRotationsListEntry {
     #[getter]
     fn rotation_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rotation_type {
-            let converted_776 = (value).as_str().into_py_any(py)?;
-            Ok(converted_776)
+            let converted_814 = (value).as_str().into_py_any(py)?;
+            Ok(converted_814)
         } else {
             Ok(py.None())
         }
@@ -2711,14 +3619,14 @@ struct PyTag {
 impl PyTag {
     #[getter]
     fn tag_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_777 = (&self.inner.tag_key).as_str().into_py_any(py)?;
-        Ok(converted_777)
+        let converted_815 = (&self.inner.tag_key).as_str().into_py_any(py)?;
+        Ok(converted_815)
     }
 
     #[getter]
     fn tag_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_778 = (&self.inner.tag_value).as_str().into_py_any(py)?;
-        Ok(converted_778)
+        let converted_816 = (&self.inner.tag_value).as_str().into_py_any(py)?;
+        Ok(converted_816)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2736,8 +3644,8 @@ impl PyXksKeyConfigurationType {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
-            let converted_779 = (value).as_str().into_py_any(py)?;
-            Ok(converted_779)
+            let converted_817 = (value).as_str().into_py_any(py)?;
+            Ok(converted_817)
         } else {
             Ok(py.None())
         }
@@ -2762,8 +3670,8 @@ impl PyXksProxyConfigurationType {
     #[getter]
     fn connectivity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connectivity {
-            let converted_780 = (value).as_str().into_py_any(py)?;
-            Ok(converted_780)
+            let converted_818 = (value).as_str().into_py_any(py)?;
+            Ok(converted_818)
         } else {
             Ok(py.None())
         }
@@ -2772,8 +3680,8 @@ impl PyXksProxyConfigurationType {
     #[getter]
     fn access_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.access_key_id {
-            let converted_781 = (value).as_str().into_py_any(py)?;
-            Ok(converted_781)
+            let converted_819 = (value).as_str().into_py_any(py)?;
+            Ok(converted_819)
         } else {
             Ok(py.None())
         }
@@ -2782,8 +3690,8 @@ impl PyXksProxyConfigurationType {
     #[getter]
     fn uri_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.uri_endpoint {
-            let converted_782 = (value).as_str().into_py_any(py)?;
-            Ok(converted_782)
+            let converted_820 = (value).as_str().into_py_any(py)?;
+            Ok(converted_820)
         } else {
             Ok(py.None())
         }
@@ -2792,8 +3700,8 @@ impl PyXksProxyConfigurationType {
     #[getter]
     fn uri_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.uri_path {
-            let converted_783 = (value).as_str().into_py_any(py)?;
-            Ok(converted_783)
+            let converted_821 = (value).as_str().into_py_any(py)?;
+            Ok(converted_821)
         } else {
             Ok(py.None())
         }
@@ -2802,8 +3710,8 @@ impl PyXksProxyConfigurationType {
     #[getter]
     fn vpc_endpoint_service_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc_endpoint_service_name {
-            let converted_784 = (value).as_str().into_py_any(py)?;
-            Ok(converted_784)
+            let converted_822 = (value).as_str().into_py_any(py)?;
+            Ok(converted_822)
         } else {
             Ok(py.None())
         }
@@ -2812,8 +3720,8 @@ impl PyXksProxyConfigurationType {
     #[getter]
     fn vpc_endpoint_service_owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.vpc_endpoint_service_owner {
-            let converted_785 = (value).as_str().into_py_any(py)?;
-            Ok(converted_785)
+            let converted_823 = (value).as_str().into_py_any(py)?;
+            Ok(converted_823)
         } else {
             Ok(py.None())
         }
@@ -2834,8 +3742,8 @@ impl PyOperationCancelKeyDeletionOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_786 = (value).as_str().into_py_any(py)?;
-            Ok(converted_786)
+            let converted_824 = (value).as_str().into_py_any(py)?;
+            Ok(converted_824)
         } else {
             Ok(py.None())
         }
@@ -2844,8 +3752,8 @@ impl PyOperationCancelKeyDeletionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_787 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_787)?;
+            let converted_825 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_825)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
@@ -2884,8 +3792,8 @@ impl PyOperationCreateCustomKeyStoreOutput {
     #[getter]
     fn custom_key_store_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_store_id {
-            let converted_788 = (value).as_str().into_py_any(py)?;
-            Ok(converted_788)
+            let converted_826 = (value).as_str().into_py_any(py)?;
+            Ok(converted_826)
         } else {
             Ok(py.None())
         }
@@ -2894,8 +3802,8 @@ impl PyOperationCreateCustomKeyStoreOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.custom_key_store_id {
-            let converted_789 = (value).as_str().into_py_any(py)?;
-            result.set_item("custom_key_store_id", converted_789)?;
+            let converted_827 = (value).as_str().into_py_any(py)?;
+            result.set_item("custom_key_store_id", converted_827)?;
         } else {
             result.set_item("custom_key_store_id", py.None())?;
         }
@@ -2913,8 +3821,8 @@ impl PyOperationCreateGrantOutput {
     #[getter]
     fn grant_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grant_token {
-            let converted_790 = (value).as_str().into_py_any(py)?;
-            Ok(converted_790)
+            let converted_828 = (value).as_str().into_py_any(py)?;
+            Ok(converted_828)
         } else {
             Ok(py.None())
         }
@@ -2923,8 +3831,8 @@ impl PyOperationCreateGrantOutput {
     #[getter]
     fn grant_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grant_id {
-            let converted_791 = (value).as_str().into_py_any(py)?;
-            Ok(converted_791)
+            let converted_829 = (value).as_str().into_py_any(py)?;
+            Ok(converted_829)
         } else {
             Ok(py.None())
         }
@@ -2933,14 +3841,14 @@ impl PyOperationCreateGrantOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.grant_token {
-            let converted_792 = (value).as_str().into_py_any(py)?;
-            result.set_item("grant_token", converted_792)?;
+            let converted_830 = (value).as_str().into_py_any(py)?;
+            result.set_item("grant_token", converted_830)?;
         } else {
             result.set_item("grant_token", py.None())?;
         }
         if let Some(value) = &self.inner.grant_id {
-            let converted_793 = (value).as_str().into_py_any(py)?;
-            result.set_item("grant_id", converted_793)?;
+            let converted_831 = (value).as_str().into_py_any(py)?;
+            result.set_item("grant_id", converted_831)?;
         } else {
             result.set_item("grant_id", py.None())?;
         }
@@ -2976,14 +3884,14 @@ impl PyOperationCreateKeyOutput {
     #[getter]
     fn key_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_metadata {
-            let converted_794 = Py::new(
+            let converted_832 = Py::new(
                 py,
                 PyKeyMetadata {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_794)
+            Ok(converted_832)
         } else {
             Ok(py.None())
         }
@@ -2992,8 +3900,8 @@ impl PyOperationCreateKeyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_metadata {
-            let converted_795 = key_metadata_shared_to_py(py, value)?;
-            result.set_item("key_metadata", converted_795)?;
+            let converted_833 = key_metadata_shared_to_py(py, value)?;
+            result.set_item("key_metadata", converted_833)?;
         } else {
             result.set_item("key_metadata", py.None())?;
         }
@@ -3011,8 +3919,8 @@ impl PyOperationDecryptOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_796 = (value).as_str().into_py_any(py)?;
-            Ok(converted_796)
+            let converted_834 = (value).as_str().into_py_any(py)?;
+            Ok(converted_834)
         } else {
             Ok(py.None())
         }
@@ -3021,8 +3929,8 @@ impl PyOperationDecryptOutput {
     #[getter]
     fn plaintext(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.plaintext {
-            let converted_797 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_797)
+            let converted_835 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_835)
         } else {
             Ok(py.None())
         }
@@ -3031,8 +3939,8 @@ impl PyOperationDecryptOutput {
     #[getter]
     fn encryption_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_algorithm {
-            let converted_798 = (value).as_str().into_py_any(py)?;
-            Ok(converted_798)
+            let converted_836 = (value).as_str().into_py_any(py)?;
+            Ok(converted_836)
         } else {
             Ok(py.None())
         }
@@ -3041,8 +3949,8 @@ impl PyOperationDecryptOutput {
     #[getter]
     fn ciphertext_for_recipient(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_799 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_799)
+            let converted_837 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_837)
         } else {
             Ok(py.None())
         }
@@ -3051,8 +3959,8 @@ impl PyOperationDecryptOutput {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_800 = (value).as_str().into_py_any(py)?;
-            Ok(converted_800)
+            let converted_838 = (value).as_str().into_py_any(py)?;
+            Ok(converted_838)
         } else {
             Ok(py.None())
         }
@@ -3061,32 +3969,32 @@ impl PyOperationDecryptOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_801 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_801)?;
+            let converted_839 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_839)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.plaintext {
-            let converted_802 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("plaintext", converted_802)?;
+            let converted_840 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("plaintext", converted_840)?;
         } else {
             result.set_item("plaintext", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_algorithm {
-            let converted_803 = (value).as_str().into_py_any(py)?;
-            result.set_item("encryption_algorithm", converted_803)?;
+            let converted_841 = (value).as_str().into_py_any(py)?;
+            result.set_item("encryption_algorithm", converted_841)?;
         } else {
             result.set_item("encryption_algorithm", py.None())?;
         }
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_804 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_for_recipient", converted_804)?;
+            let converted_842 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_for_recipient", converted_842)?;
         } else {
             result.set_item("ciphertext_for_recipient", py.None())?;
         }
         if let Some(value) = &self.inner.key_material_id {
-            let converted_805 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_material_id", converted_805)?;
+            let converted_843 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_material_id", converted_843)?;
         } else {
             result.set_item("key_material_id", py.None())?;
         }
@@ -3125,8 +4033,8 @@ impl PyOperationDeleteImportedKeyMaterialOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_806 = (value).as_str().into_py_any(py)?;
-            Ok(converted_806)
+            let converted_844 = (value).as_str().into_py_any(py)?;
+            Ok(converted_844)
         } else {
             Ok(py.None())
         }
@@ -3135,8 +4043,8 @@ impl PyOperationDeleteImportedKeyMaterialOutput {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_807 = (value).as_str().into_py_any(py)?;
-            Ok(converted_807)
+            let converted_845 = (value).as_str().into_py_any(py)?;
+            Ok(converted_845)
         } else {
             Ok(py.None())
         }
@@ -3145,14 +4053,14 @@ impl PyOperationDeleteImportedKeyMaterialOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_808 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_808)?;
+            let converted_846 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_846)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.key_material_id {
-            let converted_809 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_material_id", converted_809)?;
+            let converted_847 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_material_id", converted_847)?;
         } else {
             result.set_item("key_material_id", py.None())?;
         }
@@ -3174,8 +4082,8 @@ impl PyOperationDeriveSharedSecretOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_810 = (value).as_str().into_py_any(py)?;
-            Ok(converted_810)
+            let converted_848 = (value).as_str().into_py_any(py)?;
+            Ok(converted_848)
         } else {
             Ok(py.None())
         }
@@ -3184,8 +4092,8 @@ impl PyOperationDeriveSharedSecretOutput {
     #[getter]
     fn shared_secret(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.shared_secret {
-            let converted_811 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_811)
+            let converted_849 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_849)
         } else {
             Ok(py.None())
         }
@@ -3194,8 +4102,8 @@ impl PyOperationDeriveSharedSecretOutput {
     #[getter]
     fn ciphertext_for_recipient(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_812 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_812)
+            let converted_850 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_850)
         } else {
             Ok(py.None())
         }
@@ -3204,8 +4112,8 @@ impl PyOperationDeriveSharedSecretOutput {
     #[getter]
     fn key_agreement_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_agreement_algorithm {
-            let converted_813 = (value).as_str().into_py_any(py)?;
-            Ok(converted_813)
+            let converted_851 = (value).as_str().into_py_any(py)?;
+            Ok(converted_851)
         } else {
             Ok(py.None())
         }
@@ -3214,8 +4122,8 @@ impl PyOperationDeriveSharedSecretOutput {
     #[getter]
     fn key_origin(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_origin {
-            let converted_814 = (value).as_str().into_py_any(py)?;
-            Ok(converted_814)
+            let converted_852 = (value).as_str().into_py_any(py)?;
+            Ok(converted_852)
         } else {
             Ok(py.None())
         }
@@ -3224,32 +4132,32 @@ impl PyOperationDeriveSharedSecretOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_815 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_815)?;
+            let converted_853 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_853)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.shared_secret {
-            let converted_816 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("shared_secret", converted_816)?;
+            let converted_854 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("shared_secret", converted_854)?;
         } else {
             result.set_item("shared_secret", py.None())?;
         }
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_817 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_for_recipient", converted_817)?;
+            let converted_855 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_for_recipient", converted_855)?;
         } else {
             result.set_item("ciphertext_for_recipient", py.None())?;
         }
         if let Some(value) = &self.inner.key_agreement_algorithm {
-            let converted_818 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_agreement_algorithm", converted_818)?;
+            let converted_856 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_agreement_algorithm", converted_856)?;
         } else {
             result.set_item("key_agreement_algorithm", py.None())?;
         }
         if let Some(value) = &self.inner.key_origin {
-            let converted_819 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_origin", converted_819)?;
+            let converted_857 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_origin", converted_857)?;
         } else {
             result.set_item("key_origin", py.None())?;
         }
@@ -3275,7 +4183,7 @@ impl From<aws_sdk_kms::operation::describe_custom_key_stores::DescribeCustomKeyS
             custom_key_stores: value.custom_key_stores.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_825| Arc::new(SharedCustomKeyStoresListEntry::from(owned_825)))
+                    .map(|owned_863| Arc::new(SharedCustomKeyStoresListEntry::from(owned_863)))
                     .collect()
             }),
             next_marker: value.next_marker,
@@ -3298,19 +4206,19 @@ impl PyOperationDescribeCustomKeyStoresOutput {
     #[getter]
     fn custom_key_stores(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_key_stores {
-            let converted_820_list = PyList::empty(py);
-            for item_821 in value {
-                let converted_item_822 = Py::new(
+            let converted_858_list = PyList::empty(py);
+            for item_859 in value {
+                let converted_item_860 = Py::new(
                     py,
                     PyCustomKeyStoresListEntry {
-                        inner: Arc::clone(item_821),
+                        inner: Arc::clone(item_859),
                     },
                 )?
                 .into_any();
-                converted_820_list.append(converted_item_822)?;
+                converted_858_list.append(converted_item_860)?;
             }
-            let converted_820 = converted_820_list.into_any().unbind();
-            Ok(converted_820)
+            let converted_858 = converted_858_list.into_any().unbind();
+            Ok(converted_858)
         } else {
             Ok(py.None())
         }
@@ -3319,8 +4227,8 @@ impl PyOperationDescribeCustomKeyStoresOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_823 = (value).as_str().into_py_any(py)?;
-            Ok(converted_823)
+            let converted_861 = (value).as_str().into_py_any(py)?;
+            Ok(converted_861)
         } else {
             Ok(py.None())
         }
@@ -3328,31 +4236,31 @@ impl PyOperationDescribeCustomKeyStoresOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_824 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_824)
+        let converted_862 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_862)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.custom_key_stores {
-            let converted_826_list = PyList::empty(py);
-            for item_827 in value {
-                let converted_item_828 = custom_key_stores_list_entry_shared_to_py(py, item_827)?;
-                converted_826_list.append(converted_item_828)?;
+            let converted_864_list = PyList::empty(py);
+            for item_865 in value {
+                let converted_item_866 = custom_key_stores_list_entry_shared_to_py(py, item_865)?;
+                converted_864_list.append(converted_item_866)?;
             }
-            let converted_826 = converted_826_list.into_any().unbind();
-            result.set_item("custom_key_stores", converted_826)?;
+            let converted_864 = converted_864_list.into_any().unbind();
+            result.set_item("custom_key_stores", converted_864)?;
         } else {
             result.set_item("custom_key_stores", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_829 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_829)?;
+            let converted_867 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_867)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_830 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_830)?;
+        let converted_868 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_868)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -3385,14 +4293,14 @@ impl PyOperationDescribeKeyOutput {
     #[getter]
     fn key_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_metadata {
-            let converted_831 = Py::new(
+            let converted_869 = Py::new(
                 py,
                 PyKeyMetadata {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_831)
+            Ok(converted_869)
         } else {
             Ok(py.None())
         }
@@ -3401,8 +4309,8 @@ impl PyOperationDescribeKeyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_metadata {
-            let converted_832 = key_metadata_shared_to_py(py, value)?;
-            result.set_item("key_metadata", converted_832)?;
+            let converted_870 = key_metadata_shared_to_py(py, value)?;
+            result.set_item("key_metadata", converted_870)?;
         } else {
             result.set_item("key_metadata", py.None())?;
         }
@@ -3437,8 +4345,8 @@ impl PyOperationEncryptOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_833 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_833)
+            let converted_871 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_871)
         } else {
             Ok(py.None())
         }
@@ -3447,8 +4355,8 @@ impl PyOperationEncryptOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_834 = (value).as_str().into_py_any(py)?;
-            Ok(converted_834)
+            let converted_872 = (value).as_str().into_py_any(py)?;
+            Ok(converted_872)
         } else {
             Ok(py.None())
         }
@@ -3457,8 +4365,8 @@ impl PyOperationEncryptOutput {
     #[getter]
     fn encryption_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_algorithm {
-            let converted_835 = (value).as_str().into_py_any(py)?;
-            Ok(converted_835)
+            let converted_873 = (value).as_str().into_py_any(py)?;
+            Ok(converted_873)
         } else {
             Ok(py.None())
         }
@@ -3467,20 +4375,20 @@ impl PyOperationEncryptOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_836 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_blob", converted_836)?;
+            let converted_874 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_blob", converted_874)?;
         } else {
             result.set_item("ciphertext_blob", py.None())?;
         }
         if let Some(value) = &self.inner.key_id {
-            let converted_837 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_837)?;
+            let converted_875 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_875)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_algorithm {
-            let converted_838 = (value).as_str().into_py_any(py)?;
-            result.set_item("encryption_algorithm", converted_838)?;
+            let converted_876 = (value).as_str().into_py_any(py)?;
+            result.set_item("encryption_algorithm", converted_876)?;
         } else {
             result.set_item("encryption_algorithm", py.None())?;
         }
@@ -3498,8 +4406,8 @@ impl PyOperationGenerateDataKeyOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_839 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_839)
+            let converted_877 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_877)
         } else {
             Ok(py.None())
         }
@@ -3508,8 +4416,8 @@ impl PyOperationGenerateDataKeyOutput {
     #[getter]
     fn plaintext(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.plaintext {
-            let converted_840 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_840)
+            let converted_878 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_878)
         } else {
             Ok(py.None())
         }
@@ -3518,8 +4426,8 @@ impl PyOperationGenerateDataKeyOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_841 = (value).as_str().into_py_any(py)?;
-            Ok(converted_841)
+            let converted_879 = (value).as_str().into_py_any(py)?;
+            Ok(converted_879)
         } else {
             Ok(py.None())
         }
@@ -3528,8 +4436,8 @@ impl PyOperationGenerateDataKeyOutput {
     #[getter]
     fn ciphertext_for_recipient(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_842 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_842)
+            let converted_880 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_880)
         } else {
             Ok(py.None())
         }
@@ -3538,8 +4446,8 @@ impl PyOperationGenerateDataKeyOutput {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_843 = (value).as_str().into_py_any(py)?;
-            Ok(converted_843)
+            let converted_881 = (value).as_str().into_py_any(py)?;
+            Ok(converted_881)
         } else {
             Ok(py.None())
         }
@@ -3548,32 +4456,32 @@ impl PyOperationGenerateDataKeyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_844 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_blob", converted_844)?;
+            let converted_882 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_blob", converted_882)?;
         } else {
             result.set_item("ciphertext_blob", py.None())?;
         }
         if let Some(value) = &self.inner.plaintext {
-            let converted_845 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("plaintext", converted_845)?;
+            let converted_883 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("plaintext", converted_883)?;
         } else {
             result.set_item("plaintext", py.None())?;
         }
         if let Some(value) = &self.inner.key_id {
-            let converted_846 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_846)?;
+            let converted_884 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_884)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_847 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_for_recipient", converted_847)?;
+            let converted_885 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_for_recipient", converted_885)?;
         } else {
             result.set_item("ciphertext_for_recipient", py.None())?;
         }
         if let Some(value) = &self.inner.key_material_id {
-            let converted_848 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_material_id", converted_848)?;
+            let converted_886 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_material_id", converted_886)?;
         } else {
             result.set_item("key_material_id", py.None())?;
         }
@@ -3595,8 +4503,8 @@ impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn private_key_ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.private_key_ciphertext_blob {
-            let converted_849 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_849)
+            let converted_887 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_887)
         } else {
             Ok(py.None())
         }
@@ -3605,8 +4513,8 @@ impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn private_key_plaintext(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.private_key_plaintext {
-            let converted_850 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_850)
+            let converted_888 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_888)
         } else {
             Ok(py.None())
         }
@@ -3615,8 +4523,8 @@ impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn public_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.public_key {
-            let converted_851 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_851)
+            let converted_889 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_889)
         } else {
             Ok(py.None())
         }
@@ -3625,8 +4533,8 @@ impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_852 = (value).as_str().into_py_any(py)?;
-            Ok(converted_852)
+            let converted_890 = (value).as_str().into_py_any(py)?;
+            Ok(converted_890)
         } else {
             Ok(py.None())
         }
@@ -3635,8 +4543,8 @@ impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn key_pair_spec(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_pair_spec {
-            let converted_853 = (value).as_str().into_py_any(py)?;
-            Ok(converted_853)
+            let converted_891 = (value).as_str().into_py_any(py)?;
+            Ok(converted_891)
         } else {
             Ok(py.None())
         }
@@ -3645,8 +4553,8 @@ impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn ciphertext_for_recipient(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_854 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_854)
+            let converted_892 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_892)
         } else {
             Ok(py.None())
         }
@@ -3655,8 +4563,8 @@ impl PyOperationGenerateDataKeyPairOutput {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_855 = (value).as_str().into_py_any(py)?;
-            Ok(converted_855)
+            let converted_893 = (value).as_str().into_py_any(py)?;
+            Ok(converted_893)
         } else {
             Ok(py.None())
         }
@@ -3665,44 +4573,44 @@ impl PyOperationGenerateDataKeyPairOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.private_key_ciphertext_blob {
-            let converted_856 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("private_key_ciphertext_blob", converted_856)?;
+            let converted_894 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("private_key_ciphertext_blob", converted_894)?;
         } else {
             result.set_item("private_key_ciphertext_blob", py.None())?;
         }
         if let Some(value) = &self.inner.private_key_plaintext {
-            let converted_857 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("private_key_plaintext", converted_857)?;
+            let converted_895 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("private_key_plaintext", converted_895)?;
         } else {
             result.set_item("private_key_plaintext", py.None())?;
         }
         if let Some(value) = &self.inner.public_key {
-            let converted_858 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("public_key", converted_858)?;
+            let converted_896 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("public_key", converted_896)?;
         } else {
             result.set_item("public_key", py.None())?;
         }
         if let Some(value) = &self.inner.key_id {
-            let converted_859 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_859)?;
+            let converted_897 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_897)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.key_pair_spec {
-            let converted_860 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_pair_spec", converted_860)?;
+            let converted_898 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_pair_spec", converted_898)?;
         } else {
             result.set_item("key_pair_spec", py.None())?;
         }
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_861 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_for_recipient", converted_861)?;
+            let converted_899 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_for_recipient", converted_899)?;
         } else {
             result.set_item("ciphertext_for_recipient", py.None())?;
         }
         if let Some(value) = &self.inner.key_material_id {
-            let converted_862 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_material_id", converted_862)?;
+            let converted_900 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_material_id", converted_900)?;
         } else {
             result.set_item("key_material_id", py.None())?;
         }
@@ -3724,8 +4632,8 @@ impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     #[getter]
     fn private_key_ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.private_key_ciphertext_blob {
-            let converted_863 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_863)
+            let converted_901 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_901)
         } else {
             Ok(py.None())
         }
@@ -3734,8 +4642,8 @@ impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     #[getter]
     fn public_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.public_key {
-            let converted_864 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_864)
+            let converted_902 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_902)
         } else {
             Ok(py.None())
         }
@@ -3744,8 +4652,8 @@ impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_865 = (value).as_str().into_py_any(py)?;
-            Ok(converted_865)
+            let converted_903 = (value).as_str().into_py_any(py)?;
+            Ok(converted_903)
         } else {
             Ok(py.None())
         }
@@ -3754,8 +4662,8 @@ impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     #[getter]
     fn key_pair_spec(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_pair_spec {
-            let converted_866 = (value).as_str().into_py_any(py)?;
-            Ok(converted_866)
+            let converted_904 = (value).as_str().into_py_any(py)?;
+            Ok(converted_904)
         } else {
             Ok(py.None())
         }
@@ -3764,8 +4672,8 @@ impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_867 = (value).as_str().into_py_any(py)?;
-            Ok(converted_867)
+            let converted_905 = (value).as_str().into_py_any(py)?;
+            Ok(converted_905)
         } else {
             Ok(py.None())
         }
@@ -3774,32 +4682,32 @@ impl PyOperationGenerateDataKeyPairWithoutPlaintextOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.private_key_ciphertext_blob {
-            let converted_868 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("private_key_ciphertext_blob", converted_868)?;
+            let converted_906 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("private_key_ciphertext_blob", converted_906)?;
         } else {
             result.set_item("private_key_ciphertext_blob", py.None())?;
         }
         if let Some(value) = &self.inner.public_key {
-            let converted_869 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("public_key", converted_869)?;
+            let converted_907 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("public_key", converted_907)?;
         } else {
             result.set_item("public_key", py.None())?;
         }
         if let Some(value) = &self.inner.key_id {
-            let converted_870 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_870)?;
+            let converted_908 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_908)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.key_pair_spec {
-            let converted_871 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_pair_spec", converted_871)?;
+            let converted_909 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_pair_spec", converted_909)?;
         } else {
             result.set_item("key_pair_spec", py.None())?;
         }
         if let Some(value) = &self.inner.key_material_id {
-            let converted_872 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_material_id", converted_872)?;
+            let converted_910 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_material_id", converted_910)?;
         } else {
             result.set_item("key_material_id", py.None())?;
         }
@@ -3821,8 +4729,8 @@ impl PyOperationGenerateDataKeyWithoutPlaintextOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_873 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_873)
+            let converted_911 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_911)
         } else {
             Ok(py.None())
         }
@@ -3831,8 +4739,8 @@ impl PyOperationGenerateDataKeyWithoutPlaintextOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_874 = (value).as_str().into_py_any(py)?;
-            Ok(converted_874)
+            let converted_912 = (value).as_str().into_py_any(py)?;
+            Ok(converted_912)
         } else {
             Ok(py.None())
         }
@@ -3841,8 +4749,8 @@ impl PyOperationGenerateDataKeyWithoutPlaintextOutput {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_875 = (value).as_str().into_py_any(py)?;
-            Ok(converted_875)
+            let converted_913 = (value).as_str().into_py_any(py)?;
+            Ok(converted_913)
         } else {
             Ok(py.None())
         }
@@ -3851,20 +4759,20 @@ impl PyOperationGenerateDataKeyWithoutPlaintextOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_876 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_blob", converted_876)?;
+            let converted_914 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_blob", converted_914)?;
         } else {
             result.set_item("ciphertext_blob", py.None())?;
         }
         if let Some(value) = &self.inner.key_id {
-            let converted_877 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_877)?;
+            let converted_915 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_915)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.key_material_id {
-            let converted_878 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_material_id", converted_878)?;
+            let converted_916 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_material_id", converted_916)?;
         } else {
             result.set_item("key_material_id", py.None())?;
         }
@@ -3882,8 +4790,8 @@ impl PyOperationGenerateMacOutput {
     #[getter]
     fn mac(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mac {
-            let converted_879 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_879)
+            let converted_917 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_917)
         } else {
             Ok(py.None())
         }
@@ -3892,8 +4800,8 @@ impl PyOperationGenerateMacOutput {
     #[getter]
     fn mac_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mac_algorithm {
-            let converted_880 = (value).as_str().into_py_any(py)?;
-            Ok(converted_880)
+            let converted_918 = (value).as_str().into_py_any(py)?;
+            Ok(converted_918)
         } else {
             Ok(py.None())
         }
@@ -3902,8 +4810,8 @@ impl PyOperationGenerateMacOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_881 = (value).as_str().into_py_any(py)?;
-            Ok(converted_881)
+            let converted_919 = (value).as_str().into_py_any(py)?;
+            Ok(converted_919)
         } else {
             Ok(py.None())
         }
@@ -3912,20 +4820,20 @@ impl PyOperationGenerateMacOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.mac {
-            let converted_882 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("mac", converted_882)?;
+            let converted_920 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("mac", converted_920)?;
         } else {
             result.set_item("mac", py.None())?;
         }
         if let Some(value) = &self.inner.mac_algorithm {
-            let converted_883 = (value).as_str().into_py_any(py)?;
-            result.set_item("mac_algorithm", converted_883)?;
+            let converted_921 = (value).as_str().into_py_any(py)?;
+            result.set_item("mac_algorithm", converted_921)?;
         } else {
             result.set_item("mac_algorithm", py.None())?;
         }
         if let Some(value) = &self.inner.key_id {
-            let converted_884 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_884)?;
+            let converted_922 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_922)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
@@ -3943,8 +4851,8 @@ impl PyOperationGenerateRandomOutput {
     #[getter]
     fn plaintext(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.plaintext {
-            let converted_885 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_885)
+            let converted_923 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_923)
         } else {
             Ok(py.None())
         }
@@ -3953,8 +4861,8 @@ impl PyOperationGenerateRandomOutput {
     #[getter]
     fn ciphertext_for_recipient(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_886 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_886)
+            let converted_924 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_924)
         } else {
             Ok(py.None())
         }
@@ -3963,14 +4871,14 @@ impl PyOperationGenerateRandomOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.plaintext {
-            let converted_887 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("plaintext", converted_887)?;
+            let converted_925 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("plaintext", converted_925)?;
         } else {
             result.set_item("plaintext", py.None())?;
         }
         if let Some(value) = &self.inner.ciphertext_for_recipient {
-            let converted_888 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_for_recipient", converted_888)?;
+            let converted_926 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_for_recipient", converted_926)?;
         } else {
             result.set_item("ciphertext_for_recipient", py.None())?;
         }
@@ -4010,8 +4918,8 @@ impl PyOperationGetKeyLastUsageOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_889 = (value).as_str().into_py_any(py)?;
-            Ok(converted_889)
+            let converted_927 = (value).as_str().into_py_any(py)?;
+            Ok(converted_927)
         } else {
             Ok(py.None())
         }
@@ -4020,14 +4928,14 @@ impl PyOperationGetKeyLastUsageOutput {
     #[getter]
     fn key_last_usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_last_usage {
-            let converted_890 = Py::new(
+            let converted_928 = Py::new(
                 py,
                 PyKeyLastUsageData {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_890)
+            Ok(converted_928)
         } else {
             Ok(py.None())
         }
@@ -4036,8 +4944,8 @@ impl PyOperationGetKeyLastUsageOutput {
     #[getter]
     fn tracking_start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tracking_start_date {
-            let converted_891 = (value).to_string().into_py_any(py)?;
-            Ok(converted_891)
+            let converted_929 = (value).to_string().into_py_any(py)?;
+            Ok(converted_929)
         } else {
             Ok(py.None())
         }
@@ -4046,8 +4954,8 @@ impl PyOperationGetKeyLastUsageOutput {
     #[getter]
     fn key_creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_creation_date {
-            let converted_892 = (value).to_string().into_py_any(py)?;
-            Ok(converted_892)
+            let converted_930 = (value).to_string().into_py_any(py)?;
+            Ok(converted_930)
         } else {
             Ok(py.None())
         }
@@ -4056,26 +4964,26 @@ impl PyOperationGetKeyLastUsageOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_893 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_893)?;
+            let converted_931 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_931)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.key_last_usage {
-            let converted_894 = key_last_usage_data_to_py(py, value)?;
-            result.set_item("key_last_usage", converted_894)?;
+            let converted_932 = key_last_usage_data_to_py(py, value)?;
+            result.set_item("key_last_usage", converted_932)?;
         } else {
             result.set_item("key_last_usage", py.None())?;
         }
         if let Some(value) = &self.inner.tracking_start_date {
-            let converted_895 = (value).to_string().into_py_any(py)?;
-            result.set_item("tracking_start_date", converted_895)?;
+            let converted_933 = (value).to_string().into_py_any(py)?;
+            result.set_item("tracking_start_date", converted_933)?;
         } else {
             result.set_item("tracking_start_date", py.None())?;
         }
         if let Some(value) = &self.inner.key_creation_date {
-            let converted_896 = (value).to_string().into_py_any(py)?;
-            result.set_item("key_creation_date", converted_896)?;
+            let converted_934 = (value).to_string().into_py_any(py)?;
+            result.set_item("key_creation_date", converted_934)?;
         } else {
             result.set_item("key_creation_date", py.None())?;
         }
@@ -4093,8 +5001,8 @@ impl PyOperationGetKeyPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
-            let converted_897 = (value).as_str().into_py_any(py)?;
-            Ok(converted_897)
+            let converted_935 = (value).as_str().into_py_any(py)?;
+            Ok(converted_935)
         } else {
             Ok(py.None())
         }
@@ -4103,8 +5011,8 @@ impl PyOperationGetKeyPolicyOutput {
     #[getter]
     fn policy_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_name {
-            let converted_898 = (value).as_str().into_py_any(py)?;
-            Ok(converted_898)
+            let converted_936 = (value).as_str().into_py_any(py)?;
+            Ok(converted_936)
         } else {
             Ok(py.None())
         }
@@ -4113,14 +5021,14 @@ impl PyOperationGetKeyPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.policy {
-            let converted_899 = (value).as_str().into_py_any(py)?;
-            result.set_item("policy", converted_899)?;
+            let converted_937 = (value).as_str().into_py_any(py)?;
+            result.set_item("policy", converted_937)?;
         } else {
             result.set_item("policy", py.None())?;
         }
         if let Some(value) = &self.inner.policy_name {
-            let converted_900 = (value).as_str().into_py_any(py)?;
-            result.set_item("policy_name", converted_900)?;
+            let converted_938 = (value).as_str().into_py_any(py)?;
+            result.set_item("policy_name", converted_938)?;
         } else {
             result.set_item("policy_name", py.None())?;
         }
@@ -4141,17 +5049,17 @@ struct PyOperationGetKeyRotationStatusOutput {
 impl PyOperationGetKeyRotationStatusOutput {
     #[getter]
     fn key_rotation_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_901 = (&self.inner.key_rotation_enabled)
+        let converted_939 = (&self.inner.key_rotation_enabled)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_901)
+        Ok(converted_939)
     }
 
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_902 = (value).as_str().into_py_any(py)?;
-            Ok(converted_902)
+            let converted_940 = (value).as_str().into_py_any(py)?;
+            Ok(converted_940)
         } else {
             Ok(py.None())
         }
@@ -4160,8 +5068,8 @@ impl PyOperationGetKeyRotationStatusOutput {
     #[getter]
     fn rotation_period_in_days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rotation_period_in_days {
-            let converted_903 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_903)
+            let converted_941 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_941)
         } else {
             Ok(py.None())
         }
@@ -4170,8 +5078,8 @@ impl PyOperationGetKeyRotationStatusOutput {
     #[getter]
     fn next_rotation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_rotation_date {
-            let converted_904 = (value).to_string().into_py_any(py)?;
-            Ok(converted_904)
+            let converted_942 = (value).to_string().into_py_any(py)?;
+            Ok(converted_942)
         } else {
             Ok(py.None())
         }
@@ -4180,8 +5088,8 @@ impl PyOperationGetKeyRotationStatusOutput {
     #[getter]
     fn on_demand_rotation_start_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.on_demand_rotation_start_date {
-            let converted_905 = (value).to_string().into_py_any(py)?;
-            Ok(converted_905)
+            let converted_943 = (value).to_string().into_py_any(py)?;
+            Ok(converted_943)
         } else {
             Ok(py.None())
         }
@@ -4189,31 +5097,31 @@ impl PyOperationGetKeyRotationStatusOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_906 = (&self.inner.key_rotation_enabled)
+        let converted_944 = (&self.inner.key_rotation_enabled)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("key_rotation_enabled", converted_906)?;
+        result.set_item("key_rotation_enabled", converted_944)?;
         if let Some(value) = &self.inner.key_id {
-            let converted_907 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_907)?;
+            let converted_945 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_945)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.rotation_period_in_days {
-            let converted_908 = (value).to_owned().into_py_any(py)?;
-            result.set_item("rotation_period_in_days", converted_908)?;
+            let converted_946 = (value).to_owned().into_py_any(py)?;
+            result.set_item("rotation_period_in_days", converted_946)?;
         } else {
             result.set_item("rotation_period_in_days", py.None())?;
         }
         if let Some(value) = &self.inner.next_rotation_date {
-            let converted_909 = (value).to_string().into_py_any(py)?;
-            result.set_item("next_rotation_date", converted_909)?;
+            let converted_947 = (value).to_string().into_py_any(py)?;
+            result.set_item("next_rotation_date", converted_947)?;
         } else {
             result.set_item("next_rotation_date", py.None())?;
         }
         if let Some(value) = &self.inner.on_demand_rotation_start_date {
-            let converted_910 = (value).to_string().into_py_any(py)?;
-            result.set_item("on_demand_rotation_start_date", converted_910)?;
+            let converted_948 = (value).to_string().into_py_any(py)?;
+            result.set_item("on_demand_rotation_start_date", converted_948)?;
         } else {
             result.set_item("on_demand_rotation_start_date", py.None())?;
         }
@@ -4235,8 +5143,8 @@ impl PyOperationGetParametersForImportOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_911 = (value).as_str().into_py_any(py)?;
-            Ok(converted_911)
+            let converted_949 = (value).as_str().into_py_any(py)?;
+            Ok(converted_949)
         } else {
             Ok(py.None())
         }
@@ -4245,8 +5153,8 @@ impl PyOperationGetParametersForImportOutput {
     #[getter]
     fn import_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_token {
-            let converted_912 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_912)
+            let converted_950 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_950)
         } else {
             Ok(py.None())
         }
@@ -4255,8 +5163,8 @@ impl PyOperationGetParametersForImportOutput {
     #[getter]
     fn public_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.public_key {
-            let converted_913 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_913)
+            let converted_951 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_951)
         } else {
             Ok(py.None())
         }
@@ -4265,8 +5173,8 @@ impl PyOperationGetParametersForImportOutput {
     #[getter]
     fn parameters_valid_to(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters_valid_to {
-            let converted_914 = (value).to_string().into_py_any(py)?;
-            Ok(converted_914)
+            let converted_952 = (value).to_string().into_py_any(py)?;
+            Ok(converted_952)
         } else {
             Ok(py.None())
         }
@@ -4275,26 +5183,26 @@ impl PyOperationGetParametersForImportOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_915 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_915)?;
+            let converted_953 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_953)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.import_token {
-            let converted_916 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("import_token", converted_916)?;
+            let converted_954 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("import_token", converted_954)?;
         } else {
             result.set_item("import_token", py.None())?;
         }
         if let Some(value) = &self.inner.public_key {
-            let converted_917 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("public_key", converted_917)?;
+            let converted_955 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("public_key", converted_955)?;
         } else {
             result.set_item("public_key", py.None())?;
         }
         if let Some(value) = &self.inner.parameters_valid_to {
-            let converted_918 = (value).to_string().into_py_any(py)?;
-            result.set_item("parameters_valid_to", converted_918)?;
+            let converted_956 = (value).to_string().into_py_any(py)?;
+            result.set_item("parameters_valid_to", converted_956)?;
         } else {
             result.set_item("parameters_valid_to", py.None())?;
         }
@@ -4312,8 +5220,8 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_919 = (value).as_str().into_py_any(py)?;
-            Ok(converted_919)
+            let converted_957 = (value).as_str().into_py_any(py)?;
+            Ok(converted_957)
         } else {
             Ok(py.None())
         }
@@ -4322,8 +5230,8 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn public_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.public_key {
-            let converted_920 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_920)
+            let converted_958 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_958)
         } else {
             Ok(py.None())
         }
@@ -4332,8 +5240,8 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn customer_master_key_spec(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customer_master_key_spec {
-            let converted_921 = (value).as_str().into_py_any(py)?;
-            Ok(converted_921)
+            let converted_959 = (value).as_str().into_py_any(py)?;
+            Ok(converted_959)
         } else {
             Ok(py.None())
         }
@@ -4342,8 +5250,8 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn key_spec(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_spec {
-            let converted_922 = (value).as_str().into_py_any(py)?;
-            Ok(converted_922)
+            let converted_960 = (value).as_str().into_py_any(py)?;
+            Ok(converted_960)
         } else {
             Ok(py.None())
         }
@@ -4352,8 +5260,8 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn key_usage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_usage {
-            let converted_923 = (value).as_str().into_py_any(py)?;
-            Ok(converted_923)
+            let converted_961 = (value).as_str().into_py_any(py)?;
+            Ok(converted_961)
         } else {
             Ok(py.None())
         }
@@ -4362,13 +5270,13 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn encryption_algorithms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_algorithms {
-            let converted_924_list = PyList::empty(py);
-            for item_925 in value {
-                let converted_item_926 = (item_925).as_str().into_py_any(py)?;
-                converted_924_list.append(converted_item_926)?;
+            let converted_962_list = PyList::empty(py);
+            for item_963 in value {
+                let converted_item_964 = (item_963).as_str().into_py_any(py)?;
+                converted_962_list.append(converted_item_964)?;
             }
-            let converted_924 = converted_924_list.into_any().unbind();
-            Ok(converted_924)
+            let converted_962 = converted_962_list.into_any().unbind();
+            Ok(converted_962)
         } else {
             Ok(py.None())
         }
@@ -4377,13 +5285,13 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn signing_algorithms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signing_algorithms {
-            let converted_927_list = PyList::empty(py);
-            for item_928 in value {
-                let converted_item_929 = (item_928).as_str().into_py_any(py)?;
-                converted_927_list.append(converted_item_929)?;
+            let converted_965_list = PyList::empty(py);
+            for item_966 in value {
+                let converted_item_967 = (item_966).as_str().into_py_any(py)?;
+                converted_965_list.append(converted_item_967)?;
             }
-            let converted_927 = converted_927_list.into_any().unbind();
-            Ok(converted_927)
+            let converted_965 = converted_965_list.into_any().unbind();
+            Ok(converted_965)
         } else {
             Ok(py.None())
         }
@@ -4392,13 +5300,13 @@ impl PyOperationGetPublicKeyOutput {
     #[getter]
     fn key_agreement_algorithms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_agreement_algorithms {
-            let converted_930_list = PyList::empty(py);
-            for item_931 in value {
-                let converted_item_932 = (item_931).as_str().into_py_any(py)?;
-                converted_930_list.append(converted_item_932)?;
+            let converted_968_list = PyList::empty(py);
+            for item_969 in value {
+                let converted_item_970 = (item_969).as_str().into_py_any(py)?;
+                converted_968_list.append(converted_item_970)?;
             }
-            let converted_930 = converted_930_list.into_any().unbind();
-            Ok(converted_930)
+            let converted_968 = converted_968_list.into_any().unbind();
+            Ok(converted_968)
         } else {
             Ok(py.None())
         }
@@ -4407,65 +5315,65 @@ impl PyOperationGetPublicKeyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_933 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_933)?;
+            let converted_971 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_971)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.public_key {
-            let converted_934 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("public_key", converted_934)?;
+            let converted_972 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("public_key", converted_972)?;
         } else {
             result.set_item("public_key", py.None())?;
         }
         if let Some(value) = &self.inner.customer_master_key_spec {
-            let converted_935 = (value).as_str().into_py_any(py)?;
-            result.set_item("customer_master_key_spec", converted_935)?;
+            let converted_973 = (value).as_str().into_py_any(py)?;
+            result.set_item("customer_master_key_spec", converted_973)?;
         } else {
             result.set_item("customer_master_key_spec", py.None())?;
         }
         if let Some(value) = &self.inner.key_spec {
-            let converted_936 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_spec", converted_936)?;
+            let converted_974 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_spec", converted_974)?;
         } else {
             result.set_item("key_spec", py.None())?;
         }
         if let Some(value) = &self.inner.key_usage {
-            let converted_937 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_usage", converted_937)?;
+            let converted_975 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_usage", converted_975)?;
         } else {
             result.set_item("key_usage", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_algorithms {
-            let converted_938_list = PyList::empty(py);
-            for item_939 in value {
-                let converted_item_940 = (item_939).as_str().into_py_any(py)?;
-                converted_938_list.append(converted_item_940)?;
+            let converted_976_list = PyList::empty(py);
+            for item_977 in value {
+                let converted_item_978 = (item_977).as_str().into_py_any(py)?;
+                converted_976_list.append(converted_item_978)?;
             }
-            let converted_938 = converted_938_list.into_any().unbind();
-            result.set_item("encryption_algorithms", converted_938)?;
+            let converted_976 = converted_976_list.into_any().unbind();
+            result.set_item("encryption_algorithms", converted_976)?;
         } else {
             result.set_item("encryption_algorithms", py.None())?;
         }
         if let Some(value) = &self.inner.signing_algorithms {
-            let converted_941_list = PyList::empty(py);
-            for item_942 in value {
-                let converted_item_943 = (item_942).as_str().into_py_any(py)?;
-                converted_941_list.append(converted_item_943)?;
+            let converted_979_list = PyList::empty(py);
+            for item_980 in value {
+                let converted_item_981 = (item_980).as_str().into_py_any(py)?;
+                converted_979_list.append(converted_item_981)?;
             }
-            let converted_941 = converted_941_list.into_any().unbind();
-            result.set_item("signing_algorithms", converted_941)?;
+            let converted_979 = converted_979_list.into_any().unbind();
+            result.set_item("signing_algorithms", converted_979)?;
         } else {
             result.set_item("signing_algorithms", py.None())?;
         }
         if let Some(value) = &self.inner.key_agreement_algorithms {
-            let converted_944_list = PyList::empty(py);
-            for item_945 in value {
-                let converted_item_946 = (item_945).as_str().into_py_any(py)?;
-                converted_944_list.append(converted_item_946)?;
+            let converted_982_list = PyList::empty(py);
+            for item_983 in value {
+                let converted_item_984 = (item_983).as_str().into_py_any(py)?;
+                converted_982_list.append(converted_item_984)?;
             }
-            let converted_944 = converted_944_list.into_any().unbind();
-            result.set_item("key_agreement_algorithms", converted_944)?;
+            let converted_982 = converted_982_list.into_any().unbind();
+            result.set_item("key_agreement_algorithms", converted_982)?;
         } else {
             result.set_item("key_agreement_algorithms", py.None())?;
         }
@@ -4483,8 +5391,8 @@ impl PyOperationImportKeyMaterialOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_947 = (value).as_str().into_py_any(py)?;
-            Ok(converted_947)
+            let converted_985 = (value).as_str().into_py_any(py)?;
+            Ok(converted_985)
         } else {
             Ok(py.None())
         }
@@ -4493,8 +5401,8 @@ impl PyOperationImportKeyMaterialOutput {
     #[getter]
     fn key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_material_id {
-            let converted_948 = (value).as_str().into_py_any(py)?;
-            Ok(converted_948)
+            let converted_986 = (value).as_str().into_py_any(py)?;
+            Ok(converted_986)
         } else {
             Ok(py.None())
         }
@@ -4503,14 +5411,14 @@ impl PyOperationImportKeyMaterialOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_949 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_949)?;
+            let converted_987 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_987)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.key_material_id {
-            let converted_950 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_material_id", converted_950)?;
+            let converted_988 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_material_id", converted_988)?;
         } else {
             result.set_item("key_material_id", py.None())?;
         }
@@ -4534,7 +5442,7 @@ impl From<aws_sdk_kms::operation::list_aliases::ListAliasesOutput>
             aliases: value.aliases.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_956| Arc::new(owned_956))
+                    .map(|owned_994| Arc::new(owned_994))
                     .collect()
             }),
             next_marker: value.next_marker,
@@ -4553,19 +5461,19 @@ impl PyOperationListAliasesOutput {
     #[getter]
     fn aliases(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aliases {
-            let converted_951_list = PyList::empty(py);
-            for item_952 in value {
-                let converted_item_953 = Py::new(
+            let converted_989_list = PyList::empty(py);
+            for item_990 in value {
+                let converted_item_991 = Py::new(
                     py,
                     PyAliasListEntry {
-                        inner: Arc::clone(item_952),
+                        inner: Arc::clone(item_990),
                     },
                 )?
                 .into_any();
-                converted_951_list.append(converted_item_953)?;
+                converted_989_list.append(converted_item_991)?;
             }
-            let converted_951 = converted_951_list.into_any().unbind();
-            Ok(converted_951)
+            let converted_989 = converted_989_list.into_any().unbind();
+            Ok(converted_989)
         } else {
             Ok(py.None())
         }
@@ -4574,8 +5482,8 @@ impl PyOperationListAliasesOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_954 = (value).as_str().into_py_any(py)?;
-            Ok(converted_954)
+            let converted_992 = (value).as_str().into_py_any(py)?;
+            Ok(converted_992)
         } else {
             Ok(py.None())
         }
@@ -4583,31 +5491,31 @@ impl PyOperationListAliasesOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_955 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_955)
+        let converted_993 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_993)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.aliases {
-            let converted_957_list = PyList::empty(py);
-            for item_958 in value {
-                let converted_item_959 = alias_list_entry_to_py(py, item_958)?;
-                converted_957_list.append(converted_item_959)?;
+            let converted_995_list = PyList::empty(py);
+            for item_996 in value {
+                let converted_item_997 = alias_list_entry_to_py(py, item_996)?;
+                converted_995_list.append(converted_item_997)?;
             }
-            let converted_957 = converted_957_list.into_any().unbind();
-            result.set_item("aliases", converted_957)?;
+            let converted_995 = converted_995_list.into_any().unbind();
+            result.set_item("aliases", converted_995)?;
         } else {
             result.set_item("aliases", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_960 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_960)?;
+            let converted_998 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_998)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_961 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_961)?;
+        let converted_999 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_999)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4628,7 +5536,7 @@ impl From<aws_sdk_kms::operation::list_grants::ListGrantsOutput>
             grants: value.grants.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_967| Arc::new(SharedGrantListEntry::from(owned_967)))
+                    .map(|owned_1005| Arc::new(SharedGrantListEntry::from(owned_1005)))
                     .collect()
             }),
             next_marker: value.next_marker,
@@ -4647,19 +5555,19 @@ impl PyOperationListGrantsOutput {
     #[getter]
     fn grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grants {
-            let converted_962_list = PyList::empty(py);
-            for item_963 in value {
-                let converted_item_964 = Py::new(
+            let converted_1000_list = PyList::empty(py);
+            for item_1001 in value {
+                let converted_item_1002 = Py::new(
                     py,
                     PyGrantListEntry {
-                        inner: Arc::clone(item_963),
+                        inner: Arc::clone(item_1001),
                     },
                 )?
                 .into_any();
-                converted_962_list.append(converted_item_964)?;
+                converted_1000_list.append(converted_item_1002)?;
             }
-            let converted_962 = converted_962_list.into_any().unbind();
-            Ok(converted_962)
+            let converted_1000 = converted_1000_list.into_any().unbind();
+            Ok(converted_1000)
         } else {
             Ok(py.None())
         }
@@ -4668,8 +5576,8 @@ impl PyOperationListGrantsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_965 = (value).as_str().into_py_any(py)?;
-            Ok(converted_965)
+            let converted_1003 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1003)
         } else {
             Ok(py.None())
         }
@@ -4677,31 +5585,31 @@ impl PyOperationListGrantsOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_966 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_966)
+        let converted_1004 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_1004)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.grants {
-            let converted_968_list = PyList::empty(py);
-            for item_969 in value {
-                let converted_item_970 = grant_list_entry_shared_to_py(py, item_969)?;
-                converted_968_list.append(converted_item_970)?;
+            let converted_1006_list = PyList::empty(py);
+            for item_1007 in value {
+                let converted_item_1008 = grant_list_entry_shared_to_py(py, item_1007)?;
+                converted_1006_list.append(converted_item_1008)?;
             }
-            let converted_968 = converted_968_list.into_any().unbind();
-            result.set_item("grants", converted_968)?;
+            let converted_1006 = converted_1006_list.into_any().unbind();
+            result.set_item("grants", converted_1006)?;
         } else {
             result.set_item("grants", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_971 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_971)?;
+            let converted_1009 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_1009)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_972 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_972)?;
+        let converted_1010 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1010)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4716,13 +5624,13 @@ impl PyOperationListKeyPoliciesOutput {
     #[getter]
     fn policy_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_names {
-            let converted_973_list = PyList::empty(py);
-            for item_974 in value {
-                let converted_item_975 = (item_974).as_str().into_py_any(py)?;
-                converted_973_list.append(converted_item_975)?;
+            let converted_1011_list = PyList::empty(py);
+            for item_1012 in value {
+                let converted_item_1013 = (item_1012).as_str().into_py_any(py)?;
+                converted_1011_list.append(converted_item_1013)?;
             }
-            let converted_973 = converted_973_list.into_any().unbind();
-            Ok(converted_973)
+            let converted_1011 = converted_1011_list.into_any().unbind();
+            Ok(converted_1011)
         } else {
             Ok(py.None())
         }
@@ -4731,8 +5639,8 @@ impl PyOperationListKeyPoliciesOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_976 = (value).as_str().into_py_any(py)?;
-            Ok(converted_976)
+            let converted_1014 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1014)
         } else {
             Ok(py.None())
         }
@@ -4740,31 +5648,31 @@ impl PyOperationListKeyPoliciesOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_977 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_977)
+        let converted_1015 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_1015)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.policy_names {
-            let converted_978_list = PyList::empty(py);
-            for item_979 in value {
-                let converted_item_980 = (item_979).as_str().into_py_any(py)?;
-                converted_978_list.append(converted_item_980)?;
+            let converted_1016_list = PyList::empty(py);
+            for item_1017 in value {
+                let converted_item_1018 = (item_1017).as_str().into_py_any(py)?;
+                converted_1016_list.append(converted_item_1018)?;
             }
-            let converted_978 = converted_978_list.into_any().unbind();
-            result.set_item("policy_names", converted_978)?;
+            let converted_1016 = converted_1016_list.into_any().unbind();
+            result.set_item("policy_names", converted_1016)?;
         } else {
             result.set_item("policy_names", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_981 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_981)?;
+            let converted_1019 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_1019)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_982 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_982)?;
+        let converted_1020 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1020)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4785,7 +5693,7 @@ impl From<aws_sdk_kms::operation::list_key_rotations::ListKeyRotationsOutput>
             rotations: value.rotations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_988| Arc::new(owned_988))
+                    .map(|owned_1026| Arc::new(owned_1026))
                     .collect()
             }),
             next_marker: value.next_marker,
@@ -4804,19 +5712,19 @@ impl PyOperationListKeyRotationsOutput {
     #[getter]
     fn rotations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rotations {
-            let converted_983_list = PyList::empty(py);
-            for item_984 in value {
-                let converted_item_985 = Py::new(
+            let converted_1021_list = PyList::empty(py);
+            for item_1022 in value {
+                let converted_item_1023 = Py::new(
                     py,
                     PyRotationsListEntry {
-                        inner: Arc::clone(item_984),
+                        inner: Arc::clone(item_1022),
                     },
                 )?
                 .into_any();
-                converted_983_list.append(converted_item_985)?;
+                converted_1021_list.append(converted_item_1023)?;
             }
-            let converted_983 = converted_983_list.into_any().unbind();
-            Ok(converted_983)
+            let converted_1021 = converted_1021_list.into_any().unbind();
+            Ok(converted_1021)
         } else {
             Ok(py.None())
         }
@@ -4825,8 +5733,8 @@ impl PyOperationListKeyRotationsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_986 = (value).as_str().into_py_any(py)?;
-            Ok(converted_986)
+            let converted_1024 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1024)
         } else {
             Ok(py.None())
         }
@@ -4834,31 +5742,31 @@ impl PyOperationListKeyRotationsOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_987 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_987)
+        let converted_1025 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_1025)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.rotations {
-            let converted_989_list = PyList::empty(py);
-            for item_990 in value {
-                let converted_item_991 = rotations_list_entry_to_py(py, item_990)?;
-                converted_989_list.append(converted_item_991)?;
+            let converted_1027_list = PyList::empty(py);
+            for item_1028 in value {
+                let converted_item_1029 = rotations_list_entry_to_py(py, item_1028)?;
+                converted_1027_list.append(converted_item_1029)?;
             }
-            let converted_989 = converted_989_list.into_any().unbind();
-            result.set_item("rotations", converted_989)?;
+            let converted_1027 = converted_1027_list.into_any().unbind();
+            result.set_item("rotations", converted_1027)?;
         } else {
             result.set_item("rotations", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_992 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_992)?;
+            let converted_1030 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_1030)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_993 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_993)?;
+        let converted_1031 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1031)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4877,7 +5785,7 @@ impl From<aws_sdk_kms::operation::list_keys::ListKeysOutput> for SharedPyOperati
             keys: value.keys.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_999| Arc::new(owned_999))
+                    .map(|owned_1037| Arc::new(owned_1037))
                     .collect()
             }),
             next_marker: value.next_marker,
@@ -4896,19 +5804,19 @@ impl PyOperationListKeysOutput {
     #[getter]
     fn keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.keys {
-            let converted_994_list = PyList::empty(py);
-            for item_995 in value {
-                let converted_item_996 = Py::new(
+            let converted_1032_list = PyList::empty(py);
+            for item_1033 in value {
+                let converted_item_1034 = Py::new(
                     py,
                     PyKeyListEntry {
-                        inner: Arc::clone(item_995),
+                        inner: Arc::clone(item_1033),
                     },
                 )?
                 .into_any();
-                converted_994_list.append(converted_item_996)?;
+                converted_1032_list.append(converted_item_1034)?;
             }
-            let converted_994 = converted_994_list.into_any().unbind();
-            Ok(converted_994)
+            let converted_1032 = converted_1032_list.into_any().unbind();
+            Ok(converted_1032)
         } else {
             Ok(py.None())
         }
@@ -4917,8 +5825,8 @@ impl PyOperationListKeysOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_997 = (value).as_str().into_py_any(py)?;
-            Ok(converted_997)
+            let converted_1035 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1035)
         } else {
             Ok(py.None())
         }
@@ -4926,31 +5834,31 @@ impl PyOperationListKeysOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_998 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_998)
+        let converted_1036 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_1036)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.keys {
-            let converted_1000_list = PyList::empty(py);
-            for item_1001 in value {
-                let converted_item_1002 = key_list_entry_to_py(py, item_1001)?;
-                converted_1000_list.append(converted_item_1002)?;
+            let converted_1038_list = PyList::empty(py);
+            for item_1039 in value {
+                let converted_item_1040 = key_list_entry_to_py(py, item_1039)?;
+                converted_1038_list.append(converted_item_1040)?;
             }
-            let converted_1000 = converted_1000_list.into_any().unbind();
-            result.set_item("keys", converted_1000)?;
+            let converted_1038 = converted_1038_list.into_any().unbind();
+            result.set_item("keys", converted_1038)?;
         } else {
             result.set_item("keys", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_1003 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_1003)?;
+            let converted_1041 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_1041)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_1004 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_1004)?;
+        let converted_1042 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1042)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4971,7 +5879,7 @@ impl From<aws_sdk_kms::operation::list_resource_tags::ListResourceTagsOutput>
             tags: value.tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1010| Arc::new(owned_1010))
+                    .map(|owned_1048| Arc::new(owned_1048))
                     .collect()
             }),
             next_marker: value.next_marker,
@@ -4990,19 +5898,19 @@ impl PyOperationListResourceTagsOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1005_list = PyList::empty(py);
-            for item_1006 in value {
-                let converted_item_1007 = Py::new(
+            let converted_1043_list = PyList::empty(py);
+            for item_1044 in value {
+                let converted_item_1045 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_1006),
+                        inner: Arc::clone(item_1044),
                     },
                 )?
                 .into_any();
-                converted_1005_list.append(converted_item_1007)?;
+                converted_1043_list.append(converted_item_1045)?;
             }
-            let converted_1005 = converted_1005_list.into_any().unbind();
-            Ok(converted_1005)
+            let converted_1043 = converted_1043_list.into_any().unbind();
+            Ok(converted_1043)
         } else {
             Ok(py.None())
         }
@@ -5011,8 +5919,8 @@ impl PyOperationListResourceTagsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_1008 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1008)
+            let converted_1046 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1046)
         } else {
             Ok(py.None())
         }
@@ -5020,31 +5928,31 @@ impl PyOperationListResourceTagsOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1009 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_1009)
+        let converted_1047 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_1047)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_1011_list = PyList::empty(py);
-            for item_1012 in value {
-                let converted_item_1013 = tag_to_py(py, item_1012)?;
-                converted_1011_list.append(converted_item_1013)?;
+            let converted_1049_list = PyList::empty(py);
+            for item_1050 in value {
+                let converted_item_1051 = tag_to_py(py, item_1050)?;
+                converted_1049_list.append(converted_item_1051)?;
             }
-            let converted_1011 = converted_1011_list.into_any().unbind();
-            result.set_item("tags", converted_1011)?;
+            let converted_1049 = converted_1049_list.into_any().unbind();
+            result.set_item("tags", converted_1049)?;
         } else {
             result.set_item("tags", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_1014 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_1014)?;
+            let converted_1052 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_1052)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_1015 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_1015)?;
+        let converted_1053 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1053)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -5067,7 +5975,7 @@ impl From<aws_sdk_kms::operation::list_retirable_grants::ListRetirableGrantsOutp
             grants: value.grants.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1021| Arc::new(SharedGrantListEntry::from(owned_1021)))
+                    .map(|owned_1059| Arc::new(SharedGrantListEntry::from(owned_1059)))
                     .collect()
             }),
             next_marker: value.next_marker,
@@ -5090,19 +5998,19 @@ impl PyOperationListRetirableGrantsOutput {
     #[getter]
     fn grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.grants {
-            let converted_1016_list = PyList::empty(py);
-            for item_1017 in value {
-                let converted_item_1018 = Py::new(
+            let converted_1054_list = PyList::empty(py);
+            for item_1055 in value {
+                let converted_item_1056 = Py::new(
                     py,
                     PyGrantListEntry {
-                        inner: Arc::clone(item_1017),
+                        inner: Arc::clone(item_1055),
                     },
                 )?
                 .into_any();
-                converted_1016_list.append(converted_item_1018)?;
+                converted_1054_list.append(converted_item_1056)?;
             }
-            let converted_1016 = converted_1016_list.into_any().unbind();
-            Ok(converted_1016)
+            let converted_1054 = converted_1054_list.into_any().unbind();
+            Ok(converted_1054)
         } else {
             Ok(py.None())
         }
@@ -5111,8 +6019,8 @@ impl PyOperationListRetirableGrantsOutput {
     #[getter]
     fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_marker {
-            let converted_1019 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1019)
+            let converted_1057 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1057)
         } else {
             Ok(py.None())
         }
@@ -5120,31 +6028,31 @@ impl PyOperationListRetirableGrantsOutput {
 
     #[getter]
     fn truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1020 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        Ok(converted_1020)
+        let converted_1058 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        Ok(converted_1058)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.grants {
-            let converted_1022_list = PyList::empty(py);
-            for item_1023 in value {
-                let converted_item_1024 = grant_list_entry_shared_to_py(py, item_1023)?;
-                converted_1022_list.append(converted_item_1024)?;
+            let converted_1060_list = PyList::empty(py);
+            for item_1061 in value {
+                let converted_item_1062 = grant_list_entry_shared_to_py(py, item_1061)?;
+                converted_1060_list.append(converted_item_1062)?;
             }
-            let converted_1022 = converted_1022_list.into_any().unbind();
-            result.set_item("grants", converted_1022)?;
+            let converted_1060 = converted_1060_list.into_any().unbind();
+            result.set_item("grants", converted_1060)?;
         } else {
             result.set_item("grants", py.None())?;
         }
         if let Some(value) = &self.inner.next_marker {
-            let converted_1025 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_marker", converted_1025)?;
+            let converted_1063 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_1063)?;
         } else {
             result.set_item("next_marker", py.None())?;
         }
-        let converted_1026 = (&self.inner.truncated).to_owned().into_py_any(py)?;
-        result.set_item("truncated", converted_1026)?;
+        let converted_1064 = (&self.inner.truncated).to_owned().into_py_any(py)?;
+        result.set_item("truncated", converted_1064)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -5159,8 +6067,8 @@ impl PyOperationReEncryptOutput {
     #[getter]
     fn ciphertext_blob(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_1027 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_1027)
+            let converted_1065 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_1065)
         } else {
             Ok(py.None())
         }
@@ -5169,8 +6077,8 @@ impl PyOperationReEncryptOutput {
     #[getter]
     fn source_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_key_id {
-            let converted_1028 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1028)
+            let converted_1066 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1066)
         } else {
             Ok(py.None())
         }
@@ -5179,8 +6087,8 @@ impl PyOperationReEncryptOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_1029 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1029)
+            let converted_1067 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1067)
         } else {
             Ok(py.None())
         }
@@ -5189,8 +6097,8 @@ impl PyOperationReEncryptOutput {
     #[getter]
     fn source_encryption_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_encryption_algorithm {
-            let converted_1030 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1030)
+            let converted_1068 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1068)
         } else {
             Ok(py.None())
         }
@@ -5199,8 +6107,8 @@ impl PyOperationReEncryptOutput {
     #[getter]
     fn destination_encryption_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_encryption_algorithm {
-            let converted_1031 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1031)
+            let converted_1069 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1069)
         } else {
             Ok(py.None())
         }
@@ -5209,8 +6117,8 @@ impl PyOperationReEncryptOutput {
     #[getter]
     fn source_key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.source_key_material_id {
-            let converted_1032 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1032)
+            let converted_1070 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1070)
         } else {
             Ok(py.None())
         }
@@ -5219,8 +6127,8 @@ impl PyOperationReEncryptOutput {
     #[getter]
     fn destination_key_material_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.destination_key_material_id {
-            let converted_1033 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1033)
+            let converted_1071 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1071)
         } else {
             Ok(py.None())
         }
@@ -5229,44 +6137,44 @@ impl PyOperationReEncryptOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.ciphertext_blob {
-            let converted_1034 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("ciphertext_blob", converted_1034)?;
+            let converted_1072 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("ciphertext_blob", converted_1072)?;
         } else {
             result.set_item("ciphertext_blob", py.None())?;
         }
         if let Some(value) = &self.inner.source_key_id {
-            let converted_1035 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_key_id", converted_1035)?;
+            let converted_1073 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_key_id", converted_1073)?;
         } else {
             result.set_item("source_key_id", py.None())?;
         }
         if let Some(value) = &self.inner.key_id {
-            let converted_1036 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_1036)?;
+            let converted_1074 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_1074)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.source_encryption_algorithm {
-            let converted_1037 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_encryption_algorithm", converted_1037)?;
+            let converted_1075 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_encryption_algorithm", converted_1075)?;
         } else {
             result.set_item("source_encryption_algorithm", py.None())?;
         }
         if let Some(value) = &self.inner.destination_encryption_algorithm {
-            let converted_1038 = (value).as_str().into_py_any(py)?;
-            result.set_item("destination_encryption_algorithm", converted_1038)?;
+            let converted_1076 = (value).as_str().into_py_any(py)?;
+            result.set_item("destination_encryption_algorithm", converted_1076)?;
         } else {
             result.set_item("destination_encryption_algorithm", py.None())?;
         }
         if let Some(value) = &self.inner.source_key_material_id {
-            let converted_1039 = (value).as_str().into_py_any(py)?;
-            result.set_item("source_key_material_id", converted_1039)?;
+            let converted_1077 = (value).as_str().into_py_any(py)?;
+            result.set_item("source_key_material_id", converted_1077)?;
         } else {
             result.set_item("source_key_material_id", py.None())?;
         }
         if let Some(value) = &self.inner.destination_key_material_id {
-            let converted_1040 = (value).as_str().into_py_any(py)?;
-            result.set_item("destination_key_material_id", converted_1040)?;
+            let converted_1078 = (value).as_str().into_py_any(py)?;
+            result.set_item("destination_key_material_id", converted_1078)?;
         } else {
             result.set_item("destination_key_material_id", py.None())?;
         }
@@ -5294,7 +6202,7 @@ impl From<aws_sdk_kms::operation::replicate_key::ReplicateKeyOutput>
             replica_tags: value.replica_tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1046| Arc::new(owned_1046))
+                    .map(|owned_1084| Arc::new(owned_1084))
                     .collect()
             }),
         }
@@ -5311,14 +6219,14 @@ impl PyOperationReplicateKeyOutput {
     #[getter]
     fn replica_key_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_key_metadata {
-            let converted_1041 = Py::new(
+            let converted_1079 = Py::new(
                 py,
                 PyKeyMetadata {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1041)
+            Ok(converted_1079)
         } else {
             Ok(py.None())
         }
@@ -5327,8 +6235,8 @@ impl PyOperationReplicateKeyOutput {
     #[getter]
     fn replica_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_policy {
-            let converted_1042 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1042)
+            let converted_1080 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1080)
         } else {
             Ok(py.None())
         }
@@ -5337,19 +6245,19 @@ impl PyOperationReplicateKeyOutput {
     #[getter]
     fn replica_tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replica_tags {
-            let converted_1043_list = PyList::empty(py);
-            for item_1044 in value {
-                let converted_item_1045 = Py::new(
+            let converted_1081_list = PyList::empty(py);
+            for item_1082 in value {
+                let converted_item_1083 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_1044),
+                        inner: Arc::clone(item_1082),
                     },
                 )?
                 .into_any();
-                converted_1043_list.append(converted_item_1045)?;
+                converted_1081_list.append(converted_item_1083)?;
             }
-            let converted_1043 = converted_1043_list.into_any().unbind();
-            Ok(converted_1043)
+            let converted_1081 = converted_1081_list.into_any().unbind();
+            Ok(converted_1081)
         } else {
             Ok(py.None())
         }
@@ -5358,25 +6266,25 @@ impl PyOperationReplicateKeyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.replica_key_metadata {
-            let converted_1047 = key_metadata_shared_to_py(py, value)?;
-            result.set_item("replica_key_metadata", converted_1047)?;
+            let converted_1085 = key_metadata_shared_to_py(py, value)?;
+            result.set_item("replica_key_metadata", converted_1085)?;
         } else {
             result.set_item("replica_key_metadata", py.None())?;
         }
         if let Some(value) = &self.inner.replica_policy {
-            let converted_1048 = (value).as_str().into_py_any(py)?;
-            result.set_item("replica_policy", converted_1048)?;
+            let converted_1086 = (value).as_str().into_py_any(py)?;
+            result.set_item("replica_policy", converted_1086)?;
         } else {
             result.set_item("replica_policy", py.None())?;
         }
         if let Some(value) = &self.inner.replica_tags {
-            let converted_1049_list = PyList::empty(py);
-            for item_1050 in value {
-                let converted_item_1051 = tag_to_py(py, item_1050)?;
-                converted_1049_list.append(converted_item_1051)?;
+            let converted_1087_list = PyList::empty(py);
+            for item_1088 in value {
+                let converted_item_1089 = tag_to_py(py, item_1088)?;
+                converted_1087_list.append(converted_item_1089)?;
             }
-            let converted_1049 = converted_1049_list.into_any().unbind();
-            result.set_item("replica_tags", converted_1049)?;
+            let converted_1087 = converted_1087_list.into_any().unbind();
+            result.set_item("replica_tags", converted_1087)?;
         } else {
             result.set_item("replica_tags", py.None())?;
         }
@@ -5394,8 +6302,8 @@ impl PyOperationRotateKeyOnDemandOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_1052 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1052)
+            let converted_1090 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1090)
         } else {
             Ok(py.None())
         }
@@ -5404,8 +6312,8 @@ impl PyOperationRotateKeyOnDemandOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_1053 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_1053)?;
+            let converted_1091 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_1091)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
@@ -5427,8 +6335,8 @@ impl PyOperationScheduleKeyDeletionOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_1054 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1054)
+            let converted_1092 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1092)
         } else {
             Ok(py.None())
         }
@@ -5437,8 +6345,8 @@ impl PyOperationScheduleKeyDeletionOutput {
     #[getter]
     fn deletion_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deletion_date {
-            let converted_1055 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1055)
+            let converted_1093 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1093)
         } else {
             Ok(py.None())
         }
@@ -5447,8 +6355,8 @@ impl PyOperationScheduleKeyDeletionOutput {
     #[getter]
     fn key_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_state {
-            let converted_1056 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1056)
+            let converted_1094 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1094)
         } else {
             Ok(py.None())
         }
@@ -5457,8 +6365,8 @@ impl PyOperationScheduleKeyDeletionOutput {
     #[getter]
     fn pending_window_in_days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pending_window_in_days {
-            let converted_1057 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1057)
+            let converted_1095 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1095)
         } else {
             Ok(py.None())
         }
@@ -5467,26 +6375,26 @@ impl PyOperationScheduleKeyDeletionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_1058 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_1058)?;
+            let converted_1096 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_1096)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.deletion_date {
-            let converted_1059 = (value).to_string().into_py_any(py)?;
-            result.set_item("deletion_date", converted_1059)?;
+            let converted_1097 = (value).to_string().into_py_any(py)?;
+            result.set_item("deletion_date", converted_1097)?;
         } else {
             result.set_item("deletion_date", py.None())?;
         }
         if let Some(value) = &self.inner.key_state {
-            let converted_1060 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_state", converted_1060)?;
+            let converted_1098 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_state", converted_1098)?;
         } else {
             result.set_item("key_state", py.None())?;
         }
         if let Some(value) = &self.inner.pending_window_in_days {
-            let converted_1061 = (value).to_owned().into_py_any(py)?;
-            result.set_item("pending_window_in_days", converted_1061)?;
+            let converted_1099 = (value).to_owned().into_py_any(py)?;
+            result.set_item("pending_window_in_days", converted_1099)?;
         } else {
             result.set_item("pending_window_in_days", py.None())?;
         }
@@ -5504,8 +6412,8 @@ impl PyOperationSignOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_1062 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1062)
+            let converted_1100 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1100)
         } else {
             Ok(py.None())
         }
@@ -5514,8 +6422,8 @@ impl PyOperationSignOutput {
     #[getter]
     fn signature(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signature {
-            let converted_1063 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            Ok(converted_1063)
+            let converted_1101 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_1101)
         } else {
             Ok(py.None())
         }
@@ -5524,8 +6432,8 @@ impl PyOperationSignOutput {
     #[getter]
     fn signing_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signing_algorithm {
-            let converted_1064 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1064)
+            let converted_1102 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1102)
         } else {
             Ok(py.None())
         }
@@ -5534,20 +6442,20 @@ impl PyOperationSignOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_1065 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_1065)?;
+            let converted_1103 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_1103)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
         if let Some(value) = &self.inner.signature {
-            let converted_1066 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-            result.set_item("signature", converted_1066)?;
+            let converted_1104 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            result.set_item("signature", converted_1104)?;
         } else {
             result.set_item("signature", py.None())?;
         }
         if let Some(value) = &self.inner.signing_algorithm {
-            let converted_1067 = (value).as_str().into_py_any(py)?;
-            result.set_item("signing_algorithm", converted_1067)?;
+            let converted_1105 = (value).as_str().into_py_any(py)?;
+            result.set_item("signing_algorithm", converted_1105)?;
         } else {
             result.set_item("signing_algorithm", py.None())?;
         }
@@ -5582,8 +6490,8 @@ impl PyOperationVerifyOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_1068 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1068)
+            let converted_1106 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1106)
         } else {
             Ok(py.None())
         }
@@ -5591,15 +6499,15 @@ impl PyOperationVerifyOutput {
 
     #[getter]
     fn signature_valid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1069 = (&self.inner.signature_valid).to_owned().into_py_any(py)?;
-        Ok(converted_1069)
+        let converted_1107 = (&self.inner.signature_valid).to_owned().into_py_any(py)?;
+        Ok(converted_1107)
     }
 
     #[getter]
     fn signing_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signing_algorithm {
-            let converted_1070 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1070)
+            let converted_1108 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1108)
         } else {
             Ok(py.None())
         }
@@ -5608,16 +6516,16 @@ impl PyOperationVerifyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_1071 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_1071)?;
+            let converted_1109 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_1109)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
-        let converted_1072 = (&self.inner.signature_valid).to_owned().into_py_any(py)?;
-        result.set_item("signature_valid", converted_1072)?;
+        let converted_1110 = (&self.inner.signature_valid).to_owned().into_py_any(py)?;
+        result.set_item("signature_valid", converted_1110)?;
         if let Some(value) = &self.inner.signing_algorithm {
-            let converted_1073 = (value).as_str().into_py_any(py)?;
-            result.set_item("signing_algorithm", converted_1073)?;
+            let converted_1111 = (value).as_str().into_py_any(py)?;
+            result.set_item("signing_algorithm", converted_1111)?;
         } else {
             result.set_item("signing_algorithm", py.None())?;
         }
@@ -5635,8 +6543,8 @@ impl PyOperationVerifyMacOutput {
     #[getter]
     fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key_id {
-            let converted_1074 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1074)
+            let converted_1112 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1112)
         } else {
             Ok(py.None())
         }
@@ -5644,15 +6552,15 @@ impl PyOperationVerifyMacOutput {
 
     #[getter]
     fn mac_valid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1075 = (&self.inner.mac_valid).to_owned().into_py_any(py)?;
-        Ok(converted_1075)
+        let converted_1113 = (&self.inner.mac_valid).to_owned().into_py_any(py)?;
+        Ok(converted_1113)
     }
 
     #[getter]
     fn mac_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mac_algorithm {
-            let converted_1076 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1076)
+            let converted_1114 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1114)
         } else {
             Ok(py.None())
         }
@@ -5661,16 +6569,16 @@ impl PyOperationVerifyMacOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.key_id {
-            let converted_1077 = (value).as_str().into_py_any(py)?;
-            result.set_item("key_id", converted_1077)?;
+            let converted_1115 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_id", converted_1115)?;
         } else {
             result.set_item("key_id", py.None())?;
         }
-        let converted_1078 = (&self.inner.mac_valid).to_owned().into_py_any(py)?;
-        result.set_item("mac_valid", converted_1078)?;
+        let converted_1116 = (&self.inner.mac_valid).to_owned().into_py_any(py)?;
+        result.set_item("mac_valid", converted_1116)?;
         if let Some(value) = &self.inner.mac_algorithm {
-            let converted_1079 = (value).as_str().into_py_any(py)?;
-            result.set_item("mac_algorithm", converted_1079)?;
+            let converted_1117 = (value).as_str().into_py_any(py)?;
+            result.set_item("mac_algorithm", converted_1117)?;
         } else {
             result.set_item("mac_algorithm", py.None())?;
         }
@@ -5773,8 +6681,18 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_257: String = value.extract()?;
-            Some(converted_257)
+            let converted_265 = (|| -> PyResult<_> {
+                let converted_265: String = value.extract()?;
+                Ok(converted_265)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "CancelKeyDeletion",
+                )
+            })?;
+            Some(converted_265)
         } else {
             None
         };
@@ -5810,8 +6728,22 @@ impl KMSClient {
         let state = self.state.clone();
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
-                let converted_258: String = value.extract()?;
-                Some(converted_258)
+                let converted_266 = (|| -> PyResult<_> {
+                    let converted_266: String = value.extract()?;
+                    Ok(converted_266)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "ConnectCustomKeyStore",
+                    )
+                })?;
+                Some(converted_266)
             } else {
                 None
             };
@@ -5848,14 +6780,42 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
-            let converted_259: String = value.extract()?;
-            Some(converted_259)
+            let converted_267 = (|| -> PyResult<_> {
+                let converted_267: String = value.extract()?;
+                Ok(converted_267)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("alias_name"),
+                        "str",
+                    ),
+                    "kms",
+                    "CreateAlias",
+                )
+            })?;
+            Some(converted_267)
         } else {
             None
         };
         let target_key_id_value = if let Some(value) = dict_value(params, "target_key_id")? {
-            let converted_260: String = value.extract()?;
-            Some(converted_260)
+            let converted_268 = (|| -> PyResult<_> {
+                let converted_268: String = value.extract()?;
+                Ok(converted_268)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("target_key_id"),
+                        "str",
+                    ),
+                    "kms",
+                    "CreateAlias",
+                )
+            })?;
+            Some(converted_268)
         } else {
             None
         };
@@ -5893,82 +6853,236 @@ impl KMSClient {
         let state = self.state.clone();
         let custom_key_store_name_value =
             if let Some(value) = dict_value(params, "custom_key_store_name")? {
-                let converted_261: String = value.extract()?;
-                Some(converted_261)
+                let converted_269 = (|| -> PyResult<_> {
+                    let converted_269: String = value.extract()?;
+                    Ok(converted_269)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_name"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_269)
             } else {
                 None
             };
         let cloud_hsm_cluster_id_value =
             if let Some(value) = dict_value(params, "cloud_hsm_cluster_id")? {
-                let converted_262: String = value.extract()?;
-                Some(converted_262)
+                let converted_270 = (|| -> PyResult<_> {
+                    let converted_270: String = value.extract()?;
+                    Ok(converted_270)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("cloud_hsm_cluster_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_270)
             } else {
                 None
             };
         let trust_anchor_certificate_value =
             if let Some(value) = dict_value(params, "trust_anchor_certificate")? {
-                let converted_263: String = value.extract()?;
-                Some(converted_263)
+                let converted_271 = (|| -> PyResult<_> {
+                    let converted_271: String = value.extract()?;
+                    Ok(converted_271)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("trust_anchor_certificate"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_271)
             } else {
                 None
             };
         let key_store_password_value =
             if let Some(value) = dict_value(params, "key_store_password")? {
-                let converted_264: String = value.extract()?;
-                Some(converted_264)
+                let converted_272 = (|| -> PyResult<_> {
+                    let converted_272: String = value.extract()?;
+                    Ok(converted_272)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("key_store_password"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_272)
             } else {
                 None
             };
         let custom_key_store_type_value =
             if let Some(value) = dict_value(params, "custom_key_store_type")? {
-                let enum_value_266: String = value.extract()?;
-                let converted_265 =
-                    aws_sdk_kms::types::CustomKeyStoreType::from(enum_value_266.as_str());
-                Some(converted_265)
+                let converted_273 = (|| -> PyResult<_> {
+                    let enum_value_274: String = value.extract()?;
+                    let converted_273 =
+                        aws_sdk_kms::types::CustomKeyStoreType::from(enum_value_274.as_str());
+                    Ok(converted_273)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_type"),
+                            "str (CustomKeyStoreType)",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_273)
             } else {
                 None
             };
         let xks_proxy_uri_endpoint_value =
             if let Some(value) = dict_value(params, "xks_proxy_uri_endpoint")? {
-                let converted_267: String = value.extract()?;
-                Some(converted_267)
+                let converted_275 = (|| -> PyResult<_> {
+                    let converted_275: String = value.extract()?;
+                    Ok(converted_275)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_uri_endpoint"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_275)
             } else {
                 None
             };
         let xks_proxy_uri_path_value =
             if let Some(value) = dict_value(params, "xks_proxy_uri_path")? {
-                let converted_268: String = value.extract()?;
-                Some(converted_268)
+                let converted_276 = (|| -> PyResult<_> {
+                    let converted_276: String = value.extract()?;
+                    Ok(converted_276)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_uri_path"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_276)
             } else {
                 None
             };
         let xks_proxy_vpc_endpoint_service_name_value =
             if let Some(value) = dict_value(params, "xks_proxy_vpc_endpoint_service_name")? {
-                let converted_269: String = value.extract()?;
-                Some(converted_269)
+                let converted_277 = (|| -> PyResult<_> {
+                    let converted_277: String = value.extract()?;
+                    Ok(converted_277)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_vpc_endpoint_service_name"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_277)
             } else {
                 None
             };
         let xks_proxy_vpc_endpoint_service_owner_value =
             if let Some(value) = dict_value(params, "xks_proxy_vpc_endpoint_service_owner")? {
-                let converted_270: String = value.extract()?;
-                Some(converted_270)
+                let converted_278 = (|| -> PyResult<_> {
+                    let converted_278: String = value.extract()?;
+                    Ok(converted_278)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_vpc_endpoint_service_owner"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_278)
             } else {
                 None
             };
         let xks_proxy_authentication_credential_value =
             if let Some(value) = dict_value(params, "xks_proxy_authentication_credential")? {
-                let converted_271 = xks_proxy_authentication_credential_type_from_py(&value)?;
-                Some(converted_271)
+                let converted_279 = (|| -> PyResult<_> {
+                    let converted_279 = xks_proxy_authentication_credential_type_from_py(&value)?;
+                    Ok(converted_279)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_authentication_credential"),
+                            "dict (XksProxyAuthenticationCredentialType)",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_279)
             } else {
                 None
             };
         let xks_proxy_connectivity_value =
             if let Some(value) = dict_value(params, "xks_proxy_connectivity")? {
-                let enum_value_273: String = value.extract()?;
-                let converted_272 =
-                    aws_sdk_kms::types::XksProxyConnectivityType::from(enum_value_273.as_str());
-                Some(converted_272)
+                let converted_280 = (|| -> PyResult<_> {
+                    let enum_value_281: String = value.extract()?;
+                    let converted_280 =
+                        aws_sdk_kms::types::XksProxyConnectivityType::from(enum_value_281.as_str());
+                    Ok(converted_280)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_connectivity"),
+                            "str (XksProxyConnectivityType)",
+                        ),
+                        "kms",
+                        "CreateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_280)
             } else {
                 None
             };
@@ -6017,80 +7131,242 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_274: String = value.extract()?;
-            Some(converted_274)
+            let converted_282 = (|| -> PyResult<_> {
+                let converted_282: String = value.extract()?;
+                Ok(converted_282)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "CreateGrant",
+                )
+            })?;
+            Some(converted_282)
         } else {
             None
         };
         let grantee_principal_value = if let Some(value) = dict_value(params, "grantee_principal")?
         {
-            let converted_275: String = value.extract()?;
-            Some(converted_275)
+            let converted_283 = (|| -> PyResult<_> {
+                let converted_283: String = value.extract()?;
+                Ok(converted_283)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grantee_principal"),
+                        "str",
+                    ),
+                    "kms",
+                    "CreateGrant",
+                )
+            })?;
+            Some(converted_283)
         } else {
             None
         };
         let retiring_principal_value =
             if let Some(value) = dict_value(params, "retiring_principal")? {
-                let converted_276: String = value.extract()?;
-                Some(converted_276)
+                let converted_284 = (|| -> PyResult<_> {
+                    let converted_284: String = value.extract()?;
+                    Ok(converted_284)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("retiring_principal"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateGrant",
+                    )
+                })?;
+                Some(converted_284)
             } else {
                 None
             };
         let operations_value = if let Some(value) = dict_value(params, "operations")? {
-            let mut converted_277 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_278 in value.try_iter()? {
-                let item_279 = item_result_278?;
-                let enum_value_281: String = item_279.extract()?;
-                let converted_item_280 =
-                    aws_sdk_kms::types::GrantOperation::from(enum_value_281.as_str());
-                converted_277.push(converted_item_280);
-            }
-            Some(converted_277)
+            let converted_285 = (|| -> PyResult<_> {
+                let mut converted_285 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_289, item_result_286) in value.try_iter()?.enumerate() {
+                    let item_287 = item_result_286.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_289),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_288 = (|| -> PyResult<_> {
+                        let enum_value_290: String = item_287.extract()?;
+                        let converted_item_288 =
+                            aws_sdk_kms::types::GrantOperation::from(enum_value_290.as_str());
+                        Ok(converted_item_288)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_289),
+                            "str (GrantOperation)",
+                        )
+                    })?;
+                    converted_285.push(converted_item_288);
+                }
+                Ok(converted_285)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("operations"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "CreateGrant",
+                )
+            })?;
+            Some(converted_285)
         } else {
             None
         };
         let constraints_value = if let Some(value) = dict_value(params, "constraints")? {
-            let converted_282 = grant_constraints_from_py(&value)?;
-            Some(converted_282)
+            let converted_291 = (|| -> PyResult<_> {
+                let converted_291 = grant_constraints_from_py(&value)?;
+                Ok(converted_291)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("constraints"),
+                        "dict (GrantConstraints)",
+                    ),
+                    "kms",
+                    "CreateGrant",
+                )
+            })?;
+            Some(converted_291)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_283 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_284 in value.try_iter()? {
-                let item_285 = item_result_284?;
-                let converted_item_286: String = item_285.extract()?;
-                converted_283.push(converted_item_286);
-            }
-            Some(converted_283)
+            let converted_292 = (|| -> PyResult<_> {
+                let mut converted_292 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_296, item_result_293) in value.try_iter()?.enumerate() {
+                    let item_294 = item_result_293.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_296),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_295 = (|| -> PyResult<_> {
+                        let converted_item_295: String = item_294.extract()?;
+                        Ok(converted_item_295)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_296),
+                            "str",
+                        )
+                    })?;
+                    converted_292.push(converted_item_295);
+                }
+                Ok(converted_292)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "CreateGrant",
+                )
+            })?;
+            Some(converted_292)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_287: String = value.extract()?;
-            Some(converted_287)
+            let converted_297 = (|| -> PyResult<_> {
+                let converted_297: String = value.extract()?;
+                Ok(converted_297)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "kms",
+                    "CreateGrant",
+                )
+            })?;
+            Some(converted_297)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_288: bool = value.extract()?;
-            Some(converted_288)
+            let converted_298 = (|| -> PyResult<_> {
+                let converted_298: bool = value.extract()?;
+                Ok(converted_298)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "CreateGrant",
+                )
+            })?;
+            Some(converted_298)
         } else {
             None
         };
         let grantee_service_principal_value =
             if let Some(value) = dict_value(params, "grantee_service_principal")? {
-                let converted_289: String = value.extract()?;
-                Some(converted_289)
+                let converted_299 = (|| -> PyResult<_> {
+                    let converted_299: String = value.extract()?;
+                    Ok(converted_299)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("grantee_service_principal"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateGrant",
+                    )
+                })?;
+                Some(converted_299)
             } else {
                 None
             };
         let retiring_service_principal_value =
             if let Some(value) = dict_value(params, "retiring_service_principal")? {
-                let converted_290: String = value.extract()?;
-                Some(converted_290)
+                let converted_300 = (|| -> PyResult<_> {
+                    let converted_300: String = value.extract()?;
+                    Ok(converted_300)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("retiring_service_principal"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateGrant",
+                    )
+                })?;
+                Some(converted_300)
             } else {
                 None
             };
@@ -6135,82 +7411,249 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_291: String = value.extract()?;
-            Some(converted_291)
+            let converted_301 = (|| -> PyResult<_> {
+                let converted_301: String = value.extract()?;
+                Ok(converted_301)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("policy"), "str"),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_301)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_292: String = value.extract()?;
-            Some(converted_292)
+            let converted_302 = (|| -> PyResult<_> {
+                let converted_302: String = value.extract()?;
+                Ok(converted_302)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("description"),
+                        "str",
+                    ),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_302)
         } else {
             None
         };
         let key_usage_value = if let Some(value) = dict_value(params, "key_usage")? {
-            let enum_value_294: String = value.extract()?;
-            let converted_293 = aws_sdk_kms::types::KeyUsageType::from(enum_value_294.as_str());
-            Some(converted_293)
+            let converted_303 = (|| -> PyResult<_> {
+                let enum_value_304: String = value.extract()?;
+                let converted_303 = aws_sdk_kms::types::KeyUsageType::from(enum_value_304.as_str());
+                Ok(converted_303)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_usage"),
+                        "str (KeyUsageType)",
+                    ),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_303)
         } else {
             None
         };
         let customer_master_key_spec_value =
             if let Some(value) = dict_value(params, "customer_master_key_spec")? {
-                let enum_value_296: String = value.extract()?;
-                let converted_295 =
-                    aws_sdk_kms::types::CustomerMasterKeySpec::from(enum_value_296.as_str());
-                Some(converted_295)
+                let converted_305 = (|| -> PyResult<_> {
+                    let enum_value_306: String = value.extract()?;
+                    let converted_305 =
+                        aws_sdk_kms::types::CustomerMasterKeySpec::from(enum_value_306.as_str());
+                    Ok(converted_305)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("customer_master_key_spec"),
+                            "str (CustomerMasterKeySpec)",
+                        ),
+                        "kms",
+                        "CreateKey",
+                    )
+                })?;
+                Some(converted_305)
             } else {
                 None
             };
         let key_spec_value = if let Some(value) = dict_value(params, "key_spec")? {
-            let enum_value_298: String = value.extract()?;
-            let converted_297 = aws_sdk_kms::types::KeySpec::from(enum_value_298.as_str());
-            Some(converted_297)
+            let converted_307 = (|| -> PyResult<_> {
+                let enum_value_308: String = value.extract()?;
+                let converted_307 = aws_sdk_kms::types::KeySpec::from(enum_value_308.as_str());
+                Ok(converted_307)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_spec"),
+                        "str (KeySpec)",
+                    ),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_307)
         } else {
             None
         };
         let origin_value = if let Some(value) = dict_value(params, "origin")? {
-            let enum_value_300: String = value.extract()?;
-            let converted_299 = aws_sdk_kms::types::OriginType::from(enum_value_300.as_str());
-            Some(converted_299)
+            let converted_309 = (|| -> PyResult<_> {
+                let enum_value_310: String = value.extract()?;
+                let converted_309 = aws_sdk_kms::types::OriginType::from(enum_value_310.as_str());
+                Ok(converted_309)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("origin"),
+                        "str (OriginType)",
+                    ),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_309)
         } else {
             None
         };
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
-                let converted_301: String = value.extract()?;
-                Some(converted_301)
+                let converted_311 = (|| -> PyResult<_> {
+                    let converted_311: String = value.extract()?;
+                    Ok(converted_311)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "CreateKey",
+                    )
+                })?;
+                Some(converted_311)
             } else {
                 None
             };
         let bypass_policy_lockout_safety_check_value =
             if let Some(value) = dict_value(params, "bypass_policy_lockout_safety_check")? {
-                let converted_302: bool = value.extract()?;
-                Some(converted_302)
+                let converted_312 = (|| -> PyResult<_> {
+                    let converted_312: bool = value.extract()?;
+                    Ok(converted_312)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("bypass_policy_lockout_safety_check"),
+                            "bool",
+                        ),
+                        "kms",
+                        "CreateKey",
+                    )
+                })?;
+                Some(converted_312)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_303 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_304 in value.try_iter()? {
-                let item_305 = item_result_304?;
-                let converted_item_306 = tag_from_py(&item_305)?;
-                converted_303.push(converted_item_306);
-            }
-            Some(converted_303)
+            let converted_313 = (|| -> PyResult<_> {
+                let mut converted_313 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_317, item_result_314) in value.try_iter()?.enumerate() {
+                    let item_315 = item_result_314.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_317),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_316 = (|| -> PyResult<_> {
+                        let converted_item_316 = tag_from_py(&item_315)?;
+                        Ok(converted_item_316)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_317),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_313.push(converted_item_316);
+                }
+                Ok(converted_313)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_313)
         } else {
             None
         };
         let multi_region_value = if let Some(value) = dict_value(params, "multi_region")? {
-            let converted_307: bool = value.extract()?;
-            Some(converted_307)
+            let converted_318 = (|| -> PyResult<_> {
+                let converted_318: bool = value.extract()?;
+                Ok(converted_318)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("multi_region"),
+                        "bool",
+                    ),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_318)
         } else {
             None
         };
         let xks_key_id_value = if let Some(value) = dict_value(params, "xks_key_id")? {
-            let converted_308: String = value.extract()?;
-            Some(converted_308)
+            let converted_319 = (|| -> PyResult<_> {
+                let converted_319: String = value.extract()?;
+                Ok(converted_319)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("xks_key_id"),
+                        "str",
+                    ),
+                    "kms",
+                    "CreateKey",
+                )
+            })?;
+            Some(converted_319)
         } else {
             None
         };
@@ -6258,76 +7701,234 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let ciphertext_blob_value = if let Some(value) = dict_value(params, "ciphertext_blob")? {
-            let bytes_310: Vec<u8> = value.extract()?;
-            let converted_309 = ::aws_smithy_types::Blob::new(bytes_310);
-            Some(converted_309)
+            let converted_320 = (|| -> PyResult<_> {
+                let bytes_321: Vec<u8> = value.extract()?;
+                let converted_320 = ::aws_smithy_types::Blob::new(bytes_321);
+                Ok(converted_320)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("ciphertext_blob"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "Decrypt",
+                )
+            })?;
+            Some(converted_320)
         } else {
             None
         };
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
-                let mapping_312 = value.cast::<PyDict>()?;
-                let mut converted_311 = HashMap::with_capacity(mapping_312.len());
-                for (key_313, value_314) in mapping_312.iter() {
-                    let converted_key_315: String = key_313.extract()?;
-                    let converted_value_316: String = value_314.extract()?;
-                    converted_311.insert(converted_key_315, converted_value_316);
-                }
-                Some(converted_311)
+                let converted_322 = (|| -> PyResult<_> {
+                    let mapping_323 = value.cast::<PyDict>()?;
+                    let mut converted_322 = HashMap::with_capacity(mapping_323.len());
+                    for (index_328, (key_324, value_325)) in mapping_323.iter().enumerate() {
+                        let converted_key_326 = (|| -> PyResult<_> {
+                            let converted_key_326: String = key_324.extract()?;
+                            Ok(converted_key_326)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_328),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_327 = (|| -> PyResult<_> {
+                            let converted_value_327: String = value_325.extract()?;
+                            Ok(converted_value_327)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_328),
+                                "str",
+                            )
+                        })?;
+                        converted_322.insert(converted_key_326, converted_value_327);
+                    }
+                    Ok(converted_322)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "Decrypt",
+                    )
+                })?;
+                Some(converted_322)
             } else {
                 None
             };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_317 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_318 in value.try_iter()? {
-                let item_319 = item_result_318?;
-                let converted_item_320: String = item_319.extract()?;
-                converted_317.push(converted_item_320);
-            }
-            Some(converted_317)
+            let converted_329 = (|| -> PyResult<_> {
+                let mut converted_329 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_333, item_result_330) in value.try_iter()?.enumerate() {
+                    let item_331 = item_result_330.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_333),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_332 = (|| -> PyResult<_> {
+                        let converted_item_332: String = item_331.extract()?;
+                        Ok(converted_item_332)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_333),
+                            "str",
+                        )
+                    })?;
+                    converted_329.push(converted_item_332);
+                }
+                Ok(converted_329)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "Decrypt",
+                )
+            })?;
+            Some(converted_329)
         } else {
             None
         };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_321: String = value.extract()?;
-            Some(converted_321)
+            let converted_334 = (|| -> PyResult<_> {
+                let converted_334: String = value.extract()?;
+                Ok(converted_334)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "Decrypt",
+                )
+            })?;
+            Some(converted_334)
         } else {
             None
         };
         let encryption_algorithm_value =
             if let Some(value) = dict_value(params, "encryption_algorithm")? {
-                let enum_value_323: String = value.extract()?;
-                let converted_322 =
-                    aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_323.as_str());
-                Some(converted_322)
+                let converted_335 = (|| -> PyResult<_> {
+                    let enum_value_336: String = value.extract()?;
+                    let converted_335 =
+                        aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_336.as_str());
+                    Ok(converted_335)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_algorithm"),
+                            "str (EncryptionAlgorithmSpec)",
+                        ),
+                        "kms",
+                        "Decrypt",
+                    )
+                })?;
+                Some(converted_335)
             } else {
                 None
             };
         let recipient_value = if let Some(value) = dict_value(params, "recipient")? {
-            let converted_324 = recipient_info_from_py(&value)?;
-            Some(converted_324)
+            let converted_337 = (|| -> PyResult<_> {
+                let converted_337 = recipient_info_from_py(&value)?;
+                Ok(converted_337)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("recipient"),
+                        "dict (RecipientInfo)",
+                    ),
+                    "kms",
+                    "Decrypt",
+                )
+            })?;
+            Some(converted_337)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_325: bool = value.extract()?;
-            Some(converted_325)
+            let converted_338 = (|| -> PyResult<_> {
+                let converted_338: bool = value.extract()?;
+                Ok(converted_338)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "Decrypt",
+                )
+            })?;
+            Some(converted_338)
         } else {
             None
         };
         let dry_run_modifiers_value = if let Some(value) = dict_value(params, "dry_run_modifiers")?
         {
-            let mut converted_326 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_327 in value.try_iter()? {
-                let item_328 = item_result_327?;
-                let enum_value_330: String = item_328.extract()?;
-                let converted_item_329 =
-                    aws_sdk_kms::types::DryRunModifierType::from(enum_value_330.as_str());
-                converted_326.push(converted_item_329);
-            }
-            Some(converted_326)
+            let converted_339 = (|| -> PyResult<_> {
+                let mut converted_339 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_343, item_result_340) in value.try_iter()?.enumerate() {
+                    let item_341 = item_result_340.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_343),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_342 = (|| -> PyResult<_> {
+                        let enum_value_344: String = item_341.extract()?;
+                        let converted_item_342 =
+                            aws_sdk_kms::types::DryRunModifierType::from(enum_value_344.as_str());
+                        Ok(converted_item_342)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_343),
+                            "str (DryRunModifierType)",
+                        )
+                    })?;
+                    converted_339.push(converted_item_342);
+                }
+                Ok(converted_339)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dry_run_modifiers"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "Decrypt",
+                )
+            })?;
+            Some(converted_339)
         } else {
             None
         };
@@ -6370,8 +7971,22 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
-            let converted_331: String = value.extract()?;
-            Some(converted_331)
+            let converted_345 = (|| -> PyResult<_> {
+                let converted_345: String = value.extract()?;
+                Ok(converted_345)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("alias_name"),
+                        "str",
+                    ),
+                    "kms",
+                    "DeleteAlias",
+                )
+            })?;
+            Some(converted_345)
         } else {
             None
         };
@@ -6406,8 +8021,22 @@ impl KMSClient {
         let state = self.state.clone();
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
-                let converted_332: String = value.extract()?;
-                Some(converted_332)
+                let converted_346 = (|| -> PyResult<_> {
+                    let converted_346: String = value.extract()?;
+                    Ok(converted_346)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "DeleteCustomKeyStore",
+                    )
+                })?;
+                Some(converted_346)
             } else {
                 None
             };
@@ -6444,14 +8073,38 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_333: String = value.extract()?;
-            Some(converted_333)
+            let converted_347 = (|| -> PyResult<_> {
+                let converted_347: String = value.extract()?;
+                Ok(converted_347)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "DeleteImportedKeyMaterial",
+                )
+            })?;
+            Some(converted_347)
         } else {
             None
         };
         let key_material_id_value = if let Some(value) = dict_value(params, "key_material_id")? {
-            let converted_334: String = value.extract()?;
-            Some(converted_334)
+            let converted_348 = (|| -> PyResult<_> {
+                let converted_348: String = value.extract()?;
+                Ok(converted_348)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_material_id"),
+                        "str",
+                    ),
+                    "kms",
+                    "DeleteImportedKeyMaterial",
+                )
+            })?;
+            Some(converted_348)
         } else {
             None
         };
@@ -6489,48 +8142,142 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_335: String = value.extract()?;
-            Some(converted_335)
+            let converted_349 = (|| -> PyResult<_> {
+                let converted_349: String = value.extract()?;
+                Ok(converted_349)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "DeriveSharedSecret",
+                )
+            })?;
+            Some(converted_349)
         } else {
             None
         };
-        let key_agreement_algorithm_value =
-            if let Some(value) = dict_value(params, "key_agreement_algorithm")? {
-                let enum_value_337: String = value.extract()?;
-                let converted_336 =
-                    aws_sdk_kms::types::KeyAgreementAlgorithmSpec::from(enum_value_337.as_str());
-                Some(converted_336)
-            } else {
-                None
-            };
+        let key_agreement_algorithm_value = if let Some(value) =
+            dict_value(params, "key_agreement_algorithm")?
+        {
+            let converted_350 = (|| -> PyResult<_> {
+                let enum_value_351: String = value.extract()?;
+                let converted_350 =
+                    aws_sdk_kms::types::KeyAgreementAlgorithmSpec::from(enum_value_351.as_str());
+                Ok(converted_350)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_agreement_algorithm"),
+                        "str (KeyAgreementAlgorithmSpec)",
+                    ),
+                    "kms",
+                    "DeriveSharedSecret",
+                )
+            })?;
+            Some(converted_350)
+        } else {
+            None
+        };
         let public_key_value = if let Some(value) = dict_value(params, "public_key")? {
-            let bytes_339: Vec<u8> = value.extract()?;
-            let converted_338 = ::aws_smithy_types::Blob::new(bytes_339);
-            Some(converted_338)
+            let converted_352 = (|| -> PyResult<_> {
+                let bytes_353: Vec<u8> = value.extract()?;
+                let converted_352 = ::aws_smithy_types::Blob::new(bytes_353);
+                Ok(converted_352)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("public_key"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "DeriveSharedSecret",
+                )
+            })?;
+            Some(converted_352)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_340 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_341 in value.try_iter()? {
-                let item_342 = item_result_341?;
-                let converted_item_343: String = item_342.extract()?;
-                converted_340.push(converted_item_343);
-            }
-            Some(converted_340)
+            let converted_354 = (|| -> PyResult<_> {
+                let mut converted_354 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_358, item_result_355) in value.try_iter()?.enumerate() {
+                    let item_356 = item_result_355.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_358),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_357 = (|| -> PyResult<_> {
+                        let converted_item_357: String = item_356.extract()?;
+                        Ok(converted_item_357)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_358),
+                            "str",
+                        )
+                    })?;
+                    converted_354.push(converted_item_357);
+                }
+                Ok(converted_354)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "DeriveSharedSecret",
+                )
+            })?;
+            Some(converted_354)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_344: bool = value.extract()?;
-            Some(converted_344)
+            let converted_359 = (|| -> PyResult<_> {
+                let converted_359: bool = value.extract()?;
+                Ok(converted_359)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "DeriveSharedSecret",
+                )
+            })?;
+            Some(converted_359)
         } else {
             None
         };
         let recipient_value = if let Some(value) = dict_value(params, "recipient")? {
-            let converted_345 = recipient_info_from_py(&value)?;
-            Some(converted_345)
+            let converted_360 = (|| -> PyResult<_> {
+                let converted_360 = recipient_info_from_py(&value)?;
+                Ok(converted_360)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("recipient"),
+                        "dict (RecipientInfo)",
+                    ),
+                    "kms",
+                    "DeriveSharedSecret",
+                )
+            })?;
+            Some(converted_360)
         } else {
             None
         };
@@ -6573,27 +8320,75 @@ impl KMSClient {
         let state = self.state.clone();
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
-                let converted_346: String = value.extract()?;
-                Some(converted_346)
+                let converted_361 = (|| -> PyResult<_> {
+                    let converted_361: String = value.extract()?;
+                    Ok(converted_361)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "DescribeCustomKeyStores",
+                    )
+                })?;
+                Some(converted_361)
             } else {
                 None
             };
         let custom_key_store_name_value =
             if let Some(value) = dict_value(params, "custom_key_store_name")? {
-                let converted_347: String = value.extract()?;
-                Some(converted_347)
+                let converted_362 = (|| -> PyResult<_> {
+                    let converted_362: String = value.extract()?;
+                    Ok(converted_362)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_name"),
+                            "str",
+                        ),
+                        "kms",
+                        "DescribeCustomKeyStores",
+                    )
+                })?;
+                Some(converted_362)
             } else {
                 None
             };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_348: i32 = value.extract()?;
-            Some(converted_348)
+            let converted_363 = (|| -> PyResult<_> {
+                let converted_363: i32 = value.extract()?;
+                Ok(converted_363)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "DescribeCustomKeyStores",
+                )
+            })?;
+            Some(converted_363)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_349: String = value.extract()?;
-            Some(converted_349)
+            let converted_364 = (|| -> PyResult<_> {
+                let converted_364: String = value.extract()?;
+                Ok(converted_364)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "DescribeCustomKeyStores",
+                )
+            })?;
+            Some(converted_364)
         } else {
             None
         };
@@ -6635,20 +8430,61 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_350: String = value.extract()?;
-            Some(converted_350)
+            let converted_365 = (|| -> PyResult<_> {
+                let converted_365: String = value.extract()?;
+                Ok(converted_365)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "DescribeKey",
+                )
+            })?;
+            Some(converted_365)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_351 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_352 in value.try_iter()? {
-                let item_353 = item_result_352?;
-                let converted_item_354: String = item_353.extract()?;
-                converted_351.push(converted_item_354);
-            }
-            Some(converted_351)
+            let converted_366 = (|| -> PyResult<_> {
+                let mut converted_366 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_370, item_result_367) in value.try_iter()?.enumerate() {
+                    let item_368 = item_result_367.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_370),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_369 = (|| -> PyResult<_> {
+                        let converted_item_369: String = item_368.extract()?;
+                        Ok(converted_item_369)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_370),
+                            "str",
+                        )
+                    })?;
+                    converted_366.push(converted_item_369);
+                }
+                Ok(converted_366)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "DescribeKey",
+                )
+            })?;
+            Some(converted_366)
         } else {
             None
         };
@@ -6687,8 +8523,18 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_355: String = value.extract()?;
-            Some(converted_355)
+            let converted_371 = (|| -> PyResult<_> {
+                let converted_371: String = value.extract()?;
+                Ok(converted_371)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "DisableKey",
+                )
+            })?;
+            Some(converted_371)
         } else {
             None
         };
@@ -6722,8 +8568,18 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_356: String = value.extract()?;
-            Some(converted_356)
+            let converted_372 = (|| -> PyResult<_> {
+                let converted_372: String = value.extract()?;
+                Ok(converted_372)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "DisableKeyRotation",
+                )
+            })?;
+            Some(converted_372)
         } else {
             None
         };
@@ -6759,8 +8615,22 @@ impl KMSClient {
         let state = self.state.clone();
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
-                let converted_357: String = value.extract()?;
-                Some(converted_357)
+                let converted_373 = (|| -> PyResult<_> {
+                    let converted_373: String = value.extract()?;
+                    Ok(converted_373)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "DisconnectCustomKeyStore",
+                    )
+                })?;
+                Some(converted_373)
             } else {
                 None
             };
@@ -6797,8 +8667,18 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_358: String = value.extract()?;
-            Some(converted_358)
+            let converted_374 = (|| -> PyResult<_> {
+                let converted_374: String = value.extract()?;
+                Ok(converted_374)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "EnableKey",
+                )
+            })?;
+            Some(converted_374)
         } else {
             None
         };
@@ -6832,15 +8712,39 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_359: String = value.extract()?;
-            Some(converted_359)
+            let converted_375 = (|| -> PyResult<_> {
+                let converted_375: String = value.extract()?;
+                Ok(converted_375)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "EnableKeyRotation",
+                )
+            })?;
+            Some(converted_375)
         } else {
             None
         };
         let rotation_period_in_days_value =
             if let Some(value) = dict_value(params, "rotation_period_in_days")? {
-                let converted_360: i32 = value.extract()?;
-                Some(converted_360)
+                let converted_376 = (|| -> PyResult<_> {
+                    let converted_376: i32 = value.extract()?;
+                    Ok(converted_376)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("rotation_period_in_days"),
+                            "int",
+                        ),
+                        "kms",
+                        "EnableKeyRotation",
+                    )
+                })?;
+                Some(converted_376)
             } else {
                 None
             };
@@ -6878,55 +8782,168 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_361: String = value.extract()?;
-            Some(converted_361)
+            let converted_377 = (|| -> PyResult<_> {
+                let converted_377: String = value.extract()?;
+                Ok(converted_377)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "Encrypt",
+                )
+            })?;
+            Some(converted_377)
         } else {
             None
         };
         let plaintext_value = if let Some(value) = dict_value(params, "plaintext")? {
-            let bytes_363: Vec<u8> = value.extract()?;
-            let converted_362 = ::aws_smithy_types::Blob::new(bytes_363);
-            Some(converted_362)
+            let converted_378 = (|| -> PyResult<_> {
+                let bytes_379: Vec<u8> = value.extract()?;
+                let converted_378 = ::aws_smithy_types::Blob::new(bytes_379);
+                Ok(converted_378)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("plaintext"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "Encrypt",
+                )
+            })?;
+            Some(converted_378)
         } else {
             None
         };
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
-                let mapping_365 = value.cast::<PyDict>()?;
-                let mut converted_364 = HashMap::with_capacity(mapping_365.len());
-                for (key_366, value_367) in mapping_365.iter() {
-                    let converted_key_368: String = key_366.extract()?;
-                    let converted_value_369: String = value_367.extract()?;
-                    converted_364.insert(converted_key_368, converted_value_369);
-                }
-                Some(converted_364)
+                let converted_380 = (|| -> PyResult<_> {
+                    let mapping_381 = value.cast::<PyDict>()?;
+                    let mut converted_380 = HashMap::with_capacity(mapping_381.len());
+                    for (index_386, (key_382, value_383)) in mapping_381.iter().enumerate() {
+                        let converted_key_384 = (|| -> PyResult<_> {
+                            let converted_key_384: String = key_382.extract()?;
+                            Ok(converted_key_384)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_386),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_385 = (|| -> PyResult<_> {
+                            let converted_value_385: String = value_383.extract()?;
+                            Ok(converted_value_385)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_386),
+                                "str",
+                            )
+                        })?;
+                        converted_380.insert(converted_key_384, converted_value_385);
+                    }
+                    Ok(converted_380)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "Encrypt",
+                    )
+                })?;
+                Some(converted_380)
             } else {
                 None
             };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_370 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_371 in value.try_iter()? {
-                let item_372 = item_result_371?;
-                let converted_item_373: String = item_372.extract()?;
-                converted_370.push(converted_item_373);
-            }
-            Some(converted_370)
+            let converted_387 = (|| -> PyResult<_> {
+                let mut converted_387 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_391, item_result_388) in value.try_iter()?.enumerate() {
+                    let item_389 = item_result_388.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_391),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_390 = (|| -> PyResult<_> {
+                        let converted_item_390: String = item_389.extract()?;
+                        Ok(converted_item_390)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_391),
+                            "str",
+                        )
+                    })?;
+                    converted_387.push(converted_item_390);
+                }
+                Ok(converted_387)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "Encrypt",
+                )
+            })?;
+            Some(converted_387)
         } else {
             None
         };
         let encryption_algorithm_value =
             if let Some(value) = dict_value(params, "encryption_algorithm")? {
-                let enum_value_375: String = value.extract()?;
-                let converted_374 =
-                    aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_375.as_str());
-                Some(converted_374)
+                let converted_392 = (|| -> PyResult<_> {
+                    let enum_value_393: String = value.extract()?;
+                    let converted_392 =
+                        aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_393.as_str());
+                    Ok(converted_392)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_algorithm"),
+                            "str (EncryptionAlgorithmSpec)",
+                        ),
+                        "kms",
+                        "Encrypt",
+                    )
+                })?;
+                Some(converted_392)
             } else {
                 None
             };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_376: bool = value.extract()?;
-            Some(converted_376)
+            let converted_394 = (|| -> PyResult<_> {
+                let converted_394: bool = value.extract()?;
+                Ok(converted_394)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "Encrypt",
+                )
+            })?;
+            Some(converted_394)
         } else {
             None
         };
@@ -6967,58 +8984,185 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_377: String = value.extract()?;
-            Some(converted_377)
+            let converted_395 = (|| -> PyResult<_> {
+                let converted_395: String = value.extract()?;
+                Ok(converted_395)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GenerateDataKey",
+                )
+            })?;
+            Some(converted_395)
         } else {
             None
         };
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
-                let mapping_379 = value.cast::<PyDict>()?;
-                let mut converted_378 = HashMap::with_capacity(mapping_379.len());
-                for (key_380, value_381) in mapping_379.iter() {
-                    let converted_key_382: String = key_380.extract()?;
-                    let converted_value_383: String = value_381.extract()?;
-                    converted_378.insert(converted_key_382, converted_value_383);
-                }
-                Some(converted_378)
+                let converted_396 = (|| -> PyResult<_> {
+                    let mapping_397 = value.cast::<PyDict>()?;
+                    let mut converted_396 = HashMap::with_capacity(mapping_397.len());
+                    for (index_402, (key_398, value_399)) in mapping_397.iter().enumerate() {
+                        let converted_key_400 = (|| -> PyResult<_> {
+                            let converted_key_400: String = key_398.extract()?;
+                            Ok(converted_key_400)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_402),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_401 = (|| -> PyResult<_> {
+                            let converted_value_401: String = value_399.extract()?;
+                            Ok(converted_value_401)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_402),
+                                "str",
+                            )
+                        })?;
+                        converted_396.insert(converted_key_400, converted_value_401);
+                    }
+                    Ok(converted_396)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "GenerateDataKey",
+                    )
+                })?;
+                Some(converted_396)
             } else {
                 None
             };
         let number_of_bytes_value = if let Some(value) = dict_value(params, "number_of_bytes")? {
-            let converted_384: i32 = value.extract()?;
-            Some(converted_384)
+            let converted_403 = (|| -> PyResult<_> {
+                let converted_403: i32 = value.extract()?;
+                Ok(converted_403)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("number_of_bytes"),
+                        "int",
+                    ),
+                    "kms",
+                    "GenerateDataKey",
+                )
+            })?;
+            Some(converted_403)
         } else {
             None
         };
         let key_spec_value = if let Some(value) = dict_value(params, "key_spec")? {
-            let enum_value_386: String = value.extract()?;
-            let converted_385 = aws_sdk_kms::types::DataKeySpec::from(enum_value_386.as_str());
-            Some(converted_385)
+            let converted_404 = (|| -> PyResult<_> {
+                let enum_value_405: String = value.extract()?;
+                let converted_404 = aws_sdk_kms::types::DataKeySpec::from(enum_value_405.as_str());
+                Ok(converted_404)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_spec"),
+                        "str (DataKeySpec)",
+                    ),
+                    "kms",
+                    "GenerateDataKey",
+                )
+            })?;
+            Some(converted_404)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_387 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_388 in value.try_iter()? {
-                let item_389 = item_result_388?;
-                let converted_item_390: String = item_389.extract()?;
-                converted_387.push(converted_item_390);
-            }
-            Some(converted_387)
+            let converted_406 = (|| -> PyResult<_> {
+                let mut converted_406 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_410, item_result_407) in value.try_iter()?.enumerate() {
+                    let item_408 = item_result_407.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_410),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_409 = (|| -> PyResult<_> {
+                        let converted_item_409: String = item_408.extract()?;
+                        Ok(converted_item_409)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_410),
+                            "str",
+                        )
+                    })?;
+                    converted_406.push(converted_item_409);
+                }
+                Ok(converted_406)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "GenerateDataKey",
+                )
+            })?;
+            Some(converted_406)
         } else {
             None
         };
         let recipient_value = if let Some(value) = dict_value(params, "recipient")? {
-            let converted_391 = recipient_info_from_py(&value)?;
-            Some(converted_391)
+            let converted_411 = (|| -> PyResult<_> {
+                let converted_411 = recipient_info_from_py(&value)?;
+                Ok(converted_411)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("recipient"),
+                        "dict (RecipientInfo)",
+                    ),
+                    "kms",
+                    "GenerateDataKey",
+                )
+            })?;
+            Some(converted_411)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_392: bool = value.extract()?;
-            Some(converted_392)
+            let converted_412 = (|| -> PyResult<_> {
+                let converted_412: bool = value.extract()?;
+                Ok(converted_412)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "GenerateDataKey",
+                )
+            })?;
+            Some(converted_412)
         } else {
             None
         };
@@ -7062,51 +9206,165 @@ impl KMSClient {
         let state = self.state.clone();
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
-                let mapping_394 = value.cast::<PyDict>()?;
-                let mut converted_393 = HashMap::with_capacity(mapping_394.len());
-                for (key_395, value_396) in mapping_394.iter() {
-                    let converted_key_397: String = key_395.extract()?;
-                    let converted_value_398: String = value_396.extract()?;
-                    converted_393.insert(converted_key_397, converted_value_398);
-                }
-                Some(converted_393)
+                let converted_413 = (|| -> PyResult<_> {
+                    let mapping_414 = value.cast::<PyDict>()?;
+                    let mut converted_413 = HashMap::with_capacity(mapping_414.len());
+                    for (index_419, (key_415, value_416)) in mapping_414.iter().enumerate() {
+                        let converted_key_417 = (|| -> PyResult<_> {
+                            let converted_key_417: String = key_415.extract()?;
+                            Ok(converted_key_417)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_419),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_418 = (|| -> PyResult<_> {
+                            let converted_value_418: String = value_416.extract()?;
+                            Ok(converted_value_418)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_419),
+                                "str",
+                            )
+                        })?;
+                        converted_413.insert(converted_key_417, converted_value_418);
+                    }
+                    Ok(converted_413)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "GenerateDataKeyPair",
+                    )
+                })?;
+                Some(converted_413)
             } else {
                 None
             };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_399: String = value.extract()?;
-            Some(converted_399)
+            let converted_420 = (|| -> PyResult<_> {
+                let converted_420: String = value.extract()?;
+                Ok(converted_420)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GenerateDataKeyPair",
+                )
+            })?;
+            Some(converted_420)
         } else {
             None
         };
         let key_pair_spec_value = if let Some(value) = dict_value(params, "key_pair_spec")? {
-            let enum_value_401: String = value.extract()?;
-            let converted_400 = aws_sdk_kms::types::DataKeyPairSpec::from(enum_value_401.as_str());
-            Some(converted_400)
+            let converted_421 = (|| -> PyResult<_> {
+                let enum_value_422: String = value.extract()?;
+                let converted_421 =
+                    aws_sdk_kms::types::DataKeyPairSpec::from(enum_value_422.as_str());
+                Ok(converted_421)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_pair_spec"),
+                        "str (DataKeyPairSpec)",
+                    ),
+                    "kms",
+                    "GenerateDataKeyPair",
+                )
+            })?;
+            Some(converted_421)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_402 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_403 in value.try_iter()? {
-                let item_404 = item_result_403?;
-                let converted_item_405: String = item_404.extract()?;
-                converted_402.push(converted_item_405);
-            }
-            Some(converted_402)
+            let converted_423 = (|| -> PyResult<_> {
+                let mut converted_423 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_427, item_result_424) in value.try_iter()?.enumerate() {
+                    let item_425 = item_result_424.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_427),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_426 = (|| -> PyResult<_> {
+                        let converted_item_426: String = item_425.extract()?;
+                        Ok(converted_item_426)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_427),
+                            "str",
+                        )
+                    })?;
+                    converted_423.push(converted_item_426);
+                }
+                Ok(converted_423)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "GenerateDataKeyPair",
+                )
+            })?;
+            Some(converted_423)
         } else {
             None
         };
         let recipient_value = if let Some(value) = dict_value(params, "recipient")? {
-            let converted_406 = recipient_info_from_py(&value)?;
-            Some(converted_406)
+            let converted_428 = (|| -> PyResult<_> {
+                let converted_428 = recipient_info_from_py(&value)?;
+                Ok(converted_428)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("recipient"),
+                        "dict (RecipientInfo)",
+                    ),
+                    "kms",
+                    "GenerateDataKeyPair",
+                )
+            })?;
+            Some(converted_428)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_407: bool = value.extract()?;
-            Some(converted_407)
+            let converted_429 = (|| -> PyResult<_> {
+                let converted_429: bool = value.extract()?;
+                Ok(converted_429)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "GenerateDataKeyPair",
+                )
+            })?;
+            Some(converted_429)
         } else {
             None
         };
@@ -7149,45 +9407,145 @@ impl KMSClient {
         let state = self.state.clone();
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
-                let mapping_409 = value.cast::<PyDict>()?;
-                let mut converted_408 = HashMap::with_capacity(mapping_409.len());
-                for (key_410, value_411) in mapping_409.iter() {
-                    let converted_key_412: String = key_410.extract()?;
-                    let converted_value_413: String = value_411.extract()?;
-                    converted_408.insert(converted_key_412, converted_value_413);
-                }
-                Some(converted_408)
+                let converted_430 = (|| -> PyResult<_> {
+                    let mapping_431 = value.cast::<PyDict>()?;
+                    let mut converted_430 = HashMap::with_capacity(mapping_431.len());
+                    for (index_436, (key_432, value_433)) in mapping_431.iter().enumerate() {
+                        let converted_key_434 = (|| -> PyResult<_> {
+                            let converted_key_434: String = key_432.extract()?;
+                            Ok(converted_key_434)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_436),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_435 = (|| -> PyResult<_> {
+                            let converted_value_435: String = value_433.extract()?;
+                            Ok(converted_value_435)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_436),
+                                "str",
+                            )
+                        })?;
+                        converted_430.insert(converted_key_434, converted_value_435);
+                    }
+                    Ok(converted_430)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "GenerateDataKeyPairWithoutPlaintext",
+                    )
+                })?;
+                Some(converted_430)
             } else {
                 None
             };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_414: String = value.extract()?;
-            Some(converted_414)
+            let converted_437 = (|| -> PyResult<_> {
+                let converted_437: String = value.extract()?;
+                Ok(converted_437)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GenerateDataKeyPairWithoutPlaintext",
+                )
+            })?;
+            Some(converted_437)
         } else {
             None
         };
         let key_pair_spec_value = if let Some(value) = dict_value(params, "key_pair_spec")? {
-            let enum_value_416: String = value.extract()?;
-            let converted_415 = aws_sdk_kms::types::DataKeyPairSpec::from(enum_value_416.as_str());
-            Some(converted_415)
+            let converted_438 = (|| -> PyResult<_> {
+                let enum_value_439: String = value.extract()?;
+                let converted_438 =
+                    aws_sdk_kms::types::DataKeyPairSpec::from(enum_value_439.as_str());
+                Ok(converted_438)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_pair_spec"),
+                        "str (DataKeyPairSpec)",
+                    ),
+                    "kms",
+                    "GenerateDataKeyPairWithoutPlaintext",
+                )
+            })?;
+            Some(converted_438)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_417 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_418 in value.try_iter()? {
-                let item_419 = item_result_418?;
-                let converted_item_420: String = item_419.extract()?;
-                converted_417.push(converted_item_420);
-            }
-            Some(converted_417)
+            let converted_440 = (|| -> PyResult<_> {
+                let mut converted_440 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_444, item_result_441) in value.try_iter()?.enumerate() {
+                    let item_442 = item_result_441.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_444),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_443 = (|| -> PyResult<_> {
+                        let converted_item_443: String = item_442.extract()?;
+                        Ok(converted_item_443)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_444),
+                            "str",
+                        )
+                    })?;
+                    converted_440.push(converted_item_443);
+                }
+                Ok(converted_440)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "GenerateDataKeyPairWithoutPlaintext",
+                )
+            })?;
+            Some(converted_440)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_421: bool = value.extract()?;
-            Some(converted_421)
+            let converted_445 = (|| -> PyResult<_> {
+                let converted_445: bool = value.extract()?;
+                Ok(converted_445)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "GenerateDataKeyPairWithoutPlaintext",
+                )
+            })?;
+            Some(converted_445)
         } else {
             None
         };
@@ -7230,52 +9588,165 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_422: String = value.extract()?;
-            Some(converted_422)
+            let converted_446 = (|| -> PyResult<_> {
+                let converted_446: String = value.extract()?;
+                Ok(converted_446)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GenerateDataKeyWithoutPlaintext",
+                )
+            })?;
+            Some(converted_446)
         } else {
             None
         };
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
-                let mapping_424 = value.cast::<PyDict>()?;
-                let mut converted_423 = HashMap::with_capacity(mapping_424.len());
-                for (key_425, value_426) in mapping_424.iter() {
-                    let converted_key_427: String = key_425.extract()?;
-                    let converted_value_428: String = value_426.extract()?;
-                    converted_423.insert(converted_key_427, converted_value_428);
-                }
-                Some(converted_423)
+                let converted_447 = (|| -> PyResult<_> {
+                    let mapping_448 = value.cast::<PyDict>()?;
+                    let mut converted_447 = HashMap::with_capacity(mapping_448.len());
+                    for (index_453, (key_449, value_450)) in mapping_448.iter().enumerate() {
+                        let converted_key_451 = (|| -> PyResult<_> {
+                            let converted_key_451: String = key_449.extract()?;
+                            Ok(converted_key_451)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_453),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_452 = (|| -> PyResult<_> {
+                            let converted_value_452: String = value_450.extract()?;
+                            Ok(converted_value_452)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_453),
+                                "str",
+                            )
+                        })?;
+                        converted_447.insert(converted_key_451, converted_value_452);
+                    }
+                    Ok(converted_447)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "GenerateDataKeyWithoutPlaintext",
+                    )
+                })?;
+                Some(converted_447)
             } else {
                 None
             };
         let key_spec_value = if let Some(value) = dict_value(params, "key_spec")? {
-            let enum_value_430: String = value.extract()?;
-            let converted_429 = aws_sdk_kms::types::DataKeySpec::from(enum_value_430.as_str());
-            Some(converted_429)
+            let converted_454 = (|| -> PyResult<_> {
+                let enum_value_455: String = value.extract()?;
+                let converted_454 = aws_sdk_kms::types::DataKeySpec::from(enum_value_455.as_str());
+                Ok(converted_454)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_spec"),
+                        "str (DataKeySpec)",
+                    ),
+                    "kms",
+                    "GenerateDataKeyWithoutPlaintext",
+                )
+            })?;
+            Some(converted_454)
         } else {
             None
         };
         let number_of_bytes_value = if let Some(value) = dict_value(params, "number_of_bytes")? {
-            let converted_431: i32 = value.extract()?;
-            Some(converted_431)
+            let converted_456 = (|| -> PyResult<_> {
+                let converted_456: i32 = value.extract()?;
+                Ok(converted_456)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("number_of_bytes"),
+                        "int",
+                    ),
+                    "kms",
+                    "GenerateDataKeyWithoutPlaintext",
+                )
+            })?;
+            Some(converted_456)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_432 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_433 in value.try_iter()? {
-                let item_434 = item_result_433?;
-                let converted_item_435: String = item_434.extract()?;
-                converted_432.push(converted_item_435);
-            }
-            Some(converted_432)
+            let converted_457 = (|| -> PyResult<_> {
+                let mut converted_457 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_461, item_result_458) in value.try_iter()?.enumerate() {
+                    let item_459 = item_result_458.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_461),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_460 = (|| -> PyResult<_> {
+                        let converted_item_460: String = item_459.extract()?;
+                        Ok(converted_item_460)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_461),
+                            "str",
+                        )
+                    })?;
+                    converted_457.push(converted_item_460);
+                }
+                Ok(converted_457)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "GenerateDataKeyWithoutPlaintext",
+                )
+            })?;
+            Some(converted_457)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_436: bool = value.extract()?;
-            Some(converted_436)
+            let converted_462 = (|| -> PyResult<_> {
+                let converted_462: bool = value.extract()?;
+                Ok(converted_462)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "GenerateDataKeyWithoutPlaintext",
+                )
+            })?;
+            Some(converted_462)
         } else {
             None
         };
@@ -7317,40 +9788,120 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let message_value = if let Some(value) = dict_value(params, "message")? {
-            let bytes_438: Vec<u8> = value.extract()?;
-            let converted_437 = ::aws_smithy_types::Blob::new(bytes_438);
-            Some(converted_437)
+            let converted_463 = (|| -> PyResult<_> {
+                let bytes_464: Vec<u8> = value.extract()?;
+                let converted_463 = ::aws_smithy_types::Blob::new(bytes_464);
+                Ok(converted_463)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "GenerateMac",
+                )
+            })?;
+            Some(converted_463)
         } else {
             None
         };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_439: String = value.extract()?;
-            Some(converted_439)
+            let converted_465 = (|| -> PyResult<_> {
+                let converted_465: String = value.extract()?;
+                Ok(converted_465)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GenerateMac",
+                )
+            })?;
+            Some(converted_465)
         } else {
             None
         };
         let mac_algorithm_value = if let Some(value) = dict_value(params, "mac_algorithm")? {
-            let enum_value_441: String = value.extract()?;
-            let converted_440 = aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_441.as_str());
-            Some(converted_440)
+            let converted_466 = (|| -> PyResult<_> {
+                let enum_value_467: String = value.extract()?;
+                let converted_466 =
+                    aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_467.as_str());
+                Ok(converted_466)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("mac_algorithm"),
+                        "str (MacAlgorithmSpec)",
+                    ),
+                    "kms",
+                    "GenerateMac",
+                )
+            })?;
+            Some(converted_466)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_442 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_443 in value.try_iter()? {
-                let item_444 = item_result_443?;
-                let converted_item_445: String = item_444.extract()?;
-                converted_442.push(converted_item_445);
-            }
-            Some(converted_442)
+            let converted_468 = (|| -> PyResult<_> {
+                let mut converted_468 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_472, item_result_469) in value.try_iter()?.enumerate() {
+                    let item_470 = item_result_469.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_472),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_471 = (|| -> PyResult<_> {
+                        let converted_item_471: String = item_470.extract()?;
+                        Ok(converted_item_471)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_472),
+                            "str",
+                        )
+                    })?;
+                    converted_468.push(converted_item_471);
+                }
+                Ok(converted_468)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "GenerateMac",
+                )
+            })?;
+            Some(converted_468)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_446: bool = value.extract()?;
-            Some(converted_446)
+            let converted_473 = (|| -> PyResult<_> {
+                let converted_473: bool = value.extract()?;
+                Ok(converted_473)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "GenerateMac",
+                )
+            })?;
+            Some(converted_473)
         } else {
             None
         };
@@ -7390,21 +9941,63 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let number_of_bytes_value = if let Some(value) = dict_value(params, "number_of_bytes")? {
-            let converted_447: i32 = value.extract()?;
-            Some(converted_447)
+            let converted_474 = (|| -> PyResult<_> {
+                let converted_474: i32 = value.extract()?;
+                Ok(converted_474)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("number_of_bytes"),
+                        "int",
+                    ),
+                    "kms",
+                    "GenerateRandom",
+                )
+            })?;
+            Some(converted_474)
         } else {
             None
         };
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
-                let converted_448: String = value.extract()?;
-                Some(converted_448)
+                let converted_475 = (|| -> PyResult<_> {
+                    let converted_475: String = value.extract()?;
+                    Ok(converted_475)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "GenerateRandom",
+                    )
+                })?;
+                Some(converted_475)
             } else {
                 None
             };
         let recipient_value = if let Some(value) = dict_value(params, "recipient")? {
-            let converted_449 = recipient_info_from_py(&value)?;
-            Some(converted_449)
+            let converted_476 = (|| -> PyResult<_> {
+                let converted_476 = recipient_info_from_py(&value)?;
+                Ok(converted_476)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("recipient"),
+                        "dict (RecipientInfo)",
+                    ),
+                    "kms",
+                    "GenerateRandom",
+                )
+            })?;
+            Some(converted_476)
         } else {
             None
         };
@@ -7443,8 +10036,18 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_450: String = value.extract()?;
-            Some(converted_450)
+            let converted_477 = (|| -> PyResult<_> {
+                let converted_477: String = value.extract()?;
+                Ok(converted_477)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GetKeyLastUsage",
+                )
+            })?;
+            Some(converted_477)
         } else {
             None
         };
@@ -7481,14 +10084,38 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_451: String = value.extract()?;
-            Some(converted_451)
+            let converted_478 = (|| -> PyResult<_> {
+                let converted_478: String = value.extract()?;
+                Ok(converted_478)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GetKeyPolicy",
+                )
+            })?;
+            Some(converted_478)
         } else {
             None
         };
         let policy_name_value = if let Some(value) = dict_value(params, "policy_name")? {
-            let converted_452: String = value.extract()?;
-            Some(converted_452)
+            let converted_479 = (|| -> PyResult<_> {
+                let converted_479: String = value.extract()?;
+                Ok(converted_479)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("policy_name"),
+                        "str",
+                    ),
+                    "kms",
+                    "GetKeyPolicy",
+                )
+            })?;
+            Some(converted_479)
         } else {
             None
         };
@@ -7526,8 +10153,18 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_453: String = value.extract()?;
-            Some(converted_453)
+            let converted_480 = (|| -> PyResult<_> {
+                let converted_480: String = value.extract()?;
+                Ok(converted_480)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GetKeyRotationStatus",
+                )
+            })?;
+            Some(converted_480)
         } else {
             None
         };
@@ -7562,25 +10199,64 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_454: String = value.extract()?;
-            Some(converted_454)
+            let converted_481 = (|| -> PyResult<_> {
+                let converted_481: String = value.extract()?;
+                Ok(converted_481)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GetParametersForImport",
+                )
+            })?;
+            Some(converted_481)
         } else {
             None
         };
-        let wrapping_algorithm_value = if let Some(value) =
-            dict_value(params, "wrapping_algorithm")?
-        {
-            let enum_value_456: String = value.extract()?;
-            let converted_455 = aws_sdk_kms::types::AlgorithmSpec::from(enum_value_456.as_str());
-            Some(converted_455)
-        } else {
-            None
-        };
+        let wrapping_algorithm_value =
+            if let Some(value) = dict_value(params, "wrapping_algorithm")? {
+                let converted_482 = (|| -> PyResult<_> {
+                    let enum_value_483: String = value.extract()?;
+                    let converted_482 =
+                        aws_sdk_kms::types::AlgorithmSpec::from(enum_value_483.as_str());
+                    Ok(converted_482)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("wrapping_algorithm"),
+                            "str (AlgorithmSpec)",
+                        ),
+                        "kms",
+                        "GetParametersForImport",
+                    )
+                })?;
+                Some(converted_482)
+            } else {
+                None
+            };
         let wrapping_key_spec_value = if let Some(value) = dict_value(params, "wrapping_key_spec")?
         {
-            let enum_value_458: String = value.extract()?;
-            let converted_457 = aws_sdk_kms::types::WrappingKeySpec::from(enum_value_458.as_str());
-            Some(converted_457)
+            let converted_484 = (|| -> PyResult<_> {
+                let enum_value_485: String = value.extract()?;
+                let converted_484 =
+                    aws_sdk_kms::types::WrappingKeySpec::from(enum_value_485.as_str());
+                Ok(converted_484)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("wrapping_key_spec"),
+                        "str (WrappingKeySpec)",
+                    ),
+                    "kms",
+                    "GetParametersForImport",
+                )
+            })?;
+            Some(converted_484)
         } else {
             None
         };
@@ -7619,20 +10295,61 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_459: String = value.extract()?;
-            Some(converted_459)
+            let converted_486 = (|| -> PyResult<_> {
+                let converted_486: String = value.extract()?;
+                Ok(converted_486)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "GetPublicKey",
+                )
+            })?;
+            Some(converted_486)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_460 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_461 in value.try_iter()? {
-                let item_462 = item_result_461?;
-                let converted_item_463: String = item_462.extract()?;
-                converted_460.push(converted_item_463);
-            }
-            Some(converted_460)
+            let converted_487 = (|| -> PyResult<_> {
+                let mut converted_487 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_491, item_result_488) in value.try_iter()?.enumerate() {
+                    let item_489 = item_result_488.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_491),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_490 = (|| -> PyResult<_> {
+                        let converted_item_490: String = item_489.extract()?;
+                        Ok(converted_item_490)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_491),
+                            "str",
+                        )
+                    })?;
+                    converted_487.push(converted_item_490);
+                }
+                Ok(converted_487)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "GetPublicKey",
+                )
+            })?;
+            Some(converted_487)
         } else {
             None
         };
@@ -7670,62 +10387,170 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_464: String = value.extract()?;
-            Some(converted_464)
+            let converted_492 = (|| -> PyResult<_> {
+                let converted_492: String = value.extract()?;
+                Ok(converted_492)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ImportKeyMaterial",
+                )
+            })?;
+            Some(converted_492)
         } else {
             None
         };
         let import_token_value = if let Some(value) = dict_value(params, "import_token")? {
-            let bytes_466: Vec<u8> = value.extract()?;
-            let converted_465 = ::aws_smithy_types::Blob::new(bytes_466);
-            Some(converted_465)
+            let converted_493 = (|| -> PyResult<_> {
+                let bytes_494: Vec<u8> = value.extract()?;
+                let converted_493 = ::aws_smithy_types::Blob::new(bytes_494);
+                Ok(converted_493)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_token"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "ImportKeyMaterial",
+                )
+            })?;
+            Some(converted_493)
         } else {
             None
         };
         let encrypted_key_material_value =
             if let Some(value) = dict_value(params, "encrypted_key_material")? {
-                let bytes_468: Vec<u8> = value.extract()?;
-                let converted_467 = ::aws_smithy_types::Blob::new(bytes_468);
-                Some(converted_467)
+                let converted_495 = (|| -> PyResult<_> {
+                    let bytes_496: Vec<u8> = value.extract()?;
+                    let converted_495 = ::aws_smithy_types::Blob::new(bytes_496);
+                    Ok(converted_495)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encrypted_key_material"),
+                            "bytes",
+                        ),
+                        "kms",
+                        "ImportKeyMaterial",
+                    )
+                })?;
+                Some(converted_495)
             } else {
                 None
             };
         let valid_to_value = if let Some(value) = dict_value(params, "valid_to")? {
-            let timestamp_470: String = value.extract()?;
-            let converted_469 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_470,
-                ::aws_smithy_types::date_time::Format::DateTime,
-            )
-            .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_469)
+            let converted_497 = (|| -> PyResult<_> {
+                let timestamp_498: String = value.extract()?;
+                let converted_497 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_498,
+                    ::aws_smithy_types::date_time::Format::DateTime,
+                )
+                .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+                Ok(converted_497)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("valid_to"),
+                        "ISO 8601 timestamp string",
+                    ),
+                    "kms",
+                    "ImportKeyMaterial",
+                )
+            })?;
+            Some(converted_497)
         } else {
             None
         };
         let expiration_model_value = if let Some(value) = dict_value(params, "expiration_model")? {
-            let enum_value_472: String = value.extract()?;
-            let converted_471 =
-                aws_sdk_kms::types::ExpirationModelType::from(enum_value_472.as_str());
-            Some(converted_471)
+            let converted_499 = (|| -> PyResult<_> {
+                let enum_value_500: String = value.extract()?;
+                let converted_499 =
+                    aws_sdk_kms::types::ExpirationModelType::from(enum_value_500.as_str());
+                Ok(converted_499)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("expiration_model"),
+                        "str (ExpirationModelType)",
+                    ),
+                    "kms",
+                    "ImportKeyMaterial",
+                )
+            })?;
+            Some(converted_499)
         } else {
             None
         };
         let import_type_value = if let Some(value) = dict_value(params, "import_type")? {
-            let enum_value_474: String = value.extract()?;
-            let converted_473 = aws_sdk_kms::types::ImportType::from(enum_value_474.as_str());
-            Some(converted_473)
+            let converted_501 = (|| -> PyResult<_> {
+                let enum_value_502: String = value.extract()?;
+                let converted_501 = aws_sdk_kms::types::ImportType::from(enum_value_502.as_str());
+                Ok(converted_501)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("import_type"),
+                        "str (ImportType)",
+                    ),
+                    "kms",
+                    "ImportKeyMaterial",
+                )
+            })?;
+            Some(converted_501)
         } else {
             None
         };
         let key_material_description_value =
             if let Some(value) = dict_value(params, "key_material_description")? {
-                let converted_475: String = value.extract()?;
-                Some(converted_475)
+                let converted_503 = (|| -> PyResult<_> {
+                    let converted_503: String = value.extract()?;
+                    Ok(converted_503)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("key_material_description"),
+                            "str",
+                        ),
+                        "kms",
+                        "ImportKeyMaterial",
+                    )
+                })?;
+                Some(converted_503)
             } else {
                 None
             };
         let key_material_id_value = if let Some(value) = dict_value(params, "key_material_id")? {
-            let converted_476: String = value.extract()?;
-            Some(converted_476)
+            let converted_504 = (|| -> PyResult<_> {
+                let converted_504: String = value.extract()?;
+                Ok(converted_504)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("key_material_id"),
+                        "str",
+                    ),
+                    "kms",
+                    "ImportKeyMaterial",
+                )
+            })?;
+            Some(converted_504)
         } else {
             None
         };
@@ -7769,20 +10594,50 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_477: String = value.extract()?;
-            Some(converted_477)
+            let converted_505 = (|| -> PyResult<_> {
+                let converted_505: String = value.extract()?;
+                Ok(converted_505)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ListAliases",
+                )
+            })?;
+            Some(converted_505)
         } else {
             None
         };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_478: i32 = value.extract()?;
-            Some(converted_478)
+            let converted_506 = (|| -> PyResult<_> {
+                let converted_506: i32 = value.extract()?;
+                Ok(converted_506)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "ListAliases",
+                )
+            })?;
+            Some(converted_506)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_479: String = value.extract()?;
-            Some(converted_479)
+            let converted_507 = (|| -> PyResult<_> {
+                let converted_507: String = value.extract()?;
+                Ok(converted_507)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "ListAliases",
+                )
+            })?;
+            Some(converted_507)
         } else {
             None
         };
@@ -7822,40 +10677,108 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_480: i32 = value.extract()?;
-            Some(converted_480)
+            let converted_508 = (|| -> PyResult<_> {
+                let converted_508: i32 = value.extract()?;
+                Ok(converted_508)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "ListGrants",
+                )
+            })?;
+            Some(converted_508)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_481: String = value.extract()?;
-            Some(converted_481)
+            let converted_509 = (|| -> PyResult<_> {
+                let converted_509: String = value.extract()?;
+                Ok(converted_509)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "ListGrants",
+                )
+            })?;
+            Some(converted_509)
         } else {
             None
         };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_482: String = value.extract()?;
-            Some(converted_482)
+            let converted_510 = (|| -> PyResult<_> {
+                let converted_510: String = value.extract()?;
+                Ok(converted_510)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ListGrants",
+                )
+            })?;
+            Some(converted_510)
         } else {
             None
         };
         let grant_id_value = if let Some(value) = dict_value(params, "grant_id")? {
-            let converted_483: String = value.extract()?;
-            Some(converted_483)
+            let converted_511 = (|| -> PyResult<_> {
+                let converted_511: String = value.extract()?;
+                Ok(converted_511)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("grant_id"), "str"),
+                    "kms",
+                    "ListGrants",
+                )
+            })?;
+            Some(converted_511)
         } else {
             None
         };
         let grantee_principal_value = if let Some(value) = dict_value(params, "grantee_principal")?
         {
-            let converted_484: String = value.extract()?;
-            Some(converted_484)
+            let converted_512 = (|| -> PyResult<_> {
+                let converted_512: String = value.extract()?;
+                Ok(converted_512)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grantee_principal"),
+                        "str",
+                    ),
+                    "kms",
+                    "ListGrants",
+                )
+            })?;
+            Some(converted_512)
         } else {
             None
         };
         let grantee_service_principal_value =
             if let Some(value) = dict_value(params, "grantee_service_principal")? {
-                let converted_485: String = value.extract()?;
-                Some(converted_485)
+                let converted_513 = (|| -> PyResult<_> {
+                    let converted_513: String = value.extract()?;
+                    Ok(converted_513)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("grantee_service_principal"),
+                            "str",
+                        ),
+                        "kms",
+                        "ListGrants",
+                    )
+                })?;
+                Some(converted_513)
             } else {
                 None
             };
@@ -7898,20 +10821,50 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_486: String = value.extract()?;
-            Some(converted_486)
+            let converted_514 = (|| -> PyResult<_> {
+                let converted_514: String = value.extract()?;
+                Ok(converted_514)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ListKeyPolicies",
+                )
+            })?;
+            Some(converted_514)
         } else {
             None
         };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_487: i32 = value.extract()?;
-            Some(converted_487)
+            let converted_515 = (|| -> PyResult<_> {
+                let converted_515: i32 = value.extract()?;
+                Ok(converted_515)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "ListKeyPolicies",
+                )
+            })?;
+            Some(converted_515)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_488: String = value.extract()?;
-            Some(converted_488)
+            let converted_516 = (|| -> PyResult<_> {
+                let converted_516: String = value.extract()?;
+                Ok(converted_516)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "ListKeyPolicies",
+                )
+            })?;
+            Some(converted_516)
         } else {
             None
         };
@@ -7950,29 +10903,73 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_489: String = value.extract()?;
-            Some(converted_489)
+            let converted_517 = (|| -> PyResult<_> {
+                let converted_517: String = value.extract()?;
+                Ok(converted_517)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ListKeyRotations",
+                )
+            })?;
+            Some(converted_517)
         } else {
             None
         };
         let include_key_material_value =
             if let Some(value) = dict_value(params, "include_key_material")? {
-                let enum_value_491: String = value.extract()?;
-                let converted_490 =
-                    aws_sdk_kms::types::IncludeKeyMaterial::from(enum_value_491.as_str());
-                Some(converted_490)
+                let converted_518 = (|| -> PyResult<_> {
+                    let enum_value_519: String = value.extract()?;
+                    let converted_518 =
+                        aws_sdk_kms::types::IncludeKeyMaterial::from(enum_value_519.as_str());
+                    Ok(converted_518)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("include_key_material"),
+                            "str (IncludeKeyMaterial)",
+                        ),
+                        "kms",
+                        "ListKeyRotations",
+                    )
+                })?;
+                Some(converted_518)
             } else {
                 None
             };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_492: i32 = value.extract()?;
-            Some(converted_492)
+            let converted_520 = (|| -> PyResult<_> {
+                let converted_520: i32 = value.extract()?;
+                Ok(converted_520)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "ListKeyRotations",
+                )
+            })?;
+            Some(converted_520)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_493: String = value.extract()?;
-            Some(converted_493)
+            let converted_521 = (|| -> PyResult<_> {
+                let converted_521: String = value.extract()?;
+                Ok(converted_521)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "ListKeyRotations",
+                )
+            })?;
+            Some(converted_521)
         } else {
             None
         };
@@ -8014,14 +11011,34 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_494: i32 = value.extract()?;
-            Some(converted_494)
+            let converted_522 = (|| -> PyResult<_> {
+                let converted_522: i32 = value.extract()?;
+                Ok(converted_522)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "ListKeys",
+                )
+            })?;
+            Some(converted_522)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_495: String = value.extract()?;
-            Some(converted_495)
+            let converted_523 = (|| -> PyResult<_> {
+                let converted_523: String = value.extract()?;
+                Ok(converted_523)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "ListKeys",
+                )
+            })?;
+            Some(converted_523)
         } else {
             None
         };
@@ -8060,20 +11077,50 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_496: String = value.extract()?;
-            Some(converted_496)
+            let converted_524 = (|| -> PyResult<_> {
+                let converted_524: String = value.extract()?;
+                Ok(converted_524)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ListResourceTags",
+                )
+            })?;
+            Some(converted_524)
         } else {
             None
         };
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_497: i32 = value.extract()?;
-            Some(converted_497)
+            let converted_525 = (|| -> PyResult<_> {
+                let converted_525: i32 = value.extract()?;
+                Ok(converted_525)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "ListResourceTags",
+                )
+            })?;
+            Some(converted_525)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_498: String = value.extract()?;
-            Some(converted_498)
+            let converted_526 = (|| -> PyResult<_> {
+                let converted_526: String = value.extract()?;
+                Ok(converted_526)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "ListResourceTags",
+                )
+            })?;
+            Some(converted_526)
         } else {
             None
         };
@@ -8114,28 +11161,76 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
-            let converted_499: i32 = value.extract()?;
-            Some(converted_499)
+            let converted_527 = (|| -> PyResult<_> {
+                let converted_527: i32 = value.extract()?;
+                Ok(converted_527)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("limit"), "int"),
+                    "kms",
+                    "ListRetirableGrants",
+                )
+            })?;
+            Some(converted_527)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_500: String = value.extract()?;
-            Some(converted_500)
+            let converted_528 = (|| -> PyResult<_> {
+                let converted_528: String = value.extract()?;
+                Ok(converted_528)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("marker"), "str"),
+                    "kms",
+                    "ListRetirableGrants",
+                )
+            })?;
+            Some(converted_528)
         } else {
             None
         };
         let retiring_principal_value =
             if let Some(value) = dict_value(params, "retiring_principal")? {
-                let converted_501: String = value.extract()?;
-                Some(converted_501)
+                let converted_529 = (|| -> PyResult<_> {
+                    let converted_529: String = value.extract()?;
+                    Ok(converted_529)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("retiring_principal"),
+                            "str",
+                        ),
+                        "kms",
+                        "ListRetirableGrants",
+                    )
+                })?;
+                Some(converted_529)
             } else {
                 None
             };
         let retiring_service_principal_value =
             if let Some(value) = dict_value(params, "retiring_service_principal")? {
-                let converted_502: String = value.extract()?;
-                Some(converted_502)
+                let converted_530 = (|| -> PyResult<_> {
+                    let converted_530: String = value.extract()?;
+                    Ok(converted_530)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("retiring_service_principal"),
+                            "str",
+                        ),
+                        "kms",
+                        "ListRetirableGrants",
+                    )
+                })?;
+                Some(converted_530)
             } else {
                 None
             };
@@ -8177,27 +11272,75 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_503: String = value.extract()?;
-            Some(converted_503)
+            let converted_531 = (|| -> PyResult<_> {
+                let converted_531: String = value.extract()?;
+                Ok(converted_531)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "PutKeyPolicy",
+                )
+            })?;
+            Some(converted_531)
         } else {
             None
         };
         let policy_name_value = if let Some(value) = dict_value(params, "policy_name")? {
-            let converted_504: String = value.extract()?;
-            Some(converted_504)
+            let converted_532 = (|| -> PyResult<_> {
+                let converted_532: String = value.extract()?;
+                Ok(converted_532)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("policy_name"),
+                        "str",
+                    ),
+                    "kms",
+                    "PutKeyPolicy",
+                )
+            })?;
+            Some(converted_532)
         } else {
             None
         };
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_505: String = value.extract()?;
-            Some(converted_505)
+            let converted_533 = (|| -> PyResult<_> {
+                let converted_533: String = value.extract()?;
+                Ok(converted_533)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("policy"), "str"),
+                    "kms",
+                    "PutKeyPolicy",
+                )
+            })?;
+            Some(converted_533)
         } else {
             None
         };
         let bypass_policy_lockout_safety_check_value =
             if let Some(value) = dict_value(params, "bypass_policy_lockout_safety_check")? {
-                let converted_506: bool = value.extract()?;
-                Some(converted_506)
+                let converted_534 = (|| -> PyResult<_> {
+                    let converted_534: bool = value.extract()?;
+                    Ok(converted_534)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("bypass_policy_lockout_safety_check"),
+                            "bool",
+                        ),
+                        "kms",
+                        "PutKeyPolicy",
+                    )
+                })?;
+                Some(converted_534)
             } else {
                 None
             };
@@ -8237,99 +11380,309 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let ciphertext_blob_value = if let Some(value) = dict_value(params, "ciphertext_blob")? {
-            let bytes_508: Vec<u8> = value.extract()?;
-            let converted_507 = ::aws_smithy_types::Blob::new(bytes_508);
-            Some(converted_507)
+            let converted_535 = (|| -> PyResult<_> {
+                let bytes_536: Vec<u8> = value.extract()?;
+                let converted_535 = ::aws_smithy_types::Blob::new(bytes_536);
+                Ok(converted_535)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("ciphertext_blob"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "ReEncrypt",
+                )
+            })?;
+            Some(converted_535)
         } else {
             None
         };
         let source_encryption_context_value =
             if let Some(value) = dict_value(params, "source_encryption_context")? {
-                let mapping_510 = value.cast::<PyDict>()?;
-                let mut converted_509 = HashMap::with_capacity(mapping_510.len());
-                for (key_511, value_512) in mapping_510.iter() {
-                    let converted_key_513: String = key_511.extract()?;
-                    let converted_value_514: String = value_512.extract()?;
-                    converted_509.insert(converted_key_513, converted_value_514);
-                }
-                Some(converted_509)
+                let converted_537 = (|| -> PyResult<_> {
+                    let mapping_538 = value.cast::<PyDict>()?;
+                    let mut converted_537 = HashMap::with_capacity(mapping_538.len());
+                    for (index_543, (key_539, value_540)) in mapping_538.iter().enumerate() {
+                        let converted_key_541 = (|| -> PyResult<_> {
+                            let converted_key_541: String = key_539.extract()?;
+                            Ok(converted_key_541)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_543),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_542 = (|| -> PyResult<_> {
+                            let converted_value_542: String = value_540.extract()?;
+                            Ok(converted_value_542)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_543),
+                                "str",
+                            )
+                        })?;
+                        converted_537.insert(converted_key_541, converted_value_542);
+                    }
+                    Ok(converted_537)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("source_encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "ReEncrypt",
+                    )
+                })?;
+                Some(converted_537)
             } else {
                 None
             };
         let source_key_id_value = if let Some(value) = dict_value(params, "source_key_id")? {
-            let converted_515: String = value.extract()?;
-            Some(converted_515)
+            let converted_544 = (|| -> PyResult<_> {
+                let converted_544: String = value.extract()?;
+                Ok(converted_544)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("source_key_id"),
+                        "str",
+                    ),
+                    "kms",
+                    "ReEncrypt",
+                )
+            })?;
+            Some(converted_544)
         } else {
             None
         };
         let destination_key_id_value =
             if let Some(value) = dict_value(params, "destination_key_id")? {
-                let converted_516: String = value.extract()?;
-                Some(converted_516)
+                let converted_545 = (|| -> PyResult<_> {
+                    let converted_545: String = value.extract()?;
+                    Ok(converted_545)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("destination_key_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "ReEncrypt",
+                    )
+                })?;
+                Some(converted_545)
             } else {
                 None
             };
         let destination_encryption_context_value =
             if let Some(value) = dict_value(params, "destination_encryption_context")? {
-                let mapping_518 = value.cast::<PyDict>()?;
-                let mut converted_517 = HashMap::with_capacity(mapping_518.len());
-                for (key_519, value_520) in mapping_518.iter() {
-                    let converted_key_521: String = key_519.extract()?;
-                    let converted_value_522: String = value_520.extract()?;
-                    converted_517.insert(converted_key_521, converted_value_522);
-                }
-                Some(converted_517)
+                let converted_546 = (|| -> PyResult<_> {
+                    let mapping_547 = value.cast::<PyDict>()?;
+                    let mut converted_546 = HashMap::with_capacity(mapping_547.len());
+                    for (index_552, (key_548, value_549)) in mapping_547.iter().enumerate() {
+                        let converted_key_550 = (|| -> PyResult<_> {
+                            let converted_key_550: String = key_548.extract()?;
+                            Ok(converted_key_550)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_552),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_551 = (|| -> PyResult<_> {
+                            let converted_value_551: String = value_549.extract()?;
+                            Ok(converted_value_551)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_552),
+                                "str",
+                            )
+                        })?;
+                        converted_546.insert(converted_key_550, converted_value_551);
+                    }
+                    Ok(converted_546)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("destination_encryption_context"),
+                            "dict",
+                        ),
+                        "kms",
+                        "ReEncrypt",
+                    )
+                })?;
+                Some(converted_546)
             } else {
                 None
             };
         let source_encryption_algorithm_value =
             if let Some(value) = dict_value(params, "source_encryption_algorithm")? {
-                let enum_value_524: String = value.extract()?;
-                let converted_523 =
-                    aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_524.as_str());
-                Some(converted_523)
+                let converted_553 = (|| -> PyResult<_> {
+                    let enum_value_554: String = value.extract()?;
+                    let converted_553 =
+                        aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_554.as_str());
+                    Ok(converted_553)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("source_encryption_algorithm"),
+                            "str (EncryptionAlgorithmSpec)",
+                        ),
+                        "kms",
+                        "ReEncrypt",
+                    )
+                })?;
+                Some(converted_553)
             } else {
                 None
             };
         let destination_encryption_algorithm_value =
             if let Some(value) = dict_value(params, "destination_encryption_algorithm")? {
-                let enum_value_526: String = value.extract()?;
-                let converted_525 =
-                    aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_526.as_str());
-                Some(converted_525)
+                let converted_555 = (|| -> PyResult<_> {
+                    let enum_value_556: String = value.extract()?;
+                    let converted_555 =
+                        aws_sdk_kms::types::EncryptionAlgorithmSpec::from(enum_value_556.as_str());
+                    Ok(converted_555)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("destination_encryption_algorithm"),
+                            "str (EncryptionAlgorithmSpec)",
+                        ),
+                        "kms",
+                        "ReEncrypt",
+                    )
+                })?;
+                Some(converted_555)
             } else {
                 None
             };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_527 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_528 in value.try_iter()? {
-                let item_529 = item_result_528?;
-                let converted_item_530: String = item_529.extract()?;
-                converted_527.push(converted_item_530);
-            }
-            Some(converted_527)
+            let converted_557 = (|| -> PyResult<_> {
+                let mut converted_557 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_561, item_result_558) in value.try_iter()?.enumerate() {
+                    let item_559 = item_result_558.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_561),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_560 = (|| -> PyResult<_> {
+                        let converted_item_560: String = item_559.extract()?;
+                        Ok(converted_item_560)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_561),
+                            "str",
+                        )
+                    })?;
+                    converted_557.push(converted_item_560);
+                }
+                Ok(converted_557)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "ReEncrypt",
+                )
+            })?;
+            Some(converted_557)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_531: bool = value.extract()?;
-            Some(converted_531)
+            let converted_562 = (|| -> PyResult<_> {
+                let converted_562: bool = value.extract()?;
+                Ok(converted_562)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "ReEncrypt",
+                )
+            })?;
+            Some(converted_562)
         } else {
             None
         };
         let dry_run_modifiers_value = if let Some(value) = dict_value(params, "dry_run_modifiers")?
         {
-            let mut converted_532 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_533 in value.try_iter()? {
-                let item_534 = item_result_533?;
-                let enum_value_536: String = item_534.extract()?;
-                let converted_item_535 =
-                    aws_sdk_kms::types::DryRunModifierType::from(enum_value_536.as_str());
-                converted_532.push(converted_item_535);
-            }
-            Some(converted_532)
+            let converted_563 = (|| -> PyResult<_> {
+                let mut converted_563 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_567, item_result_564) in value.try_iter()?.enumerate() {
+                    let item_565 = item_result_564.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_567),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_566 = (|| -> PyResult<_> {
+                        let enum_value_568: String = item_565.extract()?;
+                        let converted_item_566 =
+                            aws_sdk_kms::types::DryRunModifierType::from(enum_value_568.as_str());
+                        Ok(converted_item_566)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_567),
+                            "str (DryRunModifierType)",
+                        )
+                    })?;
+                    converted_563.push(converted_item_566);
+                }
+                Ok(converted_563)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dry_run_modifiers"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "ReEncrypt",
+                )
+            })?;
+            Some(converted_563)
         } else {
             None
         };
@@ -8374,45 +11727,138 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_537: String = value.extract()?;
-            Some(converted_537)
+            let converted_569 = (|| -> PyResult<_> {
+                let converted_569: String = value.extract()?;
+                Ok(converted_569)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ReplicateKey",
+                )
+            })?;
+            Some(converted_569)
         } else {
             None
         };
         let replica_region_value = if let Some(value) = dict_value(params, "replica_region")? {
-            let converted_538: String = value.extract()?;
-            Some(converted_538)
+            let converted_570 = (|| -> PyResult<_> {
+                let converted_570: String = value.extract()?;
+                Ok(converted_570)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("replica_region"),
+                        "str",
+                    ),
+                    "kms",
+                    "ReplicateKey",
+                )
+            })?;
+            Some(converted_570)
         } else {
             None
         };
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_539: String = value.extract()?;
-            Some(converted_539)
+            let converted_571 = (|| -> PyResult<_> {
+                let converted_571: String = value.extract()?;
+                Ok(converted_571)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("policy"), "str"),
+                    "kms",
+                    "ReplicateKey",
+                )
+            })?;
+            Some(converted_571)
         } else {
             None
         };
         let bypass_policy_lockout_safety_check_value =
             if let Some(value) = dict_value(params, "bypass_policy_lockout_safety_check")? {
-                let converted_540: bool = value.extract()?;
-                Some(converted_540)
+                let converted_572 = (|| -> PyResult<_> {
+                    let converted_572: bool = value.extract()?;
+                    Ok(converted_572)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("bypass_policy_lockout_safety_check"),
+                            "bool",
+                        ),
+                        "kms",
+                        "ReplicateKey",
+                    )
+                })?;
+                Some(converted_572)
             } else {
                 None
             };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_541: String = value.extract()?;
-            Some(converted_541)
+            let converted_573 = (|| -> PyResult<_> {
+                let converted_573: String = value.extract()?;
+                Ok(converted_573)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("description"),
+                        "str",
+                    ),
+                    "kms",
+                    "ReplicateKey",
+                )
+            })?;
+            Some(converted_573)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_542 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_543 in value.try_iter()? {
-                let item_544 = item_result_543?;
-                let converted_item_545 = tag_from_py(&item_544)?;
-                converted_542.push(converted_item_545);
-            }
-            Some(converted_542)
+            let converted_574 = (|| -> PyResult<_> {
+                let mut converted_574 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_578, item_result_575) in value.try_iter()?.enumerate() {
+                    let item_576 = item_result_575.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_578),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_577 = (|| -> PyResult<_> {
+                        let converted_item_577 = tag_from_py(&item_576)?;
+                        Ok(converted_item_577)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_578),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_574.push(converted_item_577);
+                }
+                Ok(converted_574)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "ReplicateKey",
+                )
+            })?;
+            Some(converted_574)
         } else {
             None
         };
@@ -8456,26 +11902,70 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let grant_token_value = if let Some(value) = dict_value(params, "grant_token")? {
-            let converted_546: String = value.extract()?;
-            Some(converted_546)
+            let converted_579 = (|| -> PyResult<_> {
+                let converted_579: String = value.extract()?;
+                Ok(converted_579)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_token"),
+                        "str",
+                    ),
+                    "kms",
+                    "RetireGrant",
+                )
+            })?;
+            Some(converted_579)
         } else {
             None
         };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_547: String = value.extract()?;
-            Some(converted_547)
+            let converted_580 = (|| -> PyResult<_> {
+                let converted_580: String = value.extract()?;
+                Ok(converted_580)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "RetireGrant",
+                )
+            })?;
+            Some(converted_580)
         } else {
             None
         };
         let grant_id_value = if let Some(value) = dict_value(params, "grant_id")? {
-            let converted_548: String = value.extract()?;
-            Some(converted_548)
+            let converted_581 = (|| -> PyResult<_> {
+                let converted_581: String = value.extract()?;
+                Ok(converted_581)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("grant_id"), "str"),
+                    "kms",
+                    "RetireGrant",
+                )
+            })?;
+            Some(converted_581)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_549: bool = value.extract()?;
-            Some(converted_549)
+            let converted_582 = (|| -> PyResult<_> {
+                let converted_582: bool = value.extract()?;
+                Ok(converted_582)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "RetireGrant",
+                )
+            })?;
+            Some(converted_582)
         } else {
             None
         };
@@ -8514,20 +12004,50 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_550: String = value.extract()?;
-            Some(converted_550)
+            let converted_583 = (|| -> PyResult<_> {
+                let converted_583: String = value.extract()?;
+                Ok(converted_583)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "RevokeGrant",
+                )
+            })?;
+            Some(converted_583)
         } else {
             None
         };
         let grant_id_value = if let Some(value) = dict_value(params, "grant_id")? {
-            let converted_551: String = value.extract()?;
-            Some(converted_551)
+            let converted_584 = (|| -> PyResult<_> {
+                let converted_584: String = value.extract()?;
+                Ok(converted_584)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("grant_id"), "str"),
+                    "kms",
+                    "RevokeGrant",
+                )
+            })?;
+            Some(converted_584)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_552: bool = value.extract()?;
-            Some(converted_552)
+            let converted_585 = (|| -> PyResult<_> {
+                let converted_585: bool = value.extract()?;
+                Ok(converted_585)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "RevokeGrant",
+                )
+            })?;
+            Some(converted_585)
         } else {
             None
         };
@@ -8565,8 +12085,18 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_553: String = value.extract()?;
-            Some(converted_553)
+            let converted_586 = (|| -> PyResult<_> {
+                let converted_586: String = value.extract()?;
+                Ok(converted_586)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "RotateKeyOnDemand",
+                )
+            })?;
+            Some(converted_586)
         } else {
             None
         };
@@ -8601,15 +12131,39 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_554: String = value.extract()?;
-            Some(converted_554)
+            let converted_587 = (|| -> PyResult<_> {
+                let converted_587: String = value.extract()?;
+                Ok(converted_587)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "ScheduleKeyDeletion",
+                )
+            })?;
+            Some(converted_587)
         } else {
             None
         };
         let pending_window_in_days_value =
             if let Some(value) = dict_value(params, "pending_window_in_days")? {
-                let converted_555: i32 = value.extract()?;
-                Some(converted_555)
+                let converted_588 = (|| -> PyResult<_> {
+                    let converted_588: i32 = value.extract()?;
+                    Ok(converted_588)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("pending_window_in_days"),
+                            "int",
+                        ),
+                        "kms",
+                        "ScheduleKeyDeletion",
+                    )
+                })?;
+                Some(converted_588)
             } else {
                 None
             };
@@ -8647,49 +12201,142 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_556: String = value.extract()?;
-            Some(converted_556)
+            let converted_589 = (|| -> PyResult<_> {
+                let converted_589: String = value.extract()?;
+                Ok(converted_589)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "Sign",
+                )
+            })?;
+            Some(converted_589)
         } else {
             None
         };
         let message_value = if let Some(value) = dict_value(params, "message")? {
-            let bytes_558: Vec<u8> = value.extract()?;
-            let converted_557 = ::aws_smithy_types::Blob::new(bytes_558);
-            Some(converted_557)
+            let converted_590 = (|| -> PyResult<_> {
+                let bytes_591: Vec<u8> = value.extract()?;
+                let converted_590 = ::aws_smithy_types::Blob::new(bytes_591);
+                Ok(converted_590)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "Sign",
+                )
+            })?;
+            Some(converted_590)
         } else {
             None
         };
         let message_type_value = if let Some(value) = dict_value(params, "message_type")? {
-            let enum_value_560: String = value.extract()?;
-            let converted_559 = aws_sdk_kms::types::MessageType::from(enum_value_560.as_str());
-            Some(converted_559)
+            let converted_592 = (|| -> PyResult<_> {
+                let enum_value_593: String = value.extract()?;
+                let converted_592 = aws_sdk_kms::types::MessageType::from(enum_value_593.as_str());
+                Ok(converted_592)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message_type"),
+                        "str (MessageType)",
+                    ),
+                    "kms",
+                    "Sign",
+                )
+            })?;
+            Some(converted_592)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_561 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_562 in value.try_iter()? {
-                let item_563 = item_result_562?;
-                let converted_item_564: String = item_563.extract()?;
-                converted_561.push(converted_item_564);
-            }
-            Some(converted_561)
+            let converted_594 = (|| -> PyResult<_> {
+                let mut converted_594 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_598, item_result_595) in value.try_iter()?.enumerate() {
+                    let item_596 = item_result_595.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_598),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_597 = (|| -> PyResult<_> {
+                        let converted_item_597: String = item_596.extract()?;
+                        Ok(converted_item_597)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_598),
+                            "str",
+                        )
+                    })?;
+                    converted_594.push(converted_item_597);
+                }
+                Ok(converted_594)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "Sign",
+                )
+            })?;
+            Some(converted_594)
         } else {
             None
         };
         let signing_algorithm_value = if let Some(value) = dict_value(params, "signing_algorithm")?
         {
-            let enum_value_566: String = value.extract()?;
-            let converted_565 =
-                aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_566.as_str());
-            Some(converted_565)
+            let converted_599 = (|| -> PyResult<_> {
+                let enum_value_600: String = value.extract()?;
+                let converted_599 =
+                    aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_600.as_str());
+                Ok(converted_599)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("signing_algorithm"),
+                        "str (SigningAlgorithmSpec)",
+                    ),
+                    "kms",
+                    "Sign",
+                )
+            })?;
+            Some(converted_599)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_567: bool = value.extract()?;
-            Some(converted_567)
+            let converted_601 = (|| -> PyResult<_> {
+                let converted_601: bool = value.extract()?;
+                Ok(converted_601)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "Sign",
+                )
+            })?;
+            Some(converted_601)
         } else {
             None
         };
@@ -8730,20 +12377,61 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_568: String = value.extract()?;
-            Some(converted_568)
+            let converted_602 = (|| -> PyResult<_> {
+                let converted_602: String = value.extract()?;
+                Ok(converted_602)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_602)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_569 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_570 in value.try_iter()? {
-                let item_571 = item_result_570?;
-                let converted_item_572 = tag_from_py(&item_571)?;
-                converted_569.push(converted_item_572);
-            }
-            Some(converted_569)
+            let converted_603 = (|| -> PyResult<_> {
+                let mut converted_603 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_607, item_result_604) in value.try_iter()?.enumerate() {
+                    let item_605 = item_result_604.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_607),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_606 = (|| -> PyResult<_> {
+                        let converted_item_606 = tag_from_py(&item_605)?;
+                        Ok(converted_item_606)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_607),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_603.push(converted_item_606);
+                }
+                Ok(converted_603)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_603)
         } else {
             None
         };
@@ -8780,20 +12468,61 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_573: String = value.extract()?;
-            Some(converted_573)
+            let converted_608 = (|| -> PyResult<_> {
+                let converted_608: String = value.extract()?;
+                Ok(converted_608)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_608)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_574 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_575 in value.try_iter()? {
-                let item_576 = item_result_575?;
-                let converted_item_577: String = item_576.extract()?;
-                converted_574.push(converted_item_577);
-            }
-            Some(converted_574)
+            let converted_609 = (|| -> PyResult<_> {
+                let mut converted_609 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_613, item_result_610) in value.try_iter()?.enumerate() {
+                    let item_611 = item_result_610.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_613),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_612 = (|| -> PyResult<_> {
+                        let converted_item_612: String = item_611.extract()?;
+                        Ok(converted_item_612)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_613),
+                            "str",
+                        )
+                    })?;
+                    converted_609.push(converted_item_612);
+                }
+                Ok(converted_609)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tag_keys"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_609)
         } else {
             None
         };
@@ -8831,14 +12560,42 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
-            let converted_578: String = value.extract()?;
-            Some(converted_578)
+            let converted_614 = (|| -> PyResult<_> {
+                let converted_614: String = value.extract()?;
+                Ok(converted_614)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("alias_name"),
+                        "str",
+                    ),
+                    "kms",
+                    "UpdateAlias",
+                )
+            })?;
+            Some(converted_614)
         } else {
             None
         };
         let target_key_id_value = if let Some(value) = dict_value(params, "target_key_id")? {
-            let converted_579: String = value.extract()?;
-            Some(converted_579)
+            let converted_615 = (|| -> PyResult<_> {
+                let converted_615: String = value.extract()?;
+                Ok(converted_615)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("target_key_id"),
+                        "str",
+                    ),
+                    "kms",
+                    "UpdateAlias",
+                )
+            })?;
+            Some(converted_615)
         } else {
             None
         };
@@ -8876,73 +12633,213 @@ impl KMSClient {
         let state = self.state.clone();
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
-                let converted_580: String = value.extract()?;
-                Some(converted_580)
+                let converted_616 = (|| -> PyResult<_> {
+                    let converted_616: String = value.extract()?;
+                    Ok(converted_616)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("custom_key_store_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_616)
             } else {
                 None
             };
         let new_custom_key_store_name_value =
             if let Some(value) = dict_value(params, "new_custom_key_store_name")? {
-                let converted_581: String = value.extract()?;
-                Some(converted_581)
+                let converted_617 = (|| -> PyResult<_> {
+                    let converted_617: String = value.extract()?;
+                    Ok(converted_617)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("new_custom_key_store_name"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_617)
             } else {
                 None
             };
         let key_store_password_value =
             if let Some(value) = dict_value(params, "key_store_password")? {
-                let converted_582: String = value.extract()?;
-                Some(converted_582)
+                let converted_618 = (|| -> PyResult<_> {
+                    let converted_618: String = value.extract()?;
+                    Ok(converted_618)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("key_store_password"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_618)
             } else {
                 None
             };
         let cloud_hsm_cluster_id_value =
             if let Some(value) = dict_value(params, "cloud_hsm_cluster_id")? {
-                let converted_583: String = value.extract()?;
-                Some(converted_583)
+                let converted_619 = (|| -> PyResult<_> {
+                    let converted_619: String = value.extract()?;
+                    Ok(converted_619)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("cloud_hsm_cluster_id"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_619)
             } else {
                 None
             };
         let xks_proxy_uri_endpoint_value =
             if let Some(value) = dict_value(params, "xks_proxy_uri_endpoint")? {
-                let converted_584: String = value.extract()?;
-                Some(converted_584)
+                let converted_620 = (|| -> PyResult<_> {
+                    let converted_620: String = value.extract()?;
+                    Ok(converted_620)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_uri_endpoint"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_620)
             } else {
                 None
             };
         let xks_proxy_uri_path_value =
             if let Some(value) = dict_value(params, "xks_proxy_uri_path")? {
-                let converted_585: String = value.extract()?;
-                Some(converted_585)
+                let converted_621 = (|| -> PyResult<_> {
+                    let converted_621: String = value.extract()?;
+                    Ok(converted_621)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_uri_path"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_621)
             } else {
                 None
             };
         let xks_proxy_vpc_endpoint_service_name_value =
             if let Some(value) = dict_value(params, "xks_proxy_vpc_endpoint_service_name")? {
-                let converted_586: String = value.extract()?;
-                Some(converted_586)
+                let converted_622 = (|| -> PyResult<_> {
+                    let converted_622: String = value.extract()?;
+                    Ok(converted_622)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_vpc_endpoint_service_name"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_622)
             } else {
                 None
             };
         let xks_proxy_vpc_endpoint_service_owner_value =
             if let Some(value) = dict_value(params, "xks_proxy_vpc_endpoint_service_owner")? {
-                let converted_587: String = value.extract()?;
-                Some(converted_587)
+                let converted_623 = (|| -> PyResult<_> {
+                    let converted_623: String = value.extract()?;
+                    Ok(converted_623)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_vpc_endpoint_service_owner"),
+                            "str",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_623)
             } else {
                 None
             };
         let xks_proxy_authentication_credential_value =
             if let Some(value) = dict_value(params, "xks_proxy_authentication_credential")? {
-                let converted_588 = xks_proxy_authentication_credential_type_from_py(&value)?;
-                Some(converted_588)
+                let converted_624 = (|| -> PyResult<_> {
+                    let converted_624 = xks_proxy_authentication_credential_type_from_py(&value)?;
+                    Ok(converted_624)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_authentication_credential"),
+                            "dict (XksProxyAuthenticationCredentialType)",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_624)
             } else {
                 None
             };
         let xks_proxy_connectivity_value =
             if let Some(value) = dict_value(params, "xks_proxy_connectivity")? {
-                let enum_value_590: String = value.extract()?;
-                let converted_589 =
-                    aws_sdk_kms::types::XksProxyConnectivityType::from(enum_value_590.as_str());
-                Some(converted_589)
+                let converted_625 = (|| -> PyResult<_> {
+                    let enum_value_626: String = value.extract()?;
+                    let converted_625 =
+                        aws_sdk_kms::types::XksProxyConnectivityType::from(enum_value_626.as_str());
+                    Ok(converted_625)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("xks_proxy_connectivity"),
+                            "str (XksProxyConnectivityType)",
+                        ),
+                        "kms",
+                        "UpdateCustomKeyStore",
+                    )
+                })?;
+                Some(converted_625)
             } else {
                 None
             };
@@ -8990,14 +12887,38 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_591: String = value.extract()?;
-            Some(converted_591)
+            let converted_627 = (|| -> PyResult<_> {
+                let converted_627: String = value.extract()?;
+                Ok(converted_627)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "UpdateKeyDescription",
+                )
+            })?;
+            Some(converted_627)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_592: String = value.extract()?;
-            Some(converted_592)
+            let converted_628 = (|| -> PyResult<_> {
+                let converted_628: String = value.extract()?;
+                Ok(converted_628)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("description"),
+                        "str",
+                    ),
+                    "kms",
+                    "UpdateKeyDescription",
+                )
+            })?;
+            Some(converted_628)
         } else {
             None
         };
@@ -9035,14 +12956,38 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_593: String = value.extract()?;
-            Some(converted_593)
+            let converted_629 = (|| -> PyResult<_> {
+                let converted_629: String = value.extract()?;
+                Ok(converted_629)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "UpdatePrimaryRegion",
+                )
+            })?;
+            Some(converted_629)
         } else {
             None
         };
         let primary_region_value = if let Some(value) = dict_value(params, "primary_region")? {
-            let converted_594: String = value.extract()?;
-            Some(converted_594)
+            let converted_630 = (|| -> PyResult<_> {
+                let converted_630: String = value.extract()?;
+                Ok(converted_630)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("primary_region"),
+                        "str",
+                    ),
+                    "kms",
+                    "UpdatePrimaryRegion",
+                )
+            })?;
+            Some(converted_630)
         } else {
             None
         };
@@ -9080,56 +13025,163 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_595: String = value.extract()?;
-            Some(converted_595)
+            let converted_631 = (|| -> PyResult<_> {
+                let converted_631: String = value.extract()?;
+                Ok(converted_631)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "Verify",
+                )
+            })?;
+            Some(converted_631)
         } else {
             None
         };
         let message_value = if let Some(value) = dict_value(params, "message")? {
-            let bytes_597: Vec<u8> = value.extract()?;
-            let converted_596 = ::aws_smithy_types::Blob::new(bytes_597);
-            Some(converted_596)
+            let converted_632 = (|| -> PyResult<_> {
+                let bytes_633: Vec<u8> = value.extract()?;
+                let converted_632 = ::aws_smithy_types::Blob::new(bytes_633);
+                Ok(converted_632)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "Verify",
+                )
+            })?;
+            Some(converted_632)
         } else {
             None
         };
         let message_type_value = if let Some(value) = dict_value(params, "message_type")? {
-            let enum_value_599: String = value.extract()?;
-            let converted_598 = aws_sdk_kms::types::MessageType::from(enum_value_599.as_str());
-            Some(converted_598)
+            let converted_634 = (|| -> PyResult<_> {
+                let enum_value_635: String = value.extract()?;
+                let converted_634 = aws_sdk_kms::types::MessageType::from(enum_value_635.as_str());
+                Ok(converted_634)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message_type"),
+                        "str (MessageType)",
+                    ),
+                    "kms",
+                    "Verify",
+                )
+            })?;
+            Some(converted_634)
         } else {
             None
         };
         let signature_value = if let Some(value) = dict_value(params, "signature")? {
-            let bytes_601: Vec<u8> = value.extract()?;
-            let converted_600 = ::aws_smithy_types::Blob::new(bytes_601);
-            Some(converted_600)
+            let converted_636 = (|| -> PyResult<_> {
+                let bytes_637: Vec<u8> = value.extract()?;
+                let converted_636 = ::aws_smithy_types::Blob::new(bytes_637);
+                Ok(converted_636)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("signature"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "Verify",
+                )
+            })?;
+            Some(converted_636)
         } else {
             None
         };
         let signing_algorithm_value = if let Some(value) = dict_value(params, "signing_algorithm")?
         {
-            let enum_value_603: String = value.extract()?;
-            let converted_602 =
-                aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_603.as_str());
-            Some(converted_602)
+            let converted_638 = (|| -> PyResult<_> {
+                let enum_value_639: String = value.extract()?;
+                let converted_638 =
+                    aws_sdk_kms::types::SigningAlgorithmSpec::from(enum_value_639.as_str());
+                Ok(converted_638)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("signing_algorithm"),
+                        "str (SigningAlgorithmSpec)",
+                    ),
+                    "kms",
+                    "Verify",
+                )
+            })?;
+            Some(converted_638)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_604 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_605 in value.try_iter()? {
-                let item_606 = item_result_605?;
-                let converted_item_607: String = item_606.extract()?;
-                converted_604.push(converted_item_607);
-            }
-            Some(converted_604)
+            let converted_640 = (|| -> PyResult<_> {
+                let mut converted_640 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_644, item_result_641) in value.try_iter()?.enumerate() {
+                    let item_642 = item_result_641.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_644),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_643 = (|| -> PyResult<_> {
+                        let converted_item_643: String = item_642.extract()?;
+                        Ok(converted_item_643)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_644),
+                            "str",
+                        )
+                    })?;
+                    converted_640.push(converted_item_643);
+                }
+                Ok(converted_640)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "Verify",
+                )
+            })?;
+            Some(converted_640)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_608: bool = value.extract()?;
-            Some(converted_608)
+            let converted_645 = (|| -> PyResult<_> {
+                let converted_645: bool = value.extract()?;
+                Ok(converted_645)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "Verify",
+                )
+            })?;
+            Some(converted_645)
         } else {
             None
         };
@@ -9171,47 +13223,137 @@ impl KMSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let message_value = if let Some(value) = dict_value(params, "message")? {
-            let bytes_610: Vec<u8> = value.extract()?;
-            let converted_609 = ::aws_smithy_types::Blob::new(bytes_610);
-            Some(converted_609)
+            let converted_646 = (|| -> PyResult<_> {
+                let bytes_647: Vec<u8> = value.extract()?;
+                let converted_646 = ::aws_smithy_types::Blob::new(bytes_647);
+                Ok(converted_646)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message"),
+                        "bytes",
+                    ),
+                    "kms",
+                    "VerifyMac",
+                )
+            })?;
+            Some(converted_646)
         } else {
             None
         };
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
-            let converted_611: String = value.extract()?;
-            Some(converted_611)
+            let converted_648 = (|| -> PyResult<_> {
+                let converted_648: String = value.extract()?;
+                Ok(converted_648)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("key_id"), "str"),
+                    "kms",
+                    "VerifyMac",
+                )
+            })?;
+            Some(converted_648)
         } else {
             None
         };
         let mac_algorithm_value = if let Some(value) = dict_value(params, "mac_algorithm")? {
-            let enum_value_613: String = value.extract()?;
-            let converted_612 = aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_613.as_str());
-            Some(converted_612)
+            let converted_649 = (|| -> PyResult<_> {
+                let enum_value_650: String = value.extract()?;
+                let converted_649 =
+                    aws_sdk_kms::types::MacAlgorithmSpec::from(enum_value_650.as_str());
+                Ok(converted_649)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("mac_algorithm"),
+                        "str (MacAlgorithmSpec)",
+                    ),
+                    "kms",
+                    "VerifyMac",
+                )
+            })?;
+            Some(converted_649)
         } else {
             None
         };
         let mac_value = if let Some(value) = dict_value(params, "mac")? {
-            let bytes_615: Vec<u8> = value.extract()?;
-            let converted_614 = ::aws_smithy_types::Blob::new(bytes_615);
-            Some(converted_614)
+            let converted_651 = (|| -> PyResult<_> {
+                let bytes_652: Vec<u8> = value.extract()?;
+                let converted_651 = ::aws_smithy_types::Blob::new(bytes_652);
+                Ok(converted_651)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("mac"), "bytes"),
+                    "kms",
+                    "VerifyMac",
+                )
+            })?;
+            Some(converted_651)
         } else {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_616 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_617 in value.try_iter()? {
-                let item_618 = item_result_617?;
-                let converted_item_619: String = item_618.extract()?;
-                converted_616.push(converted_item_619);
-            }
-            Some(converted_616)
+            let converted_653 = (|| -> PyResult<_> {
+                let mut converted_653 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_657, item_result_654) in value.try_iter()?.enumerate() {
+                    let item_655 = item_result_654.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_657),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_656 = (|| -> PyResult<_> {
+                        let converted_item_656: String = item_655.extract()?;
+                        Ok(converted_item_656)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_657),
+                            "str",
+                        )
+                    })?;
+                    converted_653.push(converted_item_656);
+                }
+                Ok(converted_653)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_tokens"),
+                        "sequence",
+                    ),
+                    "kms",
+                    "VerifyMac",
+                )
+            })?;
+            Some(converted_653)
         } else {
             None
         };
         let dry_run_value = if let Some(value) = dict_value(params, "dry_run")? {
-            let converted_620: bool = value.extract()?;
-            Some(converted_620)
+            let converted_658 = (|| -> PyResult<_> {
+                let converted_658: bool = value.extract()?;
+                Ok(converted_658)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("dry_run"), "bool"),
+                    "kms",
+                    "VerifyMac",
+                )
+            })?;
+            Some(converted_658)
         } else {
             None
         };

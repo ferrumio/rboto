@@ -10,30 +10,56 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn batch_result_error_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::BatchResultErrorEntry> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::BatchResultErrorEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_1: String = value.extract()?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1: String = value.extract()?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
         builder = builder.set_id(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "code")? {
-        let converted_2: String = value.extract()?;
+        let converted_2 = (|| -> PyResult<_> {
+            let converted_2: String = value.extract()?;
+            Ok(converted_2)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("code"), "str")
+        })?;
         builder = builder.set_code(Some(converted_2));
     }
     if let Some(value) = dict_value(values, "message")? {
-        let converted_3: String = value.extract()?;
+        let converted_3 = (|| -> PyResult<_> {
+            let converted_3: String = value.extract()?;
+            Ok(converted_3)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message"), "str")
+        })?;
         builder = builder.set_message(Some(converted_3));
     }
     if let Some(value) = dict_value(values, "sender_fault")? {
-        let converted_4: bool = value.extract()?;
+        let converted_4 = (|| -> PyResult<_> {
+            let converted_4: bool = value.extract()?;
+            Ok(converted_4)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sender_fault"), "bool")
+        })?;
         builder = builder.set_sender_fault(Some(converted_4));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("id", "id"), ("code", "code")]))
 }
 
 fn batch_result_error_entry_to_py(
@@ -60,17 +86,41 @@ fn endpoint_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::En
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::Endpoint::builder();
     if let Some(value) = dict_value(values, "endpoint_arn")? {
-        let converted_9: String = value.extract()?;
+        let converted_9 = (|| -> PyResult<_> {
+            let converted_9: String = value.extract()?;
+            Ok(converted_9)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("endpoint_arn"), "str")
+        })?;
         builder = builder.set_endpoint_arn(Some(converted_9));
     }
     if let Some(value) = dict_value(values, "attributes")? {
-        let mapping_11 = value.cast::<PyDict>()?;
-        let mut converted_10 = HashMap::with_capacity(mapping_11.len());
-        for (key_12, value_13) in mapping_11.iter() {
-            let converted_key_14: String = key_12.extract()?;
-            let converted_value_15: String = value_13.extract()?;
-            converted_10.insert(converted_key_14, converted_value_15);
-        }
+        let converted_10 = (|| -> PyResult<_> {
+            let mapping_11 = value.cast::<PyDict>()?;
+            let mut converted_10 = HashMap::with_capacity(mapping_11.len());
+            for (index_16, (key_12, value_13)) in mapping_11.iter().enumerate() {
+                let converted_key_14 = (|| -> PyResult<_> {
+                    let converted_key_14: String = key_12.extract()?;
+                    Ok(converted_key_14)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_16), "str")
+                })?;
+                let converted_value_15 = (|| -> PyResult<_> {
+                    let converted_value_15: String = value_13.extract()?;
+                    Ok(converted_value_15)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_16), "str")
+                })?;
+                converted_10.insert(converted_key_14, converted_value_15);
+            }
+            Ok(converted_10)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("attributes"), "dict")
+        })?;
         builder = builder.set_attributes(Some(converted_10));
     }
     Ok(builder.build())
@@ -79,20 +129,20 @@ fn endpoint_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::En
 fn endpoint_to_py(py: Python<'_>, value: &aws_sdk_sns::types::Endpoint) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.endpoint_arn {
-        let converted_16 = (value).as_str().into_py_any(py)?;
-        result.set_item("endpoint_arn", converted_16)?;
+        let converted_17 = (value).as_str().into_py_any(py)?;
+        result.set_item("endpoint_arn", converted_17)?;
     } else {
         result.set_item("endpoint_arn", py.None())?;
     }
     if let Some(value) = &value.attributes {
-        let converted_17_dict = PyDict::new(py);
-        for (key_18, value_19) in value {
-            let converted_key_20 = (key_18).as_str().into_py_any(py)?;
-            let converted_value_21 = (value_19).as_str().into_py_any(py)?;
-            converted_17_dict.set_item(converted_key_20, converted_value_21)?;
+        let converted_18_dict = PyDict::new(py);
+        for (key_19, value_20) in value {
+            let converted_key_21 = (key_19).as_str().into_py_any(py)?;
+            let converted_value_22 = (value_20).as_str().into_py_any(py)?;
+            converted_18_dict.set_item(converted_key_21, converted_value_22)?;
         }
-        let converted_17 = converted_17_dict.into_any().unbind();
-        result.set_item("attributes", converted_17)?;
+        let converted_18 = converted_18_dict.into_any().unbind();
+        result.set_item("attributes", converted_18)?;
     } else {
         result.set_item("attributes", py.None())?;
     }
@@ -105,21 +155,39 @@ fn message_attribute_value_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::MessageAttributeValue::builder();
     if let Some(value) = dict_value(values, "data_type")? {
-        let converted_22: String = value.extract()?;
-        builder = builder.set_data_type(Some(converted_22));
+        let converted_23 = (|| -> PyResult<_> {
+            let converted_23: String = value.extract()?;
+            Ok(converted_23)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("data_type"), "str")
+        })?;
+        builder = builder.set_data_type(Some(converted_23));
     }
     if let Some(value) = dict_value(values, "string_value")? {
-        let converted_23: String = value.extract()?;
-        builder = builder.set_string_value(Some(converted_23));
+        let converted_24 = (|| -> PyResult<_> {
+            let converted_24: String = value.extract()?;
+            Ok(converted_24)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("string_value"), "str")
+        })?;
+        builder = builder.set_string_value(Some(converted_24));
     }
     if let Some(value) = dict_value(values, "binary_value")? {
-        let bytes_25: Vec<u8> = value.extract()?;
-        let converted_24 = ::aws_smithy_types::Blob::new(bytes_25);
-        builder = builder.set_binary_value(Some(converted_24));
+        let converted_25 = (|| -> PyResult<_> {
+            let bytes_26: Vec<u8> = value.extract()?;
+            let converted_25 = ::aws_smithy_types::Blob::new(bytes_26);
+            Ok(converted_25)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("binary_value"), "bytes")
+        })?;
+        builder = builder.set_binary_value(Some(converted_25));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("data_type", "data_type")]))
 }
 
 fn message_attribute_value_to_py(
@@ -127,17 +195,17 @@ fn message_attribute_value_to_py(
     value: &aws_sdk_sns::types::MessageAttributeValue,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_26 = (&value.data_type).as_str().into_py_any(py)?;
-    result.set_item("data_type", converted_26)?;
+    let converted_27 = (&value.data_type).as_str().into_py_any(py)?;
+    result.set_item("data_type", converted_27)?;
     if let Some(value) = &value.string_value {
-        let converted_27 = (value).as_str().into_py_any(py)?;
-        result.set_item("string_value", converted_27)?;
+        let converted_28 = (value).as_str().into_py_any(py)?;
+        result.set_item("string_value", converted_28)?;
     } else {
         result.set_item("string_value", py.None())?;
     }
     if let Some(value) = &value.binary_value {
-        let converted_28 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("binary_value", converted_28)?;
+        let converted_29 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("binary_value", converted_29)?;
     } else {
         result.set_item("binary_value", py.None())?;
     }
@@ -150,42 +218,111 @@ fn phone_number_information_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::PhoneNumberInformation::builder();
     if let Some(value) = dict_value(values, "created_at")? {
-        let timestamp_30: String = value.extract()?;
-        let converted_29 = ::aws_smithy_types::DateTime::from_str(
-            &timestamp_30,
-            ::aws_smithy_types::date_time::Format::DateTime,
-        )
-        .map_err(|error| PyValueError::new_err(error.to_string()))?;
-        builder = builder.set_created_at(Some(converted_29));
+        let converted_30 = (|| -> PyResult<_> {
+            let timestamp_31: String = value.extract()?;
+            let converted_30 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_31,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_30)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("created_at"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_created_at(Some(converted_30));
     }
     if let Some(value) = dict_value(values, "phone_number")? {
-        let converted_31: String = value.extract()?;
-        builder = builder.set_phone_number(Some(converted_31));
+        let converted_32 = (|| -> PyResult<_> {
+            let converted_32: String = value.extract()?;
+            Ok(converted_32)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("phone_number"), "str")
+        })?;
+        builder = builder.set_phone_number(Some(converted_32));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let converted_32: String = value.extract()?;
-        builder = builder.set_status(Some(converted_32));
+        let converted_33 = (|| -> PyResult<_> {
+            let converted_33: String = value.extract()?;
+            Ok(converted_33)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("status"), "str")
+        })?;
+        builder = builder.set_status(Some(converted_33));
     }
     if let Some(value) = dict_value(values, "iso2_country_code")? {
-        let converted_33: String = value.extract()?;
-        builder = builder.set_iso2_country_code(Some(converted_33));
+        let converted_34 = (|| -> PyResult<_> {
+            let converted_34: String = value.extract()?;
+            Ok(converted_34)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("iso2_country_code"),
+                "str",
+            )
+        })?;
+        builder = builder.set_iso2_country_code(Some(converted_34));
     }
     if let Some(value) = dict_value(values, "route_type")? {
-        let enum_value_35: String = value.extract()?;
-        let converted_34 = aws_sdk_sns::types::RouteType::from(enum_value_35.as_str());
-        builder = builder.set_route_type(Some(converted_34));
+        let converted_35 = (|| -> PyResult<_> {
+            let enum_value_36: String = value.extract()?;
+            let converted_35 = aws_sdk_sns::types::RouteType::from(enum_value_36.as_str());
+            Ok(converted_35)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("route_type"),
+                "str (RouteType)",
+            )
+        })?;
+        builder = builder.set_route_type(Some(converted_35));
     }
     if let Some(value) = dict_value(values, "number_capabilities")? {
-        let mut converted_36 =
-            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-        for item_result_37 in value.try_iter()? {
-            let item_38 = item_result_37?;
-            let enum_value_40: String = item_38.extract()?;
-            let converted_item_39 =
-                aws_sdk_sns::types::NumberCapability::from(enum_value_40.as_str());
-            converted_36.push(converted_item_39);
-        }
-        builder = builder.set_number_capabilities(Some(converted_36));
+        let converted_37 = (|| -> PyResult<_> {
+            let mut converted_37 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_41, item_result_38) in value.try_iter()?.enumerate() {
+                let item_39 = item_result_38.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_41),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_40 = (|| -> PyResult<_> {
+                    let enum_value_42: String = item_39.extract()?;
+                    let converted_item_40 =
+                        aws_sdk_sns::types::NumberCapability::from(enum_value_42.as_str());
+                    Ok(converted_item_40)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_41),
+                        "str (NumberCapability)",
+                    )
+                })?;
+                converted_37.push(converted_item_40);
+            }
+            Ok(converted_37)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("number_capabilities"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_number_capabilities(Some(converted_37));
     }
     Ok(builder.build())
 }
@@ -196,43 +333,43 @@ fn phone_number_information_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.created_at {
-        let converted_41 = (value).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_41)?;
+        let converted_43 = (value).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_43)?;
     } else {
         result.set_item("created_at", py.None())?;
     }
     if let Some(value) = &value.phone_number {
-        let converted_42 = (value).as_str().into_py_any(py)?;
-        result.set_item("phone_number", converted_42)?;
+        let converted_44 = (value).as_str().into_py_any(py)?;
+        result.set_item("phone_number", converted_44)?;
     } else {
         result.set_item("phone_number", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_43 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_43)?;
+        let converted_45 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_45)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.iso2_country_code {
-        let converted_44 = (value).as_str().into_py_any(py)?;
-        result.set_item("iso2_country_code", converted_44)?;
+        let converted_46 = (value).as_str().into_py_any(py)?;
+        result.set_item("iso2_country_code", converted_46)?;
     } else {
         result.set_item("iso2_country_code", py.None())?;
     }
     if let Some(value) = &value.route_type {
-        let converted_45 = (value).as_str().into_py_any(py)?;
-        result.set_item("route_type", converted_45)?;
+        let converted_47 = (value).as_str().into_py_any(py)?;
+        result.set_item("route_type", converted_47)?;
     } else {
         result.set_item("route_type", py.None())?;
     }
     if let Some(value) = &value.number_capabilities {
-        let converted_46_list = PyList::empty(py);
-        for item_47 in value {
-            let converted_item_48 = (item_47).as_str().into_py_any(py)?;
-            converted_46_list.append(converted_item_48)?;
+        let converted_48_list = PyList::empty(py);
+        for item_49 in value {
+            let converted_item_50 = (item_49).as_str().into_py_any(py)?;
+            converted_48_list.append(converted_item_50)?;
         }
-        let converted_46 = converted_46_list.into_any().unbind();
-        result.set_item("number_capabilities", converted_46)?;
+        let converted_48 = converted_48_list.into_any().unbind();
+        result.set_item("number_capabilities", converted_48)?;
     } else {
         result.set_item("number_capabilities", py.None())?;
     }
@@ -245,18 +382,46 @@ fn platform_application_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::PlatformApplication::builder();
     if let Some(value) = dict_value(values, "platform_application_arn")? {
-        let converted_49: String = value.extract()?;
-        builder = builder.set_platform_application_arn(Some(converted_49));
+        let converted_51 = (|| -> PyResult<_> {
+            let converted_51: String = value.extract()?;
+            Ok(converted_51)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("platform_application_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_platform_application_arn(Some(converted_51));
     }
     if let Some(value) = dict_value(values, "attributes")? {
-        let mapping_51 = value.cast::<PyDict>()?;
-        let mut converted_50 = HashMap::with_capacity(mapping_51.len());
-        for (key_52, value_53) in mapping_51.iter() {
-            let converted_key_54: String = key_52.extract()?;
-            let converted_value_55: String = value_53.extract()?;
-            converted_50.insert(converted_key_54, converted_value_55);
-        }
-        builder = builder.set_attributes(Some(converted_50));
+        let converted_52 = (|| -> PyResult<_> {
+            let mapping_53 = value.cast::<PyDict>()?;
+            let mut converted_52 = HashMap::with_capacity(mapping_53.len());
+            for (index_58, (key_54, value_55)) in mapping_53.iter().enumerate() {
+                let converted_key_56 = (|| -> PyResult<_> {
+                    let converted_key_56: String = key_54.extract()?;
+                    Ok(converted_key_56)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_58), "str")
+                })?;
+                let converted_value_57 = (|| -> PyResult<_> {
+                    let converted_value_57: String = value_55.extract()?;
+                    Ok(converted_value_57)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_58), "str")
+                })?;
+                converted_52.insert(converted_key_56, converted_value_57);
+            }
+            Ok(converted_52)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("attributes"), "dict")
+        })?;
+        builder = builder.set_attributes(Some(converted_52));
     }
     Ok(builder.build())
 }
@@ -267,20 +432,20 @@ fn platform_application_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.platform_application_arn {
-        let converted_56 = (value).as_str().into_py_any(py)?;
-        result.set_item("platform_application_arn", converted_56)?;
+        let converted_59 = (value).as_str().into_py_any(py)?;
+        result.set_item("platform_application_arn", converted_59)?;
     } else {
         result.set_item("platform_application_arn", py.None())?;
     }
     if let Some(value) = &value.attributes {
-        let converted_57_dict = PyDict::new(py);
-        for (key_58, value_59) in value {
-            let converted_key_60 = (key_58).as_str().into_py_any(py)?;
-            let converted_value_61 = (value_59).as_str().into_py_any(py)?;
-            converted_57_dict.set_item(converted_key_60, converted_value_61)?;
+        let converted_60_dict = PyDict::new(py);
+        for (key_61, value_62) in value {
+            let converted_key_63 = (key_61).as_str().into_py_any(py)?;
+            let converted_value_64 = (value_62).as_str().into_py_any(py)?;
+            converted_60_dict.set_item(converted_key_63, converted_value_64)?;
         }
-        let converted_57 = converted_57_dict.into_any().unbind();
-        result.set_item("attributes", converted_57)?;
+        let converted_60 = converted_60_dict.into_any().unbind();
+        result.set_item("attributes", converted_60)?;
     } else {
         result.set_item("attributes", py.None())?;
     }
@@ -293,42 +458,116 @@ fn publish_batch_request_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::PublishBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_62: String = value.extract()?;
-        builder = builder.set_id(Some(converted_62));
+        let converted_65 = (|| -> PyResult<_> {
+            let converted_65: String = value.extract()?;
+            Ok(converted_65)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
+        builder = builder.set_id(Some(converted_65));
     }
     if let Some(value) = dict_value(values, "message")? {
-        let converted_63: String = value.extract()?;
-        builder = builder.set_message(Some(converted_63));
+        let converted_66 = (|| -> PyResult<_> {
+            let converted_66: String = value.extract()?;
+            Ok(converted_66)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message"), "str")
+        })?;
+        builder = builder.set_message(Some(converted_66));
     }
     if let Some(value) = dict_value(values, "subject")? {
-        let converted_64: String = value.extract()?;
-        builder = builder.set_subject(Some(converted_64));
+        let converted_67 = (|| -> PyResult<_> {
+            let converted_67: String = value.extract()?;
+            Ok(converted_67)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("subject"), "str")
+        })?;
+        builder = builder.set_subject(Some(converted_67));
     }
     if let Some(value) = dict_value(values, "message_structure")? {
-        let converted_65: String = value.extract()?;
-        builder = builder.set_message_structure(Some(converted_65));
+        let converted_68 = (|| -> PyResult<_> {
+            let converted_68: String = value.extract()?;
+            Ok(converted_68)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_structure"),
+                "str",
+            )
+        })?;
+        builder = builder.set_message_structure(Some(converted_68));
     }
     if let Some(value) = dict_value(values, "message_attributes")? {
-        let mapping_67 = value.cast::<PyDict>()?;
-        let mut converted_66 = HashMap::with_capacity(mapping_67.len());
-        for (key_68, value_69) in mapping_67.iter() {
-            let converted_key_70: String = key_68.extract()?;
-            let converted_value_71 = message_attribute_value_from_py(&value_69)?;
-            converted_66.insert(converted_key_70, converted_value_71);
-        }
-        builder = builder.set_message_attributes(Some(converted_66));
+        let converted_69 = (|| -> PyResult<_> {
+            let mapping_70 = value.cast::<PyDict>()?;
+            let mut converted_69 = HashMap::with_capacity(mapping_70.len());
+            for (index_75, (key_71, value_72)) in mapping_70.iter().enumerate() {
+                let converted_key_73 = (|| -> PyResult<_> {
+                    let converted_key_73: String = key_71.extract()?;
+                    Ok(converted_key_73)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_75), "str")
+                })?;
+                let converted_value_74 = (|| -> PyResult<_> {
+                    let converted_value_74 = message_attribute_value_from_py(&value_72)?;
+                    Ok(converted_value_74)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_75),
+                        "dict (MessageAttributeValue)",
+                    )
+                })?;
+                converted_69.insert(converted_key_73, converted_value_74);
+            }
+            Ok(converted_69)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_attributes"),
+                "dict",
+            )
+        })?;
+        builder = builder.set_message_attributes(Some(converted_69));
     }
     if let Some(value) = dict_value(values, "message_deduplication_id")? {
-        let converted_72: String = value.extract()?;
-        builder = builder.set_message_deduplication_id(Some(converted_72));
+        let converted_76 = (|| -> PyResult<_> {
+            let converted_76: String = value.extract()?;
+            Ok(converted_76)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_deduplication_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_message_deduplication_id(Some(converted_76));
     }
     if let Some(value) = dict_value(values, "message_group_id")? {
-        let converted_73: String = value.extract()?;
-        builder = builder.set_message_group_id(Some(converted_73));
+        let converted_77 = (|| -> PyResult<_> {
+            let converted_77: String = value.extract()?;
+            Ok(converted_77)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("message_group_id"),
+                "str",
+            )
+        })?;
+        builder = builder.set_message_group_id(Some(converted_77));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("id", "id"), ("message", "message")])
+    })
 }
 
 fn publish_batch_request_entry_to_py(
@@ -336,43 +575,43 @@ fn publish_batch_request_entry_to_py(
     value: &aws_sdk_sns::types::PublishBatchRequestEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_74 = (&value.id).as_str().into_py_any(py)?;
-    result.set_item("id", converted_74)?;
-    let converted_75 = (&value.message).as_str().into_py_any(py)?;
-    result.set_item("message", converted_75)?;
+    let converted_78 = (&value.id).as_str().into_py_any(py)?;
+    result.set_item("id", converted_78)?;
+    let converted_79 = (&value.message).as_str().into_py_any(py)?;
+    result.set_item("message", converted_79)?;
     if let Some(value) = &value.subject {
-        let converted_76 = (value).as_str().into_py_any(py)?;
-        result.set_item("subject", converted_76)?;
+        let converted_80 = (value).as_str().into_py_any(py)?;
+        result.set_item("subject", converted_80)?;
     } else {
         result.set_item("subject", py.None())?;
     }
     if let Some(value) = &value.message_structure {
-        let converted_77 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_structure", converted_77)?;
+        let converted_81 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_structure", converted_81)?;
     } else {
         result.set_item("message_structure", py.None())?;
     }
     if let Some(value) = &value.message_attributes {
-        let converted_78_dict = PyDict::new(py);
-        for (key_79, value_80) in value {
-            let converted_key_81 = (key_79).as_str().into_py_any(py)?;
-            let converted_value_82 = message_attribute_value_to_py(py, value_80)?;
-            converted_78_dict.set_item(converted_key_81, converted_value_82)?;
+        let converted_82_dict = PyDict::new(py);
+        for (key_83, value_84) in value {
+            let converted_key_85 = (key_83).as_str().into_py_any(py)?;
+            let converted_value_86 = message_attribute_value_to_py(py, value_84)?;
+            converted_82_dict.set_item(converted_key_85, converted_value_86)?;
         }
-        let converted_78 = converted_78_dict.into_any().unbind();
-        result.set_item("message_attributes", converted_78)?;
+        let converted_82 = converted_82_dict.into_any().unbind();
+        result.set_item("message_attributes", converted_82)?;
     } else {
         result.set_item("message_attributes", py.None())?;
     }
     if let Some(value) = &value.message_deduplication_id {
-        let converted_83 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_deduplication_id", converted_83)?;
+        let converted_87 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_deduplication_id", converted_87)?;
     } else {
         result.set_item("message_deduplication_id", py.None())?;
     }
     if let Some(value) = &value.message_group_id {
-        let converted_84 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_group_id", converted_84)?;
+        let converted_88 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_group_id", converted_88)?;
     } else {
         result.set_item("message_group_id", py.None())?;
     }
@@ -385,16 +624,38 @@ fn publish_batch_result_entry_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::PublishBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
-        let converted_85: String = value.extract()?;
-        builder = builder.set_id(Some(converted_85));
+        let converted_89 = (|| -> PyResult<_> {
+            let converted_89: String = value.extract()?;
+            Ok(converted_89)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("id"), "str")
+        })?;
+        builder = builder.set_id(Some(converted_89));
     }
     if let Some(value) = dict_value(values, "message_id")? {
-        let converted_86: String = value.extract()?;
-        builder = builder.set_message_id(Some(converted_86));
+        let converted_90 = (|| -> PyResult<_> {
+            let converted_90: String = value.extract()?;
+            Ok(converted_90)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message_id"), "str")
+        })?;
+        builder = builder.set_message_id(Some(converted_90));
     }
     if let Some(value) = dict_value(values, "sequence_number")? {
-        let converted_87: String = value.extract()?;
-        builder = builder.set_sequence_number(Some(converted_87));
+        let converted_91 = (|| -> PyResult<_> {
+            let converted_91: String = value.extract()?;
+            Ok(converted_91)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("sequence_number"),
+                "str",
+            )
+        })?;
+        builder = builder.set_sequence_number(Some(converted_91));
     }
     Ok(builder.build())
 }
@@ -405,20 +666,20 @@ fn publish_batch_result_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_88 = (value).as_str().into_py_any(py)?;
-        result.set_item("id", converted_88)?;
+        let converted_92 = (value).as_str().into_py_any(py)?;
+        result.set_item("id", converted_92)?;
     } else {
         result.set_item("id", py.None())?;
     }
     if let Some(value) = &value.message_id {
-        let converted_89 = (value).as_str().into_py_any(py)?;
-        result.set_item("message_id", converted_89)?;
+        let converted_93 = (value).as_str().into_py_any(py)?;
+        result.set_item("message_id", converted_93)?;
     } else {
         result.set_item("message_id", py.None())?;
     }
     if let Some(value) = &value.sequence_number {
-        let converted_90 = (value).as_str().into_py_any(py)?;
-        result.set_item("sequence_number", converted_90)?;
+        let converted_94 = (value).as_str().into_py_any(py)?;
+        result.set_item("sequence_number", converted_94)?;
     } else {
         result.set_item("sequence_number", py.None())?;
     }
@@ -431,15 +692,31 @@ fn sms_sandbox_phone_number_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::SmsSandboxPhoneNumber::builder();
     if let Some(value) = dict_value(values, "phone_number")? {
-        let converted_91: String = value.extract()?;
-        builder = builder.set_phone_number(Some(converted_91));
+        let converted_95 = (|| -> PyResult<_> {
+            let converted_95: String = value.extract()?;
+            Ok(converted_95)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("phone_number"), "str")
+        })?;
+        builder = builder.set_phone_number(Some(converted_95));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let enum_value_93: String = value.extract()?;
-        let converted_92 = aws_sdk_sns::types::SmsSandboxPhoneNumberVerificationStatus::from(
-            enum_value_93.as_str(),
-        );
-        builder = builder.set_status(Some(converted_92));
+        let converted_96 = (|| -> PyResult<_> {
+            let enum_value_97: String = value.extract()?;
+            let converted_96 = aws_sdk_sns::types::SmsSandboxPhoneNumberVerificationStatus::from(
+                enum_value_97.as_str(),
+            );
+            Ok(converted_96)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (SmsSandboxPhoneNumberVerificationStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_96));
     }
     Ok(builder.build())
 }
@@ -450,14 +727,14 @@ fn sms_sandbox_phone_number_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.phone_number {
-        let converted_94 = (value).as_str().into_py_any(py)?;
-        result.set_item("phone_number", converted_94)?;
+        let converted_98 = (value).as_str().into_py_any(py)?;
+        result.set_item("phone_number", converted_98)?;
     } else {
         result.set_item("phone_number", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_95 = (value).as_str().into_py_any(py)?;
-        result.set_item("status", converted_95)?;
+        let converted_99 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_99)?;
     } else {
         result.set_item("status", py.None())?;
     }
@@ -468,24 +745,58 @@ fn subscription_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::Subscription::builder();
     if let Some(value) = dict_value(values, "subscription_arn")? {
-        let converted_96: String = value.extract()?;
-        builder = builder.set_subscription_arn(Some(converted_96));
+        let converted_100 = (|| -> PyResult<_> {
+            let converted_100: String = value.extract()?;
+            Ok(converted_100)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("subscription_arn"),
+                "str",
+            )
+        })?;
+        builder = builder.set_subscription_arn(Some(converted_100));
     }
     if let Some(value) = dict_value(values, "owner")? {
-        let converted_97: String = value.extract()?;
-        builder = builder.set_owner(Some(converted_97));
+        let converted_101 = (|| -> PyResult<_> {
+            let converted_101: String = value.extract()?;
+            Ok(converted_101)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("owner"), "str")
+        })?;
+        builder = builder.set_owner(Some(converted_101));
     }
     if let Some(value) = dict_value(values, "protocol")? {
-        let converted_98: String = value.extract()?;
-        builder = builder.set_protocol(Some(converted_98));
+        let converted_102 = (|| -> PyResult<_> {
+            let converted_102: String = value.extract()?;
+            Ok(converted_102)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("protocol"), "str")
+        })?;
+        builder = builder.set_protocol(Some(converted_102));
     }
     if let Some(value) = dict_value(values, "endpoint")? {
-        let converted_99: String = value.extract()?;
-        builder = builder.set_endpoint(Some(converted_99));
+        let converted_103 = (|| -> PyResult<_> {
+            let converted_103: String = value.extract()?;
+            Ok(converted_103)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("endpoint"), "str")
+        })?;
+        builder = builder.set_endpoint(Some(converted_103));
     }
     if let Some(value) = dict_value(values, "topic_arn")? {
-        let converted_100: String = value.extract()?;
-        builder = builder.set_topic_arn(Some(converted_100));
+        let converted_104 = (|| -> PyResult<_> {
+            let converted_104: String = value.extract()?;
+            Ok(converted_104)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("topic_arn"), "str")
+        })?;
+        builder = builder.set_topic_arn(Some(converted_104));
     }
     Ok(builder.build())
 }
@@ -496,32 +807,32 @@ fn subscription_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.subscription_arn {
-        let converted_101 = (value).as_str().into_py_any(py)?;
-        result.set_item("subscription_arn", converted_101)?;
+        let converted_105 = (value).as_str().into_py_any(py)?;
+        result.set_item("subscription_arn", converted_105)?;
     } else {
         result.set_item("subscription_arn", py.None())?;
     }
     if let Some(value) = &value.owner {
-        let converted_102 = (value).as_str().into_py_any(py)?;
-        result.set_item("owner", converted_102)?;
+        let converted_106 = (value).as_str().into_py_any(py)?;
+        result.set_item("owner", converted_106)?;
     } else {
         result.set_item("owner", py.None())?;
     }
     if let Some(value) = &value.protocol {
-        let converted_103 = (value).as_str().into_py_any(py)?;
-        result.set_item("protocol", converted_103)?;
+        let converted_107 = (value).as_str().into_py_any(py)?;
+        result.set_item("protocol", converted_107)?;
     } else {
         result.set_item("protocol", py.None())?;
     }
     if let Some(value) = &value.endpoint {
-        let converted_104 = (value).as_str().into_py_any(py)?;
-        result.set_item("endpoint", converted_104)?;
+        let converted_108 = (value).as_str().into_py_any(py)?;
+        result.set_item("endpoint", converted_108)?;
     } else {
         result.set_item("endpoint", py.None())?;
     }
     if let Some(value) = &value.topic_arn {
-        let converted_105 = (value).as_str().into_py_any(py)?;
-        result.set_item("topic_arn", converted_105)?;
+        let converted_109 = (value).as_str().into_py_any(py)?;
+        result.set_item("topic_arn", converted_109)?;
     } else {
         result.set_item("topic_arn", py.None())?;
     }
@@ -532,24 +843,36 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::Tag> {
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_106: String = value.extract()?;
-        builder = builder.set_key(Some(converted_106));
+        let converted_110 = (|| -> PyResult<_> {
+            let converted_110: String = value.extract()?;
+            Ok(converted_110)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
+        })?;
+        builder = builder.set_key(Some(converted_110));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_107: String = value.extract()?;
-        builder = builder.set_value(Some(converted_107));
+        let converted_111 = (|| -> PyResult<_> {
+            let converted_111: String = value.extract()?;
+            Ok(converted_111)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
+        })?;
+        builder = builder.set_value(Some(converted_111));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("key", "key"), ("value", "value")]))
 }
 
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_sns::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_108 = (&value.key).as_str().into_py_any(py)?;
-    result.set_item("key", converted_108)?;
-    let converted_109 = (&value.value).as_str().into_py_any(py)?;
-    result.set_item("value", converted_109)?;
+    let converted_112 = (&value.key).as_str().into_py_any(py)?;
+    result.set_item("key", converted_112)?;
+    let converted_113 = (&value.value).as_str().into_py_any(py)?;
+    result.set_item("value", converted_113)?;
     Ok(result.into_any().unbind())
 }
 
@@ -557,8 +880,14 @@ fn topic_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::Topic
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sns::types::Topic::builder();
     if let Some(value) = dict_value(values, "topic_arn")? {
-        let converted_110: String = value.extract()?;
-        builder = builder.set_topic_arn(Some(converted_110));
+        let converted_114 = (|| -> PyResult<_> {
+            let converted_114: String = value.extract()?;
+            Ok(converted_114)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("topic_arn"), "str")
+        })?;
+        builder = builder.set_topic_arn(Some(converted_114));
     }
     Ok(builder.build())
 }
@@ -566,8 +895,8 @@ fn topic_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::Topic
 fn topic_to_py(py: Python<'_>, value: &aws_sdk_sns::types::Topic) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.topic_arn {
-        let converted_111 = (value).as_str().into_py_any(py)?;
-        result.set_item("topic_arn", converted_111)?;
+        let converted_115 = (value).as_str().into_py_any(py)?;
+        result.set_item("topic_arn", converted_115)?;
     } else {
         result.set_item("topic_arn", py.None())?;
     }
@@ -583,21 +912,21 @@ struct PyBatchResultErrorEntry {
 impl PyBatchResultErrorEntry {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_257 = (&self.inner.id).as_str().into_py_any(py)?;
-        Ok(converted_257)
+        let converted_276 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_276)
     }
 
     #[getter]
     fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_258 = (&self.inner.code).as_str().into_py_any(py)?;
-        Ok(converted_258)
+        let converted_277 = (&self.inner.code).as_str().into_py_any(py)?;
+        Ok(converted_277)
     }
 
     #[getter]
     fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message {
-            let converted_259 = (value).as_str().into_py_any(py)?;
-            Ok(converted_259)
+            let converted_278 = (value).as_str().into_py_any(py)?;
+            Ok(converted_278)
         } else {
             Ok(py.None())
         }
@@ -605,8 +934,8 @@ impl PyBatchResultErrorEntry {
 
     #[getter]
     fn sender_fault(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_260 = (&self.inner.sender_fault).to_owned().into_py_any(py)?;
-        Ok(converted_260)
+        let converted_279 = (&self.inner.sender_fault).to_owned().into_py_any(py)?;
+        Ok(converted_279)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -624,8 +953,8 @@ impl PyEndpoint {
     #[getter]
     fn endpoint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint_arn {
-            let converted_261 = (value).as_str().into_py_any(py)?;
-            Ok(converted_261)
+            let converted_280 = (value).as_str().into_py_any(py)?;
+            Ok(converted_280)
         } else {
             Ok(py.None())
         }
@@ -634,14 +963,14 @@ impl PyEndpoint {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_262_dict = PyDict::new(py);
-            for (key_263, value_264) in value {
-                let converted_key_265 = (key_263).as_str().into_py_any(py)?;
-                let converted_value_266 = (value_264).as_str().into_py_any(py)?;
-                converted_262_dict.set_item(converted_key_265, converted_value_266)?;
+            let converted_281_dict = PyDict::new(py);
+            for (key_282, value_283) in value {
+                let converted_key_284 = (key_282).as_str().into_py_any(py)?;
+                let converted_value_285 = (value_283).as_str().into_py_any(py)?;
+                converted_281_dict.set_item(converted_key_284, converted_value_285)?;
             }
-            let converted_262 = converted_262_dict.into_any().unbind();
-            Ok(converted_262)
+            let converted_281 = converted_281_dict.into_any().unbind();
+            Ok(converted_281)
         } else {
             Ok(py.None())
         }
@@ -662,8 +991,8 @@ impl PyPhoneNumberInformation {
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.created_at {
-            let converted_267 = (value).to_string().into_py_any(py)?;
-            Ok(converted_267)
+            let converted_286 = (value).to_string().into_py_any(py)?;
+            Ok(converted_286)
         } else {
             Ok(py.None())
         }
@@ -672,8 +1001,8 @@ impl PyPhoneNumberInformation {
     #[getter]
     fn phone_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.phone_number {
-            let converted_268 = (value).as_str().into_py_any(py)?;
-            Ok(converted_268)
+            let converted_287 = (value).as_str().into_py_any(py)?;
+            Ok(converted_287)
         } else {
             Ok(py.None())
         }
@@ -682,8 +1011,8 @@ impl PyPhoneNumberInformation {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_269 = (value).as_str().into_py_any(py)?;
-            Ok(converted_269)
+            let converted_288 = (value).as_str().into_py_any(py)?;
+            Ok(converted_288)
         } else {
             Ok(py.None())
         }
@@ -692,8 +1021,8 @@ impl PyPhoneNumberInformation {
     #[getter]
     fn iso2_country_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.iso2_country_code {
-            let converted_270 = (value).as_str().into_py_any(py)?;
-            Ok(converted_270)
+            let converted_289 = (value).as_str().into_py_any(py)?;
+            Ok(converted_289)
         } else {
             Ok(py.None())
         }
@@ -702,8 +1031,8 @@ impl PyPhoneNumberInformation {
     #[getter]
     fn route_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.route_type {
-            let converted_271 = (value).as_str().into_py_any(py)?;
-            Ok(converted_271)
+            let converted_290 = (value).as_str().into_py_any(py)?;
+            Ok(converted_290)
         } else {
             Ok(py.None())
         }
@@ -712,13 +1041,13 @@ impl PyPhoneNumberInformation {
     #[getter]
     fn number_capabilities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.number_capabilities {
-            let converted_272_list = PyList::empty(py);
-            for item_273 in value {
-                let converted_item_274 = (item_273).as_str().into_py_any(py)?;
-                converted_272_list.append(converted_item_274)?;
+            let converted_291_list = PyList::empty(py);
+            for item_292 in value {
+                let converted_item_293 = (item_292).as_str().into_py_any(py)?;
+                converted_291_list.append(converted_item_293)?;
             }
-            let converted_272 = converted_272_list.into_any().unbind();
-            Ok(converted_272)
+            let converted_291 = converted_291_list.into_any().unbind();
+            Ok(converted_291)
         } else {
             Ok(py.None())
         }
@@ -739,8 +1068,8 @@ impl PyPlatformApplication {
     #[getter]
     fn platform_application_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.platform_application_arn {
-            let converted_275 = (value).as_str().into_py_any(py)?;
-            Ok(converted_275)
+            let converted_294 = (value).as_str().into_py_any(py)?;
+            Ok(converted_294)
         } else {
             Ok(py.None())
         }
@@ -749,14 +1078,14 @@ impl PyPlatformApplication {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_276_dict = PyDict::new(py);
-            for (key_277, value_278) in value {
-                let converted_key_279 = (key_277).as_str().into_py_any(py)?;
-                let converted_value_280 = (value_278).as_str().into_py_any(py)?;
-                converted_276_dict.set_item(converted_key_279, converted_value_280)?;
+            let converted_295_dict = PyDict::new(py);
+            for (key_296, value_297) in value {
+                let converted_key_298 = (key_296).as_str().into_py_any(py)?;
+                let converted_value_299 = (value_297).as_str().into_py_any(py)?;
+                converted_295_dict.set_item(converted_key_298, converted_value_299)?;
             }
-            let converted_276 = converted_276_dict.into_any().unbind();
-            Ok(converted_276)
+            let converted_295 = converted_295_dict.into_any().unbind();
+            Ok(converted_295)
         } else {
             Ok(py.None())
         }
@@ -777,8 +1106,8 @@ impl PyPublishBatchResultEntry {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
-            let converted_281 = (value).as_str().into_py_any(py)?;
-            Ok(converted_281)
+            let converted_300 = (value).as_str().into_py_any(py)?;
+            Ok(converted_300)
         } else {
             Ok(py.None())
         }
@@ -787,8 +1116,8 @@ impl PyPublishBatchResultEntry {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
-            let converted_282 = (value).as_str().into_py_any(py)?;
-            Ok(converted_282)
+            let converted_301 = (value).as_str().into_py_any(py)?;
+            Ok(converted_301)
         } else {
             Ok(py.None())
         }
@@ -797,8 +1126,8 @@ impl PyPublishBatchResultEntry {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_283 = (value).as_str().into_py_any(py)?;
-            Ok(converted_283)
+            let converted_302 = (value).as_str().into_py_any(py)?;
+            Ok(converted_302)
         } else {
             Ok(py.None())
         }
@@ -819,8 +1148,8 @@ impl PySmsSandboxPhoneNumber {
     #[getter]
     fn phone_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.phone_number {
-            let converted_284 = (value).as_str().into_py_any(py)?;
-            Ok(converted_284)
+            let converted_303 = (value).as_str().into_py_any(py)?;
+            Ok(converted_303)
         } else {
             Ok(py.None())
         }
@@ -829,8 +1158,8 @@ impl PySmsSandboxPhoneNumber {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_285 = (value).as_str().into_py_any(py)?;
-            Ok(converted_285)
+            let converted_304 = (value).as_str().into_py_any(py)?;
+            Ok(converted_304)
         } else {
             Ok(py.None())
         }
@@ -851,8 +1180,8 @@ impl PySubscription {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
-            let converted_286 = (value).as_str().into_py_any(py)?;
-            Ok(converted_286)
+            let converted_305 = (value).as_str().into_py_any(py)?;
+            Ok(converted_305)
         } else {
             Ok(py.None())
         }
@@ -861,8 +1190,8 @@ impl PySubscription {
     #[getter]
     fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.owner {
-            let converted_287 = (value).as_str().into_py_any(py)?;
-            Ok(converted_287)
+            let converted_306 = (value).as_str().into_py_any(py)?;
+            Ok(converted_306)
         } else {
             Ok(py.None())
         }
@@ -871,8 +1200,8 @@ impl PySubscription {
     #[getter]
     fn protocol(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.protocol {
-            let converted_288 = (value).as_str().into_py_any(py)?;
-            Ok(converted_288)
+            let converted_307 = (value).as_str().into_py_any(py)?;
+            Ok(converted_307)
         } else {
             Ok(py.None())
         }
@@ -881,8 +1210,8 @@ impl PySubscription {
     #[getter]
     fn endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint {
-            let converted_289 = (value).as_str().into_py_any(py)?;
-            Ok(converted_289)
+            let converted_308 = (value).as_str().into_py_any(py)?;
+            Ok(converted_308)
         } else {
             Ok(py.None())
         }
@@ -891,8 +1220,8 @@ impl PySubscription {
     #[getter]
     fn topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_arn {
-            let converted_290 = (value).as_str().into_py_any(py)?;
-            Ok(converted_290)
+            let converted_309 = (value).as_str().into_py_any(py)?;
+            Ok(converted_309)
         } else {
             Ok(py.None())
         }
@@ -912,14 +1241,14 @@ struct PyTag {
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_291 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_291)
+        let converted_310 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_310)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_292 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_292)
+        let converted_311 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_311)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -937,8 +1266,8 @@ impl PyTopic {
     #[getter]
     fn topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_arn {
-            let converted_293 = (value).as_str().into_py_any(py)?;
-            Ok(converted_293)
+            let converted_312 = (value).as_str().into_py_any(py)?;
+            Ok(converted_312)
         } else {
             Ok(py.None())
         }
@@ -962,14 +1291,14 @@ struct PyOperationCheckIfPhoneNumberIsOptedOutOutput {
 impl PyOperationCheckIfPhoneNumberIsOptedOutOutput {
     #[getter]
     fn is_opted_out(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_294 = (&self.inner.is_opted_out).to_owned().into_py_any(py)?;
-        Ok(converted_294)
+        let converted_313 = (&self.inner.is_opted_out).to_owned().into_py_any(py)?;
+        Ok(converted_313)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_295 = (&self.inner.is_opted_out).to_owned().into_py_any(py)?;
-        result.set_item("is_opted_out", converted_295)?;
+        let converted_314 = (&self.inner.is_opted_out).to_owned().into_py_any(py)?;
+        result.set_item("is_opted_out", converted_314)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -988,8 +1317,8 @@ impl PyOperationConfirmSubscriptionOutput {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
-            let converted_296 = (value).as_str().into_py_any(py)?;
-            Ok(converted_296)
+            let converted_315 = (value).as_str().into_py_any(py)?;
+            Ok(converted_315)
         } else {
             Ok(py.None())
         }
@@ -998,8 +1327,8 @@ impl PyOperationConfirmSubscriptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription_arn {
-            let converted_297 = (value).as_str().into_py_any(py)?;
-            result.set_item("subscription_arn", converted_297)?;
+            let converted_316 = (value).as_str().into_py_any(py)?;
+            result.set_item("subscription_arn", converted_316)?;
         } else {
             result.set_item("subscription_arn", py.None())?;
         }
@@ -1021,8 +1350,8 @@ impl PyOperationCreatePlatformApplicationOutput {
     #[getter]
     fn platform_application_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.platform_application_arn {
-            let converted_298 = (value).as_str().into_py_any(py)?;
-            Ok(converted_298)
+            let converted_317 = (value).as_str().into_py_any(py)?;
+            Ok(converted_317)
         } else {
             Ok(py.None())
         }
@@ -1031,8 +1360,8 @@ impl PyOperationCreatePlatformApplicationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.platform_application_arn {
-            let converted_299 = (value).as_str().into_py_any(py)?;
-            result.set_item("platform_application_arn", converted_299)?;
+            let converted_318 = (value).as_str().into_py_any(py)?;
+            result.set_item("platform_application_arn", converted_318)?;
         } else {
             result.set_item("platform_application_arn", py.None())?;
         }
@@ -1054,8 +1383,8 @@ impl PyOperationCreatePlatformEndpointOutput {
     #[getter]
     fn endpoint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint_arn {
-            let converted_300 = (value).as_str().into_py_any(py)?;
-            Ok(converted_300)
+            let converted_319 = (value).as_str().into_py_any(py)?;
+            Ok(converted_319)
         } else {
             Ok(py.None())
         }
@@ -1064,8 +1393,8 @@ impl PyOperationCreatePlatformEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.endpoint_arn {
-            let converted_301 = (value).as_str().into_py_any(py)?;
-            result.set_item("endpoint_arn", converted_301)?;
+            let converted_320 = (value).as_str().into_py_any(py)?;
+            result.set_item("endpoint_arn", converted_320)?;
         } else {
             result.set_item("endpoint_arn", py.None())?;
         }
@@ -1101,8 +1430,8 @@ impl PyOperationCreateTopicOutput {
     #[getter]
     fn topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_arn {
-            let converted_302 = (value).as_str().into_py_any(py)?;
-            Ok(converted_302)
+            let converted_321 = (value).as_str().into_py_any(py)?;
+            Ok(converted_321)
         } else {
             Ok(py.None())
         }
@@ -1111,8 +1440,8 @@ impl PyOperationCreateTopicOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.topic_arn {
-            let converted_303 = (value).as_str().into_py_any(py)?;
-            result.set_item("topic_arn", converted_303)?;
+            let converted_322 = (value).as_str().into_py_any(py)?;
+            result.set_item("topic_arn", converted_322)?;
         } else {
             result.set_item("topic_arn", py.None())?;
         }
@@ -1152,8 +1481,8 @@ impl PyOperationGetDataProtectionPolicyOutput {
     #[getter]
     fn data_protection_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_protection_policy {
-            let converted_304 = (value).as_str().into_py_any(py)?;
-            Ok(converted_304)
+            let converted_323 = (value).as_str().into_py_any(py)?;
+            Ok(converted_323)
         } else {
             Ok(py.None())
         }
@@ -1162,8 +1491,8 @@ impl PyOperationGetDataProtectionPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.data_protection_policy {
-            let converted_305 = (value).as_str().into_py_any(py)?;
-            result.set_item("data_protection_policy", converted_305)?;
+            let converted_324 = (value).as_str().into_py_any(py)?;
+            result.set_item("data_protection_policy", converted_324)?;
         } else {
             result.set_item("data_protection_policy", py.None())?;
         }
@@ -1185,14 +1514,14 @@ impl PyOperationGetEndpointAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_306_dict = PyDict::new(py);
-            for (key_307, value_308) in value {
-                let converted_key_309 = (key_307).as_str().into_py_any(py)?;
-                let converted_value_310 = (value_308).as_str().into_py_any(py)?;
-                converted_306_dict.set_item(converted_key_309, converted_value_310)?;
+            let converted_325_dict = PyDict::new(py);
+            for (key_326, value_327) in value {
+                let converted_key_328 = (key_326).as_str().into_py_any(py)?;
+                let converted_value_329 = (value_327).as_str().into_py_any(py)?;
+                converted_325_dict.set_item(converted_key_328, converted_value_329)?;
             }
-            let converted_306 = converted_306_dict.into_any().unbind();
-            Ok(converted_306)
+            let converted_325 = converted_325_dict.into_any().unbind();
+            Ok(converted_325)
         } else {
             Ok(py.None())
         }
@@ -1201,14 +1530,14 @@ impl PyOperationGetEndpointAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_311_dict = PyDict::new(py);
-            for (key_312, value_313) in value {
-                let converted_key_314 = (key_312).as_str().into_py_any(py)?;
-                let converted_value_315 = (value_313).as_str().into_py_any(py)?;
-                converted_311_dict.set_item(converted_key_314, converted_value_315)?;
+            let converted_330_dict = PyDict::new(py);
+            for (key_331, value_332) in value {
+                let converted_key_333 = (key_331).as_str().into_py_any(py)?;
+                let converted_value_334 = (value_332).as_str().into_py_any(py)?;
+                converted_330_dict.set_item(converted_key_333, converted_value_334)?;
             }
-            let converted_311 = converted_311_dict.into_any().unbind();
-            result.set_item("attributes", converted_311)?;
+            let converted_330 = converted_330_dict.into_any().unbind();
+            result.set_item("attributes", converted_330)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
@@ -1230,14 +1559,14 @@ impl PyOperationGetPlatformApplicationAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_316_dict = PyDict::new(py);
-            for (key_317, value_318) in value {
-                let converted_key_319 = (key_317).as_str().into_py_any(py)?;
-                let converted_value_320 = (value_318).as_str().into_py_any(py)?;
-                converted_316_dict.set_item(converted_key_319, converted_value_320)?;
+            let converted_335_dict = PyDict::new(py);
+            for (key_336, value_337) in value {
+                let converted_key_338 = (key_336).as_str().into_py_any(py)?;
+                let converted_value_339 = (value_337).as_str().into_py_any(py)?;
+                converted_335_dict.set_item(converted_key_338, converted_value_339)?;
             }
-            let converted_316 = converted_316_dict.into_any().unbind();
-            Ok(converted_316)
+            let converted_335 = converted_335_dict.into_any().unbind();
+            Ok(converted_335)
         } else {
             Ok(py.None())
         }
@@ -1246,14 +1575,14 @@ impl PyOperationGetPlatformApplicationAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_321_dict = PyDict::new(py);
-            for (key_322, value_323) in value {
-                let converted_key_324 = (key_322).as_str().into_py_any(py)?;
-                let converted_value_325 = (value_323).as_str().into_py_any(py)?;
-                converted_321_dict.set_item(converted_key_324, converted_value_325)?;
+            let converted_340_dict = PyDict::new(py);
+            for (key_341, value_342) in value {
+                let converted_key_343 = (key_341).as_str().into_py_any(py)?;
+                let converted_value_344 = (value_342).as_str().into_py_any(py)?;
+                converted_340_dict.set_item(converted_key_343, converted_value_344)?;
             }
-            let converted_321 = converted_321_dict.into_any().unbind();
-            result.set_item("attributes", converted_321)?;
+            let converted_340 = converted_340_dict.into_any().unbind();
+            result.set_item("attributes", converted_340)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
@@ -1271,14 +1600,14 @@ impl PyOperationGetSMSAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_326_dict = PyDict::new(py);
-            for (key_327, value_328) in value {
-                let converted_key_329 = (key_327).as_str().into_py_any(py)?;
-                let converted_value_330 = (value_328).as_str().into_py_any(py)?;
-                converted_326_dict.set_item(converted_key_329, converted_value_330)?;
+            let converted_345_dict = PyDict::new(py);
+            for (key_346, value_347) in value {
+                let converted_key_348 = (key_346).as_str().into_py_any(py)?;
+                let converted_value_349 = (value_347).as_str().into_py_any(py)?;
+                converted_345_dict.set_item(converted_key_348, converted_value_349)?;
             }
-            let converted_326 = converted_326_dict.into_any().unbind();
-            Ok(converted_326)
+            let converted_345 = converted_345_dict.into_any().unbind();
+            Ok(converted_345)
         } else {
             Ok(py.None())
         }
@@ -1287,14 +1616,14 @@ impl PyOperationGetSMSAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_331_dict = PyDict::new(py);
-            for (key_332, value_333) in value {
-                let converted_key_334 = (key_332).as_str().into_py_any(py)?;
-                let converted_value_335 = (value_333).as_str().into_py_any(py)?;
-                converted_331_dict.set_item(converted_key_334, converted_value_335)?;
+            let converted_350_dict = PyDict::new(py);
+            for (key_351, value_352) in value {
+                let converted_key_353 = (key_351).as_str().into_py_any(py)?;
+                let converted_value_354 = (value_352).as_str().into_py_any(py)?;
+                converted_350_dict.set_item(converted_key_353, converted_value_354)?;
             }
-            let converted_331 = converted_331_dict.into_any().unbind();
-            result.set_item("attributes", converted_331)?;
+            let converted_350 = converted_350_dict.into_any().unbind();
+            result.set_item("attributes", converted_350)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
@@ -1315,14 +1644,14 @@ struct PyOperationGetSMSSandboxAccountStatusOutput {
 impl PyOperationGetSMSSandboxAccountStatusOutput {
     #[getter]
     fn is_in_sandbox(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_336 = (&self.inner.is_in_sandbox).to_owned().into_py_any(py)?;
-        Ok(converted_336)
+        let converted_355 = (&self.inner.is_in_sandbox).to_owned().into_py_any(py)?;
+        Ok(converted_355)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_337 = (&self.inner.is_in_sandbox).to_owned().into_py_any(py)?;
-        result.set_item("is_in_sandbox", converted_337)?;
+        let converted_356 = (&self.inner.is_in_sandbox).to_owned().into_py_any(py)?;
+        result.set_item("is_in_sandbox", converted_356)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1341,14 +1670,14 @@ impl PyOperationGetSubscriptionAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_338_dict = PyDict::new(py);
-            for (key_339, value_340) in value {
-                let converted_key_341 = (key_339).as_str().into_py_any(py)?;
-                let converted_value_342 = (value_340).as_str().into_py_any(py)?;
-                converted_338_dict.set_item(converted_key_341, converted_value_342)?;
+            let converted_357_dict = PyDict::new(py);
+            for (key_358, value_359) in value {
+                let converted_key_360 = (key_358).as_str().into_py_any(py)?;
+                let converted_value_361 = (value_359).as_str().into_py_any(py)?;
+                converted_357_dict.set_item(converted_key_360, converted_value_361)?;
             }
-            let converted_338 = converted_338_dict.into_any().unbind();
-            Ok(converted_338)
+            let converted_357 = converted_357_dict.into_any().unbind();
+            Ok(converted_357)
         } else {
             Ok(py.None())
         }
@@ -1357,14 +1686,14 @@ impl PyOperationGetSubscriptionAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_343_dict = PyDict::new(py);
-            for (key_344, value_345) in value {
-                let converted_key_346 = (key_344).as_str().into_py_any(py)?;
-                let converted_value_347 = (value_345).as_str().into_py_any(py)?;
-                converted_343_dict.set_item(converted_key_346, converted_value_347)?;
+            let converted_362_dict = PyDict::new(py);
+            for (key_363, value_364) in value {
+                let converted_key_365 = (key_363).as_str().into_py_any(py)?;
+                let converted_value_366 = (value_364).as_str().into_py_any(py)?;
+                converted_362_dict.set_item(converted_key_365, converted_value_366)?;
             }
-            let converted_343 = converted_343_dict.into_any().unbind();
-            result.set_item("attributes", converted_343)?;
+            let converted_362 = converted_362_dict.into_any().unbind();
+            result.set_item("attributes", converted_362)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
@@ -1386,14 +1715,14 @@ impl PyOperationGetTopicAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_348_dict = PyDict::new(py);
-            for (key_349, value_350) in value {
-                let converted_key_351 = (key_349).as_str().into_py_any(py)?;
-                let converted_value_352 = (value_350).as_str().into_py_any(py)?;
-                converted_348_dict.set_item(converted_key_351, converted_value_352)?;
+            let converted_367_dict = PyDict::new(py);
+            for (key_368, value_369) in value {
+                let converted_key_370 = (key_368).as_str().into_py_any(py)?;
+                let converted_value_371 = (value_369).as_str().into_py_any(py)?;
+                converted_367_dict.set_item(converted_key_370, converted_value_371)?;
             }
-            let converted_348 = converted_348_dict.into_any().unbind();
-            Ok(converted_348)
+            let converted_367 = converted_367_dict.into_any().unbind();
+            Ok(converted_367)
         } else {
             Ok(py.None())
         }
@@ -1402,14 +1731,14 @@ impl PyOperationGetTopicAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.attributes {
-            let converted_353_dict = PyDict::new(py);
-            for (key_354, value_355) in value {
-                let converted_key_356 = (key_354).as_str().into_py_any(py)?;
-                let converted_value_357 = (value_355).as_str().into_py_any(py)?;
-                converted_353_dict.set_item(converted_key_356, converted_value_357)?;
+            let converted_372_dict = PyDict::new(py);
+            for (key_373, value_374) in value {
+                let converted_key_375 = (key_373).as_str().into_py_any(py)?;
+                let converted_value_376 = (value_374).as_str().into_py_any(py)?;
+                converted_372_dict.set_item(converted_key_375, converted_value_376)?;
             }
-            let converted_353 = converted_353_dict.into_any().unbind();
-            result.set_item("attributes", converted_353)?;
+            let converted_372 = converted_372_dict.into_any().unbind();
+            result.set_item("attributes", converted_372)?;
         } else {
             result.set_item("attributes", py.None())?;
         }
@@ -1427,7 +1756,7 @@ struct SharedPyOperationListEndpointsByPlatformApplicationOutput {
 impl From<aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationOutput> for SharedPyOperationListEndpointsByPlatformApplicationOutput {
     fn from(value: aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationOutput) -> Self {
         Self {
-            endpoints: value.endpoints.map(|item| (item).into_iter().map(|owned_362| Arc::new(owned_362)).collect()),
+            endpoints: value.endpoints.map(|item| (item).into_iter().map(|owned_381| Arc::new(owned_381)).collect()),
             next_token: value.next_token,
         }
     }
@@ -1447,19 +1776,19 @@ impl PyOperationListEndpointsByPlatformApplicationOutput {
     #[getter]
     fn endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoints {
-            let converted_358_list = PyList::empty(py);
-            for item_359 in value {
-                let converted_item_360 = Py::new(
+            let converted_377_list = PyList::empty(py);
+            for item_378 in value {
+                let converted_item_379 = Py::new(
                     py,
                     PyEndpoint {
-                        inner: Arc::clone(item_359),
+                        inner: Arc::clone(item_378),
                     },
                 )?
                 .into_any();
-                converted_358_list.append(converted_item_360)?;
+                converted_377_list.append(converted_item_379)?;
             }
-            let converted_358 = converted_358_list.into_any().unbind();
-            Ok(converted_358)
+            let converted_377 = converted_377_list.into_any().unbind();
+            Ok(converted_377)
         } else {
             Ok(py.None())
         }
@@ -1468,8 +1797,8 @@ impl PyOperationListEndpointsByPlatformApplicationOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_361 = (value).as_str().into_py_any(py)?;
-            Ok(converted_361)
+            let converted_380 = (value).as_str().into_py_any(py)?;
+            Ok(converted_380)
         } else {
             Ok(py.None())
         }
@@ -1478,19 +1807,19 @@ impl PyOperationListEndpointsByPlatformApplicationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.endpoints {
-            let converted_363_list = PyList::empty(py);
-            for item_364 in value {
-                let converted_item_365 = endpoint_to_py(py, item_364)?;
-                converted_363_list.append(converted_item_365)?;
+            let converted_382_list = PyList::empty(py);
+            for item_383 in value {
+                let converted_item_384 = endpoint_to_py(py, item_383)?;
+                converted_382_list.append(converted_item_384)?;
             }
-            let converted_363 = converted_363_list.into_any().unbind();
-            result.set_item("endpoints", converted_363)?;
+            let converted_382 = converted_382_list.into_any().unbind();
+            result.set_item("endpoints", converted_382)?;
         } else {
             result.set_item("endpoints", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_366 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_366)?;
+            let converted_385 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_385)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1516,7 +1845,7 @@ impl From<aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbe
             phone_numbers: value.phone_numbers.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_371| Arc::new(owned_371))
+                    .map(|owned_390| Arc::new(owned_390))
                     .collect()
             }),
         }
@@ -1537,8 +1866,8 @@ impl PyOperationListOriginationNumbersOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_367 = (value).as_str().into_py_any(py)?;
-            Ok(converted_367)
+            let converted_386 = (value).as_str().into_py_any(py)?;
+            Ok(converted_386)
         } else {
             Ok(py.None())
         }
@@ -1547,19 +1876,19 @@ impl PyOperationListOriginationNumbersOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_368_list = PyList::empty(py);
-            for item_369 in value {
-                let converted_item_370 = Py::new(
+            let converted_387_list = PyList::empty(py);
+            for item_388 in value {
+                let converted_item_389 = Py::new(
                     py,
                     PyPhoneNumberInformation {
-                        inner: Arc::clone(item_369),
+                        inner: Arc::clone(item_388),
                     },
                 )?
                 .into_any();
-                converted_368_list.append(converted_item_370)?;
+                converted_387_list.append(converted_item_389)?;
             }
-            let converted_368 = converted_368_list.into_any().unbind();
-            Ok(converted_368)
+            let converted_387 = converted_387_list.into_any().unbind();
+            Ok(converted_387)
         } else {
             Ok(py.None())
         }
@@ -1568,19 +1897,19 @@ impl PyOperationListOriginationNumbersOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_372 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_372)?;
+            let converted_391 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_391)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_373_list = PyList::empty(py);
-            for item_374 in value {
-                let converted_item_375 = phone_number_information_to_py(py, item_374)?;
-                converted_373_list.append(converted_item_375)?;
+            let converted_392_list = PyList::empty(py);
+            for item_393 in value {
+                let converted_item_394 = phone_number_information_to_py(py, item_393)?;
+                converted_392_list.append(converted_item_394)?;
             }
-            let converted_373 = converted_373_list.into_any().unbind();
-            result.set_item("phone_numbers", converted_373)?;
+            let converted_392 = converted_392_list.into_any().unbind();
+            result.set_item("phone_numbers", converted_392)?;
         } else {
             result.set_item("phone_numbers", py.None())?;
         }
@@ -1602,13 +1931,13 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_376_list = PyList::empty(py);
-            for item_377 in value {
-                let converted_item_378 = (item_377).as_str().into_py_any(py)?;
-                converted_376_list.append(converted_item_378)?;
+            let converted_395_list = PyList::empty(py);
+            for item_396 in value {
+                let converted_item_397 = (item_396).as_str().into_py_any(py)?;
+                converted_395_list.append(converted_item_397)?;
             }
-            let converted_376 = converted_376_list.into_any().unbind();
-            Ok(converted_376)
+            let converted_395 = converted_395_list.into_any().unbind();
+            Ok(converted_395)
         } else {
             Ok(py.None())
         }
@@ -1617,8 +1946,8 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_379 = (value).as_str().into_py_any(py)?;
-            Ok(converted_379)
+            let converted_398 = (value).as_str().into_py_any(py)?;
+            Ok(converted_398)
         } else {
             Ok(py.None())
         }
@@ -1627,19 +1956,19 @@ impl PyOperationListPhoneNumbersOptedOutOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.phone_numbers {
-            let converted_380_list = PyList::empty(py);
-            for item_381 in value {
-                let converted_item_382 = (item_381).as_str().into_py_any(py)?;
-                converted_380_list.append(converted_item_382)?;
+            let converted_399_list = PyList::empty(py);
+            for item_400 in value {
+                let converted_item_401 = (item_400).as_str().into_py_any(py)?;
+                converted_399_list.append(converted_item_401)?;
             }
-            let converted_380 = converted_380_list.into_any().unbind();
-            result.set_item("phone_numbers", converted_380)?;
+            let converted_399 = converted_399_list.into_any().unbind();
+            result.set_item("phone_numbers", converted_399)?;
         } else {
             result.set_item("phone_numbers", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_383 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_383)?;
+            let converted_402 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_402)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1664,7 +1993,7 @@ impl From<aws_sdk_sns::operation::list_platform_applications::ListPlatformApplic
             platform_applications: value.platform_applications.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_388| Arc::new(owned_388))
+                    .map(|owned_407| Arc::new(owned_407))
                     .collect()
             }),
             next_token: value.next_token,
@@ -1686,19 +2015,19 @@ impl PyOperationListPlatformApplicationsOutput {
     #[getter]
     fn platform_applications(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.platform_applications {
-            let converted_384_list = PyList::empty(py);
-            for item_385 in value {
-                let converted_item_386 = Py::new(
+            let converted_403_list = PyList::empty(py);
+            for item_404 in value {
+                let converted_item_405 = Py::new(
                     py,
                     PyPlatformApplication {
-                        inner: Arc::clone(item_385),
+                        inner: Arc::clone(item_404),
                     },
                 )?
                 .into_any();
-                converted_384_list.append(converted_item_386)?;
+                converted_403_list.append(converted_item_405)?;
             }
-            let converted_384 = converted_384_list.into_any().unbind();
-            Ok(converted_384)
+            let converted_403 = converted_403_list.into_any().unbind();
+            Ok(converted_403)
         } else {
             Ok(py.None())
         }
@@ -1707,8 +2036,8 @@ impl PyOperationListPlatformApplicationsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_387 = (value).as_str().into_py_any(py)?;
-            Ok(converted_387)
+            let converted_406 = (value).as_str().into_py_any(py)?;
+            Ok(converted_406)
         } else {
             Ok(py.None())
         }
@@ -1717,19 +2046,19 @@ impl PyOperationListPlatformApplicationsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.platform_applications {
-            let converted_389_list = PyList::empty(py);
-            for item_390 in value {
-                let converted_item_391 = platform_application_to_py(py, item_390)?;
-                converted_389_list.append(converted_item_391)?;
+            let converted_408_list = PyList::empty(py);
+            for item_409 in value {
+                let converted_item_410 = platform_application_to_py(py, item_409)?;
+                converted_408_list.append(converted_item_410)?;
             }
-            let converted_389 = converted_389_list.into_any().unbind();
-            result.set_item("platform_applications", converted_389)?;
+            let converted_408 = converted_408_list.into_any().unbind();
+            result.set_item("platform_applications", converted_408)?;
         } else {
             result.set_item("platform_applications", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_392 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_392)?;
+            let converted_411 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_411)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1753,7 +2082,7 @@ impl From<aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSmsSandbox
         Self {
             phone_numbers: (value.phone_numbers)
                 .into_iter()
-                .map(|owned_397| Arc::new(owned_397))
+                .map(|owned_416| Arc::new(owned_416))
                 .collect(),
             next_token: value.next_token,
         }
@@ -1773,26 +2102,26 @@ struct PyOperationListSMSSandboxPhoneNumbersOutput {
 impl PyOperationListSMSSandboxPhoneNumbersOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_393_list = PyList::empty(py);
-        for item_394 in &self.inner.phone_numbers {
-            let converted_item_395 = Py::new(
+        let converted_412_list = PyList::empty(py);
+        for item_413 in &self.inner.phone_numbers {
+            let converted_item_414 = Py::new(
                 py,
                 PySmsSandboxPhoneNumber {
-                    inner: Arc::clone(item_394),
+                    inner: Arc::clone(item_413),
                 },
             )?
             .into_any();
-            converted_393_list.append(converted_item_395)?;
+            converted_412_list.append(converted_item_414)?;
         }
-        let converted_393 = converted_393_list.into_any().unbind();
-        Ok(converted_393)
+        let converted_412 = converted_412_list.into_any().unbind();
+        Ok(converted_412)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_396 = (value).as_str().into_py_any(py)?;
-            Ok(converted_396)
+            let converted_415 = (value).as_str().into_py_any(py)?;
+            Ok(converted_415)
         } else {
             Ok(py.None())
         }
@@ -1800,16 +2129,16 @@ impl PyOperationListSMSSandboxPhoneNumbersOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_398_list = PyList::empty(py);
-        for item_399 in &self.inner.phone_numbers {
-            let converted_item_400 = sms_sandbox_phone_number_to_py(py, item_399)?;
-            converted_398_list.append(converted_item_400)?;
+        let converted_417_list = PyList::empty(py);
+        for item_418 in &self.inner.phone_numbers {
+            let converted_item_419 = sms_sandbox_phone_number_to_py(py, item_418)?;
+            converted_417_list.append(converted_item_419)?;
         }
-        let converted_398 = converted_398_list.into_any().unbind();
-        result.set_item("phone_numbers", converted_398)?;
+        let converted_417 = converted_417_list.into_any().unbind();
+        result.set_item("phone_numbers", converted_417)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_401 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_401)?;
+            let converted_420 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_420)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1832,7 +2161,7 @@ impl From<aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsOutput>
             subscriptions: value.subscriptions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_406| Arc::new(owned_406))
+                    .map(|owned_425| Arc::new(owned_425))
                     .collect()
             }),
             next_token: value.next_token,
@@ -1850,19 +2179,19 @@ impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscriptions {
-            let converted_402_list = PyList::empty(py);
-            for item_403 in value {
-                let converted_item_404 = Py::new(
+            let converted_421_list = PyList::empty(py);
+            for item_422 in value {
+                let converted_item_423 = Py::new(
                     py,
                     PySubscription {
-                        inner: Arc::clone(item_403),
+                        inner: Arc::clone(item_422),
                     },
                 )?
                 .into_any();
-                converted_402_list.append(converted_item_404)?;
+                converted_421_list.append(converted_item_423)?;
             }
-            let converted_402 = converted_402_list.into_any().unbind();
-            Ok(converted_402)
+            let converted_421 = converted_421_list.into_any().unbind();
+            Ok(converted_421)
         } else {
             Ok(py.None())
         }
@@ -1871,8 +2200,8 @@ impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_405 = (value).as_str().into_py_any(py)?;
-            Ok(converted_405)
+            let converted_424 = (value).as_str().into_py_any(py)?;
+            Ok(converted_424)
         } else {
             Ok(py.None())
         }
@@ -1881,19 +2210,19 @@ impl PyOperationListSubscriptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscriptions {
-            let converted_407_list = PyList::empty(py);
-            for item_408 in value {
-                let converted_item_409 = subscription_to_py(py, item_408)?;
-                converted_407_list.append(converted_item_409)?;
+            let converted_426_list = PyList::empty(py);
+            for item_427 in value {
+                let converted_item_428 = subscription_to_py(py, item_427)?;
+                converted_426_list.append(converted_item_428)?;
             }
-            let converted_407 = converted_407_list.into_any().unbind();
-            result.set_item("subscriptions", converted_407)?;
+            let converted_426 = converted_426_list.into_any().unbind();
+            result.set_item("subscriptions", converted_426)?;
         } else {
             result.set_item("subscriptions", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_410 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_410)?;
+            let converted_429 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_429)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1918,7 +2247,7 @@ impl From<aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptions
             subscriptions: value.subscriptions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_415| Arc::new(owned_415))
+                    .map(|owned_434| Arc::new(owned_434))
                     .collect()
             }),
             next_token: value.next_token,
@@ -1940,19 +2269,19 @@ impl PyOperationListSubscriptionsByTopicOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscriptions {
-            let converted_411_list = PyList::empty(py);
-            for item_412 in value {
-                let converted_item_413 = Py::new(
+            let converted_430_list = PyList::empty(py);
+            for item_431 in value {
+                let converted_item_432 = Py::new(
                     py,
                     PySubscription {
-                        inner: Arc::clone(item_412),
+                        inner: Arc::clone(item_431),
                     },
                 )?
                 .into_any();
-                converted_411_list.append(converted_item_413)?;
+                converted_430_list.append(converted_item_432)?;
             }
-            let converted_411 = converted_411_list.into_any().unbind();
-            Ok(converted_411)
+            let converted_430 = converted_430_list.into_any().unbind();
+            Ok(converted_430)
         } else {
             Ok(py.None())
         }
@@ -1961,8 +2290,8 @@ impl PyOperationListSubscriptionsByTopicOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_414 = (value).as_str().into_py_any(py)?;
-            Ok(converted_414)
+            let converted_433 = (value).as_str().into_py_any(py)?;
+            Ok(converted_433)
         } else {
             Ok(py.None())
         }
@@ -1971,19 +2300,19 @@ impl PyOperationListSubscriptionsByTopicOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscriptions {
-            let converted_416_list = PyList::empty(py);
-            for item_417 in value {
-                let converted_item_418 = subscription_to_py(py, item_417)?;
-                converted_416_list.append(converted_item_418)?;
+            let converted_435_list = PyList::empty(py);
+            for item_436 in value {
+                let converted_item_437 = subscription_to_py(py, item_436)?;
+                converted_435_list.append(converted_item_437)?;
             }
-            let converted_416 = converted_416_list.into_any().unbind();
-            result.set_item("subscriptions", converted_416)?;
+            let converted_435 = converted_435_list.into_any().unbind();
+            result.set_item("subscriptions", converted_435)?;
         } else {
             result.set_item("subscriptions", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_419 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_419)?;
+            let converted_438 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_438)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -2007,7 +2336,7 @@ impl From<aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceOut
             tags: value.tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_423| Arc::new(owned_423))
+                    .map(|owned_442| Arc::new(owned_442))
                     .collect()
             }),
         }
@@ -2028,19 +2357,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_420_list = PyList::empty(py);
-            for item_421 in value {
-                let converted_item_422 = Py::new(
+            let converted_439_list = PyList::empty(py);
+            for item_440 in value {
+                let converted_item_441 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_421),
+                        inner: Arc::clone(item_440),
                     },
                 )?
                 .into_any();
-                converted_420_list.append(converted_item_422)?;
+                converted_439_list.append(converted_item_441)?;
             }
-            let converted_420 = converted_420_list.into_any().unbind();
-            Ok(converted_420)
+            let converted_439 = converted_439_list.into_any().unbind();
+            Ok(converted_439)
         } else {
             Ok(py.None())
         }
@@ -2049,13 +2378,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_424_list = PyList::empty(py);
-            for item_425 in value {
-                let converted_item_426 = tag_to_py(py, item_425)?;
-                converted_424_list.append(converted_item_426)?;
+            let converted_443_list = PyList::empty(py);
+            for item_444 in value {
+                let converted_item_445 = tag_to_py(py, item_444)?;
+                converted_443_list.append(converted_item_445)?;
             }
-            let converted_424 = converted_424_list.into_any().unbind();
-            result.set_item("tags", converted_424)?;
+            let converted_443 = converted_443_list.into_any().unbind();
+            result.set_item("tags", converted_443)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -2078,7 +2407,7 @@ impl From<aws_sdk_sns::operation::list_topics::ListTopicsOutput>
             topics: value.topics.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_431| Arc::new(owned_431))
+                    .map(|owned_450| Arc::new(owned_450))
                     .collect()
             }),
             next_token: value.next_token,
@@ -2096,19 +2425,19 @@ impl PyOperationListTopicsOutput {
     #[getter]
     fn topics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topics {
-            let converted_427_list = PyList::empty(py);
-            for item_428 in value {
-                let converted_item_429 = Py::new(
+            let converted_446_list = PyList::empty(py);
+            for item_447 in value {
+                let converted_item_448 = Py::new(
                     py,
                     PyTopic {
-                        inner: Arc::clone(item_428),
+                        inner: Arc::clone(item_447),
                     },
                 )?
                 .into_any();
-                converted_427_list.append(converted_item_429)?;
+                converted_446_list.append(converted_item_448)?;
             }
-            let converted_427 = converted_427_list.into_any().unbind();
-            Ok(converted_427)
+            let converted_446 = converted_446_list.into_any().unbind();
+            Ok(converted_446)
         } else {
             Ok(py.None())
         }
@@ -2117,8 +2446,8 @@ impl PyOperationListTopicsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_430 = (value).as_str().into_py_any(py)?;
-            Ok(converted_430)
+            let converted_449 = (value).as_str().into_py_any(py)?;
+            Ok(converted_449)
         } else {
             Ok(py.None())
         }
@@ -2127,19 +2456,19 @@ impl PyOperationListTopicsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.topics {
-            let converted_432_list = PyList::empty(py);
-            for item_433 in value {
-                let converted_item_434 = topic_to_py(py, item_433)?;
-                converted_432_list.append(converted_item_434)?;
+            let converted_451_list = PyList::empty(py);
+            for item_452 in value {
+                let converted_item_453 = topic_to_py(py, item_452)?;
+                converted_451_list.append(converted_item_453)?;
             }
-            let converted_432 = converted_432_list.into_any().unbind();
-            result.set_item("topics", converted_432)?;
+            let converted_451 = converted_451_list.into_any().unbind();
+            result.set_item("topics", converted_451)?;
         } else {
             result.set_item("topics", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_435 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_435)?;
+            let converted_454 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_454)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -2170,8 +2499,8 @@ impl PyOperationPublishOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
-            let converted_436 = (value).as_str().into_py_any(py)?;
-            Ok(converted_436)
+            let converted_455 = (value).as_str().into_py_any(py)?;
+            Ok(converted_455)
         } else {
             Ok(py.None())
         }
@@ -2180,8 +2509,8 @@ impl PyOperationPublishOutput {
     #[getter]
     fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sequence_number {
-            let converted_437 = (value).as_str().into_py_any(py)?;
-            Ok(converted_437)
+            let converted_456 = (value).as_str().into_py_any(py)?;
+            Ok(converted_456)
         } else {
             Ok(py.None())
         }
@@ -2190,14 +2519,14 @@ impl PyOperationPublishOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.message_id {
-            let converted_438 = (value).as_str().into_py_any(py)?;
-            result.set_item("message_id", converted_438)?;
+            let converted_457 = (value).as_str().into_py_any(py)?;
+            result.set_item("message_id", converted_457)?;
         } else {
             result.set_item("message_id", py.None())?;
         }
         if let Some(value) = &self.inner.sequence_number {
-            let converted_439 = (value).as_str().into_py_any(py)?;
-            result.set_item("sequence_number", converted_439)?;
+            let converted_458 = (value).as_str().into_py_any(py)?;
+            result.set_item("sequence_number", converted_458)?;
         } else {
             result.set_item("sequence_number", py.None())?;
         }
@@ -2220,13 +2549,13 @@ impl From<aws_sdk_sns::operation::publish_batch::PublishBatchOutput>
             successful: value.successful.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_446| Arc::new(owned_446))
+                    .map(|owned_465| Arc::new(owned_465))
                     .collect()
             }),
             failed: value.failed.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_447| Arc::new(owned_447))
+                    .map(|owned_466| Arc::new(owned_466))
                     .collect()
             }),
         }
@@ -2243,19 +2572,19 @@ impl PyOperationPublishBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.successful {
-            let converted_440_list = PyList::empty(py);
-            for item_441 in value {
-                let converted_item_442 = Py::new(
+            let converted_459_list = PyList::empty(py);
+            for item_460 in value {
+                let converted_item_461 = Py::new(
                     py,
                     PyPublishBatchResultEntry {
-                        inner: Arc::clone(item_441),
+                        inner: Arc::clone(item_460),
                     },
                 )?
                 .into_any();
-                converted_440_list.append(converted_item_442)?;
+                converted_459_list.append(converted_item_461)?;
             }
-            let converted_440 = converted_440_list.into_any().unbind();
-            Ok(converted_440)
+            let converted_459 = converted_459_list.into_any().unbind();
+            Ok(converted_459)
         } else {
             Ok(py.None())
         }
@@ -2264,19 +2593,19 @@ impl PyOperationPublishBatchOutput {
     #[getter]
     fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failed {
-            let converted_443_list = PyList::empty(py);
-            for item_444 in value {
-                let converted_item_445 = Py::new(
+            let converted_462_list = PyList::empty(py);
+            for item_463 in value {
+                let converted_item_464 = Py::new(
                     py,
                     PyBatchResultErrorEntry {
-                        inner: Arc::clone(item_444),
+                        inner: Arc::clone(item_463),
                     },
                 )?
                 .into_any();
-                converted_443_list.append(converted_item_445)?;
+                converted_462_list.append(converted_item_464)?;
             }
-            let converted_443 = converted_443_list.into_any().unbind();
-            Ok(converted_443)
+            let converted_462 = converted_462_list.into_any().unbind();
+            Ok(converted_462)
         } else {
             Ok(py.None())
         }
@@ -2285,24 +2614,24 @@ impl PyOperationPublishBatchOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.successful {
-            let converted_448_list = PyList::empty(py);
-            for item_449 in value {
-                let converted_item_450 = publish_batch_result_entry_to_py(py, item_449)?;
-                converted_448_list.append(converted_item_450)?;
+            let converted_467_list = PyList::empty(py);
+            for item_468 in value {
+                let converted_item_469 = publish_batch_result_entry_to_py(py, item_468)?;
+                converted_467_list.append(converted_item_469)?;
             }
-            let converted_448 = converted_448_list.into_any().unbind();
-            result.set_item("successful", converted_448)?;
+            let converted_467 = converted_467_list.into_any().unbind();
+            result.set_item("successful", converted_467)?;
         } else {
             result.set_item("successful", py.None())?;
         }
         if let Some(value) = &self.inner.failed {
-            let converted_451_list = PyList::empty(py);
-            for item_452 in value {
-                let converted_item_453 = batch_result_error_entry_to_py(py, item_452)?;
-                converted_451_list.append(converted_item_453)?;
+            let converted_470_list = PyList::empty(py);
+            for item_471 in value {
+                let converted_item_472 = batch_result_error_entry_to_py(py, item_471)?;
+                converted_470_list.append(converted_item_472)?;
             }
-            let converted_451 = converted_451_list.into_any().unbind();
-            result.set_item("failed", converted_451)?;
+            let converted_470 = converted_470_list.into_any().unbind();
+            result.set_item("failed", converted_470)?;
         } else {
             result.set_item("failed", py.None())?;
         }
@@ -2333,8 +2662,8 @@ impl PyOperationSubscribeOutput {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
-            let converted_454 = (value).as_str().into_py_any(py)?;
-            Ok(converted_454)
+            let converted_473 = (value).as_str().into_py_any(py)?;
+            Ok(converted_473)
         } else {
             Ok(py.None())
         }
@@ -2343,8 +2672,8 @@ impl PyOperationSubscribeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription_arn {
-            let converted_455 = (value).as_str().into_py_any(py)?;
-            result.set_item("subscription_arn", converted_455)?;
+            let converted_474 = (value).as_str().into_py_any(py)?;
+            result.set_item("subscription_arn", converted_474)?;
         } else {
             result.set_item("subscription_arn", py.None())?;
         }
@@ -2478,38 +2807,124 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_112: String = value.extract()?;
-            Some(converted_112)
+            let converted_116 = (|| -> PyResult<_> {
+                let converted_116: String = value.extract()?;
+                Ok(converted_116)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_116)
         } else {
             None
         };
         let label_value = if let Some(value) = dict_value(params, "label")? {
-            let converted_113: String = value.extract()?;
-            Some(converted_113)
+            let converted_117 = (|| -> PyResult<_> {
+                let converted_117: String = value.extract()?;
+                Ok(converted_117)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("label"), "str"),
+                    "sns",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_117)
         } else {
             None
         };
         let aws_account_id_value = if let Some(value) = dict_value(params, "aws_account_id")? {
-            let mut converted_114 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_115 in value.try_iter()? {
-                let item_116 = item_result_115?;
-                let converted_item_117: String = item_116.extract()?;
-                converted_114.push(converted_item_117);
-            }
-            Some(converted_114)
+            let converted_118 = (|| -> PyResult<_> {
+                let mut converted_118 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_122, item_result_119) in value.try_iter()?.enumerate() {
+                    let item_120 = item_result_119.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_122),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_121 = (|| -> PyResult<_> {
+                        let converted_item_121: String = item_120.extract()?;
+                        Ok(converted_item_121)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_122),
+                            "str",
+                        )
+                    })?;
+                    converted_118.push(converted_item_121);
+                }
+                Ok(converted_118)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("aws_account_id"),
+                        "sequence",
+                    ),
+                    "sns",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_118)
         } else {
             None
         };
         let action_name_value = if let Some(value) = dict_value(params, "action_name")? {
-            let mut converted_118 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_119 in value.try_iter()? {
-                let item_120 = item_result_119?;
-                let converted_item_121: String = item_120.extract()?;
-                converted_118.push(converted_item_121);
-            }
-            Some(converted_118)
+            let converted_123 = (|| -> PyResult<_> {
+                let mut converted_123 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_127, item_result_124) in value.try_iter()?.enumerate() {
+                    let item_125 = item_result_124.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_127),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_126 = (|| -> PyResult<_> {
+                        let converted_item_126: String = item_125.extract()?;
+                        Ok(converted_item_126)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_127),
+                            "str",
+                        )
+                    })?;
+                    converted_123.push(converted_item_126);
+                }
+                Ok(converted_123)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("action_name"),
+                        "sequence",
+                    ),
+                    "sns",
+                    "AddPermission",
+                )
+            })?;
+            Some(converted_123)
         } else {
             None
         };
@@ -2549,8 +2964,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let phone_number_value = if let Some(value) = dict_value(params, "phone_number")? {
-            let converted_122: String = value.extract()?;
-            Some(converted_122)
+            let converted_128 = (|| -> PyResult<_> {
+                let converted_128: String = value.extract()?;
+                Ok(converted_128)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("phone_number"),
+                        "str",
+                    ),
+                    "sns",
+                    "CheckIfPhoneNumberIsOptedOut",
+                )
+            })?;
+            Some(converted_128)
         } else {
             None
         };
@@ -2587,21 +3016,59 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_123: String = value.extract()?;
-            Some(converted_123)
+            let converted_129 = (|| -> PyResult<_> {
+                let converted_129: String = value.extract()?;
+                Ok(converted_129)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "ConfirmSubscription",
+                )
+            })?;
+            Some(converted_129)
         } else {
             None
         };
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_124: String = value.extract()?;
-            Some(converted_124)
+            let converted_130 = (|| -> PyResult<_> {
+                let converted_130: String = value.extract()?;
+                Ok(converted_130)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("token"), "str"),
+                    "sns",
+                    "ConfirmSubscription",
+                )
+            })?;
+            Some(converted_130)
         } else {
             None
         };
         let authenticate_on_unsubscribe_value =
             if let Some(value) = dict_value(params, "authenticate_on_unsubscribe")? {
-                let converted_125: String = value.extract()?;
-                Some(converted_125)
+                let converted_131 = (|| -> PyResult<_> {
+                    let converted_131: String = value.extract()?;
+                    Ok(converted_131)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("authenticate_on_unsubscribe"),
+                            "str",
+                        ),
+                        "sns",
+                        "ConfirmSubscription",
+                    )
+                })?;
+                Some(converted_131)
             } else {
                 None
             };
@@ -2640,26 +3107,80 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_126: String = value.extract()?;
-            Some(converted_126)
+            let converted_132 = (|| -> PyResult<_> {
+                let converted_132: String = value.extract()?;
+                Ok(converted_132)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "sns",
+                    "CreatePlatformApplication",
+                )
+            })?;
+            Some(converted_132)
         } else {
             None
         };
         let platform_value = if let Some(value) = dict_value(params, "platform")? {
-            let converted_127: String = value.extract()?;
-            Some(converted_127)
+            let converted_133 = (|| -> PyResult<_> {
+                let converted_133: String = value.extract()?;
+                Ok(converted_133)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("platform"), "str"),
+                    "sns",
+                    "CreatePlatformApplication",
+                )
+            })?;
+            Some(converted_133)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_129 = value.cast::<PyDict>()?;
-            let mut converted_128 = HashMap::with_capacity(mapping_129.len());
-            for (key_130, value_131) in mapping_129.iter() {
-                let converted_key_132: String = key_130.extract()?;
-                let converted_value_133: String = value_131.extract()?;
-                converted_128.insert(converted_key_132, converted_value_133);
-            }
-            Some(converted_128)
+            let converted_134 = (|| -> PyResult<_> {
+                let mapping_135 = value.cast::<PyDict>()?;
+                let mut converted_134 = HashMap::with_capacity(mapping_135.len());
+                for (index_140, (key_136, value_137)) in mapping_135.iter().enumerate() {
+                    let converted_key_138 = (|| -> PyResult<_> {
+                        let converted_key_138: String = key_136.extract()?;
+                        Ok(converted_key_138)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_140),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_139 = (|| -> PyResult<_> {
+                        let converted_value_139: String = value_137.extract()?;
+                        Ok(converted_value_139)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_140),
+                            "str",
+                        )
+                    })?;
+                    converted_134.insert(converted_key_138, converted_value_139);
+                }
+                Ok(converted_134)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sns",
+                    "CreatePlatformApplication",
+                )
+            })?;
+            Some(converted_134)
         } else {
             None
         };
@@ -2699,32 +3220,104 @@ impl SNSClient {
         let state = self.state.clone();
         let platform_application_arn_value =
             if let Some(value) = dict_value(params, "platform_application_arn")? {
-                let converted_134: String = value.extract()?;
-                Some(converted_134)
+                let converted_141 = (|| -> PyResult<_> {
+                    let converted_141: String = value.extract()?;
+                    Ok(converted_141)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("platform_application_arn"),
+                            "str",
+                        ),
+                        "sns",
+                        "CreatePlatformEndpoint",
+                    )
+                })?;
+                Some(converted_141)
             } else {
                 None
             };
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_135: String = value.extract()?;
-            Some(converted_135)
+            let converted_142 = (|| -> PyResult<_> {
+                let converted_142: String = value.extract()?;
+                Ok(converted_142)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("token"), "str"),
+                    "sns",
+                    "CreatePlatformEndpoint",
+                )
+            })?;
+            Some(converted_142)
         } else {
             None
         };
         let custom_user_data_value = if let Some(value) = dict_value(params, "custom_user_data")? {
-            let converted_136: String = value.extract()?;
-            Some(converted_136)
+            let converted_143 = (|| -> PyResult<_> {
+                let converted_143: String = value.extract()?;
+                Ok(converted_143)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("custom_user_data"),
+                        "str",
+                    ),
+                    "sns",
+                    "CreatePlatformEndpoint",
+                )
+            })?;
+            Some(converted_143)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_138 = value.cast::<PyDict>()?;
-            let mut converted_137 = HashMap::with_capacity(mapping_138.len());
-            for (key_139, value_140) in mapping_138.iter() {
-                let converted_key_141: String = key_139.extract()?;
-                let converted_value_142: String = value_140.extract()?;
-                converted_137.insert(converted_key_141, converted_value_142);
-            }
-            Some(converted_137)
+            let converted_144 = (|| -> PyResult<_> {
+                let mapping_145 = value.cast::<PyDict>()?;
+                let mut converted_144 = HashMap::with_capacity(mapping_145.len());
+                for (index_150, (key_146, value_147)) in mapping_145.iter().enumerate() {
+                    let converted_key_148 = (|| -> PyResult<_> {
+                        let converted_key_148: String = key_146.extract()?;
+                        Ok(converted_key_148)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_150),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_149 = (|| -> PyResult<_> {
+                        let converted_value_149: String = value_147.extract()?;
+                        Ok(converted_value_149)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_150),
+                            "str",
+                        )
+                    })?;
+                    converted_144.insert(converted_key_148, converted_value_149);
+                }
+                Ok(converted_144)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sns",
+                    "CreatePlatformEndpoint",
+                )
+            })?;
+            Some(converted_144)
         } else {
             None
         };
@@ -2764,16 +3357,44 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let phone_number_value = if let Some(value) = dict_value(params, "phone_number")? {
-            let converted_143: String = value.extract()?;
-            Some(converted_143)
+            let converted_151 = (|| -> PyResult<_> {
+                let converted_151: String = value.extract()?;
+                Ok(converted_151)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("phone_number"),
+                        "str",
+                    ),
+                    "sns",
+                    "CreateSMSSandboxPhoneNumber",
+                )
+            })?;
+            Some(converted_151)
         } else {
             None
         };
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let enum_value_145: String = value.extract()?;
-            let converted_144 =
-                aws_sdk_sns::types::LanguageCodeString::from(enum_value_145.as_str());
-            Some(converted_144)
+            let converted_152 = (|| -> PyResult<_> {
+                let enum_value_153: String = value.extract()?;
+                let converted_152 =
+                    aws_sdk_sns::types::LanguageCodeString::from(enum_value_153.as_str());
+                Ok(converted_152)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("language_code"),
+                        "str (LanguageCodeString)",
+                    ),
+                    "sns",
+                    "CreateSMSSandboxPhoneNumber",
+                )
+            })?;
+            Some(converted_152)
         } else {
             None
         };
@@ -2811,39 +3432,128 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_146: String = value.extract()?;
-            Some(converted_146)
+            let converted_154 = (|| -> PyResult<_> {
+                let converted_154: String = value.extract()?;
+                Ok(converted_154)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "sns",
+                    "CreateTopic",
+                )
+            })?;
+            Some(converted_154)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_148 = value.cast::<PyDict>()?;
-            let mut converted_147 = HashMap::with_capacity(mapping_148.len());
-            for (key_149, value_150) in mapping_148.iter() {
-                let converted_key_151: String = key_149.extract()?;
-                let converted_value_152: String = value_150.extract()?;
-                converted_147.insert(converted_key_151, converted_value_152);
-            }
-            Some(converted_147)
+            let converted_155 = (|| -> PyResult<_> {
+                let mapping_156 = value.cast::<PyDict>()?;
+                let mut converted_155 = HashMap::with_capacity(mapping_156.len());
+                for (index_161, (key_157, value_158)) in mapping_156.iter().enumerate() {
+                    let converted_key_159 = (|| -> PyResult<_> {
+                        let converted_key_159: String = key_157.extract()?;
+                        Ok(converted_key_159)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_161),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_160 = (|| -> PyResult<_> {
+                        let converted_value_160: String = value_158.extract()?;
+                        Ok(converted_value_160)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_161),
+                            "str",
+                        )
+                    })?;
+                    converted_155.insert(converted_key_159, converted_value_160);
+                }
+                Ok(converted_155)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sns",
+                    "CreateTopic",
+                )
+            })?;
+            Some(converted_155)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_153 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_154 in value.try_iter()? {
-                let item_155 = item_result_154?;
-                let converted_item_156 = tag_from_py(&item_155)?;
-                converted_153.push(converted_item_156);
-            }
-            Some(converted_153)
+            let converted_162 = (|| -> PyResult<_> {
+                let mut converted_162 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_166, item_result_163) in value.try_iter()?.enumerate() {
+                    let item_164 = item_result_163.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_166),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_165 = (|| -> PyResult<_> {
+                        let converted_item_165 = tag_from_py(&item_164)?;
+                        Ok(converted_item_165)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_166),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_162.push(converted_item_165);
+                }
+                Ok(converted_162)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "sns",
+                    "CreateTopic",
+                )
+            })?;
+            Some(converted_162)
         } else {
             None
         };
         let data_protection_policy_value =
             if let Some(value) = dict_value(params, "data_protection_policy")? {
-                let converted_157: String = value.extract()?;
-                Some(converted_157)
+                let converted_167 = (|| -> PyResult<_> {
+                    let converted_167: String = value.extract()?;
+                    Ok(converted_167)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("data_protection_policy"),
+                            "str",
+                        ),
+                        "sns",
+                        "CreateTopic",
+                    )
+                })?;
+                Some(converted_167)
             } else {
                 None
             };
@@ -2882,8 +3592,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let endpoint_arn_value = if let Some(value) = dict_value(params, "endpoint_arn")? {
-            let converted_158: String = value.extract()?;
-            Some(converted_158)
+            let converted_168 = (|| -> PyResult<_> {
+                let converted_168: String = value.extract()?;
+                Ok(converted_168)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("endpoint_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "DeleteEndpoint",
+                )
+            })?;
+            Some(converted_168)
         } else {
             None
         };
@@ -2921,8 +3645,22 @@ impl SNSClient {
         let state = self.state.clone();
         let platform_application_arn_value =
             if let Some(value) = dict_value(params, "platform_application_arn")? {
-                let converted_159: String = value.extract()?;
-                Some(converted_159)
+                let converted_169 = (|| -> PyResult<_> {
+                    let converted_169: String = value.extract()?;
+                    Ok(converted_169)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("platform_application_arn"),
+                            "str",
+                        ),
+                        "sns",
+                        "DeletePlatformApplication",
+                    )
+                })?;
+                Some(converted_169)
             } else {
                 None
             };
@@ -2959,8 +3697,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let phone_number_value = if let Some(value) = dict_value(params, "phone_number")? {
-            let converted_160: String = value.extract()?;
-            Some(converted_160)
+            let converted_170 = (|| -> PyResult<_> {
+                let converted_170: String = value.extract()?;
+                Ok(converted_170)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("phone_number"),
+                        "str",
+                    ),
+                    "sns",
+                    "DeleteSMSSandboxPhoneNumber",
+                )
+            })?;
+            Some(converted_170)
         } else {
             None
         };
@@ -2997,8 +3749,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_161: String = value.extract()?;
-            Some(converted_161)
+            let converted_171 = (|| -> PyResult<_> {
+                let converted_171: String = value.extract()?;
+                Ok(converted_171)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "DeleteTopic",
+                )
+            })?;
+            Some(converted_171)
         } else {
             None
         };
@@ -3032,8 +3798,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_162: String = value.extract()?;
-            Some(converted_162)
+            let converted_172 = (|| -> PyResult<_> {
+                let converted_172: String = value.extract()?;
+                Ok(converted_172)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "GetDataProtectionPolicy",
+                )
+            })?;
+            Some(converted_172)
         } else {
             None
         };
@@ -3070,8 +3850,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let endpoint_arn_value = if let Some(value) = dict_value(params, "endpoint_arn")? {
-            let converted_163: String = value.extract()?;
-            Some(converted_163)
+            let converted_173 = (|| -> PyResult<_> {
+                let converted_173: String = value.extract()?;
+                Ok(converted_173)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("endpoint_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "GetEndpointAttributes",
+                )
+            })?;
+            Some(converted_173)
         } else {
             None
         };
@@ -3109,8 +3903,22 @@ impl SNSClient {
         let state = self.state.clone();
         let platform_application_arn_value =
             if let Some(value) = dict_value(params, "platform_application_arn")? {
-                let converted_164: String = value.extract()?;
-                Some(converted_164)
+                let converted_174 = (|| -> PyResult<_> {
+                    let converted_174: String = value.extract()?;
+                    Ok(converted_174)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("platform_application_arn"),
+                            "str",
+                        ),
+                        "sns",
+                        "GetPlatformApplicationAttributes",
+                    )
+                })?;
+                Some(converted_174)
             } else {
                 None
             };
@@ -3147,14 +3955,45 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mut converted_165 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_166 in value.try_iter()? {
-                let item_167 = item_result_166?;
-                let converted_item_168: String = item_167.extract()?;
-                converted_165.push(converted_item_168);
-            }
-            Some(converted_165)
+            let converted_175 = (|| -> PyResult<_> {
+                let mut converted_175 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_179, item_result_176) in value.try_iter()?.enumerate() {
+                    let item_177 = item_result_176.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_179),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_178 = (|| -> PyResult<_> {
+                        let converted_item_178: String = item_177.extract()?;
+                        Ok(converted_item_178)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_179),
+                            "str",
+                        )
+                    })?;
+                    converted_175.push(converted_item_178);
+                }
+                Ok(converted_175)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "sequence",
+                    ),
+                    "sns",
+                    "GetSMSAttributes",
+                )
+            })?;
+            Some(converted_175)
         } else {
             None
         };
@@ -3219,8 +4058,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let subscription_arn_value = if let Some(value) = dict_value(params, "subscription_arn")? {
-            let converted_169: String = value.extract()?;
-            Some(converted_169)
+            let converted_180 = (|| -> PyResult<_> {
+                let converted_180: String = value.extract()?;
+                Ok(converted_180)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("subscription_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "GetSubscriptionAttributes",
+                )
+            })?;
+            Some(converted_180)
         } else {
             None
         };
@@ -3257,8 +4110,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_170: String = value.extract()?;
-            Some(converted_170)
+            let converted_181 = (|| -> PyResult<_> {
+                let converted_181: String = value.extract()?;
+                Ok(converted_181)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "GetTopicAttributes",
+                )
+            })?;
+            Some(converted_181)
         } else {
             None
         };
@@ -3294,14 +4161,42 @@ impl SNSClient {
         let state = self.state.clone();
         let platform_application_arn_value =
             if let Some(value) = dict_value(params, "platform_application_arn")? {
-                let converted_171: String = value.extract()?;
-                Some(converted_171)
+                let converted_182 = (|| -> PyResult<_> {
+                    let converted_182: String = value.extract()?;
+                    Ok(converted_182)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("platform_application_arn"),
+                            "str",
+                        ),
+                        "sns",
+                        "ListEndpointsByPlatformApplication",
+                    )
+                })?;
+                Some(converted_182)
             } else {
                 None
             };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_172: String = value.extract()?;
-            Some(converted_172)
+            let converted_183 = (|| -> PyResult<_> {
+                let converted_183: String = value.extract()?;
+                Ok(converted_183)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListEndpointsByPlatformApplication",
+                )
+            })?;
+            Some(converted_183)
         } else {
             None
         };
@@ -3343,14 +4238,42 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_173: String = value.extract()?;
-            Some(converted_173)
+            let converted_184 = (|| -> PyResult<_> {
+                let converted_184: String = value.extract()?;
+                Ok(converted_184)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListOriginationNumbers",
+                )
+            })?;
+            Some(converted_184)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_174: i32 = value.extract()?;
-            Some(converted_174)
+            let converted_185 = (|| -> PyResult<_> {
+                let converted_185: i32 = value.extract()?;
+                Ok(converted_185)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "sns",
+                    "ListOriginationNumbers",
+                )
+            })?;
+            Some(converted_185)
         } else {
             None
         };
@@ -3390,8 +4313,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_175: String = value.extract()?;
-            Some(converted_175)
+            let converted_186 = (|| -> PyResult<_> {
+                let converted_186: String = value.extract()?;
+                Ok(converted_186)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListPhoneNumbersOptedOut",
+                )
+            })?;
+            Some(converted_186)
         } else {
             None
         };
@@ -3428,8 +4365,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_176: String = value.extract()?;
-            Some(converted_176)
+            let converted_187 = (|| -> PyResult<_> {
+                let converted_187: String = value.extract()?;
+                Ok(converted_187)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListPlatformApplications",
+                )
+            })?;
+            Some(converted_187)
         } else {
             None
         };
@@ -3468,14 +4419,42 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_177: String = value.extract()?;
-            Some(converted_177)
+            let converted_188 = (|| -> PyResult<_> {
+                let converted_188: String = value.extract()?;
+                Ok(converted_188)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListSMSSandboxPhoneNumbers",
+                )
+            })?;
+            Some(converted_188)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_178: i32 = value.extract()?;
-            Some(converted_178)
+            let converted_189 = (|| -> PyResult<_> {
+                let converted_189: i32 = value.extract()?;
+                Ok(converted_189)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "sns",
+                    "ListSMSSandboxPhoneNumbers",
+                )
+            })?;
+            Some(converted_189)
         } else {
             None
         };
@@ -3515,8 +4494,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_179: String = value.extract()?;
-            Some(converted_179)
+            let converted_190 = (|| -> PyResult<_> {
+                let converted_190: String = value.extract()?;
+                Ok(converted_190)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListSubscriptions",
+                )
+            })?;
+            Some(converted_190)
         } else {
             None
         };
@@ -3553,14 +4546,42 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_180: String = value.extract()?;
-            Some(converted_180)
+            let converted_191 = (|| -> PyResult<_> {
+                let converted_191: String = value.extract()?;
+                Ok(converted_191)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListSubscriptionsByTopic",
+                )
+            })?;
+            Some(converted_191)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_181: String = value.extract()?;
-            Some(converted_181)
+            let converted_192 = (|| -> PyResult<_> {
+                let converted_192: String = value.extract()?;
+                Ok(converted_192)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListSubscriptionsByTopic",
+                )
+            })?;
+            Some(converted_192)
         } else {
             None
         };
@@ -3600,8 +4621,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_182: String = value.extract()?;
-            Some(converted_182)
+            let converted_193 = (|| -> PyResult<_> {
+                let converted_193: String = value.extract()?;
+                Ok(converted_193)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListTagsForResource",
+                )
+            })?;
+            Some(converted_193)
         } else {
             None
         };
@@ -3640,8 +4675,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_183: String = value.extract()?;
-            Some(converted_183)
+            let converted_194 = (|| -> PyResult<_> {
+                let converted_194: String = value.extract()?;
+                Ok(converted_194)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "sns",
+                    "ListTopics",
+                )
+            })?;
+            Some(converted_194)
         } else {
             None
         };
@@ -3677,8 +4726,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let phone_number_value = if let Some(value) = dict_value(params, "phone_number")? {
-            let converted_184: String = value.extract()?;
-            Some(converted_184)
+            let converted_195 = (|| -> PyResult<_> {
+                let converted_195: String = value.extract()?;
+                Ok(converted_195)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("phone_number"),
+                        "str",
+                    ),
+                    "sns",
+                    "OptInPhoneNumber",
+                )
+            })?;
+            Some(converted_195)
         } else {
             None
         };
@@ -3715,65 +4778,203 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_185: String = value.extract()?;
-            Some(converted_185)
+            let converted_196 = (|| -> PyResult<_> {
+                let converted_196: String = value.extract()?;
+                Ok(converted_196)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "Publish",
+                )
+            })?;
+            Some(converted_196)
         } else {
             None
         };
         let target_arn_value = if let Some(value) = dict_value(params, "target_arn")? {
-            let converted_186: String = value.extract()?;
-            Some(converted_186)
+            let converted_197 = (|| -> PyResult<_> {
+                let converted_197: String = value.extract()?;
+                Ok(converted_197)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("target_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "Publish",
+                )
+            })?;
+            Some(converted_197)
         } else {
             None
         };
         let phone_number_value = if let Some(value) = dict_value(params, "phone_number")? {
-            let converted_187: String = value.extract()?;
-            Some(converted_187)
+            let converted_198 = (|| -> PyResult<_> {
+                let converted_198: String = value.extract()?;
+                Ok(converted_198)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("phone_number"),
+                        "str",
+                    ),
+                    "sns",
+                    "Publish",
+                )
+            })?;
+            Some(converted_198)
         } else {
             None
         };
         let message_value = if let Some(value) = dict_value(params, "message")? {
-            let converted_188: String = value.extract()?;
-            Some(converted_188)
+            let converted_199 = (|| -> PyResult<_> {
+                let converted_199: String = value.extract()?;
+                Ok(converted_199)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("message"), "str"),
+                    "sns",
+                    "Publish",
+                )
+            })?;
+            Some(converted_199)
         } else {
             None
         };
         let subject_value = if let Some(value) = dict_value(params, "subject")? {
-            let converted_189: String = value.extract()?;
-            Some(converted_189)
+            let converted_200 = (|| -> PyResult<_> {
+                let converted_200: String = value.extract()?;
+                Ok(converted_200)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("subject"), "str"),
+                    "sns",
+                    "Publish",
+                )
+            })?;
+            Some(converted_200)
         } else {
             None
         };
         let message_structure_value = if let Some(value) = dict_value(params, "message_structure")?
         {
-            let converted_190: String = value.extract()?;
-            Some(converted_190)
+            let converted_201 = (|| -> PyResult<_> {
+                let converted_201: String = value.extract()?;
+                Ok(converted_201)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message_structure"),
+                        "str",
+                    ),
+                    "sns",
+                    "Publish",
+                )
+            })?;
+            Some(converted_201)
         } else {
             None
         };
         let message_attributes_value =
             if let Some(value) = dict_value(params, "message_attributes")? {
-                let mapping_192 = value.cast::<PyDict>()?;
-                let mut converted_191 = HashMap::with_capacity(mapping_192.len());
-                for (key_193, value_194) in mapping_192.iter() {
-                    let converted_key_195: String = key_193.extract()?;
-                    let converted_value_196 = message_attribute_value_from_py(&value_194)?;
-                    converted_191.insert(converted_key_195, converted_value_196);
-                }
-                Some(converted_191)
+                let converted_202 = (|| -> PyResult<_> {
+                    let mapping_203 = value.cast::<PyDict>()?;
+                    let mut converted_202 = HashMap::with_capacity(mapping_203.len());
+                    for (index_208, (key_204, value_205)) in mapping_203.iter().enumerate() {
+                        let converted_key_206 = (|| -> PyResult<_> {
+                            let converted_key_206: String = key_204.extract()?;
+                            Ok(converted_key_206)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_208),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_207 = (|| -> PyResult<_> {
+                            let converted_value_207 = message_attribute_value_from_py(&value_205)?;
+                            Ok(converted_value_207)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_208),
+                                "dict (MessageAttributeValue)",
+                            )
+                        })?;
+                        converted_202.insert(converted_key_206, converted_value_207);
+                    }
+                    Ok(converted_202)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("message_attributes"),
+                            "dict",
+                        ),
+                        "sns",
+                        "Publish",
+                    )
+                })?;
+                Some(converted_202)
             } else {
                 None
             };
         let message_deduplication_id_value =
             if let Some(value) = dict_value(params, "message_deduplication_id")? {
-                let converted_197: String = value.extract()?;
-                Some(converted_197)
+                let converted_209 = (|| -> PyResult<_> {
+                    let converted_209: String = value.extract()?;
+                    Ok(converted_209)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("message_deduplication_id"),
+                            "str",
+                        ),
+                        "sns",
+                        "Publish",
+                    )
+                })?;
+                Some(converted_209)
             } else {
                 None
             };
         let message_group_id_value = if let Some(value) = dict_value(params, "message_group_id")? {
-            let converted_198: String = value.extract()?;
-            Some(converted_198)
+            let converted_210 = (|| -> PyResult<_> {
+                let converted_210: String = value.extract()?;
+                Ok(converted_210)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("message_group_id"),
+                        "str",
+                    ),
+                    "sns",
+                    "Publish",
+                )
+            })?;
+            Some(converted_210)
         } else {
             None
         };
@@ -3817,24 +5018,70 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_199: String = value.extract()?;
-            Some(converted_199)
+            let converted_211 = (|| -> PyResult<_> {
+                let converted_211: String = value.extract()?;
+                Ok(converted_211)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "PublishBatch",
+                )
+            })?;
+            Some(converted_211)
         } else {
             None
         };
-        let publish_batch_request_entries_value =
-            if let Some(value) = dict_value(params, "publish_batch_request_entries")? {
-                let mut converted_200 =
+        let publish_batch_request_entries_value = if let Some(value) =
+            dict_value(params, "publish_batch_request_entries")?
+        {
+            let converted_212 = (|| -> PyResult<_> {
+                let mut converted_212 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for item_result_201 in value.try_iter()? {
-                    let item_202 = item_result_201?;
-                    let converted_item_203 = publish_batch_request_entry_from_py(&item_202)?;
-                    converted_200.push(converted_item_203);
+                for (index_216, item_result_213) in value.try_iter()?.enumerate() {
+                    let item_214 = item_result_213.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_216),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_215 = (|| -> PyResult<_> {
+                        let converted_item_215 = publish_batch_request_entry_from_py(&item_214)?;
+                        Ok(converted_item_215)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_216),
+                            "dict (PublishBatchRequestEntry)",
+                        )
+                    })?;
+                    converted_212.push(converted_item_215);
                 }
-                Some(converted_200)
-            } else {
-                None
-            };
+                Ok(converted_212)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("publish_batch_request_entries"),
+                        "sequence",
+                    ),
+                    "sns",
+                    "PublishBatch",
+                )
+            })?;
+            Some(converted_212)
+        } else {
+            None
+        };
         future_into_py(py, async move {
             let client = state.client().await?;
             let request = client
@@ -3871,15 +5118,43 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_204: String = value.extract()?;
-            Some(converted_204)
+            let converted_217 = (|| -> PyResult<_> {
+                let converted_217: String = value.extract()?;
+                Ok(converted_217)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "PutDataProtectionPolicy",
+                )
+            })?;
+            Some(converted_217)
         } else {
             None
         };
         let data_protection_policy_value =
             if let Some(value) = dict_value(params, "data_protection_policy")? {
-                let converted_205: String = value.extract()?;
-                Some(converted_205)
+                let converted_218 = (|| -> PyResult<_> {
+                    let converted_218: String = value.extract()?;
+                    Ok(converted_218)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("data_protection_policy"),
+                            "str",
+                        ),
+                        "sns",
+                        "PutDataProtectionPolicy",
+                    )
+                })?;
+                Some(converted_218)
             } else {
                 None
             };
@@ -3917,14 +5192,38 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_206: String = value.extract()?;
-            Some(converted_206)
+            let converted_219 = (|| -> PyResult<_> {
+                let converted_219: String = value.extract()?;
+                Ok(converted_219)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "RemovePermission",
+                )
+            })?;
+            Some(converted_219)
         } else {
             None
         };
         let label_value = if let Some(value) = dict_value(params, "label")? {
-            let converted_207: String = value.extract()?;
-            Some(converted_207)
+            let converted_220 = (|| -> PyResult<_> {
+                let converted_220: String = value.extract()?;
+                Ok(converted_220)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("label"), "str"),
+                    "sns",
+                    "RemovePermission",
+                )
+            })?;
+            Some(converted_220)
         } else {
             None
         };
@@ -3962,20 +5261,68 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let endpoint_arn_value = if let Some(value) = dict_value(params, "endpoint_arn")? {
-            let converted_208: String = value.extract()?;
-            Some(converted_208)
+            let converted_221 = (|| -> PyResult<_> {
+                let converted_221: String = value.extract()?;
+                Ok(converted_221)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("endpoint_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "SetEndpointAttributes",
+                )
+            })?;
+            Some(converted_221)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_210 = value.cast::<PyDict>()?;
-            let mut converted_209 = HashMap::with_capacity(mapping_210.len());
-            for (key_211, value_212) in mapping_210.iter() {
-                let converted_key_213: String = key_211.extract()?;
-                let converted_value_214: String = value_212.extract()?;
-                converted_209.insert(converted_key_213, converted_value_214);
-            }
-            Some(converted_209)
+            let converted_222 = (|| -> PyResult<_> {
+                let mapping_223 = value.cast::<PyDict>()?;
+                let mut converted_222 = HashMap::with_capacity(mapping_223.len());
+                for (index_228, (key_224, value_225)) in mapping_223.iter().enumerate() {
+                    let converted_key_226 = (|| -> PyResult<_> {
+                        let converted_key_226: String = key_224.extract()?;
+                        Ok(converted_key_226)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_228),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_227 = (|| -> PyResult<_> {
+                        let converted_value_227: String = value_225.extract()?;
+                        Ok(converted_value_227)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_228),
+                            "str",
+                        )
+                    })?;
+                    converted_222.insert(converted_key_226, converted_value_227);
+                }
+                Ok(converted_222)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sns",
+                    "SetEndpointAttributes",
+                )
+            })?;
+            Some(converted_222)
         } else {
             None
         };
@@ -4014,20 +5361,68 @@ impl SNSClient {
         let state = self.state.clone();
         let platform_application_arn_value =
             if let Some(value) = dict_value(params, "platform_application_arn")? {
-                let converted_215: String = value.extract()?;
-                Some(converted_215)
+                let converted_229 = (|| -> PyResult<_> {
+                    let converted_229: String = value.extract()?;
+                    Ok(converted_229)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("platform_application_arn"),
+                            "str",
+                        ),
+                        "sns",
+                        "SetPlatformApplicationAttributes",
+                    )
+                })?;
+                Some(converted_229)
             } else {
                 None
             };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_217 = value.cast::<PyDict>()?;
-            let mut converted_216 = HashMap::with_capacity(mapping_217.len());
-            for (key_218, value_219) in mapping_217.iter() {
-                let converted_key_220: String = key_218.extract()?;
-                let converted_value_221: String = value_219.extract()?;
-                converted_216.insert(converted_key_220, converted_value_221);
-            }
-            Some(converted_216)
+            let converted_230 = (|| -> PyResult<_> {
+                let mapping_231 = value.cast::<PyDict>()?;
+                let mut converted_230 = HashMap::with_capacity(mapping_231.len());
+                for (index_236, (key_232, value_233)) in mapping_231.iter().enumerate() {
+                    let converted_key_234 = (|| -> PyResult<_> {
+                        let converted_key_234: String = key_232.extract()?;
+                        Ok(converted_key_234)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_236),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_235 = (|| -> PyResult<_> {
+                        let converted_value_235: String = value_233.extract()?;
+                        Ok(converted_value_235)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_236),
+                            "str",
+                        )
+                    })?;
+                    converted_230.insert(converted_key_234, converted_value_235);
+                }
+                Ok(converted_230)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sns",
+                    "SetPlatformApplicationAttributes",
+                )
+            })?;
+            Some(converted_230)
         } else {
             None
         };
@@ -4065,14 +5460,48 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_223 = value.cast::<PyDict>()?;
-            let mut converted_222 = HashMap::with_capacity(mapping_223.len());
-            for (key_224, value_225) in mapping_223.iter() {
-                let converted_key_226: String = key_224.extract()?;
-                let converted_value_227: String = value_225.extract()?;
-                converted_222.insert(converted_key_226, converted_value_227);
-            }
-            Some(converted_222)
+            let converted_237 = (|| -> PyResult<_> {
+                let mapping_238 = value.cast::<PyDict>()?;
+                let mut converted_237 = HashMap::with_capacity(mapping_238.len());
+                for (index_243, (key_239, value_240)) in mapping_238.iter().enumerate() {
+                    let converted_key_241 = (|| -> PyResult<_> {
+                        let converted_key_241: String = key_239.extract()?;
+                        Ok(converted_key_241)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_243),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_242 = (|| -> PyResult<_> {
+                        let converted_value_242: String = value_240.extract()?;
+                        Ok(converted_value_242)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_243),
+                            "str",
+                        )
+                    })?;
+                    converted_237.insert(converted_key_241, converted_value_242);
+                }
+                Ok(converted_237)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sns",
+                    "SetSMSAttributes",
+                )
+            })?;
+            Some(converted_237)
         } else {
             None
         };
@@ -4107,20 +5536,62 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let subscription_arn_value = if let Some(value) = dict_value(params, "subscription_arn")? {
-            let converted_228: String = value.extract()?;
-            Some(converted_228)
+            let converted_244 = (|| -> PyResult<_> {
+                let converted_244: String = value.extract()?;
+                Ok(converted_244)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("subscription_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "SetSubscriptionAttributes",
+                )
+            })?;
+            Some(converted_244)
         } else {
             None
         };
         let attribute_name_value = if let Some(value) = dict_value(params, "attribute_name")? {
-            let converted_229: String = value.extract()?;
-            Some(converted_229)
+            let converted_245 = (|| -> PyResult<_> {
+                let converted_245: String = value.extract()?;
+                Ok(converted_245)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attribute_name"),
+                        "str",
+                    ),
+                    "sns",
+                    "SetSubscriptionAttributes",
+                )
+            })?;
+            Some(converted_245)
         } else {
             None
         };
         let attribute_value_value = if let Some(value) = dict_value(params, "attribute_value")? {
-            let converted_230: String = value.extract()?;
-            Some(converted_230)
+            let converted_246 = (|| -> PyResult<_> {
+                let converted_246: String = value.extract()?;
+                Ok(converted_246)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attribute_value"),
+                        "str",
+                    ),
+                    "sns",
+                    "SetSubscriptionAttributes",
+                )
+            })?;
+            Some(converted_246)
         } else {
             None
         };
@@ -4159,20 +5630,62 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_231: String = value.extract()?;
-            Some(converted_231)
+            let converted_247 = (|| -> PyResult<_> {
+                let converted_247: String = value.extract()?;
+                Ok(converted_247)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "SetTopicAttributes",
+                )
+            })?;
+            Some(converted_247)
         } else {
             None
         };
         let attribute_name_value = if let Some(value) = dict_value(params, "attribute_name")? {
-            let converted_232: String = value.extract()?;
-            Some(converted_232)
+            let converted_248 = (|| -> PyResult<_> {
+                let converted_248: String = value.extract()?;
+                Ok(converted_248)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attribute_name"),
+                        "str",
+                    ),
+                    "sns",
+                    "SetTopicAttributes",
+                )
+            })?;
+            Some(converted_248)
         } else {
             None
         };
         let attribute_value_value = if let Some(value) = dict_value(params, "attribute_value")? {
-            let converted_233: String = value.extract()?;
-            Some(converted_233)
+            let converted_249 = (|| -> PyResult<_> {
+                let converted_249: String = value.extract()?;
+                Ok(converted_249)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attribute_value"),
+                        "str",
+                    ),
+                    "sns",
+                    "SetTopicAttributes",
+                )
+            })?;
+            Some(converted_249)
         } else {
             None
         };
@@ -4211,39 +5724,121 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let topic_arn_value = if let Some(value) = dict_value(params, "topic_arn")? {
-            let converted_234: String = value.extract()?;
-            Some(converted_234)
+            let converted_250 = (|| -> PyResult<_> {
+                let converted_250: String = value.extract()?;
+                Ok(converted_250)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("topic_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "Subscribe",
+                )
+            })?;
+            Some(converted_250)
         } else {
             None
         };
         let protocol_value = if let Some(value) = dict_value(params, "protocol")? {
-            let converted_235: String = value.extract()?;
-            Some(converted_235)
+            let converted_251 = (|| -> PyResult<_> {
+                let converted_251: String = value.extract()?;
+                Ok(converted_251)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("protocol"), "str"),
+                    "sns",
+                    "Subscribe",
+                )
+            })?;
+            Some(converted_251)
         } else {
             None
         };
         let endpoint_value = if let Some(value) = dict_value(params, "endpoint")? {
-            let converted_236: String = value.extract()?;
-            Some(converted_236)
+            let converted_252 = (|| -> PyResult<_> {
+                let converted_252: String = value.extract()?;
+                Ok(converted_252)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("endpoint"), "str"),
+                    "sns",
+                    "Subscribe",
+                )
+            })?;
+            Some(converted_252)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_238 = value.cast::<PyDict>()?;
-            let mut converted_237 = HashMap::with_capacity(mapping_238.len());
-            for (key_239, value_240) in mapping_238.iter() {
-                let converted_key_241: String = key_239.extract()?;
-                let converted_value_242: String = value_240.extract()?;
-                converted_237.insert(converted_key_241, converted_value_242);
-            }
-            Some(converted_237)
+            let converted_253 = (|| -> PyResult<_> {
+                let mapping_254 = value.cast::<PyDict>()?;
+                let mut converted_253 = HashMap::with_capacity(mapping_254.len());
+                for (index_259, (key_255, value_256)) in mapping_254.iter().enumerate() {
+                    let converted_key_257 = (|| -> PyResult<_> {
+                        let converted_key_257: String = key_255.extract()?;
+                        Ok(converted_key_257)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_259),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_258 = (|| -> PyResult<_> {
+                        let converted_value_258: String = value_256.extract()?;
+                        Ok(converted_value_258)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_259),
+                            "str",
+                        )
+                    })?;
+                    converted_253.insert(converted_key_257, converted_value_258);
+                }
+                Ok(converted_253)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("attributes"),
+                        "dict",
+                    ),
+                    "sns",
+                    "Subscribe",
+                )
+            })?;
+            Some(converted_253)
         } else {
             None
         };
         let return_subscription_arn_value =
             if let Some(value) = dict_value(params, "return_subscription_arn")? {
-                let converted_243: bool = value.extract()?;
-                Some(converted_243)
+                let converted_260 = (|| -> PyResult<_> {
+                    let converted_260: bool = value.extract()?;
+                    Ok(converted_260)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("return_subscription_arn"),
+                            "bool",
+                        ),
+                        "sns",
+                        "Subscribe",
+                    )
+                })?;
+                Some(converted_260)
             } else {
                 None
             };
@@ -4283,20 +5878,65 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_244: String = value.extract()?;
-            Some(converted_244)
+            let converted_261 = (|| -> PyResult<_> {
+                let converted_261: String = value.extract()?;
+                Ok(converted_261)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_261)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_245 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_246 in value.try_iter()? {
-                let item_247 = item_result_246?;
-                let converted_item_248 = tag_from_py(&item_247)?;
-                converted_245.push(converted_item_248);
-            }
-            Some(converted_245)
+            let converted_262 = (|| -> PyResult<_> {
+                let mut converted_262 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_266, item_result_263) in value.try_iter()?.enumerate() {
+                    let item_264 = item_result_263.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_266),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_265 = (|| -> PyResult<_> {
+                        let converted_item_265 = tag_from_py(&item_264)?;
+                        Ok(converted_item_265)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_266),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_262.push(converted_item_265);
+                }
+                Ok(converted_262)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "sns",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_262)
         } else {
             None
         };
@@ -4333,8 +5973,22 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let subscription_arn_value = if let Some(value) = dict_value(params, "subscription_arn")? {
-            let converted_249: String = value.extract()?;
-            Some(converted_249)
+            let converted_267 = (|| -> PyResult<_> {
+                let converted_267: String = value.extract()?;
+                Ok(converted_267)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("subscription_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "Unsubscribe",
+                )
+            })?;
+            Some(converted_267)
         } else {
             None
         };
@@ -4370,20 +6024,65 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_250: String = value.extract()?;
-            Some(converted_250)
+            let converted_268 = (|| -> PyResult<_> {
+                let converted_268: String = value.extract()?;
+                Ok(converted_268)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "sns",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_268)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_251 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_252 in value.try_iter()? {
-                let item_253 = item_result_252?;
-                let converted_item_254: String = item_253.extract()?;
-                converted_251.push(converted_item_254);
-            }
-            Some(converted_251)
+            let converted_269 = (|| -> PyResult<_> {
+                let mut converted_269 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_273, item_result_270) in value.try_iter()?.enumerate() {
+                    let item_271 = item_result_270.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_273),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_272 = (|| -> PyResult<_> {
+                        let converted_item_272: String = item_271.extract()?;
+                        Ok(converted_item_272)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_273),
+                            "str",
+                        )
+                    })?;
+                    converted_269.push(converted_item_272);
+                }
+                Ok(converted_269)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tag_keys"),
+                        "sequence",
+                    ),
+                    "sns",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_269)
         } else {
             None
         };
@@ -4421,15 +6120,43 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let phone_number_value = if let Some(value) = dict_value(params, "phone_number")? {
-            let converted_255: String = value.extract()?;
-            Some(converted_255)
+            let converted_274 = (|| -> PyResult<_> {
+                let converted_274: String = value.extract()?;
+                Ok(converted_274)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("phone_number"),
+                        "str",
+                    ),
+                    "sns",
+                    "VerifySMSSandboxPhoneNumber",
+                )
+            })?;
+            Some(converted_274)
         } else {
             None
         };
         let one_time_password_value = if let Some(value) = dict_value(params, "one_time_password")?
         {
-            let converted_256: String = value.extract()?;
-            Some(converted_256)
+            let converted_275 = (|| -> PyResult<_> {
+                let converted_275: String = value.extract()?;
+                Ok(converted_275)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("one_time_password"),
+                        "str",
+                    ),
+                    "sns",
+                    "VerifySMSSandboxPhoneNumber",
+                )
+            })?;
+            Some(converted_275)
         } else {
             None
         };

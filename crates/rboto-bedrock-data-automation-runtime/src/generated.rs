@@ -10,6 +10,8 @@
 )]
 use super::*;
 
+use pyo3::exceptions::PyValueError;
+
 fn asset_processing_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::AssetProcessingConfiguration> {
@@ -17,7 +19,17 @@ fn asset_processing_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::AssetProcessingConfiguration::builder();
     if let Some(value) = dict_value(values, "video")? {
-        let converted_1 = video_asset_processing_configuration_from_py(&value)?;
+        let converted_1 = (|| -> PyResult<_> {
+            let converted_1 = video_asset_processing_configuration_from_py(&value)?;
+            Ok(converted_1)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("video"),
+                "dict (VideoAssetProcessingConfiguration)",
+            )
+        })?;
         builder = builder.set_video(Some(converted_1));
     }
     Ok(builder.build())
@@ -43,23 +55,45 @@ fn blueprint_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::Blueprint::builder();
     if let Some(value) = dict_value(values, "blueprint_arn")? {
-        let converted_3: String = value.extract()?;
+        let converted_3 = (|| -> PyResult<_> {
+            let converted_3: String = value.extract()?;
+            Ok(converted_3)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("blueprint_arn"), "str")
+        })?;
         builder = builder.set_blueprint_arn(Some(converted_3));
     }
     if let Some(value) = dict_value(values, "version")? {
-        let converted_4: String = value.extract()?;
+        let converted_4 = (|| -> PyResult<_> {
+            let converted_4: String = value.extract()?;
+            Ok(converted_4)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("version"), "str")
+        })?;
         builder = builder.set_version(Some(converted_4));
     }
     if let Some(value) = dict_value(values, "stage")? {
-        let enum_value_6: String = value.extract()?;
-        let converted_5 = aws_sdk_bedrockdataautomationruntime::types::BlueprintStage::from(
-            enum_value_6.as_str(),
-        );
+        let converted_5 = (|| -> PyResult<_> {
+            let enum_value_6: String = value.extract()?;
+            let converted_5 = aws_sdk_bedrockdataautomationruntime::types::BlueprintStage::from(
+                enum_value_6.as_str(),
+            );
+            Ok(converted_5)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stage"),
+                "str (BlueprintStage)",
+            )
+        })?;
         builder = builder.set_stage(Some(converted_5));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("blueprint_arn", "blueprint_arn")]))
 }
 
 fn blueprint_to_py(
@@ -91,19 +125,43 @@ fn data_automation_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::DataAutomationConfiguration::builder();
     if let Some(value) = dict_value(values, "data_automation_project_arn")? {
-        let converted_10: String = value.extract()?;
+        let converted_10 = (|| -> PyResult<_> {
+            let converted_10: String = value.extract()?;
+            Ok(converted_10)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("data_automation_project_arn"),
+                "str",
+            )
+        })?;
         builder = builder.set_data_automation_project_arn(Some(converted_10));
     }
     if let Some(value) = dict_value(values, "stage")? {
-        let enum_value_12: String = value.extract()?;
-        let converted_11 = aws_sdk_bedrockdataautomationruntime::types::DataAutomationStage::from(
-            enum_value_12.as_str(),
-        );
+        let converted_11 = (|| -> PyResult<_> {
+            let enum_value_12: String = value.extract()?;
+            let converted_11 =
+                aws_sdk_bedrockdataautomationruntime::types::DataAutomationStage::from(
+                    enum_value_12.as_str(),
+                );
+            Ok(converted_11)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("stage"),
+                "str (DataAutomationStage)",
+            )
+        })?;
         builder = builder.set_stage(Some(converted_11));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("data_automation_project_arn", "data_automation_project_arn")],
+        )
+    })
 }
 
 fn data_automation_configuration_to_py(
@@ -131,22 +189,50 @@ fn encryption_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::EncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "kms_key_id")? {
-        let converted_15: String = value.extract()?;
+        let converted_15 = (|| -> PyResult<_> {
+            let converted_15: String = value.extract()?;
+            Ok(converted_15)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("kms_key_id"), "str")
+        })?;
         builder = builder.set_kms_key_id(Some(converted_15));
     }
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
-        let mapping_17 = value.cast::<PyDict>()?;
-        let mut converted_16 = HashMap::with_capacity(mapping_17.len());
-        for (key_18, value_19) in mapping_17.iter() {
-            let converted_key_20: String = key_18.extract()?;
-            let converted_value_21: String = value_19.extract()?;
-            converted_16.insert(converted_key_20, converted_value_21);
-        }
+        let converted_16 = (|| -> PyResult<_> {
+            let mapping_17 = value.cast::<PyDict>()?;
+            let mut converted_16 = HashMap::with_capacity(mapping_17.len());
+            for (index_22, (key_18, value_19)) in mapping_17.iter().enumerate() {
+                let converted_key_20 = (|| -> PyResult<_> {
+                    let converted_key_20: String = key_18.extract()?;
+                    Ok(converted_key_20)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_22), "str")
+                })?;
+                let converted_value_21 = (|| -> PyResult<_> {
+                    let converted_value_21: String = value_19.extract()?;
+                    Ok(converted_value_21)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_22), "str")
+                })?;
+                converted_16.insert(converted_key_20, converted_value_21);
+            }
+            Ok(converted_16)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("kms_encryption_context"),
+                "dict",
+            )
+        })?;
         builder = builder.set_kms_encryption_context(Some(converted_16));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("kms_key_id", "kms_key_id")]))
 }
 
 fn encryption_configuration_to_py(
@@ -154,17 +240,17 @@ fn encryption_configuration_to_py(
     value: &aws_sdk_bedrockdataautomationruntime::types::EncryptionConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_22 = (&value.kms_key_id).as_str().into_py_any(py)?;
-    result.set_item("kms_key_id", converted_22)?;
+    let converted_23 = (&value.kms_key_id).as_str().into_py_any(py)?;
+    result.set_item("kms_key_id", converted_23)?;
     if let Some(value) = &value.kms_encryption_context {
-        let converted_23_dict = PyDict::new(py);
-        for (key_24, value_25) in value {
-            let converted_key_26 = (key_24).as_str().into_py_any(py)?;
-            let converted_value_27 = (value_25).as_str().into_py_any(py)?;
-            converted_23_dict.set_item(converted_key_26, converted_value_27)?;
+        let converted_24_dict = PyDict::new(py);
+        for (key_25, value_26) in value {
+            let converted_key_27 = (key_25).as_str().into_py_any(py)?;
+            let converted_value_28 = (value_26).as_str().into_py_any(py)?;
+            converted_24_dict.set_item(converted_key_27, converted_value_28)?;
         }
-        let converted_23 = converted_23_dict.into_any().unbind();
-        result.set_item("kms_encryption_context", converted_23)?;
+        let converted_24 = converted_24_dict.into_any().unbind();
+        result.set_item("kms_encryption_context", converted_24)?;
     } else {
         result.set_item("kms_encryption_context", py.None())?;
     }
@@ -178,12 +264,22 @@ fn event_bridge_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::EventBridgeConfiguration::builder();
     if let Some(value) = dict_value(values, "event_bridge_enabled")? {
-        let converted_28: bool = value.extract()?;
-        builder = builder.set_event_bridge_enabled(Some(converted_28));
+        let converted_29 = (|| -> PyResult<_> {
+            let converted_29: bool = value.extract()?;
+            Ok(converted_29)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("event_bridge_enabled"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_event_bridge_enabled(Some(converted_29));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("event_bridge_enabled", "event_bridge_enabled")])
+    })
 }
 
 fn event_bridge_configuration_to_py(
@@ -191,8 +287,8 @@ fn event_bridge_configuration_to_py(
     value: &aws_sdk_bedrockdataautomationruntime::types::EventBridgeConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_29 = (&value.event_bridge_enabled).to_owned().into_py_any(py)?;
-    result.set_item("event_bridge_enabled", converted_29)?;
+    let converted_30 = (&value.event_bridge_enabled).to_owned().into_py_any(py)?;
+    result.set_item("event_bridge_enabled", converted_30)?;
     Ok(result.into_any().unbind())
 }
 
@@ -202,16 +298,32 @@ fn input_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::InputConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
-        let converted_30: String = value.extract()?;
-        builder = builder.set_s3_uri(Some(converted_30));
+        let converted_31 = (|| -> PyResult<_> {
+            let converted_31: String = value.extract()?;
+            Ok(converted_31)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_uri"), "str")
+        })?;
+        builder = builder.set_s3_uri(Some(converted_31));
     }
     if let Some(value) = dict_value(values, "asset_processing_configuration")? {
-        let converted_31 = asset_processing_configuration_from_py(&value)?;
-        builder = builder.set_asset_processing_configuration(Some(converted_31));
+        let converted_32 = (|| -> PyResult<_> {
+            let converted_32 = asset_processing_configuration_from_py(&value)?;
+            Ok(converted_32)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("asset_processing_configuration"),
+                "dict (AssetProcessingConfiguration)",
+            )
+        })?;
+        builder = builder.set_asset_processing_configuration(Some(converted_32));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("s3_uri", "s3_uri")]))
 }
 
 fn input_configuration_to_py(
@@ -219,11 +331,11 @@ fn input_configuration_to_py(
     value: &aws_sdk_bedrockdataautomationruntime::types::InputConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_32 = (&value.s3_uri).as_str().into_py_any(py)?;
-    result.set_item("s3_uri", converted_32)?;
+    let converted_33 = (&value.s3_uri).as_str().into_py_any(py)?;
+    result.set_item("s3_uri", converted_33)?;
     if let Some(value) = &value.asset_processing_configuration {
-        let converted_33 = asset_processing_configuration_to_py(py, value)?;
-        result.set_item("asset_processing_configuration", converted_33)?;
+        let converted_34 = asset_processing_configuration_to_py(py, value)?;
+        result.set_item("asset_processing_configuration", converted_34)?;
     } else {
         result.set_item("asset_processing_configuration", py.None())?;
     }
@@ -237,8 +349,18 @@ fn notification_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::NotificationConfiguration::builder();
     if let Some(value) = dict_value(values, "event_bridge_configuration")? {
-        let converted_34 = event_bridge_configuration_from_py(&value)?;
-        builder = builder.set_event_bridge_configuration(Some(converted_34));
+        let converted_35 = (|| -> PyResult<_> {
+            let converted_35 = event_bridge_configuration_from_py(&value)?;
+            Ok(converted_35)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("event_bridge_configuration"),
+                "dict (EventBridgeConfiguration)",
+            )
+        })?;
+        builder = builder.set_event_bridge_configuration(Some(converted_35));
     }
     Ok(builder.build())
 }
@@ -249,8 +371,8 @@ fn notification_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.event_bridge_configuration {
-        let converted_35 = event_bridge_configuration_to_py(py, value)?;
-        result.set_item("event_bridge_configuration", converted_35)?;
+        let converted_36 = event_bridge_configuration_to_py(py, value)?;
+        result.set_item("event_bridge_configuration", converted_36)?;
     } else {
         result.set_item("event_bridge_configuration", py.None())?;
     }
@@ -263,12 +385,18 @@ fn output_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
-        let converted_36: String = value.extract()?;
-        builder = builder.set_s3_uri(Some(converted_36));
+        let converted_37 = (|| -> PyResult<_> {
+            let converted_37: String = value.extract()?;
+            Ok(converted_37)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_uri"), "str")
+        })?;
+        builder = builder.set_s3_uri(Some(converted_37));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("s3_uri", "s3_uri")]))
 }
 
 fn output_configuration_to_py(
@@ -276,8 +404,8 @@ fn output_configuration_to_py(
     value: &aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_37 = (&value.s3_uri).as_str().into_py_any(py)?;
-    result.set_item("s3_uri", converted_37)?;
+    let converted_38 = (&value.s3_uri).as_str().into_py_any(py)?;
+    result.set_item("s3_uri", converted_38)?;
     Ok(result.into_any().unbind())
 }
 
@@ -287,19 +415,46 @@ fn output_segment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::OutputSegment::builder();
     if let Some(value) = dict_value(values, "custom_output_status")? {
-        let enum_value_39: String = value.extract()?;
-        let converted_38 = aws_sdk_bedrockdataautomationruntime::types::CustomOutputStatus::from(
-            enum_value_39.as_str(),
-        );
-        builder = builder.set_custom_output_status(Some(converted_38));
+        let converted_39 = (|| -> PyResult<_> {
+            let enum_value_40: String = value.extract()?;
+            let converted_39 =
+                aws_sdk_bedrockdataautomationruntime::types::CustomOutputStatus::from(
+                    enum_value_40.as_str(),
+                );
+            Ok(converted_39)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("custom_output_status"),
+                "str (CustomOutputStatus)",
+            )
+        })?;
+        builder = builder.set_custom_output_status(Some(converted_39));
     }
     if let Some(value) = dict_value(values, "custom_output")? {
-        let converted_40: String = value.extract()?;
-        builder = builder.set_custom_output(Some(converted_40));
+        let converted_41 = (|| -> PyResult<_> {
+            let converted_41: String = value.extract()?;
+            Ok(converted_41)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("custom_output"), "str")
+        })?;
+        builder = builder.set_custom_output(Some(converted_41));
     }
     if let Some(value) = dict_value(values, "standard_output")? {
-        let converted_41: String = value.extract()?;
-        builder = builder.set_standard_output(Some(converted_41));
+        let converted_42 = (|| -> PyResult<_> {
+            let converted_42: String = value.extract()?;
+            Ok(converted_42)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("standard_output"),
+                "str",
+            )
+        })?;
+        builder = builder.set_standard_output(Some(converted_42));
     }
     Ok(builder.build())
 }
@@ -310,20 +465,20 @@ fn output_segment_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.custom_output_status {
-        let converted_42 = (value).as_str().into_py_any(py)?;
-        result.set_item("custom_output_status", converted_42)?;
+        let converted_43 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_output_status", converted_43)?;
     } else {
         result.set_item("custom_output_status", py.None())?;
     }
     if let Some(value) = &value.custom_output {
-        let converted_43 = (value).as_str().into_py_any(py)?;
-        result.set_item("custom_output", converted_43)?;
+        let converted_44 = (value).as_str().into_py_any(py)?;
+        result.set_item("custom_output", converted_44)?;
     } else {
         result.set_item("custom_output", py.None())?;
     }
     if let Some(value) = &value.standard_output {
-        let converted_44 = (value).as_str().into_py_any(py)?;
-        result.set_item("standard_output", converted_44)?;
+        let converted_45 = (value).as_str().into_py_any(py)?;
+        result.set_item("standard_output", converted_45)?;
     } else {
         result.set_item("standard_output", py.None())?;
     }
@@ -337,13 +492,25 @@ fn sync_input_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::SyncInputConfiguration::builder();
     if let Some(value) = dict_value(values, "bytes")? {
-        let bytes_46: Vec<u8> = value.extract()?;
-        let converted_45 = ::aws_smithy_types::Blob::new(bytes_46);
-        builder = builder.set_bytes(Some(converted_45));
+        let converted_46 = (|| -> PyResult<_> {
+            let bytes_47: Vec<u8> = value.extract()?;
+            let converted_46 = ::aws_smithy_types::Blob::new(bytes_47);
+            Ok(converted_46)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bytes"), "bytes")
+        })?;
+        builder = builder.set_bytes(Some(converted_46));
     }
     if let Some(value) = dict_value(values, "s3_uri")? {
-        let converted_47: String = value.extract()?;
-        builder = builder.set_s3_uri(Some(converted_47));
+        let converted_48 = (|| -> PyResult<_> {
+            let converted_48: String = value.extract()?;
+            Ok(converted_48)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_uri"), "str")
+        })?;
+        builder = builder.set_s3_uri(Some(converted_48));
     }
     Ok(builder.build())
 }
@@ -354,14 +521,14 @@ fn sync_input_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.bytes {
-        let converted_48 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
-        result.set_item("bytes", converted_48)?;
+        let converted_49 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+        result.set_item("bytes", converted_49)?;
     } else {
         result.set_item("bytes", py.None())?;
     }
     if let Some(value) = &value.s3_uri {
-        let converted_49 = (value).as_str().into_py_any(py)?;
-        result.set_item("s3_uri", converted_49)?;
+        let converted_50 = (value).as_str().into_py_any(py)?;
+        result.set_item("s3_uri", converted_50)?;
     } else {
         result.set_item("s3_uri", py.None())?;
     }
@@ -374,16 +541,28 @@ fn tag_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_50: String = value.extract()?;
-        builder = builder.set_key(Some(converted_50));
+        let converted_51 = (|| -> PyResult<_> {
+            let converted_51: String = value.extract()?;
+            Ok(converted_51)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
+        })?;
+        builder = builder.set_key(Some(converted_51));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_51: String = value.extract()?;
-        builder = builder.set_value(Some(converted_51));
+        let converted_52 = (|| -> PyResult<_> {
+            let converted_52: String = value.extract()?;
+            Ok(converted_52)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
+        })?;
+        builder = builder.set_value(Some(converted_52));
     }
     builder
         .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+        .map_err(|_| rboto_core::input_builder_error(values, &[("key", "key"), ("value", "value")]))
 }
 
 fn tag_to_py(
@@ -391,10 +570,10 @@ fn tag_to_py(
     value: &aws_sdk_bedrockdataautomationruntime::types::Tag,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_52 = (&value.key).as_str().into_py_any(py)?;
-    result.set_item("key", converted_52)?;
-    let converted_53 = (&value.value).as_str().into_py_any(py)?;
-    result.set_item("value", converted_53)?;
+    let converted_53 = (&value.key).as_str().into_py_any(py)?;
+    result.set_item("key", converted_53)?;
+    let converted_54 = (&value.value).as_str().into_py_any(py)?;
+    result.set_item("value", converted_54)?;
     Ok(result.into_any().unbind())
 }
 
@@ -404,16 +583,42 @@ fn timestamp_segment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::TimestampSegment::builder();
     if let Some(value) = dict_value(values, "start_time_millis")? {
-        let converted_54: i64 = value.extract()?;
-        builder = builder.set_start_time_millis(Some(converted_54));
+        let converted_55 = (|| -> PyResult<_> {
+            let converted_55: i64 = value.extract()?;
+            Ok(converted_55)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("start_time_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_start_time_millis(Some(converted_55));
     }
     if let Some(value) = dict_value(values, "end_time_millis")? {
-        let converted_55: i64 = value.extract()?;
-        builder = builder.set_end_time_millis(Some(converted_55));
+        let converted_56 = (|| -> PyResult<_> {
+            let converted_56: i64 = value.extract()?;
+            Ok(converted_56)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("end_time_millis"),
+                "int",
+            )
+        })?;
+        builder = builder.set_end_time_millis(Some(converted_56));
     }
-    builder
-        .build()
-        .map_err(|error| PyValueError::new_err(error.to_string()))
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("start_time_millis", "start_time_millis"),
+                ("end_time_millis", "end_time_millis"),
+            ],
+        )
+    })
 }
 
 fn timestamp_segment_to_py(
@@ -421,10 +626,10 @@ fn timestamp_segment_to_py(
     value: &aws_sdk_bedrockdataautomationruntime::types::TimestampSegment,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_56 = (&value.start_time_millis).to_owned().into_py_any(py)?;
-    result.set_item("start_time_millis", converted_56)?;
-    let converted_57 = (&value.end_time_millis).to_owned().into_py_any(py)?;
-    result.set_item("end_time_millis", converted_57)?;
+    let converted_57 = (&value.start_time_millis).to_owned().into_py_any(py)?;
+    result.set_item("start_time_millis", converted_57)?;
+    let converted_58 = (&value.end_time_millis).to_owned().into_py_any(py)?;
+    result.set_item("end_time_millis", converted_58)?;
     Ok(result.into_any().unbind())
 }
 
@@ -435,8 +640,18 @@ fn video_asset_processing_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::VideoAssetProcessingConfiguration::builder();
     if let Some(value) = dict_value(values, "segment_configuration")? {
-        let converted_58 = video_segment_configuration_from_py(&value)?;
-        builder = builder.set_segment_configuration(Some(converted_58));
+        let converted_59 = (|| -> PyResult<_> {
+            let converted_59 = video_segment_configuration_from_py(&value)?;
+            Ok(converted_59)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("segment_configuration"),
+                "exactly one known union variant",
+            )
+        })?;
+        builder = builder.set_segment_configuration(Some(converted_59));
     }
     Ok(builder.build())
 }
@@ -447,8 +662,8 @@ fn video_asset_processing_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.segment_configuration {
-        let converted_59 = video_segment_configuration_to_py(py, value)?;
-        result.set_item("segment_configuration", converted_59)?;
+        let converted_60 = video_segment_configuration_to_py(py, value)?;
+        result.set_item("segment_configuration", converted_60)?;
     } else {
         result.set_item("segment_configuration", py.None())?;
     }
@@ -460,14 +675,32 @@ fn video_segment_configuration_from_py(
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::VideoSegmentConfiguration> {
     let values = value.cast::<PyDict>()?;
     if values.len() != 1 {
-        return Err(PyValueError::new_err("union requires exactly one variant"));
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
     }
     if let Some(value) = dict_value(values, "timestamp_segment")? {
-        let converted_60 = timestamp_segment_from_py(&value)?;
-        return Ok(aws_sdk_bedrockdataautomationruntime::types::VideoSegmentConfiguration::TimestampSegment(converted_60));
+        let converted_61 = (|| -> PyResult<_> {
+            let converted_61 = timestamp_segment_from_py(&value)?;
+            Ok(converted_61)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("timestamp_segment"),
+                "dict (TimestampSegment)",
+            )
+        })?;
+        return Ok(aws_sdk_bedrockdataautomationruntime::types::VideoSegmentConfiguration::TimestampSegment(converted_61));
     }
-    Err(PyValueError::new_err(
-        "VideoSegmentConfiguration requires exactly one known variant",
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("VideoSegmentConfiguration requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
     ))
 }
 
@@ -478,8 +711,8 @@ fn video_segment_configuration_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_bedrockdataautomationruntime::types::VideoSegmentConfiguration::TimestampSegment(value) => {
-            let converted_61 = timestamp_segment_to_py(py, value)?;
-            result.set_item("timestamp_segment", converted_61)?;
+            let converted_62 = timestamp_segment_to_py(py, value)?;
+            result.set_item("timestamp_segment", converted_62)?;
         }
         _ => { result.set_item("unknown", true)?; }
     }
@@ -499,8 +732,8 @@ struct PyOutputConfiguration {
 impl PyOutputConfiguration {
     #[getter]
     fn s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_98 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_98)
+        let converted_104 = (&self.inner.s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_104)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -522,8 +755,8 @@ impl PyOutputSegment {
     #[getter]
     fn custom_output_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_output_status {
-            let converted_99 = (value).as_str().into_py_any(py)?;
-            Ok(converted_99)
+            let converted_105 = (value).as_str().into_py_any(py)?;
+            Ok(converted_105)
         } else {
             Ok(py.None())
         }
@@ -532,8 +765,8 @@ impl PyOutputSegment {
     #[getter]
     fn custom_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_output {
-            let converted_100 = (value).as_str().into_py_any(py)?;
-            Ok(converted_100)
+            let converted_106 = (value).as_str().into_py_any(py)?;
+            Ok(converted_106)
         } else {
             Ok(py.None())
         }
@@ -542,8 +775,8 @@ impl PyOutputSegment {
     #[getter]
     fn standard_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.standard_output {
-            let converted_101 = (value).as_str().into_py_any(py)?;
-            Ok(converted_101)
+            let converted_107 = (value).as_str().into_py_any(py)?;
+            Ok(converted_107)
         } else {
             Ok(py.None())
         }
@@ -567,14 +800,14 @@ struct PyTag {
 impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_102 = (&self.inner.key).as_str().into_py_any(py)?;
-        Ok(converted_102)
+        let converted_108 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_108)
     }
 
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_103 = (&self.inner.value).as_str().into_py_any(py)?;
-        Ok(converted_103)
+        let converted_109 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_109)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -623,8 +856,8 @@ impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_104 = (value).as_str().into_py_any(py)?;
-            Ok(converted_104)
+            let converted_110 = (value).as_str().into_py_any(py)?;
+            Ok(converted_110)
         } else {
             Ok(py.None())
         }
@@ -633,8 +866,8 @@ impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn error_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_type {
-            let converted_105 = (value).as_str().into_py_any(py)?;
-            Ok(converted_105)
+            let converted_111 = (value).as_str().into_py_any(py)?;
+            Ok(converted_111)
         } else {
             Ok(py.None())
         }
@@ -643,8 +876,8 @@ impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_106 = (value).as_str().into_py_any(py)?;
-            Ok(converted_106)
+            let converted_112 = (value).as_str().into_py_any(py)?;
+            Ok(converted_112)
         } else {
             Ok(py.None())
         }
@@ -653,14 +886,14 @@ impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn output_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_configuration {
-            let converted_107 = Py::new(
+            let converted_113 = Py::new(
                 py,
                 PyOutputConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_107)
+            Ok(converted_113)
         } else {
             Ok(py.None())
         }
@@ -669,8 +902,8 @@ impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn job_submission_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_submission_time {
-            let converted_108 = (value).to_string().into_py_any(py)?;
-            Ok(converted_108)
+            let converted_114 = (value).to_string().into_py_any(py)?;
+            Ok(converted_114)
         } else {
             Ok(py.None())
         }
@@ -679,8 +912,8 @@ impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn job_completion_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_completion_time {
-            let converted_109 = (value).to_string().into_py_any(py)?;
-            Ok(converted_109)
+            let converted_115 = (value).to_string().into_py_any(py)?;
+            Ok(converted_115)
         } else {
             Ok(py.None())
         }
@@ -689,8 +922,8 @@ impl PyOperationGetDataAutomationStatusOutput {
     #[getter]
     fn job_duration_in_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_duration_in_seconds {
-            let converted_110 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_110)
+            let converted_116 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_116)
         } else {
             Ok(py.None())
         }
@@ -699,44 +932,44 @@ impl PyOperationGetDataAutomationStatusOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.status {
-            let converted_111 = (value).as_str().into_py_any(py)?;
-            result.set_item("status", converted_111)?;
+            let converted_117 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_117)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.error_type {
-            let converted_112 = (value).as_str().into_py_any(py)?;
-            result.set_item("error_type", converted_112)?;
+            let converted_118 = (value).as_str().into_py_any(py)?;
+            result.set_item("error_type", converted_118)?;
         } else {
             result.set_item("error_type", py.None())?;
         }
         if let Some(value) = &self.inner.error_message {
-            let converted_113 = (value).as_str().into_py_any(py)?;
-            result.set_item("error_message", converted_113)?;
+            let converted_119 = (value).as_str().into_py_any(py)?;
+            result.set_item("error_message", converted_119)?;
         } else {
             result.set_item("error_message", py.None())?;
         }
         if let Some(value) = &self.inner.output_configuration {
-            let converted_114 = output_configuration_to_py(py, value)?;
-            result.set_item("output_configuration", converted_114)?;
+            let converted_120 = output_configuration_to_py(py, value)?;
+            result.set_item("output_configuration", converted_120)?;
         } else {
             result.set_item("output_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.job_submission_time {
-            let converted_115 = (value).to_string().into_py_any(py)?;
-            result.set_item("job_submission_time", converted_115)?;
+            let converted_121 = (value).to_string().into_py_any(py)?;
+            result.set_item("job_submission_time", converted_121)?;
         } else {
             result.set_item("job_submission_time", py.None())?;
         }
         if let Some(value) = &self.inner.job_completion_time {
-            let converted_116 = (value).to_string().into_py_any(py)?;
-            result.set_item("job_completion_time", converted_116)?;
+            let converted_122 = (value).to_string().into_py_any(py)?;
+            result.set_item("job_completion_time", converted_122)?;
         } else {
             result.set_item("job_completion_time", py.None())?;
         }
         if let Some(value) = &self.inner.job_duration_in_seconds {
-            let converted_117 = (value).to_owned().into_py_any(py)?;
-            result.set_item("job_duration_in_seconds", converted_117)?;
+            let converted_123 = (value).to_owned().into_py_any(py)?;
+            result.set_item("job_duration_in_seconds", converted_123)?;
         } else {
             result.set_item("job_duration_in_seconds", py.None())?;
         }
@@ -759,7 +992,7 @@ impl From<aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automatio
         Self {
             output_configuration: value.output_configuration.map(|item| Arc::new(item)),
             semantic_modality: value.semantic_modality,
-            output_segments: (value.output_segments).into_iter().map(|owned_123| Arc::new(owned_123)).collect(),
+            output_segments: (value.output_segments).into_iter().map(|owned_129| Arc::new(owned_129)).collect(),
         }
     }
 }
@@ -778,14 +1011,14 @@ impl PyOperationInvokeDataAutomationOutput {
     #[getter]
     fn output_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_configuration {
-            let converted_118 = Py::new(
+            let converted_124 = Py::new(
                 py,
                 PyOutputConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_118)
+            Ok(converted_124)
         } else {
             Ok(py.None())
         }
@@ -793,44 +1026,44 @@ impl PyOperationInvokeDataAutomationOutput {
 
     #[getter]
     fn semantic_modality(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_119 = (&self.inner.semantic_modality).as_str().into_py_any(py)?;
-        Ok(converted_119)
+        let converted_125 = (&self.inner.semantic_modality).as_str().into_py_any(py)?;
+        Ok(converted_125)
     }
 
     #[getter]
     fn output_segments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_120_list = PyList::empty(py);
-        for item_121 in &self.inner.output_segments {
-            let converted_item_122 = Py::new(
+        let converted_126_list = PyList::empty(py);
+        for item_127 in &self.inner.output_segments {
+            let converted_item_128 = Py::new(
                 py,
                 PyOutputSegment {
-                    inner: Arc::clone(item_121),
+                    inner: Arc::clone(item_127),
                 },
             )?
             .into_any();
-            converted_120_list.append(converted_item_122)?;
+            converted_126_list.append(converted_item_128)?;
         }
-        let converted_120 = converted_120_list.into_any().unbind();
-        Ok(converted_120)
+        let converted_126 = converted_126_list.into_any().unbind();
+        Ok(converted_126)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.output_configuration {
-            let converted_124 = output_configuration_to_py(py, value)?;
-            result.set_item("output_configuration", converted_124)?;
+            let converted_130 = output_configuration_to_py(py, value)?;
+            result.set_item("output_configuration", converted_130)?;
         } else {
             result.set_item("output_configuration", py.None())?;
         }
-        let converted_125 = (&self.inner.semantic_modality).as_str().into_py_any(py)?;
-        result.set_item("semantic_modality", converted_125)?;
-        let converted_126_list = PyList::empty(py);
-        for item_127 in &self.inner.output_segments {
-            let converted_item_128 = output_segment_to_py(py, item_127)?;
-            converted_126_list.append(converted_item_128)?;
+        let converted_131 = (&self.inner.semantic_modality).as_str().into_py_any(py)?;
+        result.set_item("semantic_modality", converted_131)?;
+        let converted_132_list = PyList::empty(py);
+        for item_133 in &self.inner.output_segments {
+            let converted_item_134 = output_segment_to_py(py, item_133)?;
+            converted_132_list.append(converted_item_134)?;
         }
-        let converted_126 = converted_126_list.into_any().unbind();
-        result.set_item("output_segments", converted_126)?;
+        let converted_132 = converted_132_list.into_any().unbind();
+        result.set_item("output_segments", converted_132)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -848,14 +1081,14 @@ struct PyOperationInvokeDataAutomationAsyncOutput {
 impl PyOperationInvokeDataAutomationAsyncOutput {
     #[getter]
     fn invocation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_129 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        Ok(converted_129)
+        let converted_135 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        Ok(converted_135)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_130 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
-        result.set_item("invocation_arn", converted_130)?;
+        let converted_136 = (&self.inner.invocation_arn).as_str().into_py_any(py)?;
+        result.set_item("invocation_arn", converted_136)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -869,7 +1102,7 @@ struct SharedPyOperationListTagsForResourceOutput {
 impl From<aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceOutput> for SharedPyOperationListTagsForResourceOutput {
     fn from(value: aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceOutput) -> Self {
         Self {
-            tags: value.tags.map(|item| (item).into_iter().map(|owned_134| Arc::new(owned_134)).collect()),
+            tags: value.tags.map(|item| (item).into_iter().map(|owned_140| Arc::new(owned_140)).collect()),
         }
     }
 }
@@ -888,19 +1121,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_131_list = PyList::empty(py);
-            for item_132 in value {
-                let converted_item_133 = Py::new(
+            let converted_137_list = PyList::empty(py);
+            for item_138 in value {
+                let converted_item_139 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_132),
+                        inner: Arc::clone(item_138),
                     },
                 )?
                 .into_any();
-                converted_131_list.append(converted_item_133)?;
+                converted_137_list.append(converted_item_139)?;
             }
-            let converted_131 = converted_131_list.into_any().unbind();
-            Ok(converted_131)
+            let converted_137 = converted_137_list.into_any().unbind();
+            Ok(converted_137)
         } else {
             Ok(py.None())
         }
@@ -909,13 +1142,13 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_135_list = PyList::empty(py);
-            for item_136 in value {
-                let converted_item_137 = tag_to_py(py, item_136)?;
-                converted_135_list.append(converted_item_137)?;
+            let converted_141_list = PyList::empty(py);
+            for item_142 in value {
+                let converted_item_143 = tag_to_py(py, item_142)?;
+                converted_141_list.append(converted_item_143)?;
             }
-            let converted_135 = converted_135_list.into_any().unbind();
-            result.set_item("tags", converted_135)?;
+            let converted_141 = converted_141_list.into_any().unbind();
+            result.set_item("tags", converted_141)?;
         } else {
             result.set_item("tags", py.None())?;
         }
@@ -1008,8 +1241,22 @@ impl BedrockDataAutomationRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let invocation_arn_value = if let Some(value) = dict_value(params, "invocation_arn")? {
-            let converted_62: String = value.extract()?;
-            Some(converted_62)
+            let converted_63 = (|| -> PyResult<_> {
+                let converted_63: String = value.extract()?;
+                Ok(converted_63)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("invocation_arn"),
+                        "str",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "GetDataAutomationStatus",
+                )
+            })?;
+            Some(converted_63)
         } else {
             None
         };
@@ -1049,48 +1296,149 @@ impl BedrockDataAutomationRuntimeClient {
         let state = self.state.clone();
         let input_configuration_value =
             if let Some(value) = dict_value(params, "input_configuration")? {
-                let converted_63 = sync_input_configuration_from_py(&value)?;
-                Some(converted_63)
+                let converted_64 = (|| -> PyResult<_> {
+                    let converted_64 = sync_input_configuration_from_py(&value)?;
+                    Ok(converted_64)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("input_configuration"),
+                            "dict (SyncInputConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomation",
+                    )
+                })?;
+                Some(converted_64)
             } else {
                 None
             };
         let data_automation_configuration_value =
             if let Some(value) = dict_value(params, "data_automation_configuration")? {
-                let converted_64 = data_automation_configuration_from_py(&value)?;
-                Some(converted_64)
+                let converted_65 = (|| -> PyResult<_> {
+                    let converted_65 = data_automation_configuration_from_py(&value)?;
+                    Ok(converted_65)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("data_automation_configuration"),
+                            "dict (DataAutomationConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomation",
+                    )
+                })?;
+                Some(converted_65)
             } else {
                 None
             };
         let blueprints_value = if let Some(value) = dict_value(params, "blueprints")? {
-            let mut converted_65 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_66 in value.try_iter()? {
-                let item_67 = item_result_66?;
-                let converted_item_68 = blueprint_from_py(&item_67)?;
-                converted_65.push(converted_item_68);
-            }
-            Some(converted_65)
+            let converted_66 = (|| -> PyResult<_> {
+                let mut converted_66 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_70, item_result_67) in value.try_iter()?.enumerate() {
+                    let item_68 = item_result_67.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_70),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_69 = (|| -> PyResult<_> {
+                        let converted_item_69 = blueprint_from_py(&item_68)?;
+                        Ok(converted_item_69)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_70),
+                            "dict (Blueprint)",
+                        )
+                    })?;
+                    converted_66.push(converted_item_69);
+                }
+                Ok(converted_66)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("blueprints"),
+                        "sequence",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "InvokeDataAutomation",
+                )
+            })?;
+            Some(converted_66)
         } else {
             None
         };
         let data_automation_profile_arn_value =
             if let Some(value) = dict_value(params, "data_automation_profile_arn")? {
-                let converted_69: String = value.extract()?;
-                Some(converted_69)
+                let converted_71 = (|| -> PyResult<_> {
+                    let converted_71: String = value.extract()?;
+                    Ok(converted_71)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("data_automation_profile_arn"),
+                            "str",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomation",
+                    )
+                })?;
+                Some(converted_71)
             } else {
                 None
             };
         let encryption_configuration_value =
             if let Some(value) = dict_value(params, "encryption_configuration")? {
-                let converted_70 = encryption_configuration_from_py(&value)?;
-                Some(converted_70)
+                let converted_72 = (|| -> PyResult<_> {
+                    let converted_72 = encryption_configuration_from_py(&value)?;
+                    Ok(converted_72)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_configuration"),
+                            "dict (EncryptionConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomation",
+                    )
+                })?;
+                Some(converted_72)
             } else {
                 None
             };
         let output_configuration_value =
             if let Some(value) = dict_value(params, "output_configuration")? {
-                let converted_71 = output_configuration_from_py(&value)?;
-                Some(converted_71)
+                let converted_73 = (|| -> PyResult<_> {
+                    let converted_73 = output_configuration_from_py(&value)?;
+                    Ok(converted_73)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("output_configuration"),
+                            "dict (OutputConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomation",
+                    )
+                })?;
+                Some(converted_73)
             } else {
                 None
             };
@@ -1134,74 +1482,234 @@ impl BedrockDataAutomationRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
-            let converted_72: String = value.extract()?;
-            Some(converted_72)
+            let converted_74 = (|| -> PyResult<_> {
+                let converted_74: String = value.extract()?;
+                Ok(converted_74)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("client_token"),
+                        "str",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "InvokeDataAutomationAsync",
+                )
+            })?;
+            Some(converted_74)
         } else {
             None
         };
         let input_configuration_value =
             if let Some(value) = dict_value(params, "input_configuration")? {
-                let converted_73 = input_configuration_from_py(&value)?;
-                Some(converted_73)
+                let converted_75 = (|| -> PyResult<_> {
+                    let converted_75 = input_configuration_from_py(&value)?;
+                    Ok(converted_75)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("input_configuration"),
+                            "dict (InputConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomationAsync",
+                    )
+                })?;
+                Some(converted_75)
             } else {
                 None
             };
         let output_configuration_value =
             if let Some(value) = dict_value(params, "output_configuration")? {
-                let converted_74 = output_configuration_from_py(&value)?;
-                Some(converted_74)
+                let converted_76 = (|| -> PyResult<_> {
+                    let converted_76 = output_configuration_from_py(&value)?;
+                    Ok(converted_76)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("output_configuration"),
+                            "dict (OutputConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomationAsync",
+                    )
+                })?;
+                Some(converted_76)
             } else {
                 None
             };
         let data_automation_configuration_value =
             if let Some(value) = dict_value(params, "data_automation_configuration")? {
-                let converted_75 = data_automation_configuration_from_py(&value)?;
-                Some(converted_75)
+                let converted_77 = (|| -> PyResult<_> {
+                    let converted_77 = data_automation_configuration_from_py(&value)?;
+                    Ok(converted_77)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("data_automation_configuration"),
+                            "dict (DataAutomationConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomationAsync",
+                    )
+                })?;
+                Some(converted_77)
             } else {
                 None
             };
         let encryption_configuration_value =
             if let Some(value) = dict_value(params, "encryption_configuration")? {
-                let converted_76 = encryption_configuration_from_py(&value)?;
-                Some(converted_76)
+                let converted_78 = (|| -> PyResult<_> {
+                    let converted_78 = encryption_configuration_from_py(&value)?;
+                    Ok(converted_78)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("encryption_configuration"),
+                            "dict (EncryptionConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomationAsync",
+                    )
+                })?;
+                Some(converted_78)
             } else {
                 None
             };
         let notification_configuration_value =
             if let Some(value) = dict_value(params, "notification_configuration")? {
-                let converted_77 = notification_configuration_from_py(&value)?;
-                Some(converted_77)
+                let converted_79 = (|| -> PyResult<_> {
+                    let converted_79 = notification_configuration_from_py(&value)?;
+                    Ok(converted_79)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("notification_configuration"),
+                            "dict (NotificationConfiguration)",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomationAsync",
+                    )
+                })?;
+                Some(converted_79)
             } else {
                 None
             };
         let blueprints_value = if let Some(value) = dict_value(params, "blueprints")? {
-            let mut converted_78 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_79 in value.try_iter()? {
-                let item_80 = item_result_79?;
-                let converted_item_81 = blueprint_from_py(&item_80)?;
-                converted_78.push(converted_item_81);
-            }
-            Some(converted_78)
+            let converted_80 = (|| -> PyResult<_> {
+                let mut converted_80 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_84, item_result_81) in value.try_iter()?.enumerate() {
+                    let item_82 = item_result_81.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_84),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_83 = (|| -> PyResult<_> {
+                        let converted_item_83 = blueprint_from_py(&item_82)?;
+                        Ok(converted_item_83)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_84),
+                            "dict (Blueprint)",
+                        )
+                    })?;
+                    converted_80.push(converted_item_83);
+                }
+                Ok(converted_80)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("blueprints"),
+                        "sequence",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "InvokeDataAutomationAsync",
+                )
+            })?;
+            Some(converted_80)
         } else {
             None
         };
         let data_automation_profile_arn_value =
             if let Some(value) = dict_value(params, "data_automation_profile_arn")? {
-                let converted_82: String = value.extract()?;
-                Some(converted_82)
+                let converted_85 = (|| -> PyResult<_> {
+                    let converted_85: String = value.extract()?;
+                    Ok(converted_85)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("data_automation_profile_arn"),
+                            "str",
+                        ),
+                        "bedrock-data-automation-runtime",
+                        "InvokeDataAutomationAsync",
+                    )
+                })?;
+                Some(converted_85)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_83 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_84 in value.try_iter()? {
-                let item_85 = item_result_84?;
-                let converted_item_86 = tag_from_py(&item_85)?;
-                converted_83.push(converted_item_86);
-            }
-            Some(converted_83)
+            let converted_86 = (|| -> PyResult<_> {
+                let mut converted_86 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_90, item_result_87) in value.try_iter()?.enumerate() {
+                    let item_88 = item_result_87.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_90),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_89 = (|| -> PyResult<_> {
+                        let converted_item_89 = tag_from_py(&item_88)?;
+                        Ok(converted_item_89)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_90),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_86.push(converted_item_89);
+                }
+                Ok(converted_86)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "InvokeDataAutomationAsync",
+                )
+            })?;
+            Some(converted_86)
         } else {
             None
         };
@@ -1246,8 +1754,22 @@ impl BedrockDataAutomationRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_87: String = value.extract()?;
-            Some(converted_87)
+            let converted_91 = (|| -> PyResult<_> {
+                let converted_91: String = value.extract()?;
+                Ok(converted_91)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "ListTagsForResource",
+                )
+            })?;
+            Some(converted_91)
         } else {
             None
         };
@@ -1286,20 +1808,65 @@ impl BedrockDataAutomationRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_88: String = value.extract()?;
-            Some(converted_88)
+            let converted_92 = (|| -> PyResult<_> {
+                let converted_92: String = value.extract()?;
+                Ok(converted_92)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_92)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_89 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_90 in value.try_iter()? {
-                let item_91 = item_result_90?;
-                let converted_item_92 = tag_from_py(&item_91)?;
-                converted_89.push(converted_item_92);
-            }
-            Some(converted_89)
+            let converted_93 = (|| -> PyResult<_> {
+                let mut converted_93 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_97, item_result_94) in value.try_iter()?.enumerate() {
+                    let item_95 = item_result_94.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_97),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_96 = (|| -> PyResult<_> {
+                        let converted_item_96 = tag_from_py(&item_95)?;
+                        Ok(converted_item_96)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_97),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_93.push(converted_item_96);
+                }
+                Ok(converted_93)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_93)
         } else {
             None
         };
@@ -1336,20 +1903,65 @@ impl BedrockDataAutomationRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_93: String = value.extract()?;
-            Some(converted_93)
+            let converted_98 = (|| -> PyResult<_> {
+                let converted_98: String = value.extract()?;
+                Ok(converted_98)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_98)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_94 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for item_result_95 in value.try_iter()? {
-                let item_96 = item_result_95?;
-                let converted_item_97: String = item_96.extract()?;
-                converted_94.push(converted_item_97);
-            }
-            Some(converted_94)
+            let converted_99 = (|| -> PyResult<_> {
+                let mut converted_99 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_103, item_result_100) in value.try_iter()?.enumerate() {
+                    let item_101 = item_result_100.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_103),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_102 = (|| -> PyResult<_> {
+                        let converted_item_102: String = item_101.extract()?;
+                        Ok(converted_item_102)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_103),
+                            "str",
+                        )
+                    })?;
+                    converted_99.push(converted_item_102);
+                }
+                Ok(converted_99)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tag_keys"),
+                        "sequence",
+                    ),
+                    "bedrock-data-automation-runtime",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_99)
         } else {
             None
         };
