@@ -879,6 +879,15 @@ async def test_sesv2_structured_content_and_binary_attachment(peer: Peer) -> Non
     ("service_name", "method", "params", "error_code", "exception_name", "operation"),
     [
         pytest.param(
+            "athena",
+            "get_query_execution",
+            {"query_execution_id": "missing-query"},
+            "InvalidRequestException",
+            "InvalidRequestError",
+            "GetQueryExecution",
+            marks=service("athena"),
+        ),
+        pytest.param(
             "cloudwatch-logs",
             "get_log_events",
             {"log_group_name": "missing", "log_stream_name": "missing"},
@@ -1093,3 +1102,78 @@ async def test_event_family_modeled_missing_resources(peer: Peer, service_name: 
         await getattr(client, operation)(name="missing")
     assert caught.value.error_code == error_code
     assert caught.value.operation_name == operation_name
+
+
+@pytest.mark.asyncio
+@service("athena")
+async def test_athena_results_paginator_preserves_cells_and_forwards_tokens(peer: Peer) -> None:
+    from rboto import AthenaClient
+    from rboto_athena.types import GetQueryResultsOutput
+
+    client = AthenaClient(region="us-east-1", endpoint_url=peer.endpoint)
+    peer.body = json.dumps({
+        "ResultSet": {
+            "Rows": [{"Data": [{"VarCharValue": "1"}, {}]}],
+            "ResultSetMetadata": {"ColumnInfo": [
+                {"Name": "n", "Type": "integer"}, {"Name": "label", "Type": "varchar"},
+            ]},
+        },
+        "NextToken": "page-two",
+    }).encode()
+    pages = client.paginators.get_query_results(query_execution_id="query-1", max_results=2)
+    first = await anext(pages)
+    assert isinstance(first, GetQueryResultsOutput)
+    assert first.result_set is not None and first.result_set.rows is not None
+    assert [cell.var_char_value for cell in first.result_set.rows[0].data or []] == ["1", None]
+    assert first.result_set.result_set_metadata is not None
+    assert [column.name for column in first.result_set.result_set_metadata.column_info or []] == [
+        "n", "label",
+    ]
+    peer.body = b'{"ResultSet":{"Rows":[{"Data":[{"VarCharValue":"2"},{"VarCharValue":"last"}]}]}}'
+    second = await anext(pages)
+    assert second.result_set is not None and second.result_set.rows is not None
+    assert [cell.var_char_value for cell in second.result_set.rows[0].data or []] == ["2", "last"]
+    with pytest.raises(StopAsyncIteration):
+        await anext(pages)
+    assert [json.loads(body) for _, body in peer.requests] == [
+        {"QueryExecutionId": "query-1", "MaxResults": 2},
+        {"QueryExecutionId": "query-1", "MaxResults": 2, "NextToken": "page-two"},
+    ]
+
+
+@pytest.mark.asyncio
+@service("athena")
+@pytest.mark.parametrize(
+    ("operation", "parameters", "wire_parameters"),
+    [
+        ("list_notebook_metadata", {"work_group": "example", "max_results": 2},
+         {"WorkGroup": "example", "MaxResults": 2}),
+        ("list_notebook_sessions", {"notebook_id": "notebook-1", "max_results": 2},
+         {"NotebookId": "notebook-1", "MaxResults": 2}),
+    ],
+)
+@pytest.mark.parametrize("last_token", [None, "page-two"])
+async def test_athena_notebook_paginators_forward_tokens_and_terminate(
+    peer: Peer,
+    operation: str,
+    parameters: dict[str, object],
+    wire_parameters: dict[str, object],
+    last_token: str | None,
+) -> None:
+    from rboto import AthenaClient
+
+    client = AthenaClient(region="us-east-1", endpoint_url=peer.endpoint)
+    peer.body = b'{"NextToken":"page-two"}'
+    pages = getattr(client.paginators, operation)(**parameters)
+    assert peer.requests == []
+    first = await anext(pages)
+    assert first.next_token == "page-two"
+    peer.body = json.dumps({"NextToken": last_token} if last_token is not None else {}).encode()
+    second = await anext(pages)
+    assert second.next_token == last_token
+    with pytest.raises(StopAsyncIteration):
+        await anext(pages)
+    assert [json.loads(body) for _, body in peer.requests] == [
+        wire_parameters,
+        {**wire_parameters, "NextToken": "page-two"},
+    ]

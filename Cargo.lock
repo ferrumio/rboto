@@ -141,6 +141,29 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-athena"
+version = "1.125.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0e7048e8aa2871394cb00392894c2c3c33ce5a1ab5316f837295b1357367c645"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "fastrand",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-bedrock"
 version = "1.164.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2419,6 +2442,21 @@ version = "0.2.0"
 dependencies = [
  "aws-config",
  "aws-sdk-apigateway",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
+name = "rboto-athena-native"
+version = "0.2.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-athena",
  "aws-smithy-async",
  "aws-smithy-runtime-api",
  "aws-smithy-types",

@@ -42,7 +42,7 @@ validate the complete wheelhouse without uploading to PyPI or creating a GitHub 
 
 The build workflow groups at most six services per platform job and builds all
 four interpreters for each service sequentially. The catalog balances group size
-and spreads large generated Rust adapters across jobs. With 34 services there are
+and spreads large generated Rust adapters across jobs. With 35 services there are
 six groups of five or six, giving 36 wheel jobs and six source-distribution jobs.
 All platform groups, source-distribution groups, and smoke jobs run without
 workflow-imposed matrix concurrency caps, subject to GitHub runner availability

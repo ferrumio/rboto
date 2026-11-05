@@ -11,6 +11,7 @@
     "packages/rboto/src",
     "codegen/src",
     "packages/rboto-api-gateway/python",
+    "packages/rboto-athena/python",
     "packages/rboto-bedrock/python",
     "packages/rboto-bedrock-agent/python",
     "packages/rboto-bedrock-agent-runtime/python",

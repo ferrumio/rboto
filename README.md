@@ -13,7 +13,7 @@ changes so you can update your application.
 
 **Async-only, typed Python clients for AWS services, powered by Rust.**
 
-rboto has clients for 34 services, including S3, DynamoDB, Lambda, Bedrock,
+rboto has clients for 35 services, including S3, DynamoDB, Lambda, Bedrock,
 EventBridge, and SQS. Install the services you use, import their client classes
 from `rboto`, and await operations. Python inputs and response attributes carry
 types for your editor and type checker.
@@ -147,6 +147,7 @@ example, its complete operation catalog, and Python method signatures.
 | Service | Client class | Package and operations |
 |---|---|---|
 | API Gateway | `APIGatewayClient` | [rboto-api-gateway](packages/rboto-api-gateway/README.md) |
+| Athena | `AthenaClient` | [rboto-athena](packages/rboto-athena/README.md) |
 | Bedrock | `BedrockClient` | [rboto-bedrock](packages/rboto-bedrock/README.md) |
 | Bedrock Agents | `BedrockAgentClient` | [rboto-bedrock-agent](packages/rboto-bedrock-agent/README.md) |
 | Bedrock Agent Runtime | `BedrockAgentRuntimeClient` | [rboto-bedrock-agent-runtime](packages/rboto-bedrock-agent-runtime/README.md) |

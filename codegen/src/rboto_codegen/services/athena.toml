@@ -1,0 +1,26 @@
+service_id = "athena"
+display_name = "Amazon Athena"
+documentation_path = "guides/athena/"
+python_name = "athena"
+distribution_name = "rboto-athena"
+python_package = "rboto_athena"
+client_class = "AthenaClient"
+adapter_crate = "rboto-athena-native"
+rust_crate = "aws-sdk-athena"
+rust_module = "aws_sdk_athena"
+rust_crate_version = "1.125.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/athena.json"
+model_sha256 = "64bc66f6d0c82e219320a7cd48fe4d1796f1108208a4063bf4730c0bd404f834"
+aws_model_hash = "7ee190bf9bed64507010f79314347c7a7154884569491adc04b0ca4e82fc77d4"
+smithy_codegen_revision = "05b51124ec26a1bc5ad4330ac2803b46b8a4b337"
+native_outputs = true
+
+[pagination.ListNotebookMetadata]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+[pagination.ListNotebookSessions]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
