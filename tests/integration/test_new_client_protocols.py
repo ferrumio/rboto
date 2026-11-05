@@ -879,6 +879,15 @@ async def test_sesv2_structured_content_and_binary_attachment(peer: Peer) -> Non
     ("service_name", "method", "params", "error_code", "exception_name", "operation"),
     [
         pytest.param(
+            "athena",
+            "get_query_execution",
+            {"query_execution_id": "missing-query"},
+            "InvalidRequestException",
+            "InvalidRequestError",
+            "GetQueryExecution",
+            marks=service("athena"),
+        ),
+        pytest.param(
             "cloudwatch-logs",
             "get_log_events",
             {"log_group_name": "missing", "log_stream_name": "missing"},
@@ -1130,18 +1139,3 @@ async def test_athena_results_paginator_preserves_cells_and_forwards_tokens(peer
         {"QueryExecutionId": "query-1", "MaxResults": 2},
         {"QueryExecutionId": "query-1", "MaxResults": 2, "NextToken": "page-two"},
     ]
-
-
-@pytest.mark.asyncio
-@service("athena")
-async def test_athena_maps_invalid_query_execution_to_modeled_error(peer: Peer) -> None:
-    from rboto import AthenaClient
-    from rboto_athena.exceptions import InvalidRequestError
-
-    peer.status = 400
-    peer.body = b'{"__type":"InvalidRequestException","message":"unknown query execution"}'
-    client = AthenaClient(region="us-east-1", endpoint_url=peer.endpoint)
-    with pytest.raises(InvalidRequestError) as caught:
-        await client.get_query_execution(query_execution_id="missing-query")
-    assert caught.value.error_code == "InvalidRequestException"
-    assert caught.value.operation_name == "GetQueryExecution"

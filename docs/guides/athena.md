@@ -1,14 +1,7 @@
 # Amazon Athena
 
-Install the service package and import its client:
-
-```bash
-pip install "rboto[athena]"
-```
-
-```python
-from rboto import AthenaClient
-```
+Import `AthenaClient` from `rboto`. Install the service package following
+[Getting started](../getting-started.md). Configure the client for your workgroup's region.
 
 ## Discover workgroups
 
