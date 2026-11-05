@@ -136,7 +136,8 @@ jobs:
           tests/integration/test_output_ownership.py
           tests/integration/test_waiters.py
           tests/integration/test_opentelemetry.py
-          tests/integration/test_client_transport.py -q
+          tests/integration/test_client_transport.py
+          tests/integration/test_client_lifecycle.py -q
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

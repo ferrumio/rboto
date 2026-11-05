@@ -68,6 +68,13 @@ bypass it with a direct pyo3-async-runtimes future bridge. See ADR-0024.
 
 ## Operation middleware
 
+Clients and streams have independent terminal lifetimes, implemented by
+`ManagedResource` in the core. Client closure stops admitted native calls and
+releases the cached SDK owner; already-returned streams remain response-owned.
+Closure never stops the shared runtime. Keep native leases through conversion,
+and do not restore streams after closure. See ADR-0029 for cancellation,
+middleware, initialization races, and cleanup guarantees.
+
 Configured interceptors form an async `(request, next) -> response` chain in
 `rboto.interceptors`. They may change parameters, block or skip native dispatch,
 and replace a response. Generated methods unwrap the output while preserving

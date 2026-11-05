@@ -5203,12 +5203,10 @@ impl PyOperationRecognizeUtteranceOutput {
 )]
 struct PyStartConversationResponseEventStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_lexruntimev2::primitives::event_stream::EventReceiver<
-                    aws_sdk_lexruntimev2::types::StartConversationResponseEventStream,
-                    aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_lexruntimev2::primitives::event_stream::EventReceiver<
+                aws_sdk_lexruntimev2::types::StartConversationResponseEventStream,
+                aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError,
             >,
         >,
     >,
@@ -5224,7 +5222,7 @@ impl PyStartConversationResponseEventStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -5236,24 +5234,50 @@ impl PyStartConversationResponseEventStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| start_conversation_response_event_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::AccessDeniedException(_)) => Some("AccessDeniedException"),
                         Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
@@ -5266,11 +5290,10 @@ impl PyStartConversationResponseEventStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5321,7 +5344,7 @@ impl LexRuntimeV2Client {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -5329,8 +5352,34 @@ impl LexRuntimeV2Client {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -5340,7 +5389,7 @@ impl LexRuntimeV2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
             let converted_362 = (|| -> PyResult<_> {
                 let converted_362: String = value.extract()?;
@@ -5417,7 +5466,7 @@ impl LexRuntimeV2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_session()
@@ -5451,7 +5500,7 @@ impl LexRuntimeV2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
             let converted_366 = (|| -> PyResult<_> {
                 let converted_366: String = value.extract()?;
@@ -5528,7 +5577,7 @@ impl LexRuntimeV2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_session()
@@ -5563,7 +5612,7 @@ impl LexRuntimeV2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
             let converted_370 = (|| -> PyResult<_> {
                 let converted_370: String = value.extract()?;
@@ -5771,7 +5820,7 @@ impl LexRuntimeV2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_session()
@@ -5818,7 +5867,7 @@ impl LexRuntimeV2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
             let converted_388 = (|| -> PyResult<_> {
                 let converted_388: String = value.extract()?;
@@ -5978,7 +6027,7 @@ impl LexRuntimeV2Client {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .recognize_text()
@@ -6017,7 +6066,7 @@ impl LexRuntimeV2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
             let converted_401 = (|| -> PyResult<_> {
                 let converted_401: String = value.extract()?;
@@ -6198,7 +6247,7 @@ impl LexRuntimeV2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .recognize_utterance()
@@ -6247,7 +6296,7 @@ impl LexRuntimeV2Client {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
             let converted_411 = (|| -> PyResult<_> {
                 let converted_411: String = value.extract()?;
@@ -6361,7 +6410,7 @@ impl LexRuntimeV2Client {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_conversation()

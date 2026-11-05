@@ -32228,12 +32228,10 @@ impl PyOperationUpdateBrowserStreamOutput {
 )]
 struct PyCodeInterpreterStreamOutputReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockagentcore::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockagentcore::types::CodeInterpreterStreamOutput,
-                    aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockagentcore::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentcore::types::CodeInterpreterStreamOutput,
+                aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError,
             >,
         >,
     >,
@@ -32249,7 +32247,7 @@ impl PyCodeInterpreterStreamOutputReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -32261,24 +32259,50 @@ impl PyCodeInterpreterStreamOutputReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| code_interpreter_stream_output_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::AccessDeniedException(_)) => Some("AccessDeniedException"),
                         Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::ConflictException(_)) => Some("ConflictException"),
@@ -32290,11 +32314,10 @@ impl PyCodeInterpreterStreamOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -32304,7 +32327,14 @@ impl PyCodeInterpreterStreamOutputReceiver {
     module = "rboto_bedrock_agentcore._native"
 )]
 struct PyInvokeAgentRuntimeCommandStreamOutputReceiver {
-    inner: Arc<Mutex<Option<aws_sdk_bedrockagentcore::primitives::event_stream::EventReceiver< aws_sdk_bedrockagentcore::types::InvokeAgentRuntimeCommandStreamOutput, aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError, >>>>,
+    inner: Arc<
+        ManagedResource<
+            aws_sdk_bedrockagentcore::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentcore::types::InvokeAgentRuntimeCommandStreamOutput,
+                aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError,
+            >,
+        >,
+    >,
     operation: &'static str,
 }
 
@@ -32317,7 +32347,7 @@ impl PyInvokeAgentRuntimeCommandStreamOutputReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -32329,24 +32359,50 @@ impl PyInvokeAgentRuntimeCommandStreamOutputReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| {
-                    invoke_agent_runtime_command_stream_output_to_py(py, &event)
-                }),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| invoke_agent_runtime_command_stream_output_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::AccessDeniedException(_)) => Some("AccessDeniedException"),
                         Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
@@ -32358,11 +32414,10 @@ impl PyInvokeAgentRuntimeCommandStreamOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -32373,12 +32428,10 @@ impl PyInvokeAgentRuntimeCommandStreamOutputReceiver {
 )]
 struct PyInvokeHarnessStreamOutputReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockagentcore::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockagentcore::types::InvokeHarnessStreamOutput,
-                    aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockagentcore::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockagentcore::types::InvokeHarnessStreamOutput,
+                aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError,
             >,
         >,
     >,
@@ -32394,7 +32447,7 @@ impl PyInvokeHarnessStreamOutputReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -32406,24 +32459,50 @@ impl PyInvokeHarnessStreamOutputReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| invoke_harness_stream_output_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError::ValidationException(_)) => Some("ValidationException"),
@@ -32431,11 +32510,10 @@ impl PyInvokeHarnessStreamOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -32604,7 +32682,7 @@ impl BedrockAgentCoreClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -32612,8 +32690,34 @@ impl BedrockAgentCoreClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -32623,7 +32727,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2191 = (|| -> PyResult<_> {
                 let converted_2191: String = value.extract()?;
@@ -32728,7 +32832,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_create_memory_records()
@@ -32764,7 +32868,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2199 = (|| -> PyResult<_> {
                 let converted_2199: String = value.extract()?;
@@ -32828,7 +32932,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_delete_memory_records()
@@ -32862,7 +32966,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2205 = (|| -> PyResult<_> {
                 let converted_2205: String = value.extract()?;
@@ -32947,7 +33051,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_update_memory_records()
@@ -32982,7 +33086,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_identifier_value = if let Some(value) = dict_value(params, "user_identifier")? {
             let converted_2212 = (|| -> PyResult<_> {
                 let converted_2212 = user_identifier_from_py(&value)?;
@@ -33023,7 +33127,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .complete_resource_token_auth()
@@ -33055,7 +33159,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_2214 = (|| -> PyResult<_> {
                 let converted_2214: String = value.extract()?;
@@ -33294,7 +33398,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_ab_test()
@@ -33334,7 +33438,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2234 = (|| -> PyResult<_> {
                 let converted_2234: String = value.extract()?;
@@ -33588,7 +33692,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_event()
@@ -33629,7 +33733,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2256 = (|| -> PyResult<_> {
                 let converted_2256: String = value.extract()?;
@@ -33774,7 +33878,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_payment_instrument()
@@ -33813,7 +33917,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2264 = (|| -> PyResult<_> {
                 let converted_2264: String = value.extract()?;
@@ -33932,7 +34036,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_payment_session()
@@ -33970,7 +34074,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ab_test_id_value = if let Some(value) = dict_value(params, "ab_test_id")? {
             let converted_2270 = (|| -> PyResult<_> {
                 let converted_2270: String = value.extract()?;
@@ -33991,7 +34095,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_ab_test().set_ab_test_id(ab_test_id_value);
             let result = if let Some(sink) = observation {
@@ -34020,7 +34124,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let batch_evaluation_id_value =
             if let Some(value) = dict_value(params, "batch_evaluation_id")? {
                 let converted_2271 = (|| -> PyResult<_> {
@@ -34042,7 +34146,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_batch_evaluation()
@@ -34073,7 +34177,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_provider_id_value =
             if let Some(value) = dict_value(params, "capacity_provider_id")? {
                 let converted_2272 = (|| -> PyResult<_> {
@@ -34115,7 +34219,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_capacity_provider_session()
@@ -34147,7 +34251,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2274 = (|| -> PyResult<_> {
                 let converted_2274: String = value.extract()?;
@@ -34220,7 +34324,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_event()
@@ -34253,7 +34357,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2278 = (|| -> PyResult<_> {
                 let converted_2278: String = value.extract()?;
@@ -34314,7 +34418,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_memory_record()
@@ -34347,7 +34451,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2281 = (|| -> PyResult<_> {
                 let converted_2281: String = value.extract()?;
@@ -34427,7 +34531,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_payment_instrument()
@@ -34461,7 +34565,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2285 = (|| -> PyResult<_> {
                 let converted_2285: String = value.extract()?;
@@ -34520,7 +34624,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_payment_session()
@@ -34553,7 +34657,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let recommendation_id_value = if let Some(value) = dict_value(params, "recommendation_id")?
         {
             let converted_2288 = (|| -> PyResult<_> {
@@ -34575,7 +34679,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_recommendation()
@@ -34606,7 +34710,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let evaluator_id_value = if let Some(value) = dict_value(params, "evaluator_id")? {
             let converted_2289 = (|| -> PyResult<_> {
                 let converted_2289: String = value.extract()?;
@@ -34713,7 +34817,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .evaluate()
@@ -34748,7 +34852,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ab_test_id_value = if let Some(value) = dict_value(params, "ab_test_id")? {
             let converted_2297 = (|| -> PyResult<_> {
                 let converted_2297: String = value.extract()?;
@@ -34769,7 +34873,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_ab_test().set_ab_test_id(ab_test_id_value);
             let result = if let Some(sink) = observation {
@@ -34799,7 +34903,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let runtime_session_id_value =
             if let Some(value) = dict_value(params, "runtime_session_id")? {
                 let converted_2298 = (|| -> PyResult<_> {
@@ -34862,7 +34966,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_agent_card()
@@ -34895,7 +34999,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let batch_evaluation_id_value =
             if let Some(value) = dict_value(params, "batch_evaluation_id")? {
                 let converted_2301 = (|| -> PyResult<_> {
@@ -34917,7 +35021,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_batch_evaluation()
@@ -34950,7 +35054,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let browser_identifier_value =
             if let Some(value) = dict_value(params, "browser_identifier")? {
                 let converted_2302 = (|| -> PyResult<_> {
@@ -34992,7 +35096,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_browser_session()
@@ -35026,7 +35130,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_interpreter_identifier_value =
             if let Some(value) = dict_value(params, "code_interpreter_identifier")? {
                 let converted_2304 = (|| -> PyResult<_> {
@@ -35068,7 +35172,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_code_interpreter_session()
@@ -35102,7 +35206,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2306 = (|| -> PyResult<_> {
                 let converted_2306: String = value.extract()?;
@@ -35175,7 +35279,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_event()
@@ -35210,7 +35314,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2310 = (|| -> PyResult<_> {
                 let converted_2310: String = value.extract()?;
@@ -35271,7 +35375,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_memory_record()
@@ -35306,7 +35410,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2313 = (|| -> PyResult<_> {
                 let converted_2313: String = value.extract()?;
@@ -35406,7 +35510,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_payment_instrument()
@@ -35443,7 +35547,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2318 = (|| -> PyResult<_> {
                 let converted_2318: String = value.extract()?;
@@ -35589,7 +35693,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_payment_instrument_balance()
@@ -35628,7 +35732,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2327 = (|| -> PyResult<_> {
                 let converted_2327: String = value.extract()?;
@@ -35707,7 +35811,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_payment_session()
@@ -35743,7 +35847,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let recommendation_id_value = if let Some(value) = dict_value(params, "recommendation_id")?
         {
             let converted_2331 = (|| -> PyResult<_> {
@@ -35765,7 +35869,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_recommendation()
@@ -35796,7 +35900,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let workload_identity_token_value =
             if let Some(value) = dict_value(params, "workload_identity_token")? {
                 let converted_2332 = (|| -> PyResult<_> {
@@ -35839,7 +35943,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource_api_key()
@@ -35871,7 +35975,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let workload_identity_token_value =
             if let Some(value) = dict_value(params, "workload_identity_token")? {
                 let converted_2334 = (|| -> PyResult<_> {
@@ -36194,7 +36298,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource_oauth2_token()
@@ -36235,7 +36339,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let workload_identity_token_value =
             if let Some(value) = dict_value(params, "workload_identity_token")? {
                 let converted_2364 = (|| -> PyResult<_> {
@@ -36299,7 +36403,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource_payment_token()
@@ -36332,7 +36436,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let workload_name_value = if let Some(value) = dict_value(params, "workload_name")? {
             let converted_2367 = (|| -> PyResult<_> {
                 let converted_2367: String = value.extract()?;
@@ -36353,7 +36457,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_workload_access_token()
@@ -36384,7 +36488,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let workload_name_value = if let Some(value) = dict_value(params, "workload_name")? {
             let converted_2368 = (|| -> PyResult<_> {
                 let converted_2368: String = value.extract()?;
@@ -36425,7 +36529,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_workload_access_token_for_jwt()
@@ -36457,7 +36561,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let workload_name_value = if let Some(value) = dict_value(params, "workload_name")? {
             let converted_2370 = (|| -> PyResult<_> {
                 let converted_2370: String = value.extract()?;
@@ -36494,7 +36598,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_workload_access_token_for_user_id()
@@ -36526,7 +36630,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2372 = (|| -> PyResult<_> {
                 let converted_2372: String = value.extract()?;
@@ -36716,7 +36820,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .ingest_data()
@@ -36753,7 +36857,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
             let converted_2387 = (|| -> PyResult<_> {
                 let converted_2387: String = value.extract()?;
@@ -37062,7 +37166,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_agent_runtime()
@@ -37118,7 +37222,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
             let converted_2404 = (|| -> PyResult<_> {
                 let converted_2404: String = value.extract()?;
@@ -37329,7 +37433,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_agent_runtime_command()
@@ -37419,7 +37523,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let browser_identifier_value =
             if let Some(value) = dict_value(params, "browser_identifier")? {
                 let converted_2422 = (|| -> PyResult<_> {
@@ -37481,7 +37585,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_browser()
@@ -37514,7 +37618,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_interpreter_identifier_value =
             if let Some(value) = dict_value(params, "code_interpreter_identifier")? {
                 let converted_2425 = (|| -> PyResult<_> {
@@ -37634,7 +37738,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_code_interpreter()
@@ -37687,7 +37791,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let harness_arn_value = if let Some(value) = dict_value(params, "harness_arn")? {
             let converted_2433 = (|| -> PyResult<_> {
                 let converted_2433: String = value.extract()?;
@@ -38152,7 +38256,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_harness()
@@ -38208,7 +38312,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_2471 = (|| -> PyResult<_> {
                 let converted_2471: i32 = value.extract()?;
@@ -38249,7 +38353,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_ab_tests()
@@ -38282,7 +38386,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2473 = (|| -> PyResult<_> {
                 let converted_2473: String = value.extract()?;
@@ -38343,7 +38447,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_actors()
@@ -38377,7 +38481,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_2476 = (|| -> PyResult<_> {
                 let converted_2476: i32 = value.extract()?;
@@ -38418,7 +38522,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_batch_evaluations()
@@ -38452,7 +38556,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let browser_identifier_value =
             if let Some(value) = dict_value(params, "browser_identifier")? {
                 let converted_2478 = (|| -> PyResult<_> {
@@ -38537,7 +38641,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_browser_sessions()
@@ -38573,7 +38677,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_interpreter_identifier_value =
             if let Some(value) = dict_value(params, "code_interpreter_identifier")? {
                 let converted_2483 = (|| -> PyResult<_> {
@@ -38659,7 +38763,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_code_interpreter_sessions()
@@ -38695,7 +38799,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2488 = (|| -> PyResult<_> {
                 let converted_2488: String = value.extract()?;
@@ -38832,7 +38936,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_events()
@@ -38870,7 +38974,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2495 = (|| -> PyResult<_> {
                 let converted_2495: String = value.extract()?;
@@ -38951,7 +39055,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_memory_extraction_jobs()
@@ -38987,7 +39091,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2499 = (|| -> PyResult<_> {
                 let converted_2499: String = value.extract()?;
@@ -39153,7 +39257,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_memory_records()
@@ -39192,7 +39296,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2510 = (|| -> PyResult<_> {
                 let converted_2510: String = value.extract()?;
@@ -39311,7 +39415,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_payment_instruments()
@@ -39349,7 +39453,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2516 = (|| -> PyResult<_> {
                 let converted_2516: String = value.extract()?;
@@ -39447,7 +39551,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_payment_sessions()
@@ -39484,7 +39588,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_2521 = (|| -> PyResult<_> {
                 let converted_2521: i32 = value.extract()?;
@@ -39548,7 +39652,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_recommendations()
@@ -39583,7 +39687,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2525 = (|| -> PyResult<_> {
                 let converted_2525: String = value.extract()?;
@@ -39680,7 +39784,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_sessions()
@@ -39717,7 +39821,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let user_id_value = if let Some(value) = dict_value(params, "user_id")? {
             let converted_2530 = (|| -> PyResult<_> {
                 let converted_2530: String = value.extract()?;
@@ -39879,7 +39983,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .process_payment()
@@ -39917,7 +40021,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2539 = (|| -> PyResult<_> {
                 let converted_2539: String = value.extract()?;
@@ -40038,7 +40142,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .retrieve_memory_records()
@@ -40076,7 +40180,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trace_id_value = if let Some(value) = dict_value(params, "trace_id")? {
             let converted_2545 = (|| -> PyResult<_> {
                 let converted_2545: String = value.extract()?;
@@ -40195,7 +40299,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .save_browser_session_profile()
@@ -40231,7 +40335,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let search_query_value = if let Some(value) = dict_value(params, "search_query")? {
             let converted_2551 = (|| -> PyResult<_> {
                 let converted_2551: String = value.extract()?;
@@ -40335,7 +40439,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .search_registry_records()
@@ -40371,7 +40475,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let batch_evaluation_name_value =
             if let Some(value) = dict_value(params, "batch_evaluation_name")? {
                 let converted_2559 = (|| -> PyResult<_> {
@@ -40643,7 +40747,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_batch_evaluation()
@@ -40685,7 +40789,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trace_id_value = if let Some(value) = dict_value(params, "trace_id")? {
             let converted_2583 = (|| -> PyResult<_> {
                 let converted_2583: String = value.extract()?;
@@ -41038,7 +41142,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_browser_session()
@@ -41083,7 +41187,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trace_id_value = if let Some(value) = dict_value(params, "trace_id")? {
             let converted_2612 = (|| -> PyResult<_> {
                 let converted_2612: String = value.extract()?;
@@ -41286,7 +41390,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_code_interpreter_session()
@@ -41324,7 +41428,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let memory_id_value = if let Some(value) = dict_value(params, "memory_id")? {
             let converted_2628 = (|| -> PyResult<_> {
                 let converted_2628: String = value.extract()?;
@@ -41385,7 +41489,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_memory_extraction_job()
@@ -41418,7 +41522,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_2631 = (|| -> PyResult<_> {
                 let converted_2631: String = value.extract()?;
@@ -41581,7 +41685,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_recommendation()
@@ -41618,7 +41722,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let batch_evaluation_id_value =
             if let Some(value) = dict_value(params, "batch_evaluation_id")? {
                 let converted_2645 = (|| -> PyResult<_> {
@@ -41640,7 +41744,7 @@ impl BedrockAgentCoreClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_batch_evaluation()
@@ -41671,7 +41775,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trace_id_value = if let Some(value) = dict_value(params, "trace_id")? {
             let converted_2646 = (|| -> PyResult<_> {
                 let converted_2646: String = value.extract()?;
@@ -41769,7 +41873,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_browser_session()
@@ -41804,7 +41908,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let trace_id_value = if let Some(value) = dict_value(params, "trace_id")? {
             let converted_2651 = (|| -> PyResult<_> {
                 let converted_2651: String = value.extract()?;
@@ -41902,7 +42006,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_code_interpreter_session()
@@ -41937,7 +42041,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let runtime_session_id_value =
             if let Some(value) = dict_value(params, "runtime_session_id")? {
                 let converted_2656 = (|| -> PyResult<_> {
@@ -42020,7 +42124,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_runtime_session()
@@ -42054,7 +42158,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ab_test_id_value = if let Some(value) = dict_value(params, "ab_test_id")? {
             let converted_2660 = (|| -> PyResult<_> {
                 let converted_2660: String = value.extract()?;
@@ -42254,7 +42358,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_ab_test()
@@ -42293,7 +42397,7 @@ impl BedrockAgentCoreClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let browser_identifier_value =
             if let Some(value) = dict_value(params, "browser_identifier")? {
                 let converted_2674 = (|| -> PyResult<_> {
@@ -42375,7 +42479,7 @@ impl BedrockAgentCoreClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_browser_stream()

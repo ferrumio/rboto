@@ -57,7 +57,9 @@ def test_generated_signatures_cover_pinned_rust_operations(service: ServiceDescr
     path = ROOT / f"packages/{service.distribution_name}/python/{service.python_package}"
     client = ast.parse((path / "client.py").read_text())
     methods = {
-        node.name: node for node in ast.walk(client) if isinstance(node, ast.AsyncFunctionDef)
+        node.name: node for node in ast.walk(client)
+        if isinstance(node, ast.AsyncFunctionDef)
+        and node.name not in {"aclose", "__aenter__", "__aexit__"}
     }
     operations = parse_crate(service).operations
     assert methods.keys() == operations.keys()
@@ -94,7 +96,7 @@ def test_every_operation_returns_its_own_output_type(service: ServiceDescriptor)
     }
     client = ast.parse((path / "client.py").read_text())
     for method in ast.walk(client):
-        if isinstance(method, ast.AsyncFunctionDef):
+        if isinstance(method, ast.AsyncFunctionDef) and method.name in expected:
             assert method.returns is not None
             assert ast.unparse(method.returns) == expected[method.name]
     native = ast.parse((path / "_native.pyi").read_text())

@@ -10,6 +10,8 @@ from pathlib import Path
 from .manifests import template_environment
 from .model import ServiceDescriptor
 
+CLIENT_LIFECYCLE_METHODS = frozenset({"aclose", "__aenter__", "__aexit__"})
+
 
 @dataclass(frozen=True, slots=True)
 class DocumentedOperation:
@@ -33,7 +35,10 @@ def operations_from_client(
     )
     operations: list[DocumentedOperation] = []
     for method in client.body:
-        if not isinstance(method, ast.AsyncFunctionDef):
+        if (
+            not isinstance(method, ast.AsyncFunctionDef)
+            or method.name in CLIENT_LIFECYCLE_METHODS
+        ):
             continue
         required: list[str] = []
         parameters: list[str] = []

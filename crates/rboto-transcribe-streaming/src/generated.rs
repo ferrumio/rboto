@@ -5063,7 +5063,14 @@ impl PyOperationGetMedicalScribeStreamOutput {
     module = "rboto_transcribe_streaming._native"
 )]
 struct PyCallAnalyticsTranscriptResultStreamReceiver {
-    inner: Arc<Mutex<Option<aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver< aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream, aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError, >>>>,
+    inner: Arc<
+        ManagedResource<
+            aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver<
+                aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream,
+                aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError,
+            >,
+        >,
+    >,
     operation: &'static str,
 }
 
@@ -5076,7 +5083,7 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -5088,24 +5095,50 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| call_analytics_transcript_result_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
                         Some(aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
@@ -5115,11 +5148,10 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5130,12 +5162,10 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
 )]
 struct PyMedicalScribeResultStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver<
-                    aws_sdk_transcribestreaming::types::MedicalScribeResultStream,
-                    aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver<
+                aws_sdk_transcribestreaming::types::MedicalScribeResultStream,
+                aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError,
             >,
         >,
     >,
@@ -5151,7 +5181,7 @@ impl PyMedicalScribeResultStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -5163,24 +5193,50 @@ impl PyMedicalScribeResultStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| medical_scribe_result_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
                         Some(aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
@@ -5190,11 +5246,10 @@ impl PyMedicalScribeResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5205,12 +5260,10 @@ impl PyMedicalScribeResultStreamReceiver {
 )]
 struct PyMedicalTranscriptResultStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver<
-                    aws_sdk_transcribestreaming::types::MedicalTranscriptResultStream,
-                    aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver<
+                aws_sdk_transcribestreaming::types::MedicalTranscriptResultStream,
+                aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError,
             >,
         >,
     >,
@@ -5226,7 +5279,7 @@ impl PyMedicalTranscriptResultStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -5238,24 +5291,50 @@ impl PyMedicalTranscriptResultStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
                 Ok(Some(event)) => {
+                    drop(stream);
                     Python::attach(|py| medical_transcript_result_stream_to_py(py, &event))
                 }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
                         Some(aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
@@ -5265,11 +5344,10 @@ impl PyMedicalTranscriptResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5280,12 +5358,10 @@ impl PyMedicalTranscriptResultStreamReceiver {
 )]
 struct PyTranscriptResultStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver<
-                    aws_sdk_transcribestreaming::types::TranscriptResultStream,
-                    aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver<
+                aws_sdk_transcribestreaming::types::TranscriptResultStream,
+                aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError,
             >,
         >,
     >,
@@ -5301,7 +5377,7 @@ impl PyTranscriptResultStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -5313,22 +5389,50 @@ impl PyTranscriptResultStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| transcript_result_stream_to_py(py, &event)),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| transcript_result_stream_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
                         Some(aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
@@ -5338,11 +5442,10 @@ impl PyTranscriptResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5380,7 +5483,7 @@ impl TranscribeStreamingClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -5388,8 +5491,34 @@ impl TranscribeStreamingClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -5399,7 +5528,7 @@ impl TranscribeStreamingClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_479 = (|| -> PyResult<_> {
                 let converted_479: String = value.extract()?;
@@ -5420,7 +5549,7 @@ impl TranscribeStreamingClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_medical_scribe_stream()
@@ -5453,7 +5582,7 @@ impl TranscribeStreamingClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
             let converted_480 = (|| -> PyResult<_> {
                 let enum_value_481: String = value.extract()?;
@@ -5864,7 +5993,7 @@ impl TranscribeStreamingClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_call_analytics_stream_transcription()
@@ -6036,7 +6165,7 @@ impl TranscribeStreamingClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_525 = (|| -> PyResult<_> {
                 let converted_525: String = value.extract()?;
@@ -6138,7 +6267,7 @@ impl TranscribeStreamingClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_medical_scribe_stream()
@@ -6214,7 +6343,7 @@ impl TranscribeStreamingClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
             let converted_537 = (|| -> PyResult<_> {
                 let enum_value_538: String = value.extract()?;
@@ -6465,7 +6594,7 @@ impl TranscribeStreamingClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_medical_stream_transcription()
@@ -6584,7 +6713,7 @@ impl TranscribeStreamingClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
             let converted_566 = (|| -> PyResult<_> {
                 let enum_value_567: String = value.extract()?;
@@ -7121,7 +7250,7 @@ impl TranscribeStreamingClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_stream_transcription()

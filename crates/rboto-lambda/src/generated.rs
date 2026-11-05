@@ -32478,12 +32478,10 @@ impl PyOperationUpdateFunctionUrlConfigOutput {
 )]
 struct PyInvokeWithResponseStreamResponseEventReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_lambda::primitives::event_stream::EventReceiver<
-                    aws_sdk_lambda::types::InvokeWithResponseStreamResponseEvent,
-                    aws_sdk_lambda::types::error::InvokeWithResponseStreamResponseEventError,
-                >,
+        ManagedResource<
+            aws_sdk_lambda::primitives::event_stream::EventReceiver<
+                aws_sdk_lambda::types::InvokeWithResponseStreamResponseEvent,
+                aws_sdk_lambda::types::error::InvokeWithResponseStreamResponseEventError,
             >,
         >,
     >,
@@ -32499,7 +32497,7 @@ impl PyInvokeWithResponseStreamResponseEventReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -32511,31 +32509,63 @@ impl PyInvokeWithResponseStreamResponseEventReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| {
-                    invoke_with_response_stream_response_event_to_py(py, &event)
-                }),
-                Ok(None) => {
-                    *guard = None;
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    *guard = None;
-                    let code = None;
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
+                    };
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                invoke_with_response_stream_response_event_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            let code = None;
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
-                }
-            }
+                            Err(Python::attach(|py| {
+                                sdk_error_to_py_with_code(py, &error, operation, code)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -32747,7 +32777,7 @@ impl LambdaClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -32755,8 +32785,34 @@ impl LambdaClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -32766,7 +32822,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let layer_name_value = if let Some(value) = dict_value(params, "layer_name")? {
             let converted_1147 = (|| -> PyResult<_> {
                 let converted_1147: String = value.extract()?;
@@ -32903,7 +32959,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .add_layer_version_permission()
@@ -32940,7 +32996,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1154 = (|| -> PyResult<_> {
                 let converted_1154: String = value.extract()?;
@@ -33182,7 +33238,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .add_permission()
@@ -33224,7 +33280,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let durable_execution_arn_value =
             if let Some(value) = dict_value(params, "durable_execution_arn")? {
                 let converted_1167 = (|| -> PyResult<_> {
@@ -33329,7 +33385,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .checkpoint_durable_execution()
@@ -33365,7 +33421,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1175 = (|| -> PyResult<_> {
                 let converted_1175: String = value.extract()?;
@@ -33462,7 +33518,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_alias()
@@ -33498,7 +33554,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_provider_name_value =
             if let Some(value) = dict_value(params, "capacity_provider_name")? {
                 let converted_1180 = (|| -> PyResult<_> {
@@ -33705,7 +33761,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_capacity_provider()
@@ -33746,7 +33802,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let description_value = if let Some(value) = dict_value(params, "description")? {
             let converted_1195 = (|| -> PyResult<_> {
                 let converted_1195: String = value.extract()?;
@@ -33851,7 +33907,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_code_signing_config()
@@ -33887,7 +33943,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_source_arn_value = if let Some(value) = dict_value(params, "event_source_arn")? {
             let converted_1205 = (|| -> PyResult<_> {
                 let converted_1205: String = value.extract()?;
@@ -34587,7 +34643,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_event_source_mapping()
@@ -34651,7 +34707,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1258 = (|| -> PyResult<_> {
                 let converted_1258: String = value.extract()?;
@@ -35300,7 +35356,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_function()
@@ -35360,7 +35416,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1308 = (|| -> PyResult<_> {
                 let converted_1308: String = value.extract()?;
@@ -35465,7 +35521,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_function_url_config()
@@ -35502,7 +35558,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1315 = (|| -> PyResult<_> {
                 let converted_1315: String = value.extract()?;
@@ -35539,7 +35595,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_alias()
@@ -35570,7 +35626,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_provider_name_value =
             if let Some(value) = dict_value(params, "capacity_provider_name")? {
                 let converted_1317 = (|| -> PyResult<_> {
@@ -35592,7 +35648,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_capacity_provider()
@@ -35625,7 +35681,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_signing_config_arn_value =
             if let Some(value) = dict_value(params, "code_signing_config_arn")? {
                 let converted_1318 = (|| -> PyResult<_> {
@@ -35647,7 +35703,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_code_signing_config()
@@ -35678,7 +35734,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let uuid_value = if let Some(value) = dict_value(params, "uuid")? {
             let converted_1319 = (|| -> PyResult<_> {
                 let converted_1319: String = value.extract()?;
@@ -35695,7 +35751,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_event_source_mapping().set_uuid(uuid_value);
             let result = if let Some(sink) = observation {
@@ -35726,7 +35782,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1320 = (|| -> PyResult<_> {
                 let converted_1320: String = value.extract()?;
@@ -35767,7 +35823,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_function()
@@ -35799,7 +35855,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1322 = (|| -> PyResult<_> {
                 let converted_1322: String = value.extract()?;
@@ -35820,7 +35876,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_function_code_signing_config()
@@ -35851,7 +35907,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1323 = (|| -> PyResult<_> {
                 let converted_1323: String = value.extract()?;
@@ -35872,7 +35928,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_function_concurrency()
@@ -35903,7 +35959,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1324 = (|| -> PyResult<_> {
                 let converted_1324: String = value.extract()?;
@@ -35944,7 +36000,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_function_event_invoke_config()
@@ -35976,7 +36032,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1326 = (|| -> PyResult<_> {
                 let converted_1326: String = value.extract()?;
@@ -36017,7 +36073,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_function_url_config()
@@ -36049,7 +36105,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let layer_name_value = if let Some(value) = dict_value(params, "layer_name")? {
             let converted_1328 = (|| -> PyResult<_> {
                 let converted_1328: String = value.extract()?;
@@ -36090,7 +36146,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_layer_version()
@@ -36122,7 +36178,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1330 = (|| -> PyResult<_> {
                 let converted_1330: String = value.extract()?;
@@ -36163,7 +36219,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_provisioned_concurrency_config()
@@ -36197,7 +36253,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1332 = (|| -> PyResult<_> {
                 let converted_1332: String = value.extract()?;
@@ -36238,7 +36294,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
@@ -36270,8 +36326,8 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_account_settings();
             let result = if let Some(sink) = observation {
@@ -36302,7 +36358,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1334 = (|| -> PyResult<_> {
                 let converted_1334: String = value.extract()?;
@@ -36339,7 +36395,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_alias()
@@ -36372,7 +36428,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_provider_name_value =
             if let Some(value) = dict_value(params, "capacity_provider_name")? {
                 let converted_1336 = (|| -> PyResult<_> {
@@ -36394,7 +36450,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_capacity_provider()
@@ -36427,7 +36483,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_signing_config_arn_value =
             if let Some(value) = dict_value(params, "code_signing_config_arn")? {
                 let converted_1337 = (|| -> PyResult<_> {
@@ -36449,7 +36505,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_code_signing_config()
@@ -36482,7 +36538,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let durable_execution_arn_value =
             if let Some(value) = dict_value(params, "durable_execution_arn")? {
                 let converted_1338 = (|| -> PyResult<_> {
@@ -36525,7 +36581,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_durable_execution()
@@ -36559,7 +36615,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let durable_execution_arn_value =
             if let Some(value) = dict_value(params, "durable_execution_arn")? {
                 let converted_1340 = (|| -> PyResult<_> {
@@ -36658,7 +36714,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_durable_execution_history()
@@ -36695,7 +36751,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let durable_execution_arn_value =
             if let Some(value) = dict_value(params, "durable_execution_arn")? {
                 let converted_1345 = (|| -> PyResult<_> {
@@ -36773,7 +36829,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_durable_execution_state()
@@ -36809,7 +36865,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let uuid_value = if let Some(value) = dict_value(params, "uuid")? {
             let converted_1349 = (|| -> PyResult<_> {
                 let converted_1349: String = value.extract()?;
@@ -36826,7 +36882,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_event_source_mapping().set_uuid(uuid_value);
             let result = if let Some(sink) = observation {
@@ -36857,7 +36913,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1350 = (|| -> PyResult<_> {
                 let converted_1350: String = value.extract()?;
@@ -36898,7 +36954,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function()
@@ -36931,7 +36987,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1352 = (|| -> PyResult<_> {
                 let converted_1352: String = value.extract()?;
@@ -36952,7 +37008,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function_code_signing_config()
@@ -36983,7 +37039,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1353 = (|| -> PyResult<_> {
                 let converted_1353: String = value.extract()?;
@@ -37004,7 +37060,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function_concurrency()
@@ -37035,7 +37091,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1354 = (|| -> PyResult<_> {
                 let converted_1354: String = value.extract()?;
@@ -37076,7 +37132,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function_configuration()
@@ -37110,7 +37166,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1356 = (|| -> PyResult<_> {
                 let converted_1356: String = value.extract()?;
@@ -37151,7 +37207,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function_event_invoke_config()
@@ -37185,7 +37241,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1358 = (|| -> PyResult<_> {
                 let converted_1358: String = value.extract()?;
@@ -37206,7 +37262,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function_recursion_config()
@@ -37237,7 +37293,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1359 = (|| -> PyResult<_> {
                 let converted_1359: String = value.extract()?;
@@ -37278,7 +37334,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function_scaling_config()
@@ -37312,7 +37368,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1361 = (|| -> PyResult<_> {
                 let converted_1361: String = value.extract()?;
@@ -37353,7 +37409,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_function_url_config()
@@ -37387,7 +37443,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let layer_name_value = if let Some(value) = dict_value(params, "layer_name")? {
             let converted_1363 = (|| -> PyResult<_> {
                 let converted_1363: String = value.extract()?;
@@ -37428,7 +37484,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_layer_version()
@@ -37462,7 +37518,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let arn_value = if let Some(value) = dict_value(params, "arn")? {
             let converted_1365 = (|| -> PyResult<_> {
                 let converted_1365: String = value.extract()?;
@@ -37479,7 +37535,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_layer_version_by_arn().set_arn(arn_value);
             let result = if let Some(sink) = observation {
@@ -37510,7 +37566,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let layer_name_value = if let Some(value) = dict_value(params, "layer_name")? {
             let converted_1366 = (|| -> PyResult<_> {
                 let converted_1366: String = value.extract()?;
@@ -37551,7 +37607,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_layer_version_policy()
@@ -37583,7 +37639,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1368 = (|| -> PyResult<_> {
                 let converted_1368: String = value.extract()?;
@@ -37624,7 +37680,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_policy()
@@ -37655,7 +37711,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1370 = (|| -> PyResult<_> {
                 let converted_1370: String = value.extract()?;
@@ -37696,7 +37752,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_provisioned_concurrency_config()
@@ -37728,7 +37784,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1372 = (|| -> PyResult<_> {
                 let converted_1372: String = value.extract()?;
@@ -37749,7 +37805,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource_policy()
@@ -37780,7 +37836,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1373 = (|| -> PyResult<_> {
                 let converted_1373: String = value.extract()?;
@@ -37821,7 +37877,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_runtime_management_config()
@@ -37853,7 +37909,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1375 = (|| -> PyResult<_> {
                 let converted_1375: String = value.extract()?;
@@ -38019,7 +38075,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke()
@@ -38056,7 +38112,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1386 = (|| -> PyResult<_> {
                 let converted_1386: String = value.extract()?;
@@ -38098,7 +38154,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_async()
@@ -38129,7 +38185,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1389 = (|| -> PyResult<_> {
                 let converted_1389: String = value.extract()?;
@@ -38275,7 +38331,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_with_response_stream()
@@ -38337,7 +38393,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1402 = (|| -> PyResult<_> {
                 let converted_1402: String = value.extract()?;
@@ -38414,7 +38470,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_aliases()
@@ -38449,7 +38505,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_value = if let Some(value) = dict_value(params, "state")? {
             let converted_1406 = (|| -> PyResult<_> {
                 let enum_value_1407: String = value.extract()?;
@@ -38508,7 +38564,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_capacity_providers()
@@ -38543,7 +38599,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
             let converted_1410 = (|| -> PyResult<_> {
                 let converted_1410: String = value.extract()?;
@@ -38580,7 +38636,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_code_signing_configs()
@@ -38614,7 +38670,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1412 = (|| -> PyResult<_> {
                 let converted_1412: String = value.extract()?;
@@ -38827,7 +38883,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_durable_executions_by_function()
@@ -38868,7 +38924,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let event_source_arn_value = if let Some(value) = dict_value(params, "event_source_arn")? {
             let converted_1428 = (|| -> PyResult<_> {
                 let converted_1428: String = value.extract()?;
@@ -38945,7 +39001,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_event_source_mappings()
@@ -38981,7 +39037,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1432 = (|| -> PyResult<_> {
                 let converted_1432: String = value.extract()?;
@@ -39038,7 +39094,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_function_event_invoke_configs()
@@ -39073,7 +39129,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1435 = (|| -> PyResult<_> {
                 let converted_1435: String = value.extract()?;
@@ -39130,7 +39186,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_function_url_configs()
@@ -39165,7 +39221,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_provider_name_value =
             if let Some(value) = dict_value(params, "capacity_provider_name")? {
                 let converted_1438 = (|| -> PyResult<_> {
@@ -39223,7 +39279,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_function_versions_by_capacity_provider()
@@ -39260,7 +39316,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let master_region_value = if let Some(value) = dict_value(params, "master_region")? {
             let converted_1441 = (|| -> PyResult<_> {
                 let converted_1441: String = value.extract()?;
@@ -39339,7 +39395,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_functions()
@@ -39375,7 +39431,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_signing_config_arn_value =
             if let Some(value) = dict_value(params, "code_signing_config_arn")? {
                 let converted_1446 = (|| -> PyResult<_> {
@@ -39433,7 +39489,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_functions_by_code_signing_config()
@@ -39466,7 +39522,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let compatible_architecture_value =
             if let Some(value) = dict_value(params, "compatible_architecture")? {
                 let converted_1449 = (|| -> PyResult<_> {
@@ -39569,7 +39625,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_layer_versions()
@@ -39606,7 +39662,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let compatible_architecture_value =
             if let Some(value) = dict_value(params, "compatible_architecture")? {
                 let converted_1456 = (|| -> PyResult<_> {
@@ -39689,7 +39745,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_layers()
@@ -39724,7 +39780,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1462 = (|| -> PyResult<_> {
                 let converted_1462: String = value.extract()?;
@@ -39781,7 +39837,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_provisioned_concurrency_configs()
@@ -39818,7 +39874,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_value = if let Some(value) = dict_value(params, "resource")? {
             let converted_1465 = (|| -> PyResult<_> {
                 let converted_1465: String = value.extract()?;
@@ -39835,7 +39891,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_tags().set_resource(resource_value);
             let result = if let Some(sink) = observation {
@@ -39863,7 +39919,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1466 = (|| -> PyResult<_> {
                 let converted_1466: String = value.extract()?;
@@ -39920,7 +39976,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_versions_by_function()
@@ -39955,7 +40011,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let layer_name_value = if let Some(value) = dict_value(params, "layer_name")? {
             let converted_1469 = (|| -> PyResult<_> {
                 let converted_1469: String = value.extract()?;
@@ -40128,7 +40184,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .publish_layer_version()
@@ -40166,7 +40222,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1485 = (|| -> PyResult<_> {
                 let converted_1485: String = value.extract()?;
@@ -40270,7 +40326,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .publish_version()
@@ -40307,7 +40363,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_signing_config_arn_value =
             if let Some(value) = dict_value(params, "code_signing_config_arn")? {
                 let converted_1491 = (|| -> PyResult<_> {
@@ -40349,7 +40405,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_function_code_signing_config()
@@ -40381,7 +40437,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1493 = (|| -> PyResult<_> {
                 let converted_1493: String = value.extract()?;
@@ -40423,7 +40479,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_function_concurrency()
@@ -40455,7 +40511,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1495 = (|| -> PyResult<_> {
                 let converted_1495: String = value.extract()?;
@@ -40559,7 +40615,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_function_event_invoke_config()
@@ -40596,7 +40652,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1500 = (|| -> PyResult<_> {
                 let converted_1500: String = value.extract()?;
@@ -40639,7 +40695,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_function_recursion_config()
@@ -40671,7 +40727,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1503 = (|| -> PyResult<_> {
                 let converted_1503: String = value.extract()?;
@@ -40733,7 +40789,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_function_scaling_config()
@@ -40766,7 +40822,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1506 = (|| -> PyResult<_> {
                 let converted_1506: String = value.extract()?;
@@ -40828,7 +40884,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_provisioned_concurrency_config()
@@ -40861,7 +40917,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1509 = (|| -> PyResult<_> {
                 let converted_1509: String = value.extract()?;
@@ -40918,7 +40974,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_resource_policy()
@@ -40951,7 +41007,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1512 = (|| -> PyResult<_> {
                 let converted_1512: String = value.extract()?;
@@ -41036,7 +41092,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_runtime_management_config()
@@ -41070,7 +41126,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let layer_name_value = if let Some(value) = dict_value(params, "layer_name")? {
             let converted_1517 = (|| -> PyResult<_> {
                 let converted_1517: String = value.extract()?;
@@ -41151,7 +41207,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .remove_layer_version_permission()
@@ -41185,7 +41241,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1521 = (|| -> PyResult<_> {
                 let converted_1521: String = value.extract()?;
@@ -41266,7 +41322,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .remove_permission()
@@ -41300,7 +41356,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let callback_id_value = if let Some(value) = dict_value(params, "callback_id")? {
             let converted_1525 = (|| -> PyResult<_> {
                 let converted_1525: String = value.extract()?;
@@ -41341,7 +41397,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_durable_execution_callback_failure()
@@ -41375,7 +41431,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let callback_id_value = if let Some(value) = dict_value(params, "callback_id")? {
             let converted_1527 = (|| -> PyResult<_> {
                 let converted_1527: String = value.extract()?;
@@ -41396,7 +41452,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_durable_execution_callback_heartbeat()
@@ -41429,7 +41485,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let callback_id_value = if let Some(value) = dict_value(params, "callback_id")? {
             let converted_1528 = (|| -> PyResult<_> {
                 let converted_1528: String = value.extract()?;
@@ -41467,7 +41523,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_durable_execution_callback_success()
@@ -41501,7 +41557,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let durable_execution_arn_value =
             if let Some(value) = dict_value(params, "durable_execution_arn")? {
                 let converted_1531 = (|| -> PyResult<_> {
@@ -41543,7 +41599,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_durable_execution()
@@ -41575,7 +41631,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_value = if let Some(value) = dict_value(params, "resource")? {
             let converted_1533 = (|| -> PyResult<_> {
                 let converted_1533: String = value.extract()?;
@@ -41634,7 +41690,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -41665,7 +41721,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_value = if let Some(value) = dict_value(params, "resource")? {
             let converted_1541 = (|| -> PyResult<_> {
                 let converted_1541: String = value.extract()?;
@@ -41725,7 +41781,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -41757,7 +41813,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1547 = (|| -> PyResult<_> {
                 let converted_1547: String = value.extract()?;
@@ -41874,7 +41930,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_alias()
@@ -41911,7 +41967,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_provider_name_value =
             if let Some(value) = dict_value(params, "capacity_provider_name")? {
                 let converted_1553 = (|| -> PyResult<_> {
@@ -41994,7 +42050,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_capacity_provider()
@@ -42030,7 +42086,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let code_signing_config_arn_value =
             if let Some(value) = dict_value(params, "code_signing_config_arn")? {
                 let converted_1557 = (|| -> PyResult<_> {
@@ -42114,7 +42170,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_code_signing_config()
@@ -42150,7 +42206,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let uuid_value = if let Some(value) = dict_value(params, "uuid")? {
             let converted_1561 = (|| -> PyResult<_> {
                 let converted_1561: String = value.extract()?;
@@ -42648,7 +42704,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_event_source_mapping()
@@ -42706,7 +42762,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1592 = (|| -> PyResult<_> {
                 let converted_1592: String = value.extract()?;
@@ -42989,7 +43045,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_function_code()
@@ -43034,7 +43090,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1613 = (|| -> PyResult<_> {
                 let converted_1613: String = value.extract()?;
@@ -43494,7 +43550,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_function_configuration()
@@ -43547,7 +43603,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1643 = (|| -> PyResult<_> {
                 let converted_1643: String = value.extract()?;
@@ -43651,7 +43707,7 @@ impl LambdaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_function_event_invoke_config()
@@ -43688,7 +43744,7 @@ impl LambdaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let function_name_value = if let Some(value) = dict_value(params, "function_name")? {
             let converted_1648 = (|| -> PyResult<_> {
                 let converted_1648: String = value.extract()?;
@@ -43793,7 +43849,7 @@ impl LambdaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_function_url_config()

@@ -43,6 +43,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0026: Generate typed async waiters](0026-typed-async-waiters.md)
 - [ADR-0027: Optional operation tracing and metrics](0027-optional-opentelemetry.md)
 - [ADR-0028: Report field paths on input conversion failures](0028-input-conversion-context.md)
+- [ADR-0029: Explicit async client and stream lifetimes](0029-async-resource-lifecycle.md)
 
 ## Creating an ADR
 

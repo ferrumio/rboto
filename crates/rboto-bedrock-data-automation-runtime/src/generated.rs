@@ -1220,7 +1220,7 @@ impl BedrockDataAutomationRuntimeClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -1228,8 +1228,34 @@ impl BedrockDataAutomationRuntimeClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -1239,7 +1265,7 @@ impl BedrockDataAutomationRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let invocation_arn_value = if let Some(value) = dict_value(params, "invocation_arn")? {
             let converted_63 = (|| -> PyResult<_> {
                 let converted_63: String = value.extract()?;
@@ -1260,7 +1286,7 @@ impl BedrockDataAutomationRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_automation_status()
@@ -1293,7 +1319,7 @@ impl BedrockDataAutomationRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let input_configuration_value =
             if let Some(value) = dict_value(params, "input_configuration")? {
                 let converted_64 = (|| -> PyResult<_> {
@@ -1442,7 +1468,7 @@ impl BedrockDataAutomationRuntimeClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_data_automation()
@@ -1480,7 +1506,7 @@ impl BedrockDataAutomationRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
             let converted_74 = (|| -> PyResult<_> {
                 let converted_74: String = value.extract()?;
@@ -1713,7 +1739,7 @@ impl BedrockDataAutomationRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_data_automation_async()
@@ -1752,7 +1778,7 @@ impl BedrockDataAutomationRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_91 = (|| -> PyResult<_> {
                 let converted_91: String = value.extract()?;
@@ -1773,7 +1799,7 @@ impl BedrockDataAutomationRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -1806,7 +1832,7 @@ impl BedrockDataAutomationRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_92 = (|| -> PyResult<_> {
                 let converted_92: String = value.extract()?;
@@ -1870,7 +1896,7 @@ impl BedrockDataAutomationRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -1901,7 +1927,7 @@ impl BedrockDataAutomationRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_98 = (|| -> PyResult<_> {
                 let converted_98: String = value.extract()?;
@@ -1965,7 +1991,7 @@ impl BedrockDataAutomationRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()

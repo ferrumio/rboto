@@ -131,13 +131,16 @@ import io
 stream = io.StringIO()
 client = cls(region="us-east-1")
 class Spy:
+    def _ensure_open(self):
+        pass
     def __getattr__(self, name):
         async def call(params, metadata=None):
             return object()
         return call
 client._native = Spy()
 method_name = next(
-    name for name, method in cls.__dict__.items() if inspect.iscoroutinefunction(method)
+    name for name, method in cls.__dict__.items()
+    if inspect.iscoroutinefunction(method) and name not in {"aclose", "__aenter__", "__aexit__"}
 )
 method = getattr(client, method_name)
 parameters = {

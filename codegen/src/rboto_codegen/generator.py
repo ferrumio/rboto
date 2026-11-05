@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-from .documentation import render_service_readme
+from .documentation import CLIENT_LIFECYCLE_METHODS, render_service_readme
 from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
 from .pagination import resolve_pagination
@@ -126,6 +126,9 @@ class ServiceGenerator:
         self.descriptor = descriptor
         self.service = load_model(model_path, descriptor)
         self.crate = parse_crate(descriptor)
+        collisions = self.crate.operations.keys() & (CLIENT_LIFECYCLE_METHODS | {"_ensure_open"})
+        if collisions:
+            raise GenerationError(f"operations conflict with client lifecycle: {sorted(collisions)}")
         self.repository_root = repository_root
         self.rust_module = descriptor.rust_module
         self._counter = 0
@@ -1324,7 +1327,7 @@ class ServiceGenerator:
         lines = [
             "    #[pyo3(signature = (params, observation=None))]",
             f"    fn {operation_name}<'py>(&self, py: Python<'py>, params: &Bound<'py, PyDict>, observation: Option<Py<PyDict>>) -> PyResult<Bound<'py, PyAny>> {{",
-            "        let state = self.state.clone();",
+            "        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;",
         ]
         converted_fields: list[tuple[RustField, str]] = []
         for field in operation.input_fields:
@@ -1344,7 +1347,7 @@ class ServiceGenerator:
 
         lines.extend(
             [
-                "        future_into_py(py, async move {",
+                "        rboto_core::client_future_into_py(py, lease, async move {",
                 "            let client = state.client().await?;",
                 f"            let request = client.{operation_name}()",
             ]
@@ -1414,7 +1417,10 @@ class ServiceGenerator:
 
         lines.append("            Python::attach(|py| {")
         if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
-            lines.extend(["                Ok(py.None())", "            })", "        })", "    }"])
+            lines.extend([
+                "                Ok(py.None())", "            })",
+                "        })", "    }",
+            ])
             return "\n".join(lines)
 
         lines.append("                let result = PyDict::new(py);")

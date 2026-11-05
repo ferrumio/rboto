@@ -25758,7 +25758,7 @@ impl APIGatewayClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -25766,8 +25766,34 @@ impl APIGatewayClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -25777,7 +25803,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_856 = (|| -> PyResult<_> {
                 let converted_856: String = value.extract()?;
@@ -25972,7 +25998,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_api_key()
@@ -26010,7 +26036,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_874 = (|| -> PyResult<_> {
                 let converted_874: String = value.extract()?;
@@ -26235,7 +26261,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_authorizer()
@@ -26275,7 +26301,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_889 = (|| -> PyResult<_> {
                 let converted_889: String = value.extract()?;
@@ -26372,7 +26398,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_base_path_mapping()
@@ -26407,7 +26433,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_894 = (|| -> PyResult<_> {
                 let converted_894: String = value.extract()?;
@@ -26619,7 +26645,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_deployment()
@@ -26660,7 +26686,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_910 = (|| -> PyResult<_> {
                 let converted_910: String = value.extract()?;
@@ -26721,7 +26747,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_documentation_part()
@@ -26756,7 +26782,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_913 = (|| -> PyResult<_> {
                 let converted_913: String = value.extract()?;
@@ -26838,7 +26864,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_documentation_version()
@@ -26872,7 +26898,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_917 = (|| -> PyResult<_> {
                 let converted_917: String = value.extract()?;
@@ -27226,7 +27252,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_domain_name()
@@ -27276,7 +27302,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_arn_value = if let Some(value) = dict_value(params, "domain_name_arn")? {
             let converted_942 = (|| -> PyResult<_> {
                 let converted_942: String = value.extract()?;
@@ -27385,7 +27411,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_domain_name_access_association()
@@ -27421,7 +27447,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_953 = (|| -> PyResult<_> {
                 let converted_953: String = value.extract()?;
@@ -27514,7 +27540,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_model()
@@ -27548,7 +27574,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_958 = (|| -> PyResult<_> {
                 let converted_958: String = value.extract()?;
@@ -27627,7 +27653,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_request_validator()
@@ -27661,7 +27687,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_962 = (|| -> PyResult<_> {
                 let converted_962: String = value.extract()?;
@@ -27722,7 +27748,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_resource()
@@ -27757,7 +27783,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_965 = (|| -> PyResult<_> {
                 let converted_965: String = value.extract()?;
@@ -28063,7 +28089,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_rest_api()
@@ -28108,7 +28134,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_991 = (|| -> PyResult<_> {
                 let converted_991: String = value.extract()?;
@@ -28382,7 +28408,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_stage()
@@ -28424,7 +28450,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1015 = (|| -> PyResult<_> {
                 let converted_1015: String = value.extract()?;
@@ -28586,7 +28612,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_usage_plan()
@@ -28624,7 +28650,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1031 = (|| -> PyResult<_> {
                 let converted_1031: String = value.extract()?;
@@ -28677,7 +28703,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_usage_plan_key()
@@ -28710,7 +28736,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_1034 = (|| -> PyResult<_> {
                 let converted_1034: String = value.extract()?;
@@ -28832,7 +28858,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_vpc_link()
@@ -28866,7 +28892,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let api_key_value = if let Some(value) = dict_value(params, "api_key")? {
             let converted_1048 = (|| -> PyResult<_> {
                 let converted_1048: String = value.extract()?;
@@ -28883,7 +28909,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_api_key().set_api_key(api_key_value);
             let result = if let Some(sink) = observation {
@@ -28912,7 +28938,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1049 = (|| -> PyResult<_> {
                 let converted_1049: String = value.extract()?;
@@ -28953,7 +28979,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_authorizer()
@@ -28985,7 +29011,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_1051 = (|| -> PyResult<_> {
                 let converted_1051: String = value.extract()?;
@@ -29046,7 +29072,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_base_path_mapping()
@@ -29079,7 +29105,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_certificate_id_value =
             if let Some(value) = dict_value(params, "client_certificate_id")? {
                 let converted_1054 = (|| -> PyResult<_> {
@@ -29101,7 +29127,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_client_certificate()
@@ -29132,7 +29158,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1055 = (|| -> PyResult<_> {
                 let converted_1055: String = value.extract()?;
@@ -29173,7 +29199,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_deployment()
@@ -29205,7 +29231,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1057 = (|| -> PyResult<_> {
                 let converted_1057: String = value.extract()?;
@@ -29247,7 +29273,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_documentation_part()
@@ -29279,7 +29305,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1059 = (|| -> PyResult<_> {
                 let converted_1059: String = value.extract()?;
@@ -29321,7 +29347,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_documentation_version()
@@ -29353,7 +29379,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_1061 = (|| -> PyResult<_> {
                 let converted_1061: String = value.extract()?;
@@ -29394,7 +29420,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_domain_name()
@@ -29426,7 +29452,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_access_association_arn_value =
             if let Some(value) = dict_value(params, "domain_name_access_association_arn")? {
                 let converted_1063 = (|| -> PyResult<_> {
@@ -29448,7 +29474,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_domain_name_access_association()
@@ -29481,7 +29507,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1064 = (|| -> PyResult<_> {
                 let converted_1064: String = value.extract()?;
@@ -29524,7 +29550,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_gateway_response()
@@ -29556,7 +29582,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1067 = (|| -> PyResult<_> {
                 let converted_1067: String = value.extract()?;
@@ -29617,7 +29643,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_integration()
@@ -29650,7 +29676,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1070 = (|| -> PyResult<_> {
                 let converted_1070: String = value.extract()?;
@@ -29731,7 +29757,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_integration_response()
@@ -29765,7 +29791,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1074 = (|| -> PyResult<_> {
                 let converted_1074: String = value.extract()?;
@@ -29826,7 +29852,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_method()
@@ -29859,7 +29885,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1077 = (|| -> PyResult<_> {
                 let converted_1077: String = value.extract()?;
@@ -29940,7 +29966,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_method_response()
@@ -29974,7 +30000,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1081 = (|| -> PyResult<_> {
                 let converted_1081: String = value.extract()?;
@@ -30015,7 +30041,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_model()
@@ -30046,7 +30072,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1083 = (|| -> PyResult<_> {
                 let converted_1083: String = value.extract()?;
@@ -30088,7 +30114,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_request_validator()
@@ -30120,7 +30146,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1085 = (|| -> PyResult<_> {
                 let converted_1085: String = value.extract()?;
@@ -30161,7 +30187,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_resource()
@@ -30193,7 +30219,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1087 = (|| -> PyResult<_> {
                 let converted_1087: String = value.extract()?;
@@ -30214,7 +30240,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_rest_api().set_rest_api_id(rest_api_id_value);
             let result = if let Some(sink) = observation {
@@ -30243,7 +30269,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1088 = (|| -> PyResult<_> {
                 let converted_1088: String = value.extract()?;
@@ -30284,7 +30310,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_stage()
@@ -30315,7 +30341,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1090 = (|| -> PyResult<_> {
                 let converted_1090: String = value.extract()?;
@@ -30336,7 +30362,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_usage_plan()
@@ -30367,7 +30393,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1091 = (|| -> PyResult<_> {
                 let converted_1091: String = value.extract()?;
@@ -30404,7 +30430,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_usage_plan_key()
@@ -30436,7 +30462,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let vpc_link_id_value = if let Some(value) = dict_value(params, "vpc_link_id")? {
             let converted_1093 = (|| -> PyResult<_> {
                 let converted_1093: String = value.extract()?;
@@ -30457,7 +30483,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_vpc_link().set_vpc_link_id(vpc_link_id_value);
             let result = if let Some(sink) = observation {
@@ -30486,7 +30512,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1094 = (|| -> PyResult<_> {
                 let converted_1094: String = value.extract()?;
@@ -30527,7 +30553,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .flush_stage_authorizers_cache()
@@ -30559,7 +30585,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1096 = (|| -> PyResult<_> {
                 let converted_1096: String = value.extract()?;
@@ -30600,7 +30626,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .flush_stage_cache()
@@ -30632,7 +30658,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let description_value = if let Some(value) = dict_value(params, "description")? {
             let converted_1098 = (|| -> PyResult<_> {
                 let converted_1098: String = value.extract()?;
@@ -30695,7 +30721,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_client_certificate()
@@ -30727,8 +30753,8 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
-        future_into_py(py, async move {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_account();
             let result = if let Some(sink) = observation {
@@ -30758,7 +30784,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let api_key_value = if let Some(value) = dict_value(params, "api_key")? {
             let converted_1106 = (|| -> PyResult<_> {
                 let converted_1106: String = value.extract()?;
@@ -30795,7 +30821,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_api_key()
@@ -30826,7 +30852,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1108 = (|| -> PyResult<_> {
                 let converted_1108: String = value.extract()?;
@@ -30919,7 +30945,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_api_keys()
@@ -30955,7 +30981,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1113 = (|| -> PyResult<_> {
                 let converted_1113: String = value.extract()?;
@@ -30996,7 +31022,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_authorizer()
@@ -31028,7 +31054,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1115 = (|| -> PyResult<_> {
                 let converted_1115: String = value.extract()?;
@@ -31081,7 +31107,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_authorizers()
@@ -31116,7 +31142,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_1118 = (|| -> PyResult<_> {
                 let converted_1118: String = value.extract()?;
@@ -31177,7 +31203,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_base_path_mapping()
@@ -31210,7 +31236,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_1121 = (|| -> PyResult<_> {
                 let converted_1121: String = value.extract()?;
@@ -31283,7 +31309,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_base_path_mappings()
@@ -31319,7 +31345,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_certificate_id_value =
             if let Some(value) = dict_value(params, "client_certificate_id")? {
                 let converted_1125 = (|| -> PyResult<_> {
@@ -31341,7 +31367,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_client_certificate()
@@ -31372,7 +31398,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1126 = (|| -> PyResult<_> {
                 let converted_1126: String = value.extract()?;
@@ -31405,7 +31431,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_client_certificates()
@@ -31439,7 +31465,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1128 = (|| -> PyResult<_> {
                 let converted_1128: String = value.extract()?;
@@ -31523,7 +31549,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_deployment()
@@ -31558,7 +31584,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1135 = (|| -> PyResult<_> {
                 let converted_1135: String = value.extract()?;
@@ -31611,7 +31637,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_deployments()
@@ -31646,7 +31672,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1138 = (|| -> PyResult<_> {
                 let converted_1138: String = value.extract()?;
@@ -31688,7 +31714,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_documentation_part()
@@ -31722,7 +31748,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1140 = (|| -> PyResult<_> {
                 let converted_1140: String = value.extract()?;
@@ -31856,7 +31882,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_documentation_parts()
@@ -31895,7 +31921,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1149 = (|| -> PyResult<_> {
                 let converted_1149: String = value.extract()?;
@@ -31937,7 +31963,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_documentation_version()
@@ -31969,7 +31995,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1151 = (|| -> PyResult<_> {
                 let converted_1151: String = value.extract()?;
@@ -32022,7 +32048,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_documentation_versions()
@@ -32057,7 +32083,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_1154 = (|| -> PyResult<_> {
                 let converted_1154: String = value.extract()?;
@@ -32098,7 +32124,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_domain_name()
@@ -32132,7 +32158,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1156 = (|| -> PyResult<_> {
                 let converted_1156: String = value.extract()?;
@@ -32187,7 +32213,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_domain_name_access_associations()
@@ -32222,7 +32248,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1160 = (|| -> PyResult<_> {
                 let converted_1160: String = value.extract()?;
@@ -32277,7 +32303,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_domain_names()
@@ -32312,7 +32338,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1164 = (|| -> PyResult<_> {
                 let converted_1164: String = value.extract()?;
@@ -32435,7 +32461,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_export()
@@ -32469,7 +32495,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1175 = (|| -> PyResult<_> {
                 let converted_1175: String = value.extract()?;
@@ -32512,7 +32538,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_gateway_response()
@@ -32544,7 +32570,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1178 = (|| -> PyResult<_> {
                 let converted_1178: String = value.extract()?;
@@ -32597,7 +32623,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_gateway_responses()
@@ -32632,7 +32658,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1181 = (|| -> PyResult<_> {
                 let converted_1181: String = value.extract()?;
@@ -32693,7 +32719,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_integration()
@@ -32728,7 +32754,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1184 = (|| -> PyResult<_> {
                 let converted_1184: String = value.extract()?;
@@ -32809,7 +32835,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_integration_response()
@@ -32843,7 +32869,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1188 = (|| -> PyResult<_> {
                 let converted_1188: String = value.extract()?;
@@ -32904,7 +32930,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_method()
@@ -32938,7 +32964,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1191 = (|| -> PyResult<_> {
                 let converted_1191: String = value.extract()?;
@@ -33019,7 +33045,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_method_response()
@@ -33053,7 +33079,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1195 = (|| -> PyResult<_> {
                 let converted_1195: String = value.extract()?;
@@ -33110,7 +33136,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_model()
@@ -33142,7 +33168,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1198 = (|| -> PyResult<_> {
                 let converted_1198: String = value.extract()?;
@@ -33183,7 +33209,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_model_template()
@@ -33215,7 +33241,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1200 = (|| -> PyResult<_> {
                 let converted_1200: String = value.extract()?;
@@ -33268,7 +33294,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_models()
@@ -33302,7 +33328,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1203 = (|| -> PyResult<_> {
                 let converted_1203: String = value.extract()?;
@@ -33344,7 +33370,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_request_validator()
@@ -33376,7 +33402,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1205 = (|| -> PyResult<_> {
                 let converted_1205: String = value.extract()?;
@@ -33429,7 +33455,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_request_validators()
@@ -33464,7 +33490,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1208 = (|| -> PyResult<_> {
                 let converted_1208: String = value.extract()?;
@@ -33548,7 +33574,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource()
@@ -33582,7 +33608,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1215 = (|| -> PyResult<_> {
                 let converted_1215: String = value.extract()?;
@@ -33678,7 +33704,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resources()
@@ -33714,7 +33740,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1223 = (|| -> PyResult<_> {
                 let converted_1223: String = value.extract()?;
@@ -33735,7 +33761,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_rest_api().set_rest_api_id(rest_api_id_value);
             let result = if let Some(sink) = observation {
@@ -33765,7 +33791,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1224 = (|| -> PyResult<_> {
                 let converted_1224: String = value.extract()?;
@@ -33798,7 +33824,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_rest_apis()
@@ -33831,7 +33857,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1226 = (|| -> PyResult<_> {
                 let converted_1226: String = value.extract()?;
@@ -33934,7 +33960,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_sdk()
@@ -33967,7 +33993,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let id_value = if let Some(value) = dict_value(params, "id")? {
             let converted_1236 = (|| -> PyResult<_> {
                 let converted_1236: String = value.extract()?;
@@ -33984,7 +34010,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_sdk_type().set_id(id_value);
             let result = if let Some(sink) = observation {
@@ -34014,7 +34040,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1237 = (|| -> PyResult<_> {
                 let converted_1237: String = value.extract()?;
@@ -34047,7 +34073,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_sdk_types()
@@ -34080,7 +34106,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1239 = (|| -> PyResult<_> {
                 let converted_1239: String = value.extract()?;
@@ -34121,7 +34147,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_stage()
@@ -34154,7 +34180,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1241 = (|| -> PyResult<_> {
                 let converted_1241: String = value.extract()?;
@@ -34195,7 +34221,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_stages()
@@ -34228,7 +34254,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1243 = (|| -> PyResult<_> {
                 let converted_1243: String = value.extract()?;
@@ -34281,7 +34307,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_tags()
@@ -34313,7 +34339,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1246 = (|| -> PyResult<_> {
                 let converted_1246: String = value.extract()?;
@@ -34418,7 +34444,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_usage()
@@ -34453,7 +34479,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1252 = (|| -> PyResult<_> {
                 let converted_1252: String = value.extract()?;
@@ -34474,7 +34500,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_usage_plan()
@@ -34507,7 +34533,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1253 = (|| -> PyResult<_> {
                 let converted_1253: String = value.extract()?;
@@ -34544,7 +34570,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_usage_plan_key()
@@ -34576,7 +34602,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1255 = (|| -> PyResult<_> {
                 let converted_1255: String = value.extract()?;
@@ -34649,7 +34675,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_usage_plan_keys()
@@ -34685,7 +34711,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1259 = (|| -> PyResult<_> {
                 let converted_1259: String = value.extract()?;
@@ -34734,7 +34760,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_usage_plans()
@@ -34769,7 +34795,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let vpc_link_id_value = if let Some(value) = dict_value(params, "vpc_link_id")? {
             let converted_1262 = (|| -> PyResult<_> {
                 let converted_1262: String = value.extract()?;
@@ -34790,7 +34816,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_vpc_link().set_vpc_link_id(vpc_link_id_value);
             let result = if let Some(sink) = observation {
@@ -34818,7 +34844,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let position_value = if let Some(value) = dict_value(params, "position")? {
             let converted_1263 = (|| -> PyResult<_> {
                 let converted_1263: String = value.extract()?;
@@ -34851,7 +34877,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_vpc_links()
@@ -34884,7 +34910,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_1265 = (|| -> PyResult<_> {
                 let bytes_1266: Vec<u8> = value.extract()?;
@@ -34944,7 +34970,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .import_api_keys()
@@ -34977,7 +35003,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1270 = (|| -> PyResult<_> {
                 let converted_1270: String = value.extract()?;
@@ -35057,7 +35083,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .import_documentation_parts()
@@ -35091,7 +35117,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let fail_on_warnings_value = if let Some(value) = dict_value(params, "fail_on_warnings")? {
             let converted_1276 = (|| -> PyResult<_> {
                 let converted_1276: bool = value.extract()?;
@@ -35175,7 +35201,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .import_rest_api()
@@ -35210,7 +35236,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1286 = (|| -> PyResult<_> {
                 let converted_1286: String = value.extract()?;
@@ -35367,7 +35393,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_gateway_response()
@@ -35402,7 +35428,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1304 = (|| -> PyResult<_> {
                 let converted_1304: String = value.extract()?;
@@ -35872,7 +35898,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_integration()
@@ -35923,7 +35949,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1343 = (|| -> PyResult<_> {
                 let converted_1343: String = value.extract()?;
@@ -36142,7 +36168,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_integration_response()
@@ -36180,7 +36206,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1364 = (|| -> PyResult<_> {
                 let converted_1364: String = value.extract()?;
@@ -36480,7 +36506,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_method()
@@ -36522,7 +36548,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1391 = (|| -> PyResult<_> {
                 let converted_1391: String = value.extract()?;
@@ -36696,7 +36722,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_method_response()
@@ -36732,7 +36758,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1409 = (|| -> PyResult<_> {
                 let converted_1409: String = value.extract()?;
@@ -36858,7 +36884,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_rest_api()
@@ -36894,7 +36920,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_access_association_arn_value =
             if let Some(value) = dict_value(params, "domain_name_access_association_arn")? {
                 let converted_1422 = (|| -> PyResult<_> {
@@ -36936,7 +36962,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .reject_domain_name_access_association()
@@ -36970,7 +36996,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1424 = (|| -> PyResult<_> {
                 let converted_1424: String = value.extract()?;
@@ -37033,7 +37059,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -37064,7 +37090,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1432 = (|| -> PyResult<_> {
                 let converted_1432: String = value.extract()?;
@@ -37349,7 +37375,7 @@ impl APIGatewayClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .test_invoke_authorizer()
@@ -37387,7 +37413,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1468 = (|| -> PyResult<_> {
                 let converted_1468: String = value.extract()?;
@@ -37666,7 +37692,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .test_invoke_method()
@@ -37705,7 +37731,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_1499 = (|| -> PyResult<_> {
                 let converted_1499: String = value.extract()?;
@@ -37769,7 +37795,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -37801,7 +37827,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
             let converted_1505 = (|| -> PyResult<_> {
                 let mut converted_1505 =
@@ -37845,7 +37871,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_account()
@@ -37878,7 +37904,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let api_key_value = if let Some(value) = dict_value(params, "api_key")? {
             let converted_1510 = (|| -> PyResult<_> {
                 let converted_1510: String = value.extract()?;
@@ -37938,7 +37964,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_api_key()
@@ -37970,7 +37996,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1516 = (|| -> PyResult<_> {
                 let converted_1516: String = value.extract()?;
@@ -38054,7 +38080,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_authorizer()
@@ -38087,7 +38113,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_1523 = (|| -> PyResult<_> {
                 let converted_1523: String = value.extract()?;
@@ -38191,7 +38217,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_base_path_mapping()
@@ -38225,7 +38251,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_certificate_id_value =
             if let Some(value) = dict_value(params, "client_certificate_id")? {
                 let converted_1531 = (|| -> PyResult<_> {
@@ -38290,7 +38316,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_client_certificate()
@@ -38322,7 +38348,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1537 = (|| -> PyResult<_> {
                 let converted_1537: String = value.extract()?;
@@ -38406,7 +38432,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_deployment()
@@ -38441,7 +38467,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1544 = (|| -> PyResult<_> {
                 let converted_1544: String = value.extract()?;
@@ -38526,7 +38552,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_documentation_part()
@@ -38561,7 +38587,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1551 = (|| -> PyResult<_> {
                 let converted_1551: String = value.extract()?;
@@ -38646,7 +38672,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_documentation_version()
@@ -38679,7 +38705,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_name_value = if let Some(value) = dict_value(params, "domain_name")? {
             let converted_1558 = (|| -> PyResult<_> {
                 let converted_1558: String = value.extract()?;
@@ -38763,7 +38789,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_domain_name()
@@ -38798,7 +38824,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1565 = (|| -> PyResult<_> {
                 let converted_1565: String = value.extract()?;
@@ -38884,7 +38910,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_gateway_response()
@@ -38917,7 +38943,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1573 = (|| -> PyResult<_> {
                 let converted_1573: String = value.extract()?;
@@ -39021,7 +39047,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_integration()
@@ -39057,7 +39083,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1581 = (|| -> PyResult<_> {
                 let converted_1581: String = value.extract()?;
@@ -39181,7 +39207,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_integration_response()
@@ -39216,7 +39242,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1590 = (|| -> PyResult<_> {
                 let converted_1590: String = value.extract()?;
@@ -39320,7 +39346,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_method()
@@ -39356,7 +39382,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1598 = (|| -> PyResult<_> {
                 let converted_1598: String = value.extract()?;
@@ -39480,7 +39506,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_method_response()
@@ -39515,7 +39541,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1607 = (|| -> PyResult<_> {
                 let converted_1607: String = value.extract()?;
@@ -39599,7 +39625,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_model()
@@ -39631,7 +39657,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1614 = (|| -> PyResult<_> {
                 let converted_1614: String = value.extract()?;
@@ -39716,7 +39742,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_request_validator()
@@ -39749,7 +39775,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1621 = (|| -> PyResult<_> {
                 let converted_1621: String = value.extract()?;
@@ -39833,7 +39859,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_resource()
@@ -39868,7 +39894,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1628 = (|| -> PyResult<_> {
                 let converted_1628: String = value.extract()?;
@@ -39932,7 +39958,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_rest_api()
@@ -39966,7 +39992,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let rest_api_id_value = if let Some(value) = dict_value(params, "rest_api_id")? {
             let converted_1634 = (|| -> PyResult<_> {
                 let converted_1634: String = value.extract()?;
@@ -40050,7 +40076,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_stage()
@@ -40084,7 +40110,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1641 = (|| -> PyResult<_> {
                 let converted_1641: String = value.extract()?;
@@ -40164,7 +40190,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_usage()
@@ -40196,7 +40222,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let usage_plan_id_value = if let Some(value) = dict_value(params, "usage_plan_id")? {
             let converted_1648 = (|| -> PyResult<_> {
                 let converted_1648: String = value.extract()?;
@@ -40260,7 +40286,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_usage_plan()
@@ -40294,7 +40320,7 @@ impl APIGatewayClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let vpc_link_id_value = if let Some(value) = dict_value(params, "vpc_link_id")? {
             let converted_1654 = (|| -> PyResult<_> {
                 let converted_1654: String = value.extract()?;
@@ -40358,7 +40384,7 @@ impl APIGatewayClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_vpc_link()

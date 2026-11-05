@@ -231,7 +231,10 @@ def test_generated_catalog_preserves_strict_signatures_and_native_alignment(
     )
     client = next(node for node in ast.parse((package / "client.py").read_text()).body
                   if isinstance(node, ast.ClassDef))
-    operations = {node.name: node for node in client.body if isinstance(node, ast.AsyncFunctionDef)}
+    operations = {
+        node.name: node for node in client.body if isinstance(node, ast.AsyncFunctionDef)
+        and node.name not in {"aclose", "__aenter__", "__aexit__"}
+    }
     assert operations.keys() == {op.rust_name for op in generator.service.operations}
     path = package / "waiters.py"
     assert path.exists() == bool(generator.waiters)

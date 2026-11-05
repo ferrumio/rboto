@@ -12944,7 +12944,7 @@ impl SFNClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -12952,8 +12952,34 @@ impl SFNClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -12963,7 +12989,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_530 = (|| -> PyResult<_> {
                 let converted_530: String = value.extract()?;
@@ -13044,7 +13070,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_activity()
@@ -13077,7 +13103,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_537 = (|| -> PyResult<_> {
                 let converted_537: String = value.extract()?;
@@ -13295,7 +13321,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_state_machine()
@@ -13335,7 +13361,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let description_value = if let Some(value) = dict_value(params, "description")? {
             let converted_552 = (|| -> PyResult<_> {
                 let converted_552: String = value.extract()?;
@@ -13417,7 +13443,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_state_machine_alias()
@@ -13450,7 +13476,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let activity_arn_value = if let Some(value) = dict_value(params, "activity_arn")? {
             let converted_559 = (|| -> PyResult<_> {
                 let converted_559: String = value.extract()?;
@@ -13471,7 +13497,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_activity()
@@ -13502,7 +13528,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_560 = (|| -> PyResult<_> {
@@ -13524,7 +13550,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_state_machine()
@@ -13555,7 +13581,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_alias_arn_value =
             if let Some(value) = dict_value(params, "state_machine_alias_arn")? {
                 let converted_561 = (|| -> PyResult<_> {
@@ -13577,7 +13603,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_state_machine_alias()
@@ -13608,7 +13634,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_version_arn_value =
             if let Some(value) = dict_value(params, "state_machine_version_arn")? {
                 let converted_562 = (|| -> PyResult<_> {
@@ -13630,7 +13656,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_state_machine_version()
@@ -13661,7 +13687,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let activity_arn_value = if let Some(value) = dict_value(params, "activity_arn")? {
             let converted_563 = (|| -> PyResult<_> {
                 let converted_563: String = value.extract()?;
@@ -13682,7 +13708,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_activity()
@@ -13715,7 +13741,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let execution_arn_value = if let Some(value) = dict_value(params, "execution_arn")? {
             let converted_564 = (|| -> PyResult<_> {
                 let converted_564: String = value.extract()?;
@@ -13757,7 +13783,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_execution()
@@ -13791,7 +13817,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let map_run_arn_value = if let Some(value) = dict_value(params, "map_run_arn")? {
             let converted_567 = (|| -> PyResult<_> {
                 let converted_567: String = value.extract()?;
@@ -13812,7 +13838,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_map_run().set_map_run_arn(map_run_arn_value);
             let result = if let Some(sink) = observation {
@@ -13843,7 +13869,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_568 = (|| -> PyResult<_> {
@@ -13886,7 +13912,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_state_machine()
@@ -13920,7 +13946,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_alias_arn_value =
             if let Some(value) = dict_value(params, "state_machine_alias_arn")? {
                 let converted_571 = (|| -> PyResult<_> {
@@ -13942,7 +13968,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_state_machine_alias()
@@ -13975,7 +14001,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let execution_arn_value = if let Some(value) = dict_value(params, "execution_arn")? {
             let converted_572 = (|| -> PyResult<_> {
                 let converted_572: String = value.extract()?;
@@ -14017,7 +14043,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_state_machine_for_execution()
@@ -14051,7 +14077,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let activity_arn_value = if let Some(value) = dict_value(params, "activity_arn")? {
             let converted_575 = (|| -> PyResult<_> {
                 let converted_575: String = value.extract()?;
@@ -14092,7 +14118,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_activity_task()
@@ -14124,7 +14150,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let execution_arn_value = if let Some(value) = dict_value(params, "execution_arn")? {
             let converted_577 = (|| -> PyResult<_> {
                 let converted_577: String = value.extract()?;
@@ -14226,7 +14252,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_execution_history()
@@ -14263,7 +14289,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_582 = (|| -> PyResult<_> {
                 let converted_582: i32 = value.extract()?;
@@ -14304,7 +14330,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_activities()
@@ -14338,7 +14364,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_584 = (|| -> PyResult<_> {
@@ -14464,7 +14490,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_executions()
@@ -14502,7 +14528,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let execution_arn_value = if let Some(value) = dict_value(params, "execution_arn")? {
             let converted_592 = (|| -> PyResult<_> {
                 let converted_592: String = value.extract()?;
@@ -14563,7 +14589,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_map_runs()
@@ -14597,7 +14623,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_595 = (|| -> PyResult<_> {
@@ -14659,7 +14685,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_state_machine_aliases()
@@ -14694,7 +14720,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_598 = (|| -> PyResult<_> {
@@ -14756,7 +14782,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_state_machine_versions()
@@ -14791,7 +14817,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_601 = (|| -> PyResult<_> {
                 let converted_601: i32 = value.extract()?;
@@ -14832,7 +14858,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_state_machines()
@@ -14866,7 +14892,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_603 = (|| -> PyResult<_> {
                 let converted_603: String = value.extract()?;
@@ -14887,7 +14913,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -14920,7 +14946,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_604 = (|| -> PyResult<_> {
@@ -14982,7 +15008,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .publish_state_machine_version()
@@ -15015,7 +15041,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let execution_arn_value = if let Some(value) = dict_value(params, "execution_arn")? {
             let converted_607 = (|| -> PyResult<_> {
                 let converted_607: String = value.extract()?;
@@ -15056,7 +15082,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .redrive_execution()
@@ -15088,7 +15114,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_token_value = if let Some(value) = dict_value(params, "task_token")? {
             let converted_609 = (|| -> PyResult<_> {
                 let converted_609: String = value.extract()?;
@@ -15141,7 +15167,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_task_failure()
@@ -15174,7 +15200,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_token_value = if let Some(value) = dict_value(params, "task_token")? {
             let converted_612 = (|| -> PyResult<_> {
                 let converted_612: String = value.extract()?;
@@ -15195,7 +15221,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_task_heartbeat()
@@ -15226,7 +15252,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_token_value = if let Some(value) = dict_value(params, "task_token")? {
             let converted_613 = (|| -> PyResult<_> {
                 let converted_613: String = value.extract()?;
@@ -15263,7 +15289,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_task_success()
@@ -15295,7 +15321,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_615 = (|| -> PyResult<_> {
@@ -15369,7 +15395,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_execution()
@@ -15403,7 +15429,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_619 = (|| -> PyResult<_> {
@@ -15498,7 +15524,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_sync_execution()
@@ -15535,7 +15561,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let execution_arn_value = if let Some(value) = dict_value(params, "execution_arn")? {
             let converted_625 = (|| -> PyResult<_> {
                 let converted_625: String = value.extract()?;
@@ -15588,7 +15614,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_execution()
@@ -15621,7 +15647,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_628 = (|| -> PyResult<_> {
                 let converted_628: String = value.extract()?;
@@ -15685,7 +15711,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -15716,7 +15742,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let definition_value = if let Some(value) = dict_value(params, "definition")? {
             let converted_634 = (|| -> PyResult<_> {
                 let converted_634: String = value.extract()?;
@@ -15908,7 +15934,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .test_state()
@@ -15949,7 +15975,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_645 = (|| -> PyResult<_> {
                 let converted_645: String = value.extract()?;
@@ -16013,7 +16039,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -16045,7 +16071,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let map_run_arn_value = if let Some(value) = dict_value(params, "map_run_arn")? {
             let converted_651 = (|| -> PyResult<_> {
                 let converted_651: String = value.extract()?;
@@ -16128,7 +16154,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_map_run()
@@ -16162,7 +16188,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_arn_value = if let Some(value) = dict_value(params, "state_machine_arn")?
         {
             let converted_655 = (|| -> PyResult<_> {
@@ -16320,7 +16346,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_state_machine()
@@ -16358,7 +16384,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let state_machine_alias_arn_value =
             if let Some(value) = dict_value(params, "state_machine_alias_arn")? {
                 let converted_663 = (|| -> PyResult<_> {
@@ -16445,7 +16471,7 @@ impl SFNClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_state_machine_alias()
@@ -16478,7 +16504,7 @@ impl SFNClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let definition_value = if let Some(value) = dict_value(params, "definition")? {
             let converted_670 = (|| -> PyResult<_> {
                 let converted_670: String = value.extract()?;
@@ -16565,7 +16591,7 @@ impl SFNClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .validate_state_machine_definition()

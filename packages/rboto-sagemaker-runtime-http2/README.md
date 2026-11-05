@@ -70,6 +70,9 @@ if __name__ == "__main__":
 
 In an application with an event loop, call `await main()` instead of `asyncio.run(main())`.
 Reuse the client across calls. Constructing a client does not send a request.
+Use `async with` or `await client.aclose()` to close it. Returned streams have
+their own `aclose()` and async contexts; see
+[client and stream lifetimes](https://ferrumio.github.io/rboto/guides/lifecycle/).
 
 ## API conventions
 

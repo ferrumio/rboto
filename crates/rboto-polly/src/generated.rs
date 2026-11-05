@@ -2171,12 +2171,10 @@ impl PyOperationSynthesizeSpeechOutput {
 )]
 struct PyStartSpeechSynthesisStreamEventStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_polly::primitives::event_stream::EventReceiver<
-                    aws_sdk_polly::types::StartSpeechSynthesisStreamEventStream,
-                    aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_polly::primitives::event_stream::EventReceiver<
+                aws_sdk_polly::types::StartSpeechSynthesisStreamEventStream,
+                aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError,
             >,
         >,
     >,
@@ -2192,7 +2190,7 @@ impl PyStartSpeechSynthesisStreamEventStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -2204,24 +2202,50 @@ impl PyStartSpeechSynthesisStreamEventStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| {
-                    start_speech_synthesis_stream_event_stream_to_py(py, &event)
-                }),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| start_speech_synthesis_stream_event_stream_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError::ValidationException(_)) => Some("ValidationException"),
                         Some(aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
@@ -2230,11 +2254,10 @@ impl PyStartSpeechSynthesisStreamEventStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -2275,7 +2298,7 @@ impl PollyClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -2283,8 +2306,34 @@ impl PollyClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -2294,7 +2343,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_134 = (|| -> PyResult<_> {
                 let converted_134: String = value.extract()?;
@@ -2311,7 +2360,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_lexicon().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -2340,7 +2389,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let engine_value = if let Some(value) = dict_value(params, "engine")? {
             let converted_135 = (|| -> PyResult<_> {
                 let enum_value_136: String = value.extract()?;
@@ -2425,7 +2474,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_voices()
@@ -2461,7 +2510,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_141 = (|| -> PyResult<_> {
                 let converted_141: String = value.extract()?;
@@ -2478,7 +2527,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_lexicon().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -2508,7 +2557,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_id_value = if let Some(value) = dict_value(params, "task_id")? {
             let converted_142 = (|| -> PyResult<_> {
                 let converted_142: String = value.extract()?;
@@ -2525,7 +2574,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_speech_synthesis_task()
@@ -2558,7 +2607,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_143 = (|| -> PyResult<_> {
                 let converted_143: String = value.extract()?;
@@ -2579,7 +2628,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_lexicons().set_next_token(next_token_value);
             let result = if let Some(sink) = observation {
@@ -2610,7 +2659,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_144 = (|| -> PyResult<_> {
                 let converted_144: i32 = value.extract()?;
@@ -2672,7 +2721,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_speech_synthesis_tasks()
@@ -2707,7 +2756,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_148 = (|| -> PyResult<_> {
                 let converted_148: String = value.extract()?;
@@ -2740,7 +2789,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_lexicon()
@@ -2771,7 +2820,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let engine_value = if let Some(value) = dict_value(params, "engine")? {
             let converted_150 = (|| -> PyResult<_> {
                 let enum_value_151: String = value.extract()?;
@@ -2933,7 +2982,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_speech_synthesis_stream()
@@ -2981,7 +3030,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let engine_value = if let Some(value) = dict_value(params, "engine")? {
             let converted_165 = (|| -> PyResult<_> {
                 let enum_value_166: String = value.extract()?;
@@ -3276,7 +3325,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_speech_synthesis_task()
@@ -3320,7 +3369,7 @@ impl PollyClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let engine_value = if let Some(value) = dict_value(params, "engine")? {
             let converted_191 = (|| -> PyResult<_> {
                 let enum_value_192: String = value.extract()?;
@@ -3553,7 +3602,7 @@ impl PollyClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .synthesize_speech()

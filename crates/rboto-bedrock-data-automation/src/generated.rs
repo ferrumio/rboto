@@ -11312,7 +11312,7 @@ impl BedrockDataAutomationClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -11320,8 +11320,34 @@ impl BedrockDataAutomationClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -11331,7 +11357,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_arn_value = if let Some(value) = dict_value(params, "blueprint_arn")? {
             let converted_623 = (|| -> PyResult<_> {
                 let converted_623: String = value.extract()?;
@@ -11418,7 +11444,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .copy_blueprint_stage()
@@ -11452,7 +11478,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_name_value = if let Some(value) = dict_value(params, "blueprint_name")? {
             let converted_629 = (|| -> PyResult<_> {
                 let converted_629: String = value.extract()?;
@@ -11618,7 +11644,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_blueprint()
@@ -11657,7 +11683,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_arn_value = if let Some(value) = dict_value(params, "blueprint_arn")? {
             let converted_642 = (|| -> PyResult<_> {
                 let converted_642: String = value.extract()?;
@@ -11698,7 +11724,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_blueprint_version()
@@ -11732,7 +11758,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_name_value = if let Some(value) = dict_value(params, "library_name")? {
             let converted_644 = (|| -> PyResult<_> {
                 let converted_644: String = value.extract()?;
@@ -11858,7 +11884,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_data_automation_library()
@@ -11893,7 +11919,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let project_name_value = if let Some(value) = dict_value(params, "project_name")? {
             let converted_653 = (|| -> PyResult<_> {
                 let converted_653: String = value.extract()?;
@@ -12151,7 +12177,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_data_automation_project()
@@ -12194,7 +12220,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_arn_value = if let Some(value) = dict_value(params, "blueprint_arn")? {
             let converted_670 = (|| -> PyResult<_> {
                 let converted_670: String = value.extract()?;
@@ -12236,7 +12262,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_blueprint()
@@ -12268,7 +12294,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_672 = (|| -> PyResult<_> {
                 let converted_672: String = value.extract()?;
@@ -12289,7 +12315,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_data_automation_library()
@@ -12320,7 +12346,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let project_arn_value = if let Some(value) = dict_value(params, "project_arn")? {
             let converted_673 = (|| -> PyResult<_> {
                 let converted_673: String = value.extract()?;
@@ -12341,7 +12367,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_data_automation_project()
@@ -12372,7 +12398,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_arn_value = if let Some(value) = dict_value(params, "blueprint_arn")? {
             let converted_674 = (|| -> PyResult<_> {
                 let converted_674: String = value.extract()?;
@@ -12437,7 +12463,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_blueprint()
@@ -12472,7 +12498,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let invocation_arn_value = if let Some(value) = dict_value(params, "invocation_arn")? {
             let converted_678 = (|| -> PyResult<_> {
                 let converted_678: String = value.extract()?;
@@ -12493,7 +12519,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_blueprint_optimization_status()
@@ -12526,7 +12552,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_679 = (|| -> PyResult<_> {
                 let converted_679: String = value.extract()?;
@@ -12547,7 +12573,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_automation_library()
@@ -12580,7 +12606,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_680 = (|| -> PyResult<_> {
                 let converted_680: String = value.extract()?;
@@ -12643,7 +12669,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_automation_library_entity()
@@ -12676,7 +12702,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_684 = (|| -> PyResult<_> {
                 let converted_684: String = value.extract()?;
@@ -12713,7 +12739,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_automation_library_ingestion_job()
@@ -12749,7 +12775,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let project_arn_value = if let Some(value) = dict_value(params, "project_arn")? {
             let converted_686 = (|| -> PyResult<_> {
                 let converted_686: String = value.extract()?;
@@ -12794,7 +12820,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_automation_project()
@@ -12828,7 +12854,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_value = if let Some(value) = dict_value(params, "blueprint")? {
             let converted_689 = (|| -> PyResult<_> {
                 let converted_689 = blueprint_optimization_object_from_py(&value)?;
@@ -12999,7 +13025,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_blueprint_optimization_async()
@@ -13035,7 +13061,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_703 = (|| -> PyResult<_> {
                 let converted_703: String = value.extract()?;
@@ -13228,7 +13254,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_data_automation_library_ingestion_job()
@@ -13268,7 +13294,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_arn_value = if let Some(value) = dict_value(params, "blueprint_arn")? {
             let converted_717 = (|| -> PyResult<_> {
                 let converted_717: String = value.extract()?;
@@ -13397,7 +13423,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_blueprints()
@@ -13435,7 +13461,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_725 = (|| -> PyResult<_> {
                 let converted_725: i32 = value.extract()?;
@@ -13496,7 +13522,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_automation_libraries()
@@ -13531,7 +13557,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_728 = (|| -> PyResult<_> {
                 let converted_728: String = value.extract()?;
@@ -13614,7 +13640,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_automation_library_entities()
@@ -13650,7 +13676,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_733 = (|| -> PyResult<_> {
                 let converted_733: String = value.extract()?;
@@ -13711,7 +13737,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_automation_library_ingestion_jobs()
@@ -13748,7 +13774,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_736 = (|| -> PyResult<_> {
                 let converted_736: i32 = value.extract()?;
@@ -13877,7 +13903,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_automation_projects()
@@ -13915,7 +13941,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_744 = (|| -> PyResult<_> {
                 let converted_744: String = value.extract()?;
@@ -13936,7 +13962,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -13969,7 +13995,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_745 = (|| -> PyResult<_> {
                 let converted_745: String = value.extract()?;
@@ -14033,7 +14059,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -14064,7 +14090,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_751 = (|| -> PyResult<_> {
                 let converted_751: String = value.extract()?;
@@ -14128,7 +14154,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -14160,7 +14186,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let blueprint_arn_value = if let Some(value) = dict_value(params, "blueprint_arn")? {
             let converted_757 = (|| -> PyResult<_> {
                 let converted_757: String = value.extract()?;
@@ -14241,7 +14267,7 @@ impl BedrockDataAutomationClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_blueprint()
@@ -14277,7 +14303,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let library_arn_value = if let Some(value) = dict_value(params, "library_arn")? {
             let converted_762 = (|| -> PyResult<_> {
                 let converted_762: String = value.extract()?;
@@ -14339,7 +14365,7 @@ impl BedrockDataAutomationClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_data_automation_library()
@@ -14372,7 +14398,7 @@ impl BedrockDataAutomationClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let project_arn_value = if let Some(value) = dict_value(params, "project_arn")? {
             let converted_765 = (|| -> PyResult<_> {
                 let converted_765: String = value.extract()?;
@@ -14543,7 +14569,7 @@ impl BedrockDataAutomationClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_data_automation_project()

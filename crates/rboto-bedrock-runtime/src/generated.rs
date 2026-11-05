@@ -15244,12 +15244,10 @@ impl PyOperationStartAsyncInvokeOutput {
 )]
 struct PyConverseStreamOutputReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockruntime::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockruntime::types::ConverseStreamOutput,
-                    aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockruntime::types::ConverseStreamOutput,
+                aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError,
             >,
         >,
     >,
@@ -15265,7 +15263,7 @@ impl PyConverseStreamOutputReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -15277,22 +15275,50 @@ impl PyConverseStreamOutputReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| converse_stream_output_to_py(py, &event)),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| converse_stream_output_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError::ModelStreamErrorException(_)) => Some("ModelStreamErrorException"),
@@ -15302,11 +15328,10 @@ impl PyConverseStreamOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -15316,7 +15341,14 @@ impl PyConverseStreamOutputReceiver {
     module = "rboto_bedrock_runtime._native"
 )]
 struct PyInvokeModelWithBidirectionalStreamOutputReceiver {
-    inner: Arc<Mutex<Option<aws_sdk_bedrockruntime::primitives::event_stream::EventReceiver< aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamOutput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError, >>>>,
+    inner: Arc<
+        ManagedResource<
+            aws_sdk_bedrockruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamOutput,
+                aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError,
+            >,
+        >,
+    >,
     operation: &'static str,
 }
 
@@ -15329,7 +15361,7 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -15341,24 +15373,50 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| {
-                    invoke_model_with_bidirectional_stream_output_to_py(py, &event)
-                }),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| invoke_model_with_bidirectional_stream_output_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::ModelStreamErrorException(_)) => Some("ModelStreamErrorException"),
@@ -15369,11 +15427,10 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -15384,12 +15441,10 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
 )]
 struct PyResponseStreamReceiver {
     inner: Arc<
-        Mutex<
-            Option<
-                aws_sdk_bedrockruntime::primitives::event_stream::EventReceiver<
-                    aws_sdk_bedrockruntime::types::ResponseStream,
-                    aws_sdk_bedrockruntime::types::error::ResponseStreamError,
-                >,
+        ManagedResource<
+            aws_sdk_bedrockruntime::primitives::event_stream::EventReceiver<
+                aws_sdk_bedrockruntime::types::ResponseStream,
+                aws_sdk_bedrockruntime::types::error::ResponseStreamError,
             >,
         >,
     >,
@@ -15405,7 +15460,7 @@ impl PyResponseStreamReceiver {
         operation: &'static str,
     ) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
             operation,
         }
     }
@@ -15417,22 +15472,50 @@ impl PyResponseStreamReceiver {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         let operation = self.operation;
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
+                return Err(PyStopAsyncIteration::new_err(()));
+            };
+            lease.run(async move {
+            let _access = inner.access().await;
+            let Some(mut stream) = inner.take_for_iteration() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
             match stream.recv().await {
-                Ok(Some(event)) => Python::attach(|py| response_stream_to_py(py, &event)),
+                Ok(Some(event)) => {
+                    drop(stream);
+                    Python::attach(|py| response_stream_to_py(py, &event))
+                }
                 Ok(None) => {
-                    *guard = None;
+                    stream.discard();
                     Err(PyStopAsyncIteration::new_err(()))
                 }
                 Err(error) => {
-                    *guard = None;
+                    stream.discard();
                     let code = match error.as_service_error() {
                         Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
                         Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::ModelStreamErrorException(_)) => Some("ModelStreamErrorException"),
@@ -15443,11 +15526,10 @@ impl PyResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| {
-                        sdk_error_to_py_with_code(py, &error, operation, code)
-                    }))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
                 }
             }
+            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -15525,7 +15607,7 @@ impl BedrockRuntimeClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -15533,8 +15615,34 @@ impl BedrockRuntimeClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -15544,7 +15652,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let guardrail_identifier_value =
             if let Some(value) = dict_value(params, "guardrail_identifier")? {
                 let converted_1156 = (|| -> PyResult<_> {
@@ -15676,7 +15784,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .apply_guardrail()
@@ -15713,7 +15821,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
             let converted_1167 = (|| -> PyResult<_> {
                 let converted_1167: String = value.extract()?;
@@ -16094,7 +16202,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .converse()
@@ -16140,7 +16248,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
             let converted_1204 = (|| -> PyResult<_> {
                 let converted_1204: String = value.extract()?;
@@ -16521,7 +16629,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .converse_stream()
@@ -16574,7 +16682,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
             let converted_1241 = (|| -> PyResult<_> {
                 let converted_1241: String = value.extract()?;
@@ -16611,7 +16719,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .count_tokens()
@@ -16642,7 +16750,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let invocation_arn_value = if let Some(value) = dict_value(params, "invocation_arn")? {
             let converted_1243 = (|| -> PyResult<_> {
                 let converted_1243: String = value.extract()?;
@@ -16663,7 +16771,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_async_invoke()
@@ -16694,7 +16802,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
             let converted_1244 = (|| -> PyResult<_> {
                 let mut converted_1244 =
@@ -16758,7 +16866,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_guardrail_checks()
@@ -16792,7 +16900,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_1250 = (|| -> PyResult<_> {
                 let bytes_1251: Vec<u8> = value.extract()?;
@@ -16993,7 +17101,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_model()
@@ -17032,7 +17140,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let model_id_value = if let Some(value) = dict_value(params, "model_id")? {
             let converted_1264 = (|| -> PyResult<_> {
                 let converted_1264: String = value.extract()?;
@@ -17061,7 +17169,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_model_with_bidirectional_stream()
@@ -17106,7 +17214,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_1266 = (|| -> PyResult<_> {
                 let bytes_1267: Vec<u8> = value.extract()?;
@@ -17307,7 +17415,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .invoke_model_with_response_stream()
@@ -17369,7 +17477,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let submit_time_after_value = if let Some(value) = dict_value(params, "submit_time_after")?
         {
             let converted_1283 = (|| -> PyResult<_> {
@@ -17530,7 +17638,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_async_invokes()
@@ -17569,7 +17677,7 @@ impl BedrockRuntimeClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
                 let converted_1295 = (|| -> PyResult<_> {
@@ -17691,7 +17799,7 @@ impl BedrockRuntimeClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_async_invoke()

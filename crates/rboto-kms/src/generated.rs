@@ -6660,7 +6660,7 @@ impl KMSClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -6668,8 +6668,34 @@ impl KMSClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -6679,7 +6705,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_265 = (|| -> PyResult<_> {
                 let converted_265: String = value.extract()?;
@@ -6696,7 +6722,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_key_deletion().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
@@ -6725,7 +6751,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
                 let converted_266 = (|| -> PyResult<_> {
@@ -6747,7 +6773,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .connect_custom_key_store()
@@ -6778,7 +6804,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
             let converted_267 = (|| -> PyResult<_> {
                 let converted_267: String = value.extract()?;
@@ -6819,7 +6845,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_alias()
@@ -6850,7 +6876,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let custom_key_store_name_value =
             if let Some(value) = dict_value(params, "custom_key_store_name")? {
                 let converted_269 = (|| -> PyResult<_> {
@@ -7086,7 +7112,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_custom_key_store()
@@ -7129,7 +7155,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_282 = (|| -> PyResult<_> {
                 let converted_282: String = value.extract()?;
@@ -7370,7 +7396,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_grant()
@@ -7409,7 +7435,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
             let converted_301 = (|| -> PyResult<_> {
                 let converted_301: String = value.extract()?;
@@ -7657,7 +7683,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_key()
@@ -7699,7 +7725,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ciphertext_blob_value = if let Some(value) = dict_value(params, "ciphertext_blob")? {
             let converted_320 = (|| -> PyResult<_> {
                 let bytes_321: Vec<u8> = value.extract()?;
@@ -7932,7 +7958,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .decrypt()
@@ -7969,7 +7995,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
             let converted_345 = (|| -> PyResult<_> {
                 let converted_345: String = value.extract()?;
@@ -7990,7 +8016,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_alias().set_alias_name(alias_name_value);
             let result = if let Some(sink) = observation {
@@ -8018,7 +8044,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
                 let converted_346 = (|| -> PyResult<_> {
@@ -8040,7 +8066,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_custom_key_store()
@@ -8071,7 +8097,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_347 = (|| -> PyResult<_> {
                 let converted_347: String = value.extract()?;
@@ -8108,7 +8134,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_imported_key_material()
@@ -8140,7 +8166,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_349 = (|| -> PyResult<_> {
                 let converted_349: String = value.extract()?;
@@ -8281,7 +8307,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .derive_shared_secret()
@@ -8317,7 +8343,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
                 let converted_361 = (|| -> PyResult<_> {
@@ -8392,7 +8418,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_custom_key_stores()
@@ -8428,7 +8454,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_365 = (|| -> PyResult<_> {
                 let converted_365: String = value.extract()?;
@@ -8488,7 +8514,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_key()
@@ -8521,7 +8547,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_371 = (|| -> PyResult<_> {
                 let converted_371: String = value.extract()?;
@@ -8538,7 +8564,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.disable_key().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
@@ -8566,7 +8592,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_372 = (|| -> PyResult<_> {
                 let converted_372: String = value.extract()?;
@@ -8583,7 +8609,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.disable_key_rotation().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
@@ -8612,7 +8638,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
                 let converted_373 = (|| -> PyResult<_> {
@@ -8634,7 +8660,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .disconnect_custom_key_store()
@@ -8665,7 +8691,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_374 = (|| -> PyResult<_> {
                 let converted_374: String = value.extract()?;
@@ -8682,7 +8708,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.enable_key().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
@@ -8710,7 +8736,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_375 = (|| -> PyResult<_> {
                 let converted_375: String = value.extract()?;
@@ -8748,7 +8774,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .enable_key_rotation()
@@ -8780,7 +8806,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_377 = (|| -> PyResult<_> {
                 let converted_377: String = value.extract()?;
@@ -8947,7 +8973,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .encrypt()
@@ -8982,7 +9008,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_395 = (|| -> PyResult<_> {
                 let converted_395: String = value.extract()?;
@@ -9166,7 +9192,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_data_key()
@@ -9203,7 +9229,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let converted_413 = (|| -> PyResult<_> {
@@ -9368,7 +9394,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_data_key_pair()
@@ -9404,7 +9430,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let converted_430 = (|| -> PyResult<_> {
@@ -9549,7 +9575,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_data_key_pair_without_plaintext()
@@ -9586,7 +9612,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_446 = (|| -> PyResult<_> {
                 let converted_446: String = value.extract()?;
@@ -9750,7 +9776,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_data_key_without_plaintext()
@@ -9786,7 +9812,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let message_value = if let Some(value) = dict_value(params, "message")? {
             let converted_463 = (|| -> PyResult<_> {
                 let bytes_464: Vec<u8> = value.extract()?;
@@ -9905,7 +9931,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_mac()
@@ -9939,7 +9965,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let number_of_bytes_value = if let Some(value) = dict_value(params, "number_of_bytes")? {
             let converted_474 = (|| -> PyResult<_> {
                 let converted_474: i32 = value.extract()?;
@@ -10001,7 +10027,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .generate_random()
@@ -10034,7 +10060,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_477 = (|| -> PyResult<_> {
                 let converted_477: String = value.extract()?;
@@ -10051,7 +10077,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_key_last_usage().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
@@ -10082,7 +10108,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_478 = (|| -> PyResult<_> {
                 let converted_478: String = value.extract()?;
@@ -10119,7 +10145,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_key_policy()
@@ -10151,7 +10177,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_480 = (|| -> PyResult<_> {
                 let converted_480: String = value.extract()?;
@@ -10168,7 +10194,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_key_rotation_status().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
@@ -10197,7 +10223,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_481 = (|| -> PyResult<_> {
                 let converted_481: String = value.extract()?;
@@ -10260,7 +10286,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_parameters_for_import()
@@ -10293,7 +10319,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_486 = (|| -> PyResult<_> {
                 let converted_486: String = value.extract()?;
@@ -10353,7 +10379,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_public_key()
@@ -10385,7 +10411,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_492 = (|| -> PyResult<_> {
                 let converted_492: String = value.extract()?;
@@ -10554,7 +10580,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .import_key_material()
@@ -10592,7 +10618,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_505 = (|| -> PyResult<_> {
                 let converted_505: String = value.extract()?;
@@ -10641,7 +10667,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_aliases()
@@ -10675,7 +10701,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
             let converted_508 = (|| -> PyResult<_> {
                 let converted_508: i32 = value.extract()?;
@@ -10782,7 +10808,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_grants()
@@ -10819,7 +10845,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_514 = (|| -> PyResult<_> {
                 let converted_514: String = value.extract()?;
@@ -10868,7 +10894,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_key_policies()
@@ -10901,7 +10927,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_517 = (|| -> PyResult<_> {
                 let converted_517: String = value.extract()?;
@@ -10973,7 +10999,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_key_rotations()
@@ -11009,7 +11035,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
             let converted_522 = (|| -> PyResult<_> {
                 let converted_522: i32 = value.extract()?;
@@ -11042,7 +11068,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_keys()
@@ -11075,7 +11101,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_524 = (|| -> PyResult<_> {
                 let converted_524: String = value.extract()?;
@@ -11124,7 +11150,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_resource_tags()
@@ -11159,7 +11185,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
             let converted_527 = (|| -> PyResult<_> {
                 let converted_527: i32 = value.extract()?;
@@ -11234,7 +11260,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_retirable_grants()
@@ -11270,7 +11296,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_531 = (|| -> PyResult<_> {
                 let converted_531: String = value.extract()?;
@@ -11344,7 +11370,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_key_policy()
@@ -11378,7 +11404,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let ciphertext_blob_value = if let Some(value) = dict_value(params, "ciphertext_blob")? {
             let converted_535 = (|| -> PyResult<_> {
                 let bytes_536: Vec<u8> = value.extract()?;
@@ -11686,7 +11712,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .re_encrypt()
@@ -11725,7 +11751,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_569 = (|| -> PyResult<_> {
                 let converted_569: String = value.extract()?;
@@ -11862,7 +11888,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .replicate_key()
@@ -11900,7 +11926,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let grant_token_value = if let Some(value) = dict_value(params, "grant_token")? {
             let converted_579 = (|| -> PyResult<_> {
                 let converted_579: String = value.extract()?;
@@ -11969,7 +11995,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .retire_grant()
@@ -12002,7 +12028,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_583 = (|| -> PyResult<_> {
                 let converted_583: String = value.extract()?;
@@ -12051,7 +12077,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .revoke_grant()
@@ -12083,7 +12109,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_586 = (|| -> PyResult<_> {
                 let converted_586: String = value.extract()?;
@@ -12100,7 +12126,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.rotate_key_on_demand().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
@@ -12129,7 +12155,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_587 = (|| -> PyResult<_> {
                 let converted_587: String = value.extract()?;
@@ -12167,7 +12193,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .schedule_key_deletion()
@@ -12199,7 +12225,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_589 = (|| -> PyResult<_> {
                 let converted_589: String = value.extract()?;
@@ -12340,7 +12366,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .sign()
@@ -12375,7 +12401,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_602 = (|| -> PyResult<_> {
                 let converted_602: String = value.extract()?;
@@ -12435,7 +12461,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -12466,7 +12492,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_608 = (|| -> PyResult<_> {
                 let converted_608: String = value.extract()?;
@@ -12526,7 +12552,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -12558,7 +12584,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
             let converted_614 = (|| -> PyResult<_> {
                 let converted_614: String = value.extract()?;
@@ -12599,7 +12625,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_alias()
@@ -12630,7 +12656,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let custom_key_store_id_value =
             if let Some(value) = dict_value(params, "custom_key_store_id")? {
                 let converted_616 = (|| -> PyResult<_> {
@@ -12843,7 +12869,7 @@ impl KMSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_custom_key_store()
@@ -12885,7 +12911,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_627 = (|| -> PyResult<_> {
                 let converted_627: String = value.extract()?;
@@ -12922,7 +12948,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_key_description()
@@ -12954,7 +12980,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_629 = (|| -> PyResult<_> {
                 let converted_629: String = value.extract()?;
@@ -12991,7 +13017,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_primary_region()
@@ -13023,7 +13049,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
             let converted_631 = (|| -> PyResult<_> {
                 let converted_631: String = value.extract()?;
@@ -13185,7 +13211,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .verify()
@@ -13221,7 +13247,7 @@ impl KMSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let message_value = if let Some(value) = dict_value(params, "message")? {
             let converted_646 = (|| -> PyResult<_> {
                 let bytes_647: Vec<u8> = value.extract()?;
@@ -13357,7 +13383,7 @@ impl KMSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .verify_mac()

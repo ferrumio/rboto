@@ -67,6 +67,14 @@ class ConfigurationError(RbotoError):
     """Invalid rboto configuration."""
 
 
+class ClientClosedError(RbotoError):
+    """An operation used a closed client or was interrupted by its closure."""
+
+
+class StreamClosedError(RbotoError):
+    """Stream closure interrupted a read, or a closed stream was entered."""
+
+
 class CredentialsError(RbotoError):
     """AWS credentials could not be loaded or refreshed."""
 

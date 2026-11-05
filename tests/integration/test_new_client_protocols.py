@@ -60,6 +60,46 @@ def event_frame(event: str, payload: dict[str, object], *, exception: bool = Fal
     return message + struct.pack(">I", zlib.crc32(message))
 
 
+@pytest.mark.asyncio
+@service("bedrock-runtime")
+async def test_bidirectional_close_releases_pending_input_poll(peer: "Peer") -> None:
+    from rboto import bedrock_runtime
+    from rboto_bedrock_runtime.types import InvokeModelWithBidirectionalStreamInput
+
+    peer.duplex = True
+    polling = asyncio.Event()
+    stopped = asyncio.Event()
+    release = asyncio.Event()
+
+    async def events() -> AsyncIterator[InvokeModelWithBidirectionalStreamInput]:
+        try:
+            yield {"chunk": {"bytes": b"first"}}
+            polling.set()
+            await release.wait()
+            yield {"chunk": {"bytes": b"second"}}
+        finally:
+            stopped.set()
+
+    source = events()
+    client = bedrock_runtime(region="us-east-1", endpoint_url=peer.endpoint)
+    try:
+        async with asyncio.timeout(5):
+            response = await client.invoke_model_with_bidirectional_stream(
+                model_id="example", body=source,
+            )
+            receiver = response["body"]
+            assert await anext(receiver) == {"chunk": {"bytes": b"ready"}}
+            await polling.wait()
+            await receiver.aclose()
+            await client.aclose()
+            await stopped.wait()
+    finally:
+        release.set()
+        await client.aclose()
+        await asyncio.wait_for(stopped.wait(), 3)
+        await source.aclose()
+
+
 @dataclass
 class Peer:
     endpoint: str = ""

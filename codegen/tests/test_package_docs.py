@@ -43,7 +43,9 @@ def test_package_readme_documents_the_complete_public_api(service: ServiceDescri
         if isinstance(node, ast.ClassDef) and node.name == service.client_class
     )
     expected = {
-        method.name: method for method in client.body if isinstance(method, ast.AsyncFunctionDef)
+        method.name: method for method in client.body
+        if isinstance(method, ast.AsyncFunctionDef)
+        and method.name not in {"aclose", "__aenter__", "__aexit__"}
     }
     table = re.findall(r"^\| \[`(\w+)`\]\(#(\w+)\) \| (.*?) \| (.*?) \|$", readme, re.M)
     assert len(table) == len(expected)

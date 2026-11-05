@@ -2937,7 +2937,7 @@ impl CognitoIdentityClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -2945,8 +2945,34 @@ impl CognitoIdentityClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -2956,7 +2982,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_name_value =
             if let Some(value) = dict_value(params, "identity_pool_name")? {
                 let converted_66 = (|| -> PyResult<_> {
@@ -3267,7 +3293,7 @@ impl CognitoIdentityClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_identity_pool()
@@ -3308,7 +3334,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_ids_to_delete_value =
             if let Some(value) = dict_value(params, "identity_ids_to_delete")? {
                 let converted_99 = (|| -> PyResult<_> {
@@ -3353,7 +3379,7 @@ impl CognitoIdentityClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_identities()
@@ -3386,7 +3412,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_104 = (|| -> PyResult<_> {
                 let converted_104: String = value.extract()?;
@@ -3407,7 +3433,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_identity_pool()
@@ -3438,7 +3464,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_id_value = if let Some(value) = dict_value(params, "identity_id")? {
             let converted_105 = (|| -> PyResult<_> {
                 let converted_105: String = value.extract()?;
@@ -3459,7 +3485,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_identity()
@@ -3490,7 +3516,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_106 = (|| -> PyResult<_> {
                 let converted_106: String = value.extract()?;
@@ -3511,7 +3537,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .describe_identity_pool()
@@ -3544,7 +3570,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_id_value = if let Some(value) = dict_value(params, "identity_id")? {
             let converted_107 = (|| -> PyResult<_> {
                 let converted_107: String = value.extract()?;
@@ -3627,7 +3653,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_credentials_for_identity()
@@ -3662,7 +3688,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let account_id_value = if let Some(value) = dict_value(params, "account_id")? {
             let converted_116 = (|| -> PyResult<_> {
                 let converted_116: String = value.extract()?;
@@ -3745,7 +3771,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_id()
@@ -3777,7 +3803,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_125 = (|| -> PyResult<_> {
                 let converted_125: String = value.extract()?;
@@ -3798,7 +3824,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_identity_pool_roles()
@@ -3831,7 +3857,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_id_value = if let Some(value) = dict_value(params, "identity_id")? {
             let converted_126 = (|| -> PyResult<_> {
                 let converted_126: String = value.extract()?;
@@ -3894,7 +3920,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_open_id_token()
@@ -3926,7 +3952,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_134 = (|| -> PyResult<_> {
                 let converted_134: String = value.extract()?;
@@ -4075,7 +4101,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_open_id_token_for_developer_identity()
@@ -4112,7 +4138,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_151 = (|| -> PyResult<_> {
                 let converted_151: String = value.extract()?;
@@ -4154,7 +4180,7 @@ impl CognitoIdentityClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_principal_tag_attribute_map()
@@ -4186,7 +4212,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_153 = (|| -> PyResult<_> {
                 let converted_153: String = value.extract()?;
@@ -4267,7 +4293,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_identities()
@@ -4303,7 +4329,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_157 = (|| -> PyResult<_> {
                 let converted_157: i32 = value.extract()?;
@@ -4344,7 +4370,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_identity_pools()
@@ -4378,7 +4404,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_159 = (|| -> PyResult<_> {
                 let converted_159: String = value.extract()?;
@@ -4399,7 +4425,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -4430,7 +4456,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_160 = (|| -> PyResult<_> {
                 let converted_160: String = value.extract()?;
@@ -4532,7 +4558,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .lookup_developer_identity()
@@ -4567,7 +4593,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let source_user_identifier_value =
             if let Some(value) = dict_value(params, "source_user_identifier")? {
                 let converted_165 = (|| -> PyResult<_> {
@@ -4651,7 +4677,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .merge_developer_identities()
@@ -4685,7 +4711,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_169 = (|| -> PyResult<_> {
                 let converted_169: String = value.extract()?;
@@ -4794,7 +4820,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .set_identity_pool_roles()
@@ -4827,7 +4853,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_184 = (|| -> PyResult<_> {
                 let converted_184: String = value.extract()?;
@@ -4935,7 +4961,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .set_principal_tag_attribute_map()
@@ -4969,7 +4995,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_194 = (|| -> PyResult<_> {
                 let converted_194: String = value.extract()?;
@@ -5032,7 +5058,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -5063,7 +5089,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_id_value = if let Some(value) = dict_value(params, "identity_id")? {
             let converted_202 = (|| -> PyResult<_> {
                 let converted_202: String = value.extract()?;
@@ -5146,7 +5172,7 @@ impl CognitoIdentityClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .unlink_developer_identity()
@@ -5180,7 +5206,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_id_value = if let Some(value) = dict_value(params, "identity_id")? {
             let converted_206 = (|| -> PyResult<_> {
                 let converted_206: String = value.extract()?;
@@ -5286,7 +5312,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .unlink_identity()
@@ -5319,7 +5345,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_219 = (|| -> PyResult<_> {
                 let converted_219: String = value.extract()?;
@@ -5383,7 +5409,7 @@ impl CognitoIdentityClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -5415,7 +5441,7 @@ impl CognitoIdentityClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let identity_pool_id_value = if let Some(value) = dict_value(params, "identity_pool_id")? {
             let converted_225 = (|| -> PyResult<_> {
                 let converted_225: String = value.extract()?;
@@ -5746,7 +5772,7 @@ impl CognitoIdentityClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_identity_pool()

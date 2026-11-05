@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ast
+import copy
 import hashlib
 import tomllib
 from dataclasses import dataclass, replace
@@ -138,7 +139,15 @@ def types_from_contract(types_source: str, stub_source: str) -> dict[str, Type]:
                             f"    @property\n    def {method.name}(self) -> {annotation}: ...",
                         )
                     else:
-                        methods.append(f"    def {method.name}(self) -> {annotation}: ...")
+                        signature = copy.deepcopy(method)
+                        signature.body = [ast.Expr(value=ast.Constant(value=Ellipsis))]
+                        signature.decorator_list = []
+                        normalized = _PublicNames({
+                            **aliases, "_TracebackType": "TracebackType",
+                        }).visit(signature)
+                        methods.append("\n".join(
+                            "    " + line for line in ast.unparse(normalized).splitlines()
+                        ))
                 kind = "stream" if any("__aiter__" in method for method in methods) else "native"
                 definition = f"class {name}:\n" + ("\n".join(methods) or "    pass")
             else:
@@ -323,7 +332,7 @@ def render_reference(
     methods = {
         node.name: node for cls in ast.parse(client_source).body if isinstance(cls, ast.ClassDef)
         and cls.name == descriptor.client_class for node in cls.body
-        if isinstance(node, ast.AsyncFunctionDef)
+        if isinstance(node, ast.AsyncFunctionDef) and node.name in modeled
     }
     inputs: set[str] = set()
     outputs: set[str] = set()

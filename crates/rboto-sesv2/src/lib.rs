@@ -16,8 +16,8 @@ use pyo3::exceptions::{PyOSError, PyStopAsyncIteration};
 use pyo3::prelude::*;
 #[allow(unused_imports)]
 use pyo3::types::{PyBytes, PyDict, PyList};
-use rboto_core::{RequestConfig, future_into_py};
-use tokio::sync::{Mutex, OnceCell};
+use rboto_core::{ManagedResource, RequestConfig, future_into_py};
+use tokio::sync::OnceCell;
 
 #[derive(Clone)]
 struct ClientConfig {
@@ -56,14 +56,14 @@ impl ClientState {
 
 #[pyclass(name = "ByteStream", module = "rboto_sesv2._native")]
 struct PyByteStream {
-    inner: Arc<Mutex<Option<AwsByteStream>>>,
+    inner: Arc<ManagedResource<AwsByteStream>>,
 }
 
 #[allow(dead_code)]
 impl PyByteStream {
     fn new(stream: AwsByteStream) -> Self {
         Self {
-            inner: Arc::new(Mutex::new(Some(stream))),
+            inner: Arc::new(ManagedResource::new(stream)),
         }
     }
 }
@@ -74,46 +74,89 @@ impl PyByteStream {
         slf
     }
 
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.inner.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        if slf.borrow(py).inner.is_closed() {
+            return Err(rboto_core::stream_closed());
+        }
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
+    }
+
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         future_into_py(py, async move {
-            let mut guard = inner.lock().await;
-            let Some(stream) = guard.as_mut() else {
+            let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            match stream.try_next().await {
-                Ok(Some(chunk)) => Python::attach(|py| Ok(PyBytes::new(py, &chunk).unbind())),
-                Ok(None) => {
-                    *guard = None;
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    *guard = None;
-                    Err(PyOSError::new_err(format!("stream failed: {error}")))
-                }
-            }
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
+                    };
+                    match stream.try_next().await {
+                        Ok(Some(chunk)) => {
+                            drop(stream);
+                            Python::attach(|py| Ok(PyBytes::new(py, &chunk).unbind()))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(PyOSError::new_err(format!("stream failed: {error}")))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 
     fn read<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
         future_into_py(py, async move {
-            let stream = inner.lock().await.take();
-            let Some(stream) = stream else {
+            let Some(lease) = inner.begin() else {
                 return Python::attach(|py| Ok(PyBytes::new(py, b"").unbind()));
             };
-            let body = stream
-                .collect()
+            lease
+                .run(async move {
+                    let stream = {
+                        let _access = inner.access().await;
+                        inner.take()
+                    };
+                    let Some(stream) = stream else {
+                        return Python::attach(|py| Ok(PyBytes::new(py, b"").unbind()));
+                    };
+                    let body = stream
+                        .collect()
+                        .await
+                        .map_err(|error| PyOSError::new_err(error.to_string()))?;
+                    Python::attach(|py| rboto_core::collected_body_to_bytes(py, body))
+                })
                 .await
-                .map_err(|error| PyOSError::new_err(error.to_string()))?;
-            Python::attach(|py| rboto_core::collected_body_to_bytes(py, body))
+                .unwrap_or_else(|| Err(rboto_core::stream_closed()))
         })
     }
 }
 
 #[pyclass(module = "rboto_sesv2._native")]
 struct SESv2Client {
-    state: Arc<ClientState>,
+    state: Arc<ManagedResource<Arc<ClientState>>>,
 }
 
 fn dict_value<'py>(values: &Bound<'py, PyDict>, name: &str) -> PyResult<Option<Bound<'py, PyAny>>> {

@@ -2614,7 +2614,7 @@ impl SQSClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -2622,8 +2622,34 @@ impl SQSClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -2633,7 +2659,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_171 = (|| -> PyResult<_> {
                 let converted_171: String = value.extract()?;
@@ -2756,7 +2782,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .add_permission()
@@ -2790,7 +2816,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let task_handle_value = if let Some(value) = dict_value(params, "task_handle")? {
             let converted_183 = (|| -> PyResult<_> {
                 let converted_183: String = value.extract()?;
@@ -2811,7 +2837,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .cancel_message_move_task()
@@ -2842,7 +2868,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_184 = (|| -> PyResult<_> {
                 let converted_184: String = value.extract()?;
@@ -2904,7 +2930,7 @@ impl SQSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .change_message_visibility()
@@ -2937,7 +2963,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_187 = (|| -> PyResult<_> {
                 let converted_187: String = value.extract()?;
@@ -3002,7 +3028,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .change_message_visibility_batch()
@@ -3036,7 +3062,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_name_value = if let Some(value) = dict_value(params, "queue_name")? {
             let converted_193 = (|| -> PyResult<_> {
                 let converted_193: String = value.extract()?;
@@ -3147,7 +3173,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_queue()
@@ -3179,7 +3205,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_209 = (|| -> PyResult<_> {
                 let converted_209: String = value.extract()?;
@@ -3220,7 +3246,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_message()
@@ -3252,7 +3278,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_211 = (|| -> PyResult<_> {
                 let converted_211: String = value.extract()?;
@@ -3317,7 +3343,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_message_batch()
@@ -3351,7 +3377,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_217 = (|| -> PyResult<_> {
                 let converted_217: String = value.extract()?;
@@ -3372,7 +3398,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_queue().set_queue_url(queue_url_value);
             let result = if let Some(sink) = observation {
@@ -3400,7 +3426,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_218 = (|| -> PyResult<_> {
                 let converted_218: String = value.extract()?;
@@ -3466,7 +3492,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_queue_attributes()
@@ -3498,7 +3524,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_name_value = if let Some(value) = dict_value(params, "queue_name")? {
             let converted_225 = (|| -> PyResult<_> {
                 let converted_225: String = value.extract()?;
@@ -3540,7 +3566,7 @@ impl SQSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_queue_url()
@@ -3571,7 +3597,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_227 = (|| -> PyResult<_> {
                 let converted_227: String = value.extract()?;
@@ -3632,7 +3658,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_dead_letter_source_queues()
@@ -3665,7 +3691,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let source_arn_value = if let Some(value) = dict_value(params, "source_arn")? {
             let converted_230 = (|| -> PyResult<_> {
                 let converted_230: String = value.extract()?;
@@ -3706,7 +3732,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_message_move_tasks()
@@ -3740,7 +3766,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_232 = (|| -> PyResult<_> {
                 let converted_232: String = value.extract()?;
@@ -3761,7 +3787,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_queue_tags().set_queue_url(queue_url_value);
             let result = if let Some(sink) = observation {
@@ -3790,7 +3816,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_name_prefix_value = if let Some(value) = dict_value(params, "queue_name_prefix")?
         {
             let converted_233 = (|| -> PyResult<_> {
@@ -3852,7 +3878,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_queues()
@@ -3884,7 +3910,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_236 = (|| -> PyResult<_> {
                 let converted_236: String = value.extract()?;
@@ -3905,7 +3931,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.purge_queue().set_queue_url(queue_url_value);
             let result = if let Some(sink) = observation {
@@ -3933,7 +3959,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_237 = (|| -> PyResult<_> {
                 let converted_237: String = value.extract()?;
@@ -4175,7 +4201,7 @@ impl SQSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .receive_message()
@@ -4215,7 +4241,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_259 = (|| -> PyResult<_> {
                 let converted_259: String = value.extract()?;
@@ -4252,7 +4278,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .remove_permission()
@@ -4284,7 +4310,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_261 = (|| -> PyResult<_> {
                 let converted_261: String = value.extract()?;
@@ -4485,7 +4511,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_message()
@@ -4521,7 +4547,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_281 = (|| -> PyResult<_> {
                 let converted_281: String = value.extract()?;
@@ -4586,7 +4612,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .send_message_batch()
@@ -4620,7 +4646,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_287 = (|| -> PyResult<_> {
                 let converted_287: String = value.extract()?;
@@ -4689,7 +4715,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .set_queue_attributes()
@@ -4721,7 +4747,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let source_arn_value = if let Some(value) = dict_value(params, "source_arn")? {
             let converted_296 = (|| -> PyResult<_> {
                 let converted_296: String = value.extract()?;
@@ -4783,7 +4809,7 @@ impl SQSClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_message_move_task()
@@ -4816,7 +4842,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_299 = (|| -> PyResult<_> {
                 let converted_299: String = value.extract()?;
@@ -4879,7 +4905,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_queue()
@@ -4910,7 +4936,7 @@ impl SQSClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
             let converted_307 = (|| -> PyResult<_> {
                 let converted_307: String = value.extract()?;
@@ -4974,7 +5000,7 @@ impl SQSClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_queue()
