@@ -1139,3 +1139,41 @@ async def test_athena_results_paginator_preserves_cells_and_forwards_tokens(peer
         {"QueryExecutionId": "query-1", "MaxResults": 2},
         {"QueryExecutionId": "query-1", "MaxResults": 2, "NextToken": "page-two"},
     ]
+
+
+@pytest.mark.asyncio
+@service("athena")
+@pytest.mark.parametrize(
+    ("operation", "parameters", "wire_parameters"),
+    [
+        ("list_notebook_metadata", {"work_group": "example", "max_results": 2},
+         {"WorkGroup": "example", "MaxResults": 2}),
+        ("list_notebook_sessions", {"notebook_id": "notebook-1", "max_results": 2},
+         {"NotebookId": "notebook-1", "MaxResults": 2}),
+    ],
+)
+@pytest.mark.parametrize("last_token", [None, "page-two"])
+async def test_athena_notebook_paginators_forward_tokens_and_terminate(
+    peer: Peer,
+    operation: str,
+    parameters: dict[str, object],
+    wire_parameters: dict[str, object],
+    last_token: str | None,
+) -> None:
+    from rboto import AthenaClient
+
+    client = AthenaClient(region="us-east-1", endpoint_url=peer.endpoint)
+    peer.body = b'{"NextToken":"page-two"}'
+    pages = getattr(client.paginators, operation)(**parameters)
+    assert peer.requests == []
+    first = await anext(pages)
+    assert first.next_token == "page-two"
+    peer.body = json.dumps({"NextToken": last_token} if last_token is not None else {}).encode()
+    second = await anext(pages)
+    assert second.next_token == last_token
+    with pytest.raises(StopAsyncIteration):
+        await anext(pages)
+    assert [json.loads(body) for _, body in peer.requests] == [
+        wire_parameters,
+        {**wire_parameters, "NextToken": "page-two"},
+    ]

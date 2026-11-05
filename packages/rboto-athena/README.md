@@ -715,6 +715,9 @@ async def list_notebook_metadata(
 ) -> ListNotebookMetadataOutput: ...
 ```
 
+Also available as `client.paginators.list_notebook_metadata(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_notebook_sessions
 
@@ -726,6 +729,9 @@ async def list_notebook_sessions(
     next_token: str | None = None,
 ) -> ListNotebookSessionsOutput: ...
 ```
+
+Also available as `client.paginators.list_notebook_sessions(...)`, returning an
+async iterator of the response type above.
 
 
 ### list_prepared_statements

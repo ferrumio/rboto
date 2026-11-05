@@ -17,6 +17,8 @@ from ._native import (
     ListEngineVersionsOutput,
     ListExecutorsOutput,
     ListNamedQueriesOutput,
+    ListNotebookMetadataOutput,
+    ListNotebookSessionsOutput,
     ListPreparedStatementsOutput,
     ListQueryExecutionsOutput,
     ListSessionsOutput,
@@ -28,6 +30,7 @@ from ._native import (
 from .types import (
     CalculationExecutionState,
     ExecutorState,
+    FilterDefinition,
     QueryResultType,
     SessionState,
 )
@@ -266,6 +269,59 @@ class AthenaClientPaginators:
             params["work_group"] = work_group
         return _paginate(
             self._client.list_named_queries, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_notebook_metadata(
+        self,
+        *,
+        work_group: str,
+        filters: FilterDefinition | None = None,
+        next_token: str | None = None,
+        max_results: int | None = None,
+    ) -> AsyncIterator[ListNotebookMetadataOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/list_notebook_metadata/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+            "work_group": work_group,
+        }
+        if filters is not None:
+            params["filters"] = filters
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        return _paginate(
+            self._client.list_notebook_metadata, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_notebook_sessions(
+        self,
+        *,
+        notebook_id: str,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListNotebookSessionsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/list_notebook_sessions/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+            "notebook_id": notebook_id,
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_notebook_sessions, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

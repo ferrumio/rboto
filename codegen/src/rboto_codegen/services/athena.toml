@@ -14,3 +14,13 @@ model_sha256 = "64bc66f6d0c82e219320a7cd48fe4d1796f1108208a4063bf4730c0bd404f834
 aws_model_hash = "7ee190bf9bed64507010f79314347c7a7154884569491adc04b0ca4e82fc77d4"
 smithy_codegen_revision = "05b51124ec26a1bc5ad4330ac2803b46b8a4b337"
 native_outputs = true
+
+[pagination.ListNotebookMetadata]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+[pagination.ListNotebookSessions]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
