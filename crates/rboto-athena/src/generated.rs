@@ -16202,7 +16202,7 @@ impl AthenaClient {
             .validate()
             .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
         Ok(Self {
-            state: Arc::new(ClientState {
+            state: Arc::new(ManagedResource::new(Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
@@ -16210,8 +16210,34 @@ impl AthenaClient {
                     options,
                 },
                 client: OnceCell::new(),
-            }),
+            }))),
         })
+    }
+
+    fn _ensure_open(&self) -> PyResult<()> {
+        if self.state.is_closed() {
+            return Err(rboto_core::client_closed());
+        }
+        Ok(())
+    }
+
+    fn aclose<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        self.state.clone().aclose(py)
+    }
+
+    fn __aenter__<'py>(slf: Py<Self>, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        slf.borrow(py)._ensure_open()?;
+        rboto_core::ready_future(py, slf.into_any())
+    }
+
+    fn __aexit__<'py>(
+        &self,
+        py: Python<'py>,
+        _exc_type: &Bound<'py, PyAny>,
+        _exc: &Bound<'py, PyAny>,
+        _traceback: &Bound<'py, PyAny>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        self.aclose(py)
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -16221,7 +16247,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_ids_value = if let Some(value) = dict_value(params, "named_query_ids")? {
             let converted_763 = (|| -> PyResult<_> {
                 let mut converted_763 =
@@ -16265,7 +16291,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_get_named_query()
@@ -16298,7 +16324,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let prepared_statement_names_value =
             if let Some(value) = dict_value(params, "prepared_statement_names")? {
                 let converted_768 = (|| -> PyResult<_> {
@@ -16363,7 +16389,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_get_prepared_statement()
@@ -16397,7 +16423,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_ids_value =
             if let Some(value) = dict_value(params, "query_execution_ids")? {
                 let converted_774 = (|| -> PyResult<_> {
@@ -16442,7 +16468,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .batch_get_query_execution()
@@ -16475,7 +16501,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_779 = (|| -> PyResult<_> {
                 let converted_779: String = value.extract()?;
@@ -16492,7 +16518,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_capacity_reservation().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -16521,7 +16547,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_dpus_value = if let Some(value) = dict_value(params, "target_dpus")? {
             let converted_780 = (|| -> PyResult<_> {
                 let converted_780: i32 = value.extract()?;
@@ -16601,7 +16627,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_capacity_reservation()
@@ -16634,7 +16660,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_787 = (|| -> PyResult<_> {
                 let converted_787: String = value.extract()?;
@@ -16782,7 +16808,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_data_catalog()
@@ -16819,7 +16845,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_803 = (|| -> PyResult<_> {
                 let converted_803: String = value.extract()?;
@@ -16933,7 +16959,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_named_query()
@@ -16969,7 +16995,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
             let converted_809 = (|| -> PyResult<_> {
                 let converted_809: String = value.extract()?;
@@ -17027,7 +17053,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_notebook()
@@ -17060,7 +17086,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
             let converted_812 = (|| -> PyResult<_> {
                 let converted_812: String = value.extract()?;
@@ -17141,7 +17167,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_prepared_statement()
@@ -17175,7 +17201,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_816 = (|| -> PyResult<_> {
                 let converted_816: String = value.extract()?;
@@ -17196,7 +17222,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_presigned_notebook_url()
@@ -17227,7 +17253,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_817 = (|| -> PyResult<_> {
                 let converted_817: String = value.extract()?;
@@ -17327,7 +17353,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .create_work_group()
@@ -17361,7 +17387,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_825 = (|| -> PyResult<_> {
                 let converted_825: String = value.extract()?;
@@ -17378,7 +17404,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_capacity_reservation().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -17407,7 +17433,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_826 = (|| -> PyResult<_> {
                 let converted_826: String = value.extract()?;
@@ -17445,7 +17471,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_data_catalog()
@@ -17479,7 +17505,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_id_value = if let Some(value) = dict_value(params, "named_query_id")? {
             let converted_828 = (|| -> PyResult<_> {
                 let converted_828: String = value.extract()?;
@@ -17500,7 +17526,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_named_query()
@@ -17531,7 +17557,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
             let converted_829 = (|| -> PyResult<_> {
                 let converted_829: String = value.extract()?;
@@ -17552,7 +17578,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_notebook().set_notebook_id(notebook_id_value);
             let result = if let Some(sink) = observation {
@@ -17581,7 +17607,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
             let converted_830 = (|| -> PyResult<_> {
                 let converted_830: String = value.extract()?;
@@ -17622,7 +17648,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_prepared_statement()
@@ -17654,7 +17680,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
             let converted_832 = (|| -> PyResult<_> {
                 let converted_832: String = value.extract()?;
@@ -17696,7 +17722,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .delete_work_group()
@@ -17728,7 +17754,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
             let converted_834 = (|| -> PyResult<_> {
                 let converted_834: String = value.extract()?;
@@ -17749,7 +17775,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.export_notebook().set_notebook_id(notebook_id_value);
             let result = if let Some(sink) = observation {
@@ -17780,7 +17806,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
                 let converted_835 = (|| -> PyResult<_> {
@@ -17802,7 +17828,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_calculation_execution()
@@ -17835,7 +17861,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
                 let converted_836 = (|| -> PyResult<_> {
@@ -17857,7 +17883,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_calculation_execution_code()
@@ -17888,7 +17914,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
                 let converted_837 = (|| -> PyResult<_> {
@@ -17910,7 +17936,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_calculation_execution_status()
@@ -17943,7 +17969,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_reservation_name_value =
             if let Some(value) = dict_value(params, "capacity_reservation_name")? {
                 let converted_838 = (|| -> PyResult<_> {
@@ -17965,7 +17991,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_capacity_assignment_configuration()
@@ -18000,7 +18026,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_839 = (|| -> PyResult<_> {
                 let converted_839: String = value.extract()?;
@@ -18017,7 +18043,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_capacity_reservation().set_name(name_value);
             let result = if let Some(sink) = observation {
@@ -18048,7 +18074,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_840 = (|| -> PyResult<_> {
                 let converted_840: String = value.extract()?;
@@ -18085,7 +18111,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_data_catalog()
@@ -18119,7 +18145,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
             let converted_842 = (|| -> PyResult<_> {
                 let converted_842: String = value.extract()?;
@@ -18180,7 +18206,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_database()
@@ -18214,7 +18240,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_id_value = if let Some(value) = dict_value(params, "named_query_id")? {
             let converted_845 = (|| -> PyResult<_> {
                 let converted_845: String = value.extract()?;
@@ -18235,7 +18261,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_named_query()
@@ -18268,7 +18294,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
             let converted_846 = (|| -> PyResult<_> {
                 let converted_846: String = value.extract()?;
@@ -18289,7 +18315,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_notebook_metadata()
@@ -18322,7 +18348,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
             let converted_847 = (|| -> PyResult<_> {
                 let converted_847: String = value.extract()?;
@@ -18363,7 +18389,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_prepared_statement()
@@ -18397,7 +18423,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
                 let converted_849 = (|| -> PyResult<_> {
@@ -18419,7 +18445,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_query_execution()
@@ -18452,7 +18478,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
                 let converted_850 = (|| -> PyResult<_> {
@@ -18537,7 +18563,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_query_results()
@@ -18573,7 +18599,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
                 let converted_855 = (|| -> PyResult<_> {
@@ -18595,7 +18621,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_query_runtime_statistics()
@@ -18628,7 +18654,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_856 = (|| -> PyResult<_> {
                 let converted_856: String = value.extract()?;
@@ -18649,7 +18675,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_resource_dashboard()
@@ -18680,7 +18706,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_857 = (|| -> PyResult<_> {
                 let converted_857: String = value.extract()?;
@@ -18701,7 +18727,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_session().set_session_id(session_id_value);
             let result = if let Some(sink) = observation {
@@ -18731,7 +18757,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_858 = (|| -> PyResult<_> {
                 let converted_858: String = value.extract()?;
@@ -18752,7 +18778,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_session_endpoint()
@@ -18783,7 +18809,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_859 = (|| -> PyResult<_> {
                 let converted_859: String = value.extract()?;
@@ -18804,7 +18830,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_session_status().set_session_id(session_id_value);
             let result = if let Some(sink) = observation {
@@ -18835,7 +18861,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
             let converted_860 = (|| -> PyResult<_> {
                 let converted_860: String = value.extract()?;
@@ -18916,7 +18942,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .get_table_metadata()
@@ -18952,7 +18978,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
             let converted_864 = (|| -> PyResult<_> {
                 let converted_864: String = value.extract()?;
@@ -18973,7 +18999,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_work_group().set_work_group(work_group_value);
             let result = if let Some(sink) = observation {
@@ -19004,7 +19030,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
             let converted_865 = (|| -> PyResult<_> {
                 let converted_865: String = value.extract()?;
@@ -19121,7 +19147,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .import_notebook()
@@ -19157,7 +19183,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
             let converted_872 = (|| -> PyResult<_> {
                 let converted_872: i32 = value.extract()?;
@@ -19198,7 +19224,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_application_dpu_sizes()
@@ -19232,7 +19258,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_874 = (|| -> PyResult<_> {
                 let converted_874: String = value.extract()?;
@@ -19315,7 +19341,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_calculation_executions()
@@ -19351,7 +19377,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_879 = (|| -> PyResult<_> {
                 let converted_879: String = value.extract()?;
@@ -19392,7 +19418,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_capacity_reservations()
@@ -19426,7 +19452,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_881 = (|| -> PyResult<_> {
                 let converted_881: String = value.extract()?;
@@ -19487,7 +19513,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_data_catalogs()
@@ -19522,7 +19548,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
             let converted_884 = (|| -> PyResult<_> {
                 let converted_884: String = value.extract()?;
@@ -19603,7 +19629,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_databases()
@@ -19639,7 +19665,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_888 = (|| -> PyResult<_> {
                 let converted_888: String = value.extract()?;
@@ -19680,7 +19706,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_engine_versions()
@@ -19714,7 +19740,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_890 = (|| -> PyResult<_> {
                 let converted_890: String = value.extract()?;
@@ -19798,7 +19824,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_executors()
@@ -19834,7 +19860,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_895 = (|| -> PyResult<_> {
                 let converted_895: String = value.extract()?;
@@ -19895,7 +19921,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_named_queries()
@@ -19928,7 +19954,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
             let converted_898 = (|| -> PyResult<_> {
                 let converted_898 = filter_definition_from_py(&value)?;
@@ -20009,7 +20035,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_notebook_metadata()
@@ -20045,7 +20071,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
             let converted_902 = (|| -> PyResult<_> {
                 let converted_902: String = value.extract()?;
@@ -20106,7 +20132,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_notebook_sessions()
@@ -20141,7 +20167,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
             let converted_905 = (|| -> PyResult<_> {
                 let converted_905: String = value.extract()?;
@@ -20202,7 +20228,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_prepared_statements()
@@ -20237,7 +20263,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_908 = (|| -> PyResult<_> {
                 let converted_908: String = value.extract()?;
@@ -20298,7 +20324,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_query_executions()
@@ -20331,7 +20357,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
             let converted_911 = (|| -> PyResult<_> {
                 let converted_911: String = value.extract()?;
@@ -20414,7 +20440,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_sessions()
@@ -20450,7 +20476,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
             let converted_916 = (|| -> PyResult<_> {
                 let converted_916: String = value.extract()?;
@@ -20571,7 +20597,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_table_metadata()
@@ -20609,7 +20635,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_922 = (|| -> PyResult<_> {
                 let converted_922: String = value.extract()?;
@@ -20670,7 +20696,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
@@ -20705,7 +20731,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
             let converted_925 = (|| -> PyResult<_> {
                 let converted_925: String = value.extract()?;
@@ -20746,7 +20772,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .list_work_groups()
@@ -20780,7 +20806,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_reservation_name_value =
             if let Some(value) = dict_value(params, "capacity_reservation_name")? {
                 let converted_927 = (|| -> PyResult<_> {
@@ -20846,7 +20872,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .put_capacity_assignment_configuration()
@@ -20880,7 +20906,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_933 = (|| -> PyResult<_> {
                 let converted_933: String = value.extract()?;
@@ -20983,7 +21009,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_calculation_execution()
@@ -21018,7 +21044,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_string_value = if let Some(value) = dict_value(params, "query_string")? {
             let converted_938 = (|| -> PyResult<_> {
                 let converted_938: String = value.extract()?;
@@ -21208,7 +21234,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_query_execution()
@@ -21246,7 +21272,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let description_value = if let Some(value) = dict_value(params, "description")? {
             let converted_950 = (|| -> PyResult<_> {
                 let converted_950: String = value.extract()?;
@@ -21475,7 +21501,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .start_session()
@@ -21515,7 +21541,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
                 let converted_964 = (|| -> PyResult<_> {
@@ -21537,7 +21563,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_calculation_execution()
@@ -21568,7 +21594,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
                 let converted_965 = (|| -> PyResult<_> {
@@ -21590,7 +21616,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .stop_query_execution()
@@ -21621,7 +21647,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_966 = (|| -> PyResult<_> {
                 let converted_966: String = value.extract()?;
@@ -21685,7 +21711,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .tag_resource()
@@ -21716,7 +21742,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
             let converted_972 = (|| -> PyResult<_> {
                 let converted_972: String = value.extract()?;
@@ -21737,7 +21763,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.terminate_session().set_session_id(session_id_value);
             let result = if let Some(sink) = observation {
@@ -21766,7 +21792,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
             let converted_973 = (|| -> PyResult<_> {
                 let converted_973: String = value.extract()?;
@@ -21830,7 +21856,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .untag_resource()
@@ -21862,7 +21888,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_dpus_value = if let Some(value) = dict_value(params, "target_dpus")? {
             let converted_979 = (|| -> PyResult<_> {
                 let converted_979: i32 = value.extract()?;
@@ -21899,7 +21925,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_capacity_reservation()
@@ -21931,7 +21957,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
             let converted_981 = (|| -> PyResult<_> {
                 let converted_981: String = value.extract()?;
@@ -22036,7 +22062,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_data_catalog()
@@ -22070,7 +22096,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_id_value = if let Some(value) = dict_value(params, "named_query_id")? {
             let converted_992 = (|| -> PyResult<_> {
                 let converted_992: String = value.extract()?;
@@ -22147,7 +22173,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_named_query()
@@ -22181,7 +22207,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
             let converted_996 = (|| -> PyResult<_> {
                 let converted_996: String = value.extract()?;
@@ -22281,7 +22307,7 @@ impl AthenaClient {
             } else {
                 None
             };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_notebook()
@@ -22316,7 +22342,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
             let converted_1002 = (|| -> PyResult<_> {
                 let converted_1002: String = value.extract()?;
@@ -22374,7 +22400,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_notebook_metadata()
@@ -22407,7 +22433,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
             let converted_1005 = (|| -> PyResult<_> {
                 let converted_1005: String = value.extract()?;
@@ -22488,7 +22514,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_prepared_statement()
@@ -22522,7 +22548,7 @@ impl AthenaClient {
         params: &Bound<'py, PyDict>,
         observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
-        let state = self.state.clone();
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
             let converted_1009 = (|| -> PyResult<_> {
                 let converted_1009: String = value.extract()?;
@@ -22606,7 +22632,7 @@ impl AthenaClient {
         } else {
             None
         };
-        future_into_py(py, async move {
+        rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client
                 .update_work_group()
