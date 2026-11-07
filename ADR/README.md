@@ -45,6 +45,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0028: Report field paths on input conversion failures](0028-input-conversion-context.md)
 - [ADR-0029: Explicit async client and stream lifetimes](0029-async-resource-lifecycle.md)
 - [ADR-0030: Stream request bodies from Python async iterables](0030-streamed-request-bodies.md)
+- [ADR-0031: Define configuration and credential-provider compatibility](0031-configuration-and-authentication-contract.md)
 
 ## Creating an ADR
 

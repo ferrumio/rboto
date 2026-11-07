@@ -275,19 +275,112 @@ async def test_read_deadline_survives_custom_transport(lab: Lab) -> None:
     assert len(proxy.requests) == len(origin.requests) == 1
 
 
+@pytest.mark.parametrize("ca_source", ["explicit", "environment"])
+@pytest.mark.parametrize("bypass", [False, True])
+async def test_ca_trust_preserves_environment_proxy_for_role_and_service(
+    lab: Lab, monkeypatch: pytest.MonkeyPatch, ca_source: str, bypass: bool,
+) -> None:
+    origin, proxy = lab.start(secure=True), lab.start(proxy=True)
+    monkeypatch.setenv("AWS_ENDPOINT_URL_STS", origin.endpoint)
+    monkeypatch.setenv("HTTPS_PROXY", proxy.endpoint)
+    if bypass:
+        monkeypatch.setenv("NO_PROXY", "localhost")
+    settings: dict[str, object] = {"role_arn": "arn:aws:iam::123456789012:role/example"}
+    if ca_source == "explicit":
+        settings["ca_bundle"] = str(lab.ca)
+    else:
+        monkeypatch.setenv("AWS_CA_BUNDLE", str(lab.ca))
+    before = dict(os.environ)
+    async with client(origin.endpoint, **settings) as configured:
+        assert (await configured.get_caller_identity()).account == "123456789012"
+    assert bool(proxy.requests) is not bypass
+    assert [parse_qs(body.decode())["Action"][0] for _, _, body in origin.requests] == [
+        "AssumeRole", "GetCallerIdentity",
+    ]
+    assert "Credential=source-key/" in origin.requests[0][1]["authorization"]
+    assert "Credential=assumed-key/" in origin.requests[1][1]["authorization"]
+    assert dict(os.environ) == before
+
+
+async def test_default_transport_uses_environment_proxy_and_bypass(
+    lab: Lab, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    origin, proxy = lab.start(), lab.start(proxy=True)
+    monkeypatch.setenv("HTTP_PROXY", proxy.endpoint)
+    async with client(origin.endpoint) as configured:
+        await configured.get_caller_identity()
+    assert len(proxy.requests) == 1
+    monkeypatch.setenv("NO_PROXY", "localhost")
+    async with client(origin.endpoint) as configured:
+        await configured.get_caller_identity()
+    assert len(proxy.requests) == 1
+    assert len(origin.requests) == 2
+
+
+async def test_ca_environment_is_lazy_cached_and_overridden_by_explicit_trust(
+    lab: Lab, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    origin = lab.start(secure=True)
+    async with client(origin.endpoint) as configured:
+        # Resolve the environment on first use, not when the Python client is created.
+        monkeypatch.setenv("AWS_CA_BUNDLE", str(lab.ca))
+        await configured.get_caller_identity()
+        monkeypatch.setenv("AWS_CA_BUNDLE", "/missing/private-ca.pem")
+        await configured.get_caller_identity()
+    async with client(origin.endpoint, ca_bundle=str(lab.ca)) as explicit:
+        await explicit.get_caller_identity()
+    async with client(origin.endpoint) as missing:
+        with pytest.raises(ConfigurationError, match="ca_bundle"):
+            await missing.get_caller_identity()
+    assert len(origin.requests) == 3
+
+
+async def test_environment_trust_keeps_hostname_verification(
+    lab: Lab, monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    origin = lab.start(secure=True)
+    monkeypatch.setenv("AWS_CA_BUNDLE", str(lab.ca))
+    async with client(origin.endpoint.replace("localhost", "127.0.0.1")) as configured:
+        with pytest.raises(ConnectionError):
+            await configured.get_caller_identity()
+    assert not origin.requests
+
+
+@pytest.mark.parametrize("path", ["", "   "])
+async def test_empty_environment_bundle_is_rejected_without_network(
+    lab: Lab, monkeypatch: pytest.MonkeyPatch, path: str,
+) -> None:
+    origin = lab.start()
+    monkeypatch.setenv("AWS_CA_BUNDLE", path)
+    async with client(origin.endpoint) as configured:
+        with pytest.raises(ConfigurationError, match="AWS_CA_BUNDLE"):
+            await configured.get_caller_identity()
+    async with client(origin.endpoint, ca_bundle=str(lab.ca)) as explicit:
+        await explicit.get_caller_identity()
+    assert len(origin.requests) == 1
+
+
+@pytest.mark.parametrize("ca_source", ["explicit", "environment"])
 @pytest.mark.parametrize("contents", [None, b"", b"not a certificate", (
     b"-----BEGIN CERTIFICATE-----\nYWJjZA==\n-----END CERTIFICATE-----"
 )])
 async def test_invalid_bundle_is_typed_and_logged_without_contents(
     lab: Lab, tmp_path: Path, contents: bytes | None, json_logging: io.StringIO,
+    monkeypatch: pytest.MonkeyPatch, ca_source: str,
 ) -> None:
     path = tmp_path / "invalid.pem"
     if contents is not None:
         path.write_bytes(contents)
     origin = lab.start()
     configure_logging(stream=json_logging)
-    with pytest.raises(ConfigurationError):
-        await client(origin.endpoint, ca_bundle=str(path)).get_caller_identity()
+    settings: dict[str, object] = {}
+    if ca_source == "environment":
+        monkeypatch.setenv("AWS_CA_BUNDLE", str(path))
+    else:
+        settings["ca_bundle"] = str(path)
+    async with client(origin.endpoint, **settings) as configured:
+        with pytest.raises(ConfigurationError):
+            await configured.get_caller_identity()
     record = json.loads(json_logging.getvalue())
     assert record["error_type"] == "ConfigurationError"
     assert str(path) not in json_logging.getvalue()
